@@ -46,15 +46,11 @@ public class InputReader : MonoBehaviour, GameInput.IClickerActions, IAgentInput
     public void CallOnMovementInput(Vector2 direction)
     {
         _direction = direction;
-        Debug.Log(direction);
+        OnMovement?.Invoke(_direction);
     }
 
     public void CallOnTouchPressed(bool touchPressed)
     {
-        if (touchPressed)
-        {
-            Debug.Log("Presionando touch");
-        }
         OnTouchPressed?.Invoke(touchPressed);
     }
 }
