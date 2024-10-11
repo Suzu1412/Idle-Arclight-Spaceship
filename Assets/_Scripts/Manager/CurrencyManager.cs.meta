@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: cb9afffddf648bb4c99608ef8333229e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _gainCurrencyListener: {fileID: 11400000, guid: 7497add99904b71499a2596a4df8528f, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,17 @@
+{
+    "name": "Suzu.Health",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b6871d9040a0842a78a242cd777e96ee",
+        "GUID:eee2d7abad5a31d419cb705834217f10"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

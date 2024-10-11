@@ -1,0 +1,17 @@
+{
+    "name": "Suzu.Drop",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b105f9cd52f734e809a4fb601166a81f",
+        "GUID:eee2d7abad5a31d419cb705834217f10"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
