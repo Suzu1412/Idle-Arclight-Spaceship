@@ -6,11 +6,11 @@ using Unity.Services.Core;
 using UnityEditor;
 using UnityEngine;
 
-public class CloudDataService : IDataService
+public class CloudDataService : ICloudService
 {
     private const string KEY_PLAYER_NAME = "Player";
 
-    public CloudDataService() 
+    public CloudDataService()
     {
         Initialize();
     }
@@ -19,15 +19,12 @@ public class CloudDataService : IDataService
     {
         await UnityServices.InitializeAsync();
 
-        // Actualmente usamos un método anónimo. Esto solo servirá en el actual dispositivo
-        // Para cualquier plataforma tenemos que tener un método persistente
+        // Actualmente usamos un m?todo an?nimo. Esto solo servir? en el actual dispositivo
+        // Para cualquier plataforma tenemos que tener un m?todo persistente
         // Google Para android, Facebook. Steam para PC. Etc. 
 
         // TODO: Implementar lo anterior mencionado
 
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
-
-        Debug.Log($"Player ID: {AuthenticationService.Instance.PlayerId}");
     }
 
     public void Delete(string name)
@@ -45,31 +42,24 @@ public class CloudDataService : IDataService
         throw new System.NotImplementedException();
     }
 
-    public GameData Load(string name)
+    public async Awaitable<GameData> Load(string name)
     {
-        var a = LoadDictionary();
-        GameData gameData = new GameData();
-
-        Debug.Log(a);
-        
-        return gameData;
-    }
-
-    public void Save(GameData data, bool overwrite = true)
-    {
-    }
-
-    private async Awaitable<GameData> LoadDictionary()
-    {
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
         var dictionary = await CloudSaveService.Instance.Data.Player.LoadAllAsync();
         GameData gameData = new();
 
         if (dictionary.TryGetValue(KEY_PLAYER_NAME, out var keyName))
         {
             gameData = keyName.Value.GetAs<GameData>();
-            Debug.Log($"keyName: {keyName.Value.GetAs<GameData>()}");
         }
 
         return gameData;
+    }
+
+    public async void Save(GameData data, bool overwrite = true)
+    {
+        var dataDictionary = new Dictionary<string, object> { { KEY_PLAYER_NAME, data } };
+        await CloudSaveService.Instance.Data.Player.SaveAsync(dataDictionary);
+
     }
 }
