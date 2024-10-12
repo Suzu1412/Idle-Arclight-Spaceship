@@ -19,7 +19,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     [SerializeField] private GameObject _floatingText;
     private Coroutine _hurtPeriodCoroutine;
     private Coroutine _invulnerabilityPeriodCoroutine;
-
+   
     internal IAgent Agent => _agent ??= _agent = GetComponent<IAgent>();
 
     public bool IsHurt => _isHurt;
@@ -27,6 +27,8 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     public int KnockbackDirection => _knockbackDirection;
     public float HurtDuration => _hurtDuration;
     public float InvulnerabilityDuration => _invulnerabilityDuration;
+
+    public IntGameEvent _currentHealthEvent;
 
     #region Events
     public event Action<float, float> OnMaxHealthValueChanged;
@@ -49,6 +51,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
         _health.Initialize(GetMaxValue(), GetMinPossiblevalue(), GetMaxPossibleValue());
         OnMaxHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
+        _currentHealthEvent?.RaiseEvent(_health.CurrentValue);
     }
 
     private void OnEnable()
@@ -110,7 +113,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         OnHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
         OnDamaged?.Invoke();
 
-        Debug.Log(_health.CurrentValue);
+        _currentHealthEvent?.RaiseEvent(_health.CurrentValue);
 
         if (_health.CurrentValue <= 0)
         {

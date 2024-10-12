@@ -10,7 +10,7 @@ public class StatsSO : SerializableScriptableObject
     [SerializedDictionary("Stat type", "Stat")]
     [SerializeField] private SerializedDictionary<StatType, Stat> _stats = new();
 
-    internal void Initialize()
+    private void OnEnable()
     {
         Recalculate();
     }

@@ -8,12 +8,14 @@ public class SaveSystem : PersistentSingleton<SaveSystem>
     private const string _saveDataPath = "SaveSystem/";
 
     IDataService _dataService;
+    IDataService _cloudDataService;
 
     protected override void Awake()
     {
         base.Awake();
 
         _dataService = new FileDataService(new JsonSerializer());
+        _cloudDataService = new CloudDataService();
     }
 
     private void Start()
@@ -23,6 +25,7 @@ public class SaveSystem : PersistentSingleton<SaveSystem>
 
     public void LoadGame(string gameName)
     {
+        _cloudDataService.Load(gameName);
         GameData = _dataService.Load(gameName);
 
         if (String.IsNullOrWhiteSpace(GameData.CurrentLevelName))
@@ -58,7 +61,9 @@ public class SaveSystem : PersistentSingleton<SaveSystem>
         }
 
         //Debug.Log($"Dinero actual: {GameData.CurrencyData.Currency}");
+        _cloudDataService.Save(GameData);
         _dataService.Save(GameData);
+        
     }
 
     private void OnApplicationQuit()

@@ -20,7 +20,6 @@ public class Stat
         _statInfo = statInfo;
         _baseValue = baseValue;
         _modifiers = new();
-
     }
 
     public float Value

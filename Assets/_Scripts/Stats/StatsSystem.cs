@@ -14,11 +14,6 @@ public class StatsSystem : MonoBehaviour, IStatsSystem
         if (_stats == null) Debug.LogWarning("Please Assign Stats SO", this.gameObject);
     }
 
-    private void Awake()
-    {
-        _stats.Initialize();
-    }
-
     private void OnDisable()
     {
         _stats.RemoveModifiers();

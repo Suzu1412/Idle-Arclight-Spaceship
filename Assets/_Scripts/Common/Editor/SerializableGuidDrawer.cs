@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Text;
 using UnityEditor;
 using UnityEngine;
@@ -34,3 +35,4 @@ public class SerializableGuidDrawer : PropertyDrawer
         EditorGUI.EndProperty();
     }
 }
+#endif
