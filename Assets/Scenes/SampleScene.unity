@@ -281,6 +281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 544774723}
   - component: {fileID: 544774722}
+  - component: {fileID: 544774724}
   m_Layer: 0
   m_Name: Currency Manager
   m_TagString: Untagged
@@ -300,9 +301,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9afffddf648bb4c99608ef8333229e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalAmount: 0
-  _incrementAmount: 1
   _gainCurrencyListener: {fileID: 11400000, guid: 7497add99904b71499a2596a4df8528f, type: 2}
+  _currencyData:
+    TotalCurrency: 0
+  <Id>k__BackingField:
+    Part1: 0
+    Part2: 0
+    Part3: 0
+    Part4: 0
 --- !u!4 &544774723
 Transform:
   m_ObjectHideFlags: 0
@@ -318,6 +324,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &544774724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544774721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0aa52367560640bfa34874b5a130450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveDataRunTimeSet: {fileID: 11400000, guid: b5e0ee00a76287f4694d5f2ebb306715, type: 2}
 --- !u!4 &799066537 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5093743873899913257, guid: 7d59e6af296d4d34fb25b7f7f432f8ef, type: 3}
@@ -413,6 +432,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats: {fileID: 11400000, guid: 3e84c19f82851d14bbb6158ad4eee7d0, type: 2}
+--- !u!1 &1703084201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1703084203}
+  - component: {fileID: 1703084202}
+  m_Layer: 0
+  m_Name: Save System Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1703084202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703084201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13adbe1361b45324da858c629dab29a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnparentOnAwake: 1
+  GameData:
+    Name: 
+    LocationId: 
+    CurrentLevelName: 
+    CurrencyData:
+      TotalCurrency: 0
+  _saveDataRTS: {fileID: 11400000, guid: b5e0ee00a76287f4694d5f2ebb306715, type: 2}
+--- !u!4 &1703084203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703084201}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1754460092
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,3 +708,4 @@ SceneRoots:
   - {fileID: 2548964168936044876}
   - {fileID: 3828372238028650264}
   - {fileID: 544774723}
+  - {fileID: 1703084203}

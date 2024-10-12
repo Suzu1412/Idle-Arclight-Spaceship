@@ -1,9 +1,18 @@
 using UnityEngine;
 
-public class CurrencyManager : Singleton<CurrencyManager>
+[RequireComponent(typeof(AddSaveDataRunTimeSet))]
+public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 {
-    [SerializeField] private double _totalAmount;
     [SerializeField] private IntGameEventListener _gainCurrencyListener;
+    [Header("Save Data")]
+    [SerializeField] private CurrencyData _currencyData;
+    [field: SerializeField] public SerializableGuid Id { get; set; }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _currencyData = new CurrencyData();
+    }
 
     private void OnEnable()
     {
@@ -17,7 +26,16 @@ public class CurrencyManager : Singleton<CurrencyManager>
 
     private void Increment(int amount)
     {
-        _totalAmount += amount;
+        _currencyData.TotalCurrency += amount;
     }
 
+    public void SaveData(GameData gameData)
+    {
+        gameData.CurrencyData = _currencyData;
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        _currencyData.TotalCurrency = gameData.CurrencyData.TotalCurrency;
+    }
 }
