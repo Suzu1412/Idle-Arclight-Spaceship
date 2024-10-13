@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d54dcab89998426d99f67f87d9598ff, type: 3}
-  m_Name: Gain Currency Listener
+  m_Script: {fileID: 11500000, guid: b34895e9c02ae5840897799b6224ffee, type: 3}
+  m_Name: Total Currency Amount
   m_EditorClassIdentifier: 
-  OnEvent: {fileID: 11400000, guid: 4f44680d8d5eb7246bc418012b7d8cfd, type: 2}

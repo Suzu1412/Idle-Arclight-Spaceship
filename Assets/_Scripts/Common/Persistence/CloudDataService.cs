@@ -49,8 +49,6 @@ public class CloudDataService : IDataService
     {
         var a = LoadDictionary();
         GameData gameData = new GameData();
-
-        Debug.Log(a);
         
         return gameData;
     }

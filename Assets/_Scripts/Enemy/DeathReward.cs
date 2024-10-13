@@ -3,7 +3,7 @@ using UnityEngine;
 public class DeathReward : MonoBehaviour
 {
     [SerializeField] private EnemyRewardSO _reward;
-    [SerializeField] private IntGameEvent _gainCurrencyEvent = default;
+    [SerializeField] private DoubleGameEvent _gainCurrencyEvent = default;
     private IHealthSystem _healthSystem;
 
     internal IHealthSystem HealthSystem => _healthSystem ??= GetComponent<IHealthSystem>();
