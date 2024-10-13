@@ -9,6 +9,7 @@ public class GameData
 
     public string LocationId;
     public string CurrentLevelName;
+    public float LastSavedTime;
 
     [Header("Currency")]
     public CurrencyData CurrencyData;

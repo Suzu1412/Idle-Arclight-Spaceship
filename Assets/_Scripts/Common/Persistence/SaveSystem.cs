@@ -4,11 +4,13 @@ using UnityEngine;
 public class SaveSystem : PersistentSingleton<SaveSystem>
 {
     [SerializeField] private GameData GameData;
+    private GameData _fileGameData;
+    private GameData _cloudGameData;
     [SerializeField] private SaveableRunTimeSetSO _saveDataRTS = default;
     private const string _saveDataPath = "SaveSystem/";
 
     IDataService _dataService;
-    IDataService _cloudDataService;
+    ICloudService _cloudDataService;
 
     protected override void Awake()
     {
@@ -23,10 +25,31 @@ public class SaveSystem : PersistentSingleton<SaveSystem>
         LoadGame(GameData.Name);
     }
 
-    public void LoadGame(string gameName)
+    public async void LoadGame(string gameName)
     {
-        _cloudDataService.Load(gameName);
-        GameData = _dataService.Load(gameName);
+        _cloudGameData = await _cloudDataService.Load(gameName);
+        _fileGameData = _dataService.Load(gameName);
+
+        if (_cloudGameData == null && _fileGameData == null)
+        {
+            return;
+        }
+
+        if (_cloudGameData.LastSavedTime == _fileGameData.LastSavedTime)
+        {
+            GameData = _cloudGameData;
+        }
+        else
+        {
+            if (_cloudGameData.LastSavedTime > _fileGameData.LastSavedTime)
+            {
+                GameData = _cloudGameData;
+            }
+            else
+            {
+                GameData = _fileGameData;
+            }
+        }
 
         if (String.IsNullOrWhiteSpace(GameData.CurrentLevelName))
         {
@@ -60,10 +83,10 @@ public class SaveSystem : PersistentSingleton<SaveSystem>
             _saveDataRTS.Items[i].SaveData(GameData);
         }
 
-        //Debug.Log($"Dinero actual: {GameData.CurrencyData.Currency}");
+        GameData.LastSavedTime = Time.time;
         _cloudDataService.Save(GameData);
         _dataService.Save(GameData);
-        
+
     }
 
     private void OnApplicationQuit()
