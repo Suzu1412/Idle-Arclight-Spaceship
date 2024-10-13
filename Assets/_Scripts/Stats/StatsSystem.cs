@@ -7,7 +7,6 @@ public class StatsSystem : MonoBehaviour, IStatsSystem
     internal StatsSO Stats => _stats;
 
     public event Action OnMaxHealthChange;
-    public event Action OnMaxManaChange;
 
     private void OnValidate()
     {

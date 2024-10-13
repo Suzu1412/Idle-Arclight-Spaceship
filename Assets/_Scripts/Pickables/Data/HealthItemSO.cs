@@ -10,7 +10,7 @@ public class HealthItemSO : ItemSO
 
     public override void PickUp(IAgent agent)
     {
-        //agent.HealthSystem.Heal(healAmount);
+        agent.HealthSystem.Heal(healAmount);
     }
 }
     

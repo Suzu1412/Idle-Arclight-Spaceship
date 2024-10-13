@@ -6,7 +6,6 @@ using System;
 public interface IStatsSystem
 {
     event Action OnMaxHealthChange;
-    event Action OnMaxManaChange;
 
     float GetStatValue(StatType statType);
 
