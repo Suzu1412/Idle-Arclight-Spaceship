@@ -14,8 +14,8 @@ public interface IHealthSystem : IDamageable, IHealable, IHittable
 
     event Action<float, float> OnMaxHealthValueChanged;
     event Action<float, float> OnHealthValueChanged;
-    event Action OnHealed;
-    event Action OnDamaged;
+    event Action<int> OnHealed;
+    event Action<int> OnDamaged;
     event Action OnDeath;
 
     void SetInvulnerability(bool isInvulnerable);

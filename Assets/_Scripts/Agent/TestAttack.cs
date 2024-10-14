@@ -25,6 +25,7 @@ public class TestAttack : MonoBehaviour
             {
                 return;
             }
+            _enemyHealth.GetHit(this.gameObject);
             _enemyHealth.Damage((int)Agent.GetStat(StatType.Strength));
         }
         else

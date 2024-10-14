@@ -44,5 +44,23 @@ TagManager:
   - name: Background
     uniqueID: 2032723753
     locked: 0
+  - name: Foreground
+    uniqueID: 2376299721
+    locked: 0
+  - name: Enemy
+    uniqueID: 239920077
+    locked: 0
+  - name: Player
+    uniqueID: 1641925991
+    locked: 0
+  - name: EnemyBullet
+    uniqueID: 3750055855
+    locked: 0
+  - name: PlayerBullet
+    uniqueID: 3916959789
+    locked: 0
+  - name: Effect
+    uniqueID: 3909208969
+    locked: 0
   m_RenderingLayers:
   - Default
