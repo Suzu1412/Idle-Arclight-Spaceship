@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 5
   _prefab: {fileID: 4935296351923539931, guid: 00ea748c59e2505419752124b10ba644, type: 3}
-  _defaultCapacity: 100
-  _maxPoolSize: 200
+  _defaultCapacity: 10
+  _maxPoolSize: 10
