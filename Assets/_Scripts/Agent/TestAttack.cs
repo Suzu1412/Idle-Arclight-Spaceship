@@ -19,17 +19,8 @@ public class TestAttack : MonoBehaviour
 
     private void InflictDamage(bool isPressed)
     {
-        if (_enemyHealth != null)
-        {
-            if (!isPressed)
-            {
-                return;
-            }
-            _enemyHealth.Damage((int)Agent.GetStat(StatType.Strength));
-        }
-        else
-        {
-            Debug.LogError($"Test Attack Requires Enemy");
-        }
+        Agent.AttackSystem.Attack(isPressed);
+            //_enemyHealth.GetHit(this.gameObject);
+            //_enemyHealth.Damage((int)Agent.GetStat(StatType.Strength));
     }
 }

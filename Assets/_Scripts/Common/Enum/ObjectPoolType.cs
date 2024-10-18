@@ -8,5 +8,6 @@ public enum ObjectPoolType
     Enemies,
     Coins,
     Audio,
-    PickUp
+    PickUp,
+    TextPopUp,
 }

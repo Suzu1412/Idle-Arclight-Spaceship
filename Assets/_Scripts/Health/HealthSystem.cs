@@ -33,10 +33,11 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     #region Events
     public event Action<float, float> OnMaxHealthValueChanged;
     public event Action<float, float> OnHealthValueChanged;
-    public event Action OnHealed;
-    public event Action OnDamaged;
+    public event Action<int> OnHealed;
+    public event Action<int> OnDamaged;
     public event Action OnDeath;
     public event Action OnHitStun;
+    public event Action OnHit;
     #endregion
 
     private void Awake()
@@ -102,7 +103,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
         _health.CurrentValue += amount;
         OnHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
-        OnHealed?.Invoke();
+        OnHealed?.Invoke(amount);
     }
 
     public void Damage(int amount)
@@ -111,7 +112,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
         _health.CurrentValue -= amount;
         OnHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
-        OnDamaged?.Invoke();
+        OnDamaged?.Invoke(amount);
 
         _currentHealthEvent?.RaiseEvent(_health.CurrentValue);
 
@@ -120,12 +121,6 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
             Death();
             return;
         }
-
-        if (_hurtPeriodCoroutine != null) StopCoroutine(_hurtPeriodCoroutine);
-        _hurtPeriodCoroutine = StartCoroutine(HurtPeriodCoroutine());
-
-        if (_invulnerabilityPeriodCoroutine != null) StopCoroutine(_invulnerabilityPeriodCoroutine);
-        _invulnerabilityPeriodCoroutine = StartCoroutine(InvulnerabilityPeriodCoroutine());
     }
 
     public void Death()
@@ -138,33 +133,12 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     {
         if (_isInvulnerable) return;
 
-        if (transform.position.x < damageDealer.transform.position.x)
-        {
-            _knockbackDirection = -1;
-        }
-        else
-        {
-            _knockbackDirection = 1;
-        }
+        OnHit?.Invoke();
         OnHitStun?.Invoke();
     }
 
     public void SetInvulnerability(bool isInvulnerable)
     {
         _isInvulnerable = isInvulnerable;
-    }
-
-    private IEnumerator HurtPeriodCoroutine()
-    {
-        _isHurt = true;
-        yield return Helpers.GetWaitForSeconds(_hurtDuration);
-        _isHurt = false;
-    }
-
-    private IEnumerator InvulnerabilityPeriodCoroutine()
-    {
-        _isInvulnerable = true;
-        yield return Helpers.GetWaitForSeconds(_invulnerabilityDuration);
-        _isInvulnerable = false;
     }
 }

@@ -1,8 +1,10 @@
 {
-    "name": "Suzu.ObjectPool",
+    "name": "Suzu.Feedback",
     "rootNamespace": "",
     "references": [
-        "GUID:eee2d7abad5a31d419cb705834217f10"
+        "Suzu.Common",
+        "Suzu.ObjectPool",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

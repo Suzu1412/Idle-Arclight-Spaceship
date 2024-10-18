@@ -11,5 +11,6 @@ public interface IHittable
 
     void GetHit(GameObject damageDealer);
 
+    event Action OnHit;
     event Action OnHitStun;
 }

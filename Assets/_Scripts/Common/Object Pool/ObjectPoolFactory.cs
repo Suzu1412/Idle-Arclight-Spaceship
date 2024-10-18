@@ -64,7 +64,6 @@ public class ObjectPoolFactory : Singleton<ObjectPoolFactory>
         IObjectPool<ObjectPooler> pool;
 
         int poolKey = settings.Prefab.GetInstanceID();
-
         if (_pools.TryGetValue(poolKey, out pool)) return pool;
 
         pool = new ObjectPool<ObjectPooler>(
