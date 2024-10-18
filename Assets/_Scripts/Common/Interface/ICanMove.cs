@@ -1,0 +1,36 @@
+using UnityEngine;
+
+public interface ICanMove
+{
+    Rigidbody2D RB { get; }
+
+    /// <summary>
+    /// Read Input Direction. Run in Update for correct working
+    /// </summary>
+    /// <param name="direction"></param>
+    void ReadInputDirection(Vector2 direction);
+
+    /// <summary>
+    /// Stop All Velocities in Rigidbody
+    /// </summary>
+    void StopMovement();
+
+    /// <summary>
+    /// Apply Calculated Movement from Input Direction * Acceleration
+    /// </summary>
+    void Move();
+
+    /// <summary>
+    /// Apply Vector2 Velocity Directly to Rigidbody
+    /// </summary>
+    /// <param name="velocity"></param>
+    void ApplyVelocity(Vector2 velocity);
+
+    /// <summary>
+    /// Apply Force Directly to Rigidbody
+    /// </summary>
+    /// <param name="force"></param>
+    /// <param name="forceMode"></param>
+    void ApplyForce(Vector2 force, ForceMode2D forceMode);
+
+}

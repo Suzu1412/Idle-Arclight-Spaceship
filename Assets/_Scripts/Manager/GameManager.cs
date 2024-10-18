@@ -1,16 +1,22 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+
+
+    #region Events
+    public event UnityAction<GameStateType> OnStateChanged;
+
+
+    #endregion
+
+    protected override void Awake()
     {
-        
+        base.Awake();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

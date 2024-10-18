@@ -28,6 +28,8 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     public float HurtDuration => _hurtDuration;
     public float InvulnerabilityDuration => _invulnerabilityDuration;
 
+    public SerializableGuid Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
     public IntGameEvent _currentHealthEvent;
 
     #region Events

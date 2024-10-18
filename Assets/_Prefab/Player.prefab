@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 5093743873899913257}
   - component: {fileID: 7878442640159246216}
   - component: {fileID: 2873822379548033991}
-  m_Layer: 0
+  - component: {fileID: 572611116026364913}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,10 +70,6 @@ MonoBehaviour:
     m_ActionName: 'Player/Look[/Mouse/delta]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: ff04f1f2-f50d-44f2-962c-a0f6036c6a83
-    m_ActionName: 'Player/Fire[/Mouse/leftButton]'
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: d8326db8-b8e7-4a06-986e-20794f556c01
     m_ActionName: 'UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
@@ -119,6 +116,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9528928d-9ea3-44a2-9a19-66f1221e9d8d
     m_ActionName: 'Clicker/TouchPress[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9afe738e-6fd3-43aa-9efe-d9289908cde6
+    m_ActionName: Player/Attack
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 059bccea-81f9-4297-8e6f-76063781d2b2
+    m_ActionName: 'Clicker/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -136,6 +141,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bae5207ff8efdc4e9230cf021db8d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &572611116026364913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131754902826937617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5761d9c495ea3d741ab0bf85333a92b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3206748674837551557
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,7 +162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4491258670285524599}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +198,9 @@ GameObject:
   - component: {fileID: 3999361724055657528}
   - component: {fileID: 563414233329060784}
   - component: {fileID: 2736954739997381902}
-  m_Layer: 0
+  - component: {fileID: 5601731718158847689}
+  - component: {fileID: 1627092567047221177}
+  m_Layer: 8
   m_Name: Agent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +216,7 @@ Transform:
   m_GameObject: {fileID: 3275472643666047418}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -275,6 +294,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackPosition: {fileID: 4491258670285524599}
   _attackStrategySO: {fileID: 11400000, guid: fa877122862fe704ebd128f63d7486d7, type: 2}
+--- !u!114 &5601731718158847689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275472643666047418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1604a5a525758844483e7faa5a5e2e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 11400000, guid: 819480d1e44f11d48b31032dbba7f1f1, type: 2}
+--- !u!50 &1627092567047221177
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275472643666047418}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5311107909362892236
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8375460032898204394}
   - component: {fileID: 3818676275023174489}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Avatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +389,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -348,10 +407,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1641925991
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fefd6a9ebffa0c479874a0ba9bab3a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

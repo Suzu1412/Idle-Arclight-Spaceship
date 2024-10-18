@@ -4,12 +4,9 @@ using UnityEngine;
 public class GameData
 {
     public string Name;
-    private string _fileExtension = ".sav";
-    public string FileExtension => _fileExtension;
 
     public string LocationId;
     public string CurrentLevelName;
-    public float LastSavedTime;
 
     [Header("Currency")]
     public CurrencyData CurrencyData;

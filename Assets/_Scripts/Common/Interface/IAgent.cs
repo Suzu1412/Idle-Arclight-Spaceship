@@ -6,6 +6,7 @@ public interface IAgent
     IAgentInput Input { get; }
     IStatsSystem StatsSystem { get; }
     IAttack AttackSystem { get; }
+    ICanMove MoveBehaviour { get; }
     Vector2 FacingDirection { get; }
 
     float GetStat(StatType statType);
