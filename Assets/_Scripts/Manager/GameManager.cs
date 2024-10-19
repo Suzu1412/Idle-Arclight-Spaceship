@@ -4,19 +4,17 @@ using UnityEngine.Events;
 
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField] private GameRulesSO _explorationRules;
+
+    
 
 
 
-    #region Events
+
     public event UnityAction<GameStateType> OnStateChanged;
 
-
-    #endregion
-
-    protected override void Awake()
+    private void OnEnable()
     {
-        base.Awake();
+        
     }
-
-
 }

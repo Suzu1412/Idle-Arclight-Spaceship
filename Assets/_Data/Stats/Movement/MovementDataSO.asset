@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ce9bf58f6139d4db2493ef579afb7b, type: 3}
   m_Name: MovementDataSO
   m_EditorClassIdentifier: 
-  _acceleration: 10
+  _acceleration: 50
   _deceleration: 50
-  _maxSpeed: 7
+  _maxSpeed: 5

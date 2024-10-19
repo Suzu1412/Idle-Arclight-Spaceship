@@ -21,6 +21,12 @@ public interface ICanMove
     void Move();
 
     /// <summary>
+    /// Apply Calculated Movement
+    /// </summary>
+    /// <param name="position"></param>
+    void MoveTowards(Vector2 position);
+
+    /// <summary>
     /// Apply Vector2 Velocity Directly to Rigidbody
     /// </summary>
     /// <param name="velocity"></param>
@@ -32,5 +38,7 @@ public interface ICanMove
     /// <param name="force"></param>
     /// <param name="forceMode"></param>
     void ApplyForce(Vector2 force, ForceMode2D forceMode);
+
+    void SetBoundaries(Vector2 boundary);
 
 }

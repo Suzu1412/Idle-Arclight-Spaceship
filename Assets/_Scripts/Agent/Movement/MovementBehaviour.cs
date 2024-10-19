@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovementBehaviour : MonoBehaviour, ICanMove
@@ -6,7 +8,10 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
     private IAgent _agent;
     private Vector2 _direction;
     private Vector2 _currentSpeed;
+    private Vector2 _targetPosition;
+    private Vector2 _boundaries;
     private Rigidbody2D _rb;
+    private bool _hasBoundaries;
     [SerializeField] private MovementDataSO _data = default;
 
     public IAgent Agent => _agent ??= GetComponent<IAgent>();
@@ -15,6 +20,7 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
     private void FixedUpdate()
     {
         Move();
+        BoundMoveInsideBoundary();
     }
 
     public void StopMovement()
@@ -70,5 +76,49 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
           _data.Acceleration : _data.Deceleration;
 
         return accelRate;
+    }
+
+    public void MoveTowards(Vector2 position)
+    {
+        _targetPosition = position;
+        Debug.Log(_targetPosition);
+        StopAllCoroutines();
+        StartCoroutine(MoveTowardsCoroutine());
+    }
+
+    private void BoundMovement()
+    {
+        if (_hasBoundaries)
+        {
+            Vector2 restrictMovement = Vector2.zero;
+            restrictMovement.x = Mathf.Clamp(RB.position.x, -_boundaries.x, _boundaries.x);
+            restrictMovement.y = Mathf.Clamp(RB.position.y, -_boundaries.y, _boundaries.y);
+            RB.position = restrictMovement;
+        }
+    }
+
+    private IEnumerator MoveTowardsCoroutine()
+    {
+        bool targetReached = false;
+
+        while (!targetReached)
+        {
+            Vector2 targetDirection = _targetPosition - (Vector2)transform.position;
+            ReadInputDirection(targetDirection.normalized);
+
+            if (Vector3.Distance(RB.position, _targetPosition) < 0.2f)
+            {
+                RB.position = _targetPosition;
+                ReadInputDirection(Vector2.zero);
+                targetReached = true;
+            }
+
+            yield return null;
+        }
+    }
+
+    public void SetBoundaries(Vector2 boundary)
+    {
+        throw new System.NotImplementedException();
     }
 }

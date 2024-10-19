@@ -774,17 +774,6 @@
                 },
                 {
                     "name": "",
-                    "id": "0f2fe44c-3878-4da0-afb5-a4bb87f6e107",
-                    "path": "<Touchscreen>/touch*/Press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Touch",
-                    "action": "TouchPress",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "10ec916a-cb2e-4b8f-b7bb-fc53d97abf1b",
                     "path": "<Keyboard>/x",
                     "interactions": "",

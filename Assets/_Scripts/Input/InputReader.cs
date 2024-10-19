@@ -12,9 +12,11 @@ public class InputReader : MonoBehaviour, GameInput.IClickerActions, IAgentInput
     private Camera _mainCamera;
     private Vector3 _offset;
     private Agent _agent;
+    [SerializeField] private Vector2GameEventListener OnStickChangeDirectionListener = default;
 
     public event UnityAction<bool> OnTouchPressed;
     public event UnityAction<Vector2> OnMovement;
+    public event UnityAction<Vector2> OnSetDestination;
 
     private void Awake()
     {
@@ -26,47 +28,64 @@ public class InputReader : MonoBehaviour, GameInput.IClickerActions, IAgentInput
     private void OnEnable()
     {
         EnableClickerActions();
+        OnStickChangeDirectionListener.Register(CallOnMovementInput);
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        if (Touch.activeTouches.Count == 0 ||
-            Touch.activeTouches[0].finger.index != 0)
-        {
-            return;
-        }
-
-        Touch myTouch = Touch.activeTouches[0];
-        Vector3 touchPos = myTouch.screenPosition;
-        touchPos = _mainCamera.ScreenToWorldPoint(touchPos);
-        touchPos.z = _agent.transform.position.z;
-
-        if (Touch.activeTouches[0].phase == TouchPhase.Began)
-        {
-            _offset = touchPos - transform.position;
-        }
-
-        if (Touch.activeTouches[0].phase == TouchPhase.Moved)
-        {
-            //_direction.Set(touchPos.x - _offset.x, touchPos.y - _offset.y);
-            
-            //CallOnMovementInput(_offset.normalized);
-        }
-        if (Touch.activeTouches[0].phase == TouchPhase.Moved)
-        {
-            transform.position = new Vector3(touchPos.x - _offset.x, touchPos.y - _offset.y, 0f);
-        }
-        if (Touch.activeTouches[0].phase == TouchPhase.Stationary)
-        {
-            transform.position = new Vector3(touchPos.x - _offset.x, touchPos.y - _offset.y, 0f);
-        }
+        OnStickChangeDirectionListener.DeRegister(CallOnMovementInput);
     }
+
+    //private void Update()
+    //{
+
+    //    if (Touch.activeTouches.Count == 0 ||
+    //        Touch.activeTouches[0].finger.index != 0)
+    //    {
+    //        return;
+    //    }
+
+    //    Touch myTouch = Touch.activeTouches[0];
+    //    Vector3 touchPos = myTouch.screenPosition;
+    //    Vector3 destination = Vector3.zero;
+    //    touchPos = _mainCamera.ScreenToWorldPoint(touchPos);
+    //    touchPos.z = _agent.transform.position.z;
+
+    //    if (Touch.activeTouches[0].phase == TouchPhase.Began)
+    //    {
+    //        _offset = touchPos - transform.GetChild(0).position;
+    //    }
+
+    //    if (Touch.activeTouches[0].phase == TouchPhase.Moved)
+    //    {
+    //        //_direction.Set(touchPos.x - _offset.x, touchPos.y - _offset.y);
+
+    //        //CallOnMovementInput(_offset.normalized);
+    //    }
+    //    if (Touch.activeTouches[0].phase == TouchPhase.Moved)
+    //    {
+    //        destination = new Vector3(touchPos.x - _offset.x, touchPos.y - _offset.y, 0f);
+    //        OnSetDestination(destination);
+    //    }
+    //    if (Touch.activeTouches[0].phase == TouchPhase.Stationary)
+    //    {
+    //        destination = new Vector3(touchPos.x - _offset.x, touchPos.y - _offset.y, 0f);
+    //        //OnSetDestination(destination);
+    //        //new Vector3(touchPos.x - _offset.x, touchPos.y - _offset.y, 0f);
+    //    }
+
+    //    if (Touch.activeTouches[0].phase == TouchPhase.Ended)
+    //    {
+    //        destination = new Vector3(touchPos.x - _offset.x, touchPos.y - _offset.y, 0f);
+    //        OnSetDestination(destination);
+    //    }
+    //}
 
     public void EnableClickerActions()
     {
         _inputActions.Clicker.SetCallbacks(this);
         _inputActions.Enable();
-        EnhancedTouchSupport.Enable();
+        EnhancedTouchSupport.Disable();
     }
 
     public void DisableClickerActions()

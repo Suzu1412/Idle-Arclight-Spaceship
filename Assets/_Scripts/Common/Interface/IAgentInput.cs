@@ -5,6 +5,7 @@ public interface IAgentInput
 {
     event UnityAction<bool> OnTouchPressed;
     event UnityAction<Vector2> OnMovement;
+    event UnityAction<Vector2> OnSetDestination;
 
     void CallOnMovementInput(Vector2 direction);
     void CallOnTouchPressed(bool touchPressed);
