@@ -4,7 +4,8 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - _gainCurrencyListener: {fileID: 11400000, guid: 7497add99904b71499a2596a4df8528f, type: 2}
+  - _gainCurrencyListener: {fileID: 11400000, guid: f064a081be429904d8e0307f1538492c, type: 2}
+  - _totalCurrency: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
