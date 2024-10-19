@@ -1,97 +1,38 @@
 using System;
 using UnityEngine;
 
-public class SaveSystem : PersistentSingleton<SaveSystem>
+public class SaveSystem : Singleton<SaveSystem>
 {
-    [SerializeField] private GameData GameData;
+    private GameData _gameData;
     private GameData _fileGameData;
-    private GameData _cloudGameData;
-    [SerializeField] private SaveableRunTimeSetSO _saveDataRTS = default;
-    private const string _saveDataPath = "SaveSystem/";
-
+    //private GameData _cloudGameData;
     IDataService _dataService;
-    ICloudService _cloudDataService;
+    //ICloudService _cloudDataService;
 
     protected override void Awake()
     {
         base.Awake();
 
+        //_cloudDataService = new CloudDataService();
+
+    }
+
+    public async Awaitable<GameData> LoadGame(string gameName)
+    {
         _dataService = new FileDataService(new JsonSerializer());
-        _cloudDataService = new CloudDataService();
-    }
 
-    private void Start()
-    {
-        LoadGame(GameData.Name);
-    }
+        _fileGameData = await _dataService.Load(gameName);
 
-    public async void LoadGame(string gameName)
-    {
-        _cloudGameData = await _cloudDataService.Load(gameName);
-        _fileGameData = _dataService.Load(gameName);
-
-        if (_cloudGameData == null && _fileGameData == null)
-        {
-            return;
-        }
-
-        if (_cloudGameData.LastSavedTime == _fileGameData.LastSavedTime)
-        {
-            GameData = _cloudGameData;
-        }
-        else
-        {
-            if (_cloudGameData.LastSavedTime > _fileGameData.LastSavedTime)
-            {
-                GameData = _cloudGameData;
-            }
-            else
-            {
-                GameData = _fileGameData;
-            }
-        }
-
-        if (String.IsNullOrWhiteSpace(GameData.CurrentLevelName))
-        {
-            GameData.CurrentLevelName = "Demo";
-        }
-
-        if (_saveDataRTS == null)
-        {
-            Debug.LogError($"{_saveDataRTS} Not Present. Fix");
-            return;
-        }
-
-        for (int i = 0; i < _saveDataRTS.Items.Count; i++)
-        {
-            _saveDataRTS.Items[i].LoadData(GameData);
-        }
-
+        return _fileGameData;
         //SceneManager.LoadScene(gameData.CurrentLevelName);
     }
 
-    public void SaveGame()
+    public void SaveGame(GameData gameData)
     {
-        if (_saveDataRTS == null)
-        {
-            Debug.LogError($"{_saveDataRTS} Not Present. Fix");
-            return;
-        }
-
-        for (int i = 0; i < _saveDataRTS.Items.Count; i++)
-        {
-            _saveDataRTS.Items[i].SaveData(GameData);
-        }
-
-        GameData.LastSavedTime = Time.time;
-        _cloudDataService.Save(GameData);
-        _dataService.Save(GameData);
-
+        //_cloudDataService.Save(gameData);
+        _dataService.Save(gameData);
     }
 
-    private void OnApplicationQuit()
-    {
-        SaveGame();
-    }
+
 
 }

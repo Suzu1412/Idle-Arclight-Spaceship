@@ -20,15 +20,7 @@ public class TestAutoAttack : MonoBehaviour
         {
             yield return Helpers.GetWaitForSeconds(_delay);
 
-            if (_enemyHealth != null)
-            {
-                _enemyHealth.GetHit(this.gameObject);
-                _enemyHealth.Damage((int)Agent.GetStat(StatType.Strength));
-            }
-            else
-            {
-                Debug.LogError($"Test Auto Attack Requires Enemy");
-            }
+            Agent.AttackSystem.Attack(true);
         }
         
     }

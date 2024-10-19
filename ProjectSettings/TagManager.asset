@@ -17,7 +17,7 @@ TagManager:
   - Enemy
   - PlayerProjectile
   - EnemyProjectile
-  - 
+  - Post Processing
   - 
   - 
   - 
@@ -59,8 +59,11 @@ TagManager:
   - name: PlayerBullet
     uniqueID: 3916959789
     locked: 0
-  - name: Effect
+  - name: Collectibles
     uniqueID: 3909208969
+    locked: 0
+  - name: Effects
+    uniqueID: 4231992577
     locked: 0
   m_RenderingLayers:
   - Default

@@ -15,7 +15,6 @@ public class ItemPickUp : MonoBehaviour
     private ObjectPooler _pool;
     public ObjectPooler Pool => _pool = _pool != null ? _pool : gameObject.GetOrAdd<ObjectPooler>();
 
-
     private void Awake()
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
