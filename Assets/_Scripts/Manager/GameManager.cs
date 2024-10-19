@@ -7,7 +7,7 @@ public class GameManager : Singleton<GameManager>, ISaveable
 {
     [Header("Persistence")]
     [SerializeField] private GameDataSO _gameDataSO = default;
-    [SerializeField] private SaveableRunTimeSetSO _saveDataRTS = default;
+    [SerializeField] private GameObjectRuntimeSetSO _saveDataRTS = default;
     private SaveSystem _saveSystem;
     private GameData _gameData;
 
@@ -23,6 +23,11 @@ public class GameManager : Singleton<GameManager>, ISaveable
     {
         base.Awake();
         _saveSystem = SaveSystem.Instance;
+        
+    }
+
+    private void Start()
+    {
         PrepareGameData();
 
         LoadGame();
@@ -58,17 +63,16 @@ public class GameManager : Singleton<GameManager>, ISaveable
 
     private void NewGame()
     {
-        _gameDataSO.GameData = new();
-
         _gameData = new();
         _gameData.Name = _gameDataSO.Name;
 
         _currentGameState = GameStateType.Init;
+        _gameData.CurrentGameState = _currentGameState;
     }
 
     private async void LoadGame()
     {
-        _gameData = await _saveSystem.LoadGame(_gameDataSO.Name);
+        _gameData = await SaveSystem.Instance.LoadGame(_gameDataSO.Name);
 
         if (_gameData == null)
         {
@@ -79,18 +83,23 @@ public class GameManager : Singleton<GameManager>, ISaveable
 
         foreach (var item in _saveDataRTS.Items)
         {
-            item.LoadData(_gameDataSO.GameData);
+            Debug.Log(item);
+            item.GetComponent<ISaveable>().LoadData(_gameDataSO.GameData);
         }
     }
 
     private void SaveGame()
     {
+        Debug.Log("intentando guardar");
+
         foreach (var item in _saveDataRTS.Items)
         {
-            item.SaveData(_gameDataSO.GameData);
+            Debug.Log(item);
+            item.GetComponent<ISaveable>().SaveData(_gameDataSO.GameData);
         }
+        Debug.Log("llegando al save system");
 
-        _saveSystem.SaveGame(_gameDataSO.GameData);
+        SaveSystem.Instance.SaveGame(_gameDataSO.GameData);
     }
     #endregion
 

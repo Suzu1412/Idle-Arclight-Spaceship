@@ -5,45 +5,44 @@ using UnityEngine.Events;
 
 public abstract class RuntimeSetSO<T> : ScriptableObject
 {
-    private readonly List<T> _items = new();
-    public List<T> Items => _items;
+    public List<T> Items { get; } = new();
     public UnityAction OnItemsChanged;
 
     public void Add(T item)
     {
-        if (!_items.Contains(item))
+        if (!Items.Contains(item))
         {
-            _items.Add(item);
+            Items.Add(item);
             OnItemsChanged?.Invoke();
         }
     }
 
     public void Remove(T item)
     {
-        if (_items.Contains(item))
+        if (Items.Contains(item))
         {
-            _items.Remove(item);
+            Items.Remove(item);
             OnItemsChanged?.Invoke();
         }
     }
 
     public T GetFirstItem()
     {
-        return _items[0];
+        return Items[0];
     }
 
     public T GetLastItem()
     {
-        return _items[^1];
+        return Items[^1];
     }
 
     public T GetRandomItem()
     {
-        return _items[Random.Range(0, _items.Count)];
+        return Items[Random.Range(0, Items.Count)];
     }
 
     public T GetItemIndex(int index)
     {
-        return _items[index];
+        return Items[index];
     }
 }

@@ -6,9 +6,6 @@ public class SaveSystem : Singleton<SaveSystem>
     private GameData _gameData;
     private GameData _fileGameData;
     //private GameData _cloudGameData;
-    [SerializeField] private SaveableRunTimeSetSO _saveDataRTS = default;
-    private const string _saveDataPath = "SaveSystem/";
-
     IDataService _dataService;
     //ICloudService _cloudDataService;
 
