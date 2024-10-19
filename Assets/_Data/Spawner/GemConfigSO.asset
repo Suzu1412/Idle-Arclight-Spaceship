@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265d2b52bf3361e4c93fec51260c7f04, type: 3}
+  m_Name: GemConfigSO
+  m_EditorClassIdentifier: 
+  _poolSettings: {fileID: 11400000, guid: 7734e2c0df8419146b0b359fb157545a, type: 2}
+  _item: {fileID: 11400000, guid: eca2ace93676bbc4199d96ba71efa26a, type: 2}
+  _material: {fileID: 2100000, guid: 7cd9f7a5dea7ce44db2a0e2d5f4d3c1b, type: 2}
+  _spawnChance: 0
+  _moveSpeed: 4

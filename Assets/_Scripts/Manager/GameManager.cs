@@ -83,21 +83,16 @@ public class GameManager : Singleton<GameManager>, ISaveable
 
         foreach (var item in _saveDataRTS.Items)
         {
-            Debug.Log(item);
             item.GetComponent<ISaveable>().LoadData(_gameDataSO.GameData);
         }
     }
 
     private void SaveGame()
     {
-        Debug.Log("intentando guardar");
-
         foreach (var item in _saveDataRTS.Items)
         {
-            Debug.Log(item);
             item.GetComponent<ISaveable>().SaveData(_gameDataSO.GameData);
         }
-        Debug.Log("llegando al save system");
 
         SaveSystem.Instance.SaveGame(_gameDataSO.GameData);
     }
