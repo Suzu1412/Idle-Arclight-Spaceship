@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1e6d47ff7df2d46a7fe68082b49070, type: 3}
   m_Name: GameDataSO
   m_EditorClassIdentifier: 
-  _name: 
+  _name: PlayerData
   GameData:
-    Name: A
+    Name: PlayerData
     LocationId: 
-    CurrentLevelName: Demo
+    CurrentLevelName: 
+    CurrentGameState: 0
     CurrencyData:
       TotalCurrency: 3

@@ -33,11 +33,13 @@ public class CombatManager : Singleton<CombatManager>
     {
         switch (state)
         {
-            case GameStateType.StartCombat:
+
+            case GameStateType.Combat:
                 SpawnEnemy();
                 StartCoroutine(MoveAgentToPosition(_enemy, _enemyPosition.position));
                 StartCoroutine(MoveAgentToPosition(_player, _playerCombatPosition.position));
                 break;
+
         }
     }
 
@@ -67,6 +69,6 @@ public class CombatManager : Singleton<CombatManager>
             yield return null;
         }
 
-        
+
     }
 }

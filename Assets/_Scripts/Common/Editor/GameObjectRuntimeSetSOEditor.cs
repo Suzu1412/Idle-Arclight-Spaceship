@@ -33,13 +33,13 @@ namespace GameSystemsCookbook
                 m_RuntimeSet = target as GameObjectRuntimeSetSO;
 
             // Subscribe to the ItemsChanged event.
-            m_RuntimeSet.ItemsChanged += OnItemsChanged;
+            m_RuntimeSet.OnItemsChanged += OnItemsChanged;
         }
 
         private void OnDisable()
         {
             // Unsubscribe from the ItemsChanged event to prevent errors.
-            m_RuntimeSet.ItemsChanged -= OnItemsChanged;
+            m_RuntimeSet.OnItemsChanged -= OnItemsChanged;
         }
 
         // Draw the custom Inspector

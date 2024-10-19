@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class JoystickPlayerExample : MonoBehaviour
 {
@@ -14,12 +13,14 @@ public class JoystickPlayerExample : MonoBehaviour
         _joystick = GetComponent<Joystick>();
     }
 
-    public void FixedUpdate()
+    private void Update()
     {
-        if (_joystick.Horizontal != _direction.x && _joystick.Vertical != _direction.y)
+        if (_joystick.Horizontal == _direction.x && _joystick.Vertical == _direction.y)
         {
-            ChangeDirection();
+            return;
         }
+
+        ChangeDirection();
     }
 
     private void ChangeDirection()

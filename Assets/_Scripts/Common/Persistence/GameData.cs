@@ -8,6 +8,9 @@ public class GameData
     public string LocationId;
     public string CurrentLevelName;
 
+    [Header("Game Manager")]
+    public GameStateType CurrentGameState;
+
     [Header("Currency")]
     public CurrencyData CurrencyData;
 

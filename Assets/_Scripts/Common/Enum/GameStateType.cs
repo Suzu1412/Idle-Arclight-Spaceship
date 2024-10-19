@@ -1,9 +1,10 @@
 
 public enum GameStateType
 {
-    Init,
-    StartCombat,
-    Combat,
-    EndCombat,
+    Init = 0,
+    Combat = 1,
+    Exploration = 2,
+    Tutorial = 3,
+
 
 }

@@ -1,9 +1,8 @@
 using System;
 using UnityEngine;
 
-public class SaveSystem : PersistentSingleton<SaveSystem>
+public class SaveSystem : Singleton<SaveSystem>
 {
-    [SerializeField] private GameDataSO _gameDataSO = default;
     private GameData _gameData;
     private GameData _fileGameData;
     //private GameData _cloudGameData;
@@ -16,65 +15,27 @@ public class SaveSystem : PersistentSingleton<SaveSystem>
     protected override void Awake()
     {
         base.Awake();
-        _dataService = new FileDataService(new JsonSerializer());
+
         //_cloudDataService = new CloudDataService();
 
     }
 
-    public void NewGame()
+    public async Awaitable<GameData> LoadGame(string gameName)
     {
-        _gameData = new();
-        _gameData.Name = _gameDataSO.Name;
-        _gameDataSO.GameData = _gameData;
-    }
+        _dataService = new FileDataService(new JsonSerializer());
 
-    public void LoadGame(string gameName)
-    {
-        _fileGameData = _dataService.Load(gameName);
-        if (_fileGameData != null)
-        {
-            _gameData = _fileGameData;
-        }
+        _fileGameData = await _dataService.Load(gameName);
 
-        if (String.IsNullOrWhiteSpace(_gameData.CurrentLevelName))
-        {
-            _gameData.CurrentLevelName = "Demo";
-        }
-
-        if (_saveDataRTS == null)
-        {
-            Debug.LogError($"{_saveDataRTS} Not Present. Fix");
-            return;
-        }
-
-        _gameDataSO.GameData = _gameData;
-
-        for (int i = 0; i < _saveDataRTS.Items.Count; i++)
-        {
-            _saveDataRTS.Items[i].LoadData(_gameDataSO.GameData);
-        }
-        
+        return _fileGameData;
         //SceneManager.LoadScene(gameData.CurrentLevelName);
     }
 
-    public void SaveGame()
+    public void SaveGame(GameData gameData)
     {
-        if (_saveDataRTS == null)
-        {
-            Debug.LogError($"{_saveDataRTS} Not Present. Fix");
-            return;
-        }
-
-        for (int i = 0; i < _saveDataRTS.Items.Count; i++)
-        {
-            _saveDataRTS.Items[i].SaveData(_gameDataSO.GameData);
-        }
-
-        //_cloudDataService.Save(GameData);
-        _gameDataSO.GameData.Name = _gameDataSO.Name;
-        _dataService.Save(_gameDataSO.GameData);
+        //_cloudDataService.Save(gameData);
+        _dataService.Save(gameData);
     }
 
-    
+
 
 }

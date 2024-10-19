@@ -42,13 +42,16 @@ public class FileDataService : IDataService
         File.WriteAllText(fileBackUpLocation, _serializer.Serialize(data));
     }
 
-    public GameData Load(string name)
+    public async Awaitable<GameData> Load(string name)
     {
         string fileLocation = GetPathToFile(name);
 
+        await Awaitable.WaitForSecondsAsync(0.1f);
+
         if (!File.Exists(fileLocation))
         {
-            throw new ArgumentException($"No persisted GameData with name '{name}'");
+            Debug.Log("No File Exists. Create New one");
+            return null;
         }
 
         return _serializer.Deserialize<GameData>(File.ReadAllText(fileLocation));

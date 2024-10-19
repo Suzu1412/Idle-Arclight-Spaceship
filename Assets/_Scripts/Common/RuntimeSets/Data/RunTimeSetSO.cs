@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using UnityEngine.Events;
 
 public abstract class RuntimeSetSO<T> : ScriptableObject
 {
-    private List<T> _items = new();
+    private readonly List<T> _items = new();
     public List<T> Items => _items;
-    public Action ItemsChanged;
+    public UnityAction OnItemsChanged;
 
     public void Add(T item)
     {
         if (!_items.Contains(item))
         {
             _items.Add(item);
-            ItemsChanged?.Invoke();
+            OnItemsChanged?.Invoke();
         }
     }
 
@@ -23,7 +23,7 @@ public abstract class RuntimeSetSO<T> : ScriptableObject
         if (_items.Contains(item))
         {
             _items.Remove(item);
-            ItemsChanged?.Invoke();
+            OnItemsChanged?.Invoke();
         }
     }
 
@@ -34,14 +34,12 @@ public abstract class RuntimeSetSO<T> : ScriptableObject
 
     public T GetLastItem()
     {
-        return _items[_items.Count - 1];
+        return _items[^1];
     }
-
-    public List<T> GetAllItems() => _items;
 
     public T GetRandomItem()
     {
-        return _items[UnityEngine.Random.Range(0, _items.Count)];
+        return _items[Random.Range(0, _items.Count)];
     }
 
     public T GetItemIndex(int index)
