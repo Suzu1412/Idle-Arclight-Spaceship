@@ -20,7 +20,7 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
     private void FixedUpdate()
     {
         Move();
-        BoundMoveInsideBoundary();
+        //BoundMoveInsideBoundary();
     }
 
     public void StopMovement()

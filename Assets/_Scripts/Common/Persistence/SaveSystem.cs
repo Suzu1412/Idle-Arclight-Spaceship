@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SaveSystem : PersistentSingleton<SaveSystem>
 {
-    [SerializeField] private GameDataSO _gameDataSO;
+    [SerializeField] private GameDataSO _gameDataSO = default;
     private GameData _gameData;
     private GameData _fileGameData;
     //private GameData _cloudGameData;
@@ -18,11 +18,7 @@ public class SaveSystem : PersistentSingleton<SaveSystem>
         base.Awake();
         _dataService = new FileDataService(new JsonSerializer());
         //_cloudDataService = new CloudDataService();
-    }
 
-    private void Start()
-    {
-        LoadGame(_gameDataSO.Name);
     }
 
     public void NewGame()
@@ -34,37 +30,11 @@ public class SaveSystem : PersistentSingleton<SaveSystem>
 
     public void LoadGame(string gameName)
     {
-        //_cloudGameData = await _cloudDataService.Load(gameName);
         _fileGameData = _dataService.Load(gameName);
-
-        //if (_cloudGameData == null && _fileGameData == null)
-        //{
-        //    return;
-        //}
-
-        //if (_cloudGameData.LastSavedTime == _fileGameData.LastSavedTime)
-        //{
-        //    GameData = _cloudGameData;
-        //}
-        //else
-        //{
-        //    if (_cloudGameData.LastSavedTime > _fileGameData.LastSavedTime)
-        //    {
-        //        GameData = _cloudGameData;
-        //    }
-        //    else
-        //    {
         if (_fileGameData != null)
         {
             _gameData = _fileGameData;
         }
-        else
-        {
-            NewGame();
-        }
-        
-        //    }
-        //}
 
         if (String.IsNullOrWhiteSpace(_gameData.CurrentLevelName))
         {
@@ -105,9 +75,6 @@ public class SaveSystem : PersistentSingleton<SaveSystem>
         _dataService.Save(_gameDataSO.GameData);
     }
 
-    private void OnApplicationQuit()
-    {
-        SaveGame();
-    }
+    
 
 }
