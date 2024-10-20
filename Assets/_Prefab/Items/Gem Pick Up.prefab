@@ -218,4 +218,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseGlow: 1
   _targetGlow: 15
-  _duration: 1
+  _duration: 0.2
+  _pauseDuration: 0.5

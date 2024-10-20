@@ -8,31 +8,33 @@ public class MaterialBrightness : MonoBehaviour
     [SerializeField] private float _baseGlow = 1f;
     [SerializeField] private float _targetGlow = 5;
     [SerializeField] private float _duration = 2f;
+    [SerializeField] private float _pauseDuration = 0.3f;
 
     private void Start()
     {
         g = GetComponent<SpriteRenderer>().material;
-
-
     }
 
     void OnEnable()
+    {
+        StartCoroutine(ChangeGlowCoroutine());
+    }
+
+    private IEnumerator ChangeGlowCoroutine()
     {
         if (g == null)
         {
             g = GetComponent<SpriteRenderer>().material;
         }
 
-        Sequence mySequence = DOTween.Sequence();
-        mySequence.Append(g.DOFloat(_targetGlow, "_GlowAmount", _duration));
-        mySequence.PrependInterval(0.5f);
-        mySequence.Append(g.DOFloat(_baseGlow, "_GlowAmount", _duration));
-        mySequence.PrependInterval(0.5f);
-        mySequence.SetLoops(-1);
-       
-        //g.SetFloat("_GlowAmount", _baseGlow);
-        //Debug.Log("starting new on enable");
-        //.SetLoops(-1, LoopType.Yoyo);
+        while (true)
+        {
+            g.DOFloat(_targetGlow, "_GlowAmount", _duration);
+            yield return Helpers.GetWaitForSeconds(_pauseDuration);
+            g.DOFloat(_baseGlow, "_GlowAmount", _duration);
+            yield return Helpers.GetWaitForSeconds(_pauseDuration);
+        }
 
+        g.SetFloat("_GlowAmount", _baseGlow);
     }
 }

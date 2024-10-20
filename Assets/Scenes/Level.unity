@@ -923,7 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
+  m_RenderShadows: 0
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
@@ -1183,6 +1183,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gem Pick Up
       objectReference: {fileID: 0}
+    - target: {fileID: 1615512277431425734, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2593899171388926807, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1222,10 +1226,6 @@ PrefabInstance:
     - target: {fileID: 2593899171388926807, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8308360052998542646, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
-      propertyPath: _duration
-      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1277,6 +1277,10 @@ PrefabInstance:
     - target: {fileID: 1131754902826937617, guid: 7d59e6af296d4d34fb25b7f7f432f8ef, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131754902826937617, guid: 7d59e6af296d4d34fb25b7f7f432f8ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5093743873899913257, guid: 7d59e6af296d4d34fb25b7f7f432f8ef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1483,7 +1487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2136228271
 Transform:
   m_ObjectHideFlags: 0
