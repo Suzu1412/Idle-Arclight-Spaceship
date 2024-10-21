@@ -20,6 +20,11 @@ public class MaterialBrightness : MonoBehaviour
         StartCoroutine(ChangeGlowCoroutine());
     }
 
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     private IEnumerator ChangeGlowCoroutine()
     {
         if (g == null)
@@ -34,7 +39,5 @@ public class MaterialBrightness : MonoBehaviour
             g.DOFloat(_baseGlow, "_GlowAmount", _duration);
             yield return Helpers.GetWaitForSeconds(_pauseDuration);
         }
-
-        g.SetFloat("_GlowAmount", _baseGlow);
     }
 }
