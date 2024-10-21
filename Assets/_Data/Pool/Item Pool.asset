@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7ff54005d3434733b8777fc2d305339, type: 3}
-  m_Name: Gem Pool
+  m_Name: Item Pool
   m_EditorClassIdentifier: 
   _type: 4
-  _prefab: {fileID: 5185554113866654564, guid: c7a2cd51a4d77cb47a7db29f8ba808c8, type: 3}
-  _defaultCapacity: 30
+  _prefab: {fileID: 1615512277431425734, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+  _defaultCapacity: 100
   _maxPoolSize: 100

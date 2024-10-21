@@ -19,6 +19,17 @@ public class ItemPickUp : MonoBehaviour
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _pickableCollider = GetComponent<CircleCollider2D>();
+
+        if (_pickableCollider == null)
+        {
+            Debug.Log($"Please Add Collider to: {this.gameObject}");
+        }
+    }
+
+    private void OnEnable()
+    {
+        transform.localScale = Vector3.one;
+        _pickableCollider.enabled = true;
     }
 
     public void SetItem(ItemSO item)
