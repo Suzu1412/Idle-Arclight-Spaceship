@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: 5264c3c32497cb84ea4a009edb75c378
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _totalCurrencyListener: {fileID: 11400000, guid: 54d79e1c4766fa54dab90e4d425e092d, type: 2}
+  - _currencyText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

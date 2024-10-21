@@ -34,7 +34,5 @@ public class MaterialBrightness : MonoBehaviour
             g.DOFloat(_baseGlow, "_GlowAmount", _duration);
             yield return Helpers.GetWaitForSeconds(_pauseDuration);
         }
-
-        g.SetFloat("_GlowAmount", _baseGlow);
     }
 }

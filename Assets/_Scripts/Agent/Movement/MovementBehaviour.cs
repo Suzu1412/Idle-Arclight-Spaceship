@@ -5,11 +5,17 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovementBehaviour : MonoBehaviour, ICanMove
 {
+    private Camera _camera;
     private IAgent _agent;
     private Vector2 _direction;
     private Vector2 _currentSpeed;
     private Vector2 _targetPosition;
-    private Vector2 _boundaries;
+
+    private float _leftBounds = 0;
+    private float _rightBounds = 0;
+    private float _topBounds = 0;
+    private float _bottomBounds = 0;
+
     private Rigidbody2D _rb;
     private bool _hasBoundaries;
     [SerializeField] private MovementDataSO _data = default;
@@ -17,10 +23,20 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
     public IAgent Agent => _agent ??= GetComponent<IAgent>();
     public Rigidbody2D RB => _rb != null ? _rb : _rb = GetComponent<Rigidbody2D>();
 
+    private void Awake()
+    {
+        _camera = Camera.main;
+    }
+
+    private void Start()
+    {
+        StartCoroutine(SetAutomaticBoundaries());
+    }
+
     private void FixedUpdate()
     {
         Move();
-        //BoundMoveInsideBoundary();
+        BoundMovement();
     }
 
     public void StopMovement()
@@ -91,8 +107,8 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
         if (_hasBoundaries)
         {
             Vector2 restrictMovement = Vector2.zero;
-            restrictMovement.x = Mathf.Clamp(RB.position.x, -_boundaries.x, _boundaries.x);
-            restrictMovement.y = Mathf.Clamp(RB.position.y, -_boundaries.y, _boundaries.y);
+            restrictMovement.x = Mathf.Clamp(RB.position.x, _leftBounds, _rightBounds);
+            restrictMovement.y = Mathf.Clamp(RB.position.y, _bottomBounds, _topBounds);
             RB.position = restrictMovement;
         }
     }
@@ -119,6 +135,20 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
 
     public void SetBoundaries(Vector2 boundary)
     {
-        throw new System.NotImplementedException();
+        _leftBounds = -boundary.x;
+        _rightBounds = boundary.x;
+        _bottomBounds = -boundary.y;
+        _topBounds = boundary.y;
+    }
+
+    private IEnumerator SetAutomaticBoundaries()
+    {
+        yield return Helpers.GetWaitForSeconds(0.1f);
+
+        _leftBounds = _camera.ViewportToWorldPoint(new Vector2(0.1f, 0f)).x;
+        _rightBounds = _camera.ViewportToWorldPoint(new Vector2(0.9f, 0f)).x;
+        _bottomBounds = _camera.ViewportToWorldPoint(new Vector2(0, 0.05f)).y;
+        _topBounds = _camera.ViewportToWorldPoint(new Vector2(0, 0.95f)).y;
+        _hasBoundaries = true;
     }
 }

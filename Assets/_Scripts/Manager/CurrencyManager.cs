@@ -6,6 +6,7 @@ using UnityEngine;
 public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 {
     [SerializeField] private List<GeneratorSO> _generators;
+    [SerializeField] private List<GeneratorData> _generatorsData;
     [SerializeField] private DoubleGameEventListener _gainCurrencyListener;
     [SerializeField] private DoubleGameEvent _totalCurrency;
     [Header("Save Data")]
@@ -39,11 +40,34 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     public void SaveData(GameData gameData)
     {
         gameData.CurrencyData = _currencyData;
+
+        gameData.GeneratorsData = new();
+        foreach(var generator in _generators)
+        {
+            var data = new GeneratorData
+            {
+                Guid = generator.Guid,
+                Amount = generator.Amount
+            };
+            gameData.GeneratorsData.Add(data);
+        }
     }
 
     public void LoadData(GameData gameData)
     {
         _currencyData.TotalCurrency = gameData.CurrencyData.TotalCurrency;
+        
+        if (!gameData.GeneratorsData.IsNullOrEmpty())
+        {
+            _generators = new();
+            foreach (var data in gameData.GeneratorsData)
+            {
+                var generator = GeneratorDataBase.GetAssetById(data.Guid);
+                generator.SetAmount(data.Amount);
+                _generators.Add(generator);
+            }
+        }
+        
         _totalCurrency.RaiseEvent(_currencyData.TotalCurrency);
     }
 
@@ -57,9 +81,9 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
             foreach (var generator in _generators)
             {
-                amount += generator.GenerationRate * generator.CurrentAmount;
+                amount += generator.GenerationRate * generator.Amount;
             }
-            
+
             Increment(amount);
         }
     }

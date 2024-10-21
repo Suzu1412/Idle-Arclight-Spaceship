@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -13,6 +14,16 @@ public class GameData
 
     [Header("Currency")]
     public CurrencyData CurrencyData;
+    public List<GeneratorData> GeneratorsData;
+
+    public void NewGame(string name)
+    {
+        Name = name;
+
+        CurrentGameState = GameStateType.Init;
+        CurrencyData = new CurrencyData();
+        GeneratorsData = new List<GeneratorData>();
+    }
 
     public string ToJson()
     {
