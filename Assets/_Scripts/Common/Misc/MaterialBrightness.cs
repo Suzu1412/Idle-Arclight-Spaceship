@@ -20,6 +20,11 @@ public class MaterialBrightness : MonoBehaviour
         StartCoroutine(ChangeGlowCoroutine());
     }
 
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     private IEnumerator ChangeGlowCoroutine()
     {
         if (g == null)

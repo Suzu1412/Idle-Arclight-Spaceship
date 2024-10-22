@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GemSpawner : MonoBehaviour
 {
+    [SerializeField] private BasePlacementStrategySO _placementStrategy;
     [SerializeField] private List<GemConfigSO> _gemConfigs;
 
     private void Start()
@@ -18,10 +19,7 @@ public class GemSpawner : MonoBehaviour
         //gem.GetComponentInChildren<SpriteRenderer>().material = _gemConfigs[0].Material;
         gem.GetComponent<TransformMover>().SetMoveSpeed(_gemConfigs[0].moveSpeed);
 
-        float randomX = Random.Range(-2, 2);
-        float randomY = Random.Range(4, 7);
-
-        gem.transform.position = new Vector3(randomX, randomY, 0f);
+        gem.transform.position = _placementStrategy.SetPosition(new Vector3(0f, 5f, 0f)); 
 
     }
 }
