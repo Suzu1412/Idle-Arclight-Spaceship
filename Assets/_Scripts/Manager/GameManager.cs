@@ -27,7 +27,7 @@ public class GameManager : Singleton<GameManager>, ISaveable
     {
         base.Awake();
         _saveSystem = SaveSystem.Instance;
-        
+
     }
 
     private void Start()
@@ -95,6 +95,7 @@ public class GameManager : Singleton<GameManager>, ISaveable
 
         _hasLoadedGame = true;
 
+        if (_text == null) return;
         _text.text = "Cargando!";
         Invoke("DeleteText", 2f);
     }
@@ -118,6 +119,7 @@ public class GameManager : Singleton<GameManager>, ISaveable
 
         SaveSystem.Instance.SaveGame(_gameDataSO.GameData);
 
+        if (_text == null) return;
         _text.text = "Guardado!";
         Invoke("DeleteText", 2f);
     }
@@ -161,6 +163,6 @@ public class GameManager : Singleton<GameManager>, ISaveable
         SaveGame();
     }
 
-    
+
 }
 
