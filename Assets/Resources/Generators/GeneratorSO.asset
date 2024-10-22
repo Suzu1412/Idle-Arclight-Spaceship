@@ -17,5 +17,5 @@ MonoBehaviour:
   _image: {fileID: 0}
   _baseCost: 8
   _generationRate: 0.1
-  _amount: 0
+  _amount: 3
   _growthRate: 1.17

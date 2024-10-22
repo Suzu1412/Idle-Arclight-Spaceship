@@ -12,7 +12,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [Header("Save Data")]
     [SerializeField] private CurrencyData _currencyData;
     [SerializeField] private float _delayToGenerate = 1f;
-    [field: SerializeField] public SerializableGuid Id { get; set; }
 
     protected override void Awake()
     {
@@ -42,7 +41,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         gameData.CurrencyData = _currencyData;
 
         gameData.GeneratorsData = new();
-        foreach(var generator in _generators)
+        foreach (var generator in _generators)
         {
             var data = new GeneratorData
             {
@@ -56,7 +55,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     public void LoadData(GameData gameData)
     {
         _currencyData.TotalCurrency = gameData.CurrencyData.TotalCurrency;
-        
+
         if (!gameData.GeneratorsData.IsNullOrEmpty())
         {
             _generators = new();
@@ -67,7 +66,11 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
                 _generators.Add(generator);
             }
         }
-        
+        else
+        {
+            _generators = GeneratorDataBase.GetAllAssets();
+        }
+
         _totalCurrency.RaiseEvent(_currencyData.TotalCurrency);
     }
 
