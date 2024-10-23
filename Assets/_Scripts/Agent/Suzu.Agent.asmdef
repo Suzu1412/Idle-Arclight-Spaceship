@@ -1,0 +1,16 @@
+{
+    "name": "Suzu.Agent",
+    "rootNamespace": "",
+    "references": [
+        "GUID:eee2d7abad5a31d419cb705834217f10"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -46,7 +46,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             var data = new GeneratorData
             {
                 Guid = generator.Guid,
-                Amount = generator.Amount
+                Amount = generator.AmountOwned
             };
             gameData.GeneratorsData.Add(data);
         }
@@ -84,7 +84,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
             foreach (var generator in _generators)
             {
-                amount += generator.GenerationRate * generator.Amount;
+                generator.GetProductionRate();
             }
 
             Increment(amount);
