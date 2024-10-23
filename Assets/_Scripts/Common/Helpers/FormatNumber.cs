@@ -30,6 +30,7 @@ public static class FormatNumber
         int magnitude = (int)Math.Log(value, 1000);
         double finalValue = value / Math.Pow(1000, magnitude);
         string unit;
+        if (magnitude < _units.Count)
         {
             unit = _units[magnitude];
         }
