@@ -13,6 +13,9 @@ public class GeneratorSO : SerializableScriptableObject
     [SerializeField] private double _productionBase;
     [SerializeField] private int _amountOwned;
     [SerializeField] private double _priceGrowthRate;
+    [SerializeField] private double _totalProduction;
+    private double _production;
+    private bool _isDirty = true;
 
     public string Name => _name;
     public Sprite Image => _image;
@@ -20,25 +23,28 @@ public class GeneratorSO : SerializableScriptableObject
     public double ProductionBase { get => _productionBase; internal set => _productionBase = value; }
     public int AmountOwned { get => _amountOwned; internal set => _amountOwned = value; }
     public double PriceGrowthRate { get => _priceGrowthRate; internal set => _priceGrowthRate = value; }
+    public double TotalProduction { get => _totalProduction; internal set => _totalProduction = value; }
 
     public void AddAmount(int amount)
     {
+        _isDirty = true;
         _amountOwned += amount;
     }
 
     internal void SetAmount(int amount)
     {
+        _isDirty = true;
         _amountOwned = amount;
     }
 
     public double GetProductionRate()
     {
-        return _productionBase * _amountOwned; // * multipliers
-    }
-
-    public double GetNextCost()
-    {
-        return _baseCost * Math.Pow(_priceGrowthRate, _amountOwned);
+        if (_isDirty)
+        {
+            _production = _productionBase * _amountOwned;
+            _isDirty = false;
+        }
+        return _production;
     }
 
     public double GetBulkCost(int amountTobuy)
@@ -47,7 +53,7 @@ public class GeneratorSO : SerializableScriptableObject
 
         for (int i = 0; i < amountTobuy; i++)
         {
-            bulkPrice += CalculateNextCost(i);
+            bulkPrice += GetNextCost(i);
         }
 
         return bulkPrice;
@@ -61,9 +67,9 @@ public class GeneratorSO : SerializableScriptableObject
 
         while (hasEnoughCurrency)
         {
-            if (currencyLeft > CalculateNextCost(amountToBuy))
+            if (currencyLeft >= GetNextCost(amountToBuy))
             {
-                currencyLeft -= CalculateNextCost(amountToBuy);
+                currencyLeft -= GetNextCost(amountToBuy);
                 amountToBuy++;
             }
             else
@@ -75,8 +81,8 @@ public class GeneratorSO : SerializableScriptableObject
         return amountToBuy;
     }
 
-    private double CalculateNextCost(int addAmount)
+    public double GetNextCost(int addAmount = 0)
     {
-        return _baseCost * Math.Pow(_priceGrowthRate, _amountOwned + addAmount);
+        return Math.Ceiling(_baseCost * Math.Pow(_priceGrowthRate, _amountOwned + addAmount));
     }
 }

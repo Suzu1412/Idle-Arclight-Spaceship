@@ -195,7 +195,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2063583717369504075}
   - component: {fileID: 3270123792843395316}
-  - component: {fileID: 381972558188162911}
   - component: {fileID: 3999361724055657528}
   - component: {fileID: 563414233329060784}
   - component: {fileID: 2736954739997381902}
@@ -238,19 +237,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _facingDirection: {x: 0, y: 1}
---- !u!114 &381972558188162911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3275472643666047418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a17065deb66f1b842b1808eb413e1039, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyHealth: {fileID: 0}
 --- !u!114 &3999361724055657528
 MonoBehaviour:
   m_ObjectHideFlags: 0

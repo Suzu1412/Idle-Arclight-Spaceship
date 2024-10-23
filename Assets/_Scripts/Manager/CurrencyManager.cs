@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     private void Increment(double amount)
     {
         _currencyData.TotalCurrency += amount;
+        _currencyData.TotalCurrency = Math.Round(_currencyData.TotalCurrency, 1);
         _totalCurrency.RaiseEvent(_currencyData.TotalCurrency);
     }
 
@@ -84,7 +86,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
             foreach (var generator in _generators)
             {
-                generator.GetProductionRate();
+                amount += generator.GetProductionRate();
             }
 
             Increment(amount);
