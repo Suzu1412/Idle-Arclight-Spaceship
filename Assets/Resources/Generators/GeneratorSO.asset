@@ -17,6 +17,6 @@ MonoBehaviour:
   _image: {fileID: 0}
   _baseCost: 8
   _productionBase: 0.1
-  _amountOwned: 8
+  _amountOwned: 0
   _priceGrowthRate: 1.15
-  _totalProduction: 151
+  _totalProduction: 4100.1

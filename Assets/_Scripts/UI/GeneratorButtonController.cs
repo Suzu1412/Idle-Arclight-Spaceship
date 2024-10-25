@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class GeneratorButtonController : MonoBehaviour
 {
     [SerializeField] [ReadOnly] private GeneratorSO _generator;
+    [SerializeField] [ReadOnly] private int _index;
     [SerializeField] private Image _generatorIcon;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _amountText;
@@ -13,7 +14,9 @@ public class GeneratorButtonController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _productionText;
     [SerializeField] private Button _buyButton;
 
-    public event UnityAction<GeneratorSO> OnBuyGeneratorClicked;
+    public double Cost => _generator.Cost;
+
+    public event UnityAction<int> OnBuyGeneratorClicked;
 
     private void OnEnable()
     {
@@ -23,6 +26,11 @@ public class GeneratorButtonController : MonoBehaviour
     private void OnDisable()
     {
         _buyButton.onClick.RemoveAllListeners();
+    }
+
+    public void SetIndex(int index)
+    {
+        _index = index;
     }
 
     public void SetGenerator(GeneratorSO generator)
@@ -46,7 +54,7 @@ public class GeneratorButtonController : MonoBehaviour
 
     public void HandleBuyButton()
     {
-        OnBuyGeneratorClicked?.Invoke(_generator);
+        OnBuyGeneratorClicked?.Invoke(_index);
     }
 
     private void DisplayImage()
@@ -63,7 +71,7 @@ public class GeneratorButtonController : MonoBehaviour
     {
         _nameText.text = _generator.Name.ToString();
     }
-    
+
     private void DisplayPriceText()
     {
         _priceText.text = _generator.CostText;
@@ -74,5 +82,5 @@ public class GeneratorButtonController : MonoBehaviour
         _productionText.text = $"{_generator.ProductionText} CPS";
     }
 
-    
+
 }

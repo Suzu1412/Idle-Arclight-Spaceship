@@ -1,16 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class ShopUI : Singleton<ShopUI>
 {
     [SerializeField] private GameObject _shopItemButtonPrefab;
     [SerializeField] private Transform _shopItemParent;
     [SerializeField] private CurrencyManager _currencyManager;
-    [SerializeField] private int amountToBuy = 1;
-    //private List<>
+    private List<GeneratorButtonController> _buttons;
+    private int _amountToBuy;
 
-    public event UnityAction<GeneratorSO> OnBuyGenerator;
+    [Header("Int Event")]
+    [SerializeField] private IntGameEvent OnBuyGameEvent;
+    [SerializeField] private IntGameEvent OnChangeBuyAmountEvent;
+    [Header("Int Event Listener")]
+    [SerializeField] private IntGameEventListener OnGeneratorAmountChangedListener;
+    [Header("Double Event Listener")]
+    [SerializeField] private DoubleGameEventListener OnCurrencyChangedListener;
 
     protected override void Awake()
     {
@@ -19,31 +24,50 @@ public class ShopUI : Singleton<ShopUI>
 
     private void OnEnable()
     {
-        _currencyManager.OnGeneratorLoad += PrepareUI;
+        _currencyManager.OnLoadAllGenerators += PrepareUI;
+        OnGeneratorAmountChangedListener.Register(UpdateButtonInfo);
+        OnCurrencyChangedListener.Register(HandleButtonAvailable);
     }
 
     private void OnDisable()
     {
-        _currencyManager.OnGeneratorLoad -= PrepareUI;
+        _currencyManager.OnLoadAllGenerators -= PrepareUI;
     }
 
-    private void PrepareUI(List<GeneratorSO> generators)
+    private void PrepareUI(List<GeneratorSO> generators, int amountToBuy)
     {
-        for(int i=0; i < generators.Count; i++)
+        _amountToBuy = amountToBuy;
+        _buttons = new();
+
+        for (int i = 0; i < generators.Count; i++)
         {
             GeneratorButtonController button = Instantiate(_shopItemButtonPrefab).GetComponent<GeneratorButtonController>();
             button.transform.SetParent(_shopItemParent, false);
+            button.SetIndex(i);
             button.SetGenerator(generators[i]);
-            generators[i].GetBulkCost(amountToBuy);
+            generators[i].GetBulkCost(_amountToBuy);
             generators[i].GetProductionRate();
             button.OnBuyGeneratorClicked += BuyGenerator;
             button.PrepareButton();
+            _buttons.Add(button);
         }
     }
 
-    private void BuyGenerator(GeneratorSO generator)
+    private void UpdateButtonInfo(int index)
     {
-        OnBuyGenerator?.Invoke(generator);
+        _buttons[index].PrepareButton();
     }
 
+    private void HandleButtonAvailable(double currency)
+    {
+        foreach (var button in _buttons)
+        {
+            button.ToggleBuyButton(currency >= button.Cost);
+        }
+    }
+
+    private void BuyGenerator(int index)
+    {
+        OnBuyGameEvent.RaiseEvent(index);
+    }
 }

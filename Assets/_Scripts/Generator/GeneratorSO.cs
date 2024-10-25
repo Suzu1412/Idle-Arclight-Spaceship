@@ -41,13 +41,18 @@ public class GeneratorSO : SerializableScriptableObject
         _amountOwned = amount;
     }
 
+    public void CalculateProductionRate()
+    {
+        Production = Math.Round(_productionBase * _amountOwned, 1);
+        ProductionText = FormatNumber.FormatDouble(Production);
+        _isDirty = false;
+    }
+
     public double GetProductionRate()
     {
         if (_isDirty)
         {
-            Production = Math.Round(_productionBase * _amountOwned, 1);
-            ProductionText = FormatNumber.FormatDouble(Production);
-            _isDirty = false;
+            CalculateProductionRate();
         }
         TotalProduction = Math.Round(TotalProduction + Production, 1);
         return Production;
