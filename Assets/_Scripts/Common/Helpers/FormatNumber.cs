@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using System.Diagnostics;
 
 // https://oguzkonya.com/formatting-big-numbers-aa-notation/
 public static class FormatNumber
@@ -22,7 +23,7 @@ public static class FormatNumber
     /// <returns></returns>
     public static string FormatDouble(double value)
     {
-        if (value < 1d)
+        if (value <= 0d)
         {
             return "0";
         }
@@ -41,8 +42,8 @@ public static class FormatNumber
             int firstUnit = unitInt / 26;
             unit = Convert.ToChar(firstUnit + charA).ToString() + Convert.ToChar(secondUnit + charA).ToString();
         }
-
         // Math.Floor(m * 100) / 100) fixes rounding errors
+
         return (Math.Floor(finalValue * 100) / 100).ToString("0.##") + unit;
     }
 }

@@ -14,7 +14,7 @@ public class GeneratorSO : SerializableScriptableObject
     [SerializeField] private int _amountOwned;
     [SerializeField] private double _priceGrowthRate;
     [SerializeField] private double _totalProduction;
-    private double _production;
+
     private bool _isDirty = true;
 
     public string Name => _name;
@@ -24,6 +24,10 @@ public class GeneratorSO : SerializableScriptableObject
     public int AmountOwned { get => _amountOwned; internal set => _amountOwned = value; }
     public double PriceGrowthRate { get => _priceGrowthRate; internal set => _priceGrowthRate = value; }
     public double TotalProduction { get => _totalProduction; internal set => _totalProduction = value; }
+    public double Cost { get; private set; }
+    public double Production { get; private set; }
+    public string CostText { get; private set; }
+    public string ProductionText { get; private set; }
 
     public void AddAmount(int amount)
     {
@@ -41,10 +45,12 @@ public class GeneratorSO : SerializableScriptableObject
     {
         if (_isDirty)
         {
-            _production = _productionBase * _amountOwned;
+            Production = Math.Round(_productionBase * _amountOwned, 1);
+            ProductionText = FormatNumber.FormatDouble(Production);
             _isDirty = false;
         }
-        return _production;
+        TotalProduction = Math.Round(TotalProduction + Production, 1);
+        return Production;
     }
 
     public double GetBulkCost(int amountTobuy)
@@ -56,6 +62,8 @@ public class GeneratorSO : SerializableScriptableObject
             bulkPrice += GetNextCost(i);
         }
 
+        Cost = bulkPrice;
+        CostText = FormatNumber.FormatDouble(Cost);
         return bulkPrice;
     }
 
@@ -81,7 +89,7 @@ public class GeneratorSO : SerializableScriptableObject
         return amountToBuy;
     }
 
-    public double GetNextCost(int addAmount = 0)
+    internal double GetNextCost(int addAmount = 0)
     {
         return Math.Ceiling(_baseCost * Math.Pow(_priceGrowthRate, _amountOwned + addAmount));
     }

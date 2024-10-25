@@ -1,18 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(AddSaveDataRunTimeSet))]
 public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 {
     [SerializeField] private List<GeneratorSO> _generators;
-    [SerializeField] private List<GeneratorData> _generatorsData;
     [SerializeField] private DoubleGameEventListener _gainCurrencyListener;
     [SerializeField] private DoubleGameEvent _totalCurrency;
     [Header("Save Data")]
     [SerializeField] private CurrencyData _currencyData;
     [SerializeField] private float _delayToGenerate = 1f;
+    private int _amountToBuy;
+
+    #region Events
+    public event UnityAction<List<GeneratorSO>> OnGeneratorLoad;
+    public event UnityAction<double> OnCurrencyChanged;
+    public event UnityAction<GeneratorSO> OnGeneratorAmountChanged;
+    #endregion
 
     protected override void Awake()
     {
@@ -22,6 +30,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void OnEnable()
     {
+        
         _gainCurrencyListener.Register(Increment);
         StartCoroutine(GenerateIncome());
     }
@@ -58,22 +67,29 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     {
         _currencyData.TotalCurrency = gameData.CurrencyData.TotalCurrency;
 
-        if (!gameData.GeneratorsData.IsNullOrEmpty())
+        _generators = GeneratorDataBase.GetAllAssets();
+        foreach (var generator in _generators)
         {
-            _generators = new();
-            foreach (var data in gameData.GeneratorsData)
-            {
-                var generator = GeneratorDataBase.GetAssetById(data.Guid);
-                generator.SetAmount(data.Amount);
-                _generators.Add(generator);
-            }
-        }
-        else
-        {
-            _generators = GeneratorDataBase.GetAllAssets();
+            generator.SetAmount(0);
         }
 
+        if (!gameData.GeneratorsData.IsNullOrEmpty())
+        {
+            foreach (var data in gameData.GeneratorsData)
+            {
+                var newGenerator = GeneratorDataBase.GetAssetById(data.Guid);
+                _generators.Find(x => x.Guid == newGenerator.Guid).SetAmount(data.Amount);
+            }
+        }
+
+        OnGeneratorLoad?.Invoke(_generators);
         _totalCurrency.RaiseEvent(_currencyData.TotalCurrency);
+    }
+
+    public void BuyGenerator(GeneratorSO generator)
+    {
+        _generators.Find(x => x.Guid == generator.Guid).AddAmount(1);
+
     }
 
     private IEnumerator GenerateIncome()
@@ -82,14 +98,14 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         {
             yield return Helpers.GetWaitForSeconds(_delayToGenerate);
 
-            double amount = 0;
+            double income = 0;
 
             foreach (var generator in _generators)
             {
-                amount += generator.GetProductionRate();
+                income += generator.GetProductionRate();
             }
 
-            Increment(amount);
+            Increment(income);
         }
     }
 }

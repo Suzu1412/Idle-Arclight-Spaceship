@@ -94,15 +94,6 @@ public class GameManager : Singleton<GameManager>, ISaveable
         }
 
         _hasLoadedGame = true;
-
-        if (_text == null) return;
-        _text.text = "Cargando!";
-        Invoke("DeleteText", 2f);
-    }
-
-    private void DeleteText()
-    {
-        _text.text = "";
     }
 
     private void SaveGame()
@@ -118,10 +109,6 @@ public class GameManager : Singleton<GameManager>, ISaveable
         }
 
         SaveSystem.Instance.SaveGame(_gameDataSO.GameData);
-
-        if (_text == null) return;
-        _text.text = "Guardado!";
-        Invoke("DeleteText", 2f);
     }
     #endregion
 

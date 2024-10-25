@@ -12,8 +12,6 @@ public class CanvasScalerAspectSwitcher : MonoBehaviour
 
     void OnRectTransformDimensionsChange()
     {
-        Debug.Log("is working");
-
         if (!canvasScaler) canvasScaler = GetComponent<CanvasScaler>();
         if (!rectTransform) rectTransform = GetComponent<RectTransform>();
 
