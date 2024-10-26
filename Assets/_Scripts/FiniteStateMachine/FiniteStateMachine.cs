@@ -7,7 +7,7 @@ public class FiniteStateMachine : MonoBehaviour
     private IAgent _agent;
     private BaseState _currentState;
     private Coroutine _transitionCoroutine;
-    private float _handleTransitionTime = 0.1f;
+    private float _handleTransitionTime = 0.2f;
     [SerializeField] BaseStateSO _debugCurrentState;
     [SerializeField] private GlobalStateListSO _globalStates;
     [SerializeField] private List<BaseStateSO> _stateList;

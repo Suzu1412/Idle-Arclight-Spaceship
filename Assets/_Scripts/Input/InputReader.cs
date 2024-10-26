@@ -94,19 +94,6 @@ public class InputReader : MonoBehaviour, GameInput.IClickerActions, IAgentInput
         EnhancedTouchSupport.Disable();
     }
 
-
-    public void OnTouchPosition(InputAction.CallbackContext context)
-    {
-        // CallOnMovementInput(_mainCamera.ScreenToWorldPoint(context.ReadValue<Vector2>()));
-
-    }
-
-    public void OnTouchPress(InputAction.CallbackContext context)
-    {
-        if (context.started) CallOnTouchPressed(true);
-        if (context.canceled) CallOnTouchPressed(false);
-    }
-
     public void CallOnMovementInput(Vector2 direction)
     {
         _direction = direction;
@@ -121,5 +108,9 @@ public class InputReader : MonoBehaviour, GameInput.IClickerActions, IAgentInput
     public void OnMove(InputAction.CallbackContext context)
     {
         CallOnMovementInput(context.ReadValue<Vector2>());
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
     }
 }

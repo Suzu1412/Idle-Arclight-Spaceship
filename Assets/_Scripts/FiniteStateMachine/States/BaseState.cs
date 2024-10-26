@@ -11,6 +11,7 @@ public abstract class BaseState
     [SerializeField] protected HashSet<BaseTransitionSO> _transitions;
     protected FiniteStateMachine _machine;
     protected int index;
+    internal IAgent Agent => _agent;
 
     public void Initialize(IAgent agent, BaseStateSO stateOrigin, FiniteStateMachine machine)
     {
@@ -81,11 +82,15 @@ public abstract class BaseState
 
     protected void OnEnable()
     {
+        Agent.Input.OnMovement += HandleMovement;
+        Agent.Input.OnSetDestination += HandleDestination;
+        
     }
 
     protected void OnDisable()
     {
-
+        Agent.Input.OnMovement -= HandleMovement;
+        Agent.Input.OnSetDestination -= HandleDestination;
     }
 
     protected void Tick()
@@ -95,12 +100,19 @@ public abstract class BaseState
 
     protected virtual void HandleMovement(Vector2 direction)
     {
+        _agent.MoveBehaviour.ReadInputDirection(direction);
     }
 
-    protected virtual void HandleJump(bool isJumping)
+    protected virtual void HandleDestination(Vector2 destination)
     {
 
     }
+
+    protected virtual void HandleAttack(bool isAttacking)
+    {
+
+    }
+
 
     protected virtual void TransitionToIdleState()
     {
