@@ -19,7 +19,7 @@ public class GemSpawner : MonoBehaviour
         //gem.GetComponentInChildren<SpriteRenderer>().material = _gemConfigs[0].Material;
         gem.GetComponent<TransformMover>().SetMoveSpeed(_gemConfigs[0].moveSpeed);
 
-        gem.transform.position = _placementStrategy.SetPosition(new Vector3(0f, 5f, 0f)); 
+        gem.transform.position = _placementStrategy.SetPosition(new Vector3(0f, 9f, 0f)); 
 
     }
 }

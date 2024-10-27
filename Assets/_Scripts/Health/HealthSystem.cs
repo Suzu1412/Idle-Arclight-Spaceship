@@ -45,16 +45,30 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     private void Awake()
     {
         _statType = StatType.MaxHealth;
-        Initialize();
+    }
+
+    public void Initialize(int currentHealth)
+    {
+        if (_health == null) _health = ScriptableObject.CreateInstance<HealthSO>();
+        if (currentHealth == 0)
+        {
+            Debug.Log("Inicializando con la vida maxima posible");
+            _health.Initialize(GetMaxValue(), GetMinPossiblevalue(), GetMaxPossibleValue());
+        }
+        else
+        {
+            Debug.Log("Inicializando con la vida cargada del save file");
+            _health.Initialize(currentHealth, GetMinPossiblevalue(), GetMaxPossibleValue());
+        }
+
+        OnMaxHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
+        _currentHealthEvent?.RaiseEvent(_health.CurrentValue);
     }
 
     internal void Initialize()
     {
-        if (_health == null) _health = ScriptableObject.CreateInstance<HealthSO>();
 
-        _health.Initialize(GetMaxValue(), GetMinPossiblevalue(), GetMaxPossibleValue());
-        OnMaxHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
-        _currentHealthEvent?.RaiseEvent(_health.CurrentValue);
+        
     }
 
     private void OnEnable()

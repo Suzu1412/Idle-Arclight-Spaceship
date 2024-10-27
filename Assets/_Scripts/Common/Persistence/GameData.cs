@@ -12,6 +12,9 @@ public class GameData
     [Header("Game Manager")]
     public GameStateType CurrentGameState;
 
+    [Header("Players")]
+    public List<PlayerAgentData> PlayerAgentDatas;
+
     [Header("Currency")]
     public CurrencyData CurrencyData;
     public List<GeneratorData> GeneratorsData;
@@ -21,6 +24,7 @@ public class GameData
         Name = name;
 
         CurrentGameState = GameStateType.Init;
+        PlayerAgentDatas = new List<PlayerAgentData>();
         CurrencyData = new CurrencyData();
         GeneratorsData = new List<GeneratorData>();
     }

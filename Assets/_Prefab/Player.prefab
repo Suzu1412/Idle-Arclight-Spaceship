@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5093743873899913257}
   - component: {fileID: 7878442640159246216}
   - component: {fileID: 2873822379548033991}
+  - component: {fileID: 3453171555576148166}
+  - component: {fileID: 4691067872007911789}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -137,6 +139,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnStickChangeDirectionListener: {fileID: 11400000, guid: 0af4af002a7e3654580c934df9f6e8e8, type: 2}
+--- !u!114 &3453171555576148166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131754902826937617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0aa52367560640bfa34874b5a130450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveDataRunTimeSet: {fileID: 11400000, guid: f5b7a800ff7044645ad77bace999d088, type: 2}
+--- !u!114 &4691067872007911789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131754902826937617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3cfd4918288334aa174364918a05a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _config: {fileID: 11400000, guid: a411c3feacc0c7b418fa819db824e7b8, type: 2}
 --- !u!1 &3206748674837551557
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,6 +214,7 @@ GameObject:
   - component: {fileID: 2564654201586381327}
   - component: {fileID: 4589728552326499288}
   - component: {fileID: 8108717298127303986}
+  - component: {fileID: 6803927108223902700}
   m_Layer: 8
   m_Name: Agent
   m_TagString: Untagged
@@ -382,6 +411,29 @@ MonoBehaviour:
   _stateList:
   - {fileID: 11400000, guid: 24f606fc73a7447f69bd6ae43992548f, type: 2}
   - {fileID: 11400000, guid: 3b7c88918e9e64b9db2b60b7700b81c5, type: 2}
+--- !u!114 &6803927108223902700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275472643666047418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e489cb3a5f1db34f8f970faa9cc3607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _level: {fileID: 0}
+  _levelStatsModifiers: {fileID: 0}
+  _currentExp: 0
+  _requiredExp: 0
+  _previousRequiredExp: 0
+  _totalRequiredExp: 0
+  _totalExp: 0
+  _onGainExperience: {fileID: 11400000, guid: 38f2b120c13402f4c9b4143c925d7927, type: 2}
+  additionMultiplier: 300
+  powerMultiplier: 2
+  divisionMultiplier: 7
 --- !u!1 &5311107909362892236
 GameObject:
   m_ObjectHideFlags: 0
