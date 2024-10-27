@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/State/Global State List", fileName = "Global State")]
+[CreateAssetMenu(menuName = "Scriptable Objects/State/Global State List", fileName = "Global State")]
 public class GlobalStateListSO : ScriptableObject
 {
     [SerializeField] private BaseStateSO _idleState;

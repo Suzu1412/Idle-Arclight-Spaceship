@@ -27,6 +27,7 @@ public class ShopUI : Singleton<ShopUI>
         _currencyManager.OnLoadAllGenerators += PrepareUI;
         OnGeneratorAmountChangedListener.Register(UpdateButtonInfo);
         OnCurrencyChangedListener.Register(HandleButtonAvailable);
+
     }
 
     private void OnDisable()
@@ -51,6 +52,8 @@ public class ShopUI : Singleton<ShopUI>
             button.PrepareButton();
             _buttons.Add(button);
         }
+
+        gameObject.SetActive(false);
     }
 
     private void UpdateButtonInfo(int index)

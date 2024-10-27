@@ -33,12 +33,6 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
         StartCoroutine(SetAutomaticBoundaries());
     }
 
-    private void FixedUpdate()
-    {
-        Move();
-        BoundMovement();
-    }
-
     public void StopMovement()
     {
         ApplyVelocity(Vector2.zero);
@@ -102,7 +96,7 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
         StartCoroutine(MoveTowardsCoroutine());
     }
 
-    private void BoundMovement()
+    public void BoundMovement()
     {
         if (_hasBoundaries)
         {

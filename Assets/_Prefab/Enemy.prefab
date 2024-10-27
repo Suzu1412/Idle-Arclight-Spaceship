@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7166755013389402437}
   - component: {fileID: 3219022969390313457}
   - component: {fileID: 1550624690756902960}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Avatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4012993540992643134}
   - component: {fileID: 8731175806926287692}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,6 +163,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8b19fafcfb713429f71a7a5122bab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4036642217016338370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3763784873020131495}
+  m_Layer: 9
+  m_Name: Weapon Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3763784873020131495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036642217016338370}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6539688628170306318}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6233625989351331620
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +210,8 @@ GameObject:
   - component: {fileID: 995240225794112556}
   - component: {fileID: 7352819231856760512}
   - component: {fileID: 7847641929431290436}
-  m_Layer: 0
+  - component: {fileID: 5933132856109029740}
+  m_Layer: 9
   m_Name: Agent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,11 +227,12 @@ Transform:
   m_GameObject: {fileID: 6233625989351331620}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 8.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 924302235491273121}
+  - {fileID: 3763784873020131495}
   m_Father: {fileID: 4012993540992643134}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6001147696526124466
@@ -236,7 +269,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.027419806, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -246,7 +279,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 7.5624566, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &8394727066869662866
 MonoBehaviour:
@@ -317,7 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1604a5a525758844483e7faa5a5e2e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: 819480d1e44f11d48b31032dbba7f1f1, type: 2}
+  _data: {fileID: 11400000, guid: 03c6469faebad4a9e84d8c3e51260c3f, type: 2}
 --- !u!50 &7847641929431290436
 Rigidbody2D:
   serializedVersion: 5
@@ -345,3 +378,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5933132856109029740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6233625989351331620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea65c7598fc3848cdadb45dff6dbc21d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _debugCurrentState: {fileID: 0}
+  _globalStates: {fileID: 0}
+  _stateList:
+  - {fileID: 11400000, guid: 256406963133e48ee8f97928e9cce9fb, type: 2}

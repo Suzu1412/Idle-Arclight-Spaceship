@@ -41,4 +41,6 @@ public interface ICanMove
 
     void SetBoundaries(Vector2 boundary);
 
+    void BoundMovement();
+
 }

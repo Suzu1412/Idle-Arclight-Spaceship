@@ -1,2 +1,12 @@
 fileFormatVersion: 2
 guid: 9bae5207ff8efdc4e9230cf021db8d35
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - OnStickChangeDirectionListener: {fileID: 11400000, guid: 0af4af002a7e3654580c934df9f6e8e8, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

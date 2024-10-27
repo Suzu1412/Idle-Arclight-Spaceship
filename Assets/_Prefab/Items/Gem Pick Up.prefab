@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8848424986104097849}
   - component: {fileID: 8478759536805784156}
   - component: {fileID: 567068392710465452}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Gem Pick Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 7066189097098502879}
   - component: {fileID: 6746616718134461854}
   - component: {fileID: 8308360052998542646}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

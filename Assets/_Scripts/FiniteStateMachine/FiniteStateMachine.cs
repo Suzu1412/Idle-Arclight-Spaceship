@@ -7,8 +7,8 @@ public class FiniteStateMachine : MonoBehaviour
     private IAgent _agent;
     private BaseState _currentState;
     private Coroutine _transitionCoroutine;
-    private float _handleTransitionTime = 0.2f;
-    [SerializeField] BaseStateSO _debugCurrentState;
+    private float _handleTransitionTime = 0.1f;
+    [SerializeField] [ReadOnly] BaseStateSO _debugCurrentState;
     [SerializeField] private GlobalStateListSO _globalStates;
     [SerializeField] private List<BaseStateSO> _stateList;
     [SerializeField] private readonly Dictionary<BaseStateSO, BaseState> _states = new();
@@ -25,13 +25,14 @@ public class FiniteStateMachine : MonoBehaviour
 
     private void OnEnable()
     {
-        Transition(_globalStates.BattleState);
+        Transition(_stateList[0]);
         _transitionCoroutine = StartCoroutine(TransitionCoroutine());
     }
 
     private void OnDisable()
     {
         StopAllCoroutines();
+        _currentState?.OnExit();
     }
 
     private void Update()

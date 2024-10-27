@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7ce9bf58f6139d4db2493ef579afb7b, type: 3}
-  m_Name: MovementDataSO
+  m_Script: {fileID: 11500000, guid: 9272099ba5983b341963448e2637fc51, type: 3}
+  m_Name: PlayerIdleState
   m_EditorClassIdentifier: 
-  _acceleration: 50
-  _deceleration: 50
-  _maxSpeed: 5
+  _transitions:
+  - {fileID: 11400000, guid: c1ef05157a090448a9506280fdd78a50, type: 2}

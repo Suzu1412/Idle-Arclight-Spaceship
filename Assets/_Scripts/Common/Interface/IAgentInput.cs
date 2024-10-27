@@ -3,10 +3,11 @@ using UnityEngine.Events;
 
 public interface IAgentInput
 {
-    event UnityAction<bool> OnTouchPressed;
+    Vector2 Direction { get; }
     event UnityAction<Vector2> OnMovement;
     event UnityAction<Vector2> OnSetDestination;
+    event UnityAction<bool> Attack;
 
     void CallOnMovementInput(Vector2 direction);
-    void CallOnTouchPressed(bool touchPressed);
+    void CallOnAttack(bool wasPressed);
 }

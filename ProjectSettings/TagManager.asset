@@ -18,8 +18,8 @@ TagManager:
   - PlayerProjectile
   - EnemyProjectile
   - Post Processing
-  - 
-  - 
+  - Collectible
+  - Deadzone
   - 
   - 
   - 

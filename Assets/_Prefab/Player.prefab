@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5093743873899913257}
   - component: {fileID: 7878442640159246216}
   - component: {fileID: 2873822379548033991}
-  - component: {fileID: 572611116026364913}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -110,20 +109,16 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 900a72c8-573b-44e7-b0de-e667fb99d0aa
-    m_ActionName: 'Clicker/TouchPosition[/Mouse/position]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9528928d-9ea3-44a2-9a19-66f1221e9d8d
-    m_ActionName: 'Clicker/TouchPress[/Mouse/leftButton]'
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 9afe738e-6fd3-43aa-9efe-d9289908cde6
     m_ActionName: Player/Attack
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 059bccea-81f9-4297-8e6f-76063781d2b2
     m_ActionName: 'Clicker/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1e36002f-d1d5-4a4b-83a6-87b7699478bc
+    m_ActionName: 'Clicker/Attack[/Keyboard/x,/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -142,18 +137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnStickChangeDirectionListener: {fileID: 11400000, guid: 0af4af002a7e3654580c934df9f6e8e8, type: 2}
---- !u!114 &572611116026364913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1131754902826937617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5761d9c495ea3d741ab0bf85333a92b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3206748674837551557
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 3206748674837551557}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.35, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -200,6 +183,9 @@ GameObject:
   - component: {fileID: 2736954739997381902}
   - component: {fileID: 5601731718158847689}
   - component: {fileID: 1627092567047221177}
+  - component: {fileID: 2564654201586381327}
+  - component: {fileID: 4589728552326499288}
+  - component: {fileID: 8108717298127303986}
   m_Layer: 8
   m_Name: Agent
   m_TagString: Untagged
@@ -321,6 +307,81 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2564654201586381327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275472643666047418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c142c877a5a20479968127189671df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &4589728552326499288
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275472643666047418}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.5, y: 0.5}
+  m_EdgeRadius: 0
+--- !u!114 &8108717298127303986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275472643666047418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea65c7598fc3848cdadb45dff6dbc21d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _debugCurrentState: {fileID: 0}
+  _globalStates: {fileID: 0}
+  _stateList:
+  - {fileID: 11400000, guid: 24f606fc73a7447f69bd6ae43992548f, type: 2}
+  - {fileID: 11400000, guid: 3b7c88918e9e64b9db2b60b7700b81c5, type: 2}
 --- !u!1 &5311107909362892236
 GameObject:
   m_ObjectHideFlags: 0

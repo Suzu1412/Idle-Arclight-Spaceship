@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5389315435826191961}
   - component: {fileID: 1261048434857864788}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7301544011126323465}
   - component: {fileID: 5806872353964205012}
   - component: {fileID: 461301352558699462}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Item Pick Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
