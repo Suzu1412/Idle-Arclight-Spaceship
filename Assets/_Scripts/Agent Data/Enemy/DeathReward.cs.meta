@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1baf6ca5cad1f5443bd5e6fd27291803
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _reward: {instanceID: 0}
+  - OnGainCurrencyEvent: {fileID: 11400000, guid: 272b4dfd9f38aa64199fdd1c05d2d19c, type: 2}
+  - OnGainExpEvent: {fileID: 11400000, guid: 091533ac90c2d564ba610df62567201e, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

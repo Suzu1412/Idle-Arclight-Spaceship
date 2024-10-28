@@ -6,7 +6,7 @@ public class ShopUI : Singleton<ShopUI>
     [SerializeField] private GameObject _shopItemButtonPrefab;
     [SerializeField] private Transform _shopItemParent;
     [SerializeField] private CurrencyManager _currencyManager;
-    private List<GeneratorButtonController> _buttons;
+    private List<GeneratorButtonController> _buttons = new();
     private int _amountToBuy;
 
     [Header("Int Event")]

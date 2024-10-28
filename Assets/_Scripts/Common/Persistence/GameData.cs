@@ -137,16 +137,19 @@ public class PlayerAgentData
 {
     [SerializeField] private string _guid;
     [SerializeField] private int _currentHealth;
-    [SerializeField] private float _currentExp;
+    [SerializeField] private float _totalExp;
+    [SerializeField] private int _currentLevel;
 
     public string Guid => _guid;
     public int CurrentHealth => _currentHealth;
-    public float CurrentExp => _currentExp;
+    public float TotalExp => _totalExp;
+    public int CurrentLevel => _currentLevel;
 
-    public PlayerAgentData(string guid, int currentHealth, float currentExp)
+    public PlayerAgentData(string guid, int currentHealth, float totalExp, int currentLevel)
     {
         _guid = guid;
         _currentHealth = currentHealth;
-        _currentExp = currentExp;
+        _totalExp = totalExp;
+        _currentLevel = currentLevel;
     }
 }

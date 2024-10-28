@@ -45,19 +45,19 @@ public class Stat
         {
             switch (_modifiers[i].ModifierType)
             {
-                case StatModifierType.Flat:
+                case ModifierType.Flat:
                     finalValue += _modifiers[i].Value;
                     break;
 
-                case StatModifierType.PercentAdditive:
+                case ModifierType.PercentAdditive:
                     sumPercentAdditive += _modifiers[i].Value;
-                    if (i + 1 >= _modifiers.Count || _modifiers[i + 1].ModifierType != StatModifierType.PercentAdditive)
+                    if (i + 1 >= _modifiers.Count || _modifiers[i + 1].ModifierType != ModifierType.PercentAdditive)
                     {
                         finalValue *= 1 + sumPercentAdditive;
                     }
                     break;
 
-                case StatModifierType.PercentMultiplicative:
+                case ModifierType.PercentMultiplicative:
                     finalValue *= 1 + _modifiers[i].Value;
                     break;
             }

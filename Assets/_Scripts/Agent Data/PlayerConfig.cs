@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerConfig : MonoBehaviour, ISaveable
 {
     [SerializeField] private PlayerAgentDataSO _config;
-    private List<PlayerAgentDataSO> _playerConfigs;
     private IAgent _agent;
+    private MovementBehaviour _movement;
 
     internal IAgent Agent => _agent ??= GetComponentInChildren<IAgent>();
-
+    internal MovementBehaviour Movement => _movement != null ? _movement : _movement = GetComponentInChildren<MovementBehaviour>();
 
     public void LoadData(GameData gameData)
     {
@@ -17,10 +17,12 @@ public class PlayerConfig : MonoBehaviour, ISaveable
         if (data != null)
         {
             _config.SetCurrentHealth(data.CurrentHealth);
-            _config.SetCurrentExp(data.CurrentExp);
+            _config.SetCurrentLevel(data.CurrentLevel);
+            _config.SetTotalExp(data.TotalExp);
         }
 
         Agent.HealthSystem.Initialize(_config.CurrentHealth);
+        Movement.SetMovementData(_config.MovementData);
     }
 
     public void SaveData(GameData gameData)
@@ -28,7 +30,8 @@ public class PlayerConfig : MonoBehaviour, ISaveable
         var agentData = new PlayerAgentData(
             _config.Guid,
             Agent.HealthSystem.GetCurrentHealth(),
-            Agent.LevelSystem.GetCurrentExp()
+            Agent.LevelSystem.GetTotalExp(),
+            Agent.LevelSystem.GetCurrentLevel()
         );
         gameData.PlayerAgentDatas.Save(agentData);
     }

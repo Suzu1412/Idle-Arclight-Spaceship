@@ -122,4 +122,14 @@ public class LevelSystem : MonoBehaviour, ILevelSystem
     {
         return _currentExp;
     }
+
+    public float GetTotalExp()
+    {
+        return _totalExp;
+    }
+
+    public int GetCurrentLevel()
+    {
+        return _level.CurrentValue;
+    }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9157954444931155089}
   - component: {fileID: 4761911719143833378}
   - component: {fileID: 7379950591061097782}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Damage Popup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 6410846867551600769}
   - component: {fileID: 3148683312978549733}
   - component: {fileID: 856648034267592684}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Damage Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}

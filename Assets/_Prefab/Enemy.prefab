@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 7166755013389402437}
   - component: {fileID: 3219022969390313457}
   - component: {fileID: 1550624690756902960}
+  - component: {fileID: 2880532358367089672}
   m_Layer: 9
-  m_Name: Avatar
+  m_Name: Avatar & Feedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,6 +119,22 @@ MonoBehaviour:
   _textData: {fileID: 11400000, guid: be76e86c201f7c1439a5f22c2099f88d, type: 2}
   _positionOffset: {x: 0.5, y: 0.2}
   _isPositionRandom: 1
+--- !u!114 &2880532358367089672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090146522955931733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22bfae3f02559f44a942b5756ae97fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textData: {fileID: 11400000, guid: bf9d70c58654e2c4d96ef0966279aecc, type: 2}
+  _positionOffset: {x: 0, y: 0}
+  _isPositionRandom: 0
+  OnGainExpEventListener: {fileID: 11400000, guid: 38f2b120c13402f4c9b4143c925d7927, type: 2}
 --- !u!1 &3681873208184361203
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4012993540992643134}
   - component: {fileID: 8731175806926287692}
+  - component: {fileID: 6281462957913846710}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -163,6 +181,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8b19fafcfb713429f71a7a5122bab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6281462957913846710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3681873208184361203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50972e85904910145899e8c431f78169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _config: {fileID: 11400000, guid: 6732e6ae6eae448469d6ee5b89d3cc19, type: 2}
 --- !u!1 &4036642217016338370
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +258,7 @@ Transform:
   m_GameObject: {fileID: 6233625989351331620}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.83, z: 0}
+  m_LocalPosition: {x: 0, y: 7.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -306,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc743f49d91e14b48a3875b0c822c2d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stats: {fileID: 11400000, guid: 9bd685b65b001224984ed4390d5bd7de, type: 2}
+  _stats: {fileID: 11400000, guid: 64b3b608ec9daca4095ea41f5c03a16e, type: 2}
 --- !u!114 &3483539676383952236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,7 +368,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reward: {fileID: 11400000, guid: e9036f8fb111a63428915f3d5a22355a, type: 2}
-  _gainCurrencyEvent: {fileID: 11400000, guid: 272b4dfd9f38aa64199fdd1c05d2d19c, type: 2}
+  OnGainCurrencyEvent: {fileID: 11400000, guid: 272b4dfd9f38aa64199fdd1c05d2d19c, type: 2}
+  OnGainExpEvent: {fileID: 11400000, guid: 091533ac90c2d564ba610df62567201e, type: 2}
 --- !u!114 &7352819231856760512
 MonoBehaviour:
   m_ObjectHideFlags: 0

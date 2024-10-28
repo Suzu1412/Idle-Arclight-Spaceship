@@ -11,4 +11,9 @@ public abstract class TextPopUp : MonoBehaviour
     {
 
     }
+
+    protected virtual void SpawnPopUp(float text)
+    {
+
+    }
 }

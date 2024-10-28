@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IStatModifier
 {
-    StatModifierType ModifierType { get; }
+    ModifierType ModifierType { get; }
     StatType StatType { get; }
     float Value { get; }
     string Source { get; }

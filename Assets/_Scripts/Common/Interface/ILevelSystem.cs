@@ -14,4 +14,8 @@ public interface ILevelSystem
     void GainExperienceFlat(float expGained);
 
     float GetCurrentExp();
+
+    float GetTotalExp();
+
+    int GetCurrentLevel();
 }

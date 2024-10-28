@@ -7,6 +7,9 @@ public class ExpTextFeedback : TextPopUp
     [SerializeField] private Vector2 _positionOffset;
     [SerializeField] private bool _isPositionRandom = false;
     private Transform _transform;
+    [SerializeField] private FloatGameEventListener OnGainExpEventListener = default;
+
+    
 
 
     private void Awake()
@@ -16,13 +19,32 @@ public class ExpTextFeedback : TextPopUp
 
     private void OnEnable()
     {
+        OnGainExpEventListener.Register(SpawnPopUp);
     }
 
     private void OnDisable()
     {
+        OnGainExpEventListener.DeRegister(SpawnPopUp);
     }
 
     protected override void SpawnPopUp(int text)
+    {
+        var _popUpGameObject = ObjectPoolFactory.Spawn(_textData).gameObject;
+        if (_isPositionRandom)
+        {
+            SetRandomPosition(_popUpGameObject);
+        }
+        else
+        {
+            SetPosition(_popUpGameObject);
+        }
+
+
+        var _popUp = _popUpGameObject.GetComponentInChildren<TextMeshPro>();
+        _popUp.text = $"- {text}";
+    }
+
+    protected override void SpawnPopUp(float text)
     {
         var _popUpGameObject = ObjectPoolFactory.Spawn(_textData).gameObject;
         if (_isPositionRandom)
