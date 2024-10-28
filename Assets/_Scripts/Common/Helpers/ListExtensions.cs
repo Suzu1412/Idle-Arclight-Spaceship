@@ -46,12 +46,16 @@ public static class ListExtensions
         (list[indexA], list[indexB]) = (list[indexB], list[indexA]);
     }
 
-    public static void Replace<T>(this IList<T> list, T oldValue, T newValue)
+    public static void ReplaceOrAdd<T>(this IList<T> list, T oldValue, T newValue)
     {
         var index = list.IndexOf(oldValue);
         if (index != -1)
         {
             list[index] = newValue;
+        }
+        else
+        {
+            list.Add(newValue);
         }
     }
 }

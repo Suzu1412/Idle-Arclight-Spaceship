@@ -1,25 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GeneratorDataBase
+public class PlayerConfigDatabase
 {
-    static Dictionary<string, GeneratorSO> _itemDictionary;
+    static Dictionary<string, PlayerAgentDataSO> _itemDictionary;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
     static void Initialize()
     {
-        _itemDictionary = new Dictionary<string, GeneratorSO>();
+        _itemDictionary = new Dictionary<string, PlayerAgentDataSO>();
 
-        var allItems = Resources.LoadAll<GeneratorSO>("");
+        var allItems = Resources.LoadAll<PlayerAgentDataSO>("");
         foreach (var item in allItems)
         {
             _itemDictionary.Add(item.Guid, item);
         }
     }
 
-    public static List<GeneratorSO> GetAllAssets()
+    public static List<PlayerAgentDataSO> GetAllAssets()
     {
-        List<GeneratorSO> items = new();
+        List<PlayerAgentDataSO> items = new();
 
         foreach (var item in _itemDictionary)
         {
@@ -29,7 +29,7 @@ public class GeneratorDataBase
         return items;
     }
 
-    public static GeneratorSO GetAssetById(string id)
+    public static PlayerAgentDataSO GetAssetById(string id)
     {
         try
         {
@@ -37,7 +37,7 @@ public class GeneratorDataBase
         }
         catch
         {
-            Debug.LogError($"Cannot find {nameof(GeneratorSO)} with id {id}");
+            Debug.LogError($"Cannot find {nameof(PlayerAgentDataSO)} with id {id}");
             return null;
         }
     }

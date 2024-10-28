@@ -18,10 +18,26 @@ MonoBehaviour:
     LocationId: 
     CurrentLevelName: 
     CurrentGameState: 0
+    PlayerAgentDatas:
+    - Guid: a411c3feacc0c7b418fa819db824e7b8
+      CurrentHealth: 1
+      CurrentExp: 0
     CurrencyData:
-      TotalCurrency: 200909.6
+      _totalCurrency: 916.8
+      _amountToBuy: 1
     GeneratorsData:
-    - Guid: 274494024297a8e44a9090bed95ba8ca
-      Amount: 5
-    - Guid: 45a9c9cc35838824097ca45e92e5a7d8
-      Amount: 0
+      _generators:
+      - _guid: 
+        _amount: 0
+      - _guid: 
+        _amount: 0
+      - _guid: 
+        _amount: 0
+      - _guid: 
+        _amount: 0
+      - _guid: 
+        _amount: 0
+      - _guid: 274494024297a8e44a9090bed95ba8ca
+        _amount: 6
+      - _guid: 45a9c9cc35838824097ca45e92e5a7d8
+        _amount: 4
