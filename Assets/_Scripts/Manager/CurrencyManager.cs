@@ -7,7 +7,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(AddSaveDataRunTimeSet))]
 public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 {
-    [SerializeField] [ReadOnly] private List<GeneratorSO> _generators;
+    [SerializeField] private float _delayToGenerate = 1f;
     [Header("Int Event")]
     [SerializeField] private IntGameEvent OnGeneratorAmountChangedEvent;
     [Header("Double Event")]
@@ -21,8 +21,9 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [SerializeField] private StringGameEvent OnUpdateCurrencyText;
     [SerializeField] private StringGameEvent OnUpdateProductionText;
     [Header("Save Data")]
-    [SerializeField] private CurrencyData _currencyData;
-    [SerializeField] private float _delayToGenerate = 1f;
+    [SerializeField] [ReadOnly] private List<GeneratorSO> _generators;
+    [SerializeField] private double _totalCurrency = 0;
+    [SerializeField] private int _amountToBuy = 1;
 
     #region Events
     public event UnityAction<List<GeneratorSO>, int> OnLoadAllGenerators;
@@ -31,7 +32,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     protected override void Awake()
     {
         base.Awake();
-        _currencyData = new CurrencyData();
     }
 
     private void OnEnable()
@@ -51,74 +51,67 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void Increment(double amount)
     {
-        _currencyData.TotalCurrency += amount;
-        _currencyData.TotalCurrency = Math.Round(_currencyData.TotalCurrency, 1);
-        OnCurrencyChangedEvent.RaiseEvent(_currencyData.TotalCurrency);
-        OnUpdateCurrencyText.RaiseEvent(FormatNumber.FormatDouble(_currencyData.TotalCurrency));
+        _totalCurrency += amount;
+        _totalCurrency = Math.Round(_totalCurrency, 1);
+        OnCurrencyChangedEvent.RaiseEvent(_totalCurrency);
+        OnUpdateCurrencyText.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency));
     }
 
     public void SaveData(GameData gameData)
     {
-        gameData.CurrencyData = _currencyData;
+        gameData.CurrencyData.Save(_totalCurrency, _amountToBuy);
 
-        gameData.GeneratorsData = new();
         foreach (var generator in _generators)
         {
-            var data = new GeneratorData
-            {
-                Guid = generator.Guid,
-                Amount = generator.AmountOwned
-            };
-            gameData.GeneratorsData.Add(data);
+            var data = new GeneratorData(generator.Guid, generator.AmountOwned);
+            gameData.GeneratorsData.Save(data);
         }
     }
 
     public void LoadData(GameData gameData)
     {
-        _currencyData.TotalCurrency = gameData.CurrencyData.TotalCurrency;
+        var currencyData = gameData.CurrencyData.Load();
+        _totalCurrency = currencyData.TotalCurrency;
+        _amountToBuy = currencyData.AmountToBuy;
         ChangeAmountToBuy(gameData.CurrencyData.AmountToBuy);
 
         _generators = GeneratorDataBase.GetAllAssets();
         foreach (var generator in _generators)
         {
             generator.SetAmount(0);
-        }
-
-        if (!gameData.GeneratorsData.IsNullOrEmpty())
-        {
-            foreach (var data in gameData.GeneratorsData)
+            var data = gameData.GeneratorsData.Load(generator.Guid);
+            if (data != null)
             {
-                var newGenerator = GeneratorDataBase.GetAssetById(data.Guid);
-                _generators.Find(x => x.Guid == newGenerator.Guid).SetAmount(data.Amount);
+                generator.SetAmount(data.Amount);
             }
         }
 
-        OnLoadAllGenerators?.Invoke(_generators, _currencyData.AmountToBuy);
-        OnCurrencyChangedEvent.RaiseEvent(_currencyData.TotalCurrency);
+        OnLoadAllGenerators?.Invoke(_generators, _amountToBuy);
+        OnCurrencyChangedEvent.RaiseEvent(_totalCurrency);
     }
 
     private void BuyGenerator(int index)
     {
-        if (_currencyData.TotalCurrency >= _generators[index].Cost)
+        if (_totalCurrency >= _generators[index].Cost)
         {
-            _currencyData.TotalCurrency -= _generators[index].Cost;
-            _generators[index].AddAmount(_currencyData.AmountToBuy);
-            _generators[index].GetBulkCost(_currencyData.AmountToBuy);
+            _totalCurrency -= _generators[index].Cost;
+            _generators[index].AddAmount(_amountToBuy);
+            _generators[index].GetBulkCost(_amountToBuy);
             _generators[index].CalculateProductionRate();
             GetProductionRate();
             OnGeneratorAmountChangedEvent.RaiseEvent(index);
-            OnCurrencyChangedEvent.RaiseEvent(_currencyData.TotalCurrency);
-            OnUpdateCurrencyText.RaiseEvent(FormatNumber.FormatDouble(_currencyData.TotalCurrency));
+            OnCurrencyChangedEvent.RaiseEvent(_totalCurrency);
+            OnUpdateCurrencyText.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency));
         }
     }
 
     private void ChangeAmountToBuy(int amount)
     {
-        _currencyData.AmountToBuy = amount;
+        _amountToBuy = amount;
 
-        if (_currencyData.AmountToBuy == 0)
+        if (_amountToBuy == 0)
         {
-            _currencyData.AmountToBuy = 1;
+            _amountToBuy = 1;
         }
 
         foreach (var generator in _generators)
