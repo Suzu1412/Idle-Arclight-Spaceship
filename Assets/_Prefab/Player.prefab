@@ -430,7 +430,7 @@ MonoBehaviour:
   _previousRequiredExp: 0
   _totalRequiredExp: 0
   _totalExp: 0
-  _onGainExperience: {fileID: 11400000, guid: 38f2b120c13402f4c9b4143c925d7927, type: 2}
+  OnGainExperience: {fileID: 0}
   additionMultiplier: 300
   powerMultiplier: 2
   divisionMultiplier: 7

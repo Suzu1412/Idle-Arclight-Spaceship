@@ -39,8 +39,6 @@ public class PlayerConfig : MonoBehaviour, ISaveable
 
     public void SaveData(GameData gameData)
     {
-        Debug.Log("funciona siquiera?");
-
         _agentData = new()
         {
             Guid = _config.Guid,
