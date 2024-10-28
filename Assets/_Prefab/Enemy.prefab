@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3219022969390313457}
   - component: {fileID: 1550624690756902960}
   - component: {fileID: 2880532358367089672}
+  - component: {fileID: 974587146845377338}
   m_Layer: 9
   m_Name: Avatar & Feedback
   m_TagString: Untagged
@@ -135,6 +136,19 @@ MonoBehaviour:
   _positionOffset: {x: 0, y: 0}
   _isPositionRandom: 0
   OnGainExpEventListener: {fileID: 11400000, guid: 38f2b120c13402f4c9b4143c925d7927, type: 2}
+--- !u!114 &974587146845377338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090146522955931733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf85676a600c74f78b3451ba0ee98663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathVFX: {fileID: 11400000, guid: bbb06fec88caa454cab03f6849f69921, type: 2}
 --- !u!1 &3681873208184361203
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,10 +252,10 @@ GameObject:
   - component: {fileID: 8394727066869662866}
   - component: {fileID: 1825057643187846638}
   - component: {fileID: 3483539676383952236}
-  - component: {fileID: 995240225794112556}
-  - component: {fileID: 7352819231856760512}
   - component: {fileID: 7847641929431290436}
   - component: {fileID: 5933132856109029740}
+  - component: {fileID: 2289817094774088068}
+  - component: {fileID: 4613453723534360507}
   m_Layer: 9
   m_Name: Agent
   m_TagString: Untagged
@@ -258,7 +272,7 @@ Transform:
   m_GameObject: {fileID: 6233625989351331620}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.68, z: 0}
+  m_LocalPosition: {x: 0, y: 3.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -355,34 +369,6 @@ MonoBehaviour:
   _invulnerabilityDuration: 0
   _floatingText: {fileID: 0}
   _currentHealthEvent: {fileID: 11400000, guid: 6b9d46cc0e6fcf4479007851256422a0, type: 2}
---- !u!114 &995240225794112556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6233625989351331620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1baf6ca5cad1f5443bd5e6fd27291803, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _reward: {fileID: 11400000, guid: e9036f8fb111a63428915f3d5a22355a, type: 2}
-  OnGainCurrencyEvent: {fileID: 11400000, guid: 272b4dfd9f38aa64199fdd1c05d2d19c, type: 2}
-  OnGainExpEvent: {fileID: 11400000, guid: 091533ac90c2d564ba610df62567201e, type: 2}
---- !u!114 &7352819231856760512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6233625989351331620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1604a5a525758844483e7faa5a5e2e46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: 03c6469faebad4a9e84d8c3e51260c3f, type: 2}
 --- !u!50 &7847641929431290436
 Rigidbody2D:
   serializedVersion: 5
@@ -417,7 +403,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6233625989351331620}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea65c7598fc3848cdadb45dff6dbc21d, type: 3}
   m_Name: 
@@ -426,3 +412,31 @@ MonoBehaviour:
   _globalStates: {fileID: 0}
   _stateList:
   - {fileID: 11400000, guid: 256406963133e48ee8f97928e9cce9fb, type: 2}
+--- !u!114 &2289817094774088068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6233625989351331620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1604a5a525758844483e7faa5a5e2e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 0}
+--- !u!114 &4613453723534360507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6233625989351331620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1baf6ca5cad1f5443bd5e6fd27291803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _reward: {fileID: 0}
+  OnGainCurrencyEvent: {fileID: 11400000, guid: 272b4dfd9f38aa64199fdd1c05d2d19c, type: 2}
+  OnGainExpEvent: {fileID: 11400000, guid: 091533ac90c2d564ba610df62567201e, type: 2}

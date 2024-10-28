@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DeathReward : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class DeathReward : MonoBehaviour
     private IHealthSystem _healthSystem;
 
     internal IHealthSystem HealthSystem => _healthSystem ??= GetComponent<IHealthSystem>();
+
+    public event UnityAction<float> OnGiveExp;
 
     private void OnEnable()
     {
@@ -34,9 +37,8 @@ public class DeathReward : MonoBehaviour
             return;
         }
 
-        Debug.Log("Giving Reward!");
-
         OnGainCurrencyEvent.RaiseEvent(_reward.BaseCurrencyReward);
         OnGainExpEvent.RaiseEvent(_reward.BaseExpReward);
+        OnGiveExp?.Invoke(_reward.BaseExpReward);
     }
 }

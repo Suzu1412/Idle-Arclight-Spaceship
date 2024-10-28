@@ -10,4 +10,5 @@ public enum ObjectPoolType
     Audio,
     PickUp,
     TextPopUp,
+    Effects,
 }

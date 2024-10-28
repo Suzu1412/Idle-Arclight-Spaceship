@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float _damage = 5;
     private SpriteRenderer spriteRenderer;
     private ObjectPooler _pool;
+    [SerializeField] private ObjectPoolSettingsSO _impactPool = default;
     [SerializeField] private float projectileDuration = 6f;
     public float ProjectileRange => _projectileRange;
     private Coroutine _disableProjectileAfterDistance;
@@ -67,9 +68,17 @@ public class Projectile : MonoBehaviour
         if (other.TryGetComponent(out IDamageable damageable))
         {
             damageable.Damage(Mathf.RoundToInt(_damage));
-            // Instantiate(Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation));
+            SpawnImpactEffect();
             ObjectPoolFactory.ReturnToPool(Pool);
         }
+    }
+
+    private void SpawnImpactEffect()
+    {
+        Vector2 offset = Vector2.zero;
+        offset.Set(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+        ObjectPoolFactory.Spawn(_impactPool).transform.SetPositionAndRotation((Vector2)transform.position, transform.rotation);
+
     }
 
     private IEnumerator DisableProjectileAfterDistanceCoroutine()

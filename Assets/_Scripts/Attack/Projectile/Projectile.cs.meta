@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: eb6f121e8844e08418e7b2bd6a5c4128
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - particleOnHitPrefabVFX: {instanceID: 0}
+  - _impactPool: {fileID: 11400000, guid: 23b1f4e6dcf134f6995b67e4896187ba, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

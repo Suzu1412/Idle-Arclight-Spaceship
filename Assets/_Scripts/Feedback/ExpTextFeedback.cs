@@ -7,24 +7,24 @@ public class ExpTextFeedback : TextPopUp
     [SerializeField] private Vector2 _positionOffset;
     [SerializeField] private bool _isPositionRandom = false;
     private Transform _transform;
-    [SerializeField] private FloatGameEventListener OnGainExpEventListener = default;
-
-    
+    private DeathReward _deathReward;
 
 
     private void Awake()
     {
         _transform = GetComponent<Transform>();
+        _deathReward = GetComponentInParent<DeathReward>();
+
     }
 
     private void OnEnable()
     {
-        OnGainExpEventListener.Register(SpawnPopUp);
+        _deathReward.OnGiveExp += SpawnPopUp;
     }
 
     private void OnDisable()
     {
-        OnGainExpEventListener.DeRegister(SpawnPopUp);
+        _deathReward.OnGiveExp -= SpawnPopUp;
     }
 
     protected override void SpawnPopUp(int text)
