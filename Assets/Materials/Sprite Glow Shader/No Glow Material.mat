@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sprite Glow Lit Material
+  m_Name: No Glow Material
   m_Shader: {fileID: -6465566751694194690, guid: 375aa04d5f3ec7c4798384a8357d07ab, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -76,10 +76,12 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _GlowAmount: 1
+    - _MakeSolidColor: 1
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _GlowColor: {r: 0, g: 17.303612, b: 29.50885, a: 0}
+    - _GlowColor: {r: 0, g: 0, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

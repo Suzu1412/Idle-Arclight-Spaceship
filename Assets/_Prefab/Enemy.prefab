@@ -135,7 +135,6 @@ MonoBehaviour:
   _textData: {fileID: 11400000, guid: bf9d70c58654e2c4d96ef0966279aecc, type: 2}
   _positionOffset: {x: 0, y: 0}
   _isPositionRandom: 0
-  OnGainExpEventListener: {fileID: 11400000, guid: 38f2b120c13402f4c9b4143c925d7927, type: 2}
 --- !u!114 &974587146845377338
 MonoBehaviour:
   m_ObjectHideFlags: 0

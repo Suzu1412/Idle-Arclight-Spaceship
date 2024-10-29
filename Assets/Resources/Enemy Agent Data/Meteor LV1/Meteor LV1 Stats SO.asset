@@ -18,8 +18,8 @@ MonoBehaviour:
     - Key: 0
       Value:
         _statInfo: {fileID: 11400000, guid: d435cace20fc221478bfb80a38f7383d, type: 2}
-        _baseValue: 3
-        _value: 3
+        _baseValue: 100
+        _value: 100
         _modifiers: []
     - Key: 1
       Value:

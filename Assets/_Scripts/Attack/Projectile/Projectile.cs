@@ -64,6 +64,10 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.TryGetComponent(out IHittable hittable))
+        {
+            hittable.GetHit(this.gameObject);
+        }
 
         if (other.TryGetComponent(out IDamageable damageable))
         {
