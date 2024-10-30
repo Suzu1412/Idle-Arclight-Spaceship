@@ -15,8 +15,8 @@ MonoBehaviour:
   _guid: 45a9c9cc35838824097ca45e92e5a7d8
   _name: Crystal Gen 2
   _image: {fileID: 0}
-  _baseCost: 15
+  _baseCost: 50
   _productionBase: 1
-  _amountOwned: 0
+  _amountOwned: 2
   _priceGrowthRate: 1.15
-  _totalProduction: 32817
+  _totalProduction: 35280

@@ -13,13 +13,13 @@ public class GameData
     public GameStateType CurrentGameState;
 
     [Header("Players")]
-    public PlayerAgentDatas PlayerAgentDatas;
+    public PlayerAgentDatas PlayerAgentDatas = new();
 
     [Header("Currency")]
-    public CurrencyData CurrencyData;
+    public CurrencyData CurrencyData = new();
 
     [Header("Generators")]
-    public GeneratorsData GeneratorsData;
+    public GeneratorsData GeneratorsData = new();
 
     public void NewGame(string name)
     {
@@ -27,7 +27,7 @@ public class GameData
 
         CurrentGameState = GameStateType.Init;
         PlayerAgentDatas = new();
-        CurrencyData = new CurrencyData();
+        CurrencyData = new();
         GeneratorsData = new();
     }
 
@@ -71,11 +71,6 @@ public class GeneratorsData
 {
     [SerializeField] private List<GeneratorData> _generators = new();
 
-    public void New()
-    {
-        _generators = new();
-    }
-
     public GeneratorData Load(string guid)
     {
         return _generators.Find(x => x.Guid == guid);
@@ -96,14 +91,17 @@ public class GeneratorData
 {
     [SerializeField] private string _guid;
     [SerializeField] private int _amount;
+    [SerializeField] private double _totalProduction;
 
     public string Guid => _guid;
     public int Amount => _amount;
+    public double TotalProduction => _totalProduction;
 
-    public GeneratorData(string guid, int amount)
+    public GeneratorData(string guid, int amount, double totalProduction)
     {
         _guid = guid;
         _amount = amount;
+        _totalProduction = totalProduction;
     }
 }
 
@@ -111,11 +109,6 @@ public class GeneratorData
 public class PlayerAgentDatas
 {
     [SerializeField] private List<PlayerAgentData> _playerAgentDatas = new();
-
-    public void New()
-    {
-        _playerAgentDatas = new();
-    }
 
     public PlayerAgentData Load(string guid)
     {

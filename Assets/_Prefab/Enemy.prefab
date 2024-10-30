@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 974587146845377338}
   - component: {fileID: 6867805684470172223}
   - component: {fileID: 4386240422490216029}
+  - component: {fileID: 1689546129171308470}
+  - component: {fileID: 160200230253649910}
   m_Layer: 9
   m_Name: Avatar & Feedback
   m_TagString: Untagged
@@ -163,6 +165,32 @@ MonoBehaviour:
   _shakeStrength: 0.1
   _shakeDuration: 0.3
   _shakeVibrato: 30
+--- !u!114 &1689546129171308470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090146522955931733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760623b7c53842a48a1877934a9585c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _duration: 0.01
+--- !u!114 &160200230253649910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090146522955931733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b634f469a0b6f0a419230915f2b24aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 50
 --- !u!1 &3681873208184361203
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,7 +314,7 @@ Transform:
   m_GameObject: {fileID: 6233625989351331620}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: -1.5, y: 6.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -417,7 +445,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6233625989351331620}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea65c7598fc3848cdadb45dff6dbc21d, type: 3}
   m_Name: 

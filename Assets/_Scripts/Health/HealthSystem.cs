@@ -28,9 +28,8 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     public float HurtDuration => _hurtDuration;
     public float InvulnerabilityDuration => _invulnerabilityDuration;
 
-    public SerializableGuid Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-    public IntGameEvent _currentHealthEvent;
+    public IntGameEvent OnCurrentHealthUpdateEvent;
 
     #region Events
     public event Action<float, float> OnMaxHealthValueChanged;
@@ -52,17 +51,15 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         if (_health == null) _health = ScriptableObject.CreateInstance<HealthSO>();
         if (currentHealth == 0)
         {
-            Debug.Log("Inicializando con la vida maxima posible");
             _health.Initialize(GetMaxValue(), GetMinPossiblevalue(), GetMaxPossibleValue());
         }
         else
         {
-            Debug.Log("Inicializando con la vida cargada del save file");
             _health.Initialize(currentHealth, GetMinPossiblevalue(), GetMaxPossibleValue());
         }
 
         OnMaxHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
-        _currentHealthEvent?.RaiseEvent(_health.CurrentValue);
+        OnCurrentHealthUpdateEvent?.RaiseEvent(_health.CurrentValue);
     }
 
     internal void Initialize()
@@ -130,7 +127,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         OnHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
         OnDamaged?.Invoke(amount);
 
-        _currentHealthEvent?.RaiseEvent(_health.CurrentValue);
+        OnCurrentHealthUpdateEvent.RaiseEvent(_health.CurrentValue);
 
         if (_health.CurrentValue <= 0)
         {

@@ -39,14 +39,6 @@ public class GameManager : Singleton<GameManager>, ISaveable
     }
 
     #region Save System
-    public void NewData(GameData gameData)
-    {
-        _gameData.Name = _gameDataSO.Name;
-
-        _currentGameState = GameStateType.Init;
-        _gameData.CurrentGameState = _currentGameState;
-    }
-
     public void SaveData(GameData gameData)
     {
         gameData.CurrentGameState = _currentGameState;
@@ -75,6 +67,7 @@ public class GameManager : Singleton<GameManager>, ISaveable
     private void NewGame()
     {
         _gameData = new();
+        _gameData.NewGame(_gameDataSO.Name);
     }
 
     private async void LoadGame()

@@ -35,16 +35,10 @@ public class GeneratorSO : SerializableScriptableObject
         _amountOwned += amount;
     }
 
-    internal void SetAmount(int amount)
-    {
-        _isDirty = true;
-        _amountOwned = amount;
-    }
-
     public void CalculateProductionRate()
     {
         Production = Math.Round(_productionBase * _amountOwned, 1);
-        ProductionFormatted = FormatNumber.FormatDouble(Production);
+        ProductionFormatted = FormatNumber.FormatDouble(Production, ProductionFormatted);
         _isDirty = false;
     }
 
@@ -68,7 +62,7 @@ public class GeneratorSO : SerializableScriptableObject
         }
 
         Cost = bulkPrice;
-        CostFormatted = FormatNumber.FormatDouble(Cost);
+        CostFormatted = FormatNumber.FormatDouble(Cost, CostFormatted);
         return bulkPrice;
     }
 
@@ -92,6 +86,17 @@ public class GeneratorSO : SerializableScriptableObject
         }
 
         return amountToBuy;
+    }
+
+    internal void SetAmount(int amount)
+    {
+        _isDirty = true;
+        _amountOwned = amount;
+    }
+
+    internal void SetTotalProduction(double totalProduction)
+    {
+        _totalProduction = totalProduction;
     }
 
     internal double GetNextCost(int addAmount = 0)

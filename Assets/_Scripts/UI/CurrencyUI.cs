@@ -41,14 +41,23 @@ public class CurrencyUI : MonoBehaviour
 
     private IEnumerator CountToCoroutine(FormattedNumber formatValue)
     {
-        _targetValue = (float)formatValue.Value;
+        _targetValue = formatValue.Value;
         var rate = (_targetValue - _currentValue);
         while (_currentValue != _targetValue)
         {
-            _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, rate * Time.deltaTime);
-            _currencyText.text = _currentValue.ToString("0.##") + formatValue.Unit;
+            if (_currentValue < _targetValue)
+            {
+                _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, rate * Time.deltaTime);
+                _currencyText.text = _currentValue.ToString("F2") + formatValue.Unit;
+            }
+            else
+            {
+                _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, -rate * Time.deltaTime);
+                _currencyText.text = _currentValue.ToString("F2") + formatValue.Unit;
+            }
+
             yield return null;
         }
-        _currentValue = _targetValue;
+
     }
 }
