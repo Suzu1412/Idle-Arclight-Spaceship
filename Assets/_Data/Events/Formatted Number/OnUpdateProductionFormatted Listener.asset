@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f67c68b523cd4ec69d84284b172f2da, type: 3}
-  m_Name: OnUpdateCurrencyTextListener
+  m_Script: {fileID: 11500000, guid: 042b049816782884aba26585157c7212, type: 3}
+  m_Name: OnUpdateProductionFormatted Listener
   m_EditorClassIdentifier: 
-  OnEvent: {fileID: 11400000, guid: 0b2ee3a2c3d514b14914e08b08d4d76c, type: 2}
+  OnEvent: {fileID: 11400000, guid: d930e72f3007ea247b944f3be57a7ddd, type: 2}

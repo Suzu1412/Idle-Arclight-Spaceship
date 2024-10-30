@@ -58,15 +58,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9afffddf648bb4c99608ef8333229e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _generators: []
+  _delayToGenerate: 1
   OnGeneratorAmountChangedEvent: {fileID: 11400000, guid: ed7dedcf3aab54e709171f8864d63ce9, type: 2}
   OnCurrencyChangedEvent: {fileID: 11400000, guid: 8be5f2a9feb3ff844b0263eb8c0ef6b4, type: 2}
   OnChangeBuyAmountEventListener: {fileID: 11400000, guid: 4aeb198ff79a245e59df77a1b8e59f30, type: 2}
   OnBuyGameEventListener: {fileID: 11400000, guid: 08b51e75c2a3b43e7bbf976223fff8b9, type: 2}
   OnGainCurrencyListener: {fileID: 11400000, guid: f064a081be429904d8e0307f1538492c, type: 2}
-  OnUpdateCurrencyText: {fileID: 11400000, guid: 0b2ee3a2c3d514b14914e08b08d4d76c, type: 2}
-  OnUpdateProductionText: {fileID: 11400000, guid: bb3607193157e4a63a07dceff3214238, type: 2}
-  _currencyData:
-    TotalCurrency: 0
-    AmountToBuy: 0
-  _delayToGenerate: 1
+  OnUpdateCurrencyFormatted: {fileID: 11400000, guid: 4bdd9d9ec70c2674f8dd9338d2b43695, type: 2}
+  OnUpdateProductionFormatted: {fileID: 11400000, guid: d930e72f3007ea247b944f3be57a7ddd, type: 2}
+  _generators: []
+  _totalCurrency: 0
+  _amountToBuy: 1

@@ -26,8 +26,8 @@ public class GeneratorSO : SerializableScriptableObject
     public double TotalProduction { get => _totalProduction; internal set => _totalProduction = value; }
     public double Cost { get; private set; }
     public double Production { get; private set; }
-    public string CostText { get; private set; }
-    public string ProductionText { get; private set; }
+    public FormattedNumber CostFormatted { get; private set; }
+    public FormattedNumber ProductionFormatted { get; private set; }
 
     public void AddAmount(int amount)
     {
@@ -44,7 +44,7 @@ public class GeneratorSO : SerializableScriptableObject
     public void CalculateProductionRate()
     {
         Production = Math.Round(_productionBase * _amountOwned, 1);
-        ProductionText = FormatNumber.FormatDouble(Production);
+        ProductionFormatted = FormatNumber.FormatDouble(Production);
         _isDirty = false;
     }
 
@@ -68,7 +68,7 @@ public class GeneratorSO : SerializableScriptableObject
         }
 
         Cost = bulkPrice;
-        CostText = FormatNumber.FormatDouble(Cost);
+        CostFormatted = FormatNumber.FormatDouble(Cost);
         return bulkPrice;
     }
 

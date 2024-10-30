@@ -23,6 +23,7 @@ public class MaterialBrightness : MonoBehaviour
     private void OnDisable()
     {
         StopAllCoroutines();
+        g.DOKill();
     }
 
     private IEnumerator ChangeGlowCoroutine()

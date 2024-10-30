@@ -19,7 +19,7 @@ public class CoinUI : MonoBehaviour
     private void UpdateCurrencyText(double amount)
     {
 
-        _currencyText.text = FormatNumber.FormatDouble(amount);
+        //_currencyText.text = FormatNumber.FormatDouble(amount);
 
     }
 

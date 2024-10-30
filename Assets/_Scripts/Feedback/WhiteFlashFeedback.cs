@@ -30,12 +30,9 @@ public class WhiteFlashFeedback : Feedback
     }
 
     public override void StartFeedback()
-    {
-        Debug.Log("funciona esta cagada?");
-        
+    {        
         if (_sprite == null || _sprite.material.HasProperty("_MakeSolidColor") == false)
         {
-            Debug.Log("is null");
             return;
         }
 
@@ -51,7 +48,6 @@ public class WhiteFlashFeedback : Feedback
 
     private IEnumerator ResetColor()
     {
-        Debug.Log("ejecutando");
         ToggleMaterial(0);
         yield return Helpers.GetWaitForSeconds(_feedbackTime);
         ToggleMaterial(1);

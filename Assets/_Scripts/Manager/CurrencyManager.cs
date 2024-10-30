@@ -17,9 +17,9 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [SerializeField] private IntGameEventListener OnBuyGameEventListener;
     [Header("Double Event Listener")]
     [SerializeField] private DoubleGameEventListener OnGainCurrencyListener;
-    [Header("String Event")]
-    [SerializeField] private StringGameEvent OnUpdateCurrencyText;
-    [SerializeField] private StringGameEvent OnUpdateProductionText;
+    [Header("Formatted Number Event")]
+    [SerializeField] private FormattedNumberGameEvent OnUpdateCurrencyFormatted;
+    [SerializeField] private FormattedNumberGameEvent OnUpdateProductionFormatted;
     [Header("Save Data")]
     [SerializeField] [ReadOnly] private List<GeneratorSO> _generators;
     [SerializeField] private double _totalCurrency = 0;
@@ -54,7 +54,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         _totalCurrency += amount;
         _totalCurrency = Math.Round(_totalCurrency, 1);
         OnCurrencyChangedEvent.RaiseEvent(_totalCurrency);
-        OnUpdateCurrencyText.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency));
+        OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency));
     }
 
     public void SaveData(GameData gameData)
@@ -101,7 +101,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             GetProductionRate();
             OnGeneratorAmountChangedEvent.RaiseEvent(index);
             OnCurrencyChangedEvent.RaiseEvent(_totalCurrency);
-            OnUpdateCurrencyText.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency));
+            OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency));
         }
     }
 
@@ -129,7 +129,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             production += generator.GetProductionRate();
         }
 
-        OnUpdateProductionText.RaiseEvent(FormatNumber.FormatDouble(production));
+        OnUpdateProductionFormatted.RaiseEvent(FormatNumber.FormatDouble(production));
 
         return production;
     }

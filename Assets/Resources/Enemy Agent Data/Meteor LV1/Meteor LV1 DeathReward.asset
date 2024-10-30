@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdad064c496b9da4a80b7532af048ee5, type: 3}
   m_Name: Meteor LV1 DeathReward
   m_EditorClassIdentifier: 
-  _baseCurrencyReward: 50
+  _baseCurrencyReward: 500
   _baseExpReward: 5
