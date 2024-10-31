@@ -124,24 +124,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3991793331332825209, guid: 97f7b7f22840b4296acedc038136c432, type: 3}
   m_PrefabInstance: {fileID: 2881047364903662006}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &69309945 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1090146522955931733, guid: 02fb60de15f96d44793ea2a4f205241c, type: 3}
-  m_PrefabInstance: {fileID: 1879435502}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &69309947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 69309945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 760623b7c53842a48a1877934a9585c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _duration: 0.01
 --- !u!1 &116084339
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,7 +1215,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.976168
+  orthographic size: 4.9774356
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2065,6 +2047,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1618865721}
     m_Modifications:
+    - target: {fileID: 3483539676383952236, guid: 02fb60de15f96d44793ea2a4f205241c, type: 3}
+      propertyPath: OnCurrentHealthChangedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 6b9d46cc0e6fcf4479007851256422a0, type: 2}
     - target: {fileID: 3681873208184361203, guid: 02fb60de15f96d44793ea2a4f205241c, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
@@ -2112,10 +2098,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1090146522955931733, guid: 02fb60de15f96d44793ea2a4f205241c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 69309947}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02fb60de15f96d44793ea2a4f205241c, type: 3}
 --- !u!1 &1884475223
 GameObject:
@@ -2356,6 +2339,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1618865721}
     m_Modifications:
+    - target: {fileID: 563414233329060784, guid: 7d59e6af296d4d34fb25b7f7f432f8ef, type: 3}
+      propertyPath: OnCurrentHealthUpdateEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 6b9d46cc0e6fcf4479007851256422a0, type: 2}
     - target: {fileID: 1131754902826937617, guid: 7d59e6af296d4d34fb25b7f7f432f8ef, type: 3}
       propertyPath: m_Name
       value: Player

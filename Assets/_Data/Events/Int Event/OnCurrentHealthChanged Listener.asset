@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d54dcab89998426d99f67f87d9598ff, type: 3}
-  m_Name: Health Event Listener
+  m_Name: OnCurrentHealthChanged Listener
   m_EditorClassIdentifier: 
   OnEvent: {fileID: 11400000, guid: 6b9d46cc0e6fcf4479007851256422a0, type: 2}

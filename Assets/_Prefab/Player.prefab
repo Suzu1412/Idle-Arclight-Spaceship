@@ -281,7 +281,7 @@ MonoBehaviour:
   _hurtDuration: 0.2
   _invulnerabilityDuration: 1
   _floatingText: {fileID: 0}
-  _currentHealthEvent: {fileID: 0}
+  OnCurrentHealthUpdateEvent: {fileID: 0}
 --- !u!114 &2736954739997381902
 MonoBehaviour:
   m_ObjectHideFlags: 0
