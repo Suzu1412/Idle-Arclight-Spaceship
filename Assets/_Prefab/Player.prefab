@@ -279,7 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: {fileID: 0}
   _hurtDuration: 0.2
-  _invulnerabilityDuration: 1
+  _defaultInvulnerability: 0.1
   _floatingText: {fileID: 0}
   OnCurrentHealthChangedEvent: {fileID: 11400000, guid: 6b9d46cc0e6fcf4479007851256422a0, type: 2}
 --- !u!114 &2736954739997381902
