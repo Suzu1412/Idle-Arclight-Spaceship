@@ -10,11 +10,12 @@ public interface IHealthSystem : IDamageable, IHealable, IHittable
     event Action<int> OnHealed;
     event Action<int> OnDamaged;
     event Action OnDeath;
+    event Action OnInvulnerabilityPeriod;
     bool IsHurt { get; }
     bool IsDeath { get; }
 
     void Initialize(int currentHealth);
-    void SetInvulnerability(bool isInvulnerable);
+    void SetInvulnerability(bool isInvulnerable, float duration);
     int GetMaxHealth();
     int GetCurrentHealth();
 }

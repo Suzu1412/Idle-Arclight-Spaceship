@@ -15,7 +15,8 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     private bool _isInvulnerable;
     private int _knockbackDirection;
     [SerializeField] private float _hurtDuration = 0.2f;
-    [SerializeField] private float _invulnerabilityDuration = 1f;
+    [SerializeField] private float _defaultInvulnerability = 0.1f;
+    private float _invulnerabilityDuration;
     [SerializeField] private GameObject _floatingText;
     private Coroutine _hurtPeriodCoroutine;
     private Coroutine _invulnerabilityPeriodCoroutine;
@@ -39,6 +40,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     public event Action OnDeath;
     public event Action OnHitStun;
     public event Action OnHit;
+    public event Action OnInvulnerabilityPeriod;
     #endregion
 
     private void Awake()
@@ -71,11 +73,14 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     private void OnEnable()
     {
         Agent.StatsSystem.OnMaxHealthChange += UpdateMaxHealth;
+        _isDeath = false;
+        _isHurt = false;
     }
 
     private void OnDisable()
     {
         Agent.StatsSystem.OnMaxHealthChange -= UpdateMaxHealth;
+        _isInvulnerable = false;
     }
 
     private int GetMinPossiblevalue()
@@ -134,6 +139,8 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
             Death();
             return;
         }
+
+        SetInvulnerability(true, _defaultInvulnerability);
     }
 
     public void Death()
@@ -150,8 +157,22 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         OnHitStun?.Invoke();
     }
 
-    public void SetInvulnerability(bool isInvulnerable)
+    public void SetInvulnerability(bool isInvulnerable, float duration)
     {
         _isInvulnerable = isInvulnerable;
+        duration = Mathf.Clamp(duration, 0f, 5f);
+        if (duration == 0) return;
+        _invulnerabilityDuration = duration;
+        OnInvulnerabilityPeriod?.Invoke();
+
+        if (_invulnerabilityPeriodCoroutine != null) StopCoroutine(_invulnerabilityPeriodCoroutine);
+        _invulnerabilityPeriodCoroutine = StartCoroutine(InvulnerabilityPeriodCoroutine());
+    }
+
+    private IEnumerator InvulnerabilityPeriodCoroutine()
+    {
+        _isInvulnerable = true;
+        yield return Helpers.GetWaitForSeconds(_invulnerabilityDuration);
+        _isInvulnerable = false;
     }
 }
