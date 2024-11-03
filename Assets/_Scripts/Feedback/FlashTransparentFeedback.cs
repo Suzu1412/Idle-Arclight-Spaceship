@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
-using DG.Tweening;
 
+[DefaultExecutionOrder(-10)]
 public class FlashTransparentFeedback : Feedback
 {
     private IAgent _agent;

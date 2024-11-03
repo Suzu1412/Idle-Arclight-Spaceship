@@ -20,7 +20,6 @@ public class StraightShotStrategy : BaseAttackStrategy
 
     public override void Attack(bool isPressed)
     {
-
         if (isPressed)
         {
             Shoot();
@@ -33,6 +32,7 @@ public class StraightShotStrategy : BaseAttackStrategy
         Projectile projectile = ObjectPoolFactory.Spawn(_projectilePool).GetComponent<Projectile>();
         projectile.SetProjectileSpeed(10f);
         projectile.SetProjectileDamage(_agent.GetStat(StatType.Strength));
+        projectile.SetLayerMask(_agent.AttackSystem.ProjectileMask);
         projectile.transform.position = _spawnPosition.position;
         projectile.transform.right = CalculateSpreadAngle(_agent.FacingDirection);
         await Awaitable.WaitForSecondsAsync(0.1f);

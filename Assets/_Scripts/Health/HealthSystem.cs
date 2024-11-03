@@ -27,6 +27,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     public bool IsDeath => _isDeath;
     public int KnockbackDirection => _knockbackDirection;
     public float HurtDuration => _hurtDuration;
+    public bool IsInvulnerable => _isInvulnerable;
     public float InvulnerabilityDuration => _invulnerabilityDuration;
 
 
@@ -164,6 +165,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         if (duration == 0) return;
         _invulnerabilityDuration = duration;
         OnInvulnerabilityPeriod?.Invoke();
+        Debug.Log("Evento Invulnerable");
 
         if (_invulnerabilityPeriodCoroutine != null) StopCoroutine(_invulnerabilityPeriodCoroutine);
         _invulnerabilityPeriodCoroutine = StartCoroutine(InvulnerabilityPeriodCoroutine());

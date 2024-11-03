@@ -8,6 +8,7 @@ public interface IHittable
     float HurtDuration { get; }
     float InvulnerabilityDuration { get; }
     int KnockbackDirection { get; }
+    bool IsInvulnerable { get; }
 
     void GetHit(GameObject damageDealer);
 

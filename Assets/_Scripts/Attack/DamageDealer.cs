@@ -16,22 +16,16 @@ public class DamageDealer : MonoBehaviour
     {
         if (collision.TryGetComponent<IHittable>(out var hittable))
         {
+            if (hittable.IsInvulnerable) return;
             hittable.GetHit(this.gameObject);
         }
         if (collision.TryGetComponent<IDamageable>(out var damageable))
         {
             damageable.Damage((int)Agent.GetStat(StatType.Strength));
-        }
 
-        if (_destroyOnContact)
-        {
-            if (_pool != null)
+            if (_destroyOnContact)
             {
-                ObjectPoolFactory.ReturnToPool(_pool);
-            }
-            else
-            {
-                Destroy(this.gameObject);
+                Agent.HealthSystem.Death();
             }
         }
     }

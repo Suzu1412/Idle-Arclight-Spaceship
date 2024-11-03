@@ -57,6 +57,11 @@ public class Projectile : MonoBehaviour
         _projectileSpeed = speed;
     }
 
+    public void SetLayerMask(LayerMask layerMask)
+    {
+        this.gameObject.layer = layerMask.GetLayer();
+    }
+
     public void UpdateWeaponInfo(float projectileRange)
     {
         _projectileRange = projectileRange;

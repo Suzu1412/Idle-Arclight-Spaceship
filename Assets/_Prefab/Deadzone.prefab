@@ -45,6 +45,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2585613459779794397}
   - component: {fileID: 7418732887572604560}
+  - component: {fileID: 8933881495182432536}
   m_Layer: 14
   m_Name: TopDeadzone
   m_TagString: Untagged
@@ -113,6 +114,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 10, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8933881495182432536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3196376233677826271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc91642c889fd43fd9902a1eb7764ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3489944704281721286
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,6 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1465553888427524968}
   - component: {fileID: 6950011884857150141}
+  - component: {fileID: 1316387426645862117}
   m_Layer: 14
   m_Name: RightDeadzone
   m_TagString: Untagged
@@ -191,6 +205,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 21}
   m_EdgeRadius: 0
+--- !u!114 &1316387426645862117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3489944704281721286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc91642c889fd43fd9902a1eb7764ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6776303834973561594
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,6 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4734710316812628204}
   - component: {fileID: 2295560103098414707}
+  - component: {fileID: 7978615626304584263}
   m_Layer: 14
   m_Name: LeftDeadzone
   m_TagString: Untagged
@@ -269,6 +296,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 21}
   m_EdgeRadius: 0
+--- !u!114 &7978615626304584263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6776303834973561594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc91642c889fd43fd9902a1eb7764ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7171281776403204407
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,6 +318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1268783141289101902}
   - component: {fileID: 4527996702053186718}
+  - component: {fileID: 7980619219283258006}
   m_Layer: 14
   m_Name: BottomDeadzone
   m_TagString: Untagged
@@ -347,3 +387,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 10, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7980619219283258006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171281776403204407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc91642c889fd43fd9902a1eb7764ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
