@@ -5,7 +5,8 @@ public class TransformMover : MonoBehaviour
     private Transform _transform;
     [SerializeField] private Vector2 _direction = Vector2.down;
     [SerializeField] private float _moveSpeed = 3f;
-    [SerializeField] private Vector2 _deadZone = new Vector2(0f, -5f);
+    [SerializeField] private float _maxDurationTime = 15f;
+    private float _durationTime;
     private ObjectPooler _pool;
 
     private void Awake()
@@ -15,6 +16,11 @@ public class TransformMover : MonoBehaviour
     private void Start()
     {
         _pool = GetComponent<ObjectPooler>();
+    }
+
+    private void OnEnable()
+    {
+        _durationTime = _maxDurationTime;
     }
 
     public void SetMoveSpeed(float moveSpeed)
@@ -27,16 +33,13 @@ public class TransformMover : MonoBehaviour
         _direction = direction;
     }
 
-    public void SetDeadZone(Vector2 deadZone)
-    {
-        _deadZone = deadZone;
-    }
-
     private void Update()
     {
         _transform.Translate(_direction * _moveSpeed * Time.deltaTime);
 
-        if (Vector3.Distance(_transform.position, _deadZone) < 0.2f)
+        _durationTime -= Time.deltaTime;
+
+        if (_durationTime <= 0f)
         {
             if (_pool != null)
             {

@@ -7,7 +7,7 @@ public class ShyMoveStateSO : BaseStateSO<ShyMoveState>
     [SerializeField] private float _offensiveMovementDuration = 6;
     [SerializeField] private float _attackMinDelay = 1;
     [SerializeField] private float _attackMaxDelay = 5;
-    
+
     public float OffensiveMovementDuration => _offensiveMovementDuration;
     public float AttackMinDelay => _attackMinDelay;
     public float AttackMaxDelay => _attackMaxDelay;
@@ -62,13 +62,13 @@ public class ShyMoveState : BaseState
     {
         if (_player == null)
         {
-            DetectPlayer();
+
         }
 
         _direction = (_player.transform.position - _machine.transform.position).normalized;
         Agent.Input.CallOnMovementInput(_direction);
     }
-    
+
     private void Attack()
     {
         if (_attackDelay <= 0f)
