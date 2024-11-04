@@ -10,7 +10,7 @@ public class FiniteStateMachine : MonoBehaviour
     private float _handleTransitionTime = 0.1f;
     [SerializeField] [ReadOnly] BaseStateSO _debugCurrentState;
     [SerializeField] private GlobalStateListSO _globalStates;
-    [SerializeField] private List<BaseStateSO> _stateList;
+    [SerializeReference] [SubclassSelector] private List<BaseState> _stateList;
     [SerializeField] private readonly Dictionary<BaseStateSO, BaseState> _states = new();
     internal IAgent Agent => _agent ??= GetComponent<IAgent>();
     internal GlobalStateListSO GlobalStates => _globalStates;
@@ -19,13 +19,13 @@ public class FiniteStateMachine : MonoBehaviour
     {
         foreach (var state in _stateList)
         {
-            InitializeState(state);
+            //InitializeState(state);
         }
     }
 
     private void OnEnable()
     {
-        Transition(_stateList[0]);
+        //Transition(_stateList[0]);
         _transitionCoroutine = StartCoroutine(TransitionCoroutine());
     }
 

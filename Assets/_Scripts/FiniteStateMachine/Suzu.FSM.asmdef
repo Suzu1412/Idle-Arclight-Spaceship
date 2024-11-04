@@ -2,7 +2,8 @@
     "name": "Suzu.FSM",
     "rootNamespace": "",
     "references": [
-        "GUID:eee2d7abad5a31d419cb705834217f10"
+        "GUID:eee2d7abad5a31d419cb705834217f10",
+        "GUID:49b49c76ee64f6b41bf28ef951cb0e50"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

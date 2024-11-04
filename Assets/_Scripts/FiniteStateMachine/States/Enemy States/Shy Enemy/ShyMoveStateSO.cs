@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 [CreateAssetMenu(fileName = "Shy Enemy Move State", menuName = "Scriptable Objects/State/Enemy/Shy/Move State")]
 public class ShyMoveStateSO : BaseStateSO<ShyMoveState>

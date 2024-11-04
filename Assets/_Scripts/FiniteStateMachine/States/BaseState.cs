@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class BaseState
+public abstract class BaseState : IState
 {
     protected IAgent _agent;
     protected BaseStateSO _stateOrigin;
     [SerializeField] protected float _stateTime;
-    [SerializeField] protected HashSet<BaseTransitionSO> _transitions;
+    [SerializeField] protected HashSet<TransitionSO> _transitions;
     protected FiniteStateMachine _machine;
     protected int index;
     internal IAgent Agent => _agent;
@@ -51,7 +51,7 @@ public abstract class BaseState
     {
         foreach (var transition in _transitions)
         {
-            if (transition.Condition(_agent))
+            if (transition.EvaluateCondition(_agent))
             {
                 return transition.TargetState;
             }
@@ -60,7 +60,7 @@ public abstract class BaseState
         return null;
     }
 
-    public void AddTransition(BaseTransitionSO transition)
+    public void AddTransition(TransitionSO transition)
     {
         if (transition.TargetState == null)
         {

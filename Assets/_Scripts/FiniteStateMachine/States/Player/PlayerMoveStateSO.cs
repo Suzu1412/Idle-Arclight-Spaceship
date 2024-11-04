@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerMoveStateSO", menuName = "Scriptable Objects/State/PlayerMoveStateSO")]
+[CreateAssetMenu(fileName = "PlayerMoveStateSO", menuName = "Scriptable Objects/State/Player/PlayerMoveStateSO")]
 public class PlayerMoveStateSO : BaseStateSO<PlayerMoveState>
 {
 

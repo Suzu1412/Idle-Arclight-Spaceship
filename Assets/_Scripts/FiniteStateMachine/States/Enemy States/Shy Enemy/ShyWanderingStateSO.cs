@@ -1,10 +1,12 @@
 using UnityEngine;
 
-public class ShyDetectionStateSO : BaseStateSO<ShyDetectionState>
+[CreateAssetMenu(fileName = "ShyWanderingStateSO", menuName = "Scriptable Objects/ShyWanderingStateSO")]
+public class ShyWanderingStateSO : BaseStateSO<ShyWanderingState>
 {
+
 }
 
-public class ShyDetectionState : BaseState
+public class ShyWanderingState : BaseState
 {
     public override void OnUpdate()
     {

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class BaseStateSO : ScriptableObject
 {
-    [SerializeField] protected List<BaseTransitionSO> _transitions;
-    public List<BaseTransitionSO> Transitions => _transitions;
+    [SerializeField] protected List<TransitionSO> _transitions;
+    public List<TransitionSO> Transitions => _transitions;
 
     public abstract BaseState CreateState();
 }

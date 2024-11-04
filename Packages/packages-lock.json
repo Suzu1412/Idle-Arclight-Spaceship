@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "ac405b32a618bf9d9880e4fc1b63c5e45036c72c"
     },
+    "com.mackysoft.serializereference-extensions": {
+      "version": "https://github.com/mackysoft/Unity-SerializeReferenceExtensions.git?path=Assets/MackySoft/MackySoft.SerializeReferenceExtensions",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "f938fc5d9a9ef46a1669289450d38e17cb39567c"
+    },
     "com.singularitygroup.hotreload": {
       "version": "git+https://gitlab.hotreload.net/root/hot-reload-releases.git#1.12.12",
       "depth": 0,

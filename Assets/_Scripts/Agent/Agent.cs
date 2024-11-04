@@ -13,6 +13,7 @@ public class Agent : MonoBehaviour, IAgent
     private ILevelSystem _levelSystem;
     private IAgentAnimation _agentAnimation;
     private IAgentRenderer _agentRenderer;
+    private IPlayerDetector _playerDetector;
 
     public IHealthSystem HealthSystem => _healthSystem ??= GetComponent<IHealthSystem>();
     public IAgentInput Input => _input ??= GetComponentInParent<IAgentInput>();
@@ -22,9 +23,11 @@ public class Agent : MonoBehaviour, IAgent
     public ILevelSystem LevelSystem => _levelSystem ??= GetComponent<ILevelSystem>();
     public IAgentAnimation AgentAnimation => _agentAnimation ??= GetComponentInChildren<IAgentAnimation>();
     public IAgentRenderer AgentRenderer => _agentRenderer ??= GetComponentInChildren<IAgentRenderer>();
+    public IPlayerDetector PlayerDetector => _playerDetector ??= GetComponent<IPlayerDetector>();
 
     public event UnityAction<Vector2> OnChangeFacingDirection;
     public Vector2 FacingDirection => _facingDirection;
+
 
     private void OnEnable()
     {

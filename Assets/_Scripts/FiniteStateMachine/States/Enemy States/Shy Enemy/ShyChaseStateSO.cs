@@ -1,16 +1,32 @@
 using UnityEngine;
 
-public class ShyChaseStateSO : MonoBehaviour
+
+public class ShyChaseStateSO : BaseStateSO<ShyChaseState>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+}
+
+public class ShyChaseState : BaseState
+{
+    private Transform _player;
+
+    public override void OnEnter()
     {
-        
+        base.OnEnter();
+        _player = Agent.PlayerDetector.PlayerDetected;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnUpdate()
     {
-        
+        base.OnUpdate();
     }
+
+
+    public override void OnFixedUpdate()
+    {
+        base.OnFixedUpdate();
+        Agent.MoveBehaviour.Move();
+    }
+
+
 }
