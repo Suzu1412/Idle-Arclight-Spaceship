@@ -1137,7 +1137,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.9774356
+  orthographic size: 4.0888886
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1170,10 +1170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a11bae6a279e47148250c6eabd02ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _detectionAngle: 60
-  _detectionRadius: 10
-  _innerDetectionRadius: 5
-  _detectionCooldown: 1
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 256
   _detectionStrategySO: {fileID: 11400000, guid: dd805ce7c9f8c4d71950ceb15466b6c3, type: 2}
 --- !u!4 &1076765150 stripped
 Transform:
@@ -1914,7 +1913,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2889,11 +2888,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5964105572948740698, guid: 108635b5867a7534795d871cb6006a09, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.16
+      value: -1.402
       objectReference: {fileID: 0}
     - target: {fileID: 5964105572948740698, guid: 108635b5867a7534795d871cb6006a09, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.37
+      value: 4.78
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -115,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _direction: {x: 0, y: -1}
   _moveSpeed: 0
-  _deadZone: {x: 0, y: -5}
+  _maxDurationTime: 15
 --- !u!1 &8246370035892537992
 GameObject:
   m_ObjectHideFlags: 0

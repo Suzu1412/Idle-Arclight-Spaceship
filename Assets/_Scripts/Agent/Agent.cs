@@ -26,7 +26,6 @@ public class Agent : MonoBehaviour, IAgent
     public event UnityAction<Vector2> OnChangeFacingDirection;
     public Vector2 FacingDirection => _facingDirection;
 
-
     private void OnEnable()
     {
         SetFacingDirection(_initialFacingDirection);

@@ -165,7 +165,6 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         if (duration == 0) return;
         _invulnerabilityDuration = duration;
         OnInvulnerabilityPeriod?.Invoke();
-        Debug.Log("Evento Invulnerable");
 
         if (_invulnerabilityPeriodCoroutine != null) StopCoroutine(_invulnerabilityPeriodCoroutine);
         _invulnerabilityPeriodCoroutine = StartCoroutine(InvulnerabilityPeriodCoroutine());

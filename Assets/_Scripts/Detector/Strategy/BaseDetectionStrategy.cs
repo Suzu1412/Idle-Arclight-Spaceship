@@ -5,7 +5,7 @@ public abstract class BaseDetectionStrategy : IDetectionStrategy
     protected IAgent _agent;
     protected BaseDetectionStrategySO _detector;
 
-    public void Initialize(IAgent agent, BaseDetectionStrategySO detector)
+    public virtual void Initialize(IAgent agent, BaseDetectionStrategySO detector)
     {
         _agent = agent;
         _detector = detector;

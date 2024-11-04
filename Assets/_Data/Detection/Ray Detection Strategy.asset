@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d8443e4295584ec990b49769aa86e60, type: 3}
-  m_Name: Cone Detection Strategy
+  m_Script: {fileID: 11500000, guid: 7dc43e787615c3d48848a9a7799bc3c0, type: 3}
+  m_Name: Ray Detection Strategy
   m_EditorClassIdentifier: 
   _detectedColor: {r: 0, g: 1, b: 0, a: 1}
   _undetectedColor: {r: 1, g: 0, b: 0, a: 1}
   _detectionCooldown: 0.25
-  _detectionAngle: 60
-  _detectionRadius: 5
-  _innerDetectionRadius: 5
+  _detectionDistance: 5

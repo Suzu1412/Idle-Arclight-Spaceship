@@ -11,6 +11,7 @@ public interface IAgent
     IAgentAnimation AgentAnimation { get; }
     IAgentRenderer AgentRenderer { get; }
     ILevelSystem LevelSystem { get; }
+    IPlayerDetector PlayerDetector { get; }
     Vector2 FacingDirection { get; }
     event UnityAction<Vector2> OnChangeFacingDirection;
 

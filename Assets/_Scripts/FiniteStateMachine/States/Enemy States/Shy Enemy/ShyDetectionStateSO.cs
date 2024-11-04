@@ -1,16 +1,20 @@
 using UnityEngine;
 
-public class ShyDetectionStateSO : MonoBehaviour
+public class ShyDetectionStateSO : BaseStateSO<ShyDetectionState>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+}
+
+public class ShyDetectionState : BaseState
+{
+    public override void OnUpdate()
     {
-        
+        base.OnUpdate();
+        Agent.Input.CallOnMovementInput(Vector2.down);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnFixedUpdate()
     {
-        
+        base.OnFixedUpdate();
+        Agent.MoveBehaviour.Move();
     }
 }
