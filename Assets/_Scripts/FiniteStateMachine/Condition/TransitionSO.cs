@@ -4,8 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Transition", menuName = "Scriptable Objects/State/Transition")]
 public class TransitionSO : ScriptableObject
 {
-    [SerializeField] private BaseStateSO _targetState;
-    public BaseStateSO TargetState => _targetState;
+    [SerializeField] private IState _targetState;
+    public IState TargetState => _targetState;
 
     [SerializeReference]
     [SubclassSelector]

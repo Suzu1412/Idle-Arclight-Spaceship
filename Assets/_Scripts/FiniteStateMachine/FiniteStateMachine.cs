@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class FiniteStateMachine : MonoBehaviour
@@ -9,23 +10,21 @@ public class FiniteStateMachine : MonoBehaviour
     private Coroutine _transitionCoroutine;
     private float _handleTransitionTime = 0.1f;
     [SerializeField] [ReadOnly] BaseStateSO _debugCurrentState;
-    [SerializeField] private GlobalStateListSO _globalStates;
-    [SerializeReference] [SubclassSelector] private List<BaseState> _stateList;
-    [SerializeField] private readonly Dictionary<BaseStateSO, BaseState> _states = new();
+    [SerializeField] private List<BaseStateSO> _stateList;
+    private Dictionary<BaseStateSO, BaseState> _stateDictionary = new();
     internal IAgent Agent => _agent ??= GetComponent<IAgent>();
-    internal GlobalStateListSO GlobalStates => _globalStates;
 
     private void Awake()
     {
-        foreach (var state in _stateList)
+        for(int i=0; i < _stateList.Count; i++)
         {
-            //InitializeState(state);
+            InitializeState(_stateList[i]);
         }
     }
 
     private void OnEnable()
     {
-        //Transition(_stateList[0]);
+        Transition(_stateList[0]);
         _transitionCoroutine = StartCoroutine(TransitionCoroutine());
     }
 
@@ -47,9 +46,9 @@ public class FiniteStateMachine : MonoBehaviour
 
     private BaseState InitializeState(BaseStateSO stateSO)
     {
-        var state = stateSO.CreateState();
-        state.Initialize(Agent, stateSO, this);
-        if (!_states.TryAdd(stateSO, state))
+        var state = stateSO.State;
+        state.Initialize(Agent, this);
+        if (!_stateDictionary.TryAdd(stateSO, state))
         {
             Debug.LogError($"{this.gameObject} already have {stateSO}. Please Remove");
             return null;
@@ -65,10 +64,10 @@ public class FiniteStateMachine : MonoBehaviour
         {
             return;
         }
-
+ 
         _currentState?.OnExit();
 
-        if (!_states.TryGetValue(newStateSO, out var newState))
+        if (!_stateDictionary.TryGetValue(newStateSO, out var newState))
         {
             newState = InitializeState(newStateSO);
         }

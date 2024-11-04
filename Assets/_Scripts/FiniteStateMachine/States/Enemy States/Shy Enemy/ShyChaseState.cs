@@ -1,18 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Shy Enemy Move State", menuName = "Scriptable Objects/State/Enemy/Shy/Move State")]
-public class ShyMoveStateSO : BaseStateSO<ShyMoveState>
-{
-    [SerializeField] private float _offensiveMovementDuration = 6;
-    [SerializeField] private float _attackMinDelay = 1;
-    [SerializeField] private float _attackMaxDelay = 5;
-
-    public float OffensiveMovementDuration => _offensiveMovementDuration;
-    public float AttackMinDelay => _attackMinDelay;
-    public float AttackMaxDelay => _attackMaxDelay;
-}
-
-public class ShyMoveState : BaseState
+public class ShyChaseState : BaseState
 {
     private Vector2 _direction;
     private GameObject _player;
@@ -25,9 +13,9 @@ public class ShyMoveState : BaseState
     public override void OnEnter()
     {
         base.OnEnter();
-        _offensiveDuration = (_stateOrigin as ShyMoveStateSO).OffensiveMovementDuration;
-        _attackMinDelay = (_stateOrigin as ShyMoveStateSO).AttackMinDelay;
-        _attackMaxDelay = (_stateOrigin as ShyMoveStateSO).AttackMaxDelay;
+        //_offensiveDuration = (_stateOrigin as ShyMoveStateSO).OffensiveMovementDuration;
+        //_attackMinDelay = (_stateOrigin as ShyMoveStateSO).AttackMinDelay;
+        //_attackMaxDelay = (_stateOrigin as ShyMoveStateSO).AttackMaxDelay;
         DetectPlayer();
     }
 
@@ -81,4 +69,6 @@ public class ShyMoveState : BaseState
             _attackDelay -= Time.deltaTime;
         }
     }
+
+
 }

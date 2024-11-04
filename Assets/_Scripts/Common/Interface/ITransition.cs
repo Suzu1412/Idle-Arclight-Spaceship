@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ITransition
 {
-    bool Condition(IAgent agent);
+    bool EvaluateCondition(IAgent agent);
 }

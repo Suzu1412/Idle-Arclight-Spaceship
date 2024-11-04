@@ -6,24 +6,20 @@ using UnityEngine;
 public abstract class BaseState : IState
 {
     protected IAgent _agent;
-    protected BaseStateSO _stateOrigin;
     [SerializeField] protected float _stateTime;
-    [SerializeField] protected HashSet<TransitionSO> _transitions;
     protected FiniteStateMachine _machine;
-    protected int index;
     internal IAgent Agent => _agent;
+    public bool IsInitialized { get; private set; }
+    [SerializeReference]
+    [SubclassSelector]
+    private List<BaseTransition> _transitions;
+    
 
-    public void Initialize(IAgent agent, BaseStateSO stateOrigin, FiniteStateMachine machine)
+    public void Initialize(IAgent agent, FiniteStateMachine machine)
     {
         _agent = agent;
-        _stateOrigin = stateOrigin;
-        _transitions = new();
-
-        foreach (var transition in stateOrigin.Transitions)
-        {
-            AddTransition(transition);
-        }
         _machine = machine;
+        IsInitialized = true;
     }
 
     public virtual void OnEnter()
@@ -60,26 +56,6 @@ public abstract class BaseState : IState
         return null;
     }
 
-    public void AddTransition(TransitionSO transition)
-    {
-        if (transition.TargetState == null)
-        {
-            Debug.LogError($"{_stateOrigin}: {transition} does not have Target State Assigned. Please Fix");
-            return;
-        }
-
-        if (transition.TargetState == _stateOrigin)
-        {
-            Debug.LogError($"{_stateOrigin}: {transition} trying to Transition to itself. Please Remove Transition");
-            return;
-        }
-
-        if (!_transitions.Add(transition))
-        {
-            Debug.LogWarning($"{_stateOrigin} already constains transition: {transition}");
-        }
-    }
-
     protected void OnEnable()
     {
         Agent.Input.OnMovement += HandleMovement;
@@ -113,21 +89,5 @@ public abstract class BaseState : IState
     protected virtual void HandleAttack(bool isAttacking)
     {
         Agent.AttackSystem.Attack(isAttacking);
-    }
-
-
-    protected virtual void TransitionToIdleState()
-    {
-        _machine.Transition(_machine.GlobalStates.IdleState);
-    }
-
-    protected virtual void TransitionToHurtState()
-    {
-        _machine.Transition(_machine.GlobalStates.HurtState);
-    }
-
-    protected virtual void TransitionToDeathState()
-    {
-        _machine.Transition(_machine.GlobalStates.DeathState);
     }
 }
