@@ -1137,7 +1137,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.0888886
+  orthographic size: 4.9774356
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1153,27 +1153,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!1 &1033810062 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5324876068420697187, guid: 108635b5867a7534795d871cb6006a09, type: 3}
-  m_PrefabInstance: {fileID: 8894890229422940129}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1033810074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1033810062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a11bae6a279e47148250c6eabd02ebf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetMask:
-    serializedVersion: 2
-    m_Bits: 0
-  _detectionStrategySO: {fileID: 11400000, guid: dd805ce7c9f8c4d71950ceb15466b6c3, type: 2}
 --- !u!4 &1076765150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 394818362350170975, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
@@ -1395,7 +1374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681873208184361203, guid: 02fb60de15f96d44793ea2a4f205241c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4012993540992643134, guid: 02fb60de15f96d44793ea2a4f205241c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1917,7 +1896,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2898,33 +2877,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2322346657717201167, guid: 108635b5867a7534795d871cb6006a09, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3502203731380140319, guid: 108635b5867a7534795d871cb6006a09, type: 3}
       propertyPath: m_Name
       value: Shy Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 3502203731380140319, guid: 108635b5867a7534795d871cb6006a09, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5964105572948740698, guid: 108635b5867a7534795d871cb6006a09, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.402
-      objectReference: {fileID: 0}
-    - target: {fileID: 5964105572948740698, guid: 108635b5867a7534795d871cb6006a09, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.78
-      objectReference: {fileID: 0}
+    - target: {fileID: 8179786873619049446, guid: 108635b5867a7534795d871cb6006a09, type: 3}
+      propertyPath: _stats
+      value: 
+      objectReference: {fileID: 11400000, guid: 490405a4b67fe4102bc27528922ac357, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5324876068420697187, guid: 108635b5867a7534795d871cb6006a09, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1033810074}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 108635b5867a7534795d871cb6006a09, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

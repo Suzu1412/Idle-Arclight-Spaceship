@@ -13,7 +13,7 @@ public abstract class BaseState : IState
     [SerializeReference]
     [SubclassSelector]
     private List<BaseTransition> _transitions;
-    
+
 
     public void Initialize(IAgent agent, FiniteStateMachine machine)
     {

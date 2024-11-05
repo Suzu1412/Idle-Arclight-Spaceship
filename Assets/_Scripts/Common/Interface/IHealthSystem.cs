@@ -18,4 +18,5 @@ public interface IHealthSystem : IDamageable, IHealable, IHittable
     void SetInvulnerability(bool isInvulnerable, float duration);
     int GetMaxHealth();
     int GetCurrentHealth();
+    float GetHealthPercent();
 }

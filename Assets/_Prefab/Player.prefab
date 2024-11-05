@@ -397,7 +397,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugCurrentState: {fileID: 0}
-  _globalStates: {fileID: 11400000, guid: e3e186ba02fef4e9185a9b65c015dc76, type: 2}
   _stateList:
   - {fileID: 11400000, guid: 9f9121af69ba5fb45bad45df61f6a29f, type: 2}
   - {fileID: 11400000, guid: 24f606fc73a7447f69bd6ae43992548f, type: 2}

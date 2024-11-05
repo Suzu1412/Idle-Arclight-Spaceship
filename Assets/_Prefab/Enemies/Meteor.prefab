@@ -532,9 +532,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugCurrentState: {fileID: 0}
-  _globalStates: {fileID: 0}
   _stateList:
-  - {fileID: 11400000, guid: 256406963133e48ee8f97928e9cce9fb, type: 2}
+  - {fileID: 11400000, guid: 71648eae5f46b4abb9f0e872592d0e46, type: 2}
 --- !u!114 &2289817094774088068
 MonoBehaviour:
   m_ObjectHideFlags: 0

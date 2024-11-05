@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Transition", menuName = "Scriptable Objects/State/Transition")]
-public class TransitionSO : ScriptableObject
+[System.Serializable]
+
+public abstract class BaseTransition : ITransition
 {
-    [SerializeField] private IState _targetState;
-    public IState TargetState => _targetState;
+    public abstract BaseStateSO TargetState { get; }
 
     [SerializeReference]
     [SubclassSelector]
@@ -13,6 +13,11 @@ public class TransitionSO : ScriptableObject
 
     public bool EvaluateCondition(IAgent agent)
     {
+        if (_conditions.IsNullOrEmpty())
+        {
+            return false;
+        }
+
         for (int i = 0; i < _conditions.Count; i++)
         {
             if (!_conditions[i].Evaluate(agent))

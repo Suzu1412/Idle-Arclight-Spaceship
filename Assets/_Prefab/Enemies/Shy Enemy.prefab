@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50972e85904910145899e8c431f78169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: 6732e6ae6eae448469d6ee5b89d3cc19, type: 2}
+  _config: {fileID: 11400000, guid: 5d48b490eecca48ddb90c135781ccbed, type: 2}
 --- !u!1 &5324876068420697187
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 1383294549933778088}
   - component: {fileID: 8992151313031998956}
   - component: {fileID: 474114576896889552}
+  - component: {fileID: 6888704489164043810}
   m_Layer: 9
   m_Name: Agent
   m_TagString: Untagged
@@ -271,7 +272,7 @@ Transform:
   m_GameObject: {fileID: 5324876068420697187}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.307, y: 1.407, z: 0}
+  m_LocalPosition: {x: -1.402, y: 4.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -408,9 +409,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugCurrentState: {fileID: 0}
-  _globalStates: {fileID: 0}
   _stateList:
-  - {fileID: 11400000, guid: 3a53299611d778b41abc84c341cfa9f7, type: 2}
+  - {fileID: 11400000, guid: b144cfa40d2bd450b839cafa320b312a, type: 2}
+  - {fileID: 11400000, guid: a0aa227805d124be4987d59d75c5457b, type: 2}
+  - {fileID: 11400000, guid: 4b5703fc645cd43219e9c79739625cee, type: 2}
 --- !u!114 &8452328445759861596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,6 +471,22 @@ MonoBehaviour:
   _projectileMask:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!114 &6888704489164043810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5324876068420697187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a11bae6a279e47148250c6eabd02ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _detectionStrategySO: {fileID: 11400000, guid: dd805ce7c9f8c4d71950ceb15466b6c3, type: 2}
 --- !u!1 &8424247879957372382
 GameObject:
   m_ObjectHideFlags: 0

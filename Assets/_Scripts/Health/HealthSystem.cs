@@ -147,7 +147,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     public void Death()
     {
         OnDeath?.Invoke();
-        gameObject.SetActive(false);
+        transform.parent.gameObject.SetActive(false);
     }
 
     public void GetHit(GameObject damageDealer)
@@ -175,5 +175,10 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         _isInvulnerable = true;
         yield return Helpers.GetWaitForSeconds(_invulnerabilityDuration);
         _isInvulnerable = false;
+    }
+
+    public float GetHealthPercent()
+    {
+        return (float)GetCurrentHealth() / GetMaxHealth();
     }
 }

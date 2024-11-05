@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af797ca8caa7d4580a54aa8e5c4d529a, type: 3}
+  m_Name: Shy Wandering State SO
+  m_EditorClassIdentifier: 
+  _state:
+    rid: 1494254602682892789
+  references:
+    version: 2
+    RefIds:
+    - rid: 1494254602682892789
+      type: {class: ShyWanderingState, ns: , asm: Suzu.FSM}
+      data:
+        _stateTime: 0
+        _transitions:
+        - rid: 6827601194708631553
+    - rid: 6827601194708631553
+      type: {class: ShyTransition, ns: , asm: Suzu.FSM}
+      data:
+        _conditions:
+        - rid: 6827601194708631638
+        _targetState: {fileID: 11400000, guid: a0aa227805d124be4987d59d75c5457b, type: 2}
+    - rid: 6827601194708631638
+      type: {class: DetectedCondition, ns: , asm: Suzu.FSM}
+      data:
+        _expectedResult: 1
