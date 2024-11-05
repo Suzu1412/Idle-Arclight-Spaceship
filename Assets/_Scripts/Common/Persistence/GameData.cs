@@ -13,6 +13,7 @@ public class GameData
     public GameStateType CurrentGameState;
 
     [Header("Players")]
+    public PlayerAgentData CurrentPlayerData;
     public PlayerAgentDatas PlayerAgentDatas = new();
 
     [Header("Currency")]
