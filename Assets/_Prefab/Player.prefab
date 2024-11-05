@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5093743873899913257}
   - component: {fileID: 7878442640159246216}
   - component: {fileID: 2873822379548033991}
-  - component: {fileID: 3453171555576148166}
   - component: {fileID: 4691067872007911789}
   m_Layer: 8
   m_Name: Player
@@ -19,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5093743873899913257
 Transform:
   m_ObjectHideFlags: 0
@@ -139,19 +138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnStickChangeDirectionListener: {fileID: 11400000, guid: 0af4af002a7e3654580c934df9f6e8e8, type: 2}
---- !u!114 &3453171555576148166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1131754902826937617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0aa52367560640bfa34874b5a130450, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _saveDataRunTimeSet: {fileID: 11400000, guid: f5b7a800ff7044645ad77bace999d088, type: 2}
 --- !u!114 &4691067872007911789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3cfd4918288334aa174364918a05a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: a411c3feacc0c7b418fa819db824e7b8, type: 2}
 --- !u!1 &3206748674837551557
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,9 +383,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _debugCurrentState: {fileID: 0}
   _stateList:
-  - {fileID: 11400000, guid: 9f9121af69ba5fb45bad45df61f6a29f, type: 2}
-  - {fileID: 11400000, guid: 24f606fc73a7447f69bd6ae43992548f, type: 2}
-  - {fileID: 11400000, guid: 3b7c88918e9e64b9db2b60b7700b81c5, type: 2}
+  - {fileID: 11400000, guid: a8a22618d5b22c44d9b3e8a2f8611cff, type: 2}
+  - {fileID: 11400000, guid: 5f009a4d6530e954ba3a6e07884eb75c, type: 2}
+  - {fileID: 11400000, guid: 1206044144521494e93bcb66b6cdbc7d, type: 2}
 --- !u!114 &6803927108223902700
 MonoBehaviour:
   m_ObjectHideFlags: 0
