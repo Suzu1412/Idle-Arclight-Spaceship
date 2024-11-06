@@ -9,16 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af797ca8caa7d4580a54aa8e5c4d529a, type: 3}
-  m_Name: Shy Fleeing State SO
+  m_Script: {fileID: 11500000, guid: 302faba663b51445c8896153bb5bc7de, type: 3}
+  m_Name: Shy Enemy Fleeing State SO
   m_EditorClassIdentifier: 
-  _state:
-    rid: 6827601194708631651
+  _transitions: []
   references:
     version: 2
-    RefIds:
-    - rid: 6827601194708631651
-      type: {class: ShyFleeingState, ns: , asm: Suzu.FSM}
-      data:
-        _stateTime: 0
-        _transitions: []
+    RefIds: []

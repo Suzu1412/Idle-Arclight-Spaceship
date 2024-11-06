@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-
-public abstract class BaseTransition : ITransition
+public class Transition : ITransition
 {
-    public abstract BaseStateSO TargetState { get; }
+    [SerializeField] private BaseStateSO _targetState;
+    public BaseStateSO TargetState => _targetState;
 
     [SerializeReference]
     [SubclassSelector]

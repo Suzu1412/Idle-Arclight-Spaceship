@@ -1,7 +1,12 @@
 using UnityEngine;
 
-[System.Serializable]
-public class ShyWanderingState : ShyEnemyState
+[CreateAssetMenu(fileName = "Shy Enemy Wandering State SO", menuName = "Scriptable Objects/State/Enemy/Shy/Wandering State SO")]
+public class ShyWanderingStateSO : BaseStateSO<ShyWanderingState>
+{
+
+}
+
+public class ShyWanderingState : BaseState
 {
     public override void OnUpdate()
     {

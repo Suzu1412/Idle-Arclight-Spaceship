@@ -16,7 +16,7 @@ public class FiniteStateMachine : MonoBehaviour
 
     private void Awake()
     {
-        for(int i=0; i < _stateList.Count; i++)
+        for (int i = 0; i < _stateList.Count; i++)
         {
             InitializeState(_stateList[i]);
         }
@@ -46,8 +46,8 @@ public class FiniteStateMachine : MonoBehaviour
 
     private BaseState InitializeState(BaseStateSO stateSO)
     {
-        var state = stateSO.State;
-        state.Initialize(Agent, this);
+        var state = stateSO.CreateState();
+        state.Initialize(Agent, stateSO, this);
         if (!_stateDictionary.TryAdd(stateSO, state))
         {
             Debug.LogError($"{this.gameObject} already have {stateSO}. Please Remove");
@@ -64,7 +64,7 @@ public class FiniteStateMachine : MonoBehaviour
         {
             return;
         }
- 
+
         _currentState?.OnExit();
 
         if (!_stateDictionary.TryGetValue(newStateSO, out var newState))

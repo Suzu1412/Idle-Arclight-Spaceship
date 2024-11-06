@@ -9,17 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc2cbf24fb197a0458ecfeacce53cc8d, type: 3}
+  m_Script: {fileID: 11500000, guid: 34dc72244479e414aa6070399e257579, type: 3}
   m_Name: Player Intro State SO
   m_EditorClassIdentifier: 
-  _state:
-    rid: 4748584117120270486
+  _transitions: []
+  _playerIdle: {fileID: 11400000, guid: 5f009a4d6530e954ba3a6e07884eb75c, type: 2}
   references:
     version: 2
-    RefIds:
-    - rid: 4748584117120270486
-      type: {class: PlayerIntroState, ns: , asm: Suzu.FSM}
-      data:
-        _stateTime: 0
-        _transitions: []
-        _playerIdle: {fileID: 11400000, guid: 5f009a4d6530e954ba3a6e07884eb75c, type: 2}
+    RefIds: []
