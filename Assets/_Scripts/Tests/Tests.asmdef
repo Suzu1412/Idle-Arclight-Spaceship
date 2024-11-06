@@ -5,7 +5,6 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Suzu.Common",
-        "Suzu.Generator",
         "BoundfoxStudios.FluentAssertions"
     ],
     "includePlatforms": [],

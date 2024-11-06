@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level.unity
     guid: 796a7578c3d53444f90a2b286729fb4f
   - enabled: 0
-    path: Assets/Scenes/Dimension Of Virgo.unity
+    path: Assets/Scenes/Gameplay/Dimension Of Virgo.unity
     guid: 6450f8dd17b95004089777e242729748
   - enabled: 1
     path: Assets/Scenes/SceneLoader.unity

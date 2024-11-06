@@ -5,7 +5,6 @@ public class ShopUI : Singleton<ShopUI>
 {
     [SerializeField] private GameObject _shopItemButtonPrefab;
     [SerializeField] private Transform _shopItemParent;
-    [SerializeField] private CurrencyManager _currencyManager;
     private List<GeneratorButtonController> _buttons = new();
     private int _amountToBuy;
 
@@ -16,29 +15,21 @@ public class ShopUI : Singleton<ShopUI>
     [SerializeField] private IntGameEventListener OnGeneratorAmountChangedListener;
     [Header("Double Event Listener")]
     [SerializeField] private DoubleGameEventListener OnCurrencyChangedListener;
-
-    protected override void Awake()
-    {
-        _currencyManager = CurrencyManager.Instance;
-    }
+    [Header("List Generator Event Listener")]
+    [SerializeField] private ListGeneratorGameEventListener OnListGeneratorLoadedListener;
 
     private void OnEnable()
     {
-        _currencyManager.OnLoadAllGenerators += PrepareUI;
+        OnListGeneratorLoadedListener.Register(PrepareUI);
         OnGeneratorAmountChangedListener.Register(UpdateButtonInfo);
         OnCurrencyChangedListener.Register(HandleButtonAvailable);
-
     }
 
-    private void OnDisable()
-    {
-        _currencyManager.OnLoadAllGenerators -= PrepareUI;
-    }
 
-    private void PrepareUI(List<GeneratorSO> generators, int amountToBuy)
+    private void PrepareUI(List<GeneratorSO> generators)
     {
-        _amountToBuy = amountToBuy;
-        _buttons = new();
+        _amountToBuy = 1;
+        _buttons.Clear();
 
         for (int i = 0; i < generators.Count; i++)
         {

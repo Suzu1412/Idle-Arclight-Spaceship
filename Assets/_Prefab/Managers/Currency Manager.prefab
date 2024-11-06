@@ -66,6 +66,7 @@ MonoBehaviour:
   OnGainCurrencyListener: {fileID: 11400000, guid: f064a081be429904d8e0307f1538492c, type: 2}
   OnUpdateCurrencyFormatted: {fileID: 11400000, guid: 4bdd9d9ec70c2674f8dd9338d2b43695, type: 2}
   OnUpdateProductionFormatted: {fileID: 11400000, guid: d930e72f3007ea247b944f3be57a7ddd, type: 2}
+  OnListGeneratorEvent: {fileID: 11400000, guid: a3767fb7e5fa641f897a419f3d64d2d1, type: 2}
   _generators: []
   _totalCurrency: 0
   _amountToBuy: 1

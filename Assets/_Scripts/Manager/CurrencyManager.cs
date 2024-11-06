@@ -20,17 +20,14 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [Header("Formatted Number Event")]
     [SerializeField] private FormattedNumberGameEvent OnUpdateCurrencyFormatted;
     [SerializeField] private FormattedNumberGameEvent OnUpdateProductionFormatted;
+    [Header("List Generator Event")]
+    [SerializeField] private ListGeneratorGameEvent OnListGeneratorEvent;
     [Header("Save Data")]
     [SerializeField] [ReadOnly] private List<GeneratorSO> _generators;
     [SerializeField] private double _totalCurrency = 0;
     [SerializeField] private int _amountToBuy = 1;
     private FormattedNumber UpdateCurrencyFormatted;
     private FormattedNumber UpdateProductionFormatted;
-
-
-    #region Events
-    public event UnityAction<List<GeneratorSO>, int> OnLoadAllGenerators;
-    #endregion
 
     protected override void Awake()
     {
@@ -92,7 +89,8 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             }
         }
 
-        OnLoadAllGenerators?.Invoke(_generators, _amountToBuy);
+        Debug.Log("cargando data");
+        OnListGeneratorEvent.RaiseEvent(_generators);
         OnCurrencyChangedEvent.RaiseEvent(_totalCurrency);
         OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency, UpdateCurrencyFormatted));
         GetProductionRate();

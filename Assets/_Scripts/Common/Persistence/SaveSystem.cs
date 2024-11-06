@@ -16,7 +16,6 @@ public class SaveSystem : Singleton<SaveSystem>
     {
         base.Awake();
         PrepareGameData();
-        LoadGame();
     }
 
     public async void LoadGame()
