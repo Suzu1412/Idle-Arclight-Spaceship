@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d08e5df2c07277468399c246c82c507, type: 3}
-  m_Name: Meteor StateSO
+  m_Script: {fileID: 11500000, guid: c82c59cfd6d904884a58ca4caa359946, type: 3}
+  m_Name: Meteor Move State SO
   m_EditorClassIdentifier: 
-  _state:
-    rid: 1494254602682892780
+  _transitions:
+  - rid: 6827601212540977263
+  _direction: {x: 0, y: -1}
   references:
     version: 2
     RefIds:
-    - rid: 1494254602682892780
-      type: {class: MeteorMoveState, ns: , asm: Suzu.FSM}
+    - rid: 6827601212540977263
+      type: {class: Transition, ns: , asm: Suzu.FSM}
       data:
-        _stateTime: 0
-        _transitions: []
-        _direction: {x: 0, y: -1}
+        _targetState: {fileID: 0}
+        _conditions: []

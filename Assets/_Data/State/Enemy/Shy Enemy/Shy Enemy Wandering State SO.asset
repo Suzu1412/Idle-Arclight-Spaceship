@@ -9,21 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d2077be60a0b48298f6c4f0866c6c55, type: 3}
-  m_Name: Player Idle State SO
+  m_Script: {fileID: 11500000, guid: ab8ae37c81fc6428fa567e6318f70cd0, type: 3}
+  m_Name: Shy Enemy Wandering State SO
   m_EditorClassIdentifier: 
   _transitions:
-  - rid: 6827601212540977268
+  - rid: 6827601212540977276
   references:
     version: 2
     RefIds:
-    - rid: 6827601212540977268
+    - rid: 6827601212540977276
       type: {class: Transition, ns: , asm: Suzu.FSM}
       data:
-        _targetState: {fileID: 11400000, guid: 1206044144521494e93bcb66b6cdbc7d, type: 2}
+        _targetState: {fileID: 11400000, guid: 92d4ef6d305ac4a77a6ecfdfd9c8e306, type: 2}
         _conditions:
-        - rid: 6827601212540977269
-    - rid: 6827601212540977269
-      type: {class: MoveCondition, ns: , asm: Suzu.FSM}
+        - rid: 6827601212540977277
+    - rid: 6827601212540977277
+      type: {class: DetectedCondition, ns: , asm: Suzu.FSM}
       data:
         _expectedResult: 1

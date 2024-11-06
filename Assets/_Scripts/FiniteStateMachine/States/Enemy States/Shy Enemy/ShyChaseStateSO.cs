@@ -1,25 +1,29 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Shy Enemy Chase State SO", menuName = "Scriptable Objects/State/Enemy/Shy/Chase State SO")]
+public class ShyChaseStateSO : BaseStateSO<ShyChaseState>
+{
+}
 
-[System.Serializable]
-public class ShyFleeingState : ShyEnemyState
+public class ShyChaseState : BaseState
 {
     private Vector2 _direction;
-    [SerializeField] private float _attackMaxDelay = 1.5f;
+    private Transform _player;
+    private float _attackMaxDelay = 1.5f;
     private float _attackDelay;
-
 
     public override void OnEnter()
     {
         base.OnEnter();
+        SetPlayerTransform();
         _attackDelay = _attackMaxDelay;
-        SetDirection();
-
     }
 
     public override void OnUpdate()
     {
         base.OnUpdate();
+
+        MoveTowardsPlayer();
         Attack();
     }
 
@@ -29,13 +33,20 @@ public class ShyFleeingState : ShyEnemyState
         Agent.MoveBehaviour.Move();
     }
 
-    private void SetDirection()
+    public override void OnExit()
     {
-        _direction.x = _machine.transform.position.x >= 0 ? 1 : -1;
-        _direction.y = 0.5f;
-        _direction = _direction.normalized;
-        Agent.Input.CallOnMovementInput(_direction);
+        base.OnExit();
+    }
 
+    private void SetPlayerTransform()
+    {
+        _player = Agent.PlayerDetector.PlayerDetected;
+    }
+
+    private void MoveTowardsPlayer()
+    {
+        _direction = (_player.position - _machine.transform.position).normalized;
+        Agent.Input.CallOnMovementInput(_direction);
     }
 
     private void Attack()

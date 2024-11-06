@@ -7,17 +7,15 @@ public abstract class BaseState : IState
 {
     protected IAgent _agent;
     [SerializeField] protected float _stateTime;
+    protected BaseStateSO _origin;
     protected FiniteStateMachine _machine;
     internal IAgent Agent => _agent;
     public bool IsInitialized { get; private set; }
-    [SerializeReference]
-    [SubclassSelector]
-    private List<BaseTransition> _transitions;
 
-
-    public void Initialize(IAgent agent, FiniteStateMachine machine)
+    public void Initialize(IAgent agent, BaseStateSO origin, FiniteStateMachine machine)
     {
         _agent = agent;
+        _origin = origin;
         _machine = machine;
         IsInitialized = true;
     }
@@ -45,9 +43,9 @@ public abstract class BaseState : IState
 
     public BaseStateSO HandleTransition()
     {
-        foreach (var transition in _transitions)
+        foreach (var transition in _origin.Transitions)
         {
-            if (transition.EvaluateCondition(_agent))
+            if (transition.EvaluateCondition(Agent))
             {
                 return transition.TargetState;
             }
@@ -55,6 +53,7 @@ public abstract class BaseState : IState
 
         return null;
     }
+
 
     protected void OnEnable()
     {

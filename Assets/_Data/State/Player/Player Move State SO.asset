@@ -9,27 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc2cbf24fb197a0458ecfeacce53cc8d, type: 3}
+  m_Script: {fileID: 11500000, guid: 48e3f64e046504e8d9e2ced558e97525, type: 3}
   m_Name: Player Move State SO
   m_EditorClassIdentifier: 
-  _state:
-    rid: 4748584117120270496
+  _transitions:
+  - rid: 6827601212540977266
   references:
     version: 2
     RefIds:
-    - rid: 4748584117120270496
-      type: {class: PlayerMoveState, ns: , asm: Suzu.FSM}
+    - rid: 6827601212540977266
+      type: {class: Transition, ns: , asm: Suzu.FSM}
       data:
-        _stateTime: 0
-        _transitions:
-        - rid: 4748584117120270497
-    - rid: 4748584117120270497
-      type: {class: PlayerTransition, ns: , asm: Suzu.FSM}
-      data:
-        _conditions:
-        - rid: 4748584117120270498
         _targetState: {fileID: 11400000, guid: 5f009a4d6530e954ba3a6e07884eb75c, type: 2}
-    - rid: 4748584117120270498
+        _conditions:
+        - rid: 6827601212540977267
+    - rid: 6827601212540977267
       type: {class: MoveCondition, ns: , asm: Suzu.FSM}
       data:
         _expectedResult: 0
