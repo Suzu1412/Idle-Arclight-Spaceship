@@ -1,2 +1,17 @@
 fileFormatVersion: 2
 guid: 19bd0ba41ebdb934a8a8001e9c1c79de
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _gameManager: {instanceID: 0}
+  - _saveSystem: {instanceID: 0}
+  - _currencyManager: {instanceID: 0}
+  - _playerManager: {instanceID: 0}
+  - OnSceneGroupLoadedEventListener: {fileID: 11400000, guid: c5e056e23576b0b45b597d20e0fb5f15, type: 2}
+  - _gemSpawner: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

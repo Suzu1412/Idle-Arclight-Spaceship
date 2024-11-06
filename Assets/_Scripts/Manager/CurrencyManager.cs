@@ -89,7 +89,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             }
         }
 
-        Debug.Log("cargando data");
         OnListGeneratorEvent.RaiseEvent(_generators);
         OnCurrencyChangedEvent.RaiseEvent(_totalCurrency);
         OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency, UpdateCurrencyFormatted));

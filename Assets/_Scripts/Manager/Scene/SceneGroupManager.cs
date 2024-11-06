@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
 public class SceneGroupManager
 {
     public float delayTightLoad = 0.5f;
@@ -70,7 +71,7 @@ public class SceneGroupManager
 
         int sceneCount = SceneManager.sceneCount;
 
-        for (int i = sceneCount; i > 0; i--)
+        for (int i = sceneCount - 1; i > 0; i--)
         {
             var sceneAt = SceneManager.GetSceneAt(i);
 

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class SceneGroup
 {
     public string GroupName = "New Scene Group";

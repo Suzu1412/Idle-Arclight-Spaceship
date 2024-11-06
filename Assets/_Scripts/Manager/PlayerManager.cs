@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(AddSaveDataRunTimeSet))]
-public class PlayerManager : MonoBehaviour, ISaveable
+public class PlayerManager : Singleton<PlayerManager>, ISaveable
 {
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private Vector2 _initialPosition = new(0f, -2f);

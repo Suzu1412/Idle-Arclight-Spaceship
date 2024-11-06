@@ -8,12 +8,19 @@ public class GameInitiator : Singleton<GameInitiator>
     [SerializeField] private CurrencyManager _currencyManager;
     [SerializeField] private PlayerManager _playerManager;
 
-
+    [Header("Bool Event Listener")]
+    [SerializeField] private BoolGameEventListener OnSceneGroupLoadedEventListener;
 
     [Header("Spawners")]
     [SerializeField] private GemSpawner _gemSpawner;
 
-    private void Start()
+    protected override void Awake()
+    {
+        base.Awake();
+        OnSceneGroupLoadedEventListener.Register(StartGame);
+    }
+
+    private void StartGame(bool value)
     {
         BindObjects();
         Initialize();
@@ -22,11 +29,9 @@ public class GameInitiator : Singleton<GameInitiator>
 
     private void BindObjects()
     {
-        _playerManager = Instantiate(_playerManager);
-        _saveSystem = Instantiate(_saveSystem);
-        _currencyManager = Instantiate(_currencyManager);
-
-
+        _playerManager = PlayerManager.Instance;
+        _saveSystem = SaveSystem.Instance;
+        _currencyManager = CurrencyManager.Instance;
     }
 
     private void Initialize()
