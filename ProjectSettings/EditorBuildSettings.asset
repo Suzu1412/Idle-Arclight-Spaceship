@@ -8,9 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level.unity
     guid: 796a7578c3d53444f90a2b286729fb4f
+  - enabled: 0
+    path: Assets/Scenes/Dimension Of Virgo.unity
+    guid: 6450f8dd17b95004089777e242729748
+  - enabled: 1
+    path: Assets/Scenes/SceneLoader.unity
+    guid: 39b63ae284d4440f7acde43e6e863703
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 341b15c2b56993148b9e50d639e32fba, type: 3}
   m_UseUCBPForAssetBundles: 0

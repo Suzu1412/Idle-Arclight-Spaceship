@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 [RequireComponent(typeof(AddSaveDataRunTimeSet))]
@@ -25,10 +24,6 @@ public class PlayerManager : MonoBehaviour, ISaveable
             _currentPlayerData = gameData.PlayerAgentDatas.Load(_defaultPlayerConfig.Guid);
         }
         SetPlayerData();
-
-        //_defaultPlayerConfig.SetCurrentHealth(_currentPlayerData.CurrentHealth);
-        //_defaultPlayerConfig.SetTotalExp(_currentPlayerData.TotalExp);
-        //_defaultPlayerConfig.SetCurrentLevel(_currentPlayerData.CurrentLevel);
     }
 
     public void SaveData(GameData gameData)
@@ -49,7 +44,8 @@ public class PlayerManager : MonoBehaviour, ISaveable
         _playerPrefab.SetActive(true);
         _playerConfig = _playerPrefab.GetComponent<PlayerConfig>();
         _agent = _playerConfig.GetComponentInChildren<Agent>();
- 
+        _agent.HealthSystem.OnDeath += PlayerDeath;
+
         SetPosition();
     }
 
@@ -63,6 +59,12 @@ public class PlayerManager : MonoBehaviour, ISaveable
         _playerConfig.SetPlayerAgentData(_defaultPlayerConfig);
     }
 
+    private void PlayerDeath()
+    {
+        _agent.HealthSystem.OnDeath -= PlayerDeath;
+        Respawn();
+    }
+
     private void Respawn()
     {
         if (_respawnCoroutine != null) StopCoroutine(_respawnCoroutine);
@@ -72,6 +74,6 @@ public class PlayerManager : MonoBehaviour, ISaveable
     private IEnumerator RespawnCoroutine()
     {
         yield return Helpers.GetWaitForSeconds(_respawnTime);
-
+        SpawnPlayer();
     }
 }

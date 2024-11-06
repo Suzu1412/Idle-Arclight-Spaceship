@@ -144,6 +144,10 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
     {
         yield return Helpers.GetWaitForSeconds(0.1f);
 
+        if (_camera == null)
+        {
+            Debug.LogError("No Camera in Scene. Please Fix");
+        }
         _leftBounds = _camera.ViewportToWorldPoint(new Vector2(0.1f, 0f)).x;
         _rightBounds = _camera.ViewportToWorldPoint(new Vector2(0.9f, 0f)).x;
         _bottomBounds = _camera.ViewportToWorldPoint(new Vector2(0, 0.05f)).y;

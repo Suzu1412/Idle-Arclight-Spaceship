@@ -8,6 +8,8 @@ public class GameInitiator : Singleton<GameInitiator>
     [SerializeField] private CurrencyManager _currencyManager;
     [SerializeField] private PlayerManager _playerManager;
 
+
+
     [Header("Spawners")]
     [SerializeField] private GemSpawner _gemSpawner;
 
@@ -30,10 +32,6 @@ public class GameInitiator : Singleton<GameInitiator>
     private void Initialize()
     {
         _playerManager.SpawnPlayer();
-
-
-
-        
     }
 
     private void LoadGame()
