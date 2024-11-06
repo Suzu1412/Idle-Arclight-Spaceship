@@ -41,6 +41,9 @@ public class SceneGroupManager
 
             var operation = SceneManager.LoadSceneAsync(sceneData.SceneReference.Path, LoadSceneMode.Additive);
 
+            // TODO: Remove
+            await Awaitable.WaitForSecondsAsync(2.5f);
+
             operationGroup.Operations.Add(operation);
 
             OnSceneLoaded?.Invoke(sceneData.Name);

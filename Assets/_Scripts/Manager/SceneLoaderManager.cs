@@ -1,15 +1,20 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class SceneLoaderManager : MonoBehaviour
 {
     [SerializeField] private Camera _loadingCamera;
+    [SerializeField] private Canvas _loadingCanvas;
     [SerializeField] private SceneGroup[] _sceneGroups;
 
     [Header("Bool Event")]
     [SerializeField] private BoolGameEvent OnSceneGroupLoadedEvent;
 
+    [Header("Float Event")]
+    [SerializeField] private FloatGameEvent OnLoadProgressEvent;
+
+    [SerializeField] private float _fillSpeed = 0.5f;
     private float _targetProgress;
+    private float _currentFillAmount;
     private bool _isLoading;
 
     public readonly SceneGroupManager _manager = new();
@@ -30,8 +35,10 @@ public class SceneLoaderManager : MonoBehaviour
     {
         if (!_isLoading) return;
 
-        float currentFillAmount = 0;
+        float progressDifference = Mathf.Abs(_currentFillAmount - _targetProgress);
+        float dynamicFillSpeed = progressDifference * _fillSpeed;
 
+        _currentFillAmount = Mathf.Lerp(_currentFillAmount, _targetProgress, Time.deltaTime * dynamicFillSpeed);
     }
 
     public async Awaitable LoadSceneGroup(int index)
@@ -48,6 +55,8 @@ public class SceneLoaderManager : MonoBehaviour
 
         progress.Progressed += target => _targetProgress = Mathf.Max(target, _targetProgress);
 
+        Debug.Log(_targetProgress);
+
         EnableLoadingCanvas();
         await _manager.LoadScenes(_sceneGroups[index], progress);
         EnableLoadingCanvas(false);
@@ -57,7 +66,13 @@ public class SceneLoaderManager : MonoBehaviour
     void EnableLoadingCanvas(bool enable = true)
     {
         _isLoading = enable;
+        _loadingCanvas.gameObject.SetActive(enable);
         _loadingCamera.gameObject.SetActive(enable);
+
+        if (enable)
+        {
+            _currentFillAmount = 0f;
+        }
         // loading canvas set active true
         // loading camera set active true
     }
