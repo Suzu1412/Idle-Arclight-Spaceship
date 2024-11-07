@@ -10,9 +10,11 @@ public class GeneratorButtonController : MonoBehaviour
     [SerializeField] private Image _generatorIcon;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _amountText;
-    [SerializeField] private TextMeshProUGUI _priceText;
+    [SerializeField] private TextMeshProUGUI _availablePriceText;
+    [SerializeField] private TextMeshProUGUI _unavailablePriceText;
     [SerializeField] private TextMeshProUGUI _productionText;
     [SerializeField] private Button _buyButton;
+    [SerializeField] private Button _unavailableButton;
 
     public double Cost => _generator.Cost;
 
@@ -21,6 +23,7 @@ public class GeneratorButtonController : MonoBehaviour
     private void OnEnable()
     {
         _buyButton.onClick.AddListener(HandleBuyButton);
+        _unavailableButton.interactable = false;
     }
 
     private void OnDisable()
@@ -49,7 +52,16 @@ public class GeneratorButtonController : MonoBehaviour
 
     public void ToggleBuyButton(bool val)
     {
-        _buyButton.interactable = val;
+        if (val)
+        {
+            _buyButton.gameObject.SetActive(true);
+            _unavailableButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            _buyButton.gameObject.SetActive(false);
+            _unavailableButton.gameObject.SetActive(true);
+        }
     }
 
     public void HandleBuyButton()
@@ -74,7 +86,8 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void DisplayPriceText()
     {
-        _priceText.text = _generator.CostFormatted.GetFormat();
+        _availablePriceText.text = _generator.CostFormatted.GetFormat();
+        _unavailablePriceText.text = _generator.CostFormatted.GetFormat();
     }
 
     private void DisplayProductionText()
