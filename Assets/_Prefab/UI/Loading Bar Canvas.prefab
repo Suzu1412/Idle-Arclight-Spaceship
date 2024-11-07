@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f91248f8871496795a2f96dc7de4a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _slider: {fileID: 5421231336386484228}
+  _loadingText: {fileID: 1725433752807703376}
   OnLoadProgressEventListener: {fileID: 11400000, guid: 676aceaf458974741b9c722f6e0e0b5c, type: 2}
 --- !u!1 &2276337236175995226
 GameObject:
@@ -145,7 +147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &368696586713308688
 RectTransform:
   m_ObjectHideFlags: 0
@@ -187,7 +189,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 15
   m_TargetDisplay: 0
 --- !u!114 &1451334694639416125
 MonoBehaviour:
@@ -942,9 +944,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 71.6
+  m_Value: 0.757
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

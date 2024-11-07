@@ -17,7 +17,7 @@ public class SceneGroupManager
 
     SceneGroup ActiveSceneGroup;
 
-    public async Awaitable LoadScenes(SceneGroup group, IProgress<float> progress, bool reloadDupscenes = false)
+    public async Awaitable LoadScenes(SceneGroup group, bool reloadDupscenes = false)
     {
         ActiveSceneGroup = group;
         var loadedScenes = new List<string>();
@@ -52,7 +52,6 @@ public class SceneGroupManager
 
         while (!operationGroup.IsDone)
         {
-            progress?.Report(operationGroup.Progress);
             await Awaitable.WaitForSecondsAsync(delayTightLoad);
         }
 

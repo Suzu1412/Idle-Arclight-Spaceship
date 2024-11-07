@@ -65,6 +65,6 @@ public struct FormattedNumber
 
     public readonly string GetFormat()
     {
-        return Value.ToString("0.##") + Unit;
+        return Value.ToString("F2") + Unit;
     }
 }

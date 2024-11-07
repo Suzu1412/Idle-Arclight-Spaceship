@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a6ea7432f9ba4bef9650c6be14a668a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnLoadCurrencyListener: {fileID: 11400000, guid: b2eb50dcf6a584636a76240290b9fa5a, type: 2}
   OnUpdateCurrencyTextListener: {fileID: 11400000, guid: 3808bbe8a1aad784fab768d37df9d53d, type: 2}
   OnUpdateProductionTextListener: {fileID: 11400000, guid: b7b3b00cd564a0c4e86c633732e531b2, type: 2}
   _currencyText: {fileID: 2934148302623747581}

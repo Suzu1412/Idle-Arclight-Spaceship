@@ -6,9 +6,11 @@ using System;
 public class CurrencyUI : MonoBehaviour
 {
     private Coroutine _countTo;
+    private FormattedNumber _currentValueFormatted;
     private float _currentValue;
     private float _targetValue;
-    [Header("Formatted Numbe Listener")]
+    [Header("Formatted Number Listener")]
+    [SerializeField] private FormattedNumberEventListener OnLoadCurrencyListener;
     [SerializeField] private FormattedNumberEventListener OnUpdateCurrencyTextListener;
     [SerializeField] private FormattedNumberEventListener OnUpdateProductionTextListener;
 
@@ -18,12 +20,14 @@ public class CurrencyUI : MonoBehaviour
 
     private void OnEnable()
     {
+        OnLoadCurrencyListener.Register(LoadCurrencyText);
         OnUpdateCurrencyTextListener.Register(UpdateCurrencyText);
         OnUpdateProductionTextListener.Register(UpdateProductionText);
     }
 
     private void OnDisable()
     {
+        OnLoadCurrencyListener.DeRegister(LoadCurrencyText);
         OnUpdateCurrencyTextListener.DeRegister(UpdateCurrencyText);
         OnUpdateProductionTextListener.DeRegister(UpdateProductionText);
     }
@@ -32,6 +36,17 @@ public class CurrencyUI : MonoBehaviour
     {
         if (_countTo != null) StopCoroutine(_countTo);
         _countTo = StartCoroutine(CountToCoroutine(formatValue));
+    }
+
+    /// <summary>
+    /// Called only on Load Game
+    /// </summary>
+    /// <param name="formatValue"></param>
+    private void LoadCurrencyText(FormattedNumber formatValue)
+    {
+        _currentValue = formatValue.Value;
+        _currentValueFormatted.Init(_currentValue, formatValue.Unit);
+        _currencyText.text = _currentValueFormatted.GetFormat();
     }
 
     private void UpdateProductionText(FormattedNumber formatValue)
@@ -48,12 +63,14 @@ public class CurrencyUI : MonoBehaviour
             if (_currentValue < _targetValue)
             {
                 _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, rate * Time.deltaTime);
-                _currencyText.text = _currentValue.ToString("F2") + formatValue.Unit;
+                _currentValueFormatted.Init(_currentValue, formatValue.Unit);
+                _currencyText.text = _currentValueFormatted.GetFormat();
             }
             else
             {
                 _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, -rate * Time.deltaTime);
-                _currencyText.text = _currentValue.ToString("F2") + formatValue.Unit;
+                _currentValueFormatted.Init(_currentValue, formatValue.Unit);
+                _currencyText.text = _currentValueFormatted.GetFormat();
             }
 
             yield return null;

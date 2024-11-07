@@ -62,5 +62,7 @@ MonoBehaviour:
         guid: 00860c658223c424f912bd682c180ffd
       _sceneType: 7
   OnSceneGroupLoadedEvent: {fileID: 11400000, guid: 3db3ec670990fe4469daf9ba39dc55b9, type: 2}
+  OnToggleLoadEvent: {fileID: 11400000, guid: 9112c7fe056764095a7be7e66db2e20a, type: 2}
   OnLoadProgressEvent: {fileID: 11400000, guid: fc85c36d32c259c4cbe5b9b65f15d5d5, type: 2}
+  OnToggleLoadEventListener: {fileID: 11400000, guid: 4cf43f0d4537c49c6b101cee57a54160, type: 2}
   _fillSpeed: 0.5

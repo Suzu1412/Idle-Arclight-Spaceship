@@ -8,9 +8,13 @@ public class SceneLoaderManager : MonoBehaviour
 
     [Header("Bool Event")]
     [SerializeField] private BoolGameEvent OnSceneGroupLoadedEvent;
+    [SerializeField] private BoolGameEvent OnToggleLoadEvent;
 
     [Header("Float Event")]
     [SerializeField] private FloatGameEvent OnLoadProgressEvent;
+
+    [Header("Bool Event Listener")]
+    [SerializeField] private BoolGameEventListener OnToggleLoadEventListener;
 
     [SerializeField] private float _fillSpeed = 0.5f;
     private float _targetProgress;
@@ -22,7 +26,7 @@ public class SceneLoaderManager : MonoBehaviour
 
     private void Awake()
     {
-        _manager.OnSceneLoaded += sceneName => SceneLoaded();
+        _manager.OnSceneLoaded += sceneName => SceneLoaded(sceneName);
         _manager.OnSceneUnloaded += sceneName => Debug.Log("Unloaded" + sceneName);
         _manager.OnSceneGroupLoaded += () => SceneGroupLoaded();
         _manager.OnSceneGroupUnloaded += () => UpdateLoadProgress(0.2f);
@@ -31,6 +35,16 @@ public class SceneLoaderManager : MonoBehaviour
     async void Start()
     {
         await LoadSceneGroup(0);
+    }
+
+    private void OnEnable()
+    {
+        OnToggleLoadEventListener.Register(EnableLoadingCanvas);
+    }
+
+    private void OnDisable()
+    {
+        OnToggleLoadEventListener.DeRegister(EnableLoadingCanvas);
     }
 
     public async Awaitable LoadSceneGroup(int index)
@@ -44,14 +58,10 @@ public class SceneLoaderManager : MonoBehaviour
             index = 0;
         }
 
-        LoadingProgress progress = new();
-
-        progress.Progressed += target => _targetProgress = Mathf.Max(target, _targetProgress);
-
-        EnableLoadingCanvas();
-        await _manager.LoadScenes(_sceneGroups[index], progress);
-        EnableLoadingCanvas(false);
-
+        UpdateLoadProgress(0f);
+        OnToggleLoadEvent.RaiseEvent(true);
+        await _manager.LoadScenes(_sceneGroups[index]);
+        //EnableLoadingCanvas(false);
     }
 
     void EnableLoadingCanvas(bool enable = true)
@@ -66,11 +76,12 @@ public class SceneLoaderManager : MonoBehaviour
         }
     }
 
-    private void SceneLoaded()
+    private void SceneLoaded(string sceneName)
     {
         _loadedScenes++;
-        float progress = 0.2f + _loadedScenes * ((1 - 0.2f) / _sceneGroups[0].Scenes.Count);
-
+        Debug.Log(sceneName + " loaded");
+        float progress = 0.2f + _loadedScenes * ((1f - 0.2f) / _sceneGroups[0].Scenes.Count);
+        Debug.Log(progress);
         UpdateLoadProgress(progress);
     }
 

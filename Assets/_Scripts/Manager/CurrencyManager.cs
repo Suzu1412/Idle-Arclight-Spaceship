@@ -18,6 +18,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [Header("Double Event Listener")]
     [SerializeField] private DoubleGameEventListener OnGainCurrencyListener;
     [Header("Formatted Number Event")]
+    [SerializeField] private FormattedNumberGameEvent OnLoadCurrencyEvent;
     [SerializeField] private FormattedNumberGameEvent OnUpdateCurrencyFormatted;
     [SerializeField] private FormattedNumberGameEvent OnUpdateProductionFormatted;
     [Header("List Generator Event")]
@@ -91,7 +92,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
         OnListGeneratorEvent.RaiseEvent(_generators);
         OnCurrencyChangedEvent.RaiseEvent(_totalCurrency);
-        OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency, UpdateCurrencyFormatted));
+        OnLoadCurrencyEvent.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency, UpdateCurrencyFormatted));
         GetProductionRate();
     }
 

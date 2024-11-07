@@ -8,6 +8,9 @@ public class GameInitiator : Singleton<GameInitiator>
     [SerializeField] private CurrencyManager _currencyManager;
     [SerializeField] private PlayerManager _playerManager;
 
+    [Header("Bool Event")]
+    [SerializeField] private BoolGameEvent OnToggleLoadEvent;
+
     [Header("Bool Event Listener")]
     [SerializeField] private BoolGameEventListener OnSceneGroupLoadedEventListener;
 
@@ -24,11 +27,14 @@ public class GameInitiator : Singleton<GameInitiator>
         OnSceneGroupLoadedEventListener.DeRegister(StartGame);
     }
 
-    private void StartGame(bool value)
+    private async void StartGame(bool value)
     {
         BindObjects();
         Initialize();
         LoadGame();
+
+        await Awaitable.WaitForSecondsAsync(0.25f);
+        OnToggleLoadEvent.RaiseEvent(false);
     }
 
     private void BindObjects()
