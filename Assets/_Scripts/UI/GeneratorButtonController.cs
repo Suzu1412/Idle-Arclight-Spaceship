@@ -43,7 +43,7 @@ public class GeneratorButtonController : MonoBehaviour
 
     public void PrepareButton()
     {
-        // DisplayImage();
+        DisplayImage();
         DisplayAmountOwned();
         DisplayName();
         DisplayPriceText();
