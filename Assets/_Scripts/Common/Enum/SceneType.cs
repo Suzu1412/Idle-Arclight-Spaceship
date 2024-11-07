@@ -9,4 +9,5 @@ public enum SceneType
     Cinematic,
     Environment,
     Tooling,
+    Managers,
 }

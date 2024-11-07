@@ -25,6 +25,13 @@ public class ShopUI : Singleton<ShopUI>
         OnCurrencyChangedListener.Register(HandleButtonAvailable);
     }
 
+    private void OnDisable()
+    {
+        OnListGeneratorLoadedListener.DeRegister(PrepareUI);
+        OnGeneratorAmountChangedListener.DeRegister(UpdateButtonInfo);
+        OnCurrencyChangedListener.DeRegister(HandleButtonAvailable);
+    }
+
 
     private void PrepareUI(List<GeneratorSO> generators)
     {

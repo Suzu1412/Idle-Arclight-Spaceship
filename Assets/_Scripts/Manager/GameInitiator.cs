@@ -14,10 +14,14 @@ public class GameInitiator : Singleton<GameInitiator>
     [Header("Spawners")]
     [SerializeField] private GemSpawner _gemSpawner;
 
-    protected override void Awake()
+    private void OnEnable()
     {
-        base.Awake();
         OnSceneGroupLoadedEventListener.Register(StartGame);
+    }
+
+    private void OnDisable()
+    {
+        OnSceneGroupLoadedEventListener.DeRegister(StartGame);
     }
 
     private void StartGame(bool value)

@@ -13,6 +13,7 @@ public class SceneGroupManager
     public event UnityAction<string> OnSceneLoaded;
     public event UnityAction<string> OnSceneUnloaded;
     public event UnityAction OnSceneGroupLoaded;
+    public event UnityAction OnSceneGroupUnloaded;
 
     SceneGroup ActiveSceneGroup;
 
@@ -42,7 +43,7 @@ public class SceneGroupManager
             var operation = SceneManager.LoadSceneAsync(sceneData.SceneReference.Path, LoadSceneMode.Additive);
 
             // TODO: Remove
-            await Awaitable.WaitForSecondsAsync(2.5f);
+            //await Awaitable.WaitForSecondsAsync(2.5f);
 
             operationGroup.Operations.Add(operation);
 
@@ -104,6 +105,8 @@ public class SceneGroupManager
         {
             await Awaitable.WaitForSecondsAsync(delayTightLoad);
         }
+
+        OnSceneGroupUnloaded?.Invoke();
     }
 }
 

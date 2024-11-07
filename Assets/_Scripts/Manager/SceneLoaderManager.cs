@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SceneLoaderManager : MonoBehaviour
 {
-    [SerializeField] private Camera _loadingCamera;
+    [SerializeField] private GameObject _loadingCamera;
     [SerializeField] private Canvas _loadingCanvas;
     [SerializeField] private SceneGroup[] _sceneGroups;
 
@@ -15,15 +15,17 @@ public class SceneLoaderManager : MonoBehaviour
     [SerializeField] private float _fillSpeed = 0.5f;
     private float _targetProgress;
     private float _currentFillAmount;
+    private float _loadedScenes;
     private bool _isLoading;
 
     public readonly SceneGroupManager _manager = new();
 
     private void Awake()
     {
-        _manager.OnSceneLoaded += sceneName => Debug.Log("Loaded" + sceneName);
+        _manager.OnSceneLoaded += sceneName => SceneLoaded();
         _manager.OnSceneUnloaded += sceneName => Debug.Log("Unloaded" + sceneName);
-        _manager.OnSceneGroupLoaded += () => OnSceneGroupLoadedEvent.RaiseEvent(true);
+        _manager.OnSceneGroupLoaded += () => SceneGroupLoaded();
+        _manager.OnSceneGroupUnloaded += () => UpdateLoadProgress(0.2f);
     }
 
     async void Start()
@@ -31,31 +33,20 @@ public class SceneLoaderManager : MonoBehaviour
         await LoadSceneGroup(0);
     }
 
-    private void Update()
-    {
-        if (!_isLoading) return;
-
-        float progressDifference = Mathf.Abs(_currentFillAmount - _targetProgress);
-        float dynamicFillSpeed = progressDifference * _fillSpeed;
-
-        _currentFillAmount = Mathf.Lerp(_currentFillAmount, _targetProgress, Time.deltaTime * dynamicFillSpeed);
-    }
-
     public async Awaitable LoadSceneGroup(int index)
     {
         _targetProgress = 1f;
+        _loadedScenes = 0;
 
         if (index < 0 || index >= _sceneGroups.Length)
         {
             Debug.LogError("Invalid Scene group index: " + index);
-            return;
+            index = 0;
         }
 
         LoadingProgress progress = new();
 
         progress.Progressed += target => _targetProgress = Mathf.Max(target, _targetProgress);
-
-        Debug.Log(_targetProgress);
 
         EnableLoadingCanvas();
         await _manager.LoadScenes(_sceneGroups[index], progress);
@@ -67,13 +58,29 @@ public class SceneLoaderManager : MonoBehaviour
     {
         _isLoading = enable;
         _loadingCanvas.gameObject.SetActive(enable);
-        _loadingCamera.gameObject.SetActive(enable);
+        _loadingCamera.SetActive(enable);
 
         if (enable)
         {
             _currentFillAmount = 0f;
         }
-        // loading canvas set active true
-        // loading camera set active true
+    }
+
+    private void SceneLoaded()
+    {
+        _loadedScenes++;
+        float progress = 0.2f + _loadedScenes * ((1 - 0.2f) / _sceneGroups[0].Scenes.Count);
+
+        UpdateLoadProgress(progress);
+    }
+
+    private void SceneGroupLoaded()
+    {
+        OnSceneGroupLoadedEvent.RaiseEvent(true);
+    }
+
+    private void UpdateLoadProgress(float value)
+    {
+        OnLoadProgressEvent.RaiseEvent(value);
     }
 }

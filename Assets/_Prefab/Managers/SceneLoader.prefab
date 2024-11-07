@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2852031764001191469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4995106138330704654}
+  - component: {fileID: 5376562726477573808}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4995106138330704654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2852031764001191469}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5376562726477573808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2852031764001191469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db9fe1c0109d42968c8e16b8a3d56c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loadingCamera: {fileID: 0}
+  _loadingCanvas: {fileID: 0}
+  _sceneGroups:
+  - GroupName: First Level
+    Scenes:
+    - _sceneReference:
+        asset: {fileID: 102900000, guid: 6450f8dd17b95004089777e242729748, type: 3}
+        guid: 6450f8dd17b95004089777e242729748
+      _sceneType: 0
+    - _sceneReference:
+        asset: {fileID: 102900000, guid: 2d1f8c0e3e17144e2a9885d35e42d619, type: 3}
+        guid: 2d1f8c0e3e17144e2a9885d35e42d619
+      _sceneType: 2
+    - _sceneReference:
+        asset: {fileID: 102900000, guid: 00860c658223c424f912bd682c180ffd, type: 3}
+        guid: 00860c658223c424f912bd682c180ffd
+      _sceneType: 7
+  OnSceneGroupLoadedEvent: {fileID: 11400000, guid: 3db3ec670990fe4469daf9ba39dc55b9, type: 2}
+  OnLoadProgressEvent: {fileID: 11400000, guid: fc85c36d32c259c4cbe5b9b65f15d5d5, type: 2}
+  _fillSpeed: 0.5
