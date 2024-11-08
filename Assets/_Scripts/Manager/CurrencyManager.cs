@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(AddSaveDataRunTimeSet))]
 public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 {
     [SerializeField] private float _delayToGenerate = 1f;
+    [Header("Float Variable")]
+    [SerializeField] private FloatVariableSO _generatorProductionMultiplier;
+
     [Header("Int Event")]
     [SerializeField] private IntGameEvent OnGeneratorAmountChangedEvent;
     [Header("Double Event")]
@@ -29,6 +31,8 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [SerializeField] private int _amountToBuy = 1;
     private FormattedNumber UpdateCurrencyFormatted;
     private FormattedNumber UpdateProductionFormatted;
+
+    [SerializeField] [Range(1f, 50f)] private float _generatorMultiplier = 1f;
 
     protected override void Awake()
     {
@@ -132,7 +136,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
         foreach (var generator in _generators)
         {
-            production += generator.GetProductionRate();
+            production += generator.GetProductionRate() * _generatorProductionMultiplier.Value;
         }
 
         OnUpdateProductionFormatted.RaiseEvent(FormatNumber.FormatDouble(production, UpdateProductionFormatted));
