@@ -6,7 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(StatsSystem))]
 public class HealthSystem : MonoBehaviour, IHealthSystem
 {
-    [SerializeField] private HealthSO _health;
+    [SerializeField] private FloatVariableSO _health;
 
     private IAgent _agent;
     private StatType _statType;
@@ -51,7 +51,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
     public void Initialize(int currentHealth)
     {
-        if (_health == null) _health = ScriptableObject.CreateInstance<HealthSO>();
+        if (_health == null) _health = ScriptableObject.CreateInstance<FloatVariableSO>();
         if (currentHealth == 0)
         {
             _health.Initialize(GetMaxValue(), GetMinPossiblevalue(), GetMaxPossibleValue());
@@ -61,8 +61,8 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
             _health.Initialize(currentHealth, GetMinPossiblevalue(), GetMaxPossibleValue());
         }
 
-        OnMaxHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
-        OnCurrentHealthChangedEvent?.RaiseEvent(_health.CurrentValue);
+        OnMaxHealthValueChanged?.Invoke(_health.Value, _health.MaxValue);
+        //OnCurrentHealthChangedEvent?.RaiseEvent(_health.Value);
     }
 
     internal void Initialize()
@@ -101,45 +101,45 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
     public int GetMaxHealth()
     {
-        return _health.MaxValue;
+        return (int)_health.MaxValue;
     }
 
     public int GetCurrentHealth()
     {
-        return _health.CurrentValue;
+        return (int)_health.Value;
     }
 
     private void UpdateMaxHealth()
     {
-        _health.MaxValue = GetMaxValue();
-        _health.CurrentValue = _health.MaxValue;
-        OnMaxHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
+        //_health.MaxValue = GetMaxValue();
+        //_health.CurrentValue = _health.MaxValue;
+        //OnMaxHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
     }
 
     public void Heal(int amount)
     {
         if (amount <= 0f) return;
 
-        _health.CurrentValue += amount;
-        OnHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
-        OnHealed?.Invoke(amount);
+        //_health.CurrentValue += amount;
+        //OnHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
+        //OnHealed?.Invoke(amount);
     }
 
     public void Damage(int amount)
     {
         if (amount <= 0f || _isInvulnerable) return;
 
-        _health.CurrentValue -= amount;
-        OnHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
-        OnDamaged?.Invoke(amount);
+        //_health.CurrentValue -= amount;
+        //OnHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
+        //OnDamaged?.Invoke(amount);
 
-        OnCurrentHealthChangedEvent.RaiseEvent(_health.CurrentValue);
+        //OnCurrentHealthChangedEvent.RaiseEvent(_health.CurrentValue);
 
-        if (_health.CurrentValue <= 0)
-        {
-            Death();
-            return;
-        }
+        //if (_health.CurrentValue <= 0)
+        //{
+        //    Death();
+        //    return;
+        //}
 
         SetInvulnerability(true, _defaultInvulnerability);
     }

@@ -51,6 +51,9 @@ public class FloatVariableSO : ScriptableObject
         }
     }
 
+    public float MaxValue => _maxValue;
+    public float MinValue => _minValue;
+
     public void AddModifier(FloatModifier modifier)
     {
         _isDirty = true;
