@@ -262,11 +262,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7f78c1a29b04c3b8bbb9f36d00e6a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 0}
+  _health: {fileID: 11400000, guid: 54d8b71d3afb566438112aa3487b3ebb, type: 2}
   _hurtDuration: 0.2
   _defaultInvulnerability: 0.1
   _floatingText: {fileID: 0}
-  OnCurrentHealthChangedEvent: {fileID: 11400000, guid: 6b9d46cc0e6fcf4479007851256422a0, type: 2}
+  OnHealthChangedEvent: {fileID: 0}
 --- !u!114 &2736954739997381902
 MonoBehaviour:
   m_ObjectHideFlags: 0

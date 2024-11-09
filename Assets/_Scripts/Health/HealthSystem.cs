@@ -6,7 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(StatsSystem))]
 public class HealthSystem : MonoBehaviour, IHealthSystem
 {
-    [SerializeField] private FloatVariableSO _health;
+    [SerializeField] private IntVariableSO _health;
 
     private IAgent _agent;
     private StatType _statType;
@@ -30,12 +30,11 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     public bool IsInvulnerable => _isInvulnerable;
     public float InvulnerabilityDuration => _invulnerabilityDuration;
 
-
-    public IntGameEvent OnCurrentHealthChangedEvent;
+    [SerializeField] private VoidGameEvent OnHealthChangedEvent;
 
     #region Events
-    public event Action<float, float> OnMaxHealthValueChanged;
-    public event Action<float, float> OnHealthValueChanged;
+    public event Action<IntVariableSO> OnMaxHealthValueChanged;
+    public event Action<IntVariableSO> OnHealthValueChanged;
     public event Action<int> OnHealed;
     public event Action<int> OnDamaged;
     public event Action OnDeath;
@@ -51,7 +50,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
     public void Initialize(int currentHealth)
     {
-        if (_health == null) _health = ScriptableObject.CreateInstance<FloatVariableSO>();
+        if (_health == null) _health = ScriptableObject.CreateInstance<IntVariableSO>();
         if (currentHealth == 0)
         {
             _health.Initialize(GetMaxValue(), GetMinPossiblevalue(), GetMaxPossibleValue());
@@ -61,14 +60,9 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
             _health.Initialize(currentHealth, GetMinPossiblevalue(), GetMaxPossibleValue());
         }
 
-        OnMaxHealthValueChanged?.Invoke(_health.Value, _health.MaxValue);
-        //OnCurrentHealthChangedEvent?.RaiseEvent(_health.Value);
-    }
-
-    internal void Initialize()
-    {
-
-
+        OnMaxHealthValueChanged?.Invoke(_health);
+        OnHealthValueChanged?.Invoke(_health);
+        OnHealthChangedEvent?.RaiseEvent();
     }
 
     private void OnEnable()
@@ -101,45 +95,47 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
     public int GetMaxHealth()
     {
-        return (int)_health.MaxValue;
+        return _health.MaxValue;
     }
 
     public int GetCurrentHealth()
     {
-        return (int)_health.Value;
+        return _health.Value;
     }
 
     private void UpdateMaxHealth()
     {
-        //_health.MaxValue = GetMaxValue();
-        //_health.CurrentValue = _health.MaxValue;
-        //OnMaxHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
+        _health.MaxValue = GetMaxValue();
+        _health.Value = _health.MaxValue;
+        OnHealthValueChanged?.Invoke(_health);
+        OnHealthChangedEvent?.RaiseEvent();
     }
 
     public void Heal(int amount)
     {
         if (amount <= 0f) return;
 
-        //_health.CurrentValue += amount;
-        //OnHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
-        //OnHealed?.Invoke(amount);
+        _health.Value += amount;
+        OnHealthChangedEvent?.RaiseEvent();
+        OnHealthValueChanged?.Invoke(_health);
+        OnHealed?.Invoke(amount);
     }
 
     public void Damage(int amount)
     {
         if (amount <= 0f || _isInvulnerable) return;
 
-        //_health.CurrentValue -= amount;
-        //OnHealthValueChanged?.Invoke(_health.CurrentValue, _health.MaxValue);
-        //OnDamaged?.Invoke(amount);
+        _health.Value -= amount;
+        OnHealthValueChanged?.Invoke(_health);
+        OnDamaged?.Invoke(amount);
 
-        //OnCurrentHealthChangedEvent.RaiseEvent(_health.CurrentValue);
+        OnHealthChangedEvent?.RaiseEvent();
 
-        //if (_health.CurrentValue <= 0)
-        //{
-        //    Death();
-        //    return;
-        //}
+        if (_health.Value <= 0)
+        {
+            Death();
+            return;
+        }
 
         SetInvulnerability(true, _defaultInvulnerability);
     }
@@ -183,6 +179,6 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
     public float GetHealthPercent()
     {
-        return (float)GetCurrentHealth() / GetMaxHealth();
+        return _health.Ratio;
     }
 }
