@@ -13,4 +13,10 @@ public abstract class BaseRandomEventSO : ScriptableObject
     public abstract void ActivateEvent();
 
     public abstract void DeactivateEvent();
+
+    public void SetTotalWeight(int totalWeight)
+    {
+        WeightedItem.SetTotalWeight(totalWeight);
+        WeightedItem.CalculateProbability();
+    }
 }

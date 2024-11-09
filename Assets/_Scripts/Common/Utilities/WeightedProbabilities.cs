@@ -11,7 +11,7 @@ public static class WeightedProbabilities
     /// <returns></returns>
     public static float CalculateProbability(int weight, int totalWeight)
     {
-        return weight / totalWeight * 100;
+        return (float)weight / totalWeight * 100;
     }
 
 
@@ -53,7 +53,7 @@ public static class WeightedProbabilities
 
         foreach (var item in items)
         {
-            totalWeight = item;
+            totalWeight += item;
         }
 
         return totalWeight;

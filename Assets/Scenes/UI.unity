@@ -195,6 +195,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VerticalCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2096019272393711600, guid: 5b0d0a68ed6c344b4bf3022688e0cfcf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2272382820124575104, guid: 5b0d0a68ed6c344b4bf3022688e0cfcf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

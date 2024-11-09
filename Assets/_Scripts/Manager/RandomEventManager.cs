@@ -6,7 +6,7 @@ public class RandomEventManager : Singleton<RandomEventManager>
     private List<int> _weightedItems = new();
     private int _totalWeight = 0;
 
-    [SerializeField] private RandomEventsSO _randomEvents;
+    [SerializeField] private List<BaseRandomEventSO> _randomEvents;
 
     [Header("Void Event")]
     [SerializeField] private VoidGameEventListener OnActivateRandomEventListener;
@@ -19,6 +19,7 @@ public class RandomEventManager : Singleton<RandomEventManager>
     private void OnDisable()
     {
         OnActivateRandomEventListener.DeRegister(ActivateRandomEvent);
+        StopRandomEvents();
     }
 
     private void Start()
@@ -27,10 +28,13 @@ public class RandomEventManager : Singleton<RandomEventManager>
         ActivateRandomEvent();
     }
 
-    private void ActivateRandomEvent()
+    private async void ActivateRandomEvent()
     {
         int index = WeightedProbabilities.GetWeightedItemList(_weightedItems, _totalWeight);
-        _randomEvents.RandomEvents[index].ActivateEvent();
+        _randomEvents[index].ActivateEvent();
+        await Awaitable.WaitForSecondsAsync(_randomEvents[index].Duration);
+        _randomEvents[index].DeactivateEvent();
+
     }
 
     private void PopulateWeightList()
@@ -40,11 +44,24 @@ public class RandomEventManager : Singleton<RandomEventManager>
             _weightedItems = new();
         }
 
-        for (int i = 0; i < _randomEvents.RandomEvents.Count; i++)
+        for (int i = 0; i < _randomEvents.Count; i++)
         {
-            _weightedItems.Add(_randomEvents.RandomEvents[i].WeightedItem.Weight);
+            _weightedItems.Add(_randomEvents[i].Weight);
         }
 
         _totalWeight = WeightedProbabilities.GetTotalWeight(_weightedItems);
+
+        foreach (var item in _randomEvents)
+        {
+            item.SetTotalWeight(_totalWeight);
+        }
+    }
+
+    private void StopRandomEvents()
+    {
+        foreach (var item in _randomEvents)
+        {
+            item.DeactivateEvent();
+        }
     }
 }

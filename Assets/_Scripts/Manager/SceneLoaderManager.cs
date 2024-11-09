@@ -17,6 +17,7 @@ public class SceneLoaderManager : MonoBehaviour
     [SerializeField] private BoolGameEventListener OnToggleLoadEventListener;
 
     [SerializeField] private float _fillSpeed = 0.5f;
+    [SerializeField] private float _unloadProgress = 0.2f;
     private float _targetProgress;
     private float _currentFillAmount;
     private float _loadedScenes;
@@ -79,8 +80,7 @@ public class SceneLoaderManager : MonoBehaviour
     private void SceneLoaded(string sceneName)
     {
         _loadedScenes++;
-        float progress = 0.2f + _loadedScenes * ((1f - 0.2f) / _sceneGroups[0].Scenes.Count);
-        Debug.Log(progress);
+        float progress = _unloadProgress + _loadedScenes * ((1f - _unloadProgress) / _sceneGroups[0].Scenes.Count);
         UpdateLoadProgress(progress);
     }
 

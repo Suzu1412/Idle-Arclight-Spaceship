@@ -75,9 +75,10 @@ public class FloatVariableSO : ScriptableObject
         _modifiers.Clear();
     }
 
+    [ContextMenu("Calculate Value")]
     internal void CalculateValue()
     {
-        _value = Mathf.Clamp(_value, _minValue, _maxValue);
+        _value = Mathf.Clamp(_baseValue, _minValue, _maxValue);
 
         float sumPercentAdditive = 0f;
         float finalValue = _value;
@@ -94,7 +95,7 @@ public class FloatVariableSO : ScriptableObject
                     sumPercentAdditive += _modifiers[i].Value;
                     if (i + 1 >= _modifiers.Count || _modifiers[i + 1].ModifierType != ModifierType.PercentAdditive)
                     {
-                        finalValue *= 1 + sumPercentAdditive;
+                        finalValue *= sumPercentAdditive;
                     }
                     break;
 
