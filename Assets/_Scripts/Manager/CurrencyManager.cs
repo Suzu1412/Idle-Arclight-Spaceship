@@ -2,12 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(AddSaveDataRunTimeSet))]
 public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 {
     [SerializeField] private float _delayToGenerate = 1f;
+    [Header("Float Variable")]
+    [SerializeField] private FloatVariableSO _generatorProductionMultiplier;
+    [SerializeField] private FloatVariableSO _crystalOnGetMultiplier;
+    [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
+
     [Header("Int Event")]
     [SerializeField] private IntGameEvent OnGeneratorAmountChangedEvent;
     [Header("Double Event")]
@@ -30,6 +34,8 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     private FormattedNumber UpdateCurrencyFormatted;
     private FormattedNumber UpdateProductionFormatted;
 
+    [SerializeField] [Range(1f, 50f)] private float _generatorMultiplier = 1f;
+
     protected override void Awake()
     {
         base.Awake();
@@ -39,7 +45,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     {
         OnChangeBuyAmountEventListener.Register(ChangeAmountToBuy);
         OnBuyGameEventListener.Register(BuyGenerator);
-        OnGainCurrencyListener.Register(Increment);
+        OnGainCurrencyListener.Register(GetCrystal);
         StartCoroutine(GenerateIncome());
     }
 
@@ -47,7 +53,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     {
         OnChangeBuyAmountEventListener.DeRegister(ChangeAmountToBuy);
         OnBuyGameEventListener.DeRegister(BuyGenerator);
-        OnGainCurrencyListener.DeRegister(Increment);
+        OnGainCurrencyListener.DeRegister(GetCrystal);
     }
 
     private void Increment(double amount)
@@ -56,6 +62,12 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         _totalCurrency = Math.Round(_totalCurrency, 1);
         OnCurrencyChangedEvent.RaiseEvent(_totalCurrency);
         OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency, UpdateCurrencyFormatted));
+    }
+
+    private void GetCrystal(double amount)
+    {
+        amount *= _crystalOnGetMultiplier.Value * _crystalTotalMultiplier.Value;
+        Increment(amount);
     }
 
     public void SaveData(GameData gameData)
@@ -132,7 +144,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
         foreach (var generator in _generators)
         {
-            production += generator.GetProductionRate();
+            production += generator.GetProductionRate() * _generatorProductionMultiplier.Value * _crystalTotalMultiplier.Value;
         }
 
         OnUpdateProductionFormatted.RaiseEvent(FormatNumber.FormatDouble(production, UpdateProductionFormatted));
