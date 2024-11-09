@@ -60,6 +60,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _delayToGenerate: 1
   _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
+  _crystalOnGetMultiplier: {fileID: 11400000, guid: 040b947bc1d6d4246909cf21658dd890, type: 2}
+  _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
   OnGeneratorAmountChangedEvent: {fileID: 11400000, guid: ed7dedcf3aab54e709171f8864d63ce9, type: 2}
   OnCurrencyChangedEvent: {fileID: 11400000, guid: 8be5f2a9feb3ff844b0263eb8c0ef6b4, type: 2}
   OnChangeBuyAmountEventListener: {fileID: 11400000, guid: 4aeb198ff79a245e59df77a1b8e59f30, type: 2}

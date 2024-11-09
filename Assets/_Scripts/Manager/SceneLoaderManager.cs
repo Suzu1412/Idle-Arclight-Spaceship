@@ -79,7 +79,6 @@ public class SceneLoaderManager : MonoBehaviour
     private void SceneLoaded(string sceneName)
     {
         _loadedScenes++;
-        Debug.Log(sceneName + " loaded");
         float progress = 0.2f + _loadedScenes * ((1f - 0.2f) / _sceneGroups[0].Scenes.Count);
         Debug.Log(progress);
         UpdateLoadProgress(progress);

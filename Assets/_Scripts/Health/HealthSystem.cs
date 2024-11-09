@@ -144,9 +144,13 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         SetInvulnerability(true, _defaultInvulnerability);
     }
 
-    public void Death()
+    public void Death(bool invokeEvents = true)
     {
-        OnDeath?.Invoke();
+        if (invokeEvents)
+        {
+            OnDeath?.Invoke();
+        }
+
         transform.parent.gameObject.SetActive(false);
     }
 

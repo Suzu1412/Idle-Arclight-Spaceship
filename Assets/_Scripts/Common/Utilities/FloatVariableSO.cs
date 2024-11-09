@@ -8,7 +8,7 @@ public class FloatVariableSO : ScriptableObject
     [SerializeField] private float _minValue;
     [SerializeField] private float _maxValue;
     [SerializeField] private List<FloatModifier> _modifiers;
-    private float _value;
+    [SerializeField] private float _value;
 
     private bool _isDirty = false;
 
@@ -24,9 +24,10 @@ public class FloatVariableSO : ScriptableObject
 
     public void Initialize(float baseValue, float minValue, float maxValue)
     {
-        _baseValue = baseValue;
         _minValue = minValue;
         _maxValue = maxValue;
+        _baseValue = Mathf.Clamp(baseValue, _minValue, _maxValue);
+        _value = _baseValue;
         _isDirty = true;
     }
 
@@ -58,7 +59,7 @@ public class FloatVariableSO : ScriptableObject
             _modifiers.Remove(modifier);
             _modifiers.Sort(CompareModifierType);
         }
-        
+
     }
 
     public void RemoveAllModifiers()
@@ -69,7 +70,9 @@ public class FloatVariableSO : ScriptableObject
 
     internal void CalculateValue()
     {
-        _value = Mathf.Clamp(_baseValue, _minValue, _maxValue);
+        _baseValue = Mathf.Clamp(_baseValue, _minValue, _maxValue);
+        _value = Mathf.Clamp(_value, _minValue, _maxValue);
+
         float sumPercentAdditive = 0f;
         float finalValue = _value;
 
