@@ -15,11 +15,18 @@ public class FloatVariableSO : ScriptableObject
     private void OnEnable()
     {
         _isDirty = true;
+        _baseValue = Mathf.Clamp(_baseValue, _minValue, _maxValue);
+    }
+
+    private void OnDisable()
+    {
+        RemoveAllModifiers();
     }
 
     private void OnValidate()
     {
         _isDirty = true;
+        _baseValue = Mathf.Clamp(_baseValue, _minValue, _maxValue);
     }
 
     public void Initialize(float baseValue, float minValue, float maxValue)
@@ -53,9 +60,9 @@ public class FloatVariableSO : ScriptableObject
 
     public void RemoveModifier(FloatModifier modifier)
     {
-        _isDirty = true;
         if (_modifiers.Contains(modifier))
         {
+            _isDirty = true;
             _modifiers.Remove(modifier);
             _modifiers.Sort(CompareModifierType);
         }
@@ -70,7 +77,6 @@ public class FloatVariableSO : ScriptableObject
 
     internal void CalculateValue()
     {
-        _baseValue = Mathf.Clamp(_baseValue, _minValue, _maxValue);
         _value = Mathf.Clamp(_value, _minValue, _maxValue);
 
         float sumPercentAdditive = 0f;
