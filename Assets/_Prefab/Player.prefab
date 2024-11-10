@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5093743873899913257
 Transform:
   m_ObjectHideFlags: 0
@@ -265,8 +265,8 @@ MonoBehaviour:
   _health: {fileID: 11400000, guid: 54d8b71d3afb566438112aa3487b3ebb, type: 2}
   _hurtDuration: 0.2
   _defaultInvulnerability: 0.1
-  _floatingText: {fileID: 0}
-  OnHealthChangedEvent: {fileID: 0}
+  OnHealthChangedEvent: {fileID: 11400000, guid: 18fa1ffee8e9a6a4a949a6654b20c2f5, type: 2}
+  OnDamagedEvent: {fileID: 11400000, guid: bf8fdd3b8f6da754481bda4e9dcbc9d2, type: 2}
 --- !u!114 &2736954739997381902
 MonoBehaviour:
   m_ObjectHideFlags: 0

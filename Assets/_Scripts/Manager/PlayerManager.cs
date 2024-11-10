@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerManager : Singleton<PlayerManager>, ISaveable
 {
     [SerializeField] private GameObject _playerPrefab;
+    private GameObject _player;
     [SerializeField] private Vector2 _initialPosition = new(0f, -2f);
     [SerializeField] private PlayerAgentDataSO _defaultPlayerConfig = default;
     private PlayerConfig _playerConfig;
@@ -40,9 +41,12 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
 
     public void SpawnPlayer()
     {
-        _playerPrefab = Instantiate(_playerPrefab);
-        _playerPrefab.SetActive(true);
-        _playerConfig = _playerPrefab.GetComponent<PlayerConfig>();
+        if (_player == null)
+        {
+            _player = Instantiate(_playerPrefab);
+        }
+        _player.SetActive(true);
+        _playerConfig = _player.GetComponent<PlayerConfig>();
         _agent = _playerConfig.GetComponentInChildren<Agent>();
         _agent.HealthSystem.OnDeath += PlayerDeath;
 
@@ -75,5 +79,6 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
     {
         yield return Helpers.GetWaitForSeconds(_respawnTime);
         SpawnPlayer();
+        SetPlayerData();
     }
 }

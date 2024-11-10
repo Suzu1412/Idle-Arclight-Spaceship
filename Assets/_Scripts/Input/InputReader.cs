@@ -27,6 +27,7 @@ public class InputReader : MonoBehaviour, GameInput.IClickerActions, IAgentInput
     private void OnDisable()
     {
         OnStickChangeDirectionListener.DeRegister(CallOnMovementInput);
+        _direction = Vector2.zero;
     }
 
 

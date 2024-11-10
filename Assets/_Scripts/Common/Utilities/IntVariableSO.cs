@@ -26,7 +26,7 @@ public class IntVariableSO : ScriptableObject
     {
         _minValue = minValue;
         _maxValue = maxValue;
-        _value = Mathf.Clamp(_value, _minValue, _maxValue);
+        _value = Mathf.Clamp(value, _minValue, _maxValue);
         _isDirty = true;
     }
 

@@ -447,7 +447,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &8394727066869662866
 MonoBehaviour:
@@ -490,8 +490,7 @@ MonoBehaviour:
   _health: {fileID: 0}
   _hurtDuration: 0
   _defaultInvulnerability: 0.1
-  _floatingText: {fileID: 0}
-  OnCurrentHealthChangedEvent: {fileID: 11400000, guid: 6b9d46cc0e6fcf4479007851256422a0, type: 2}
+  OnHealthChangedEvent: {fileID: 0}
 --- !u!50 &7847641929431290436
 Rigidbody2D:
   serializedVersion: 5
@@ -533,7 +532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _debugCurrentState: {fileID: 0}
   _stateList:
-  - {fileID: 11400000, guid: 71648eae5f46b4abb9f0e872592d0e46, type: 2}
+  - {fileID: 11400000, guid: 653f2a8fb2b1a462f9fcaeffd69c9a4a, type: 2}
 --- !u!114 &2289817094774088068
 MonoBehaviour:
   m_ObjectHideFlags: 0

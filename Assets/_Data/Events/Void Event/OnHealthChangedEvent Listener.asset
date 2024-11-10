@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2462d4a92ee3fd642854166f3dfdbcf5, type: 3}
-  m_Name: Player Health
+  m_Script: {fileID: 11500000, guid: df6ada1939a4c46abae9fdbeb3e4d093, type: 3}
+  m_Name: OnHealthChangedEvent Listener
   m_EditorClassIdentifier: 
-  _value: 0
-  _minValue: 0
-  _maxValue: 0
+  OnEvent: {fileID: 11400000, guid: 18fa1ffee8e9a6a4a949a6654b20c2f5, type: 2}

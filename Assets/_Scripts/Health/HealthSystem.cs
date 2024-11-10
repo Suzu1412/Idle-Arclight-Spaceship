@@ -17,7 +17,6 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     [SerializeField] private float _hurtDuration = 0.2f;
     [SerializeField] private float _defaultInvulnerability = 0.1f;
     private float _invulnerabilityDuration;
-    [SerializeField] private GameObject _floatingText;
     private Coroutine _hurtPeriodCoroutine;
     private Coroutine _invulnerabilityPeriodCoroutine;
 
@@ -31,6 +30,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     public float InvulnerabilityDuration => _invulnerabilityDuration;
 
     [SerializeField] private VoidGameEvent OnHealthChangedEvent;
+    [SerializeField] private IntGameEvent OnDamagedEvent;
 
     #region Events
     public event Action<IntVariableSO> OnMaxHealthValueChanged;
@@ -53,11 +53,11 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         if (_health == null) _health = ScriptableObject.CreateInstance<IntVariableSO>();
         if (currentHealth == 0)
         {
-            _health.Initialize(GetMaxValue(), GetMinPossiblevalue(), GetMaxPossibleValue());
+            _health.Initialize(GetMaxValue(), 0, GetMaxValue());
         }
         else
         {
-            _health.Initialize(currentHealth, GetMinPossiblevalue(), GetMaxPossibleValue());
+            _health.Initialize(currentHealth, 0, GetMaxValue());
         }
 
         OnMaxHealthValueChanged?.Invoke(_health);
@@ -116,8 +116,6 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         if (amount <= 0f) return;
 
         _health.Value += amount;
-        OnHealthChangedEvent?.RaiseEvent();
-        OnHealthValueChanged?.Invoke(_health);
         OnHealed?.Invoke(amount);
     }
 
@@ -126,10 +124,9 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         if (amount <= 0f || _isInvulnerable) return;
 
         _health.Value -= amount;
-        OnHealthValueChanged?.Invoke(_health);
         OnDamaged?.Invoke(amount);
+        OnDamagedEvent?.RaiseEvent(amount);
 
-        OnHealthChangedEvent?.RaiseEvent();
 
         if (_health.Value <= 0)
         {
