@@ -491,6 +491,7 @@ MonoBehaviour:
   _hurtDuration: 0
   _defaultInvulnerability: 0.1
   OnHealthChangedEvent: {fileID: 0}
+  OnDamagedEvent: {fileID: 0}
 --- !u!50 &7847641929431290436
 Rigidbody2D:
   serializedVersion: 5
