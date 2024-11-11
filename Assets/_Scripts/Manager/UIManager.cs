@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
 
     [SerializeField] private BoolGameEventListener OnToggleShopEventListener;
@@ -20,18 +20,20 @@ public class UIManager : MonoBehaviour
         OnToggleShopEventListener.DeRegister(ToggleShop);
     }
 
+    public void SetShopDefaultButton()
+    {
+        _shopDefaultButton.Select();
+    }
+
 
     private void ToggleShop(bool isActive)
     {
         _shopUI.SetActive(isActive);
         if (isActive)
         {
-            _shopDefaultButton.Select();
+            SetShopDefaultButton();
         }
     }
-
-
-
 
 
 }

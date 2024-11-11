@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class GeneratorButtonController : MonoBehaviour
 {
@@ -53,7 +54,6 @@ public class GeneratorButtonController : MonoBehaviour
 
     public void ToggleBuyButton(bool val)
     {
-        //_buyButton.interactable = val;
         if (val)
         {
             _priceText.color = _buttonAvailableColor;
@@ -63,6 +63,7 @@ public class GeneratorButtonController : MonoBehaviour
         {
             _priceText.color = _buttonUnvailableColor;
             _buyText.color = _buttonUnvailableColor;
+            UIManager.Instance.SetShopDefaultButton();
         }
 
     }
