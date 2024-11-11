@@ -66,10 +66,6 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: fdbbb8e8-12f8-4f88-baa9-e7aa923c1f14
-    m_ActionName: 'Player/Look[/Mouse/delta]'
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: d8326db8-b8e7-4a06-986e-20794f556c01
     m_ActionName: 'UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
@@ -80,10 +76,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d7309997-9281-4e90-a458-ac137af60a2f
     m_ActionName: 'UI/Cancel[/Keyboard/escape]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b28ad4f7-df4c-42e5-a944-8048cd152f85
-    m_ActionName: 'UI/Point[/Mouse/position]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 3076d7ad-f135-4f13-89dc-e9039bd23ea2
@@ -102,24 +94,28 @@ MonoBehaviour:
     m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 67866b87-3f8a-4585-85ec-a7fe456e633a
-    m_ActionName: UI/TrackedDevicePosition
+    m_ActionId: 910501f5-ef1d-47af-8e2e-19a573bae2b9
+    m_ActionName: 'Player/ToggleShop[/Keyboard/1]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 6be1806f-64e6-48c1-a1f5-7f2122e06459
-    m_ActionName: UI/TrackedDeviceOrientation
+    m_ActionId: 305e77dc-bcaf-49c7-b26c-99fbb604e48d
+    m_ActionName: 'Player/TogglePauseMenu[/Keyboard/enter]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 9afe738e-6fd3-43aa-9efe-d9289908cde6
-    m_ActionName: Player/Attack
+    m_ActionId: bae7707a-b574-47a6-a679-c60fea8e9dde
+    m_ActionName: 'Player/ToggleStats[/Keyboard/3]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 059bccea-81f9-4297-8e6f-76063781d2b2
-    m_ActionName: 'Clicker/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+    m_ActionId: bad5fac0-2baa-47b5-80a5-4828801776c9
+    m_ActionName: 'Player/ToggleQuest[/Keyboard/2]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 1e36002f-d1d5-4a4b-83a6-87b7699478bc
-    m_ActionName: 'Clicker/Attack[/Keyboard/x,/Keyboard/space]'
+    m_ActionId: 12dfc2c7-917b-462e-8add-0920ff5ab6f7
+    m_ActionName: 'Player/ToggleInventory[/Keyboard/4]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 220ffe07-812e-4d95-bd30-85c5b9b3c6ee
+    m_ActionName: 'UI/Point[/Mouse/position,/Device Simulator Touchscreen/position]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -138,6 +134,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnStickChangeDirectionListener: {fileID: 11400000, guid: 0af4af002a7e3654580c934df9f6e8e8, type: 2}
+  OnToggleShopEvent: {fileID: 11400000, guid: f079c8f1f27aa884e91aec71b88bb5a5, type: 2}
+  OnToggleQuestEvent: {fileID: 11400000, guid: 1978d8e7fac6e6046af92b7a672df032, type: 2}
+  OnToggleInventoryEvent: {fileID: 11400000, guid: ce6f72027cc4525499da55aa695dbf9f, type: 2}
+  OnToggleStatsEvent: {fileID: 11400000, guid: 2ea8ab3ab3264f14780d9d8188591b0a, type: 2}
+  OnTogglePauseEvent: {fileID: 11400000, guid: 5aef7b5fb7bb7174fb12a01bc887e87a, type: 2}
 --- !u!114 &4691067872007911789
 MonoBehaviour:
   m_ObjectHideFlags: 0

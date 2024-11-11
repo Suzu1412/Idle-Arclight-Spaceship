@@ -2,15 +2,27 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private BoolGameEventListener OnToggleShopEventListener;
+
+
+    private void OnEnable()
     {
-        
+        OnToggleShopEventListener.Register(ToggleShop);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        OnToggleShopEventListener.DeRegister(ToggleShop);
     }
+
+
+    private void ToggleShop(bool isActive)
+    {
+        Debug.Log($"Shop Is Active: {isActive}");
+    }
+
+
+
+
+
 }

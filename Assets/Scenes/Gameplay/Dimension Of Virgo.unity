@@ -363,7 +363,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a015cff1f95ebd4584a26886199aa8c, type: 3}
---- !u!1001 &1015878475
+--- !u!1001 &1388454958
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -373,7 +373,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3681873208184361203, guid: 02fb60de15f96d44793ea2a4f205241c, type: 3}
       propertyPath: m_Name
-      value: Meteor
+      value: Meteor_3
       objectReference: {fileID: 0}
     - target: {fileID: 4012993540992643134, guid: 02fb60de15f96d44793ea2a4f205241c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -421,11 +421,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6539688628170306318, guid: 02fb60de15f96d44793ea2a4f205241c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.97
+      value: -1.464
       objectReference: {fileID: 0}
     - target: {fileID: 6539688628170306318, guid: 02fb60de15f96d44793ea2a4f205241c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.29
+      value: 2.991
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -443,6 +443,10 @@ PrefabInstance:
     - target: {fileID: 1121084776460962211, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 4087479968422183427, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
+      propertyPath: orthographic size
+      value: 4.0888886
       objectReference: {fileID: 0}
     - target: {fileID: 8478106757776829536, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -612,6 +616,6 @@ SceneRoots:
   - {fileID: 8369186162210470129}
   - {fileID: 821656274}
   - {fileID: 353023303}
-  - {fileID: 1015878475}
   - {fileID: 350518926}
+  - {fileID: 1388454958}
   - {fileID: 422360922}

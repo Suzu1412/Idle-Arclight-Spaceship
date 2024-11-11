@@ -17,6 +17,6 @@ MonoBehaviour:
   _image: {fileID: 21300000, guid: 37f1ae80fe06d8d439fb107792ecb479, type: 3}
   _baseCost: 100
   _productionBase: 1
-  _amountOwned: 2
+  _amountOwned: 0
   _priceGrowthRate: 1.15
-  _totalProduction: 35280
+  _totalProduction: 391491

@@ -1,19 +1,61 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
+using System;
 
 public class FPSCounter : MonoBehaviour
 {
-    private float count;
     [SerializeField] private TextMeshProUGUI _text;
 
-    private IEnumerator Start()
+    private Dictionary<int, string> CachedNumberStrings = new();
+    private int[] _frameRateSamples;
+    private int _cacheNumbersAmount = 300;
+    private int _averageFromAmount = 30;
+    private int _averageCounter = 0;
+    private int _currentAveraged;
+
+    void Awake()
     {
-        while (true)
+        // Cache strings and create array
         {
-            count = 1f / Time.unscaledDeltaTime;
-            _text.text = "FPS: " + count.ToString();
-            yield return Helpers.GetWaitForSeconds(0.1f);
+            for (int i = 0; i < _cacheNumbersAmount; i++)
+            {
+                CachedNumberStrings[i] = i.ToString();
+            }
+            _frameRateSamples = new int[_averageFromAmount];
+        }
+    }
+    void Update()
+    {
+        // Sample
+        {
+            var currentFrame = (int)Math.Round(1f / Time.unscaledDeltaTime); // If your game modifies Time.timeScale, use unscaledDeltaTime and smooth manually (or not).
+            _frameRateSamples[_averageCounter] = currentFrame;
+        }
+
+        // Average
+        {
+            var average = 0f;
+
+            foreach (var frameRate in _frameRateSamples)
+            {
+                average += frameRate;
+            }
+
+            _currentAveraged = (int)Math.Round(average / _averageFromAmount);
+            _averageCounter = (_averageCounter + 1) % _averageFromAmount;
+        }
+
+        // Assign to UI
+        {
+            _text.text = _currentAveraged switch
+            {
+                var x when x >= 0 && x < _cacheNumbersAmount => CachedNumberStrings[x],
+                var x when x >= _cacheNumbersAmount => $"> {_cacheNumbersAmount}",
+                var x when x < 0 => "< 0",
+                _ => "?"
+            };
         }
     }
 }
