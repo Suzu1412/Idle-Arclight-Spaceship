@@ -31,7 +31,7 @@ public class HealthBarUI : MonoBehaviour
             _healthSystem.OnHealthValueChanged += SetHealth;
             _healthSystem.OnDamaged -= ReceiveDamage;
         }
-        
+
         OnHealthChangedEventListener?.Register(UpdateHealth);
         OnDamagedEventListener?.Register(ReceiveDamage);
     }
@@ -44,7 +44,7 @@ public class HealthBarUI : MonoBehaviour
             _healthSystem.OnHealthValueChanged -= SetHealth;
             _healthSystem.OnDamaged -= ReceiveDamage;
         }
-        
+
         OnHealthChangedEventListener?.DeRegister(UpdateHealth);
         OnDamagedEventListener?.DeRegister(ReceiveDamage);
     }
@@ -69,7 +69,6 @@ public class HealthBarUI : MonoBehaviour
 
     private void UpdateHealth()
     {
-        Debug.Log($"{_health.Value} - {_health.MaxValue}");
         SetHealthBar();
     }
 

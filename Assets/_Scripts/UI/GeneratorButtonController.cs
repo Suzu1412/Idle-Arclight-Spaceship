@@ -16,6 +16,7 @@ public class GeneratorButtonController : MonoBehaviour
     [SerializeField] private Color _buttonAvailableColor;
     [SerializeField] private Color _buttonUnvailableColor;
     [SerializeField] private Button _buyButton;
+    [SerializeField] private Sprite _buttonAvailableSelectedSprite;
 
     public double Cost => _generator.Cost;
 
@@ -52,7 +53,7 @@ public class GeneratorButtonController : MonoBehaviour
 
     public void ToggleBuyButton(bool val)
     {
-        _buyButton.interactable = val;
+        //_buyButton.interactable = val;
         if (val)
         {
             _priceText.color = _buttonAvailableColor;
@@ -63,7 +64,7 @@ public class GeneratorButtonController : MonoBehaviour
             _priceText.color = _buttonUnvailableColor;
             _buyText.color = _buttonUnvailableColor;
         }
-        
+
     }
 
     public void HandleBuyButton()

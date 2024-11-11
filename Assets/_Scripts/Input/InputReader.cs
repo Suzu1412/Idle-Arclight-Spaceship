@@ -94,14 +94,12 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
 
     public void OnToggleShop(InputAction.CallbackContext context)
     {
-        Debug.Log(context.phase);
-
         if (context.started)
         {
             _isShopActive = !_isShopActive;
             OnToggleShopEvent.RaiseEvent(_isShopActive);
 
-            if (_isShopActive)
+            if (!_isShopActive)
             {
                 EnablePlayerActions();
             }
@@ -119,7 +117,7 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
 
     public void OnToggleStats(InputAction.CallbackContext context)
     {
-       // throw new System.NotImplementedException();
+        // throw new System.NotImplementedException();
     }
 
     public void OnToggleQuest(InputAction.CallbackContext context)
