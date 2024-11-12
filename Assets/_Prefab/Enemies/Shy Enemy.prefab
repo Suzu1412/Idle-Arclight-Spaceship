@@ -367,8 +367,8 @@ MonoBehaviour:
   _health: {fileID: 0}
   _hurtDuration: 0
   _defaultInvulnerability: 0.1
-  _floatingText: {fileID: 0}
-  OnCurrentHealthChangedEvent: {fileID: 11400000, guid: 6b9d46cc0e6fcf4479007851256422a0, type: 2}
+  OnHealthChangedEvent: {fileID: 0}
+  OnDamagedEvent: {fileID: 0}
 --- !u!50 &3502664268840731446
 Rigidbody2D:
   serializedVersion: 5
@@ -410,9 +410,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _debugCurrentState: {fileID: 0}
   _stateList:
-  - {fileID: 11400000, guid: b144cfa40d2bd450b839cafa320b312a, type: 2}
-  - {fileID: 11400000, guid: a0aa227805d124be4987d59d75c5457b, type: 2}
-  - {fileID: 11400000, guid: 4b5703fc645cd43219e9c79739625cee, type: 2}
+  - {fileID: 11400000, guid: b879dc9f0d3b9439399216e09cdac253, type: 2}
+  - {fileID: 11400000, guid: a55135c15ca684b1f88dfbe0506be4fc, type: 2}
+  - {fileID: 11400000, guid: 92d4ef6d305ac4a77a6ecfdfd9c8e306, type: 2}
 --- !u!114 &8452328445759861596
 MonoBehaviour:
   m_ObjectHideFlags: 0

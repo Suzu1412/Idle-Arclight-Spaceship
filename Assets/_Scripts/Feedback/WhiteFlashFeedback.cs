@@ -22,11 +22,13 @@ public class WhiteFlashFeedback : Feedback
     private void OnDisable()
     {
         HealthSystem.OnHit -= StartFeedback;
+        ResetFeedback();
     }
 
     public override void ResetFeedback()
     {
         StopAllCoroutines();
+        ToggleMaterial(1);
     }
 
     public override void StartFeedback()

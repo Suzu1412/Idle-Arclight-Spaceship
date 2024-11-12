@@ -440,6 +440,8 @@ GameObject:
   - component: {fileID: 3935764100498731690}
   - component: {fileID: 8956749658962079011}
   - component: {fileID: 7453729298204850792}
+  - component: {fileID: 484096314027894126}
+  - component: {fileID: 5148100649829050187}
   m_Layer: 8
   m_Name: Avatar & Feedback
   m_TagString: Untagged
@@ -654,3 +656,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c700fe3264137f4e916be238caa2d8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &484096314027894126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5311107909362892236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e0157566f54f8479b724b816cc5e45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textData: {fileID: 11400000, guid: be76e86c201f7c1439a5f22c2099f88d, type: 2}
+  _positionOffset: {x: 0, y: 0}
+  _isPositionRandom: 0
+--- !u!114 &5148100649829050187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5311107909362892236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb8024c284eec2d4481af8ef7ef28938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _feedbackTime: 0.2

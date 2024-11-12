@@ -27,23 +27,6 @@ public class ExpTextFeedback : TextPopUp
         _deathReward.OnGiveExp -= SpawnPopUp;
     }
 
-    protected override void SpawnPopUp(int text)
-    {
-        var _popUpGameObject = ObjectPoolFactory.Spawn(_textData).gameObject;
-        if (_isPositionRandom)
-        {
-            SetRandomPosition(_popUpGameObject);
-        }
-        else
-        {
-            SetPosition(_popUpGameObject);
-        }
-
-
-        var _popUp = _popUpGameObject.GetComponentInChildren<TextMeshPro>();
-        _popUp.text = $"- {text}";
-    }
-
     protected override void SpawnPopUp(float text)
     {
         var _popUpGameObject = ObjectPoolFactory.Spawn(_textData).gameObject;
@@ -58,7 +41,7 @@ public class ExpTextFeedback : TextPopUp
 
 
         var _popUp = _popUpGameObject.GetComponentInChildren<TextMeshPro>();
-        _popUp.text = $"- {text}";
+        _popUp.text = $"+ {text} EXP";
     }
 
     private void SetPosition(GameObject popUp)
