@@ -20,6 +20,15 @@ public class JoystickPlayerExample : MonoBehaviour
         _joystick = GetComponent<Joystick>();
     }
 
+    private void OnDisable()
+    {
+        OnStickChangeDirection.RaiseEvent(Vector2.zero);
+        _topLeftImage.enabled = false;
+        _topRightImage.enabled = false;
+        _bottomLeftImage.enabled = false;
+        _bottomRightImage.enabled = false;
+    }
+
     private void Update()
     {
         if (_joystick.Horizontal == _direction.x && _joystick.Vertical == _direction.y)

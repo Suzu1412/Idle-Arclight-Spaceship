@@ -8,6 +8,8 @@ public class ShopUI : Singleton<ShopUI>
     private List<GeneratorButtonController> _buttons = new();
     private int _amountToBuy;
 
+    [Header("Void Event")]
+    [SerializeField] private VoidGameEvent OnOpenShopEvent;
     [Header("Int Event")]
     [SerializeField] private IntGameEvent OnBuyGameEvent;
     [SerializeField] private IntGameEvent OnChangeBuyAmountEvent;
@@ -23,6 +25,7 @@ public class ShopUI : Singleton<ShopUI>
         OnListGeneratorLoadedListener.Register(PrepareUI);
         OnGeneratorAmountChangedListener.Register(UpdateButtonInfo);
         OnCurrencyChangedListener.Register(HandleButtonAvailable);
+        OnOpenShopEvent?.RaiseEvent();
     }
 
     private void OnDisable()

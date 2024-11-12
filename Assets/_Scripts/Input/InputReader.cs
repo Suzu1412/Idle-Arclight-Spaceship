@@ -29,10 +29,15 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
         _inputActions = new GameInput();
     }
 
-    private void OnEnable()
+    private void Start()
     {
         EnablePlayerActions();
         EnableMenuToggleActions();
+        DisableUIActions();
+    }
+
+    private void OnEnable()
+    {
         OnStickChangeDirectionListener.Register(CallOnMovementInput);
         _isShopActive = false;
         _isQuestActive = false;
@@ -57,6 +62,16 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
     public void DisablePlayerActions()
     {
         _inputActions.Player.Disable();
+    }
+
+    public void EnableUIActions()
+    {
+        _inputActions.UI.Enable();
+    }
+
+    public void DisableUIActions()
+    {
+        _inputActions.UI.Disable();
     }
 
     public void EnableMenuToggleActions()

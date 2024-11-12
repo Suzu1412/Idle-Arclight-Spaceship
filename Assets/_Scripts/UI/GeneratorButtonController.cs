@@ -64,13 +64,13 @@ public class GeneratorButtonController : MonoBehaviour
             _priceText.color = _buttonUnvailableColor;
             _buyText.color = _buttonUnvailableColor;
 
-            if (UIManager.Instance.CheckIfButtonIsSelected(gameObject))
+            if (EventSystem.current.currentSelectedGameObject == _buyButton.gameObject)
             {
-                Debug.Log("esta seleccionado");
+                UIManager.Instance.SetShopDefaultButton();
             }
-
         }
 
+        _buyButton.interactable = val;
     }
 
     public void HandleBuyButton()
