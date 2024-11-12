@@ -1,9 +1,9 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
-
     [SerializeField] private BoolGameEventListener OnToggleShopEventListener;
 
     [Header("Shop UI")]
@@ -25,6 +25,21 @@ public class UIManager : Singleton<UIManager>
         _shopDefaultButton.Select();
     }
 
+    public bool CheckIfButtonIsSelected(GameObject button)
+    {
+        Debug.Log("trying to check selected");
+
+        if (EventSystem.current.currentSelectedGameObject == button)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void DeselectButton()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+    }
 
     private void ToggleShop(bool isActive)
     {
