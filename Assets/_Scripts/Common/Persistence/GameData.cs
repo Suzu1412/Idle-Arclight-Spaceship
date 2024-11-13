@@ -48,7 +48,7 @@ public class GameData
 public class CurrencyData
 {
     [SerializeField] private double _totalCurrency;
-    [SerializeField] private int _amountToBuy;
+    [SerializeField] private int _amountToBuy = 1;
 
     public double TotalCurrency => _totalCurrency;
     public int AmountToBuy => _amountToBuy;
@@ -61,7 +61,19 @@ public class CurrencyData
     public void Save(double totalCurrency, int amountToBuy)
     {
         _totalCurrency = totalCurrency;
-        _amountToBuy = amountToBuy;
+        if (amountToBuy < 1)
+        {
+            _amountToBuy = 1;
+        }
+        else if (amountToBuy > 100)
+        {
+            _amountToBuy = 100;
+        }
+        else
+        {
+            _amountToBuy = amountToBuy;
+        }
+        
     }
 }
 

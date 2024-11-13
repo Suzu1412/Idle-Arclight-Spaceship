@@ -15,6 +15,8 @@ public class ShopUI : Singleton<ShopUI>
     [SerializeField] private IntGameEvent OnChangeBuyAmountEvent;
     [Header("Int Event Listener")]
     [SerializeField] private IntGameEventListener OnGeneratorAmountChangedListener;
+    [SerializeField] private IntGameEventListener OnChangeBuyAmountEventListener;
+
     [Header("Double Event Listener")]
     [SerializeField] private DoubleGameEventListener OnCurrencyChangedListener;
     [Header("List Generator Event Listener")]
@@ -22,6 +24,7 @@ public class ShopUI : Singleton<ShopUI>
 
     private void OnEnable()
     {
+        OnChangeBuyAmountEventListener.Register(ChangeAmountToBuy);
         OnListGeneratorLoadedListener.Register(PrepareUI);
         OnGeneratorAmountChangedListener.Register(UpdateButtonInfo);
         OnCurrencyChangedListener.Register(HandleButtonAvailable);
@@ -30,6 +33,7 @@ public class ShopUI : Singleton<ShopUI>
 
     private void OnDisable()
     {
+        OnChangeBuyAmountEventListener.DeRegister(ChangeAmountToBuy);
         OnListGeneratorLoadedListener.DeRegister(PrepareUI);
         OnGeneratorAmountChangedListener.DeRegister(UpdateButtonInfo);
         OnCurrencyChangedListener.DeRegister(HandleButtonAvailable);
@@ -38,7 +42,11 @@ public class ShopUI : Singleton<ShopUI>
 
     private void PrepareUI(List<GeneratorSO> generators)
     {
-        _amountToBuy = 1;
+        if (_amountToBuy < 1)
+        {
+            _amountToBuy = 1;
+        }
+
         _buttons.Clear();
 
         for (int i = 0; i < generators.Count; i++)
@@ -47,8 +55,8 @@ public class ShopUI : Singleton<ShopUI>
             button.transform.SetParent(_shopItemParent, false);
             button.SetIndex(i);
             button.SetGenerator(generators[i]);
-            generators[i].GetBulkCost(_amountToBuy);
             generators[i].GetProductionRate();
+            button.ChangeAmountToBuy(_amountToBuy);
             button.OnBuyGeneratorClicked += BuyGenerator;
             button.PrepareButton();
             _buttons.Add(button);
@@ -73,5 +81,16 @@ public class ShopUI : Singleton<ShopUI>
     private void BuyGenerator(int index)
     {
         OnBuyGameEvent.RaiseEvent(index);
+    }
+
+    private void ChangeAmountToBuy(int amount)
+    {
+        _amountToBuy = amount;
+        Debug.Log("Updating amount to Buy");
+
+        foreach(var button in _buttons)
+        {
+            button.ChangeAmountToBuy(amount);
+        }
     }
 }

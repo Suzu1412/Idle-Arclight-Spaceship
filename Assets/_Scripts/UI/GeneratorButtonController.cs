@@ -50,6 +50,12 @@ public class GeneratorButtonController : MonoBehaviour
         DisplayProductionText();
     }
 
+    public void ChangeAmountToBuy(int amount)
+    {
+        _generator.GetBulkCost(amount);
+        DisplayPriceText();
+    }
+
     public void ToggleBuyButton(bool val)
     {
         if (!val)
@@ -86,13 +92,10 @@ public class GeneratorButtonController : MonoBehaviour
     private void DisplayPriceText()
     {
         _priceText.text = _generator.CostFormatted.GetFormat();
-        //_unavailablePriceText.text = _generator.CostFormatted.GetFormat();
     }
 
     private void DisplayProductionText()
     {
         _productionText.text = $"{_generator.ProductionFormatted.GetFormat()} CPS";
     }
-
-
 }

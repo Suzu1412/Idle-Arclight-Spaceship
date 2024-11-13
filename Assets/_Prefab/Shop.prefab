@@ -249,7 +249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 18525}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6443204835827623605
@@ -396,7 +396,7 @@ RectTransform:
   m_GameObject: {fileID: 3134355695556095652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8089860220738718742}
@@ -405,8 +405,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1080, y: 1920}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!223 &5432373551190990832
 Canvas:
   m_ObjectHideFlags: 0
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4091056106481752557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -759,7 +759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shopItemButtonPrefab: {fileID: 1494101746775617029, guid: 41e21cbc66f171f4a90a1a5040a1d2aa, type: 3}
   _shopItemParent: {fileID: 3163001931364185246}
-  OnOpenShop: {fileID: 11400000, guid: 7a00daa2c708f224ea70806189d2563c, type: 2}
+  OnOpenShopEvent: {fileID: 11400000, guid: 7a00daa2c708f224ea70806189d2563c, type: 2}
   OnBuyGameEvent: {fileID: 11400000, guid: af8d95c7c0d8e4b3fad008cbec0807e6, type: 2}
   OnChangeBuyAmountEvent: {fileID: 11400000, guid: b8b90167f58d94ee391e69875a58d3dd, type: 2}
   OnGeneratorAmountChangedListener: {fileID: 11400000, guid: cdc46a947bed14536bff68261c46d0c5, type: 2}
