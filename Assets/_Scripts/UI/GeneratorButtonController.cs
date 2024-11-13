@@ -14,8 +14,6 @@ public class GeneratorButtonController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _buyText;
     [SerializeField] private TextMeshProUGUI _priceText;
     [SerializeField] private TextMeshProUGUI _productionText;
-    [SerializeField] private Color _buttonAvailableColor;
-    [SerializeField] private Color _buttonUnvailableColor;
     [SerializeField] private Button _buyButton;
     [SerializeField] private Sprite _buttonAvailableSelectedSprite;
 
@@ -54,16 +52,8 @@ public class GeneratorButtonController : MonoBehaviour
 
     public void ToggleBuyButton(bool val)
     {
-        if (val)
+        if (!val)
         {
-            _priceText.color = _buttonAvailableColor;
-            _buyText.color = _buttonAvailableColor;
-        }
-        else
-        {
-            _priceText.color = _buttonUnvailableColor;
-            _buyText.color = _buttonUnvailableColor;
-
             if (EventSystem.current.currentSelectedGameObject == _buyButton.gameObject)
             {
                 UIManager.Instance.SetShopDefaultButton();
