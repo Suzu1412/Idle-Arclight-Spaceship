@@ -12,7 +12,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [SerializeField] private FloatVariableSO _crystalOnGetMultiplier;
     [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
 
-    
+
     [Header("Int Event")]
     [SerializeField] private IntGameEvent OnGeneratorAmountChangedEvent;
     [Header("Double Event")]

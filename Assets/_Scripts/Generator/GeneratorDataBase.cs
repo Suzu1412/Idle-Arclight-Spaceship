@@ -5,7 +5,7 @@ public class GeneratorDataBase
 {
     static Dictionary<string, GeneratorSO> _itemDictionary;
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
     static void Initialize()
     {
         _itemDictionary = new Dictionary<string, GeneratorSO>();
