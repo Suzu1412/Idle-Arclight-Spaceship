@@ -7,17 +7,18 @@ using UnityEngine;
 public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 {
     [SerializeField] private float _delayToGenerate = 1f;
+    [Header("Double Variable")]
+    [SerializeField] private DoubleVariableSO _totalCurrency;
     [Header("Float Variable")]
     [SerializeField] private FloatVariableSO _generatorProductionMultiplier;
     [SerializeField] private FloatVariableSO _crystalOnGetMultiplier;
     [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
 
-    
     [Header("Int Event")]
     [SerializeField] private IntGameEvent OnGeneratorAmountChangedEvent;
     [SerializeField] private IntGameEvent OnChangeBuyAmountEvent;
-    [Header("Double Event")]
-    [SerializeField] private DoubleGameEvent OnCurrencyChangedEvent;
+    [Header("Void Event")]
+    [SerializeField] private VoidGameEvent OnCurrencyChangedEvent;
     [Header("Void Event Listener")]
     [SerializeField] private VoidGameEventListener OnOpenShopListener;
     [Header("Int Event Listener")]
@@ -33,7 +34,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [SerializeField] private ListGeneratorGameEvent OnListGeneratorEvent;
     [Header("Save Data")]
     [SerializeField] [ReadOnly] private List<GeneratorSO> _generators;
-    [SerializeField] private double _totalCurrency = 0;
     [SerializeField] private int _amountToBuy = 1;
     private FormattedNumber UpdateCurrencyFormatted;
     private FormattedNumber UpdateProductionFormatted;
@@ -64,10 +64,10 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void Increment(double amount)
     {
-        _totalCurrency += amount;
-        _totalCurrency = Math.Round(_totalCurrency, 1);
-        OnCurrencyChangedEvent.RaiseEvent(_totalCurrency);
-        OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency, UpdateCurrencyFormatted));
+        _totalCurrency.Value += amount;
+        _totalCurrency.Value = Math.Round(_totalCurrency.Value, 1);
+        OnCurrencyChangedEvent.RaiseEvent();
+        OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
     }
 
     private void GetCrystal(double amount)
@@ -78,7 +78,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     public void SaveData(GameData gameData)
     {
-        gameData.CurrencyData.Save(_totalCurrency, _amountToBuy);
+        gameData.CurrencyData.Save(_totalCurrency.Value, _amountToBuy);
 
         foreach (var generator in _generators)
         {
@@ -91,7 +91,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     {
         gameData.CurrencyData ??= new();
         var currencyData = gameData.CurrencyData.Load();
-        _totalCurrency = currencyData.TotalCurrency;
+        _totalCurrency.Initialize(currencyData.TotalCurrency);
         _amountToBuy = currencyData.AmountToBuy;
         ChangeAmountToBuy(gameData.CurrencyData.AmountToBuy);
 
@@ -108,25 +108,25 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             }
         }
 
-        OnListGeneratorEvent.RaiseEvent(_generators);
         OnChangeBuyAmountEvent.RaiseEvent(_amountToBuy);
+        OnListGeneratorEvent.RaiseEvent(_generators);
         UpdateCurrency();
-        OnLoadCurrencyEvent.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency, UpdateCurrencyFormatted));
+        OnLoadCurrencyEvent.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
         GetProductionRate();
     }
 
     private void BuyGenerator(int index)
     {
-        if (_totalCurrency >= _generators[index].Cost)
+        if (_totalCurrency.Value >= _generators[index].Cost)
         {
-            _totalCurrency -= _generators[index].Cost;
+            _totalCurrency.Value -= _generators[index].Cost;
             _generators[index].AddAmount(_amountToBuy);
             _generators[index].GetBulkCost(_amountToBuy);
             _generators[index].CalculateProductionRate();
             GetProductionRate();
             OnGeneratorAmountChangedEvent.RaiseEvent(index);
             UpdateCurrency();
-            OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency, UpdateCurrencyFormatted));
+            OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
         }
     }
 
@@ -138,7 +138,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         {
             _amountToBuy = 1;
         }
-        UpdateCurrency();
     }
 
     private double GetProductionRate()
@@ -156,7 +155,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void UpdateCurrency()
     {
-        OnCurrencyChangedEvent.RaiseEvent(_totalCurrency);
+        OnCurrencyChangedEvent.RaiseEvent();
     }
 
     private IEnumerator GenerateIncome()

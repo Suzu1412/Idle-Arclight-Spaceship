@@ -6,8 +6,17 @@ using UnityEngine.EventSystems;
 
 public class GeneratorButtonController : MonoBehaviour
 {
+    [Header("Double Variable")]
+    [SerializeField] private DoubleVariableSO _totalCurrency;
+
+    [Header("Void Event Listener")]
+    [SerializeField] private VoidGameEventListener OnCurrencyChangedEventListener;
+
+    [Header("Assigned Automatically")]
     [SerializeField] [ReadOnly] private GeneratorSO _generator;
     [SerializeField] [ReadOnly] private int _index;
+
+    [Header("Button Fields")]
     [SerializeField] private Image _generatorIcon;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _amountText;
@@ -24,11 +33,13 @@ public class GeneratorButtonController : MonoBehaviour
     private void OnEnable()
     {
         _buyButton.onClick.AddListener(HandleBuyButton);
+        OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
     }
 
     private void OnDisable()
     {
         _buyButton.onClick.RemoveAllListeners();
+        OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
     }
 
     public void SetIndex(int index)
@@ -53,10 +64,16 @@ public class GeneratorButtonController : MonoBehaviour
     public void ChangeAmountToBuy(int amount)
     {
         _generator.GetBulkCost(amount);
+        CheckIfCanBuy();
         DisplayPriceText();
     }
 
-    public void ToggleBuyButton(bool val)
+    private void CheckIfCanBuy()
+    {
+        ToggleBuyButton(_totalCurrency.Value >= _generator.Cost);
+    }
+
+    private void ToggleBuyButton(bool val)
     {
         if (!val)
         {

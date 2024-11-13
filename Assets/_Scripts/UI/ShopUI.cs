@@ -17,26 +17,23 @@ public class ShopUI : Singleton<ShopUI>
     [SerializeField] private IntGameEventListener OnGeneratorAmountChangedListener;
     [SerializeField] private IntGameEventListener OnChangeBuyAmountEventListener;
 
-    [Header("Double Event Listener")]
-    [SerializeField] private DoubleGameEventListener OnCurrencyChangedListener;
     [Header("List Generator Event Listener")]
     [SerializeField] private ListGeneratorGameEventListener OnListGeneratorLoadedListener;
 
     private void OnEnable()
     {
-        OnChangeBuyAmountEventListener.Register(ChangeAmountToBuy);
         OnListGeneratorLoadedListener.Register(PrepareUI);
         OnGeneratorAmountChangedListener.Register(UpdateButtonInfo);
-        OnCurrencyChangedListener.Register(HandleButtonAvailable);
+        OnChangeBuyAmountEventListener.Register(ChangeAmountToBuy);
         OnOpenShopEvent?.RaiseEvent();
     }
 
     private void OnDisable()
     {
-        OnChangeBuyAmountEventListener.DeRegister(ChangeAmountToBuy);
         OnListGeneratorLoadedListener.DeRegister(PrepareUI);
         OnGeneratorAmountChangedListener.DeRegister(UpdateButtonInfo);
-        OnCurrencyChangedListener.DeRegister(HandleButtonAvailable);
+        OnChangeBuyAmountEventListener.DeRegister(ChangeAmountToBuy);
+
     }
 
 
@@ -70,14 +67,6 @@ public class ShopUI : Singleton<ShopUI>
         _buttons[index].PrepareButton();
     }
 
-    private void HandleButtonAvailable(double currency)
-    {
-        foreach (var button in _buttons)
-        {
-            button.ToggleBuyButton(currency >= button.Cost);
-        }
-    }
-
     private void BuyGenerator(int index)
     {
         OnBuyGameEvent.RaiseEvent(index);
@@ -86,9 +75,8 @@ public class ShopUI : Singleton<ShopUI>
     private void ChangeAmountToBuy(int amount)
     {
         _amountToBuy = amount;
-        Debug.Log("Updating amount to Buy");
 
-        foreach(var button in _buttons)
+        foreach (var button in _buttons)
         {
             button.ChangeAmountToBuy(amount);
         }
