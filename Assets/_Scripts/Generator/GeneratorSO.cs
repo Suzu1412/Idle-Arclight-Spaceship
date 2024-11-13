@@ -26,6 +26,8 @@ public class GeneratorSO : SerializableScriptableObject
     public double TotalProduction { get => _totalProduction; internal set => _totalProduction = value; }
     public double Cost { get; private set; }
     public double Production { get; private set; }
+    public double CostRequirement { get => BaseCost * 0.5; }
+    public bool IsUnlocked { get; set; }
     public FormattedNumber CostFormatted { get; private set; }
     public FormattedNumber ProductionFormatted { get; private set; }
 

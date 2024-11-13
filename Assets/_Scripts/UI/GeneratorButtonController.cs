@@ -68,6 +68,11 @@ public class GeneratorButtonController : MonoBehaviour
         DisplayPriceText();
     }
 
+    public void HandleBuyButton()
+    {
+        OnBuyGeneratorClicked?.Invoke(_index);
+    }
+
     private void CheckIfCanBuy()
     {
         ToggleBuyButton(_totalCurrency.Value >= _generator.Cost);
@@ -86,9 +91,16 @@ public class GeneratorButtonController : MonoBehaviour
         _buyButton.interactable = val;
     }
 
-    public void HandleBuyButton()
+    private void ActivateButton(bool val)
     {
-        OnBuyGeneratorClicked?.Invoke(_index);
+        if (val)
+        {
+
+        }
+        else
+        {
+
+        }
     }
 
     private void DisplayImage()
