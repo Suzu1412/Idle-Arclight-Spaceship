@@ -58,4 +58,4 @@ MonoBehaviour:
   _buy50AmountImage: {fileID: 0}
   _buy100AmountImage: {fileID: 0}
   _buttonAmountChecked: {fileID: 21300000, guid: efb6c9334e498404883cd7150d537d74, type: 3}
-  _buttonAmountUnchecked: {fileID: 21300000, guid: 421f361155f20450d8540ec47bdf138f, type: 3}
+  _buttonAmountUnchecked: {fileID: 21300000, guid: 906a104b67bbe476ba0bc6bdae09fc44, type: 3}
