@@ -17,6 +17,7 @@ public class GeneratorButtonController : MonoBehaviour
     [SerializeField] [ReadOnly] private int _index;
 
     [Header("Button Fields")]
+    [SerializeField] private Image _background;
     [SerializeField] private Image _generatorIcon;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _amountText;
@@ -24,11 +25,17 @@ public class GeneratorButtonController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _priceText;
     [SerializeField] private TextMeshProUGUI _productionText;
     [SerializeField] private Button _buyButton;
-    [SerializeField] private Sprite _buttonAvailableSelectedSprite;
+    private bool _isAlreadyActive;
 
     public double Cost => _generator.Cost;
 
     public event UnityAction<int> OnBuyGeneratorClicked;
+
+    private void Awake()
+    {
+        _isAlreadyActive = false;
+        ActivateButton(_isAlreadyActive);
+    }
 
     private void OnEnable()
     {
@@ -75,6 +82,16 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void CheckIfCanBuy()
     {
+        if (!_isAlreadyActive)
+        {
+            if (_generator.IsUnlocked || _totalCurrency.Value >= _generator.CostRequirement)
+            {
+                _isAlreadyActive = true;
+                _generator.IsUnlocked = true;
+                ActivateButton(_isAlreadyActive);
+            }
+        }
+
         ToggleBuyButton(_totalCurrency.Value >= _generator.Cost);
     }
 
@@ -93,14 +110,14 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void ActivateButton(bool val)
     {
-        if (val)
-        {
 
-        }
-        else
-        {
+        _background.enabled = val;
 
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(val);
         }
+
     }
 
     private void DisplayImage()
