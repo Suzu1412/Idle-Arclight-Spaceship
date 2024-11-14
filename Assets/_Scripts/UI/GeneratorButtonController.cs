@@ -11,6 +11,7 @@ public class GeneratorButtonController : MonoBehaviour
 
     [Header("Void Event Listener")]
     [SerializeField] private VoidGameEventListener OnCurrencyChangedEventListener;
+    [SerializeField] private VoidGameEventListener OnGeneratorUpgradeListener;
 
     [Header("Assigned Automatically")]
     [SerializeField] [ReadOnly] private GeneratorSO _generator;
@@ -41,12 +42,14 @@ public class GeneratorButtonController : MonoBehaviour
     {
         _buyButton.onClick.AddListener(HandleBuyButton);
         OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
+        OnGeneratorUpgradeListener.Register(DisplayImage);
     }
 
     private void OnDisable()
     {
         _buyButton.onClick.RemoveAllListeners();
         OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
+        OnGeneratorUpgradeListener.DeRegister(DisplayImage);
     }
 
     public void SetIndex(int index)
@@ -87,7 +90,7 @@ public class GeneratorButtonController : MonoBehaviour
             if (_generator.IsUnlocked || _totalCurrency.Value >= _generator.CostRequirement)
             {
                 _isAlreadyActive = true;
-                _generator.IsUnlocked = true;
+                _generator.CheckIfMeetRequirementsToUnlock(_totalCurrency.Value);
                 ActivateButton(_isAlreadyActive);
             }
         }

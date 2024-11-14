@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _guid: 274494024297a8e44a9090bed95ba8ca
   _name: Granate
-  _image: {fileID: 21300000, guid: 2c262889d39a14649bdb17ea074d9cba, type: 3}
+  _image:
+  - {fileID: 21300000, guid: 2c262889d39a14649bdb17ea074d9cba, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   _baseCost: 15
-  _productionBase: 0.1
-  _amountOwned: 0
+  _productionBase: {fileID: 11400000, guid: 34b41b8f28b8c45a8b84cdf479a20ad8, type: 2}
+  _amountOwned: 39
   _priceGrowthRate: 1.15
-  _totalProduction: 70570.7
+  _totalProduction: 19756.9

@@ -82,7 +82,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
         foreach (var generator in _generators)
         {
-            var data = new GeneratorData(generator.Guid, generator.AmountOwned, generator.TotalProduction);
+            var data = new GeneratorData(generator.Guid, generator.AmountOwned, generator.TotalProduction, generator.IsUnlocked);
             gameData.GeneratorsData.Save(data);
         }
     }
@@ -100,11 +100,13 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         {
             generator.SetAmount(0);
             generator.SetTotalProduction(0);
+            generator.IsUnlocked = false;
             var data = gameData.GeneratorsData.Load(generator.Guid);
             if (data != null)
             {
                 generator.SetAmount(data.Amount);
                 generator.SetTotalProduction(data.TotalProduction);
+                generator.IsUnlocked = data.IsUnlocked;
             }
         }
 

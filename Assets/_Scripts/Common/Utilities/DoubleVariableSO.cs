@@ -22,10 +22,10 @@ public class DoubleVariableSO : ScriptableObject
         CalculateValue();
     }
 
-    public void Initialize(double value)
+    public void Initialize(double value, double minValue = double.MinValue, double maxValue = double.MaxValue)
     {
-        _minValue = 0;
-        _maxValue = Double.MaxValue;
+        _minValue = minValue;
+        _maxValue = maxValue;
         _value = value;
         CalculateValue();
         _isDirty = true;

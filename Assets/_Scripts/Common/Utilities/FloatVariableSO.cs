@@ -7,8 +7,10 @@ public class FloatVariableSO : ScriptableObject
     [SerializeField] private float _baseValue;
     [SerializeField] private float _minValue;
     [SerializeField] private float _maxValue;
-    [SerializeField] private List<FloatModifier> _modifiers;
+    [SerializeField] private List<FloatModifier> _modifiers = new();
     [SerializeField] private float _value;
+
+    public int CountModifiers => _modifiers.Count;
 
     private bool _isDirty = false;
 
@@ -29,7 +31,7 @@ public class FloatVariableSO : ScriptableObject
         _baseValue = Mathf.Clamp(_baseValue, _minValue, _maxValue);
     }
 
-    public void Initialize(float baseValue, float minValue, float maxValue)
+    public void Initialize(float baseValue, float minValue = float.MinValue, float maxValue = float.MaxValue)
     {
         _minValue = minValue;
         _maxValue = maxValue;

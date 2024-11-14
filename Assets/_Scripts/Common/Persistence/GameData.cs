@@ -73,7 +73,7 @@ public class CurrencyData
         {
             _amountToBuy = amountToBuy;
         }
-        
+
     }
 }
 
@@ -105,16 +105,19 @@ public class GeneratorData
     [SerializeField] private string _guid;
     [SerializeField] private int _amount;
     [SerializeField] private double _totalProduction;
+    [SerializeField] private bool _isUnlocked = false;
 
     public string Guid => _guid;
     public int Amount => _amount;
     public double TotalProduction => _totalProduction;
+    public bool IsUnlocked => _isUnlocked;
 
-    public GeneratorData(string guid, int amount, double totalProduction)
+    public GeneratorData(string guid, int amount, double totalProduction, bool isUnlocked)
     {
         _guid = guid;
         _amount = amount;
         _totalProduction = totalProduction;
+        _isUnlocked = isUnlocked;
     }
 }
 

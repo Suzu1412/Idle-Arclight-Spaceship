@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _guid: 45a9c9cc35838824097ca45e92e5a7d8
   _name: Tourmaline
-  _image: {fileID: 21300000, guid: 37f1ae80fe06d8d439fb107792ecb479, type: 3}
+  _image:
+  - {fileID: 21300000, guid: 37f1ae80fe06d8d439fb107792ecb479, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   _baseCost: 100
-  _productionBase: 1
-  _amountOwned: 0
+  _productionBase: {fileID: 11400000, guid: 8a44f648d7483483fafdbdb748d89036, type: 2}
+  _amountOwned: 36
   _priceGrowthRate: 1.15
-  _totalProduction: 694607
+  _totalProduction: 249818

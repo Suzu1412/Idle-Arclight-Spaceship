@@ -13,7 +13,7 @@ public class TestGenerator
     public void SetupRequiredComponents()
     {
         // Test Values are compared to the ones of Cookie Clicker - Clicker
-        _generator = A.Generator.Init(15, 0.1, 0, 1.15);
+        _generator = A.Generator.Init(15, 0.1f, 0, 1.15);
     }
 
     [Test]

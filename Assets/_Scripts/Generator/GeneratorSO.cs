@@ -8,9 +8,9 @@ using System.Runtime.CompilerServices;
 public class GeneratorSO : SerializableScriptableObject
 {
     [SerializeField] private string _name;
-    [SerializeField] private Sprite _image;
+    [SerializeField] private Sprite[] _image;
     [SerializeField] private double _baseCost;
-    [SerializeField] private double _productionBase;
+    [SerializeField] private FloatVariableSO _productionBase;
     [SerializeField] private int _amountOwned;
     [SerializeField] private double _priceGrowthRate;
     [SerializeField] private double _totalProduction;
@@ -18,18 +18,27 @@ public class GeneratorSO : SerializableScriptableObject
     private bool _isDirty = true;
 
     public string Name => _name;
-    public Sprite Image => _image;
+    // Image is assigned according to the amount of modifiers
+    public Sprite Image => _image[_productionBase.CountModifiers];
     public double BaseCost { get => _baseCost; internal set => _baseCost = value; }
-    public double ProductionBase { get => _productionBase; internal set => _productionBase = value; }
+    public FloatVariableSO ProductionBase { get => _productionBase; internal set => _productionBase = value; }
     public int AmountOwned { get => _amountOwned; internal set => _amountOwned = value; }
     public double PriceGrowthRate { get => _priceGrowthRate; internal set => _priceGrowthRate = value; }
     public double TotalProduction { get => _totalProduction; internal set => _totalProduction = value; }
     public double Cost { get; private set; }
     public double Production { get; private set; }
     public double CostRequirement { get => BaseCost * 0.5; }
-    public bool IsUnlocked { get; set; }
+    public bool IsUnlocked { get; internal set; }
     public FormattedNumber CostFormatted { get; private set; }
     public FormattedNumber ProductionFormatted { get; private set; }
+
+    public void CheckIfMeetRequirementsToUnlock(double currency)
+    {
+        if (currency >= CostRequirement)
+        {
+            IsUnlocked = true;
+        }
+    }
 
     public void AddAmount(int amount)
     {
@@ -39,7 +48,7 @@ public class GeneratorSO : SerializableScriptableObject
 
     public void CalculateProductionRate()
     {
-        Production = Math.Round(_productionBase * _amountOwned, 1);
+        Production = Math.Round(_productionBase.Value * _amountOwned, 1);
         ProductionFormatted = FormatNumber.FormatDouble(Production, ProductionFormatted);
         _isDirty = false;
     }
