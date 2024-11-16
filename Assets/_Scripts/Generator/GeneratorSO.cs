@@ -9,25 +9,25 @@ public class GeneratorSO : SerializableScriptableObject
 {
     [SerializeField] private string _name;
     [SerializeField] private Sprite[] _image;
-    [SerializeField] private double _baseCost;
-    [SerializeField] private FloatVariableSO _productionBase;
+    [SerializeField] private FloatVariableSO _baseCost;
+    [SerializeField] private FloatVariableSO _production;
+    [SerializeField] private FloatVariableSO _generatorProductionMultiplier;
     [SerializeField] private int _amountOwned;
     [SerializeField] private double _priceGrowthRate;
     [SerializeField] private double _totalProduction;
-
+    private double _currentProduction;
     private bool _isDirty = true;
 
     public string Name => _name;
     // Image is assigned according to the amount of modifiers
-    public Sprite Image => _image[_productionBase.CountModifiers];
-    public double BaseCost { get => _baseCost; internal set => _baseCost = value; }
-    public FloatVariableSO ProductionBase { get => _productionBase; internal set => _productionBase = value; }
+    public Sprite Image => _image[_production.CountModifiers];
+    public FloatVariableSO BaseCost { get => _baseCost; internal set => _baseCost = value; }
+    public FloatVariableSO Production { get => _production; internal set => _production = value; }
     public int AmountOwned { get => _amountOwned; internal set => _amountOwned = value; }
     public double PriceGrowthRate { get => _priceGrowthRate; internal set => _priceGrowthRate = value; }
     public double TotalProduction { get => _totalProduction; internal set => _totalProduction = value; }
-    public double Cost { get; private set; }
-    public double Production { get; private set; }
-    public double CostRequirement { get => BaseCost * 0.5; }
+    public double CostRequirement { get => BaseCost.Value * 0.5; }
+    public double BulkCost { get; private set; }
     public bool IsUnlocked { get; internal set; }
     public FormattedNumber CostFormatted { get; private set; }
     public FormattedNumber ProductionFormatted { get; private set; }
@@ -48,8 +48,8 @@ public class GeneratorSO : SerializableScriptableObject
 
     public void CalculateProductionRate()
     {
-        Production = Math.Round(_productionBase.Value * _amountOwned, 1);
-        ProductionFormatted = FormatNumber.FormatDouble(Production, ProductionFormatted);
+        _currentProduction = Math.Round(_production.Value * _generatorProductionMultiplier.Value * _amountOwned, 1);
+        ProductionFormatted = FormatNumber.FormatDouble(_currentProduction, ProductionFormatted);
         _isDirty = false;
     }
 
@@ -59,22 +59,21 @@ public class GeneratorSO : SerializableScriptableObject
         {
             CalculateProductionRate();
         }
-        TotalProduction = Math.Round(TotalProduction + Production, 1);
-        return Production;
+        TotalProduction = Math.Round(TotalProduction + _currentProduction, 1);
+        return _currentProduction;
     }
 
     public double GetBulkCost(int amountTobuy)
     {
-        double bulkPrice = 0;
+        BulkCost = 0;
 
         for (int i = 0; i < amountTobuy; i++)
         {
-            bulkPrice += GetNextCost(i);
+            BulkCost += GetNextCost(i);
         }
 
-        Cost = bulkPrice;
-        CostFormatted = FormatNumber.FormatDouble(Cost, CostFormatted);
-        return bulkPrice;
+        CostFormatted = FormatNumber.FormatDouble(BulkCost, CostFormatted);
+        return BulkCost;
     }
 
     public int CalculateMaxAmountToBuy(double currency)
@@ -112,6 +111,6 @@ public class GeneratorSO : SerializableScriptableObject
 
     internal double GetNextCost(int addAmount = 0)
     {
-        return Math.Ceiling(_baseCost * Math.Pow(_priceGrowthRate, _amountOwned + addAmount));
+        return Math.Ceiling(BaseCost.Value * Math.Pow(_priceGrowthRate, _amountOwned + addAmount));
     }
 }

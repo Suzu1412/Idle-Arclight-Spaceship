@@ -27,13 +27,12 @@ public class GameInitiator : Singleton<GameInitiator>
         OnSceneGroupLoadedEventListener.DeRegister(StartGame);
     }
 
-    private async void StartGame(bool value)
+    private void StartGame(bool value)
     {
         BindObjects();
         Initialize();
         LoadGame();
 
-        await Awaitable.WaitForSecondsAsync(0.25f);
         OnToggleLoadEvent.RaiseEvent(false);
     }
 

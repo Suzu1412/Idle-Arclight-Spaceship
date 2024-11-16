@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d55d2816300d66f4eabb4d81f2c6c37c, type: 3}
+  m_Name: 1- Crystal On Get x2
+  m_EditorClassIdentifier: 
+  _name: Duplicador
+  _description: 
+  _cost: {fileID: 11400000, guid: 3904de1fc5033b540928fcfab827a8c0, type: 2}
+  _requiredSystem: {fileID: 0}
+  _variableToModify: {fileID: 11400000, guid: 040b947bc1d6d4246909cf21658dd890, type: 2}
+  _modifierToApply:
+    _modifierType: 2
+    _value: 2
+    _source: 1- Crystal On Get x2

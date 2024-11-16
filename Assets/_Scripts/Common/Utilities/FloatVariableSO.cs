@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "FloatVariableSO", menuName = "Scriptable Objects/FloatVariableSO")]
+[CreateAssetMenu(fileName = "FloatVariableSO", menuName = "Scriptable Objects/Variable/FloatVariableSO")]
 public class FloatVariableSO : ScriptableObject
 {
     [SerializeField] private float _baseValue;

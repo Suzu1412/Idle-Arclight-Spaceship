@@ -2,29 +2,29 @@ using UnityEngine;
 
 public class GeneratorBuilder
 {
-    private double _baseCost;
-    private float _productionBase;
+    private FloatVariableSO _baseCost;
+    private FloatVariableSO _production;
     private int _amountOwned;
     private double _priceGrowthRate;
 
-    public GeneratorBuilder Init(double baseCost, float productionBase, int amountOwned, double priceGrowthRate)
+    public GeneratorBuilder Init(FloatVariableSO baseCost, FloatVariableSO production, int amountOwned, double priceGrowthRate)
     {
         _baseCost = baseCost;
-        _productionBase = productionBase;
+        _production = production;
         _amountOwned = amountOwned;
         _priceGrowthRate = priceGrowthRate;
         return this;
     }
 
-    public GeneratorBuilder SetBaseCost(double baseCost)
+    public GeneratorBuilder SetBaseCost(FloatVariableSO baseCost)
     {
         _baseCost = baseCost;
         return this;
     }
 
-    public GeneratorBuilder SetProductionBase(float productionBase)
+    public GeneratorBuilder SetProductionBase(FloatVariableSO production)
     {
-        _productionBase = productionBase;
+        _production = production;
         return this;
     }
 
@@ -44,8 +44,7 @@ public class GeneratorBuilder
     {
         var generatorSO = ScriptableObject.CreateInstance<GeneratorSO>();
         generatorSO.BaseCost = _baseCost;
-        generatorSO.ProductionBase = ScriptableObject.CreateInstance<FloatVariableSO>();
-        generatorSO.ProductionBase.Initialize(_productionBase);
+        generatorSO.Production = _production;
         generatorSO.AmountOwned = _amountOwned;
         generatorSO.PriceGrowthRate = _priceGrowthRate;
 

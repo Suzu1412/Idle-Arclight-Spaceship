@@ -10,7 +10,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [Header("Double Variable")]
     [SerializeField] private DoubleVariableSO _totalCurrency;
     [Header("Float Variable")]
-    [SerializeField] private FloatVariableSO _generatorProductionMultiplier;
     [SerializeField] private FloatVariableSO _crystalOnGetMultiplier;
     [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
 
@@ -119,9 +118,9 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void BuyGenerator(int index)
     {
-        if (_totalCurrency.Value >= _generators[index].Cost)
+        if (_totalCurrency.Value >= _generators[index].BulkCost)
         {
-            _totalCurrency.Value -= _generators[index].Cost;
+            _totalCurrency.Value -= _generators[index].BulkCost;
             _generators[index].AddAmount(_amountToBuy);
             _generators[index].GetBulkCost(_amountToBuy);
             _generators[index].CalculateProductionRate();
@@ -148,7 +147,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
         foreach (var generator in _generators)
         {
-            production += generator.GetProductionRate() * _generatorProductionMultiplier.Value * _crystalTotalMultiplier.Value;
+            production += generator.GetProductionRate() * _crystalTotalMultiplier.Value;
         }
 
         OnUpdateProductionFormatted.RaiseEvent(FormatNumber.FormatDouble(production, UpdateProductionFormatted));

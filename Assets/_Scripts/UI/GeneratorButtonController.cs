@@ -28,8 +28,6 @@ public class GeneratorButtonController : MonoBehaviour
     [SerializeField] private Button _buyButton;
     private bool _isAlreadyActive;
 
-    public double Cost => _generator.Cost;
-
     public event UnityAction<int> OnBuyGeneratorClicked;
 
     private void Awake()
@@ -95,7 +93,7 @@ public class GeneratorButtonController : MonoBehaviour
             }
         }
 
-        ToggleBuyButton(_totalCurrency.Value >= _generator.Cost);
+        ToggleBuyButton(_totalCurrency.Value >= _generator.BulkCost);
     }
 
     private void ToggleBuyButton(bool val)

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-[CreateAssetMenu(fileName = "Double Variable", menuName = "Scriptable Objects/DoubleVariableSO")]
+[CreateAssetMenu(fileName = "Double Variable", menuName = "Scriptable Objects/Variable/DoubleVariableSO")]
 public class DoubleVariableSO : ScriptableObject
 {
     [SerializeField] private double _value;

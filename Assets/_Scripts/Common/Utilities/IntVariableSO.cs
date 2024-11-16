@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "IntVariableSO", menuName = "Scriptable Objects/IntVariableSO")]
+[CreateAssetMenu(fileName = "IntVariableSO", menuName = "Scriptable Objects/Variable/IntVariableSO")]
 public class IntVariableSO : ScriptableObject
 {
     [SerializeField] private int _value;

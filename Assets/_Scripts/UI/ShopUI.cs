@@ -33,9 +33,7 @@ public class ShopUI : Singleton<ShopUI>
         OnListGeneratorLoadedListener.DeRegister(PrepareUI);
         OnGeneratorAmountChangedListener.DeRegister(UpdateButtonInfo);
         OnChangeBuyAmountEventListener.DeRegister(ChangeAmountToBuy);
-
     }
-
 
     private void PrepareUI(List<GeneratorSO> generators)
     {

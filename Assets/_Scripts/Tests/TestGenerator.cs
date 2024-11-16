@@ -13,7 +13,11 @@ public class TestGenerator
     public void SetupRequiredComponents()
     {
         // Test Values are compared to the ones of Cookie Clicker - Clicker
-        _generator = A.Generator.Init(15, 0.1f, 0, 1.15);
+        FloatVariableSO _baseCost = ScriptableObject.CreateInstance<FloatVariableSO>();
+        FloatVariableSO _production = ScriptableObject.CreateInstance<FloatVariableSO>();
+        _baseCost.Initialize(15);
+        _production.Initialize(0.1f);
+        _generator = A.Generator.Init(_baseCost, _production, 0, 1.15);
     }
 
     [Test]

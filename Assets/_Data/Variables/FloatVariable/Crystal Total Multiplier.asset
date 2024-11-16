@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseValue: 1
   _minValue: 1
-  _maxValue: 20
+  _maxValue: 3.402823e+38
   _modifiers: []
-  _value: 1
+  _value: 5
