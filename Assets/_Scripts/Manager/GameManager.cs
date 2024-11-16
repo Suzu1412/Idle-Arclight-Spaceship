@@ -6,9 +6,6 @@ using UnityEngine.Events;
 [RequireComponent(typeof(AddSaveDataRunTimeSet))]
 public class GameManager : Singleton<GameManager>, ISaveable
 {
-    private bool _hasLoadedGame = false;
-
-
     #region Save System
     public void SaveData(GameData gameData)
     {

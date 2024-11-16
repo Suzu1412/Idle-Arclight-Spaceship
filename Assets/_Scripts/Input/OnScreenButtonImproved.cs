@@ -11,8 +11,6 @@ public class OnScreenButtonImproved : OnScreenControl, IPointerClickHandler, IPo
         SendValueToControl(0.0f);
     }
 
-
-
     public void OnPointerClick(PointerEventData eventData)
     {
         SendValueToControl(1.0f);

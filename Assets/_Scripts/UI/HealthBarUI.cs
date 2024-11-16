@@ -14,7 +14,6 @@ public class HealthBarUI : MonoBehaviour
     private float _previousValue;
     private IHealthSystem _healthSystem;
     private Coroutine _damageAnimationCoroutine;
-    [SerializeField] private float _lerpDuration = 1f;
     private bool _isDamaged;
     [SerializeField] private TextMeshProUGUI _amountText;
 
@@ -59,7 +58,10 @@ public class HealthBarUI : MonoBehaviour
     {
         _health = health;
         _isDamaged = false;
-        SetHealthBar();
+        if (_health.Value > 0)
+        {
+            SetHealthBar();
+        }
     }
 
     public void SetHealth(IntVariableSO health)
@@ -69,7 +71,10 @@ public class HealthBarUI : MonoBehaviour
 
     private void UpdateHealth()
     {
-        SetHealthBar();
+        if (_health.Value > 0)
+        {
+            SetHealthBar();
+        }
     }
 
     private void UpdateText()

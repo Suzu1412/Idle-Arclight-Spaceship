@@ -18,10 +18,7 @@ public class SceneLoaderManager : MonoBehaviour
 
     [SerializeField] private float _fillSpeed = 0.5f;
     [SerializeField] private float _unloadProgress = 0.2f;
-    private float _targetProgress;
-    private float _currentFillAmount;
     private float _loadedScenes;
-    private bool _isLoading;
 
     public readonly SceneGroupManager _manager = new();
 
@@ -50,7 +47,6 @@ public class SceneLoaderManager : MonoBehaviour
 
     public async Awaitable LoadSceneGroup(int index)
     {
-        _targetProgress = 1f;
         _loadedScenes = 0;
 
         if (index < 0 || index >= _sceneGroups.Length)
@@ -67,14 +63,8 @@ public class SceneLoaderManager : MonoBehaviour
 
     void EnableLoadingCanvas(bool enable = true)
     {
-        _isLoading = enable;
         _loadingCanvas.gameObject.SetActive(enable);
         _loadingCamera.SetActive(enable);
-
-        if (enable)
-        {
-            _currentFillAmount = 0f;
-        }
     }
 
     private void SceneLoaded(string sceneName)

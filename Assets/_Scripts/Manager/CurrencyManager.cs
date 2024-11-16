@@ -37,8 +37,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     private FormattedNumber UpdateCurrencyFormatted;
     private FormattedNumber UpdateProductionFormatted;
 
-    [SerializeField] [Range(1f, 50f)] private float _generatorMultiplier = 1f;
-
     protected override void Awake()
     {
         base.Awake();

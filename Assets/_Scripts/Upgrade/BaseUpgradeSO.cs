@@ -6,36 +6,35 @@ using UnityEngine;
 public abstract class BaseUpgradeSO : SerializableScriptableObject
 {
     [SerializeField] protected string _name;
-    [SerializeField] protected double _baseCost;
-    [SerializeField] protected double _costRequirement;
-    protected double _cost;
+    [SerializeField] protected string _description;
+    [SerializeField] protected FloatVariableSO _cost;
+    [SerializeField] protected BoolVariableSO _requiredSystem;
+    [SerializeField] protected FloatVariableSO _variableToModify;
+    [SerializeField] protected FloatModifier _modifierToApply;
     protected bool _isDirty;
 
-
     public string Name => _name;
-    public double Cost
-    {
-        get
-        {
-            if (_isDirty)
-            {
+    public string Description => _description;
+    public FloatVariableSO Cost => _cost;
+    public double CostRequirement { get => Cost.Value * 0.33f; }
+    public bool IsUnlocked { get; internal set; }
+    public bool IsAlreadyBought { get; internal set; }
 
-            }
-            return _cost;
+    internal void BuyUpgrade(double currency)
+    {
+        if (currency >= Cost.Value)
+        {
+            _variableToModify.AddModifier(_modifierToApply);
+            IsAlreadyBought = true;
         }
     }
 
-    public bool IsUnlocked { get; internal set; }
-
-    public abstract void ApplyUpgrade();
-
-    protected abstract bool CheckIfMeetRequirementToUnlock();
-
-    public void UnlockUpgrade()
+    public void UnlockUpgrade(double currency)
     {
-        if (CheckIfMeetRequirementToUnlock())
+        if (CheckIfMeetRequirementToUnlock(currency))
         {
             IsUnlocked = true;
         }
     }
+    protected abstract bool CheckIfMeetRequirementToUnlock(double currency);
 }

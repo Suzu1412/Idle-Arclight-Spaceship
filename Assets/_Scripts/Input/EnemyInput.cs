@@ -6,7 +6,6 @@ public class EnemyInput : MonoBehaviour, IAgentInput
     public Vector2 Direction { get; private set; }
 
     public event UnityAction<Vector2> OnMovement;
-    public event UnityAction<Vector2> OnSetDestination;
     public event UnityAction<bool> Attack;
 
     public void CallOnAttack(bool wasPressed)

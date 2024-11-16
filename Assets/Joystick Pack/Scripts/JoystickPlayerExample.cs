@@ -22,7 +22,8 @@ public class JoystickPlayerExample : MonoBehaviour
 
     private void OnDisable()
     {
-        OnStickChangeDirection.RaiseEvent(Vector2.zero);
+        _direction = Vector2.zero;
+        OnStickChangeDirection.RaiseEvent(_direction);
         _topLeftImage.enabled = false;
         _topRightImage.enabled = false;
         _bottomLeftImage.enabled = false;
