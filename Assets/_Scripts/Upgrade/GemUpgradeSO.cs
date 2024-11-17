@@ -5,12 +5,23 @@ public class GemUpgradeSO : BaseUpgradeSO
 {
     [SerializeField] private GeneratorSO _generator;
     [SerializeField] private int _amountRequired;
+    [SerializeField] private VoidGameEvent OnGeneratorUpgradeEvent;
+
+    internal override void BuyUpgrade(double currency)
+    {
+        if (currency >= Cost.Value)
+        {
+            _variableToModify.AddModifier(_modifierToApply);
+            IsAlreadyBought = true;
+            OnGeneratorUpgradeEvent.RaiseEvent();
+        }
+    }
 
     protected override bool CheckIfMeetRequirementToUnlock(double currency)
     {
         if (_generator == null)
         {
-            Debug.LogError($"{name} has no gem generator attached. please fix");
+            Debug.LogError($"{nameof(UpgradeSO)} has no gem generator attached. please fix");
             return false;
         }
 

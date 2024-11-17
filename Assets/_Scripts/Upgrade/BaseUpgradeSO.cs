@@ -11,6 +11,8 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
     [SerializeField] protected BoolVariableSO _requiredSystem;
     [SerializeField] protected FloatVariableSO _variableToModify;
     [SerializeField] protected FloatModifier _modifierToApply;
+    protected FormattedNumber CostFormatted { get; private set; }
+
     protected bool _isDirty;
 
     public string Name => _name;
@@ -20,7 +22,7 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
     public bool IsUnlocked { get; internal set; }
     public bool IsAlreadyBought { get; internal set; }
 
-    internal void BuyUpgrade(double currency)
+    internal virtual void BuyUpgrade(double currency)
     {
         if (currency >= Cost.Value)
         {
@@ -36,5 +38,12 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
             IsUnlocked = true;
         }
     }
+
+    public FormattedNumber GetCost()
+    {
+        CostFormatted = FormatNumber.FormatDouble(Cost.Value, CostFormatted);
+        return CostFormatted;
+    }
+
     protected abstract bool CheckIfMeetRequirementToUnlock(double currency);
 }

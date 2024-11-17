@@ -39,7 +39,6 @@ public class GeneratorSO : SerializableScriptableObject
             IsUnlocked = true;
         }
     }
-
     public void AddAmount(int amount)
     {
         _isDirty = true;

@@ -4,30 +4,27 @@ using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class GeneratorButtonController : MonoBehaviour
+public class UpgradeButtonController : MonoBehaviour
 {
     [Header("Double Variable")]
     [SerializeField] private DoubleVariableSO _totalCurrency;
 
     [Header("Void Event Listener")]
     [SerializeField] private VoidGameEventListener OnCurrencyChangedEventListener;
-    [SerializeField] private VoidGameEventListener OnGeneratorUpgradeListener;
 
     [Header("Assigned Automatically")]
-    [SerializeField] [ReadOnly] private GeneratorSO _generator;
-    [SerializeField] [ReadOnly] private int _index;
+    [SerializeField][ReadOnly] private BaseUpgradeSO _upgrade;
+    [SerializeField][ReadOnly] private int _index;
 
     [Header("Button Fields")]
     [SerializeField] private Image _background;
-    [SerializeField] private Image _generatorIcon;
     [SerializeField] private TextMeshProUGUI _nameText;
-    [SerializeField] private TextMeshProUGUI _amountText;
+    [SerializeField] private TextMeshProUGUI _descriptionText;
     [SerializeField] private TextMeshProUGUI _priceText;
-    [SerializeField] private TextMeshProUGUI _productionText;
     [SerializeField] private Button _buyButton;
     private bool _isAlreadyActive;
 
-    public event UnityAction<int> OnBuyGeneratorClicked;
+    public event UnityAction<int> OnBuyUpgradeClicked;
 
     private void Awake()
     {
@@ -39,14 +36,12 @@ public class GeneratorButtonController : MonoBehaviour
     {
         _buyButton.onClick.AddListener(HandleBuyButton);
         OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
-        OnGeneratorUpgradeListener.Register(DisplayImage);
     }
 
     private void OnDisable()
     {
         _buyButton.onClick.RemoveAllListeners();
         OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
-        OnGeneratorUpgradeListener.DeRegister(DisplayImage);
     }
 
     public void SetIndex(int index)
@@ -54,45 +49,36 @@ public class GeneratorButtonController : MonoBehaviour
         _index = index;
     }
 
-    public void SetGenerator(GeneratorSO generator)
+    public void SetUpgrade(BaseUpgradeSO upgrade)
     {
-        _generator = generator;
+        _upgrade = upgrade;
     }
 
     public void PrepareButton()
     {
-        DisplayImage();
-        DisplayAmountOwned();
         DisplayName();
         DisplayPriceText();
-        DisplayProductionText();
-    }
-
-    public void ChangeAmountToBuy(int amount)
-    {
-        _generator.GetBulkCost(amount);
-        CheckIfCanBuy();
-        DisplayPriceText();
+        DisplayDescriptionText();
     }
 
     public void HandleBuyButton()
     {
-        OnBuyGeneratorClicked?.Invoke(_index);
+        OnBuyUpgradeClicked?.Invoke(_index);
     }
 
     private void CheckIfCanBuy()
     {
         if (!_isAlreadyActive)
         {
-            if (_generator.IsUnlocked || _totalCurrency.Value >= _generator.CostRequirement)
+            if (_upgrade.IsUnlocked || _totalCurrency.Value >= _upgrade.CostRequirement)
             {
                 _isAlreadyActive = true;
-                _generator.CheckIfMeetRequirementsToUnlock(_totalCurrency.Value);
+                _upgrade.UnlockUpgrade(_totalCurrency.Value);
                 ActivateButton(_isAlreadyActive);
             }
         }
 
-        ToggleBuyButton(_totalCurrency.Value >= _generator.BulkCost);
+        ToggleBuyButton(_totalCurrency.Value >= _upgrade.Cost.Value);
     }
 
     private void ToggleBuyButton(bool val)
@@ -110,7 +96,6 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void ActivateButton(bool val)
     {
-
         _background.enabled = val;
 
         for (int i = 0; i < transform.childCount; i++)
@@ -120,28 +105,18 @@ public class GeneratorButtonController : MonoBehaviour
 
     }
 
-    private void DisplayImage()
-    {
-        _generatorIcon.sprite = _generator.Image;
-    }
-
-    private void DisplayAmountOwned()
-    {
-        _amountText.text = _generator.AmountOwned.ToString();
-    }
-
     private void DisplayName()
     {
-        _nameText.text = _generator.Name.ToString();
+        _nameText.text = _upgrade.Name.ToString();
     }
 
     private void DisplayPriceText()
     {
-        _priceText.text = _generator.CostFormatted.GetFormat();
+        _priceText.text = _upgrade.GetCost().GetFormat();
     }
 
-    private void DisplayProductionText()
+    private void DisplayDescriptionText()
     {
-        _productionText.text = $"{_generator.ProductionFormatted.GetFormat()} CPS";
+        _descriptionText.text = _upgrade.Description.ToString();
     }
 }

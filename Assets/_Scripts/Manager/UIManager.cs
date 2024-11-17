@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -23,6 +24,8 @@ public class UIManager : Singleton<UIManager>
 
     [Header("Shop UI")]
     [SerializeField] private GameObject _shopUI;
+    [SerializeField] private TextMeshProUGUI _shopGeneratorText;
+    [SerializeField] private TextMeshProUGUI _shopUpgradeText;
     [SerializeField] private Button _shopDefaultButton;
     [SerializeField] private Image _buy1AmountImage;
     [SerializeField] private Image _buy10AmountImage;
@@ -58,6 +61,7 @@ public class UIManager : Singleton<UIManager>
         _shopDefaultButton.Select();
     }
 
+
     public void ChangeAmountToBuy(int amount)
     {
         OnChangeBuyAmountEvent?.RaiseEvent(amount);
@@ -76,6 +80,8 @@ public class UIManager : Singleton<UIManager>
         _joystick.SetActive(!isActive);
         if (isActive)
         {
+            _shopUpgradeText.enabled = false;
+            _shopGeneratorText.enabled = true;
             _shopUI.SetActive(isActive);
             _shopPanel.DOKill();
             _shopPanel.DOLocalMove(_openPosition, 0.4f).SetEase(Ease.InOutSine);
