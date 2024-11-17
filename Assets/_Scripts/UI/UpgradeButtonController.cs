@@ -87,7 +87,7 @@ public class UpgradeButtonController : MonoBehaviour
         {
             if (EventSystem.current.currentSelectedGameObject == _buyButton.gameObject)
             {
-                UIManager.Instance.SetShopDefaultButton();
+                UIManager.Instance.SetGeneratorShopDefaultButton();
             }
         }
 

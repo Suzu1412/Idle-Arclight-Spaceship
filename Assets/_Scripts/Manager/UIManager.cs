@@ -22,11 +22,11 @@ public class UIManager : Singleton<UIManager>
     [Header("Joystick")]
     [SerializeField] private GameObject _joystick;
 
-    [Header("Shop UI")]
-    [SerializeField] private GameObject _shopUI;
-    [SerializeField] private TextMeshProUGUI _shopGeneratorText;
-    [SerializeField] private TextMeshProUGUI _shopUpgradeText;
-    [SerializeField] private Button _shopDefaultButton;
+    [Header("Generator UI")]
+    [SerializeField] private GameObject _generatorShopUI;
+
+    [SerializeField] private Button _generatorShopDefaultButton;
+
     [SerializeField] private Image _buy1AmountImage;
     [SerializeField] private Image _buy10AmountImage;
     [SerializeField] private Image _buy50AmountImage;
@@ -34,6 +34,11 @@ public class UIManager : Singleton<UIManager>
 
     [SerializeField] private Sprite _buttonAmountChecked;
     [SerializeField] private Sprite _buttonAmountUnchecked;
+
+    [Header("Upgrade UI")]
+    [SerializeField] private GameObject _upgradeShopUI;
+    [SerializeField] private Button _upgradeShopDefaultButton;
+
 
     private void Start()
     {
@@ -56,15 +61,25 @@ public class UIManager : Singleton<UIManager>
 
     }
 
-    public void SetShopDefaultButton()
+    public void SetGeneratorShopDefaultButton()
     {
-        _shopDefaultButton.Select();
+        _generatorShopDefaultButton.Select();
+    }
+
+    public void SetUpgradeShopDefaultButton()
+    {
+        _upgradeShopDefaultButton.Select();
     }
 
 
     public void ChangeAmountToBuy(int amount)
     {
         OnChangeBuyAmountEvent?.RaiseEvent(amount);
+    }
+
+    public void BuyEveryUpgradeAvailable()
+    {
+
     }
 
     private void ChangeSelectedAmountButton(int amount)
@@ -80,19 +95,18 @@ public class UIManager : Singleton<UIManager>
         _joystick.SetActive(!isActive);
         if (isActive)
         {
-            _shopUpgradeText.enabled = false;
-            _shopGeneratorText.enabled = true;
-            _shopUI.SetActive(isActive);
+            _generatorShopUI.SetActive(isActive);
             _shopPanel.DOKill();
             _shopPanel.DOLocalMove(_openPosition, 0.4f).SetEase(Ease.InOutSine);
-            SetShopDefaultButton();
+            SetGeneratorShopDefaultButton();
         }
         else
         {
             _shopPanel.DOKill();
             _shopPanel.DOLocalMove(_closePosition, 0.4f).SetEase(Ease.InOutSine);
             await Awaitable.WaitForSecondsAsync(0.4f);
-            _shopUI.SetActive(isActive);
+            _generatorShopUI.SetActive(isActive);
+
         }
     }
 
