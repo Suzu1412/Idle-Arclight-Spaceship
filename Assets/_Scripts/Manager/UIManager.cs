@@ -2,10 +2,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using System.Collections;
 
 public class UIManager : Singleton<UIManager>
 {
+    private Coroutine _disableShopCoroutine;
+
     [Header("Elements")]
+    [SerializeField] private GameObject _shopGameObject;
     [SerializeField] private RectTransform _shopPanel;
 
     [Header("Settings")]
@@ -66,12 +70,6 @@ public class UIManager : Singleton<UIManager>
         _generatorShopDefaultButton.Select();
     }
 
-    public void SetUpgradeShopDefaultButton()
-    {
-        _upgradeShopDefaultButton.Select();
-    }
-
-
     public void ChangeAmountToBuy(int amount)
     {
         OnChangeBuyAmountEvent?.RaiseEvent(amount);
@@ -90,25 +88,34 @@ public class UIManager : Singleton<UIManager>
         _buy100AmountImage.sprite = (amount == 100) ? _buttonAmountChecked : _buttonAmountUnchecked;
     }
 
-    private async void ToggleShop(bool isActive)
+    private void ToggleShop(bool isActive)
     {
         _joystick.SetActive(!isActive);
         if (isActive)
         {
+            if (_disableShopCoroutine != null) StopCoroutine(_disableShopCoroutine);
+            _shopGameObject.SetActive(true);
             _generatorShopUI.SetActive(isActive);
             _shopPanel.DOKill();
             _shopPanel.DOLocalMove(_openPosition, 0.4f).SetEase(Ease.InOutSine);
             SetGeneratorShopDefaultButton();
+            
         }
         else
         {
             _shopPanel.DOKill();
             _shopPanel.DOLocalMove(_closePosition, 0.4f).SetEase(Ease.InOutSine);
-            await Awaitable.WaitForSecondsAsync(0.4f);
-            _generatorShopUI.SetActive(isActive);
-
+            if (_disableShopCoroutine != null) StopCoroutine(_disableShopCoroutine);
+            _disableShopCoroutine = StartCoroutine(DisableShopElements());
         }
     }
 
+    private IEnumerator DisableShopElements()
+    {
+        yield return Helpers.GetWaitForSeconds(0.4f);
+        _generatorShopUI.SetActive(false);
+
+        _shopGameObject.SetActive(false);
+    }
 
 }

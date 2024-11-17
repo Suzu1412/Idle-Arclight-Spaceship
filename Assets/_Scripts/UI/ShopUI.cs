@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class ShopUI : Singleton<ShopUI>
 {
-    [SerializeField] private GameObject _shopItemButtonPrefab;
+    [SerializeField] private GameObject _shopGeneratorButtonPrefab;
     [SerializeField] private Transform _shopItemParent;
+    [SerializeField] private GameObject _canvasGO;
     private List<GeneratorButtonController> _buttons = new();
     private int _amountToBuy;
 
@@ -22,7 +23,7 @@ public class ShopUI : Singleton<ShopUI>
 
     private void OnEnable()
     {
-        OnListGeneratorLoadedListener.Register(PrepareUI);
+        OnListGeneratorLoadedListener.Register(PrepareUIGenerator);
         OnGeneratorAmountChangedListener.Register(UpdateButtonInfo);
         OnChangeBuyAmountEventListener.Register(ChangeAmountToBuy);
         OnOpenShopEvent?.RaiseEvent();
@@ -30,12 +31,12 @@ public class ShopUI : Singleton<ShopUI>
 
     private void OnDisable()
     {
-        OnListGeneratorLoadedListener.DeRegister(PrepareUI);
+        OnListGeneratorLoadedListener.DeRegister(PrepareUIGenerator);
         OnGeneratorAmountChangedListener.DeRegister(UpdateButtonInfo);
         OnChangeBuyAmountEventListener.DeRegister(ChangeAmountToBuy);
     }
 
-    private void PrepareUI(List<GeneratorSO> generators)
+    private void PrepareUIGenerator(List<GeneratorSO> generators)
     {
         if (_amountToBuy < 1)
         {
@@ -46,7 +47,7 @@ public class ShopUI : Singleton<ShopUI>
 
         for (int i = 0; i < generators.Count; i++)
         {
-            GeneratorButtonController button = Instantiate(_shopItemButtonPrefab).GetComponent<GeneratorButtonController>();
+            GeneratorButtonController button = Instantiate(_shopGeneratorButtonPrefab).GetComponent<GeneratorButtonController>();
             button.transform.SetParent(_shopItemParent, false);
             button.SetIndex(i);
             button.SetGenerator(generators[i]);
@@ -57,7 +58,7 @@ public class ShopUI : Singleton<ShopUI>
             _buttons.Add(button);
         }
 
-        gameObject.SetActive(false);
+        _canvasGO.SetActive(false);
     }
 
     private void UpdateButtonInfo(int index)
