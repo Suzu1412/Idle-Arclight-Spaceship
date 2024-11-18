@@ -3,11 +3,20 @@ using UnityEngine;
 
 public class ShopUI : Singleton<ShopUI>
 {
+    [Header("Generator")]
     [SerializeField] private GameObject _shopGeneratorButtonPrefab;
-    [SerializeField] private Transform _shopItemParent;
-    [SerializeField] private GameObject _canvasGO;
-    private List<GeneratorButtonController> _buttons = new();
+    [SerializeField] private Transform _shopGeneratorContent;
+    [SerializeField] private GameObject _generatorCanvasGO;
+    private List<GeneratorButtonController> _generatorButtons = new();
     private int _amountToBuy;
+
+    [Header("Upgrade")]
+    [SerializeField] private GameObject _shopUpgradeButtonPrefab;
+    [SerializeField] private Transform _shopUpgradeContent;
+    [SerializeField] private GameObject _UpgradeCanvasGO;
+    private List<UpgradeButtonController> _upgradeButtons = new();
+
+
 
     [Header("Void Event")]
     [SerializeField] private VoidGameEvent OnOpenShopEvent;
@@ -43,27 +52,27 @@ public class ShopUI : Singleton<ShopUI>
             _amountToBuy = 1;
         }
 
-        _buttons.Clear();
+        _upgradeButtons.Clear();
 
         for (int i = 0; i < generators.Count; i++)
         {
             GeneratorButtonController button = Instantiate(_shopGeneratorButtonPrefab).GetComponent<GeneratorButtonController>();
-            button.transform.SetParent(_shopItemParent, false);
+            button.transform.SetParent(_shopGeneratorContent, false);
             button.SetIndex(i);
             button.SetGenerator(generators[i]);
             generators[i].GetProductionRate();
             button.ChangeAmountToBuy(_amountToBuy);
             button.OnBuyGeneratorClicked += BuyGenerator;
             button.PrepareButton();
-            _buttons.Add(button);
+            _generatorButtons.Add(button);
         }
 
-        _canvasGO.SetActive(false);
+        _generatorCanvasGO.SetActive(false);
     }
 
     private void UpdateButtonInfo(int index)
     {
-        _buttons[index].PrepareButton();
+        _generatorButtons[index].PrepareButton();
     }
 
     private void BuyGenerator(int index)
@@ -75,7 +84,7 @@ public class ShopUI : Singleton<ShopUI>
     {
         _amountToBuy = amount;
 
-        foreach (var button in _buttons)
+        foreach (var button in _generatorButtons)
         {
             button.ChangeAmountToBuy(amount);
         }

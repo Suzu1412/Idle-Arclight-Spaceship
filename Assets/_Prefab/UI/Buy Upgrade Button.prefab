@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 5983949604166112601}
   - component: {fileID: 1360773083048785347}
   m_Layer: 5
-  m_Name: Upgrade Buy Button
+  m_Name: Buy Upgrade Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,7 +250,6 @@ MonoBehaviour:
   _background: {fileID: 4206478239620820234}
   _nameText: {fileID: 9105629353538685685}
   _descriptionText: {fileID: 275089287239943272}
-  _buyText: {fileID: 0}
   _priceText: {fileID: 3308157137987681992}
   _buyButton: {fileID: 9046528635112983672}
 --- !u!1 &2992419786460270341

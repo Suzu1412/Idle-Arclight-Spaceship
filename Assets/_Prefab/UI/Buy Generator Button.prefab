@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 7600204521842354404}
   - component: {fileID: 1939805442267171022}
   m_Layer: 5
-  m_Name: Generator Buy Button
+  m_Name: Buy Generator Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,7 +332,6 @@ MonoBehaviour:
   _generatorIcon: {fileID: 7615943875515194709}
   _nameText: {fileID: 6069499809951082843}
   _amountText: {fileID: 9166258388167318685}
-  _buyText: {fileID: 8780465033378330686}
   _priceText: {fileID: 6267839520823332536}
   _productionText: {fileID: 5461118389445574781}
   _buyButton: {fileID: 5248496406339025179}

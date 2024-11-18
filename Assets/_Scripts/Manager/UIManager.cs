@@ -9,6 +9,7 @@ public class UIManager : Singleton<UIManager>
     private Coroutine _disableShopCoroutine;
 
     [Header("Elements")]
+    [SerializeField] private TextMeshProUGUI _shopText;
     [SerializeField] private GameObject _shopGameObject;
     [SerializeField] private RectTransform _shopPanel;
 
@@ -28,14 +29,11 @@ public class UIManager : Singleton<UIManager>
 
     [Header("Generator UI")]
     [SerializeField] private GameObject _generatorShopUI;
-
     [SerializeField] private Button _generatorShopDefaultButton;
-
     [SerializeField] private Image _buy1AmountImage;
     [SerializeField] private Image _buy10AmountImage;
     [SerializeField] private Image _buy50AmountImage;
     [SerializeField] private Image _buy100AmountImage;
-
     [SerializeField] private Sprite _buttonAmountChecked;
     [SerializeField] private Sprite _buttonAmountUnchecked;
 
@@ -80,6 +78,20 @@ public class UIManager : Singleton<UIManager>
 
     }
 
+    public void OpenGeneratorStore()
+    {
+        _shopText.text = "Generator Store";
+        _generatorShopUI.SetActive(true);
+        _upgradeShopUI.SetActive(false);
+    }
+
+    public void OpenUpgradeStore()
+    {
+        _shopText.text = "Upgrade Store";
+        _generatorShopUI.SetActive(false);
+        _upgradeShopUI.SetActive(true);
+    }
+
     private void ChangeSelectedAmountButton(int amount)
     {
         _buy1AmountImage.sprite = (amount == 1) ? _buttonAmountChecked : _buttonAmountUnchecked;
@@ -95,11 +107,10 @@ public class UIManager : Singleton<UIManager>
         {
             if (_disableShopCoroutine != null) StopCoroutine(_disableShopCoroutine);
             _shopGameObject.SetActive(true);
-            _generatorShopUI.SetActive(isActive);
+            OpenGeneratorStore();
             _shopPanel.DOKill();
             _shopPanel.DOLocalMove(_openPosition, 0.4f).SetEase(Ease.InOutSine);
             SetGeneratorShopDefaultButton();
-            
         }
         else
         {

@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 3424983619845978666}
   - component: {fileID: 2687335104222185700}
   m_Layer: 0
-  m_Name: VerticalCanvas 1
+  m_Name: VerticalCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -820,8 +820,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shopGeneratorButtonPrefab: {fileID: 1494101746775617029, guid: 41e21cbc66f171f4a90a1a5040a1d2aa, type: 3}
-  _shopItemParent: {fileID: 6464331708053630070}
-  _canvasGO: {fileID: 5646699635079135741}
+  _shopGeneratorContent: {fileID: 6464331708053630070}
+  _generatorCanvasGO: {fileID: 5646699635079135741}
+  _shopUpgradeButtonPrefab: {fileID: 551319191954620405, guid: 92009553d0c2af549a769e988c6792da, type: 3}
+  _shopUpgradeContent: {fileID: 8714136143173040676}
+  _UpgradeCanvasGO: {fileID: 6243851338514417113}
   OnOpenShopEvent: {fileID: 11400000, guid: 7a00daa2c708f224ea70806189d2563c, type: 2}
   OnBuyGameEvent: {fileID: 11400000, guid: af8d95c7c0d8e4b3fad008cbec0807e6, type: 2}
   OnChangeBuyAmountEvent: {fileID: 11400000, guid: b8b90167f58d94ee391e69875a58d3dd, type: 2}
@@ -1019,7 +1022,7 @@ GameObject:
   - component: {fileID: 6038096883171501434}
   - component: {fileID: 49277658655746644}
   m_Layer: 0
-  m_Name: TabMenu
+  m_Name: Tab Top Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2677,21 +2680,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 918185652829297730}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+        m_TargetAssemblyTypeName: UIManager, Suzu.Manager
+        m_MethodName: OpenUpgradeStore
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5764,7 +5755,7 @@ GameObject:
   - component: {fileID: 1741430633368595970}
   - component: {fileID: 2722262180811554648}
   m_Layer: 5
-  m_Name: Upgrade Buy Button
+  m_Name: Buy Upgrade Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9245,7 +9236,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4251124120149890547}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Suzu.Manager
+        m_MethodName: OpenGeneratorStore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8669251290438993851
 GameObject:
   m_ObjectHideFlags: 0
