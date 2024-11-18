@@ -11,10 +11,11 @@ public class UpgradeButtonController : MonoBehaviour
 
     [Header("Void Event Listener")]
     [SerializeField] private VoidGameEventListener OnCurrencyChangedEventListener;
+    [SerializeField] private VoidGameEventListener OnUpgradeBoughtEventListener;
 
     [Header("Assigned Automatically")]
-    [SerializeField][ReadOnly] private BaseUpgradeSO _upgrade;
-    [SerializeField][ReadOnly] private int _index;
+    [SerializeField] [ReadOnly] private BaseUpgradeSO _upgrade;
+    [SerializeField] [ReadOnly] private int _index;
 
     [Header("Button Fields")]
     [SerializeField] private Image _background;
@@ -23,25 +24,32 @@ public class UpgradeButtonController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _priceText;
     [SerializeField] private Button _buyButton;
     private bool _isAlreadyActive;
+    private bool _isAlreadyBought;
 
     public event UnityAction<int> OnBuyUpgradeClicked;
 
     private void Awake()
     {
         _isAlreadyActive = false;
+        _isAlreadyBought = false;
         ActivateButton(_isAlreadyActive);
     }
 
     private void OnEnable()
     {
         _buyButton.onClick.AddListener(HandleBuyButton);
+        CheckIfCanBuy();
+        CheckIfBought();
         OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
+        OnUpgradeBoughtEventListener.Register(CheckIfBought);
     }
 
     private void OnDisable()
     {
         _buyButton.onClick.RemoveAllListeners();
         OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
+        OnUpgradeBoughtEventListener.DeRegister(CheckIfBought);
+
     }
 
     public void SetIndex(int index)
@@ -68,6 +76,8 @@ public class UpgradeButtonController : MonoBehaviour
 
     private void CheckIfCanBuy()
     {
+        if (_upgrade == null) return;
+
         if (!_isAlreadyActive)
         {
             if (_upgrade.IsRequirementMet || _totalCurrency.Value >= _upgrade.CostRequirement)
@@ -79,6 +89,17 @@ public class UpgradeButtonController : MonoBehaviour
         }
 
         ToggleBuyButton(_totalCurrency.Value >= _upgrade.Cost.Value);
+    }
+
+    private void CheckIfBought()
+    {
+        if (_upgrade == null) return;
+
+        if (!_isAlreadyBought && _upgrade.IsApplied)
+        {
+            ActivateButton(false);
+            _isAlreadyBought = true;
+        }
     }
 
     private void ToggleBuyButton(bool val)

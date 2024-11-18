@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ec5fe9efef2f4bbaa4277fd61593974, type: 3}
-  m_Name: OnOpenShopEvent
+  m_Script: {fileID: 11500000, guid: df6ada1939a4c46abae9fdbeb3e4d093, type: 3}
+  m_Name: OnUpgradeBoughtEvent Listener
   m_EditorClassIdentifier: 
+  OnEvent: {fileID: 11400000, guid: e54d70a978bc54df1a45e5442391819b, type: 2}

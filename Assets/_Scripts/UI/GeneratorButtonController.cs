@@ -38,6 +38,7 @@ public class GeneratorButtonController : MonoBehaviour
     private void OnEnable()
     {
         _buyButton.onClick.AddListener(HandleBuyButton);
+        CheckIfCanBuy();
         OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
         OnGeneratorUpgradeListener.Register(DisplayImage);
     }
@@ -82,6 +83,8 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void CheckIfCanBuy()
     {
+        if (_generator == null) return;
+
         if (!_isAlreadyActive)
         {
             if (_generator.IsUnlocked || _totalCurrency.Value >= _generator.CostRequirement)

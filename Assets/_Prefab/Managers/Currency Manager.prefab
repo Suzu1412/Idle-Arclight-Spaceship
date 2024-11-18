@@ -65,7 +65,7 @@ MonoBehaviour:
   OnGeneratorAmountChangedEvent: {fileID: 11400000, guid: ed7dedcf3aab54e709171f8864d63ce9, type: 2}
   OnChangeBuyAmountEvent: {fileID: 11400000, guid: b8b90167f58d94ee391e69875a58d3dd, type: 2}
   OnCurrencyChangedEvent: {fileID: 11400000, guid: ff8f3ee2b518a4df797a668d4d90f90b, type: 2}
-  OnOpenShopListener: {fileID: 11400000, guid: 10046c3265ce8544482934c59fa5a860, type: 2}
+  OnUpgradeBoughtEvent: {fileID: 11400000, guid: e54d70a978bc54df1a45e5442391819b, type: 2}
   OnChangeBuyAmountEventListener: {fileID: 11400000, guid: 4aeb198ff79a245e59df77a1b8e59f30, type: 2}
   OnBuyGeneratorGameEventListener: {fileID: 11400000, guid: 08b51e75c2a3b43e7bbf976223fff8b9, type: 2}
   OnBuyUpgradeGameEventListener: {fileID: 11400000, guid: b954a1a3bfc82bc4ba2dc523cc5ef156, type: 2}

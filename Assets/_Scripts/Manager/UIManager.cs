@@ -60,7 +60,6 @@ public class UIManager : Singleton<UIManager>
     {
         OnToggleShopEventListener.DeRegister(ToggleShop);
         OnChangeBuyAmountEventListener.DeRegister(ChangeSelectedAmountButton);
-
     }
 
     public void SetGeneratorShopDefaultButton()
