@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using Cysharp.Text;
 
 public class GeneratorButtonController : MonoBehaviour
 {
@@ -130,21 +131,21 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void DisplayAmountOwned()
     {
-        _amountText.text = _generator.AmountOwned.ToString();
+        _amountText.SetTextFormat("{0}", _generator.AmountOwned);
     }
 
     private void DisplayName()
     {
-        _nameText.text = _generator.Name.ToString();
+        _nameText.SetTextFormat("{0}", _generator.Name);
     }
 
     private void DisplayPriceText()
     {
-        _priceText.text = _generator.CostFormatted.GetFormat();
+        _priceText.SetTextFormat("{0}", _generator.CostFormatted.GetFormat());
     }
 
     private void DisplayProductionText()
     {
-        _productionText.text = $"{_generator.ProductionFormatted.GetFormat()} CPS";
+        _productionText.SetTextFormat("{0} CpS", _generator.ProductionFormatted.GetFormat());
     }
 }

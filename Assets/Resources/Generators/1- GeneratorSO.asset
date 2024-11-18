@@ -21,6 +21,6 @@ MonoBehaviour:
   _baseCost: {fileID: 11400000, guid: 04bed4d01e22c0b45a725afa1e175e31, type: 2}
   _production: {fileID: 11400000, guid: 34b41b8f28b8c45a8b84cdf479a20ad8, type: 2}
   _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
-  _amountOwned: 34
+  _amountOwned: 0
   _priceGrowthRate: 1.15
-  _totalProduction: 71714.1
+  _totalProduction: 79347.4

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using Cysharp.Text;
 
 public class UpgradeButtonController : MonoBehaviour
 {
@@ -128,16 +129,16 @@ public class UpgradeButtonController : MonoBehaviour
 
     private void DisplayName()
     {
-        _nameText.text = _upgrade.Name.ToString();
+        _nameText.SetTextFormat("{0}", _upgrade.Name);
     }
 
     private void DisplayPriceText()
     {
-        _priceText.text = _upgrade.GetCost().GetFormat();
+        _priceText.SetTextFormat("{0}", _upgrade.GetCost().GetFormat());
     }
 
     private void DisplayDescriptionText()
     {
-        _descriptionText.text = _upgrade.Description.ToString();
+        _descriptionText.SetTextFormat("{0}", _upgrade.Description);
     }
 }

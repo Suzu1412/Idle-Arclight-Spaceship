@@ -324,6 +324,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c142c877a5a20479968127189671df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pickUpRadius: {fileID: 11400000, guid: f350790491243414a89abf49af2d6fb2, type: 2}
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!61 &4589728552326499288
 BoxCollider2D:
   m_ObjectHideFlags: 0
