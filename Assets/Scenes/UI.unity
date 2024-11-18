@@ -481,9 +481,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1652668762}
     - target: {fileID: 5976360699193608259, guid: 341bb524c5f806248bc4b205fa359265, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5976360699193608259, guid: 341bb524c5f806248bc4b205fa359265, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1652668762}
+    - target: {fileID: 5976360699193608259, guid: 341bb524c5f806248bc4b205fa359265, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyEveryUpgradeAvailable
+      objectReference: {fileID: 0}
     - target: {fileID: 6243851338514417113, guid: 341bb524c5f806248bc4b205fa359265, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -646,11 +654,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8714136143173040676, guid: 341bb524c5f806248bc4b205fa359265, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -540
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8714136143173040676, guid: 341bb524c5f806248bc4b205fa359265, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 600
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8795531117112176828, guid: 341bb524c5f806248bc4b205fa359265, type: 3}
       propertyPath: m_AnchorMax.y
@@ -747,10 +755,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8640947794676897651, guid: 3a73720d801ab4c2e8d5e9fd7806786c, type: 3}
-      propertyPath: _shopUI
-      value: 
-      objectReference: {fileID: 1261744835544582413}
-    - target: {fileID: 8640947794676897651, guid: 3a73720d801ab4c2e8d5e9fd7806786c, type: 3}
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 6458735840059036990}
@@ -790,10 +794,6 @@ PrefabInstance:
       propertyPath: _buy100AmountImage
       value: 
       objectReference: {fileID: 6985995215180230406}
-    - target: {fileID: 8640947794676897651, guid: 3a73720d801ab4c2e8d5e9fd7806786c, type: 3}
-      propertyPath: _shopDefaultButton
-      value: 
-      objectReference: {fileID: 4477414047472464175}
     - target: {fileID: 8640947794676897651, guid: 3a73720d801ab4c2e8d5e9fd7806786c, type: 3}
       propertyPath: _upgradeShopDefaultButton
       value: 

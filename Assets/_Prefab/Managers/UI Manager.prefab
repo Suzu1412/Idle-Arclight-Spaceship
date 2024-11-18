@@ -44,18 +44,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61cb45a6694954480a73a5ddbf6b15c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shopText: {fileID: 0}
+  _shopGameObject: {fileID: 0}
   _shopPanel: {fileID: 0}
   _openPosition: {x: 0, y: 0}
   _closePosition: {x: 0, y: 0}
+  OnBuyEveryUpgradeEvent: {fileID: 11400000, guid: c68fe7819f36e4de081f22e871e1dfe5, type: 2}
   OnChangeBuyAmountEvent: {fileID: 11400000, guid: b8b90167f58d94ee391e69875a58d3dd, type: 2}
   OnToggleShopEventListener: {fileID: 11400000, guid: 74102561e0be35f43adcdb993574b3cd, type: 2}
   OnChangeBuyAmountEventListener: {fileID: 11400000, guid: 4aeb198ff79a245e59df77a1b8e59f30, type: 2}
   _joystick: {fileID: 0}
-  _shopUI: {fileID: 0}
-  _shopDefaultButton: {fileID: 0}
+  _generatorShopUI: {fileID: 0}
+  _generatorShopDefaultButton: {fileID: 0}
   _buy1AmountImage: {fileID: 0}
   _buy10AmountImage: {fileID: 0}
   _buy50AmountImage: {fileID: 0}
   _buy100AmountImage: {fileID: 0}
   _buttonAmountChecked: {fileID: 21300000, guid: efb6c9334e498404883cd7150d537d74, type: 3}
   _buttonAmountUnchecked: {fileID: 21300000, guid: 906a104b67bbe476ba0bc6bdae09fc44, type: 3}
+  _upgradeShopUI: {fileID: 0}
+  _upgradeShopDefaultButton: {fileID: 0}

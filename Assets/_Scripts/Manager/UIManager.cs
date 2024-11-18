@@ -17,6 +17,8 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private Vector2 _openPosition;
     [SerializeField] private Vector2 _closePosition;
 
+    [Header("Void Event")]
+    [SerializeField] private VoidGameEvent OnBuyEveryUpgradeEvent;
     [Header("Int Event")]
     [SerializeField] private IntGameEvent OnChangeBuyAmountEvent;
     [Header("Bool Event Listener")]
@@ -69,12 +71,12 @@ public class UIManager : Singleton<UIManager>
 
     public void ChangeAmountToBuy(int amount)
     {
-        OnChangeBuyAmountEvent?.RaiseEvent(amount);
+        OnChangeBuyAmountEvent.RaiseEvent(amount);
     }
 
     public void BuyEveryUpgradeAvailable()
     {
-
+        OnBuyEveryUpgradeEvent.RaiseEvent();
     }
 
     public void OpenGeneratorStore()

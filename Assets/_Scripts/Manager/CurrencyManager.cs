@@ -20,6 +20,8 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [SerializeField] private VoidGameEvent OnCurrencyChangedEvent;
     [SerializeField] private VoidGameEvent OnUpgradeBoughtEvent;
 
+    [Header("Void Event Listener")]
+    [SerializeField] private VoidGameEventListener OnBuyEveryUpgradeEventListener;
     [Header("Int Event Listener")]
     [SerializeField] private IntGameEventListener OnChangeBuyAmountEventListener;
     [SerializeField] private IntGameEventListener OnBuyGeneratorGameEventListener;
@@ -53,6 +55,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         OnBuyGeneratorGameEventListener.Register(BuyGenerator);
         OnBuyUpgradeGameEventListener.Register(BuyUpgrade);
         OnGainCurrencyListener.Register(GetCrystal);
+        OnBuyEveryUpgradeEventListener.Register(BuyEveryUpgradeAvailable);
         StartCoroutine(GenerateIncome());
     }
 
@@ -62,6 +65,8 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         OnBuyGeneratorGameEventListener.DeRegister(BuyGenerator);
         OnBuyUpgradeGameEventListener.DeRegister(BuyUpgrade);
         OnGainCurrencyListener.DeRegister(GetCrystal);
+        OnBuyEveryUpgradeEventListener.DeRegister(BuyEveryUpgradeAvailable);
+
     }
 
     private void Increment(double amount)
@@ -135,9 +140,27 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             _totalCurrency.Value -= _upgrades[index].Cost.Value;
 
             UpdateCurrency();
+            GetProductionRate();
             OnUpgradeBoughtEvent.RaiseEvent();
             OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
         }
+    }
+
+    private void BuyEveryUpgradeAvailable()
+    {
+        int upgradesBought = 0;
+
+        for (int i = 0; i < _upgrades.Count; i++)
+        {
+            if (!_upgrades[i].IsRequirementMet) continue;
+            if (_upgrades[i].IsApplied) continue;
+            if (_totalCurrency.Value < _upgrades[i].Cost.Value) continue;
+
+            BuyUpgrade(i);
+            upgradesBought++;
+        }
+
+        Debug.Log($"Has comprado {upgradesBought} mejoras");
     }
 
     private void ChangeAmountToBuy(int amount)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -48,6 +49,7 @@ public class SceneGroupManager
             operationGroup.Operations.Add(operation);
 
             OnSceneLoaded?.Invoke(sceneData.Name);
+
         }
 
         while (!operationGroup.IsDone)
