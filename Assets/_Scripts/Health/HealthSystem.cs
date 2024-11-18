@@ -124,6 +124,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         if (amount <= 0f || _isInvulnerable) return;
 
         _health.Value -= amount;
+        OnHit?.Invoke();
         OnDamaged?.Invoke(amount);
         OnDamagedEvent?.RaiseEvent(amount);
 
@@ -151,7 +152,6 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     {
         if (_isInvulnerable) return;
 
-        OnHit?.Invoke();
         OnHitStun?.Invoke();
     }
 
