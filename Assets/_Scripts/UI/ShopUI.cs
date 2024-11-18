@@ -16,12 +16,11 @@ public class ShopUI : Singleton<ShopUI>
     [SerializeField] private GameObject _UpgradeCanvasGO;
     private List<UpgradeButtonController> _upgradeButtons = new();
 
-
-
     [Header("Void Event")]
     [SerializeField] private VoidGameEvent OnOpenShopEvent;
     [Header("Int Event")]
-    [SerializeField] private IntGameEvent OnBuyGameEvent;
+    [SerializeField] private IntGameEvent OnBuyGeneratorGameEvent;
+    [SerializeField] private IntGameEvent OnBuyUpgradeGameEvent;
     [SerializeField] private IntGameEvent OnChangeBuyAmountEvent;
     [Header("Int Event Listener")]
     [SerializeField] private IntGameEventListener OnGeneratorAmountChangedListener;
@@ -30,17 +29,27 @@ public class ShopUI : Singleton<ShopUI>
     [Header("List Generator Event Listener")]
     [SerializeField] private ListGeneratorGameEventListener OnListGeneratorLoadedListener;
 
+    [Header("List Upgrade Event ")]
+    [SerializeField] private ListUpgradeGameEventListener OnListUpgradeLoadedListener;
+
+    private bool _generatorInitialized;
+    private bool _upgradeInitialized;
+
     private void OnEnable()
     {
         OnListGeneratorLoadedListener.Register(PrepareUIGenerator);
+        OnListUpgradeLoadedListener.Register(PrepareUIUpgrade);
         OnGeneratorAmountChangedListener.Register(UpdateButtonInfo);
         OnChangeBuyAmountEventListener.Register(ChangeAmountToBuy);
         OnOpenShopEvent?.RaiseEvent();
+        _generatorInitialized = false;
+        _upgradeInitialized = false;
     }
 
     private void OnDisable()
     {
         OnListGeneratorLoadedListener.DeRegister(PrepareUIGenerator);
+        OnListUpgradeLoadedListener.DeRegister(PrepareUIUpgrade);
         OnGeneratorAmountChangedListener.DeRegister(UpdateButtonInfo);
         OnChangeBuyAmountEventListener.DeRegister(ChangeAmountToBuy);
     }
@@ -52,7 +61,7 @@ public class ShopUI : Singleton<ShopUI>
             _amountToBuy = 1;
         }
 
-        _upgradeButtons.Clear();
+        _generatorButtons.Clear();
 
         for (int i = 0; i < generators.Count; i++)
         {
@@ -67,7 +76,36 @@ public class ShopUI : Singleton<ShopUI>
             _generatorButtons.Add(button);
         }
 
-        _generatorCanvasGO.SetActive(false);
+        _generatorInitialized = true;
+        CloseCanvas();
+    }
+
+    private void PrepareUIUpgrade(List<BaseUpgradeSO> upgrades)
+    {
+        _upgradeButtons.Clear();
+
+        for (int i=0; i < upgrades.Count; i++)
+        {
+            UpgradeButtonController button = Instantiate(_shopUpgradeButtonPrefab).GetComponent<UpgradeButtonController>();
+            button.transform.SetParent(_shopUpgradeContent, false);
+            button.SetIndex(i);
+            button.SetUpgrade(upgrades[i]);
+            upgrades[i].GetCost();
+            button.OnBuyUpgradeClicked += BuyUpgrade;
+            button.PrepareButton();
+            _upgradeButtons.Add(button);
+        }
+
+        _upgradeInitialized = true;
+        CloseCanvas();
+    }
+
+    private void CloseCanvas()
+    {
+        if (_generatorInitialized && _upgradeInitialized)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void UpdateButtonInfo(int index)
@@ -77,7 +115,12 @@ public class ShopUI : Singleton<ShopUI>
 
     private void BuyGenerator(int index)
     {
-        OnBuyGameEvent.RaiseEvent(index);
+        OnBuyGeneratorGameEvent.RaiseEvent(index);
+    }
+
+    private void BuyUpgrade(int index)
+    {
+        OnBuyUpgradeGameEvent.RaiseEvent(index);
     }
 
     private void ChangeAmountToBuy(int amount)

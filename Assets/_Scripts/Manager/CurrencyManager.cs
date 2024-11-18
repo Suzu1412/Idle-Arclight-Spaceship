@@ -22,7 +22,8 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [SerializeField] private VoidGameEventListener OnOpenShopListener;
     [Header("Int Event Listener")]
     [SerializeField] private IntGameEventListener OnChangeBuyAmountEventListener;
-    [SerializeField] private IntGameEventListener OnBuyGameEventListener;
+    [SerializeField] private IntGameEventListener OnBuyGeneratorGameEventListener;
+    [SerializeField] private IntGameEventListener OnBuyUpgradeGameEventListener;
     [Header("Double Event Listener")]
     [SerializeField] private DoubleGameEventListener OnGainCurrencyListener;
     [Header("Formatted Number Event")]
@@ -31,8 +32,12 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [SerializeField] private FormattedNumberGameEvent OnUpdateProductionFormatted;
     [Header("List Generator Event")]
     [SerializeField] private ListGeneratorGameEvent OnListGeneratorEvent;
+    [Header("List Upgrade Event")]
+    [SerializeField] private ListUpgradeGameEvent OnListUpgradeEvent;
+
     [Header("Save Data")]
     [SerializeField] [ReadOnly] private List<GeneratorSO> _generators;
+    [SerializeField][ReadOnly] private List<BaseUpgradeSO> _upgrades;
     [SerializeField] private int _amountToBuy = 1;
     private FormattedNumber UpdateCurrencyFormatted;
     private FormattedNumber UpdateProductionFormatted;
@@ -45,7 +50,8 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     private void OnEnable()
     {
         OnChangeBuyAmountEventListener.Register(ChangeAmountToBuy);
-        OnBuyGameEventListener.Register(BuyGenerator);
+        OnBuyGeneratorGameEventListener.Register(BuyGenerator);
+        OnBuyUpgradeGameEventListener.Register(BuyUpgrade);
         OnGainCurrencyListener.Register(GetCrystal);
         OnOpenShopListener.Register(UpdateCurrency);
         StartCoroutine(GenerateIncome());
@@ -54,7 +60,8 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     private void OnDisable()
     {
         OnChangeBuyAmountEventListener.DeRegister(ChangeAmountToBuy);
-        OnBuyGameEventListener.DeRegister(BuyGenerator);
+        OnBuyGeneratorGameEventListener.DeRegister(BuyGenerator);
+        OnBuyUpgradeGameEventListener.DeRegister(BuyUpgrade);
         OnGainCurrencyListener.DeRegister(GetCrystal);
         OnOpenShopListener.DeRegister(UpdateCurrency);
     }
@@ -82,6 +89,12 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             var data = new GeneratorData(generator.Guid, generator.AmountOwned, generator.TotalProduction, generator.IsUnlocked);
             gameData.GeneratorsData.Save(data);
         }
+
+        foreach (var upgrade in _upgrades)
+        {
+            var data = new UpgradeData(upgrade.Guid, upgrade.IsRequirementMet, upgrade.IsApplied);
+            gameData.UpgradesData.Save(data);
+        }
     }
 
     public void LoadData(GameData gameData)
@@ -91,24 +104,11 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         _totalCurrency.Initialize(currencyData.TotalCurrency);
         _amountToBuy = currencyData.AmountToBuy;
         ChangeAmountToBuy(gameData.CurrencyData.AmountToBuy);
-
-        _generators = GeneratorDataBase.GetAllAssets();
-        foreach (var generator in _generators)
-        {
-            generator.SetAmount(0);
-            generator.SetTotalProduction(0);
-            generator.IsUnlocked = false;
-            var data = gameData.GeneratorsData.Load(generator.Guid);
-            if (data != null)
-            {
-                generator.SetAmount(data.Amount);
-                generator.SetTotalProduction(data.TotalProduction);
-                generator.IsUnlocked = data.IsUnlocked;
-            }
-        }
-
         OnChangeBuyAmountEvent.RaiseEvent(_amountToBuy);
-        OnListGeneratorEvent.RaiseEvent(_generators);
+
+        LoadGenerators(gameData);
+        LoadUpgrades(gameData);
+
         UpdateCurrency();
         OnLoadCurrencyEvent.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
         GetProductionRate();
@@ -124,6 +124,18 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             _generators[index].CalculateProductionRate();
             GetProductionRate();
             OnGeneratorAmountChangedEvent.RaiseEvent(index);
+            UpdateCurrency();
+            OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
+        }
+    }
+
+    private void BuyUpgrade(int index)
+    {
+        if (_totalCurrency.Value >= _upgrades[index].Cost.Value)
+        {
+            _upgrades[index].BuyUpgrade(_totalCurrency.Value);
+            _totalCurrency.Value -= _upgrades[index].Cost.Value;
+
             UpdateCurrency();
             OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
         }
@@ -155,6 +167,41 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     private void UpdateCurrency()
     {
         OnCurrencyChangedEvent.RaiseEvent();
+    }
+
+    private void LoadGenerators(GameData gameData)
+    {
+        _generators = GeneratorDataBase.GetAllAssets();
+        foreach (var generator in _generators)
+        {
+            generator.SetAmount(0);
+            generator.SetTotalProduction(0);
+            generator.IsUnlocked = false;
+            var data = gameData.GeneratorsData.Load(generator.Guid);
+            if (data != null)
+            {
+                generator.SetAmount(data.Amount);
+                generator.SetTotalProduction(data.TotalProduction);
+                generator.IsUnlocked = data.IsUnlocked;
+            }
+        }
+        OnListGeneratorEvent.RaiseEvent(_generators);
+    }
+
+    private void LoadUpgrades(GameData gameData)
+    {
+        _upgrades = UpgradeDatabase.GetAllAssets();
+        foreach (var upgrade in _upgrades)
+        {
+            upgrade.IsRequirementMet = false;
+            var data = gameData.UpgradesData.Load(upgrade.Guid);
+            if (data != null)
+            {
+                upgrade.IsRequirementMet = data.IsRequirementMet;
+                upgrade.ApplyUpgrade(data.IsApplied);
+            }
+        }
+        OnListUpgradeEvent.RaiseEvent(_upgrades);
     }
 
     private IEnumerator GenerateIncome()

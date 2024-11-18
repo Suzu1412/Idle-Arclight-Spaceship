@@ -102,12 +102,12 @@ public class FloatVariableSO : ScriptableObject
                     sumPercentAdditive += _modifiers[i].Value;
                     if (i + 1 >= _modifiers.Count || _modifiers[i + 1].ModifierType != ModifierType.PercentAdditive)
                     {
-                        finalValue *= sumPercentAdditive;
+                        finalValue *= 1 + sumPercentAdditive;
                     }
                     break;
 
                 case ModifierType.PercentMultiplicative:
-                    finalValue *= 1 + _modifiers[i].Value;
+                    finalValue *= _modifiers[i].Value;
                     break;
             }
         }

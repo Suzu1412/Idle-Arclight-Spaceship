@@ -70,10 +70,10 @@ public class UpgradeButtonController : MonoBehaviour
     {
         if (!_isAlreadyActive)
         {
-            if (_upgrade.IsUnlocked || _totalCurrency.Value >= _upgrade.CostRequirement)
+            if (_upgrade.IsRequirementMet || _totalCurrency.Value >= _upgrade.CostRequirement)
             {
                 _isAlreadyActive = true;
-                _upgrade.UnlockUpgrade(_totalCurrency.Value);
+                _upgrade.UnlockUpgradeInStore(_totalCurrency.Value);
                 ActivateButton(_isAlreadyActive);
             }
         }

@@ -14,24 +14,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: d2
   GameData:
-    Name: d1
+    Name: d2
     LocationId: 
     CurrentLevelName: 
     CurrentGameState: 0
+    CurrentPlayerData:
+      _guid: 
+      _currentHealth: 3
+      _totalExp: 0
+      _currentLevel: 1
     PlayerAgentDatas:
       _playerAgentDatas:
       - _guid: a411c3feacc0c7b418fa819db824e7b8
         _currentHealth: 3
-        _totalExp: 5
+        _totalExp: 0
         _currentLevel: 1
     CurrencyData:
-      _totalCurrency: 4209.2
+      _totalCurrency: 148214.3
       _amountToBuy: 1
     GeneratorsData:
       _generators:
       - _guid: 274494024297a8e44a9090bed95ba8ca
-        _amount: 10
-        _totalProduction: 184.5
+        _amount: 34
+        _totalProduction: 76191.9
+        _isUnlocked: 1
       - _guid: 45a9c9cc35838824097ca45e92e5a7d8
-        _amount: 2
-        _totalProduction: 196
+        _amount: 31
+        _totalProduction: 747374
+        _isUnlocked: 1
+    UpgradesData:
+      _upgrades:
+      - _guid: f2e35f9103f93854ea7bbd7299c87324
+        _isUnlocked: 0
+        _isAlreadyBought: 0
+      - _guid: 768505b48215dde4489c05c8438c85c0
+        _isUnlocked: 0
+        _isAlreadyBought: 0
+      - _guid: f5258c38138cd7649a8dcf6dd81dbc3a
+        _isUnlocked: 0
+        _isAlreadyBought: 0

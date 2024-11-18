@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9812b6302fdbfe34481499843f00db24, type: 3}
-  m_Name: Upgrade 3
+  m_Script: {fileID: 11500000, guid: d79fb57840df240be8063ea12b9e2b62, type: 3}
+  m_Name: List Upgrade Event Listener
   m_EditorClassIdentifier: 
-  _baseValue: 250
-  _minValue: 1
-  _maxValue: 3.402823e+38
-  _modifiers: []
-  _value: 50
+  OnEvent: {fileID: 11400000, guid: bc61b3e826420a3409c76e30f7cf5e4e, type: 2}

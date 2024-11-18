@@ -8,7 +8,6 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
     [SerializeField] protected string _name;
     [SerializeField] protected string _description;
     [SerializeField] protected FloatVariableSO _cost;
-    [SerializeField] protected BoolVariableSO _requiredSystem;
     [SerializeField] protected FloatVariableSO _variableToModify;
     [SerializeField] protected FloatModifier _modifierToApply;
     protected FormattedNumber CostFormatted { get; private set; }
@@ -18,24 +17,38 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
     public string Name => _name;
     public string Description => _description;
     public FloatVariableSO Cost => _cost;
-    public double CostRequirement { get => Cost.Value * 0.33f; }
-    public bool IsUnlocked { get; internal set; }
-    public bool IsAlreadyBought { get; internal set; }
+    public double CostRequirement { get => Cost.Value * 0.5f; }
+    public bool IsRequirementMet { get; internal set; }
+    public bool IsApplied { get; protected set; }
+
+    private void OnDisable()
+    {
+        _variableToModify.RemoveModifier(_modifierToApply);
+        IsApplied = false;
+    }
 
     internal virtual void BuyUpgrade(double currency)
     {
         if (currency >= Cost.Value)
         {
-            _variableToModify.AddModifier(_modifierToApply);
-            IsAlreadyBought = true;
+            ApplyUpgrade(true);
         }
     }
 
-    public void UnlockUpgrade(double currency)
+    public void UnlockUpgradeInStore(double currency)
     {
         if (CheckIfMeetRequirementToUnlock(currency))
         {
-            IsUnlocked = true;
+            IsRequirementMet = true;
+        }
+    }
+
+    internal void ApplyUpgrade(bool val)
+    {
+        if (val)
+        {
+            _variableToModify.AddModifier(_modifierToApply);
+            IsApplied = true;
         }
     }
 

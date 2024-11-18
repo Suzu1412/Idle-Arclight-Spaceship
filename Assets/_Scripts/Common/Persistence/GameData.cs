@@ -22,6 +22,10 @@ public class GameData
     [Header("Generators")]
     public GeneratorsData GeneratorsData = new();
 
+    [Header("Upgrades")]
+    public UpgradesData UpgradesData = new();
+
+
     public void NewGame(string name)
     {
         Name = name;
@@ -89,12 +93,12 @@ public class GeneratorsData
         return _generators.Find(x => x.Guid == guid);
     }
 
-    public void Save(GeneratorData generator)
+    public void Save(GeneratorData item)
     {
-        if (!string.IsNullOrEmpty(generator.Guid))
+        if (!string.IsNullOrEmpty(item.Guid))
         {
-            var oldItem = _generators.Find(x => x.Guid == generator.Guid);
-            _generators.ReplaceOrAdd(oldItem, generator);
+            var oldItem = _generators.Find(x => x.Guid == item.Guid);
+            _generators.ReplaceOrAdd(oldItem, item);
         }
     }
 }
@@ -122,6 +126,45 @@ public class GeneratorData
 }
 
 [System.Serializable]
+public class UpgradesData
+{
+    [SerializeField] private List<UpgradeData> _upgrades = new();
+
+    public UpgradeData Load(string guid)
+    {
+        return _upgrades.Find(x => x.Guid == guid);
+    }
+
+    public void Save(UpgradeData item)
+    {
+        if (!string.IsNullOrEmpty(item.Guid))
+        {
+            var oldItem = _upgrades.Find(x => x.Guid == item.Guid);
+            _upgrades.ReplaceOrAdd(oldItem, item);
+        }
+    }
+}
+
+[System.Serializable]
+public class UpgradeData
+{
+    [SerializeField] private string _guid;
+    [SerializeField] private bool _isRequirementMet = false;
+    [SerializeField] private bool _isApplied = false;
+
+    public string Guid => _guid;
+    public bool IsRequirementMet => _isRequirementMet;
+    public bool IsApplied => _isApplied;
+
+    public UpgradeData(string guid, bool isRequirementMet, bool isApplied)
+    {
+        _guid = guid;
+        _isRequirementMet = isRequirementMet;
+        _isApplied = isApplied;
+    }
+}
+
+[System.Serializable]
 public class PlayerAgentDatas
 {
     [SerializeField] private List<PlayerAgentData> _playerAgentDatas = new();
@@ -131,12 +174,12 @@ public class PlayerAgentDatas
         return _playerAgentDatas.Find(x => x.Guid == guid);
     }
 
-    public void Save(PlayerAgentData agentData)
+    public void Save(PlayerAgentData item)
     {
-        if (!string.IsNullOrEmpty(agentData.Guid))
+        if (!string.IsNullOrEmpty(item.Guid))
         {
-            var oldItem = _playerAgentDatas.Find(x => x.Guid == agentData.Guid);
-            _playerAgentDatas.ReplaceOrAdd(oldItem, agentData);
+            var oldItem = _playerAgentDatas.Find(x => x.Guid == item.Guid);
+            _playerAgentDatas.ReplaceOrAdd(oldItem, item);
         }
     }
 }

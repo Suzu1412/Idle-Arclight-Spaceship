@@ -125,6 +125,7 @@ public class UIManager : Singleton<UIManager>
     {
         yield return Helpers.GetWaitForSeconds(0.4f);
         _generatorShopUI.SetActive(false);
+        _upgradeShopUI.SetActive(false);
 
         _shopGameObject.SetActive(false);
     }

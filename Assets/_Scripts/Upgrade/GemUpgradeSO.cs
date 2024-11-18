@@ -11,8 +11,7 @@ public class GemUpgradeSO : BaseUpgradeSO
     {
         if (currency >= Cost.Value)
         {
-            _variableToModify.AddModifier(_modifierToApply);
-            IsAlreadyBought = true;
+            ApplyUpgrade(true);
             OnGeneratorUpgradeEvent.RaiseEvent();
         }
     }

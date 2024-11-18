@@ -3,23 +3,23 @@ using UnityEngine;
 
 public class UpgradeDatabase
 {
-    static Dictionary<string, UpgradeSO> _itemDictionary;
+    static Dictionary<string, BaseUpgradeSO> _itemDictionary;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
     static void Initialize()
     {
-        _itemDictionary = new Dictionary<string, UpgradeSO>();
+        _itemDictionary = new Dictionary<string, BaseUpgradeSO>();
 
-        var allItems = Resources.LoadAll<UpgradeSO>("");
+        var allItems = Resources.LoadAll<BaseUpgradeSO>("");
         foreach (var item in allItems)
         {
             _itemDictionary.Add(item.Guid, item);
         }
     }
 
-    public static List<UpgradeSO> GetAllAssets()
+    public static List<BaseUpgradeSO> GetAllAssets()
     {
-        List<UpgradeSO> items = new();
+        List<BaseUpgradeSO> items = new();
 
         foreach (var item in _itemDictionary)
         {
@@ -29,7 +29,7 @@ public class UpgradeDatabase
         return items;
     }
 
-    public static UpgradeSO GetAssetById(string id)
+    public static BaseUpgradeSO GetAssetById(string id)
     {
         try
         {
@@ -37,7 +37,7 @@ public class UpgradeDatabase
         }
         catch
         {
-            Debug.LogError($"Cannot find {nameof(UpgradeSO)} with id {id}");
+            Debug.LogError($"Cannot find {nameof(BaseUpgradeSO)} with id {id}");
             return null;
         }
     }
