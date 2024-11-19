@@ -12,6 +12,7 @@ public class GeneratorSO : SerializableScriptableObject
     [SerializeField] private FloatVariableSO _baseCost;
     [SerializeField] private FloatVariableSO _production;
     [SerializeField] private FloatVariableSO _generatorProductionMultiplier;
+    [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
     [SerializeField] private int _amountOwned;
     [SerializeField] private double _priceGrowthRate;
     [SerializeField] private double _totalProduction;
@@ -47,7 +48,7 @@ public class GeneratorSO : SerializableScriptableObject
 
     public void CalculateProductionRate()
     {
-        _currentProduction = Math.Round(_production.Value * _generatorProductionMultiplier.Value * _amountOwned, 1);
+        _currentProduction = Math.Round(_production.Value * _generatorProductionMultiplier.Value * _crystalTotalMultiplier.Value * _amountOwned, 1);
         ProductionFormatted = FormatNumber.FormatDouble(_currentProduction, ProductionFormatted);
         _isDirty = false;
     }

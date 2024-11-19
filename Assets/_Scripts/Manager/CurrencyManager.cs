@@ -179,7 +179,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
         foreach (var generator in _generators)
         {
-            production += generator.GetProductionRate() * _crystalTotalMultiplier.Value;
+            production += generator.GetProductionRate();
         }
 
         OnUpdateProductionFormatted.RaiseEvent(FormatNumber.FormatDouble(production, UpdateProductionFormatted));

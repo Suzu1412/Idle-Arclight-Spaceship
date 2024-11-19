@@ -531,9 +531,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 1194192498563947860, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
+      propertyPath: Priority.Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194192498563947860, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
+      propertyPath: Priority.m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4087479968422183427, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
+      propertyPath: m_Depth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4087479968422183427, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
       propertyPath: orthographic size
-      value: 4.9774356
+      value: 4.976168
+      objectReference: {fileID: 0}
+    - target: {fileID: 4143727116132683619, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
+      propertyPath: m_CameraType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4143727116132683619, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
+      propertyPath: m_Antialiasing
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8478106757776829536, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
       propertyPath: m_LocalPosition.x

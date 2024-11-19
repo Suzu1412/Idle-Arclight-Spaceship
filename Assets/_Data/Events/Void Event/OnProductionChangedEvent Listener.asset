@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9812b6302fdbfe34481499843f00db24, type: 3}
-  m_Name: Crystal Total Multiplier
+  m_Script: {fileID: 11500000, guid: df6ada1939a4c46abae9fdbeb3e4d093, type: 3}
+  m_Name: OnProductionChangedEvent Listener
   m_EditorClassIdentifier: 
-  _baseValue: 1
-  _minValue: 1
-  _maxValue: 3.402823e+38
-  _modifiers: []
-  _value: 1.05
+  OnEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}

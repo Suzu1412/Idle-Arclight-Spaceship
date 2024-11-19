@@ -13,6 +13,7 @@ public class GeneratorButtonController : MonoBehaviour
     [Header("Void Event Listener")]
     [SerializeField] private VoidGameEventListener OnCurrencyChangedEventListener;
     [SerializeField] private VoidGameEventListener OnGeneratorUpgradeListener;
+    [SerializeField] private VoidGameEventListener OnProductionChangedEventListener;
 
     [Header("Assigned Automatically")]
     [SerializeField] [ReadOnly] private GeneratorSO _generator;
@@ -42,6 +43,7 @@ public class GeneratorButtonController : MonoBehaviour
         CheckIfCanBuy();
         OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
         OnGeneratorUpgradeListener.Register(DisplayImage);
+        OnProductionChangedEventListener.Register(DisplayProductionText);
     }
 
     private void OnDisable()
@@ -49,6 +51,8 @@ public class GeneratorButtonController : MonoBehaviour
         _buyButton.onClick.RemoveAllListeners();
         OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
         OnGeneratorUpgradeListener.DeRegister(DisplayImage);
+        OnProductionChangedEventListener.DeRegister(DisplayProductionText);
+
     }
 
     public void SetIndex(int index)
@@ -146,6 +150,7 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void DisplayProductionText()
     {
+        _generator.CalculateProductionRate();
         _productionText.SetTextFormat("{0} CpS", _generator.ProductionFormatted.GetFormat());
     }
 }

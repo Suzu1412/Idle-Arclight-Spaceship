@@ -11,6 +11,7 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
     [SerializeField] protected FloatVariableSO _variableToModify;
     [SerializeField] protected FloatModifier _modifierToApply;
     [SerializeField] protected bool _isApplied;
+    [SerializeField] protected VoidGameEvent OnProductionChangedEvent;
     protected FormattedNumber CostFormatted { get; private set; }
     protected bool _isDirty;
 
@@ -49,6 +50,7 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
         {
             _variableToModify.AddModifier(_modifierToApply);
             _isApplied = true;
+            OnProductionChangedEvent.RaiseEvent();
         }
     }
 

@@ -21,6 +21,7 @@ MonoBehaviour:
   _baseCost: {fileID: 11400000, guid: 3643b08f8f46d4b4c9e9b6d35f21ea73, type: 2}
   _production: {fileID: 11400000, guid: 8a44f648d7483483fafdbdb748d89036, type: 2}
   _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
+  _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
   _amountOwned: 31
   _priceGrowthRate: 1.15
   _totalProduction: 706547

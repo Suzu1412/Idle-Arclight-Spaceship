@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 1e540d979937a994ebab8a4f41968310
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _baseCost: {instanceID: 0}
+  - _production: {instanceID: 0}
+  - _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
+  - _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

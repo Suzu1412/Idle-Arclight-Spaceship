@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using Cysharp.Text;
 
 public class HealthBarUI : MonoBehaviour
 {
@@ -80,7 +81,7 @@ public class HealthBarUI : MonoBehaviour
     private void UpdateText()
     {
         if (_amountText == null) return;
-        _amountText.text = (_health.Value + " / " + _health.MaxValue).ToString();
+        _amountText.SetTextFormat("{0} / {1}", _health.Value, +_health.MaxValue);
     }
 
     private void SetHealthBar()
