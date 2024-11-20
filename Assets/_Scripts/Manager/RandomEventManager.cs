@@ -8,8 +8,13 @@ public class RandomEventManager : Singleton<RandomEventManager>
 
     [SerializeField] private List<BaseRandomEventSO> _randomEvents;
 
-    [Header("Void Event")]
+    [Header("Random Event Game Event")]
+    [SerializeField] private RandomEventGameEvent OnActivateRandomEvent;
+
+    [Header("Void Event Listener")]
     [SerializeField] private VoidGameEventListener OnActivateRandomEventListener;
+
+
 
     private void OnEnable()
     {
@@ -32,6 +37,7 @@ public class RandomEventManager : Singleton<RandomEventManager>
     {
         int index = WeightedProbabilities.GetWeightedItemList(_weightedItems, _totalWeight);
         _randomEvents[index].ActivateEvent();
+        OnActivateRandomEvent.RaiseEvent(_randomEvents[index]);
         await Awaitable.WaitForSecondsAsync(_randomEvents[index].Duration);
         _randomEvents[index].DeactivateEvent();
 

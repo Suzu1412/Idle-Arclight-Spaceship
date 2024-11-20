@@ -22,3 +22,4 @@ MonoBehaviour:
     _value: 2
     _source: 1- Crystal On Get x2
   _isApplied: 0
+  OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}

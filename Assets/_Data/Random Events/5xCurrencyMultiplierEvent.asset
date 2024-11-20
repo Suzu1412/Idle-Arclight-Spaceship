@@ -22,3 +22,5 @@ MonoBehaviour:
     _modifierType: 1
     _value: 5
     _source: CurrencyMultiplierEventSO
+  OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
+  OnActivateRandomEvent: {fileID: 11400000, guid: 5e977f5aba89ed3409440afc3f1de9e0, type: 2}

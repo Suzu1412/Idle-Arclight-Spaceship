@@ -41,6 +41,7 @@ public class GeneratorButtonController : MonoBehaviour
     {
         _buyButton.onClick.AddListener(HandleBuyButton);
         CheckIfCanBuy();
+        DisplayProductionText();
         OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
         OnGeneratorUpgradeListener.Register(DisplayImage);
         OnProductionChangedEventListener.Register(DisplayProductionText);
@@ -150,7 +151,7 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void DisplayProductionText()
     {
-        _generator.CalculateProductionRate();
+        if (_generator == null) return;
         _productionText.SetTextFormat("{0} CpS", _generator.ProductionFormatted.GetFormat());
     }
 }

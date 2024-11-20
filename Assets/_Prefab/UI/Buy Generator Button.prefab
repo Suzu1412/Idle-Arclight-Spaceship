@@ -326,6 +326,7 @@ MonoBehaviour:
   _totalCurrency: {fileID: 11400000, guid: 5ff754d7192604832a00d5cf0c8ff24d, type: 2}
   OnCurrencyChangedEventListener: {fileID: 11400000, guid: a16c37ffa592b4e73b95ad3b9d41626a, type: 2}
   OnGeneratorUpgradeListener: {fileID: 11400000, guid: 102c0fb4d55474a20b54c85896d7a718, type: 2}
+  OnProductionChangedEventListener: {fileID: 11400000, guid: f85d55a325fb54860b028a8a840a1e82, type: 2}
   _generator: {fileID: 0}
   _index: 0
   _background: {fileID: 4205859773472550794}

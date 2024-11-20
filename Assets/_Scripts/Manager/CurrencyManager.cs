@@ -22,6 +22,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     [Header("Void Event Listener")]
     [SerializeField] private VoidGameEventListener OnBuyEveryUpgradeEventListener;
+    [SerializeField] private VoidGameEventListener OnProductionChangedEventListener;
     [Header("Int Event Listener")]
     [SerializeField] private IntGameEventListener OnChangeBuyAmountEventListener;
     [SerializeField] private IntGameEventListener OnBuyGeneratorGameEventListener;
@@ -56,6 +57,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         OnBuyUpgradeGameEventListener.Register(BuyUpgrade);
         OnGainCurrencyListener.Register(GetCrystal);
         OnBuyEveryUpgradeEventListener.Register(BuyEveryUpgradeAvailable);
+        OnProductionChangedEventListener.Register(UpdateProductionRate);
         StartCoroutine(GenerateIncome());
     }
 
@@ -66,7 +68,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         OnBuyUpgradeGameEventListener.DeRegister(BuyUpgrade);
         OnGainCurrencyListener.DeRegister(GetCrystal);
         OnBuyEveryUpgradeEventListener.DeRegister(BuyEveryUpgradeAvailable);
-
+        OnProductionChangedEventListener.DeRegister(UpdateProductionRate);
     }
 
     private void Increment(double amount)
@@ -170,6 +172,14 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         if (_amountToBuy <= 0)
         {
             _amountToBuy = 1;
+        }
+    }
+
+    private void UpdateProductionRate()
+    {
+        foreach (var generator in _generators)
+        {
+            generator.CalculateProductionRate();
         }
     }
 

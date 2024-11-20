@@ -22,3 +22,4 @@ MonoBehaviour:
     _value: 0.05
     _source: 2- Total Crystal Multiplier
   _isApplied: 0
+  OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}

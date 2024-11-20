@@ -7,14 +7,12 @@ public class CurrencyMultiplierEventSO : BaseRandomEventSO
     [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
     [SerializeField] private FloatModifier _modifier;
     [SerializeField] private VoidGameEvent OnProductionChangedEvent;
-    [SerializeField] private StringGameEvent OnActivateRandomEvent;
 
     [ContextMenu("Activate Event")]
     public override void ActivateEvent()
     {
         _crystalTotalMultiplier.AddModifier(_modifier);
         OnProductionChangedEvent.RaiseEvent();
-        //OnActivateRandomEvent.RaiseEvent(ZString.Format("{0}% "));
     }
 
     [ContextMenu("Deactivate Event")]
