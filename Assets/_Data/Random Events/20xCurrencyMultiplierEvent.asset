@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f801e452635045f38aa23727040edf3, type: 3}
-  m_Name: 20xCurrencyMultiplierEvent 1
+  m_Name: 20xCurrencyMultiplierEvent
   m_EditorClassIdentifier: 
   WeightedItem:
     _weight: 15
-    _totalWeight: 200
-    _probabilityChance: 100
+    _totalWeight: 265
+    _probabilityChance: 5.6603775
   _duration: 15
+  _description: '+20% Crystal Gain for: '
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
   _modifier:
     _modifierType: 1
     _value: 20
     _source: CurrencyMultiplierEventSO
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
-  OnActivateRandomEvent: {fileID: 11400000, guid: 5e977f5aba89ed3409440afc3f1de9e0, type: 2}

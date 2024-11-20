@@ -67,7 +67,7 @@ public class CurrencyUI : MonoBehaviour
             }
             else
             {
-                _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, -rate * Time.deltaTime);
+                _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, -rate * 4 * Time.deltaTime);
             }
             _currentValueFormatted.Init(_currentValue, formatValue.Unit);
             _currencyText.SetTextFormat("{0}", _currentValueFormatted.GetFormat());

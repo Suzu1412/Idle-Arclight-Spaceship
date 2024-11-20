@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeightedItem:
     _weight: 200
-    _totalWeight: 200
-    _probabilityChance: 100
+    _totalWeight: 265
+    _probabilityChance: 75.471695
   _duration: 15
+  _description: '+5% Crystal Gain for: '
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
   _modifier:
     _modifierType: 1
     _value: 5
     _source: CurrencyMultiplierEventSO
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
-  OnActivateRandomEvent: {fileID: 11400000, guid: 5e977f5aba89ed3409440afc3f1de9e0, type: 2}

@@ -33,6 +33,12 @@ public class ShopUI : Singleton<ShopUI>
     private bool _generatorInitialized;
     private bool _upgradeInitialized;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        transform.localPosition = Vector2.zero;
+    }
+
     private void OnEnable()
     {
         OnListGeneratorLoadedListener.Register(PrepareUIGenerator);

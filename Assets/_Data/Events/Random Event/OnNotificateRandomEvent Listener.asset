@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fbe38142e70dfa4493b6e5d25005909, type: 3}
-  m_Name: OnActivateRandomEvent
+  m_Script: {fileID: 11500000, guid: 68f24a3b9fdea6a48bc13ac7b6e8e723, type: 3}
+  m_Name: OnNotificateRandomEvent Listener
   m_EditorClassIdentifier: 
+  OnEvent: {fileID: 11400000, guid: 3634901eabd4d194eb3aa237cf8b2a24, type: 2}
