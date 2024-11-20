@@ -33,6 +33,7 @@ public class RandomEventManager : Singleton<RandomEventManager>
         ActivateRandomEvent();
     }
 
+    [ContextMenu("Activate Random Event")]
     private async void ActivateRandomEvent()
     {
         int index = WeightedProbabilities.GetWeightedItemList(_weightedItems, _totalWeight);
