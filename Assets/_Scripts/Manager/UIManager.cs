@@ -3,10 +3,17 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 using System.Collections;
+using UnityEngine.Localization.Settings;
+using Cysharp.Text;
+using System;
+using NUnit.Framework;
 
 public class UIManager : Singleton<UIManager>
 {
     private Coroutine _disableShopCoroutine;
+    [Header("String Names")]
+    private string _generatorShop;
+    private string _upgradeShop;
 
     [Header("Elements")]
     [SerializeField] private TextMeshProUGUI _shopText;
@@ -50,6 +57,9 @@ public class UIManager : Singleton<UIManager>
         _closePosition = new Vector2(_shopPanel.rect.width, 0);
 
         _shopPanel.anchoredPosition = _closePosition;
+
+        SetGeneratorStoreName();
+        SetUpgradeStoreName();
     }
 
     private void OnEnable()
@@ -81,17 +91,39 @@ public class UIManager : Singleton<UIManager>
 
     public void OpenGeneratorStore()
     {
-        _shopText.text = "Generator Store";
+        _shopText.SetTextFormat("{0}", _generatorShop);
         _generatorShopUI.SetActive(true);
         _upgradeShopUI.SetActive(false);
     }
 
     public void OpenUpgradeStore()
     {
-        _shopText.text = "Upgrade Store";
+        _shopText.SetTextFormat("{0}", _upgradeShop);
         _generatorShopUI.SetActive(false);
         _upgradeShopUI.SetActive(true);
     }
+
+    private async void SetGeneratorStoreName()
+    {
+        var op = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("Tabla1", "GeneratorStore");
+        await op.Task;
+
+        if (op.IsDone)
+        {
+            _generatorShop = op.Result;
+        }
+    }
+
+    private async void SetUpgradeStoreName()
+    {
+        var op = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("Tabla1", "UpgradeStore");
+        await op.Task;
+
+        if (op.IsDone)
+        {
+            _upgradeShop = op.Result;
+        }
+    } 
 
     private void ChangeSelectedAmountButton(int amount)
     {

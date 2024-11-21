@@ -3,6 +3,7 @@ using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class NotifyMessageUI : MonoBehaviour
@@ -12,6 +13,7 @@ public class NotifyMessageUI : MonoBehaviour
     private RectTransform _parentRectTransform;
     private Vector2 _openPosition;
     private Vector2 _closePosition;
+    private string _description;
     [SerializeField] private TextMeshProUGUI _detailsText;
     [SerializeField] private Image _image;
     private float _duration;
@@ -39,8 +41,20 @@ public class NotifyMessageUI : MonoBehaviour
     {
         _image.sprite = randomEvent.Image;
         _duration = randomEvent.Duration;
+        UpgradeDescription(randomEvent);
         _updateTimerCoroutine = StartCoroutine(UpdateTimerCoroutine(randomEvent));
         transform.DOLocalMoveX(_openPosition.x, _easeDuration).SetEase(Ease.InOutSine);
+    }
+
+    private async void UpgradeDescription(BaseRandomEventSO randomEvent)
+    {
+        var op = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("Tabla1", randomEvent.Description);
+        await op.Task;
+
+        if (op.IsDone)
+        {
+            _description = op.Result;
+        }
     }
 
 
@@ -49,13 +63,14 @@ public class NotifyMessageUI : MonoBehaviour
         while (_duration > 0)
         {
             _duration -= 1f;
-            _detailsText.SetTextFormat("{0} {1:00}s", randomEvent.Description, _duration);
-            yield return new WaitForSeconds(1);
+            _detailsText.SetTextFormat(format: "{0} {1:00}s", _description, _duration);
+
+            yield return Helpers.GetWaitForSeconds(1f);
         }
 
         _closePosition = new Vector2(_parentRectTransform.rect.width, transform.position.y);
         transform.DOLocalMoveX(_closePosition.x, _easeDuration).SetEase(Ease.InOutSine);
-        yield return new WaitForSeconds(_easeDuration);
+        yield return Helpers.GetWaitForSeconds(_easeDuration);
         ObjectPoolFactory.ReturnToPool(Pool);
     }
 }
