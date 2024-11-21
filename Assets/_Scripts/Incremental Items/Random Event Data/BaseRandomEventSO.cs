@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BaseRandomEventSO", menuName = "Scriptable Objects/BaseRandomEventSO")]
 public abstract class BaseRandomEventSO : ScriptableObject
 {
     [SerializeField] protected WeightedItem WeightedItem;

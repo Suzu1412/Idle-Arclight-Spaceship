@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "GemUpgradeSO", menuName = "Scriptable Objects/Upgrade/GemUpgradeSO")]
+[CreateAssetMenu(fileName = "GemUpgradeSO", menuName = "Scriptable Objects/Incremental/Upgrade/GemUpgradeSO")]
 public class GemUpgradeSO : BaseUpgradeSO
 {
     [SerializeField] private GeneratorSO _generator;

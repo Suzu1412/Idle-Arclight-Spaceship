@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "UpgradeSystemSO", menuName = "Scriptable Objects/Upgrade/UpgradeSystemSO")]
+[CreateAssetMenu(fileName = "UpgradeSystemSO", menuName = "Scriptable Objects/Incremental/Upgrade/UpgradeSystemSO")]
 public class UpgradeSystemSO : BaseUpgradeSO
 {
     [SerializeField] private BoolVariableSO _systemRequired;

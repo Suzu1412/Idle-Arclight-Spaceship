@@ -4,6 +4,7 @@ using UnityEngine;
 public class ShopUI : Singleton<ShopUI>
 {
     [Header("Generator")]
+    [SerializeField] private ListGeneratorSO _generators;
     [SerializeField] private GameObject _shopGeneratorButtonPrefab;
     [SerializeField] private Transform _shopGeneratorContent;
     [SerializeField] private GameObject _generatorCanvasGO;
@@ -11,6 +12,7 @@ public class ShopUI : Singleton<ShopUI>
     private int _amountToBuy;
 
     [Header("Upgrade")]
+    [SerializeField] private ListUpgradeSO _upgrades;
     [SerializeField] private GameObject _shopUpgradeButtonPrefab;
     [SerializeField] private Transform _shopUpgradeContent;
     [SerializeField] private GameObject _UpgradeCanvasGO;
@@ -24,11 +26,6 @@ public class ShopUI : Singleton<ShopUI>
     [SerializeField] private IntGameEventListener OnGeneratorAmountChangedListener;
     [SerializeField] private IntGameEventListener OnChangeBuyAmountEventListener;
 
-    [Header("List Generator Event Listener")]
-    [SerializeField] private ListGeneratorGameEventListener OnListGeneratorLoadedListener;
-
-    [Header("List Upgrade Event ")]
-    [SerializeField] private ListUpgradeGameEventListener OnListUpgradeLoadedListener;
 
     private bool _generatorInitialized;
     private bool _upgradeInitialized;
@@ -39,10 +36,14 @@ public class ShopUI : Singleton<ShopUI>
         transform.localPosition = Vector2.zero;
     }
 
+    protected void Start()
+    {
+        PrepareUIGenerator(_generators.Generators);
+        PrepareUIUpgrade(_upgrades.Upgrades);
+    }
+
     private void OnEnable()
     {
-        OnListGeneratorLoadedListener.Register(PrepareUIGenerator);
-        OnListUpgradeLoadedListener.Register(PrepareUIUpgrade);
         OnGeneratorAmountChangedListener.Register(UpdateButtonInfo);
         OnChangeBuyAmountEventListener.Register(ChangeAmountToBuy);
         _generatorInitialized = false;
@@ -51,8 +52,6 @@ public class ShopUI : Singleton<ShopUI>
 
     private void OnDisable()
     {
-        OnListGeneratorLoadedListener.DeRegister(PrepareUIGenerator);
-        OnListUpgradeLoadedListener.DeRegister(PrepareUIUpgrade);
         OnGeneratorAmountChangedListener.DeRegister(UpdateButtonInfo);
         OnChangeBuyAmountEventListener.DeRegister(ChangeAmountToBuy);
     }

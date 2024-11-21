@@ -100,6 +100,8 @@ public class UpgradeButtonController : MonoBehaviour
         {
             ActivateButton(false);
             _isAlreadyBought = true;
+            gameObject.SetActive(false);
+
         }
     }
 
@@ -124,7 +126,6 @@ public class UpgradeButtonController : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(val);
         }
-
     }
 
     private void DisplayName()

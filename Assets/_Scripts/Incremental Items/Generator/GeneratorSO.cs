@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Tests")]
 [assembly: InternalsVisibleTo("Suzu.Manager")]
-[CreateAssetMenu(fileName = "GeneratorSO", menuName = "Scriptable Objects/GeneratorSO")]
+[CreateAssetMenu(fileName = "GeneratorSO", menuName = "Scriptable Objects/Incremental/GeneratorSO")]
 public class GeneratorSO : SerializableScriptableObject
 {
     [SerializeField] private string _name;

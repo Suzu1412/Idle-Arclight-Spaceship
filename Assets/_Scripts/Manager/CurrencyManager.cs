@@ -33,14 +33,11 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [SerializeField] private FormattedNumberGameEvent OnLoadCurrencyEvent;
     [SerializeField] private FormattedNumberGameEvent OnUpdateCurrencyFormatted;
     [SerializeField] private FormattedNumberGameEvent OnUpdateProductionFormatted;
-    [Header("List Generator Event")]
-    [SerializeField] private ListGeneratorGameEvent OnListGeneratorEvent;
-    [Header("List Upgrade Event")]
-    [SerializeField] private ListUpgradeGameEvent OnListUpgradeEvent;
+    [Header("Generator List")]
+    [SerializeField] private ListGeneratorSO _generators;
+    [SerializeField] private ListUpgradeSO _upgrades;
 
     [Header("Save Data")]
-    [SerializeField] [ReadOnly] private List<GeneratorSO> _generators;
-    [SerializeField] [ReadOnly] private List<BaseUpgradeSO> _upgrades;
     [SerializeField] private int _amountToBuy = 1;
     private FormattedNumber UpdateCurrencyFormatted;
     private FormattedNumber UpdateProductionFormatted;
@@ -89,13 +86,13 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     {
         gameData.CurrencyData.Save(_totalCurrency.Value, _amountToBuy);
 
-        foreach (var generator in _generators)
+        foreach (var generator in _generators.Generators)
         {
             var data = new GeneratorData(generator.Guid, generator.AmountOwned, generator.TotalProduction, generator.IsUnlocked);
             gameData.GeneratorsData.Save(data);
         }
 
-        foreach (var upgrade in _upgrades)
+        foreach (var upgrade in _upgrades.Upgrades)
         {
             var data = new UpgradeData(upgrade.Guid, upgrade.IsRequirementMet, upgrade.IsApplied);
             gameData.UpgradesData.Save(data);
@@ -121,12 +118,12 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void BuyGenerator(int index)
     {
-        if (_totalCurrency.Value >= _generators[index].BulkCost)
+        if (_totalCurrency.Value >= _generators.Generators[index].BulkCost)
         {
-            _totalCurrency.Value -= _generators[index].BulkCost;
-            _generators[index].AddAmount(_amountToBuy);
-            _generators[index].GetBulkCost(_amountToBuy);
-            _generators[index].CalculateProductionRate();
+            _totalCurrency.Value -= _generators.Generators[index].BulkCost;
+            _generators.Generators[index].AddAmount(_amountToBuy);
+            _generators.Generators[index].GetBulkCost(_amountToBuy);
+            _generators.Generators[index].CalculateProductionRate();
             GetProductionRate();
             OnGeneratorAmountChangedEvent.RaiseEvent(index);
             UpdateCurrency();
@@ -136,10 +133,10 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void BuyUpgrade(int index)
     {
-        if (_totalCurrency.Value >= _upgrades[index].Cost.Value)
+        if (_totalCurrency.Value >= _upgrades.Upgrades[index].Cost.Value)
         {
-            _upgrades[index].BuyUpgrade(_totalCurrency.Value);
-            _totalCurrency.Value -= _upgrades[index].Cost.Value;
+            _upgrades.Upgrades[index].BuyUpgrade(_totalCurrency.Value);
+            _totalCurrency.Value -= _upgrades.Upgrades[index].Cost.Value;
 
             UpdateCurrency();
             GetProductionRate();
@@ -152,11 +149,11 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     {
         int upgradesBought = 0;
 
-        for (int i = 0; i < _upgrades.Count; i++)
+        for (int i = 0; i < _upgrades.Upgrades.Count; i++)
         {
-            if (!_upgrades[i].IsRequirementMet) continue;
-            if (_upgrades[i].IsApplied) continue;
-            if (_totalCurrency.Value < _upgrades[i].Cost.Value) continue;
+            if (!_upgrades.Upgrades[i].IsRequirementMet) continue;
+            if (_upgrades.Upgrades[i].IsApplied) continue;
+            if (_totalCurrency.Value < _upgrades.Upgrades[i].Cost.Value) continue;
 
             BuyUpgrade(i);
             upgradesBought++;
@@ -177,7 +174,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void UpdateProductionRate()
     {
-        foreach (var generator in _generators)
+        foreach (var generator in _generators.Generators)
         {
             generator.CalculateProductionRate();
         }
@@ -187,7 +184,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     {
         double production = 0;
 
-        foreach (var generator in _generators)
+        foreach (var generator in _generators.Generators)
         {
             production += generator.GetProductionRate();
         }
@@ -203,8 +200,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void LoadGenerators(GameData gameData)
     {
-        _generators = GeneratorDataBase.GetAllAssets();
-        foreach (var generator in _generators)
+        foreach (var generator in _generators.Generators)
         {
             generator.SetAmount(0);
             generator.SetTotalProduction(0);
@@ -217,13 +213,11 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
                 generator.IsUnlocked = data.IsUnlocked;
             }
         }
-        OnListGeneratorEvent.RaiseEvent(_generators);
     }
 
     private void LoadUpgrades(GameData gameData)
     {
-        _upgrades = UpgradeDatabase.GetAllAssets();
-        foreach (var upgrade in _upgrades)
+        foreach (var upgrade in _upgrades.Upgrades)
         {
             upgrade.IsRequirementMet = false;
             var data = gameData.UpgradesData.Load(upgrade.Guid);
@@ -233,7 +227,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
                 upgrade.ApplyUpgrade(data.IsApplied);
             }
         }
-        OnListUpgradeEvent.RaiseEvent(_upgrades);
         OnUpgradeBoughtEvent.RaiseEvent();
     }
 

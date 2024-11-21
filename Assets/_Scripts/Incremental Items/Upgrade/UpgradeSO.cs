@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "UpgradeSO", menuName = "Scriptable Objects/Upgrade/UpgradeSO")]
+[CreateAssetMenu(fileName = "UpgradeSO", menuName = "Scriptable Objects/Incremental/Upgrade/UpgradeSO")]
 public class UpgradeSO : BaseUpgradeSO
 {
     protected override bool CheckIfMeetRequirementToUnlock(double currency)
