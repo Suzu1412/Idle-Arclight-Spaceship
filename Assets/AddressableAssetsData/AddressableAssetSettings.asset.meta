@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 9175ca3dffbdf4dccb8fe1f8a1480c9d
+=======
+guid: 2ed86928a67eef3458187e053e815fc7
+>>>>>>> Quest-System
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

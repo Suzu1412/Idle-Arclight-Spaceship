@@ -22,6 +22,10 @@ public class GameData
     [Header("Generators")]
     public GeneratorsData GeneratorsData = new();
 
+    [Header("Upgrades")]
+    public UpgradesData UpgradesData = new();
+
+
     public void NewGame(string name)
     {
         Name = name;
@@ -48,7 +52,7 @@ public class GameData
 public class CurrencyData
 {
     [SerializeField] private double _totalCurrency;
-    [SerializeField] private int _amountToBuy;
+    [SerializeField] private int _amountToBuy = 1;
 
     public double TotalCurrency => _totalCurrency;
     public int AmountToBuy => _amountToBuy;
@@ -61,7 +65,19 @@ public class CurrencyData
     public void Save(double totalCurrency, int amountToBuy)
     {
         _totalCurrency = totalCurrency;
-        _amountToBuy = amountToBuy;
+        if (amountToBuy < 1)
+        {
+            _amountToBuy = 1;
+        }
+        else if (amountToBuy > 100)
+        {
+            _amountToBuy = 100;
+        }
+        else
+        {
+            _amountToBuy = amountToBuy;
+        }
+
     }
 }
 
@@ -77,12 +93,12 @@ public class GeneratorsData
         return _generators.Find(x => x.Guid == guid);
     }
 
-    public void Save(GeneratorData generator)
+    public void Save(GeneratorData item)
     {
-        if (!string.IsNullOrEmpty(generator.Guid))
+        if (!string.IsNullOrEmpty(item.Guid))
         {
-            var oldItem = _generators.Find(x => x.Guid == generator.Guid);
-            _generators.ReplaceOrAdd(oldItem, generator);
+            var oldItem = _generators.Find(x => x.Guid == item.Guid);
+            _generators.ReplaceOrAdd(oldItem, item);
         }
     }
 }
@@ -93,16 +109,58 @@ public class GeneratorData
     [SerializeField] private string _guid;
     [SerializeField] private int _amount;
     [SerializeField] private double _totalProduction;
+    [SerializeField] private bool _isUnlocked = false;
 
     public string Guid => _guid;
     public int Amount => _amount;
     public double TotalProduction => _totalProduction;
+    public bool IsUnlocked => _isUnlocked;
 
-    public GeneratorData(string guid, int amount, double totalProduction)
+    public GeneratorData(string guid, int amount, double totalProduction, bool isUnlocked)
     {
         _guid = guid;
         _amount = amount;
         _totalProduction = totalProduction;
+        _isUnlocked = isUnlocked;
+    }
+}
+
+[System.Serializable]
+public class UpgradesData
+{
+    [SerializeField] private List<UpgradeData> _upgrades = new();
+
+    public UpgradeData Load(string guid)
+    {
+        return _upgrades.Find(x => x.Guid == guid);
+    }
+
+    public void Save(UpgradeData item)
+    {
+        if (!string.IsNullOrEmpty(item.Guid))
+        {
+            var oldItem = _upgrades.Find(x => x.Guid == item.Guid);
+            _upgrades.ReplaceOrAdd(oldItem, item);
+        }
+    }
+}
+
+[System.Serializable]
+public class UpgradeData
+{
+    [SerializeField] private string _guid;
+    [SerializeField] private bool _isRequirementMet = false;
+    [SerializeField] private bool _isApplied = false;
+
+    public string Guid => _guid;
+    public bool IsRequirementMet => _isRequirementMet;
+    public bool IsApplied => _isApplied;
+
+    public UpgradeData(string guid, bool isRequirementMet, bool isApplied)
+    {
+        _guid = guid;
+        _isRequirementMet = isRequirementMet;
+        _isApplied = isApplied;
     }
 }
 
@@ -116,12 +174,12 @@ public class PlayerAgentDatas
         return _playerAgentDatas.Find(x => x.Guid == guid);
     }
 
-    public void Save(PlayerAgentData agentData)
+    public void Save(PlayerAgentData item)
     {
-        if (!string.IsNullOrEmpty(agentData.Guid))
+        if (!string.IsNullOrEmpty(item.Guid))
         {
-            var oldItem = _playerAgentDatas.Find(x => x.Guid == agentData.Guid);
-            _playerAgentDatas.ReplaceOrAdd(oldItem, agentData);
+            var oldItem = _playerAgentDatas.Find(x => x.Guid == item.Guid);
+            _playerAgentDatas.ReplaceOrAdd(oldItem, item);
         }
     }
 }

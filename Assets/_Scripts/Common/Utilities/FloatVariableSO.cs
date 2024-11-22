@@ -1,14 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "FloatVariableSO", menuName = "Scriptable Objects/FloatVariableSO")]
+[CreateAssetMenu(fileName = "FloatVariableSO", menuName = "Scriptable Objects/Variable/FloatVariableSO")]
 public class FloatVariableSO : ScriptableObject
 {
     [SerializeField] private float _baseValue;
     [SerializeField] private float _minValue;
     [SerializeField] private float _maxValue;
-    [SerializeField] private List<FloatModifier> _modifiers;
+    [SerializeField] private List<FloatModifier> _modifiers = new();
     [SerializeField] private float _value;
+
+    public int CountModifiers => _modifiers.Count;
 
     private bool _isDirty = false;
 
@@ -29,7 +31,7 @@ public class FloatVariableSO : ScriptableObject
         _baseValue = Mathf.Clamp(_baseValue, _minValue, _maxValue);
     }
 
-    public void Initialize(float baseValue, float minValue, float maxValue)
+    public void Initialize(float baseValue, float minValue = float.MinValue, float maxValue = float.MaxValue)
     {
         _minValue = minValue;
         _maxValue = maxValue;
@@ -100,12 +102,12 @@ public class FloatVariableSO : ScriptableObject
                     sumPercentAdditive += _modifiers[i].Value;
                     if (i + 1 >= _modifiers.Count || _modifiers[i + 1].ModifierType != ModifierType.PercentAdditive)
                     {
-                        finalValue *= sumPercentAdditive;
+                        finalValue *= 1 + sumPercentAdditive;
                     }
                     break;
 
                 case ModifierType.PercentMultiplicative:
-                    finalValue *= 1 + _modifiers[i].Value;
+                    finalValue *= _modifiers[i].Value;
                     break;
             }
         }

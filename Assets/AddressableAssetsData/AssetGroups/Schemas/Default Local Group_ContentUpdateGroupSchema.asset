@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
   m_Name: Default Local Group_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   m_Group: {fileID: 11400000, guid: 02a3e02a1133c4d55a1a9b337ba3d7d8, type: 2}
+=======
+  m_Group: {fileID: 11400000, guid: 6f98b882d29e19644a3554ee41faea8a, type: 2}
+>>>>>>> Quest-System
   m_StaticContent: 0

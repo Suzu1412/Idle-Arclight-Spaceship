@@ -94,28 +94,33 @@ MonoBehaviour:
     m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 910501f5-ef1d-47af-8e2e-19a573bae2b9
-    m_ActionName: 'Player/ToggleShop[/Keyboard/1]'
+    m_ActionId: 517360d8-14f5-40be-b078-1c3f4c020812
+    m_ActionName: 'UI/Point[/Mouse/position,/Pen/position,/Device Simulator Touchscreen/touch0/position,/Device
+      Simulator Touchscreen/touch1/position,/Device Simulator Touchscreen/touch2/position,/Device
+      Simulator Touchscreen/touch3/position,/Device Simulator Touchscreen/touch4/position,/Device
+      Simulator Touchscreen/touch5/position,/Device Simulator Touchscreen/touch6/position,/Device
+      Simulator Touchscreen/touch7/position,/Device Simulator Touchscreen/touch8/position,/Device
+      Simulator Touchscreen/touch9/position]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 305e77dc-bcaf-49c7-b26c-99fbb604e48d
-    m_ActionName: 'Player/TogglePauseMenu[/Keyboard/enter]'
+    m_ActionId: 98f6be9f-7dd6-473d-b5c7-4d0f0376a45f
+    m_ActionName: 'MenuToggle/ToggleShop[/Keyboard/1]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: bae7707a-b574-47a6-a679-c60fea8e9dde
-    m_ActionName: 'Player/ToggleStats[/Keyboard/3]'
+    m_ActionId: f3b84c30-4368-4a21-ba0e-0f0edb894dd9
+    m_ActionName: 'MenuToggle/TogglePauseMenu[/Keyboard/enter]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: bad5fac0-2baa-47b5-80a5-4828801776c9
-    m_ActionName: 'Player/ToggleQuest[/Keyboard/2]'
+    m_ActionId: e703d0d7-c140-43bf-bc67-11dd49ac839a
+    m_ActionName: 'MenuToggle/ToggleStats[/Keyboard/3]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 12dfc2c7-917b-462e-8add-0920ff5ab6f7
-    m_ActionName: 'Player/ToggleInventory[/Keyboard/4]'
+    m_ActionId: bc96ddff-a310-4aec-949a-82c6bd467b1b
+    m_ActionName: 'MenuToggle/ToggleQuest[/Keyboard/2]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 220ffe07-812e-4d95-bd30-85c5b9b3c6ee
-    m_ActionName: 'UI/Point[/Mouse/position,/Device Simulator Touchscreen/position]'
+    m_ActionId: f6ba0e6a-dd51-4f34-a734-f7cdfd12fcc1
+    m_ActionName: 'MenuToggle/ToggleInventory[/Keyboard/4]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -324,6 +329,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c142c877a5a20479968127189671df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pickUpRadius: {fileID: 11400000, guid: f350790491243414a89abf49af2d6fb2, type: 2}
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!61 &4589728552326499288
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -442,6 +451,8 @@ GameObject:
   - component: {fileID: 7453729298204850792}
   - component: {fileID: 484096314027894126}
   - component: {fileID: 5148100649829050187}
+  - component: {fileID: 3590712862300400453}
+  - component: {fileID: 1064183381651918135}
   m_Layer: 8
   m_Name: Avatar & Feedback
   m_TagString: Untagged
@@ -684,3 +695,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _feedbackTime: 0.2
+--- !u!114 &3590712862300400453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5311107909362892236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33dee71225979c408b020c68f8d0492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blueMaterial: {fileID: 2100000, guid: 3e0468e3a65d19847b41aef25a381e14, type: 2}
+  _yellowMaterial: {fileID: 2100000, guid: 6f4b9b68568bd4167b47533f77d2a4df, type: 2}
+  _redMaterial: {fileID: 2100000, guid: 9687be7ddf4e440488171365744a6fc2, type: 2}
+--- !u!114 &1064183381651918135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5311107909362892236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760623b7c53842a48a1877934a9585c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _duration: 0.1

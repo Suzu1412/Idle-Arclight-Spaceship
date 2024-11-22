@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System;
 using System.Diagnostics;
 using UnityEngine;
+using Cysharp.Text;
 
 // https://oguzkonya.com/formatting-big-numbers-aa-notation/
 public static class FormatNumber
@@ -65,6 +66,6 @@ public struct FormattedNumber
 
     public readonly string GetFormat()
     {
-        return Value.ToString("F2") + Unit;
+        return ZString.Format("{0:F1} {1}", Value, Unit);
     }
 }

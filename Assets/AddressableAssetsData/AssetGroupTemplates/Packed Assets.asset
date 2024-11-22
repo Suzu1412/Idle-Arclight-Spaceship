@@ -1,6 +1,10 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD
 --- !u!114 &-7977889151479187715
+=======
+--- !u!114 &-7205098234787738032
+>>>>>>> Quest-System
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14,7 +18,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Group: {fileID: 0}
   m_StaticContent: 0
+<<<<<<< HEAD
 --- !u!114 &-6603755129209958788
+=======
+--- !u!114 &-1172977671603318581
+>>>>>>> Quest-System
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,7 +80,14 @@ MonoBehaviour:
   m_Name: Packed Assets
   m_EditorClassIdentifier: 
   m_SchemaObjects:
+<<<<<<< HEAD
   - {fileID: -6603755129209958788}
   - {fileID: -7977889151479187715}
   m_Description: Pack assets into asset bundles.
   m_Settings: {fileID: 11400000, guid: 9175ca3dffbdf4dccb8fe1f8a1480c9d, type: 2}
+=======
+  - {fileID: -1172977671603318581}
+  - {fileID: -7205098234787738032}
+  m_Description: Pack assets into asset bundles.
+  m_Settings: {fileID: 11400000, guid: 2ed86928a67eef3458187e053e815fc7, type: 2}
+>>>>>>> Quest-System

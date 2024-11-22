@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using System;
+using Cysharp.Text;
 
 public class CurrencyUI : MonoBehaviour
 {
@@ -51,7 +52,7 @@ public class CurrencyUI : MonoBehaviour
 
     private void UpdateProductionText(FormattedNumber formatValue)
     {
-        _productionText.text = formatValue.GetFormat() + " CPS";
+        _productionText.SetTextFormat("{0} CpS", formatValue.GetFormat());
     }
 
     private IEnumerator CountToCoroutine(FormattedNumber formatValue)
@@ -63,16 +64,13 @@ public class CurrencyUI : MonoBehaviour
             if (_currentValue < _targetValue)
             {
                 _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, rate * Time.deltaTime);
-                _currentValueFormatted.Init(_currentValue, formatValue.Unit);
-                _currencyText.text = _currentValueFormatted.GetFormat();
             }
             else
             {
-                _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, -rate * Time.deltaTime);
-                _currentValueFormatted.Init(_currentValue, formatValue.Unit);
-                _currencyText.text = _currentValueFormatted.GetFormat();
+                _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, -rate * 4 * Time.deltaTime);
             }
-
+            _currentValueFormatted.Init(_currentValue, formatValue.Unit);
+            _currencyText.SetTextFormat("{0}", _currentValueFormatted.GetFormat());
             yield return null;
         }
 
