@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Localization-Assets-Shared
   m_EditorClassIdentifier: 
   m_GroupName: Localization-Assets-Shared
-  m_GUID: 1c677e8f242ee494caef2b2ee0dd3c07
+  m_GUID: 996bbae0f28e7483d850fb7518b1d4fd
   m_SerializeEntries:
   - m_GUID: 4393d53c1e2fb70459aa954af38d89fd
     m_Address: Assets/Localization/Tables/Tabla1 Shared Data.asset
@@ -21,7 +21,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
-  m_Settings: {fileID: 11400000, guid: 2ed86928a67eef3458187e053e815fc7, type: 2}
+  m_Settings: {fileID: 11400000, guid: 9175ca3dffbdf4dccb8fe1f8a1480c9d, type: 2}
   m_SchemaSet:
     m_Schemas:
     - {fileID: 11400000, guid: e10764d88d2451649bdf92e44d486b68, type: 2}

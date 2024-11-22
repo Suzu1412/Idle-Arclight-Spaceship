@@ -1,28 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-<<<<<<< HEAD
---- !u!114 &-7977889151479187715
-=======
---- !u!114 &-7205098234787738032
->>>>>>> Quest-System
+--- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
-  m_Name: ContentUpdateGroupSchema
+  m_Script: {fileID: 11500000, guid: 1a3c5d64ac83548c09dd1678b9f6f1cd, type: 3}
+  m_Name: Packed Assets
   m_EditorClassIdentifier: 
-  m_Group: {fileID: 0}
-  m_StaticContent: 0
-<<<<<<< HEAD
---- !u!114 &-6603755129209958788
-=======
---- !u!114 &-1172977671603318581
->>>>>>> Quest-System
+  m_SchemaObjects:
+  - {fileID: 7165702169664735827}
+  - {fileID: 8239060391851282045}
+  m_Description: Pack assets into asset bundles.
+  m_Settings: {fileID: 11400000, guid: 9175ca3dffbdf4dccb8fe1f8a1480c9d, type: 2}
+--- !u!114 &7165702169664735827
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,27 +62,17 @@ MonoBehaviour:
   m_SelectedPathPairIndex: 0
   m_BundleNaming: 0
   m_AssetLoadMode: 0
---- !u!114 &11400000
+--- !u!114 &8239060391851282045
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a3c5d64ac83548c09dd1678b9f6f1cd, type: 3}
-  m_Name: Packed Assets
+  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
+  m_Name: ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-  m_SchemaObjects:
-<<<<<<< HEAD
-  - {fileID: -6603755129209958788}
-  - {fileID: -7977889151479187715}
-  m_Description: Pack assets into asset bundles.
-  m_Settings: {fileID: 11400000, guid: 9175ca3dffbdf4dccb8fe1f8a1480c9d, type: 2}
-=======
-  - {fileID: -1172977671603318581}
-  - {fileID: -7205098234787738032}
-  m_Description: Pack assets into asset bundles.
-  m_Settings: {fileID: 11400000, guid: 2ed86928a67eef3458187e053e815fc7, type: 2}
->>>>>>> Quest-System
+  m_Group: {fileID: 0}
+  m_StaticContent: 0

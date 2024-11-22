@@ -12,8 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a189bb168d8d90478a09ea08c2f3d72, type: 3}
   m_Name: DefaultObject
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   m_AddressableAssetSettingsGuid: 9175ca3dffbdf4dccb8fe1f8a1480c9d
-=======
-  m_AddressableAssetSettingsGuid: 2ed86928a67eef3458187e053e815fc7
->>>>>>> Quest-System

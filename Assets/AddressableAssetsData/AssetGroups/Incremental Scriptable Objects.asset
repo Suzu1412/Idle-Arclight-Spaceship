@@ -10,26 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Crystal Generators
+  m_Name: Incremental Scriptable Objects
   m_EditorClassIdentifier: 
-  m_GroupName: Crystal Generators
-  m_GUID: a5e5ed0b2751941eb924f3516dda0c25
+  m_GroupName: Incremental Scriptable Objects
+  m_GUID: dce4b28c8d265400d889b86aa0ca7ccb
   m_SerializeEntries:
   - m_GUID: 274494024297a8e44a9090bed95ba8ca
     m_Address: Assets/_Data/Generators/1- GeneratorSO.asset
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - Generators
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 45a9c9cc35838824097ca45e92e5a7d8
     m_Address: Assets/_Data/Generators/2- GeneratorSO.asset
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - Generators
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce4c74a3b5cde4af8b5f425ab30f204c
+    m_Address: Assets/_Data/Generators/ListGeneratorSO.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9175ca3dffbdf4dccb8fe1f8a1480c9d, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 879000cf0be7d49cd82a2cca51cd7071, type: 2}
-    - {fileID: 11400000, guid: 1763e4f74de5e47cea4d5b2316c6af36, type: 2}
+    - {fileID: 11400000, guid: 0eedfe64fa3c54ebd981c38655988ea5, type: 2}
+    - {fileID: 11400000, guid: ffdf23a738cfe49cc810911bd8f9dcb5, type: 2}

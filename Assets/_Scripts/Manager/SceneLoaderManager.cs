@@ -16,7 +16,6 @@ public class SceneLoaderManager : MonoBehaviour
     [Header("Bool Event Listener")]
     [SerializeField] private BoolGameEventListener OnToggleLoadEventListener;
 
-    [SerializeField] private float _fillSpeed = 0.5f;
     [SerializeField] private float _unloadProgress = 0.2f;
     private float _loadedScenes;
 

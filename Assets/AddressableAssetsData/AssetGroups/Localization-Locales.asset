@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Localization-Locales
   m_EditorClassIdentifier: 
   m_GroupName: Localization-Locales
-  m_GUID: bf74f90d77ebbbe478e5f90162bd250a
+  m_GUID: 954371875b0f94583b484a0064ef5e6c
   m_SerializeEntries:
   - m_GUID: 3374a6275058c484b9d49d215f6a2739
     m_Address: Spanish (es)
@@ -28,7 +28,7 @@ MonoBehaviour:
     - Locale
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
-  m_Settings: {fileID: 11400000, guid: 2ed86928a67eef3458187e053e815fc7, type: 2}
+  m_Settings: {fileID: 11400000, guid: 9175ca3dffbdf4dccb8fe1f8a1480c9d, type: 2}
   m_SchemaSet:
     m_Schemas:
     - {fileID: 11400000, guid: 17075796f4f9c45488e0461fa11bcd75, type: 2}

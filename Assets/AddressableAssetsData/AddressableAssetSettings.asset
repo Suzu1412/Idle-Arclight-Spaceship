@@ -12,17 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  m_DefaultGroup: 0c26e62bab3024737816efaa753de4e0
+  m_DefaultGroup: 5045b5fce815a4058b0ff96f79bf5d92
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-=======
-  m_DefaultGroup: a50b8bdd50948d04fa006d2eac70c50d
-  m_currentHash:
-    serializedVersion: 2
-    Hash: ead8f6b2f2ee368145dc010506beb1a7
->>>>>>> Quest-System
+    Hash: 32561a1b420ba9ed4f678a399431319a
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -31,19 +24,11 @@ MonoBehaviour:
   m_InternalBundleIdMode: 1
   m_AssetLoadMode: 0
   m_BundledAssetProviderType:
-<<<<<<< HEAD
     m_AssemblyName: Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     m_ClassName: UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider
   m_AssetBundleProviderType:
     m_AssemblyName: Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     m_ClassName: UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider
-=======
-    m_AssemblyName: 
-    m_ClassName: 
-  m_AssetBundleProviderType:
-    m_AssemblyName: 
-    m_ClassName: 
->>>>>>> Quest-System
   m_IgnoreUnsupportedFilesInBuild: 0
   m_UniqueBundleIds: 0
   m_EnableJsonCatalog: 0
@@ -68,139 +53,71 @@ MonoBehaviour:
     m_Id: 
   m_RemoteCatalogLoadPath:
     m_Id: 
-<<<<<<< HEAD
-  m_ContentStateBuildPathProfileVariableName: <default settings path>
-=======
   m_ContentStateBuildPathProfileVariableName: 
->>>>>>> Quest-System
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 0
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
-<<<<<<< HEAD
-  - {fileID: 11400000, guid: 02a3e02a1133c4d55a1a9b337ba3d7d8, type: 2}
-  - {fileID: 11400000, guid: 99fe07a6684ea4d3caaa3aa9fdb5ef16, type: 2}
-  - {fileID: 11400000, guid: 012788420afca414e904f92d03f78654, type: 2}
-=======
-  - {fileID: 11400000, guid: 3a2b777ff1803f9458af5573cfd33a00, type: 2}
-  - {fileID: 11400000, guid: 1ffba473905360941b0e9a7463d7b9a2, type: 2}
-  - {fileID: 11400000, guid: 23f19bc55dc585f4584feb0a4e5b6556, type: 2}
-  - {fileID: 11400000, guid: 6f98b882d29e19644a3554ee41faea8a, type: 2}
+  - {fileID: 11400000, guid: 778653b407b6f4eceacf0e5268ba7a46, type: 2}
+  - {fileID: 11400000, guid: 2609832cefae54a8299428d1fc6f0dc1, type: 2}
   - {fileID: 11400000, guid: c603013908e922848ad8048cf6a0ecf4, type: 2}
->>>>>>> Quest-System
+  - {fileID: 11400000, guid: 75e3c9c7e700c470ca74e78d8f6d5fb4, type: 2}
+  - {fileID: 11400000, guid: dbc24f6dd864745388a9e22e87d0b961, type: 2}
+  - {fileID: 11400000, guid: 1ffba473905360941b0e9a7463d7b9a2, type: 2}
+  - {fileID: 11400000, guid: 99fe07a6684ea4d3caaa3aa9fdb5ef16, type: 2}
   m_BuildSettings:
     m_LogResourceManagerExceptions: 1
     m_BundleBuildPath: Temp/com.unity.addressables/AssetBundles
   m_ProfileSettings:
     m_Profiles:
     - m_InheritedParent: 
-<<<<<<< HEAD
-      m_Id: 2cdd193ea83014eadb6ca982c4c200fb
-      m_ProfileName: New Profile
-      m_Values:
-      - m_Id: 06ccf34c326b8467ea89673d4a9b9762
-        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
-      - m_Id: 651530915cd294f18866eac10e294176
-        m_Value: 'ServerData/[BuildTarget]'
-      - m_Id: a8b561519cc1341d1b815f18614c86a2
-        m_Value: <undefined>
-      - m_Id: ac1cf38cb3a184d409fb102f62434628
-        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: b1f35dee540e74d088b29be5a42cd0d9
-        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
-    - m_InheritedParent: 
-      m_Id: b80dc81f546a040d4bef656c7b64514e
+      m_Id: 407f9f6aae5f744b98aa75a7f763f416
       m_ProfileName: Default
       m_Values:
-      - m_Id: 06ccf34c326b8467ea89673d4a9b9762
-        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
-      - m_Id: 651530915cd294f18866eac10e294176
-        m_Value: 'ServerData/[BuildTarget]'
-      - m_Id: a8b561519cc1341d1b815f18614c86a2
-        m_Value: <undefined>
-      - m_Id: ac1cf38cb3a184d409fb102f62434628
-        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: b1f35dee540e74d088b29be5a42cd0d9
+      - m_Id: 2a00de978b93c456c985b23f1c90052a
         m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
-    m_ProfileEntryNames:
-    - m_Id: 06ccf34c326b8467ea89673d4a9b9762
-      m_Name: Local.BuildPath
-      m_InlineUsage: 0
-    - m_Id: 651530915cd294f18866eac10e294176
-      m_Name: Remote.BuildPath
-      m_InlineUsage: 0
-    - m_Id: a8b561519cc1341d1b815f18614c86a2
-      m_Name: Remote.LoadPath
-      m_InlineUsage: 0
-    - m_Id: ac1cf38cb3a184d409fb102f62434628
-      m_Name: Local.LoadPath
-      m_InlineUsage: 0
-    - m_Id: b1f35dee540e74d088b29be5a42cd0d9
-=======
-      m_Id: a46cd6919243d214cb5051fd0d8dc42a
-      m_ProfileName: Default
-      m_Values:
-      - m_Id: 0c3b0dedb0ecda1459f38e02c9096b2d
-        m_Value: <undefined>
-      - m_Id: 70f3430d3a4c6ef4d9333453ce73689a
-        m_Value: 'ServerData/[BuildTarget]'
-      - m_Id: d84b14b08fa7ce34cbb2e36b9e5976aa
+      - m_Id: 3461d16eeb42248d39ee90308d7a5964
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
-      - m_Id: ebf7e329ccdc937489b07497eb8b4305
+      - m_Id: 6bf3b1a15c16c48888f7644c426bed49
+        m_Value: <undefined>
+      - m_Id: be01e844afd0c4d3bafb28363bcc092d
+        m_Value: 'ServerData/[BuildTarget]'
+      - m_Id: ed1fea8e47dd1467487d955b26cc6a58
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: f591168aa786a9b48a9b70bca5e79a7f
-        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
     m_ProfileEntryNames:
-    - m_Id: 0c3b0dedb0ecda1459f38e02c9096b2d
-      m_Name: Remote.LoadPath
-      m_InlineUsage: 0
-    - m_Id: 70f3430d3a4c6ef4d9333453ce73689a
-      m_Name: Remote.BuildPath
-      m_InlineUsage: 0
-    - m_Id: d84b14b08fa7ce34cbb2e36b9e5976aa
-      m_Name: Local.BuildPath
-      m_InlineUsage: 0
-    - m_Id: ebf7e329ccdc937489b07497eb8b4305
-      m_Name: Local.LoadPath
-      m_InlineUsage: 0
-    - m_Id: f591168aa786a9b48a9b70bca5e79a7f
->>>>>>> Quest-System
+    - m_Id: 2a00de978b93c456c985b23f1c90052a
       m_Name: BuildTarget
+      m_InlineUsage: 0
+    - m_Id: 3461d16eeb42248d39ee90308d7a5964
+      m_Name: Local.BuildPath
+      m_InlineUsage: 0
+    - m_Id: 6bf3b1a15c16c48888f7644c426bed49
+      m_Name: Remote.LoadPath
+      m_InlineUsage: 0
+    - m_Id: be01e844afd0c4d3bafb28363bcc092d
+      m_Name: Remote.BuildPath
+      m_InlineUsage: 0
+    - m_Id: ed1fea8e47dd1467487d955b26cc6a58
+      m_Name: Local.LoadPath
       m_InlineUsage: 0
     m_ProfileVersion: 1
   m_LabelTable:
     m_LabelNames:
     - default
-<<<<<<< HEAD
-    - Generators
-    - Scenes
+    - Locale-en
+    - Locale-es
+    - Locale
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 7f39f4e7af4d04135a278f5354c14723, type: 2}
-=======
-    - Locale
-    - Locale-en
-    - Locale-es
-    - Preload
-  m_SchemaTemplates: []
-  m_GroupTemplateObjects:
-  - {fileID: 11400000, guid: e53079ef918cdee4e924b23cf964ea0b, type: 2}
->>>>>>> Quest-System
   m_InitializationObjects: []
   m_CertificateHandlerType:
     m_AssemblyName: 
     m_ClassName: 
   m_ActivePlayerDataBuilderIndex: 2
   m_DataBuilders:
-<<<<<<< HEAD
   - {fileID: 11400000, guid: 6f132c671d1b44d16a0c909bb83e4273, type: 2}
   - {fileID: 11400000, guid: addd4aa5a28014f0e9a7da0647945d22, type: 2}
   - {fileID: 11400000, guid: 2dc24e260cee64dc488d8a9be1c9ad3c, type: 2}
-  m_ActiveProfileId: b80dc81f546a040d4bef656c7b64514e
-=======
-  - {fileID: 11400000, guid: a18da565417f3094ebe54e7c461ef402, type: 2}
-  - {fileID: 11400000, guid: 499b1a9ec716a4647a49e878346c05d7, type: 2}
-  - {fileID: 11400000, guid: f79417d5058966344b95312c438d7af1, type: 2}
-  m_ActiveProfileId: a46cd6919243d214cb5051fd0d8dc42a
->>>>>>> Quest-System
+  m_ActiveProfileId: 407f9f6aae5f744b98aa75a7f763f416
