@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameData
 {
     public string Name;
-
     public string LocationId;
     public string CurrentLevelName;
 
@@ -17,13 +16,13 @@ public class GameData
     public PlayerAgentDatas PlayerAgentDatas = new();
 
     [Header("Currency")]
-    public CurrencyData CurrencyData = new();
+    public CurrencyData CurrencyData;
 
     [Header("Generators")]
-    public GeneratorsData GeneratorsData = new();
+    internal List<GeneratorData> Generators;
 
     [Header("Upgrades")]
-    public UpgradesData UpgradesData = new();
+    public List<UpgradeData> Upgrades;
 
 
     public void NewGame(string name)
@@ -32,8 +31,9 @@ public class GameData
 
         CurrentGameState = GameStateType.Init;
         PlayerAgentDatas = new();
-        CurrencyData = new();
-        GeneratorsData = new();
+        CurrencyData = new(0, 0, 0);
+        Generators = new();
+        Upgrades = new();
     }
 
 
@@ -52,19 +52,17 @@ public class GameData
 public class CurrencyData
 {
     [SerializeField] private double _totalCurrency;
+    [SerializeField] private double _gameTotalCurrency;
     [SerializeField] private int _amountToBuy = 1;
 
     public double TotalCurrency => _totalCurrency;
+    public double GameTotalCurrency => _gameTotalCurrency;
     public int AmountToBuy => _amountToBuy;
 
-    public CurrencyData Load()
-    {
-        return this;
-    }
-
-    public void Save(double totalCurrency, int amountToBuy)
+    public CurrencyData(double totalCurrency, double gameTotalCurrency, int amountToBuy)
     {
         _totalCurrency = totalCurrency;
+        _gameTotalCurrency = gameTotalCurrency;
         if (amountToBuy < 1)
         {
             _amountToBuy = 1;
@@ -76,29 +74,6 @@ public class CurrencyData
         else
         {
             _amountToBuy = amountToBuy;
-        }
-
-    }
-}
-
-
-
-[System.Serializable]
-public class GeneratorsData
-{
-    [SerializeField] private List<GeneratorData> _generators = new();
-
-    public GeneratorData Load(string guid)
-    {
-        return _generators.Find(x => x.Guid == guid);
-    }
-
-    public void Save(GeneratorData item)
-    {
-        if (!string.IsNullOrEmpty(item.Guid))
-        {
-            var oldItem = _generators.Find(x => x.Guid == item.Guid);
-            _generators.ReplaceOrAdd(oldItem, item);
         }
     }
 }
@@ -122,26 +97,6 @@ public class GeneratorData
         _amount = amount;
         _totalProduction = totalProduction;
         _isUnlocked = isUnlocked;
-    }
-}
-
-[System.Serializable]
-public class UpgradesData
-{
-    [SerializeField] private List<UpgradeData> _upgrades = new();
-
-    public UpgradeData Load(string guid)
-    {
-        return _upgrades.Find(x => x.Guid == guid);
-    }
-
-    public void Save(UpgradeData item)
-    {
-        if (!string.IsNullOrEmpty(item.Guid))
-        {
-            var oldItem = _upgrades.Find(x => x.Guid == item.Guid);
-            _upgrades.ReplaceOrAdd(oldItem, item);
-        }
     }
 }
 
@@ -197,11 +152,5 @@ public class PlayerAgentData
     public float TotalExp => _totalExp;
     public int CurrentLevel => _currentLevel;
 
-    public PlayerAgentData(string guid, int currentHealth, float totalExp, int currentLevel)
-    {
-        _guid = guid;
-        _currentHealth = currentHealth;
-        _totalExp = totalExp;
-        _currentLevel = currentLevel;
-    }
+
 }

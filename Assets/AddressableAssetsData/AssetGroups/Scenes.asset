@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Scenes
   m_GUID: 5045b5fce815a4058b0ff96f79bf5d92
   m_SerializeEntries:
+  - m_GUID: 00860c658223c424f912bd682c180ffd
+    m_Address: Assets/Scenes/Global Managers.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6450f8dd17b95004089777e242729748
     m_Address: Assets/Scenes/Gameplay/Dimension Of Virgo.unity
     m_ReadOnly: 0

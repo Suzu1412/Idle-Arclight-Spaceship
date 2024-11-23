@@ -10,23 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Incremental Scriptable Objects
+  m_Name: Scriptable Objects
   m_EditorClassIdentifier: 
-  m_GroupName: Incremental Scriptable Objects
+  m_GroupName: Scriptable Objects
   m_GUID: dce4b28c8d265400d889b86aa0ca7ccb
   m_SerializeEntries:
-  - m_GUID: 274494024297a8e44a9090bed95ba8ca
-    m_Address: Assets/_Data/Generators/1- GeneratorSO.asset
+  - m_GUID: 32ff32770855fe84284adc0d2a5e284c
+    m_Address: Assets/_Data/Variables/IntVariable
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 45a9c9cc35838824097ca45e92e5a7d8
-    m_Address: Assets/_Data/Generators/2- GeneratorSO.asset
+  - m_GUID: 3da945cb89594eb45867596189c1ce08
+    m_Address: Assets/_Data/Persistence/GameDataSO.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ce4c74a3b5cde4af8b5f425ab30f204c
-    m_Address: Assets/_Data/Generators/ListGeneratorSO.asset
+  - m_GUID: 52a011d445e6d4e4e8086f03343c9dc2
+    m_Address: Assets/_Data/Variables/DoubleVariable
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 610f3d653dd5581419d53cd307d41856
+    m_Address: Assets/_Data/Variables/FloatVariable
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 628f4550c00ef4f77abc0ec25e206329
+    m_Address: Assets/_Data/Incremental Scriptable Objects
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c979ba755fb5754aa102d6db8121378
+    m_Address: Assets/_Data/RunTime Sets
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

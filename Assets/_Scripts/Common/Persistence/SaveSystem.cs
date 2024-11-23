@@ -31,7 +31,7 @@ public class SaveSystem : Singleton<SaveSystem>
 
         foreach (var item in _saveDataRTS.Items)
         {
-            item.GetComponent<ISaveable>().LoadData(_gameDataSO.GameData);
+            item.GetComponent<ISaveable>().LoadData(_gameDataSO);
         }
     }
 
@@ -39,7 +39,7 @@ public class SaveSystem : Singleton<SaveSystem>
     {
         foreach (var item in _saveDataRTS.Items)
         {
-            item.GetComponent<ISaveable>().SaveData(_gameDataSO.GameData);
+            item.GetComponent<ISaveable>().SaveData(_gameDataSO);
         }
 
         SaveDataToFile(_gameDataSO.GameData);

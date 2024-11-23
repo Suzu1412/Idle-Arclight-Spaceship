@@ -9,6 +9,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [SerializeField] private float _delayToGenerate = 1f;
     [Header("Double Variable")]
     [SerializeField] private DoubleVariableSO _totalCurrency;
+    [SerializeField] private DoubleVariableSO _gameTotalCurrency;
     [Header("Float Variable")]
     [SerializeField] private FloatVariableSO _crystalOnGetMultiplier;
     [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
@@ -82,38 +83,41 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         Increment(amount);
     }
 
-    public void SaveData(GameData gameData)
+    public void SaveData(GameDataSO gameData)
     {
-        gameData.CurrencyData.Save(_totalCurrency.Value, _amountToBuy);
+        gameData.SaveCurrency(_totalCurrency.Value, _gameTotalCurrency.Value, _amountToBuy);
 
+        List<GeneratorData> generatorDatas = gameData.GetClearGeneratorDatas();
         foreach (var generator in _generators.Generators)
         {
-            var data = new GeneratorData(generator.Guid, generator.AmountOwned, generator.TotalProduction, generator.IsUnlocked);
-            gameData.GeneratorsData.Save(data);
+            generatorDatas.Add(new(generator.Guid, generator.AmountOwned, generator.TotalProduction, generator.IsUnlocked));
+            gameData.SaveGenerators(generatorDatas);
         }
 
+        List<UpgradeData> upgradeDatas = gameData.GetClearUpgradeDatas();
         foreach (var upgrade in _upgrades.Upgrades)
         {
-            var data = new UpgradeData(upgrade.Guid, upgrade.IsRequirementMet, upgrade.IsApplied);
-            gameData.UpgradesData.Save(data);
+            upgradeDatas.Add(new(upgrade.Guid, upgrade.IsRequirementMet, upgrade.IsApplied));
+            gameData.SaveUpgrades(upgradeDatas);
         }
     }
 
-    public void LoadData(GameData gameData)
+    public void LoadData(GameDataSO gameData)
     {
-        gameData.CurrencyData ??= new();
-        var currencyData = gameData.CurrencyData.Load();
-        _totalCurrency.Initialize(currencyData.TotalCurrency);
-        _amountToBuy = currencyData.AmountToBuy;
-        ChangeAmountToBuy(gameData.CurrencyData.AmountToBuy);
-        OnChangeBuyAmountEvent.RaiseEvent(_amountToBuy);
+        _totalCurrency.Initialize(gameData.LoadCurrency().TotalCurrency);
+        _gameTotalCurrency.Initialize(gameData.LoadCurrency().GameTotalCurrency);
+        _amountToBuy = gameData.LoadCurrency().AmountToBuy;
+        ChangeAmountToBuy(_amountToBuy);
 
-        LoadGenerators(gameData);
-        LoadUpgrades(gameData);
+        gameData.LoadGenerators();
+        gameData.LoadUpgrades();
 
         UpdateCurrency();
-        OnLoadCurrencyEvent.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
         GetProductionRate();
+
+        OnChangeBuyAmountEvent.RaiseEvent(_amountToBuy);
+        OnUpgradeBoughtEvent.RaiseEvent();
+        OnLoadCurrencyEvent.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
     }
 
     private void BuyGenerator(int index)
@@ -124,8 +128,8 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             _generators.Generators[index].AddAmount(_amountToBuy);
             _generators.Generators[index].GetBulkCost(_amountToBuy);
             _generators.Generators[index].CalculateProductionRate();
-            GetProductionRate();
             OnGeneratorAmountChangedEvent.RaiseEvent(index);
+            GetProductionRate();
             UpdateCurrency();
             OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
         }
@@ -137,7 +141,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         {
             _upgrades.Upgrades[index].BuyUpgrade(_totalCurrency.Value);
             _totalCurrency.Value -= _upgrades.Upgrades[index].Cost.Value;
-
             UpdateCurrency();
             GetProductionRate();
             OnUpgradeBoughtEvent.RaiseEvent();
@@ -196,38 +199,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     private void UpdateCurrency()
     {
         OnCurrencyChangedEvent.RaiseEvent();
-    }
-
-    private void LoadGenerators(GameData gameData)
-    {
-        foreach (var generator in _generators.Generators)
-        {
-            generator.SetAmount(0);
-            generator.SetTotalProduction(0);
-            generator.IsUnlocked = false;
-            var data = gameData.GeneratorsData.Load(generator.Guid);
-            if (data != null)
-            {
-                generator.SetAmount(data.Amount);
-                generator.SetTotalProduction(data.TotalProduction);
-                generator.IsUnlocked = data.IsUnlocked;
-            }
-        }
-    }
-
-    private void LoadUpgrades(GameData gameData)
-    {
-        foreach (var upgrade in _upgrades.Upgrades)
-        {
-            upgrade.IsRequirementMet = false;
-            var data = gameData.UpgradesData.Load(upgrade.Guid);
-            if (data != null)
-            {
-                upgrade.IsRequirementMet = data.IsRequirementMet;
-                upgrade.ApplyUpgrade(data.IsApplied);
-            }
-        }
-        OnUpgradeBoughtEvent.RaiseEvent();
     }
 
     private IEnumerator GenerateIncome()

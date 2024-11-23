@@ -7,14 +7,12 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
     [SerializeField] private GameObject _playerPrefab;
     private GameObject _player;
     [SerializeField] private Vector2 _initialPosition = new(0f, -2f);
-    [SerializeField] private PlayerAgentDataSO _defaultPlayerConfig = default;
-    private PlayerConfig _playerConfig;
+    [SerializeField] private PlayerAgentDataSO _defaultPlayerData = default;
     private Agent _agent;
-    private PlayerAgentData _currentPlayerData;
     private Coroutine _respawnCoroutine;
     private float _respawnTime = 2.5f;
 
-    public void LoadData(GameData gameData)
+    public void LoadData(GameDataSO gameData)
     {
         if (gameData.CurrentPlayerData != null)
         {
@@ -27,7 +25,7 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
         SetPlayerData();
     }
 
-    public void SaveData(GameData gameData)
+    public void SaveData(GameDataSO gameData)
     {
         var agentData = new PlayerAgentData(
             _currentPlayerData.Guid,
