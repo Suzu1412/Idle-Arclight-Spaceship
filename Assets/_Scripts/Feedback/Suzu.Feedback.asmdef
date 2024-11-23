@@ -4,7 +4,7 @@
     "references": [
         "Suzu.Common",
         "Unity.TextMeshPro",
-        "Suzu.AgentConfig"
+        "Suzu.Agent"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -8,6 +8,7 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
     private GameObject _player;
     [SerializeField] private Vector2 _initialPosition = new(0f, -2f);
     [SerializeField] private PlayerAgentDataSO _defaultPlayerData = default;
+    [SerializeField] private ListPlayerAgentDataSO _players;
     private Agent _agent;
     private Coroutine _respawnCoroutine;
     private float _respawnTime = 2.5f;

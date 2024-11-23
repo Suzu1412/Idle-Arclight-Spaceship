@@ -2,7 +2,9 @@
     "name": "Suzu.Agent",
     "rootNamespace": "",
     "references": [
-        "GUID:eee2d7abad5a31d419cb705834217f10"
+        "GUID:eee2d7abad5a31d419cb705834217f10",
+        "GUID:b6871d9040a0842a78a242cd777e96ee",
+        "GUID:0d157f09ddc80794fa7d7d4e319f6527"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
