@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 [RequireComponent(typeof(AddSaveDataRunTimeSet))]
 public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
@@ -102,15 +104,11 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         }
     }
 
-    public void LoadData(GameDataSO gameData)
+    public void LoadDataAsync(GameDataSO gameData)
     {
-        _totalCurrency.Initialize(gameData.LoadCurrency().TotalCurrency);
-        _gameTotalCurrency.Initialize(gameData.LoadCurrency().GameTotalCurrency);
-        _amountToBuy = gameData.LoadCurrency().AmountToBuy;
-        ChangeAmountToBuy(_amountToBuy);
-
-        gameData.LoadGenerators();
-        gameData.LoadUpgrades();
+        LoadCurrency(gameData.CurrencyData);
+        LoadGenerators(gameData.Generators);
+        LoadUpgrades(gameData.Upgrades);
 
         UpdateCurrency();
         GetProductionRate();
@@ -207,6 +205,40 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         {
             yield return Helpers.GetWaitForSeconds(_delayToGenerate);
             Increment(GetProductionRate());
+        }
+    }
+
+    private void LoadCurrency(CurrencyData currencyData)
+    {
+        _totalCurrency.Initialize(currencyData.TotalCurrency);
+        _gameTotalCurrency.Initialize(currencyData.GameTotalCurrency);
+        _amountToBuy = currencyData.AmountToBuy;
+        ChangeAmountToBuy(_amountToBuy);
+    }
+
+    private void LoadGenerators(List<GeneratorData> generatorDatas)
+    {
+        foreach (var generator in generatorDatas)
+        {
+            var generatorSO = _generators.Find(generator.Guid);
+            generatorSO.SetAmount(generator.Amount);
+            generatorSO.SetTotalProduction(generator.TotalProduction);
+            generatorSO.IsUnlocked = generator.IsUnlocked;
+        }
+    }
+
+    private async void LoadUpgrades(List<UpgradeData> upgradeDatas)
+    {
+        foreach (var upgrade in upgradeDatas)
+        {
+            var loadItemOperationHandle = Addressables.LoadAssetAsync<BaseUpgradeSO>(upgrade.Guid);
+            await loadItemOperationHandle.Task;
+            if (loadItemOperationHandle.Status == AsyncOperationStatus.Succeeded)
+            {
+                var upgradeSO = loadItemOperationHandle.Result;
+                upgradeSO.IsRequirementMet = upgrade.IsRequirementMet;
+                upgradeSO.ApplyUpgrade(upgrade.IsApplied);
+            }
         }
     }
 }

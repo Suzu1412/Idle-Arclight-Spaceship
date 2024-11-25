@@ -5,7 +5,7 @@ using UnityEngine;
 using AYellowpaper.SerializedCollections;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/Stats/Character Stats")]
-public class StatsSO : SerializableScriptableObject
+public class StatsSO : SerializableScriptableObject, IStatsData
 {
     [SerializedDictionary("Stat type", "Stat")]
     [SerializeField] private SerializedDictionary<StatType, Stat> _stats = new();
@@ -15,12 +15,12 @@ public class StatsSO : SerializableScriptableObject
         Recalculate();
     }
 
-    internal void AddStat(Stat newStat)
+    public void AddStat(Stat newStat)
     {
         _stats.TryAdd(newStat.StatInfo.StatType, newStat);
     }
 
-    internal float GetStatValue(StatType statType)
+    public float GetStatValue(StatType statType)
     {
         if (!_stats.TryGetValue(statType, out var stat))
         {
@@ -32,7 +32,7 @@ public class StatsSO : SerializableScriptableObject
         return stat.Value;
     }
 
-    internal float GetStatMinValue(StatType statType)
+    public float GetStatMinValue(StatType statType)
     {
         if (!_stats.TryGetValue(statType, out var stat))
         {
@@ -43,7 +43,7 @@ public class StatsSO : SerializableScriptableObject
         return stat.StatInfo.MinValue;
     }
 
-    internal float GetStatMaxValue(StatType statType)
+    public float GetStatMaxValue(StatType statType)
     {
         if (!_stats.TryGetValue(statType, out var stat))
         {
@@ -54,7 +54,7 @@ public class StatsSO : SerializableScriptableObject
         return stat.StatInfo.MaxValue;
     }
 
-    internal Stat GetStat(StatType statType)
+    public Stat GetStat(StatType statType)
     {
         if (!_stats.TryGetValue(statType, out var stat))
         {

@@ -4,6 +4,8 @@ public interface ICanMove
 {
     Rigidbody2D RB { get; }
 
+    void SetMoveData(IMoveData moveData);
+
     /// <summary>
     /// Read Input Direction. Run in Update for correct working
     /// </summary>

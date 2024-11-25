@@ -7,7 +7,7 @@ public class Stat
 {
     [SerializeField] private StatInfoSO _statInfo;
     [SerializeField] private float _baseValue;
-    [SerializeField] [ReadOnly] [Tooltip("Value is calculated by Base Value and Modifiers")] private float _value;
+    [SerializeField][ReadOnly][Tooltip("Value is calculated by Base Value and Modifiers")] private float _value;
     private bool _isDirty = true;
 
     public StatInfoSO StatInfo { get => _statInfo; internal set => _statInfo = value; }

@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bootstrapper.unity
     guid: b96a2f470e3a1f3429eb205b47118b32
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/UI.unity
     guid: 2d1f8c0e3e17144e2a9885d35e42d619
   - enabled: 0
     path: Assets/Scenes/Global Managers.unity
     guid: 00860c658223c424f912bd682c180ffd
+  - enabled: 0
+    path: Assets/Scenes/Gameplay/Dimension Of Virgo.unity
+    guid: 6450f8dd17b95004089777e242729748
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: bdead8f5be1f2ec48956e00c8a6b3f70, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: b64f6086b2bfa2e4cb0e2b01440bd6ad, type: 2}

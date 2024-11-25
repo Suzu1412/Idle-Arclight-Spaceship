@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovementBehaviour : MonoBehaviour, ICanMove
@@ -18,7 +17,7 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
 
     private Rigidbody2D _rb;
     private bool _hasBoundaries;
-    [SerializeField] private MovementDataSO _data = default;
+    private IMoveData _moveData;
 
     public IAgent Agent => _agent ??= GetComponent<IAgent>();
     public Rigidbody2D RB => _rb != null ? _rb : _rb = GetComponent<Rigidbody2D>();
@@ -31,11 +30,6 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
     private void Start()
     {
         StartCoroutine(SetAutomaticBoundaries());
-    }
-
-    public void SetMovementData(MovementDataSO data)
-    {
-        _data = data;
     }
 
     public void StopMovement()
@@ -73,7 +67,7 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
     private Vector2 TargetMoveSpeed(float lerpAmount)
     {
         // Direction we want to move in and our desired velocity
-        Vector2 targetSpeed = _direction * _data.MaxSpeed;
+        Vector2 targetSpeed = _direction * _moveData.MaxSpeed;
 
         // Smooth changes to are direction and speed
         targetSpeed = Vector2.Lerp(
@@ -88,7 +82,7 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
         // Acceleration value based on if we are
         // accelerating (includes turning) or trying to decelerate (stop).
         float accelRate = _direction != Vector2.zero ?
-          _data.Acceleration : _data.Deceleration;
+          _moveData.Acceleration : _moveData.Deceleration;
 
         return accelRate;
     }
@@ -153,5 +147,10 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
         _bottomBounds = _camera.ViewportToWorldPoint(new Vector2(0, 0.05f)).y;
         _topBounds = _camera.ViewportToWorldPoint(new Vector2(0, 0.95f)).y;
         _hasBoundaries = true;
+    }
+
+    public void SetMoveData(IMoveData moveData)
+    {
+        _moveData = moveData;
     }
 }

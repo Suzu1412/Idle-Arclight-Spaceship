@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2d1f8c0e3e17144e2a9885d35e42d619
+    m_Address: Assets/Scenes/UI.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6450f8dd17b95004089777e242729748
     m_Address: Assets/Scenes/Gameplay/Dimension Of Virgo.unity
     m_ReadOnly: 0

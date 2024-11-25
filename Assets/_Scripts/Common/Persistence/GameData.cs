@@ -12,14 +12,13 @@ public class GameData
     public GameStateType CurrentGameState;
 
     [Header("Players")]
-    public PlayerAgentData CurrentPlayerData;
-    public PlayerAgentDatas PlayerAgentDatas = new();
+    public List<PlayerAgentData> Players;
 
     [Header("Currency")]
     public CurrencyData CurrencyData;
 
     [Header("Generators")]
-    internal List<GeneratorData> Generators;
+    public List<GeneratorData> Generators;
 
     [Header("Upgrades")]
     public List<UpgradeData> Upgrades;
@@ -30,7 +29,7 @@ public class GameData
         Name = name;
 
         CurrentGameState = GameStateType.Init;
-        PlayerAgentDatas = new();
+        Players = new();
         CurrencyData = new(0, 0, 0);
         Generators = new();
         Upgrades = new();
@@ -120,37 +119,25 @@ public class UpgradeData
 }
 
 [System.Serializable]
-public class PlayerAgentDatas
-{
-    [SerializeField] private List<PlayerAgentData> _playerAgentDatas = new();
-
-    public PlayerAgentData Load(string guid)
-    {
-        return _playerAgentDatas.Find(x => x.Guid == guid);
-    }
-
-    public void Save(PlayerAgentData item)
-    {
-        if (!string.IsNullOrEmpty(item.Guid))
-        {
-            var oldItem = _playerAgentDatas.Find(x => x.Guid == item.Guid);
-            _playerAgentDatas.ReplaceOrAdd(oldItem, item);
-        }
-    }
-}
-
-[System.Serializable]
 public class PlayerAgentData
 {
     [SerializeField] private string _guid;
-    [SerializeField] private int _currentHealth;
     [SerializeField] private float _totalExp;
-    [SerializeField] private int _currentLevel;
+    [SerializeField] private bool _isActive;
+    [SerializeField] private bool _isUnlocked;
 
     public string Guid => _guid;
-    public int CurrentHealth => _currentHealth;
     public float TotalExp => _totalExp;
-    public int CurrentLevel => _currentLevel;
+    public bool IsActive => _isActive;
+    public bool IsUnlocked => _isUnlocked;
+
+    public PlayerAgentData(string guid, float totalExp, bool isActive, bool isUnlocked)
+    {
+        _guid = guid;
+        _totalExp = totalExp;
+        _isActive = isActive;
+        _isUnlocked = isUnlocked;
+    }
 
 
 }

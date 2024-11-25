@@ -8,6 +8,8 @@ public class CurrencyMultiplierEventSO : BaseRandomEventSO
     [SerializeField] private FloatModifier _modifier;
     [SerializeField] private VoidGameEvent OnProductionChangedEvent;
 
+    public override float Multiplier => _crystalTotalMultiplier.Value;
+
     public override void ActivateEvent()
     {
         _crystalTotalMultiplier.AddModifier(_modifier);

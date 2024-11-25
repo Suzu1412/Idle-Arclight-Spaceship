@@ -8,32 +8,19 @@ public class GameInitiator : Singleton<GameInitiator>
     [SerializeField] private CurrencyManager _currencyManager;
     [SerializeField] private PlayerManager _playerManager;
 
-    [Header("Bool Event")]
-    [SerializeField] private BoolGameEvent OnToggleLoadEvent;
-
-    [Header("Bool Event Listener")]
-    [SerializeField] private BoolGameEventListener OnSceneGroupLoadedEventListener;
-
     [Header("Spawners")]
     [SerializeField] private GemSpawner _gemSpawner;
 
     private void OnEnable()
     {
-        OnSceneGroupLoadedEventListener.Register(StartGame);
+        StartGame();
     }
 
-    private void OnDisable()
-    {
-        OnSceneGroupLoadedEventListener.DeRegister(StartGame);
-    }
-
-    private void StartGame(bool value)
+    private void StartGame()
     {
         BindObjects();
         Initialize();
         LoadGame();
-
-        OnToggleLoadEvent.RaiseEvent(false);
     }
 
     private void BindObjects()

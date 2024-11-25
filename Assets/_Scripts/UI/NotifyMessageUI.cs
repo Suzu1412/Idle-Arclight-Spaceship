@@ -1,9 +1,10 @@
-using Cysharp.Text;
 using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Localization.Settings;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.UI;
 
 public class NotifyMessageUI : MonoBehaviour
@@ -14,15 +15,29 @@ public class NotifyMessageUI : MonoBehaviour
     private Vector2 _openPosition;
     private Vector2 _closePosition;
     private string _description;
-    [SerializeField] private TextMeshProUGUI _detailsText;
+    [SerializeField] private LocalizeStringEvent _localizedStringEvent;
+    private LocalizedString _localizedString;
     [SerializeField] private Image _image;
     private float _duration;
+    private FloatVariable _multiplier;
     [SerializeField] private float _easeDuration = 0.4f;
     public ObjectPooler Pool => _pool = _pool != null ? _pool : gameObject.GetOrAdd<ObjectPooler>();
 
-    private void Start()
+    private void Awake()
     {
         _parentRectTransform = transform.GetComponent<RectTransform>();
+
+        _localizedString = _localizedStringEvent.StringReference;
+
+        if (!_localizedString.TryGetValue("multiplier", out var variable))
+        {
+            _multiplier = new FloatVariable();
+            _localizedString.Add("multiplier", _multiplier);
+        }
+        else
+        {
+            _multiplier = variable as FloatVariable;
+        }
 
     }
 
@@ -46,15 +61,10 @@ public class NotifyMessageUI : MonoBehaviour
         transform.DOLocalMoveX(_openPosition.x, _easeDuration).SetEase(Ease.InOutSine);
     }
 
-    private async void UpgradeDescription(BaseRandomEventSO randomEvent)
+    private void UpgradeDescription(BaseRandomEventSO randomEvent)
     {
-        var op = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("Tabla1", randomEvent.Description);
-        await op.Task;
-
-        if (op.IsDone)
-        {
-            _description = op.Result;
-        }
+        _localizedStringEvent.StringReference.SetReference("Tabla1", randomEvent.Description);
+        _localizedStringEvent.RefreshString();
     }
 
 
@@ -63,7 +73,7 @@ public class NotifyMessageUI : MonoBehaviour
         while (_duration > 0)
         {
             _duration -= 1f;
-            _detailsText.SetTextFormat(format: "{0} {1:00}s", _description, _duration);
+            //_detailsText.SetTextFormat(format: "{0} {1:00}s", _description, _duration);
 
             yield return Helpers.GetWaitForSeconds(1f);
         }

@@ -48,15 +48,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9
-    m_Key: x5CrystalGain
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10
-    m_Key: x10CrystalGain
-    m_Metadata:
-      m_Items: []
-  - m_Id: 11
-    m_Key: x20CrystalGain
+    m_Key: xCrystalGain
     m_Metadata:
       m_Items: []
   - m_Id: 12
@@ -68,15 +60,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14
-    m_Key: x100CrystalPicker
-    m_Metadata:
-      m_Items: []
-  - m_Id: 15
-    m_Key: x200CrystalPicker
-    m_Metadata:
-      m_Items: []
-  - m_Id: 16
-    m_Key: x500CrystalPicker
+    m_Key: xCrystalPicker
     m_Metadata:
       m_Items: []
   - m_Id: 17
@@ -84,27 +68,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 18
-    m_Key: x7ProductionMultiplier
-    m_Metadata:
-      m_Items: []
-  - m_Id: 19
-    m_Key: x77ProductionMultiplier
-    m_Metadata:
-      m_Items: []
-  - m_Id: 20
-    m_Key: x777ProductionMultiplier
+    m_Key: xProductionMultiplier
     m_Metadata:
       m_Items: []
   - m_Id: 21
-    m_Key: x10ExpGain
-    m_Metadata:
-      m_Items: []
-  - m_Id: 22
-    m_Key: x20ExpGain
-    m_Metadata:
-      m_Items: []
-  - m_Id: 23
-    m_Key: x40ExpGain
+    m_Key: xExpGain
     m_Metadata:
       m_Items: []
   m_Metadata:

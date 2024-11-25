@@ -60,6 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _delayToGenerate: 1
   _totalCurrency: {fileID: 11400000, guid: 5ff754d7192604832a00d5cf0c8ff24d, type: 2}
+  _gameTotalCurrency: {fileID: 11400000, guid: 967164b2c9ed14646b5f97791afa3fac, type: 2}
   _crystalOnGetMultiplier: {fileID: 11400000, guid: 040b947bc1d6d4246909cf21658dd890, type: 2}
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
   OnGeneratorAmountChangedEvent: {fileID: 11400000, guid: ed7dedcf3aab54e709171f8864d63ce9, type: 2}

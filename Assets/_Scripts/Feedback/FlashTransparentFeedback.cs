@@ -45,21 +45,21 @@ public class FlashTransparentFeedback : Feedback
 
     private IEnumerator BlinkCoroutine()
     {
-        Agent.AgentRenderer.Sprite.enabled = false;
-        yield return Helpers.GetWaitForSeconds(0.1f);
-        Agent.AgentRenderer.Sprite.enabled = true;
-        yield return Helpers.GetWaitForSeconds(0.2f);
-        Agent.AgentRenderer.Sprite.enabled = false;
-        yield return Helpers.GetWaitForSeconds(0.1f);
-        Agent.AgentRenderer.Sprite.enabled = true;
-        yield return Helpers.GetWaitForSeconds(0.2f);
-        Agent.AgentRenderer.Sprite.enabled = false;
-        yield return Helpers.GetWaitForSeconds(0.1f);
-        Agent.AgentRenderer.Sprite.enabled = true;
-        yield return Helpers.GetWaitForSeconds(0.05f);
-        Agent.AgentRenderer.Sprite.enabled = false;
-        yield return Helpers.GetWaitForSeconds(0.1f);
-        Agent.AgentRenderer.Sprite.enabled = true;
+        for (int i = 0; i < 3; i++)
+        {
+            Agent.AgentRenderer.SpriteRenderer.enabled = false;
+            yield return Helpers.GetWaitForSeconds(0.1f);
+            Agent.AgentRenderer.SpriteRenderer.enabled = true;
+            yield return Helpers.GetWaitForSeconds(0.2f);
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            Agent.AgentRenderer.SpriteRenderer.enabled = false;
+            yield return Helpers.GetWaitForSeconds(0.1f);
+            Agent.AgentRenderer.SpriteRenderer.enabled = true;
+            yield return Helpers.GetWaitForSeconds(0.05f);
+        }
+
 
         Agent.AgentRenderer.TransparencyOverTime(1f, _feedbackTime);
     }

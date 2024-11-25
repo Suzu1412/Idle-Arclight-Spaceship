@@ -57,7 +57,7 @@ public class SceneLoaderManager : MonoBehaviour
         UpdateLoadProgress(0f);
         OnToggleLoadEvent.RaiseEvent(true);
         await _manager.LoadScenes(_sceneGroups[index]);
-        //EnableLoadingCanvas(false);
+        EnableLoadingCanvas(false);
     }
 
     void EnableLoadingCanvas(bool enable = true)

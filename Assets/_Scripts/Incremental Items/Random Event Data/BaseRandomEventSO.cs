@@ -15,6 +15,8 @@ public abstract class BaseRandomEventSO : ScriptableObject
 
     public Sprite Image => _image;
 
+    public abstract float Multiplier { get; }
+
     public abstract void ActivateEvent();
 
     public abstract void DeactivateEvent();

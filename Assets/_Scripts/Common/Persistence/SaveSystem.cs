@@ -31,7 +31,7 @@ public class SaveSystem : Singleton<SaveSystem>
 
         foreach (var item in _saveDataRTS.Items)
         {
-            item.GetComponent<ISaveable>().LoadData(_gameDataSO);
+            item.GetComponent<ISaveable>().LoadDataAsync(_gameDataSO);
         }
     }
 

@@ -8,4 +8,9 @@ public class ListGeneratorSO : ScriptableObject
 
     public List<GeneratorSO> Generators => _generators;
 
+    public GeneratorSO Find(string guid)
+    {
+        return _generators.Find(x => x.Guid == guid);
+    }
+
 }

@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de3805c4f50cfe4e8cc6620b7863bcc, type: 3}
   m_Name: PlayerAgentDataSO
   m_EditorClassIdentifier: 
-  _guid: a411c3feacc0c7b418fa819db824e7b8
-  _initialStats: {fileID: 11400000, guid: 3e84c19f82851d14bbb6158ad4eee7d0, type: 2}
+  _guid: 0a4ec011e7c4d46d0968eeea28a6b23c
+  _agentStats: {fileID: 11400000, guid: 3e84c19f82851d14bbb6158ad4eee7d0, type: 2}
   _movementData: {fileID: 11400000, guid: 819480d1e44f11d48b31032dbba7f1f1, type: 2}
-  _currentHealth: 0
-  _currentLevel: 0
+  _sprite: {fileID: 21300000, guid: 8fefd6a9ebffa0c479874a0ba9bab3a0, type: 3}
   _totalExp: 0
-  _sprite: {fileID: 0}
+  _isUnlocked: 1

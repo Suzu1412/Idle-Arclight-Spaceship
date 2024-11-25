@@ -10,21 +10,10 @@ public class GameDataSO : ScriptableObject
 	public string Name => _name;
 	public GameData GameData;
 
-	public async void LoadGenerators()
-	{
-		foreach (var generator in GameData.Generators)
-		{
-			var loadItemOperationHandle = Addressables.LoadAssetAsync<GeneratorSO>(generator.Guid);
-			await loadItemOperationHandle.Task;
-			if (loadItemOperationHandle.Status == AsyncOperationStatus.Succeeded)
-			{
-				var generatorSO = loadItemOperationHandle.Result;
-				generatorSO.SetAmount(generator.Amount);
-				generatorSO.SetTotalProduction(generator.TotalProduction);
-				generatorSO.IsUnlocked = generator.IsUnlocked;
-			}
-		}
-	}
+	public List<GeneratorData> Generators => GameData.Generators;
+	public List<PlayerAgentData> Players => GameData.Players;
+	public List<UpgradeData> Upgrades => GameData.Upgrades;
+	public CurrencyData CurrencyData => GameData.CurrencyData;
 
 	public List<GeneratorData> GetClearGeneratorDatas()
 	{
@@ -62,13 +51,13 @@ public class GameDataSO : ScriptableObject
 		GameData.Upgrades = upgradeDatas;
 	}
 
-	public CurrencyData LoadCurrency()
-	{
-		return GameData.CurrencyData;
-	}
-
 	public void SaveCurrency(double totalCurrency, double gameTotalCurrency, int amountToBuy)
 	{
 		GameData.CurrencyData = new(totalCurrency, gameTotalCurrency, amountToBuy);
+	}
+
+	public void SavePlayers(List<PlayerAgentData> players)
+	{
+		GameData.Players = players;
 	}
 }

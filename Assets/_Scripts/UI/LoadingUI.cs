@@ -1,25 +1,22 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using UnityEngine.Localization.Settings;
-using Cysharp.Text;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class LoadingUI : MonoBehaviour
 {
     [SerializeField] private Slider _slider;
-    [SerializeField] private TextMeshProUGUI _loadingText;
+    [SerializeField] private LocalizeStringEvent _localizedStringEvent;
+    private LocalizedString _localizedString;
     private Coroutine _moveTowardsTargetValue;
     private string _loading;
     private float _currentValue;
+    private FloatVariable _amount = null;
 
     [Header("Float Event Listener")]
     [SerializeField] private FloatGameEventListener OnLoadProgressEventListener;
-
-    private void Start()
-    {
-        LoadingTextTranslate();
-    }
 
     private void OnEnable()
     {
@@ -32,14 +29,18 @@ public class LoadingUI : MonoBehaviour
         OnLoadProgressEventListener.DeRegister(UpdateUIProgressBar);
     }
 
-    private async void LoadingTextTranslate()
+    private void Start()
     {
-        var op = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("Tabla1", "Loading");
-        await op.Task;
+        _localizedString = _localizedStringEvent.StringReference;
 
-        if (op.IsDone)
+        if (!_localizedString.TryGetValue("amount", out var variable))
         {
-            _loading = op.Result;
+            _amount = new FloatVariable();
+            _localizedString.Add("amount", _amount);
+        }
+        else
+        {
+            _amount = variable as FloatVariable;
         }
     }
 
@@ -56,7 +57,7 @@ public class LoadingUI : MonoBehaviour
         {
             _currentValue = Mathf.MoveTowards(_currentValue, target, rate * Time.deltaTime);
             _slider.value = _currentValue;
-            _loadingText.SetTextFormat("{0}... {1:F0}%", _loading, (_currentValue * 100));
+            _amount.Value = Mathf.Round(_currentValue * 100);
             yield return null;
         }
     }

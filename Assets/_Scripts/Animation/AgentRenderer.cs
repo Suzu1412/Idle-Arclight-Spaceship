@@ -6,10 +6,10 @@ public class AgentRenderer : MonoBehaviour, IAgentRenderer
     private Color _spriteOriginalColor;
     private Color _spriteTargetColor;
     private Vector2 _facingDirection = new(1f, 1f);
-    private SpriteRenderer _sprite;
+    private SpriteRenderer _spriteRenderer;
     private IAgent _agent;
     public IAgent Agent => _agent ??= _agent = GetComponentInParent<IAgent>();
-    public SpriteRenderer Sprite => _sprite != null ? _sprite : _sprite = GetComponent<SpriteRenderer>();
+    public SpriteRenderer SpriteRenderer => _spriteRenderer != null ? _spriteRenderer : _spriteRenderer = GetComponent<SpriteRenderer>();
     public Vector2 FacingDirection => _facingDirection;
 
     private void OnEnable()
@@ -29,13 +29,13 @@ public class AgentRenderer : MonoBehaviour, IAgentRenderer
             _facingDirection.y = -1f;
             transform.parent.localScale = new Vector3(
                 1,
-                -1 * Mathf.Abs(transform.parent.localScale.y), 
+                -1 * Mathf.Abs(transform.parent.localScale.y),
                 transform.localScale.z);
         }
         else if (input.y > 0)
         {
             _facingDirection.y = 1f;
-            transform.parent.localScale = new Vector3(1, 
+            transform.parent.localScale = new Vector3(1,
                 Mathf.Abs(transform.parent.localScale.y),
                 transform.localScale.z);
         }
@@ -43,7 +43,7 @@ public class AgentRenderer : MonoBehaviour, IAgentRenderer
 
     public void TransparencyOverTime(float targetAlpha, float duration)
     {
-        Sprite.DOFade(targetAlpha, duration).SetEase(Ease.Linear);
+        SpriteRenderer.DOFade(targetAlpha, duration).SetEase(Ease.Linear);
     }
 
     public void ChangeSpriteColor(float r, float g, float b, float a)
@@ -53,6 +53,6 @@ public class AgentRenderer : MonoBehaviour, IAgentRenderer
         _spriteTargetColor.b = b;
         _spriteTargetColor.a = a;
 
-        Sprite.color = _spriteTargetColor;
+        SpriteRenderer.color = _spriteTargetColor;
     }
 }
