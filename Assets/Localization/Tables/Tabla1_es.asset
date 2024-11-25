@@ -55,7 +55,8 @@ MonoBehaviour:
   - m_Id: 9
     m_Localized: Gana {multiplier}x Mas cristales
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388418
   - m_Id: 12
     m_Localized: Cargando... {amount}%
     m_Metadata:
@@ -91,3 +92,4 @@ MonoBehaviour:
         m_SharedEntries:
         - id: 3
         - id: 12
+        - id: 9

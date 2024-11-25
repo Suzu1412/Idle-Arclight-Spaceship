@@ -64,6 +64,7 @@ public class NotifyMessageUI : MonoBehaviour
     private void UpgradeDescription(BaseRandomEventSO randomEvent)
     {
         _localizedStringEvent.StringReference.SetReference("Tabla1", randomEvent.Description);
+        _multiplier.Value = randomEvent.Multiplier;
         _localizedStringEvent.RefreshString();
     }
 

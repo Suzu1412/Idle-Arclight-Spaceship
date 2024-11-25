@@ -21,7 +21,7 @@ MonoBehaviour:
   _image: {fileID: 21300000, guid: 8d06d663a124647ad9cace55e7d6e935, type: 3}
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
   _modifier:
-    _modifierType: 1
+    _modifierType: 2
     _value: 5
     _source: CurrencyMultiplierEventSO
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
