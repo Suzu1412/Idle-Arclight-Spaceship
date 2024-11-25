@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class GameInitiator : Singleton<GameInitiator>
 {
@@ -13,14 +15,7 @@ public class GameInitiator : Singleton<GameInitiator>
 
     private void OnEnable()
     {
-        StartGame();
-    }
-
-    private void StartGame()
-    {
-        BindObjects();
-        Initialize();
-        LoadGame();
+        StartCoroutine(StartGame());
     }
 
     private void BindObjects()
@@ -40,4 +35,12 @@ public class GameInitiator : Singleton<GameInitiator>
         _saveSystem.LoadGame();
     }
 
+    private IEnumerator StartGame()
+    {
+        yield return Helpers.GetWaitForSeconds(0.1f);
+
+        BindObjects();
+        Initialize();
+        LoadGame();
+    }
 }

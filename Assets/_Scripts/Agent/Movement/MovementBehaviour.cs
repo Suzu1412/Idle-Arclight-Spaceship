@@ -4,33 +4,22 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovementBehaviour : MonoBehaviour, ICanMove
 {
-    private Camera _camera;
     private IAgent _agent;
     private Vector2 _direction;
     private Vector2 _currentSpeed;
     private Vector2 _targetPosition;
 
-    private float _leftBounds = 0;
-    private float _rightBounds = 0;
-    private float _topBounds = 0;
-    private float _bottomBounds = 0;
+    [SerializeField] private float _leftBounds = -2.3f;
+    [SerializeField] private float _rightBounds = 2.3f;
+    [SerializeField] private float _topBounds = 3f;
+    [SerializeField] private float _bottomBounds = -3f;
 
     private Rigidbody2D _rb;
-    private bool _hasBoundaries;
+    [SerializeField] private bool _hasBoundaries;
     private IMoveData _moveData;
 
     public IAgent Agent => _agent ??= GetComponent<IAgent>();
     public Rigidbody2D RB => _rb != null ? _rb : _rb = GetComponent<Rigidbody2D>();
-
-    private void Awake()
-    {
-        _camera = Camera.main;
-    }
-
-    private void Start()
-    {
-        StartCoroutine(SetAutomaticBoundaries());
-    }
 
     public void StopMovement()
     {
@@ -132,21 +121,6 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
         _rightBounds = boundary.x;
         _bottomBounds = -boundary.y;
         _topBounds = boundary.y;
-    }
-
-    private IEnumerator SetAutomaticBoundaries()
-    {
-        yield return Helpers.GetWaitForSeconds(0.1f);
-
-        if (_camera == null)
-        {
-            Debug.LogError("No Camera in Scene. Please Fix");
-        }
-        _leftBounds = _camera.ViewportToWorldPoint(new Vector2(0.1f, 0f)).x;
-        _rightBounds = _camera.ViewportToWorldPoint(new Vector2(0.9f, 0f)).x;
-        _bottomBounds = _camera.ViewportToWorldPoint(new Vector2(0, 0.05f)).y;
-        _topBounds = _camera.ViewportToWorldPoint(new Vector2(0, 0.95f)).y;
-        _hasBoundaries = true;
     }
 
     public void SetMoveData(IMoveData moveData)

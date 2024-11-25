@@ -57,7 +57,10 @@ public class LoadingUI : MonoBehaviour
         {
             _currentValue = Mathf.MoveTowards(_currentValue, target, rate * Time.deltaTime);
             _slider.value = _currentValue;
-            _amount.Value = Mathf.Round(_currentValue * 100);
+            if (_amount != null)
+            {
+                _amount.Value = Mathf.Round(_currentValue * 100);
+            }
             yield return null;
         }
     }

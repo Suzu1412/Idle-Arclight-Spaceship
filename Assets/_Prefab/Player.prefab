@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5093743873899913257}
   - component: {fileID: 7878442640159246216}
   - component: {fileID: 2873822379548033991}
+  - component: {fileID: 8124682318559238475}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 341b15c2b56993148b9e50d639e32fba, type: 3}
+  m_Actions: {fileID: 0}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -143,6 +144,19 @@ MonoBehaviour:
   OnToggleInventoryEvent: {fileID: 11400000, guid: ce6f72027cc4525499da55aa695dbf9f, type: 2}
   OnToggleStatsEvent: {fileID: 11400000, guid: 2ea8ab3ab3264f14780d9d8188591b0a, type: 2}
   OnTogglePauseEvent: {fileID: 11400000, guid: 5aef7b5fb7bb7174fb12a01bc887e87a, type: 2}
+--- !u!114 &8124682318559238475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131754902826937617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d3c703d85dc4ae58f13085e7522959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 2063583717369504075}
 --- !u!1 &3206748674837551557
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,6 +432,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1604a5a525758844483e7faa5a5e2e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _leftBounds: -2.3
+  _rightBounds: 2.3
+  _topBounds: 3
+  _bottomBounds: -3
+  _hasBoundaries: 1
 --- !u!1 &5311107909362892236
 GameObject:
   m_ObjectHideFlags: 0
