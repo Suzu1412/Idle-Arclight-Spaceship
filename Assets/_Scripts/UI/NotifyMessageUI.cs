@@ -17,9 +17,11 @@ public class NotifyMessageUI : MonoBehaviour
     private string _description;
     [SerializeField] private LocalizeStringEvent _localizedStringEvent;
     private LocalizedString _localizedString;
+    [SerializeField] private string _table = "Tabla1";
     [SerializeField] private Image _image;
     private float _duration;
-    private FloatVariable _multiplier;
+    private FloatVariable _multiplierVariable;
+    private FloatVariable _durationVariable;
     [SerializeField] private float _easeDuration = 0.4f;
     public ObjectPooler Pool => _pool = _pool != null ? _pool : gameObject.GetOrAdd<ObjectPooler>();
 
@@ -29,15 +31,8 @@ public class NotifyMessageUI : MonoBehaviour
 
         _localizedString = _localizedStringEvent.StringReference;
 
-        if (!_localizedString.TryGetValue("multiplier", out var variable))
-        {
-            _multiplier = new FloatVariable();
-            _localizedString.Add("multiplier", _multiplier);
-        }
-        else
-        {
-            _multiplier = variable as FloatVariable;
-        }
+        GetMultiplierVariable();
+        GetDurationVariable();
 
     }
 
@@ -52,6 +47,32 @@ public class NotifyMessageUI : MonoBehaviour
         transform.position = new Vector3(_parentRectTransform.rect.width, transform.position.y);
     }
 
+    private void GetMultiplierVariable()
+    {
+        if (!_localizedString.TryGetValue("multiplier", out var variable))
+        {
+            _multiplierVariable = new FloatVariable();
+            _localizedString.Add("multiplier", _multiplierVariable);
+        }
+        else
+        {
+            _multiplierVariable = variable as FloatVariable;
+        }
+    }
+
+    private void GetDurationVariable()
+    {
+        if (!_localizedString.TryGetValue("duration", out var variable))
+        {
+            _durationVariable = new FloatVariable();
+            _localizedString.Add("duration", _durationVariable);
+        }
+        else
+        {
+            _durationVariable = variable as FloatVariable;
+        }
+    }
+
     public void SetRandomEvent(BaseRandomEventSO randomEvent)
     {
         _image.sprite = randomEvent.Image;
@@ -63,8 +84,8 @@ public class NotifyMessageUI : MonoBehaviour
 
     private void UpgradeDescription(BaseRandomEventSO randomEvent)
     {
-        _localizedStringEvent.StringReference.SetReference("Tabla1", randomEvent.Description);
-        _multiplier.Value = randomEvent.Multiplier;
+        _localizedStringEvent.StringReference.SetReference(_table, randomEvent.Description);
+        _multiplierVariable.Value = randomEvent.Multiplier;
         _localizedStringEvent.RefreshString();
     }
 
@@ -74,7 +95,7 @@ public class NotifyMessageUI : MonoBehaviour
         while (_duration > 0)
         {
             _duration -= 1f;
-            //_detailsText.SetTextFormat(format: "{0} {1:00}s", _description, _duration);
+            _durationVariable.Value = _duration;
 
             yield return Helpers.GetWaitForSeconds(1f);
         }

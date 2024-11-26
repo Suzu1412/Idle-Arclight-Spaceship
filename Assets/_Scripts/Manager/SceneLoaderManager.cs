@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneLoaderManager : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class SceneLoaderManager : MonoBehaviour
 
     private void Awake()
     {
-        _manager.OnSceneLoaded += sceneName => SceneLoaded(sceneName);
+        _manager.OnSceneLoaded += SceneLoaded;
         _manager.OnSceneUnloaded += sceneName => Debug.Log("Unloaded" + sceneName);
         _manager.OnSceneGroupLoaded += () => SceneGroupLoaded();
         _manager.OnSceneGroupUnloaded += () => UpdateLoadProgress(0.2f);

@@ -4,6 +4,10 @@ using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using Cysharp.Text;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
+using System;
 
 public class GeneratorButtonController : MonoBehaviour
 {
@@ -22,11 +26,16 @@ public class GeneratorButtonController : MonoBehaviour
     [Header("Button Fields")]
     [SerializeField] private Image _background;
     [SerializeField] private Image _generatorIcon;
-    [SerializeField] private TextMeshProUGUI _nameText;
+    [SerializeField] private LocalizeStringEvent _nameLocalized;
+    [SerializeField] private LocalizeStringEvent _descriptionLocalized;
     [SerializeField] private TextMeshProUGUI _amountText;
     [SerializeField] private TextMeshProUGUI _priceText;
     [SerializeField] private TextMeshProUGUI _productionText;
     [SerializeField] private Button _buyButton;
+    private LocalizedString _localizedString;
+    [SerializeField] private string _table = "Tabla1";
+    private string _gemDescription = "gemDescription";
+    private DoubleVariable _amountVariable;
     private bool _isAlreadyActive;
 
     public event UnityAction<int> OnBuyGeneratorClicked;
@@ -35,6 +44,8 @@ public class GeneratorButtonController : MonoBehaviour
     {
         _isAlreadyActive = false;
         ActivateButton(_isAlreadyActive);
+        _localizedString = _descriptionLocalized.StringReference;
+        SetAmountVariable();
     }
 
     private void OnEnable()
@@ -43,6 +54,7 @@ public class GeneratorButtonController : MonoBehaviour
         OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
         OnGeneratorUpgradeListener.Register(DisplayImage);
         OnProductionChangedEventListener.Register(DisplayProductionText);
+        OnProductionChangedEventListener.Register(DisplayDescription);
 
         if (_generator == null) return;
 
@@ -50,6 +62,7 @@ public class GeneratorButtonController : MonoBehaviour
         DisplayAmountOwned();
         DisplayProductionText();
         DisplayPriceText();
+        DisplayDescription();
     }
 
     private void OnDisable()
@@ -58,6 +71,7 @@ public class GeneratorButtonController : MonoBehaviour
         OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
         OnGeneratorUpgradeListener.DeRegister(DisplayImage);
         OnProductionChangedEventListener.DeRegister(DisplayProductionText);
+        OnProductionChangedEventListener.DeRegister(DisplayDescription);
 
     }
 
@@ -76,6 +90,7 @@ public class GeneratorButtonController : MonoBehaviour
         DisplayImage();
         DisplayAmountOwned();
         DisplayName();
+        DisplayDescription();
         DisplayPriceText();
         DisplayProductionText();
     }
@@ -144,7 +159,16 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void DisplayName()
     {
-        _nameText.SetTextFormat("{0}", _generator.Name);
+        _nameLocalized.StringReference.SetReference(_table, _generator.Name);
+        _nameLocalized.RefreshString();
+    }
+
+    private void DisplayDescription()
+    {
+        if (_generator == null) return;
+        _descriptionLocalized.StringReference.SetReference(_table, _gemDescription);
+        _amountVariable.Value = Math.Round(_generator.Production.Value, 1);
+        _descriptionLocalized.RefreshString();
     }
 
     private void DisplayPriceText()
@@ -156,5 +180,18 @@ public class GeneratorButtonController : MonoBehaviour
     {
         if (_generator == null) return;
         _productionText.SetTextFormat("{0} CpS", _generator.ProductionFormatted.GetFormat());
+    }
+
+    private void SetAmountVariable()
+    {
+        if (!_localizedString.TryGetValue("amount", out var variable))
+        {
+            _amountVariable = new DoubleVariable();
+            _localizedString.Add("amount", _amountVariable);
+        }
+        else
+        {
+            _amountVariable = variable as DoubleVariable;
+        }
     }
 }

@@ -75,6 +75,10 @@ MonoBehaviour:
     m_Key: xExpGain
     m_Metadata:
       m_Items: []
+  - m_Id: 22
+    m_Key: gemDescription
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

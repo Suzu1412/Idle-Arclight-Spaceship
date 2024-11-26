@@ -434,8 +434,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftBounds: -2.3
   _rightBounds: 2.3
-  _topBounds: 3
-  _bottomBounds: -3
+  _topBounds: 3.5
+  _bottomBounds: -3.5
   _hasBoundaries: 1
 --- !u!1 &5311107909362892236
 GameObject:

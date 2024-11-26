@@ -264,8 +264,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 483, y: -140}
-  m_SizeDelta: {x: 540, y: 70}
+  m_AnchoredPosition: {x: 464, y: -140}
+  m_SizeDelta: {x: 500, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &638565067711934630
 CanvasRenderer:
@@ -295,17 +295,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: AAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAA
+  m_text: Aumenta los cristales por +0 CpS
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5f58c05479cb14f588efcdfcbdab347c, type: 2}
-  m_sharedMaterial: {fileID: 7423409246693961632, guid: 5f58c05479cb14f588efcdfcbdab347c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c9f0ab9a170fa4c3596972aa1db04a9a, type: 2}
+  m_sharedMaterial: {fileID: 2081446301306759604, guid: c9f0ab9a170fa4c3596972aa1db04a9a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289105791
-  m_fontColor: {r: 0.49803922, g: 0.56078434, b: 0.6509804, a: 1}
+    rgba: 4292591283
+  m_fontColor: {r: 0.7019608, g: 0.74509805, b: 0.85882354, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -322,12 +322,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 31.15
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 32
+  m_fontSizeMax: 38
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -382,7 +382,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:4393d53c1e2fb70459aa954af38d89fd
     m_TableEntryReference:
-      m_KeyId: 5
+      m_KeyId: 22
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -516,11 +516,13 @@ MonoBehaviour:
   _index: 0
   _background: {fileID: 4205859773472550794}
   _generatorIcon: {fileID: 7615943875515194709}
-  _nameText: {fileID: 6069499809951082843}
+  _nameLocalized: {fileID: 9108164232644152494}
+  _descriptionLocalized: {fileID: 7643302844201131732}
   _amountText: {fileID: 9166258388167318685}
   _priceText: {fileID: 6267839520823332536}
   _productionText: {fileID: 5461118389445574781}
   _buyButton: {fileID: 5248496406339025179}
+  _table: Tabla1
 --- !u!114 &1939805442267171022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,7 +577,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -20, y: 0}
-  m_SizeDelta: {x: 300, y: 200}
+  m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &9141034363022338404
 CanvasRenderer:
@@ -768,12 +770,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54
+  m_fontSize: 48
   m_fontSizeBase: 54
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 54
+  m_fontSizeMax: 48
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1124,8 +1126,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 483, y: -49}
-  m_SizeDelta: {x: 540, y: 100}
+  m_AnchoredPosition: {x: 465, y: -49}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &518682315535233831
 CanvasRenderer:
@@ -1155,7 +1157,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: AAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAA
+  m_text: Granate
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5f58c05479cb14f588efcdfcbdab347c, type: 2}
   m_sharedMaterial: {fileID: 7423409246693961632, guid: 5f58c05479cb14f588efcdfcbdab347c, type: 2}
@@ -1646,12 +1648,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
+  m_fontSize: 48
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 56
+  m_fontSizeMax: 48
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

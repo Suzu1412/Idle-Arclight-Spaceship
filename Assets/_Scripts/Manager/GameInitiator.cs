@@ -1,9 +1,15 @@
 using System.Collections;
 using UnityEngine;
 using Unity.Cinemachine;
+using UnityEngine.SceneManagement;
+using Eflatun.SceneReference;
+using System.Collections.Generic;
 
 public class GameInitiator : Singleton<GameInitiator>
 {
+    [Header("Scene References")]
+    [SerializeField] private List<SceneReference> _validActiveScenes;
+
     [Header("Managers")]
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private SaveSystem _saveSystem;
@@ -37,7 +43,23 @@ public class GameInitiator : Singleton<GameInitiator>
 
     private IEnumerator StartGame()
     {
-        yield return Helpers.GetWaitForSeconds(0.1f);
+        bool isValid = false;
+
+        while (!isValid)
+        {
+            foreach(var activeScene in _validActiveScenes)
+            {
+                if (SceneManager.GetActiveScene().name == activeScene.Name)
+                {
+                    isValid = true; 
+                    break;
+                }
+            }
+
+            yield return Helpers.GetWaitForSeconds(0.1f);
+        }
+
+        
 
         BindObjects();
         Initialize();

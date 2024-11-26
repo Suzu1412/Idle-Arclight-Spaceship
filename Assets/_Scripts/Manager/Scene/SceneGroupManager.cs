@@ -59,7 +59,6 @@ public class SceneGroupManager
             }
 
             OnSceneLoaded?.Invoke(sceneData.Name);
-
         }
 
         while (!operationGroup.IsDone || !_handleGroup.IsDone)
@@ -75,7 +74,6 @@ public class SceneGroupManager
         }
 
         OnSceneGroupLoaded?.Invoke();
-
     }
 
     public async Awaitable UnloadScenes()

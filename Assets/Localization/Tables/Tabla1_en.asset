@@ -26,7 +26,8 @@ MonoBehaviour:
   - m_Id: 5
     m_Localized: Garnet
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388423
   - m_Id: 1
     m_Localized: Menu
     m_Metadata:
@@ -52,7 +53,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9
-    m_Localized: Earn {multiplier}x More Crystals
+    m_Localized: Earn {multiplier}x More Crystals for {duration}s
     m_Metadata:
       m_Items:
       - rid: 6827601619408388423
@@ -66,7 +67,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14
-    m_Localized: Pickup {multiplier}x More Crystals
+    m_Localized: Pickup {multiplier}x More Crystals for {duration}s
     m_Metadata:
       m_Items: []
   - m_Id: 17
@@ -74,13 +75,18 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 18
-    m_Localized: Production Increased by {multiplier}x
+    m_Localized: Production Increased by {multiplier}x for {duration}s
     m_Metadata:
       m_Items: []
   - m_Id: 21
-    m_Localized: Experience Increased by {multiplier}x
+    m_Localized: Experience Increased by {multiplier}x for {duration}s
     m_Metadata:
       m_Items: []
+  - m_Id: 22
+    m_Localized: Produce +{amount} CpS
+    m_Metadata:
+      m_Items:
+      - rid: 6827601619408388423
   references:
     version: 2
     RefIds:
@@ -91,3 +97,5 @@ MonoBehaviour:
         m_SharedEntries:
         - id: 12
         - id: 9
+        - id: 5
+        - id: 22

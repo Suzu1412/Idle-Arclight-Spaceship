@@ -26,7 +26,8 @@ MonoBehaviour:
   - m_Id: 5
     m_Localized: Granate
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388418
   - m_Id: 1
     m_Localized: "Men\xFA"
     m_Metadata:
@@ -53,7 +54,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9
-    m_Localized: Gana {multiplier}x Mas cristales
+    m_Localized: Gana {multiplier}x Mas cristales por {duration}s
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
@@ -67,7 +68,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14
-    m_Localized: "Recoge {multiplier} m\xE1s cristales"
+    m_Localized: "Recoge {multiplier}x m\xE1s cristales por {duration}s"
     m_Metadata:
       m_Items: []
   - m_Id: 17
@@ -75,13 +76,18 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 18
-    m_Localized: "Producci\xF3n aumentada por {multiplier}x"
+    m_Localized: "Producci\xF3n aumentada por {multiplier}x por {duration}s"
     m_Metadata:
       m_Items: []
   - m_Id: 21
-    m_Localized: Experiencia aumentada por {multiplier}x
+    m_Localized: Experiencia aumentada por {multiplier}x por {duration}s
     m_Metadata:
       m_Items: []
+  - m_Id: 22
+    m_Localized: Produce +{amount} CpS
+    m_Metadata:
+      m_Items:
+      - rid: 6827601619408388418
   references:
     version: 2
     RefIds:
@@ -93,3 +99,5 @@ MonoBehaviour:
         - id: 3
         - id: 12
         - id: 9
+        - id: 5
+        - id: 22

@@ -29,7 +29,7 @@ public class LoadingUI : MonoBehaviour
         OnLoadProgressEventListener.DeRegister(UpdateUIProgressBar);
     }
 
-    private void Start()
+    private void Awake()
     {
         _localizedString = _localizedStringEvent.StringReference;
 
