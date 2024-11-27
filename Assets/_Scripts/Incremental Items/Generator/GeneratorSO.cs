@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Tests")]
 [assembly: InternalsVisibleTo("Suzu.Manager")]
-[CreateAssetMenu(fileName = "GeneratorSO", menuName = "Scriptable Objects/Incremental/GeneratorSO")]
+[CreateAssetMenu(fileName = "GeneratorSO", menuName = "Scriptable Objects/Incremental/Generator/GeneratorSO")]
 public class GeneratorSO : SerializableScriptableObject
 {
     [SerializeField] private string _name;
@@ -32,6 +32,13 @@ public class GeneratorSO : SerializableScriptableObject
     public bool IsUnlocked { get; internal set; }
     public FormattedNumber CostFormatted { get; private set; }
     public FormattedNumber ProductionFormatted { get; private set; }
+
+    internal void Initialize()
+    {
+        SetAmount(0);
+        SetTotalProduction(0);
+        IsUnlocked = false;
+    }
 
     public void CheckIfMeetRequirementsToUnlock(double currency)
     {

@@ -56,5 +56,10 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Idle-Arclight-Spaceship.sln"
+    "dotnet.defaultSolution": "Idle-Arclight-Spaceship.sln",
+    "vstuc.refreshOnSave": true,
+    "files.autoSaveWhenNoErrors": true,
+    "editor.formatOnSave": true,
+    "editor.wrappingIndent": "deepIndent",
+    "editor.autoIndent": "full"
 }

@@ -13,6 +13,7 @@ public class GameDataSO : ScriptableObject
 	public List<GeneratorData> Generators => GameData.Generators;
 	public List<PlayerAgentData> Players => GameData.Players;
 	public List<UpgradeData> Upgrades => GameData.Upgrades;
+	public List<UnlockSystemData> UnlockedSystems => GameData.UnlockedSystems;
 	public CurrencyData CurrencyData => GameData.CurrencyData;
 
 	public List<GeneratorData> GetClearGeneratorDatas()
@@ -26,20 +27,6 @@ public class GameDataSO : ScriptableObject
 		GameData.Generators = generatorDatas;
 	}
 
-	public async void LoadUpgrades()
-	{
-		foreach (var upgrade in GameData.Upgrades)
-		{
-			var loadItemOperationHandle = Addressables.LoadAssetAsync<BaseUpgradeSO>(upgrade.Guid);
-			await loadItemOperationHandle.Task;
-			if (loadItemOperationHandle.Status == AsyncOperationStatus.Succeeded)
-			{
-				var upgradeSO = loadItemOperationHandle.Result;
-				upgradeSO.IsRequirementMet = upgrade.IsRequirementMet;
-				upgradeSO.ApplyUpgrade(upgrade.IsApplied);
-			}
-		}
-	}
 	public List<UpgradeData> GetClearUpgradeDatas()
 	{
 		GameData.Upgrades.Clear();
@@ -49,6 +36,17 @@ public class GameDataSO : ScriptableObject
 	public void SaveUpgrades(List<UpgradeData> upgradeDatas)
 	{
 		GameData.Upgrades = upgradeDatas;
+	}
+
+	public List<UnlockSystemData> GetClearUnlockedSystemsData()
+	{
+		GameData.UnlockedSystems.Clear();
+		return GameData.UnlockedSystems;
+	}
+
+	public void SaveUnlockedSystems(List<UnlockSystemData> unlockedSystems)
+	{
+		GameData.UnlockedSystems = unlockedSystems;
 	}
 
 	public void SaveCurrency(double totalCurrency, double gameTotalCurrency, int amountToBuy)

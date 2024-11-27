@@ -17,7 +17,7 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
     private Coroutine _respawnCoroutine;
     private float _respawnTime = 2.5f;
 
-    public async void LoadDataAsync(GameDataSO gameData)
+    public async void LoadData(GameDataSO gameData)
     {
         var players = gameData.Players;
         bool _isPlayerSet = false;

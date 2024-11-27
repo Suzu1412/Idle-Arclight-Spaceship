@@ -28,6 +28,12 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
         _isApplied = false;
     }
 
+    internal void Initialize()
+    {
+        IsRequirementMet = false;
+        ApplyUpgrade(false);
+    }
+
     internal virtual void BuyUpgrade(double currency)
     {
         if (currency >= Cost.Value)

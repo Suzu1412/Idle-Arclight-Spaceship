@@ -1783,6 +1783,7 @@ GameObject:
   - component: {fileID: 8028787568538850395}
   - component: {fileID: 1489429944198202902}
   - component: {fileID: 2722094595843550259}
+  - component: {fileID: 2173944463612727342}
   m_Layer: 0
   m_Name: Line
   m_TagString: Untagged
@@ -1847,6 +1848,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2173944463612727342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029563597608683870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3775ada2b30c3489e834422d33bf37a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unlockedSystem: {fileID: 11400000, guid: 72733e1ae58874ff790a86b35ca005a1, type: 2}
+  OnUnlockSystemListener: {fileID: 11400000, guid: cd6a85da1a5e8433d9b08815ef6a25f9, type: 2}
 --- !u!1 &1268587700576940231
 GameObject:
   m_ObjectHideFlags: 0
@@ -2567,7 +2582,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -159.3}
+  m_AnchoredPosition: {x: 0, y: -160}
   m_SizeDelta: {x: 1080, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7493604046636635934
@@ -2633,7 +2648,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2663,7 +2678,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 117.30786, y: -32.84619, z: 136.0769, w: 161.88452}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3110,6 +3125,7 @@ GameObject:
   - component: {fileID: 9009382743414907814}
   - component: {fileID: 7335349066186438337}
   - component: {fileID: 4810713114686670715}
+  - component: {fileID: 2305672555760773216}
   m_Layer: 0
   m_Name: Button_Upgrade
   m_TagString: Untagged
@@ -3231,6 +3247,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2305672555760773216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2163378169157982747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3775ada2b30c3489e834422d33bf37a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unlockedSystem: {fileID: 11400000, guid: 72733e1ae58874ff790a86b35ca005a1, type: 2}
+  OnUnlockSystemListener: {fileID: 11400000, guid: cd6a85da1a5e8433d9b08815ef6a25f9, type: 2}
 --- !u!1 &2238849049969146248
 GameObject:
   m_ObjectHideFlags: 0
@@ -4286,7 +4316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -159.3}
+  m_AnchoredPosition: {x: 0, y: -160}
   m_SizeDelta: {x: 1080, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6646915967544732670
@@ -4352,7 +4382,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -4382,7 +4412,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 110.40552, y: -33.121582, z: 128.07007, w: 167.36133}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5026,7 +5056,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.25
+  m_fontSize: 48
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6932,6 +6962,7 @@ GameObject:
   - component: {fileID: 6211646141729687805}
   - component: {fileID: 3970606370432790326}
   - component: {fileID: 1969524242281523946}
+  - component: {fileID: 4316035591256107960}
   m_Layer: 0
   m_Name: Button_Shop
   m_TagString: Untagged
@@ -7027,6 +7058,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ControlPath: <Gamepad>/leftShoulder
+--- !u!114 &4316035591256107960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5221082265200929733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3775ada2b30c3489e834422d33bf37a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unlockedSystem: {fileID: 11400000, guid: 22ee4b8221e19482a88dbcd572a4019b, type: 2}
+  OnUnlockSystemListener: {fileID: 11400000, guid: cd6a85da1a5e8433d9b08815ef6a25f9, type: 2}
 --- !u!1 &5251841229686120326
 GameObject:
   m_ObjectHideFlags: 0
@@ -7800,7 +7845,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50, y: -17.4}
+  m_AnchoredPosition: {x: -26, y: -17.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &7191087754774594620
@@ -11611,6 +11656,7 @@ GameObject:
   - component: {fileID: 720917535996181746}
   - component: {fileID: 4251124120149890547}
   - component: {fileID: 2780686572554355448}
+  - component: {fileID: 7838797028133187027}
   m_Layer: 0
   m_Name: Button_Generator
   m_TagString: Untagged
@@ -11732,6 +11778,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7838797028133187027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8450001274276871108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3775ada2b30c3489e834422d33bf37a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unlockedSystem: {fileID: 11400000, guid: 22ee4b8221e19482a88dbcd572a4019b, type: 2}
+  OnUnlockSystemListener: {fileID: 11400000, guid: cd6a85da1a5e8433d9b08815ef6a25f9, type: 2}
 --- !u!1 &8657136644450050915
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 3775ada2b30c3489e834422d33bf37a7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _unlockedSystem: {instanceID: 0}
+  - OnUnlockSystemListener: {fileID: 11400000, guid: cd6a85da1a5e8433d9b08815ef6a25f9, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

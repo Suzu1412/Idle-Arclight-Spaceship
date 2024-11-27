@@ -8,5 +8,16 @@ indent_style = space
 indent_size = 4
 end_of_line = lf
 charset = utf-8
-trim_trailing_whitespace = false
+trim_trailing_whitespace = true
 insert_final_newline = false
+
+[*.cs]
+indent_style = space
+indent_size = 4
+csharp_new_line_before_open_brace = none
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_new_line_before_members_in_object_initializers = false
+csharp_new_line_before_members_in_anonymous_types = false
+csharp_new_line_between_query_expression_clauses = false

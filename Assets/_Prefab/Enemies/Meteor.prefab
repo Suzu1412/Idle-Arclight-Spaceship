@@ -532,6 +532,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1604a5a525758844483e7faa5a5e2e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _leftBounds: -2.3
+  _rightBounds: 2.3
+  _topBounds: 3
+  _bottomBounds: -3
+  _hasBoundaries: 0
 --- !u!114 &4613453723534360507
 MonoBehaviour:
   m_ObjectHideFlags: 0

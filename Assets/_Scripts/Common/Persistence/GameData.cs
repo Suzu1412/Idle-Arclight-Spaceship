@@ -23,6 +23,8 @@ public class GameData
     [Header("Upgrades")]
     public List<UpgradeData> Upgrades;
 
+    [Header("Unlocked Systems")]
+    public List<UnlockSystemData> UnlockedSystems;
 
     public void NewGame(string name)
     {
@@ -33,6 +35,7 @@ public class GameData
         CurrencyData = new(0, 0, 0);
         Generators = new();
         Upgrades = new();
+        UnlockedSystems = new();
     }
 
 
@@ -138,6 +141,20 @@ public class PlayerAgentData
         _isActive = isActive;
         _isUnlocked = isUnlocked;
     }
+}
 
+[System.Serializable]
+public class UnlockSystemData
+{
+    [SerializeField] private string _guid;
+    [SerializeField] private bool _isUnlocked;
 
+    public string Guid => _guid;
+    public bool IsUnlocked => _isUnlocked;
+
+    public UnlockSystemData(string guid, bool isUnlocked)
+    {
+        _guid = guid;
+        _isUnlocked = isUnlocked;
+    }
 }

@@ -93,18 +93,20 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         foreach (var generator in _generators.Generators)
         {
             generatorDatas.Add(new(generator.Guid, generator.AmountOwned, generator.TotalProduction, generator.IsUnlocked));
-            gameData.SaveGenerators(generatorDatas);
         }
+
+        gameData.SaveGenerators(generatorDatas);
 
         List<UpgradeData> upgradeDatas = gameData.GetClearUpgradeDatas();
         foreach (var upgrade in _upgrades.Upgrades)
         {
             upgradeDatas.Add(new(upgrade.Guid, upgrade.IsRequirementMet, upgrade.IsApplied));
-            gameData.SaveUpgrades(upgradeDatas);
         }
+
+        gameData.SaveUpgrades(upgradeDatas);
     }
 
-    public void LoadDataAsync(GameDataSO gameData)
+    public void LoadData(GameDataSO gameData)
     {
         LoadCurrency(gameData.CurrencyData);
         LoadGenerators(gameData.Generators);
@@ -218,6 +220,11 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void LoadGenerators(List<GeneratorData> generatorDatas)
     {
+        foreach (var generatorSO in _generators.Generators)
+        {
+            generatorSO.Initialize();
+        }
+
         foreach (var generator in generatorDatas)
         {
             var generatorSO = _generators.Find(generator.Guid);
@@ -227,18 +234,18 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         }
     }
 
-    private async void LoadUpgrades(List<UpgradeData> upgradeDatas)
+    private void LoadUpgrades(List<UpgradeData> upgradeDatas)
     {
+        foreach (var upgradeSO in _upgrades.Upgrades)
+        {
+            upgradeSO.Initialize();
+        }
+
         foreach (var upgrade in upgradeDatas)
         {
-            var loadItemOperationHandle = Addressables.LoadAssetAsync<BaseUpgradeSO>(upgrade.Guid);
-            await loadItemOperationHandle.Task;
-            if (loadItemOperationHandle.Status == AsyncOperationStatus.Succeeded)
-            {
-                var upgradeSO = loadItemOperationHandle.Result;
-                upgradeSO.IsRequirementMet = upgrade.IsRequirementMet;
-                upgradeSO.ApplyUpgrade(upgrade.IsApplied);
-            }
+            var upgradeSO = _upgrades.Find(upgrade.Guid);
+            upgradeSO.IsRequirementMet = upgrade.IsRequirementMet;
+            upgradeSO.ApplyUpgrade(upgrade.IsApplied);
         }
     }
 }

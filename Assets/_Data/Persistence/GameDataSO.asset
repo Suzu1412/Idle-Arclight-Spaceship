@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1e6d47ff7df2d46a7fe68082b49070, type: 3}
   m_Name: GameDataSO
   m_EditorClassIdentifier: 
-  _name: d3
+  _name: d5
   GameData:
-    Name: 
+    Name: d5
     LocationId: 
     CurrentLevelName: 
     CurrentGameState: 0
@@ -24,17 +24,17 @@ MonoBehaviour:
       _isActive: 1
       _isUnlocked: 1
     CurrencyData:
-      _totalCurrency: 15784.2
+      _totalCurrency: 8167.5
       _gameTotalCurrency: 0
       _amountToBuy: 1
     Generators:
     - _guid: 274494024297a8e44a9090bed95ba8ca
-      _amount: 43
-      _totalProduction: 80946.6
+      _amount: 35
+      _totalProduction: 114938.1
       _isUnlocked: 1
     - _guid: 45a9c9cc35838824097ca45e92e5a7d8
-      _amount: 32
-      _totalProduction: 739275
+      _amount: 46
+      _totalProduction: 1094992.3
       _isUnlocked: 1
     Upgrades:
     - _guid: f2e35f9103f93854ea7bbd7299c87324
@@ -43,3 +43,8 @@ MonoBehaviour:
     - _guid: f5258c38138cd7649a8dcf6dd81dbc3a
       _isRequirementMet: 1
       _isApplied: 0
+    UnlockedSystems:
+    - _guid: 22ee4b8221e19482a88dbcd572a4019b
+      _isUnlocked: 1
+    - _guid: 72733e1ae58874ff790a86b35ca005a1
+      _isUnlocked: 1
