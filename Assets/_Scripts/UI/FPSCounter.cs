@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using System;
+using Cysharp.Text;
 
 public class FPSCounter : MonoBehaviour
 {
@@ -49,13 +50,15 @@ public class FPSCounter : MonoBehaviour
 
         // Assign to UI
         {
-            _text.text = _currentAveraged switch
+            _ = _currentAveraged switch
             {
                 var x when x >= 0 && x < _cacheNumbersAmount => CachedNumberStrings[x],
                 var x when x >= _cacheNumbersAmount => $"> {_cacheNumbersAmount}",
                 var x when x < 0 => "< 0",
                 _ => "?"
             };
+
+            _text.SetTextFormat("{0}", _currentAveraged);
         }
     }
 }

@@ -1,2 +1,19 @@
 fileFormatVersion: 2
 guid: 8cfe70fcf6951ba43a278306b72abc8a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _shopItemButtonPrefab: {instanceID: 0}
+  - _shopItemParent: {instanceID: 0}
+  - OnOpenShopEvent: {fileID: 11400000, guid: 7a00daa2c708f224ea70806189d2563c, type: 2}
+  - OnBuyGameEvent: {fileID: 11400000, guid: af8d95c7c0d8e4b3fad008cbec0807e6, type: 2}
+  - OnChangeBuyAmountEvent: {fileID: 11400000, guid: b8b90167f58d94ee391e69875a58d3dd, type: 2}
+  - OnGeneratorAmountChangedListener: {fileID: 11400000, guid: cdc46a947bed14536bff68261c46d0c5, type: 2}
+  - OnChangeBuyAmountEventListener: {fileID: 11400000, guid: 4aeb198ff79a245e59df77a1b8e59f30, type: 2}
+  - OnListGeneratorLoadedListener: {fileID: 11400000, guid: 6bc9effee739545719915f4e995d7624, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

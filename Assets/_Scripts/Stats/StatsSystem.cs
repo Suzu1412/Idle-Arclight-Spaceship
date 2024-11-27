@@ -4,20 +4,13 @@ using System;
 public class StatsSystem : MonoBehaviour, IStatsSystem
 {
     [SerializeField] private StatsSO _stats;
-    internal StatsSO Stats => _stats;
 
     public event Action OnMaxHealthChange;
-
-    private void OnValidate()
-    {
-        if (_stats == null) Debug.LogWarning("Please Assign Stats SO", this.gameObject);
-    }
 
     private void OnDisable()
     {
         _stats.RemoveModifiers();
     }
-
 
     internal void AddStat(Stat stat)
     {
@@ -39,7 +32,12 @@ public class StatsSystem : MonoBehaviour, IStatsSystem
         return _stats.GetStatMinValue(statType);
     }
 
-    internal void AddModifier(StatModifier modifier)
+    internal void RemoveModifier(StatModifier modifier)
+    {
+
+    }
+
+    public void AddModifier(IStatModifier modifier)
     {
         if (_stats.GetStat(modifier.StatType) == null)
         {
@@ -47,11 +45,11 @@ public class StatsSystem : MonoBehaviour, IStatsSystem
             return;
         }
 
-        _stats.GetStat(modifier.StatType).AddModifier(modifier);
+        _stats.GetStat(modifier.StatType).AddModifier(modifier as StatModifier);
         if (modifier.StatType == StatType.MaxHealth) OnMaxHealthChange?.Invoke();
     }
 
-    internal void RemoveModifier(StatModifier modifier)
+    public void RemoveModifier(IStatModifier modifier)
     {
         if (_stats.GetStat(modifier.StatType) == null)
         {
@@ -59,24 +57,19 @@ public class StatsSystem : MonoBehaviour, IStatsSystem
             return;
         }
 
-        _stats.GetStat(modifier.StatType).RemoveModifier(modifier);
+        _stats.GetStat(modifier.StatType).RemoveModifier(modifier as StatModifier);
         if (modifier.StatType == StatType.MaxHealth) OnMaxHealthChange?.Invoke();
-    }
-
-    public void AddModifier(IStatModifier modifier)
-    {
-        AddModifier(modifier as StatModifier);
-    }
-
-    public void RemoveModifier(IStatModifier modifier)
-    {
-        RemoveModifier(modifier as StatModifier);
     }
 
     public async void AddTemporaryModifier(IStatModifier modifier, float duration)
     {
-        AddModifier(modifier as StatModifier);
+        AddModifier(modifier);
         await Awaitable.WaitForSecondsAsync(duration);
-        RemoveModifier(modifier as StatModifier);
+        RemoveModifier(modifier);
+    }
+
+    public void SetStatsData(IStatsData statsData)
+    {
+        _stats = statsData as StatsSO;
     }
 }

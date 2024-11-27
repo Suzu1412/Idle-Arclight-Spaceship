@@ -59,20 +59,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delayToGenerate: 1
-  _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
+  _totalCurrency: {fileID: 11400000, guid: 5ff754d7192604832a00d5cf0c8ff24d, type: 2}
+  _gameTotalCurrency: {fileID: 11400000, guid: 967164b2c9ed14646b5f97791afa3fac, type: 2}
   _crystalOnGetMultiplier: {fileID: 11400000, guid: 040b947bc1d6d4246909cf21658dd890, type: 2}
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
   OnGeneratorAmountChangedEvent: {fileID: 11400000, guid: ed7dedcf3aab54e709171f8864d63ce9, type: 2}
-  OnCurrencyChangedEvent: {fileID: 11400000, guid: 8be5f2a9feb3ff844b0263eb8c0ef6b4, type: 2}
-  OnOpenShopListener: {fileID: 11400000, guid: 10046c3265ce8544482934c59fa5a860, type: 2}
+  OnChangeBuyAmountEvent: {fileID: 11400000, guid: b8b90167f58d94ee391e69875a58d3dd, type: 2}
+  OnCurrencyChangedEvent: {fileID: 11400000, guid: ff8f3ee2b518a4df797a668d4d90f90b, type: 2}
+  OnUpgradeBoughtEvent: {fileID: 11400000, guid: e54d70a978bc54df1a45e5442391819b, type: 2}
+  OnBuyEveryUpgradeEventListener: {fileID: 11400000, guid: 0b9634fdd6f6645089c59e68c9863d6e, type: 2}
+  OnProductionChangedEventListener: {fileID: 11400000, guid: f85d55a325fb54860b028a8a840a1e82, type: 2}
   OnChangeBuyAmountEventListener: {fileID: 11400000, guid: 4aeb198ff79a245e59df77a1b8e59f30, type: 2}
-  OnBuyGameEventListener: {fileID: 11400000, guid: 08b51e75c2a3b43e7bbf976223fff8b9, type: 2}
+  OnBuyGeneratorGameEventListener: {fileID: 11400000, guid: 08b51e75c2a3b43e7bbf976223fff8b9, type: 2}
+  OnBuyUpgradeGameEventListener: {fileID: 11400000, guid: b954a1a3bfc82bc4ba2dc523cc5ef156, type: 2}
   OnGainCurrencyListener: {fileID: 11400000, guid: f064a081be429904d8e0307f1538492c, type: 2}
   OnLoadCurrencyEvent: {fileID: 11400000, guid: 9a735b8e5352249ea8c6236fbcf66df7, type: 2}
   OnUpdateCurrencyFormatted: {fileID: 11400000, guid: 4bdd9d9ec70c2674f8dd9338d2b43695, type: 2}
   OnUpdateProductionFormatted: {fileID: 11400000, guid: d930e72f3007ea247b944f3be57a7ddd, type: 2}
-  OnListGeneratorEvent: {fileID: 11400000, guid: a3767fb7e5fa641f897a419f3d64d2d1, type: 2}
-  _generators: []
-  _totalCurrency: 0
+  _generators: {fileID: 11400000, guid: ce4c74a3b5cde4af8b5f425ab30f204c, type: 2}
+  _upgrades: {fileID: 11400000, guid: 4ffa9bed5669641aaa21b888413cad8f, type: 2}
   _amountToBuy: 1
-  _generatorMultiplier: 1

@@ -1,5 +1,5 @@
 public interface ISaveable
 {
-    void SaveData(GameData gameData);
-    void LoadData(GameData gameData);
+    void SaveData(GameDataSO gameData);
+    void LoadDataAsync(GameDataSO gameData);
 }

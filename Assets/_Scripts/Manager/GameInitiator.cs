@@ -1,40 +1,27 @@
+using System.Collections;
 using UnityEngine;
+using Unity.Cinemachine;
+using UnityEngine.SceneManagement;
+using Eflatun.SceneReference;
+using System.Collections.Generic;
 
 public class GameInitiator : Singleton<GameInitiator>
 {
+    [Header("Scene References")]
+    [SerializeField] private List<SceneReference> _validActiveScenes;
+
     [Header("Managers")]
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private SaveSystem _saveSystem;
     [SerializeField] private CurrencyManager _currencyManager;
     [SerializeField] private PlayerManager _playerManager;
 
-    [Header("Bool Event")]
-    [SerializeField] private BoolGameEvent OnToggleLoadEvent;
-
-    [Header("Bool Event Listener")]
-    [SerializeField] private BoolGameEventListener OnSceneGroupLoadedEventListener;
-
     [Header("Spawners")]
     [SerializeField] private GemSpawner _gemSpawner;
 
     private void OnEnable()
     {
-        OnSceneGroupLoadedEventListener.Register(StartGame);
-    }
-
-    private void OnDisable()
-    {
-        OnSceneGroupLoadedEventListener.DeRegister(StartGame);
-    }
-
-    private async void StartGame(bool value)
-    {
-        BindObjects();
-        Initialize();
-        LoadGame();
-
-        await Awaitable.WaitForSecondsAsync(0.25f);
-        OnToggleLoadEvent.RaiseEvent(false);
+        StartCoroutine(StartGame());
     }
 
     private void BindObjects()
@@ -54,4 +41,28 @@ public class GameInitiator : Singleton<GameInitiator>
         _saveSystem.LoadGame();
     }
 
+    private IEnumerator StartGame()
+    {
+        bool isValid = false;
+
+        while (!isValid)
+        {
+            foreach(var activeScene in _validActiveScenes)
+            {
+                if (SceneManager.GetActiveScene().name == activeScene.Name)
+                {
+                    isValid = true; 
+                    break;
+                }
+            }
+
+            yield return Helpers.GetWaitForSeconds(0.1f);
+        }
+
+        
+
+        BindObjects();
+        Initialize();
+        LoadGame();
+    }
 }

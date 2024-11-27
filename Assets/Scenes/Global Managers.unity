@@ -192,7 +192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &764900448
 Transform:
   m_ObjectHideFlags: 0
@@ -286,6 +286,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1385602748037994800, guid: 09232bba6e990184c93be847d6b949ad, type: 3}
+      propertyPath: _validActiveScenes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385602748037994800, guid: 09232bba6e990184c93be847d6b949ad, type: 3}
+      propertyPath: _validActiveScenes.Array.data[0].guid
+      value: 6450f8dd17b95004089777e242729748
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385602748037994800, guid: 09232bba6e990184c93be847d6b949ad, type: 3}
+      propertyPath: _validActiveScenes.Array.data[0].asset
+      value: 
+      objectReference: {fileID: 102900000, guid: 6450f8dd17b95004089777e242729748, type: 3}
     - target: {fileID: 8463079187461242157, guid: 09232bba6e990184c93be847d6b949ad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -387,6 +399,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8611419925503800045, guid: ed53d2ca57481934fb074c26a1fdbdac, type: 3}
+      propertyPath: _players
+      value: 
+      objectReference: {fileID: 11400000, guid: d2f45750ece0740569689aeb7d22c78a, type: 2}
+    - target: {fileID: 8611419925503800045, guid: ed53d2ca57481934fb074c26a1fdbdac, type: 3}
+      propertyPath: _defaultPlayerData
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a4ec011e7c4d46d0968eeea28a6b23c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -444,6 +464,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7921322146628114214, guid: 9466aeff83afe114eaf80d76cdcb22f4, type: 3}
+      propertyPath: OnActivateRandomEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 3634901eabd4d194eb3aa237cf8b2a24, type: 2}
+    - target: {fileID: 7921322146628114214, guid: 9466aeff83afe114eaf80d76cdcb22f4, type: 3}
+      propertyPath: OnNotificateRandomEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 3634901eabd4d194eb3aa237cf8b2a24, type: 2}
     - target: {fileID: 7921322146628114214, guid: 9466aeff83afe114eaf80d76cdcb22f4, type: 3}
       propertyPath: _randomEvents.Array.size
       value: 3

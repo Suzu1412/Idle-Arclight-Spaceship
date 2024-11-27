@@ -1,5 +1,8 @@
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 [RequireComponent(typeof(AddSaveDataRunTimeSet))]
 public class PlayerManager : Singleton<PlayerManager>, ISaveable
@@ -7,36 +10,55 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
     [SerializeField] private GameObject _playerPrefab;
     private GameObject _player;
     [SerializeField] private Vector2 _initialPosition = new(0f, -2f);
-    [SerializeField] private PlayerAgentDataSO _defaultPlayerConfig = default;
-    private PlayerConfig _playerConfig;
+    [SerializeField] private PlayerAgentDataSO _defaultPlayerData = default;
+    [SerializeField] private ListPlayerAgentDataSO _players;
+    private PlayerAgentDataSO _currentPlayerData;
     private Agent _agent;
-    private PlayerAgentData _currentPlayerData;
     private Coroutine _respawnCoroutine;
     private float _respawnTime = 2.5f;
 
-    public void LoadData(GameData gameData)
+    public async void LoadDataAsync(GameDataSO gameData)
     {
-        if (gameData.CurrentPlayerData != null)
+        var players = gameData.Players;
+        bool _isPlayerSet = false;
+
+        foreach (var player in players)
         {
-            _currentPlayerData = gameData.CurrentPlayerData;
+            var loadItemOperationHandle = Addressables.LoadAssetAsync<PlayerAgentDataSO>(player.Guid);
+            await loadItemOperationHandle.Task;
+            if (loadItemOperationHandle.Status == AsyncOperationStatus.Succeeded)
+            {
+                var playerSO = loadItemOperationHandle.Result;
+                playerSO.TotalExp = player.TotalExp;
+                playerSO.IsUnlocked = player.IsUnlocked;
+                if (player.IsActive)
+                {
+                    ChangePlayer(playerSO);
+                    _isPlayerSet = true;
+                }
+            }
         }
-        else
+
+        if (!_isPlayerSet)
         {
-            _currentPlayerData = gameData.PlayerAgentDatas.Load(_defaultPlayerConfig.Guid);
+            ChangePlayer(_defaultPlayerData);
         }
-        SetPlayerData();
     }
 
-    public void SaveData(GameData gameData)
+    public void SaveData(GameDataSO gameData)
     {
-        var agentData = new PlayerAgentData(
-            _currentPlayerData.Guid,
-            _agent.HealthSystem.GetCurrentHealth(),
-            _agent.LevelSystem.GetTotalExp(),
-            _agent.LevelSystem.GetCurrentLevel()
-        );
-        gameData.CurrentPlayerData = agentData;
-        gameData.PlayerAgentDatas.Save(agentData);
+        var players = gameData.Players;
+        players.Clear();
+
+        foreach (var playerData in _players.Players)
+        {
+            players.Add(new PlayerAgentData(playerData.Guid,
+            playerData.TotalExp,
+            _currentPlayerData == playerData,
+            playerData.IsUnlocked
+            ));
+        }
+        gameData.SavePlayers(players);
     }
 
     public void SpawnPlayer()
@@ -46,21 +68,14 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
             _player = Instantiate(_playerPrefab);
         }
         _player.SetActive(true);
-        _playerConfig = _player.GetComponent<PlayerConfig>();
-        _agent = _playerConfig.GetComponentInChildren<Agent>();
+        _agent = _player.GetComponentInChildren<Agent>();
         _agent.HealthSystem.OnDeath += PlayerDeath;
-
         SetPosition();
     }
 
     private void SetPosition()
     {
         _agent.transform.position = _initialPosition;
-    }
-
-    private void SetPlayerData()
-    {
-        _playerConfig.SetPlayerAgentData(_defaultPlayerConfig);
     }
 
     private void PlayerDeath()
@@ -75,10 +90,22 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
         _respawnCoroutine = StartCoroutine(RespawnCoroutine());
     }
 
+    public void ChangePlayer(PlayerAgentDataSO playerData)
+    {
+        if (!playerData.IsUnlocked)
+        {
+            return;
+        }
+
+        _agent.SetPlayerData(playerData);
+        _currentPlayerData = playerData;
+    }
+
     private IEnumerator RespawnCoroutine()
     {
         yield return Helpers.GetWaitForSeconds(_respawnTime);
         SpawnPlayer();
-        SetPlayerData();
+        ChangePlayer(_currentPlayerData);
+
     }
 }

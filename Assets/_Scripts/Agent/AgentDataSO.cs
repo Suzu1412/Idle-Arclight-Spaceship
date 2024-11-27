@@ -1,8 +1,12 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AgentDataSO", menuName = "Scriptable Objects/AgentDataSO")]
-public class AgentDataSO : ScriptableObject
+public abstract class AgentDataSO : SerializableScriptableObject
 {
-    [SerializeField] private Sprite _agentSprite;
+    [SerializeField] protected StatsSO _agentStats;
+    [SerializeField] protected MovementDataSO _movementData;
+    [SerializeField] protected Sprite _sprite;
 
+    public StatsSO AgentStats => _agentStats;
+    public MovementDataSO MovementData => _movementData;
+    public Sprite Sprite => _sprite;
 }

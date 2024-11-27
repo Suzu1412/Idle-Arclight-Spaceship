@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Scriptable Objects
+  m_EditorClassIdentifier: 
+  m_GroupName: Scriptable Objects
+  m_GUID: dce4b28c8d265400d889b86aa0ca7ccb
+  m_SerializeEntries:
+  - m_GUID: 32ff32770855fe84284adc0d2a5e284c
+    m_Address: Assets/_Data/Variables/IntVariable
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3da945cb89594eb45867596189c1ce08
+    m_Address: Assets/_Data/Persistence/GameDataSO.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 47966b6b8e2e44855b96d629a1485fed
+    m_Address: Assets/_Data/Player Data
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 52a011d445e6d4e4e8086f03343c9dc2
+    m_Address: Assets/_Data/Variables/DoubleVariable
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 610f3d653dd5581419d53cd307d41856
+    m_Address: Assets/_Data/Variables/FloatVariable
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 628f4550c00ef4f77abc0ec25e206329
+    m_Address: Assets/_Data/Incremental Scriptable Objects
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c979ba755fb5754aa102d6db8121378
+    m_Address: Assets/_Data/RunTime Sets
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7d64f62276d1b407bba96d0e644ca9c4
+    m_Address: Assets/_Data/Stats
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a15c216388f2d1f4eb8f77ba7094a847
+    m_Address: Assets/_Data/Events
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9175ca3dffbdf4dccb8fe1f8a1480c9d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0eedfe64fa3c54ebd981c38655988ea5, type: 2}
+    - {fileID: 11400000, guid: ffdf23a738cfe49cc810911bd8f9dcb5, type: 2}

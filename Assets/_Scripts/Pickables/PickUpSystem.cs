@@ -1,36 +1,49 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class PickUpSystem : MonoBehaviour
 {
     private IAgent agent;
     public IAgent Agent => agent;
-    private bool _isColliding = false;
-    private Coroutine _resetCoroutine;
+    private bool _isPicked = false;
+    [SerializeField] private FloatVariableSO _pickUpRadius;
+    [SerializeField] private LayerMask _targetLayer;
+    private Transform _transform;
+    private Coroutine _pickUpCoroutine;
 
 
     private void Awake()
     {
         agent = GetComponent<IAgent>();
+        _transform = transform;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnEnable()
     {
-        if (_isColliding) return;
+        _pickUpCoroutine = StartCoroutine(PickUpCoroutine());
+    }
 
-        if (collision.TryGetComponent(out ItemPickUp item))
+    private void OnDisable()
+    {
+        StopCoroutine(_pickUpCoroutine);
+    }
+
+    private IEnumerator PickUpCoroutine()
+    {
+        yield return Helpers.GetWaitForSeconds(0.1f);
+        RaycastHit2D hit = Physics2D.CircleCast(_transform.position, _pickUpRadius.Value, Vector2.zero, Mathf.Infinity, _targetLayer);
+
+        if (hit.collider != null)
         {
-            item.PickUp(agent);
-            _resetCoroutine = StartCoroutine(ResetCoroutine());
+            if (hit.collider.TryGetComponent(out ItemPickUp item))
+            {
+                item.PickUp(agent);
+            }
         }
     }
 
-    private IEnumerator ResetCoroutine()
+    private void OnDrawGizmosSelected()
     {
-        _isColliding = true;
-        yield return new WaitForEndOfFrame();
-        _isColliding = false;
+        Gizmos.DrawWireSphere(_transform.position, _pickUpRadius.Value);
     }
 }

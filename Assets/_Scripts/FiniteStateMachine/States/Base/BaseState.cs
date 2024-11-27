@@ -58,7 +58,6 @@ public abstract class BaseState : IState
     protected void OnEnable()
     {
         Agent.Input.OnMovement += HandleMovement;
-        Agent.Input.OnSetDestination += HandleDestination;
         Agent.Input.Attack += HandleAttack;
 
     }
@@ -66,7 +65,6 @@ public abstract class BaseState : IState
     protected void OnDisable()
     {
         Agent.Input.OnMovement -= HandleMovement;
-        Agent.Input.OnSetDestination -= HandleDestination;
         Agent.Input.Attack -= HandleAttack;
     }
 
@@ -78,11 +76,6 @@ public abstract class BaseState : IState
     protected virtual void HandleMovement(Vector2 direction)
     {
         Agent.MoveBehaviour.ReadInputDirection(direction);
-    }
-
-    protected virtual void HandleDestination(Vector2 destination)
-    {
-
     }
 
     protected virtual void HandleAttack(bool isAttacking)
