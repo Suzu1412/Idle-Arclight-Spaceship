@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 8108717298127303986}
   - component: {fileID: 6803927108223902700}
   - component: {fileID: 7832870896999039643}
+  - component: {fileID: 8065363009078484177}
   m_Layer: 8
   m_Name: Agent
   m_TagString: Player
@@ -437,6 +438,22 @@ MonoBehaviour:
   _topBounds: 3.5
   _bottomBounds: -3.5
   _hasBoundaries: 1
+--- !u!114 &8065363009078484177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275472643666047418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a11bae6a279e47148250c6eabd02ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 512
+  _detectionStrategySO: {fileID: 11400000, guid: 7c0771f53448e462f9c7b935394aee96, type: 2}
 --- !u!1 &5311107909362892236
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,6 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deathVFX: {fileID: 11400000, guid: bfaf524f62273094eb74b090f1960bef, type: 2}
+  _explosionSFX: {fileID: 11400000, guid: f84dad5f9da18417eaa17eb5df32d633, type: 2}
 --- !u!95 &7855373517474137988
 Animator:
   serializedVersion: 7
@@ -629,7 +647,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5311107909362892236}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cde9bd461899ff49aadc3cdb787062d, type: 3}
   m_Name: 

@@ -10,7 +10,7 @@ public class ItemPickUp : MonoBehaviour
     [SerializeField] private ItemSO _item;
 
     [SerializeField] private Color gizmoColor = Color.magenta;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private SoundDataSO _soundOnPickup;
     [SerializeField] private float animationDuration = 0.3f;
     private ObjectPooler _pool;
     public ObjectPooler Pool => _pool = _pool != null ? _pool : gameObject.GetOrAdd<ObjectPooler>();
@@ -53,7 +53,7 @@ public class ItemPickUp : MonoBehaviour
 
     private IEnumerator AnimateItemPickUp()
     {
-        if (audioSource != null) audioSource.Play();
+        _soundOnPickup?.PlayEvent();
 
         Vector3 startScale = transform.localScale;
         Vector3 endScale = Vector3.zero;

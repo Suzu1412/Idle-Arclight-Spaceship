@@ -7,6 +7,7 @@ public class SaveSystem : Singleton<SaveSystem>
     private GameData _fileGameData;
     IDataService _dataService;
     private bool _appIsPaused = false;
+    private bool _canSave;
 
     [Header("Void Game Event Listener")]
     [SerializeField] private VoidGameEventListener OnStartGameEventListener;
@@ -23,6 +24,7 @@ public class SaveSystem : Singleton<SaveSystem>
 
     private void OnEnable()
     {
+        _canSave = false;
         OnStartGameEventListener.Register(LoadGame);
     }
 
@@ -46,6 +48,7 @@ public class SaveSystem : Singleton<SaveSystem>
         {
             item.GetComponent<ISaveable>().LoadData(_gameDataSO);
         }
+        _canSave = true;
     }
 
     public void SaveGame()
@@ -102,6 +105,7 @@ public class SaveSystem : Singleton<SaveSystem>
     /// <param name="pause"><c>true</c> if the application is paused, else <c>false</c>.</param>
     private void OnApplicationPause(bool pause)
     {
+        if (!_canSave) return;
         _appIsPaused = pause;
         if (pause)
             SaveGame();
@@ -117,6 +121,7 @@ public class SaveSystem : Singleton<SaveSystem>
     /// </remarks>
     private void OnApplicationFocus(bool hasFocus)
     {
+        if (!_canSave) return;
         _appIsPaused = !hasFocus;
         if (!hasFocus)
             SaveGame();
@@ -124,6 +129,7 @@ public class SaveSystem : Singleton<SaveSystem>
 
     private void OnApplicationQuit()
     {
+        if (!_canSave) return;
         SaveGame();
     }
 

@@ -31,7 +31,7 @@ public class GameInitiator : Singleton<GameInitiator>
                 break;
             }
 
-            yield return Helpers.GetWaitForSeconds(0.1f);
+            yield return Helpers.GetWaitForSeconds(0.05f);
         }
 
         OnStartGameEvent.RaiseEvent();

@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deathVFX: {fileID: 11400000, guid: bbb06fec88caa454cab03f6849f69921, type: 2}
+  _explosionSFX: {fileID: 11400000, guid: 9369e5e0b004b4d19a7c8326c1512289, type: 2}
 --- !u!114 &6867805684470172223
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,7 +4,8 @@
     "references": [
         "Suzu.Common",
         "Unity.TextMeshPro",
-        "Suzu.Agent"
+        "Suzu.Agent",
+        "Suzu.Audio"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -58,7 +58,7 @@ public class SceneLoaderManager : MonoBehaviour
         UpdateLoadProgress(0f);
         OnToggleLoadEvent.RaiseEvent(true);
         await _manager.LoadScenes(_sceneGroups[index]);
-        await Awaitable.WaitForSecondsAsync(0.5f);
+        //await Awaitable.WaitForSecondsAsync(0.1f);
         EnableLoadingCanvas(false);
     }
 

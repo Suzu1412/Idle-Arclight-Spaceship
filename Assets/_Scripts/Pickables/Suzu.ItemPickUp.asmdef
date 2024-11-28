@@ -2,8 +2,8 @@
     "name": "Suzu.Drop",
     "rootNamespace": "",
     "references": [
-        "GUID:b105f9cd52f734e809a4fb601166a81f",
-        "GUID:eee2d7abad5a31d419cb705834217f10"
+        "GUID:eee2d7abad5a31d419cb705834217f10",
+        "GUID:c9054c9e31cd2804b9476547de1c96f1"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

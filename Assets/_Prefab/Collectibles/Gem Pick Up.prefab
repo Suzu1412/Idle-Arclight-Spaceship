@@ -63,7 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _item: {fileID: 11400000, guid: eca2ace93676bbc4199d96ba71efa26a, type: 2}
   gizmoColor: {r: 1, g: 0, b: 1, a: 1}
-  audioSource: {fileID: 0}
+  _soundOnPickup: {fileID: 11400000, guid: ae4c65620b991416595e047f7659c015, type: 2}
   animationDuration: 0.1
 --- !u!58 &8478759536805784156
 CircleCollider2D:

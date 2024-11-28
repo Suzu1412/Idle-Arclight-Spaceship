@@ -57,8 +57,26 @@ public class ConeDetectionStrategy : BaseDetectionStrategy
 
         Vector3 p1, p2;
 
-        p1 = PointForAngle(halfVisionAngle + 270, _detectionRadius);
-        p2 = PointForAngle(-halfVisionAngle + 270, _detectionRadius);
+        float angleDirection = 0;
+        if (_agent.FacingDirection.x < 0)
+        {
+            angleDirection = 0f;
+        }
+        else if (_agent.FacingDirection.y < 0)
+        {
+            angleDirection = 270f;
+        }
+        else if (_agent.FacingDirection.y > 0)
+        {
+            angleDirection = 90f;
+        }
+        else if (_agent.FacingDirection.x > 0)
+        {
+            angleDirection = 180f;
+        }
+
+        p1 = PointForAngle(halfVisionAngle + angleDirection, _detectionRadius);
+        p2 = PointForAngle(-halfVisionAngle + angleDirection, _detectionRadius);
 
         Gizmos.DrawLine(detector.position, detector.position + p1);
         Gizmos.DrawLine(detector.position, detector.position + p2);

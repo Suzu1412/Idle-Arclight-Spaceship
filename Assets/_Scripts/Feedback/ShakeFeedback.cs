@@ -10,6 +10,7 @@ public class ShakeFeedback : Feedback
     private float _shakeDuration = 0.3f;
     [SerializeField, Range(0, 100)]
     private int _shakeVibrato = 30;
+    private Vector2 _originalPosition;
 
     private IHealthSystem _healthSystem;
     internal IHealthSystem HealthSystem => _healthSystem ??= GetComponentInParent<IHealthSystem>();
@@ -18,6 +19,7 @@ public class ShakeFeedback : Feedback
     private void Awake()
     {
         _affectedTransform = this.transform;
+        _originalPosition = this.transform.position;
     }
 
     private void OnEnable()
@@ -34,6 +36,7 @@ public class ShakeFeedback : Feedback
     public override void ResetFeedback()
     {
         _affectedTransform.DOKill();
+        _affectedTransform.position = _originalPosition;
     }
 
     public override void StartFeedback()

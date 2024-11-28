@@ -28,19 +28,9 @@ public class FlashTransparentFeedback : Feedback
 
         Agent.AgentRenderer.TransparencyOverTime(_targetAlpha, _feedbackTime);
 
-        if (invulnerabilityDuration >= 1f)
-        {
-            invulnerabilityDuration -= 1f;
+        yield return Helpers.GetWaitForSeconds(invulnerabilityDuration);
+        Agent.AgentRenderer.TransparencyOverTime(1f, _feedbackTime);
 
-            yield return Helpers.GetWaitForSeconds(invulnerabilityDuration);
-
-            StartCoroutine(BlinkCoroutine());
-        }
-        else
-        {
-            yield return Helpers.GetWaitForSeconds(invulnerabilityDuration);
-            Agent.AgentRenderer.TransparencyOverTime(1f, _feedbackTime);
-        }
     }
 
     private IEnumerator BlinkCoroutine()

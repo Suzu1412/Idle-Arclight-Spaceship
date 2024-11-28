@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9812b6302fdbfe34481499843f00db24, type: 3}
   m_Name: Granate Cost 1
   m_EditorClassIdentifier: 
-  _baseValue: 15
+  _baseValue: 10
   _minValue: 1
   _maxValue: 3.402823e+38
   _modifiers: []

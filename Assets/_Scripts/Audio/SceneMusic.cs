@@ -3,7 +3,6 @@ using UnityEngine;
 public class SceneMusic : MonoBehaviour
 {
     [SerializeField] private VoidGameEventListener OnGameStartListener;
-    [SerializeField] private SoundGameEvent OnPlayMusicEvent;
     [SerializeField] private SoundDataSO _playMusic;
 
     private void OnEnable()
@@ -18,6 +17,6 @@ public class SceneMusic : MonoBehaviour
 
     private void PlayMusic()
     {
-        OnPlayMusicEvent.RaiseEvent(_playMusic);
+        _playMusic.PlayEvent();
     }
 }

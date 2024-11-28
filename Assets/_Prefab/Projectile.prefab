@@ -53,6 +53,7 @@ MonoBehaviour:
   particleOnHitPrefabVFX: {fileID: 0}
   _projectileRange: 10
   _damage: 5
+  _impactSFX: {fileID: 11400000, guid: 2d0920cbef8084b9188e4981fb5d634f, type: 2}
   _impactPool: {fileID: 11400000, guid: 23b1f4e6dcf134f6995b67e4896187ba, type: 2}
   projectileDuration: 6
 --- !u!212 &1691156971964220722

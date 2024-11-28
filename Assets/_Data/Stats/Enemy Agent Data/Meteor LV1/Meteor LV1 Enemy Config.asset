@@ -13,10 +13,7 @@ MonoBehaviour:
   m_Name: Meteor LV1 Enemy Config
   m_EditorClassIdentifier: 
   _guid: 6732e6ae6eae448469d6ee5b89d3cc19
-  _initialStats: {fileID: 11400000, guid: 64b3b608ec9daca4095ea41f5c03a16e, type: 2}
+  _agentStats: {fileID: 11400000, guid: 64b3b608ec9daca4095ea41f5c03a16e, type: 2}
   _movementData: {fileID: 11400000, guid: 8e7b8238276c0864d81bfc18f35bc541, type: 2}
-  _currentHealth: 0
-  _currentLevel: 0
-  _totalExp: 0
   _sprite: {fileID: 0}
   _deathReward: {fileID: 11400000, guid: c317b0434d93aaf42b679d8dbe6f8eeb, type: 2}

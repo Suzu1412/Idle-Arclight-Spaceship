@@ -322,7 +322,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.15
+  m_fontSize: 38
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -551,6 +551,7 @@ GameObject:
   - component: {fileID: 776539456285608363}
   - component: {fileID: 5248496406339025179}
   - component: {fileID: 4336616231757979779}
+  - component: {fileID: 2726835428851771042}
   m_Layer: 5
   m_Name: Button Available
   m_TagString: Untagged
@@ -660,7 +661,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 776539456285608363}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2726835428851771042}
+        m_TargetAssemblyTypeName: UISoundEffect, Suzu.Audio
+        m_MethodName: PlaySFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4336616231757979779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,6 +689,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.101960786}
   m_EffectDistance: {x: 0, y: -8}
   m_UseGraphicAlpha: 1
+--- !u!114 &2726835428851771042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618288494563224502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3089e81994a144dfbdb439c7a59fd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playSFX: {fileID: 11400000, guid: 563429b49bb4a4ee385961cdb8b5370c, type: 2}
 --- !u!1 &4772453027160510263
 GameObject:
   m_ObjectHideFlags: 0

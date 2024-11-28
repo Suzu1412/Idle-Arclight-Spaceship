@@ -47,6 +47,7 @@ public class PickUpSystem : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(_transform.position, _pickUpRadius.Value);
+        if (_pickUpRadius == null) return;
+        Gizmos.DrawWireSphere(transform.position, _pickUpRadius.Value);
     }
 }

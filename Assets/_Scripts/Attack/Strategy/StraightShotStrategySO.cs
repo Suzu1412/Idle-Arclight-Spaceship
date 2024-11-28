@@ -35,6 +35,7 @@ public class StraightShotStrategy : BaseAttackStrategy
         projectile.SetLayerMask(_agent.AttackSystem.ProjectileMask);
         projectile.transform.position = _spawnPosition.position;
         projectile.transform.right = CalculateSpreadAngle(_agent.FacingDirection);
+        _projectileSFX.PlayEvent();
         await Awaitable.WaitForSecondsAsync(0.1f);
         _isAttacking = false;
     }

@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940b0f2ec54efd248b51236a40125df2, type: 3}
   m_Name: StraightShotStrategySO
   m_EditorClassIdentifier: 
+  _projectileSFX: {fileID: 11400000, guid: 6342db354e93d4984a55893e5d8b19fb, type: 2}
+  _attackDelay: 0.2
   _projectilePool: {fileID: 11400000, guid: 428aa4bb4beecc043be2b9585610d64b, type: 2}

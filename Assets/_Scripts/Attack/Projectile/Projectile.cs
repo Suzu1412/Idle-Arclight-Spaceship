@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float _damage = 5;
     private SpriteRenderer spriteRenderer;
     private ObjectPooler _pool;
+    [SerializeField] private SoundDataSO _impactSFX;
     [SerializeField] private ObjectPoolSettingsSO _impactPool = default;
     [SerializeField] private float projectileDuration = 6f;
     public float ProjectileRange => _projectileRange;
@@ -78,6 +79,7 @@ public class Projectile : MonoBehaviour
         {
             damageable.Damage(Mathf.RoundToInt(_damage));
             SpawnImpactEffect();
+            _impactSFX.PlayEvent();
             ObjectPoolFactory.ReturnToPool(Pool);
         }
     }

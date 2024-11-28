@@ -988,7 +988,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1247,6 +1247,7 @@ GameObject:
   - component: {fileID: 3397284729281962245}
   - component: {fileID: 5429204079575038431}
   - component: {fileID: 7146745902408744737}
+  - component: {fileID: 4314976037860062945}
   m_Layer: 0
   m_Name: Button_1
   m_TagString: Untagged
@@ -1368,6 +1369,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4314976037860062945}
+        m_TargetAssemblyTypeName: UISoundEffect, Suzu.Audio
+        m_MethodName: PlaySFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4314976037860062945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827639494960850681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3089e81994a144dfbdb439c7a59fd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playSFX: {fileID: 11400000, guid: 08692c4b0688546bcbb08244151d34ab, type: 2}
 --- !u!1 &890034654185495111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,6 +1900,7 @@ GameObject:
   - component: {fileID: 2646691727443585794}
   - component: {fileID: 450261861946446457}
   - component: {fileID: 5976360699193608259}
+  - component: {fileID: 9087538359898401881}
   m_Layer: 0
   m_Name: Button_Buy_Everything
   m_TagString: Untagged
@@ -1995,6 +2022,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 9087538359898401881}
+        m_TargetAssemblyTypeName: UISoundEffect, Suzu.Audio
+        m_MethodName: PlaySFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &9087538359898401881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268587700576940231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3089e81994a144dfbdb439c7a59fd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playSFX: {fileID: 11400000, guid: 563429b49bb4a4ee385961cdb8b5370c, type: 2}
 --- !u!1 &1300782368525894473
 GameObject:
   m_ObjectHideFlags: 0
@@ -3126,6 +3178,7 @@ GameObject:
   - component: {fileID: 7335349066186438337}
   - component: {fileID: 4810713114686670715}
   - component: {fileID: 2305672555760773216}
+  - component: {fileID: 5711723910346426935}
   m_Layer: 0
   m_Name: Button_Upgrade
   m_TagString: Untagged
@@ -3247,6 +3300,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5711723910346426935}
+        m_TargetAssemblyTypeName: UISoundEffect, Suzu.Audio
+        m_MethodName: PlaySFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2305672555760773216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3261,6 +3326,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unlockedSystem: {fileID: 11400000, guid: 72733e1ae58874ff790a86b35ca005a1, type: 2}
   OnUnlockSystemListener: {fileID: 11400000, guid: cd6a85da1a5e8433d9b08815ef6a25f9, type: 2}
+--- !u!114 &5711723910346426935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2163378169157982747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3089e81994a144dfbdb439c7a59fd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playSFX: {fileID: 11400000, guid: 08692c4b0688546bcbb08244151d34ab, type: 2}
 --- !u!1 &2238849049969146248
 GameObject:
   m_ObjectHideFlags: 0
@@ -3834,6 +3912,7 @@ GameObject:
   - component: {fileID: 2919086887401369352}
   - component: {fileID: 2027540711906215306}
   - component: {fileID: 4728558335655224980}
+  - component: {fileID: 2644391707676123638}
   m_Layer: 0
   m_Name: Button_50
   m_TagString: Untagged
@@ -3955,6 +4034,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2644391707676123638}
+        m_TargetAssemblyTypeName: UISoundEffect, Suzu.Audio
+        m_MethodName: PlaySFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2644391707676123638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2704516086540233031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3089e81994a144dfbdb439c7a59fd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playSFX: {fileID: 11400000, guid: 08692c4b0688546bcbb08244151d34ab, type: 2}
 --- !u!1 &2717660768404542156
 GameObject:
   m_ObjectHideFlags: 0
@@ -9259,6 +9363,7 @@ GameObject:
   - component: {fileID: 3646596066613159739}
   - component: {fileID: 821084143919499779}
   - component: {fileID: 5839725923489121132}
+  - component: {fileID: 4494393423248807627}
   m_Layer: 0
   m_Name: Button_10
   m_TagString: Untagged
@@ -9380,6 +9485,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4494393423248807627}
+        m_TargetAssemblyTypeName: UISoundEffect, Suzu.Audio
+        m_MethodName: PlaySFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4494393423248807627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6996525002547346087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3089e81994a144dfbdb439c7a59fd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playSFX: {fileID: 11400000, guid: 08692c4b0688546bcbb08244151d34ab, type: 2}
 --- !u!1 &6998689364232151272
 GameObject:
   m_ObjectHideFlags: 0
@@ -10736,6 +10866,7 @@ GameObject:
   - component: {fileID: 7346095073252944165}
   - component: {fileID: 609711907989818011}
   - component: {fileID: 763502544473994739}
+  - component: {fileID: 2001126919927291241}
   m_Layer: 0
   m_Name: Button_100
   m_TagString: Untagged
@@ -10857,6 +10988,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2001126919927291241}
+        m_TargetAssemblyTypeName: UISoundEffect, Suzu.Audio
+        m_MethodName: PlaySFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2001126919927291241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8098087755265264245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3089e81994a144dfbdb439c7a59fd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playSFX: {fileID: 11400000, guid: 08692c4b0688546bcbb08244151d34ab, type: 2}
 --- !u!1 &8202081531444972845
 GameObject:
   m_ObjectHideFlags: 0
@@ -11657,6 +11813,8 @@ GameObject:
   - component: {fileID: 4251124120149890547}
   - component: {fileID: 2780686572554355448}
   - component: {fileID: 7838797028133187027}
+  - component: {fileID: 6593417186493700237}
+  - component: {fileID: 5051334807593999910}
   m_Layer: 0
   m_Name: Button_Generator
   m_TagString: Untagged
@@ -11778,6 +11936,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6593417186493700237}
+        m_TargetAssemblyTypeName: UISoundEffect, Suzu.Audio
+        m_MethodName: PlaySFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7838797028133187027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11792,6 +11962,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unlockedSystem: {fileID: 11400000, guid: 22ee4b8221e19482a88dbcd572a4019b, type: 2}
   OnUnlockSystemListener: {fileID: 11400000, guid: cd6a85da1a5e8433d9b08815ef6a25f9, type: 2}
+--- !u!114 &6593417186493700237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8450001274276871108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3089e81994a144dfbdb439c7a59fd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playSFX: {fileID: 11400000, guid: 08692c4b0688546bcbb08244151d34ab, type: 2}
+--- !u!114 &5051334807593999910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8450001274276871108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3089e81994a144dfbdb439c7a59fd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playSFX: {fileID: 0}
 --- !u!1 &8657136644450050915
 GameObject:
   m_ObjectHideFlags: 0
@@ -11940,6 +12136,7 @@ GameObject:
   - component: {fileID: 3331533307811179207}
   - component: {fileID: 1381795185910790739}
   - component: {fileID: 8762760767480932379}
+  - component: {fileID: 7119150195681487603}
   m_Layer: 0
   m_Name: Button_Premium
   m_TagString: Untagged
@@ -12048,7 +12245,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1381795185910790739}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7119150195681487603}
+        m_TargetAssemblyTypeName: UISoundEffect, Suzu.Audio
+        m_MethodName: PlaySFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7119150195681487603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8669251290438993851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3089e81994a144dfbdb439c7a59fd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playSFX: {fileID: 11400000, guid: 08692c4b0688546bcbb08244151d34ab, type: 2}
 --- !u!1 &8862631225636220209
 GameObject:
   m_ObjectHideFlags: 0

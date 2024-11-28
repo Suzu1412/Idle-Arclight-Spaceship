@@ -123,6 +123,10 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     {
         if (amount <= 0f || _isInvulnerable) return;
 
+        if (_health == null)
+        {
+            Initialize(0);
+        }
         _health.Value -= amount;
         OnHit?.Invoke();
         OnDamaged?.Invoke(amount);
