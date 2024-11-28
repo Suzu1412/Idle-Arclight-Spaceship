@@ -30,14 +30,17 @@ public class PickUpSystem : MonoBehaviour
 
     private IEnumerator PickUpCoroutine()
     {
-        yield return Helpers.GetWaitForSeconds(0.1f);
-        RaycastHit2D hit = Physics2D.CircleCast(_transform.position, _pickUpRadius.Value, Vector2.zero, Mathf.Infinity, _targetLayer);
-
-        if (hit.collider != null)
+        while (true)
         {
-            if (hit.collider.TryGetComponent(out ItemPickUp item))
+            yield return Helpers.GetWaitForSeconds(0.1f);
+            RaycastHit2D hit = Physics2D.CircleCast(_transform.position, _pickUpRadius.Value, Vector2.zero, Mathf.Infinity, _targetLayer);
+
+            if (hit.collider != null)
             {
-                item.PickUp(agent);
+                if (hit.collider.TryGetComponent(out ItemPickUp item))
+                {
+                    item.PickUp(agent);
+                }
             }
         }
     }

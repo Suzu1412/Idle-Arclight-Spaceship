@@ -26,16 +26,24 @@ public class GameData
     [Header("Unlocked Systems")]
     public List<UnlockSystemData> UnlockedSystems;
 
+    [Header("Language")]
+    public LocalizationData LocalizationData;
+
+    public VolumeData VolumeData;
+
+
     public void NewGame(string name)
     {
         Name = name;
 
         CurrentGameState = GameStateType.Init;
         Players = new();
-        CurrencyData = new(0, 0, 0);
+        CurrencyData = new();
         Generators = new();
         Upgrades = new();
         UnlockedSystems = new();
+        LocalizationData = new();
+        VolumeData = new();
     }
 
 
@@ -60,6 +68,13 @@ public class CurrencyData
     public double TotalCurrency => _totalCurrency;
     public double GameTotalCurrency => _gameTotalCurrency;
     public int AmountToBuy => _amountToBuy;
+
+    public CurrencyData()
+    {
+        _totalCurrency = 0;
+        _gameTotalCurrency = 0;
+        _amountToBuy = 1;
+    }
 
     public CurrencyData(double totalCurrency, double gameTotalCurrency, int amountToBuy)
     {
@@ -156,5 +171,50 @@ public class UnlockSystemData
     {
         _guid = guid;
         _isUnlocked = isUnlocked;
+    }
+}
+
+[System.Serializable]
+public class VolumeData
+{
+    [SerializeField] private float _masterVolume;
+    [SerializeField] private float _musicVolume;
+    [SerializeField] private float _sfxVolume;
+
+    public float MasterVolume => _masterVolume;
+    public float MusicVolume => _musicVolume;
+    public float SFXVolume => _sfxVolume;
+
+    public VolumeData()
+    {
+        _masterVolume = 1f;
+        _musicVolume = 1f;
+        _sfxVolume = 1f;
+    }
+
+    public VolumeData(float masterVolume, float musicVolume, float sfxVolume)
+    {
+        _masterVolume = masterVolume;
+        _musicVolume = musicVolume;
+        _sfxVolume = sfxVolume;
+    }
+
+}
+
+[System.Serializable]
+public class LocalizationData
+{
+    [SerializeField] private string _locale;
+
+    public string Locale => _locale;
+
+    public LocalizationData()
+    {
+        _locale = null;
+    }
+
+    public LocalizationData(string locale)
+    {
+        _locale = locale;
     }
 }

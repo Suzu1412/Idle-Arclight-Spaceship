@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b2a7266128a3d4f8b03378fb2739a8, type: 3}
   m_Name: Dimension of Virgo Music
   m_EditorClassIdentifier: 
-  _clip: {fileID: 8300000, guid: a6478847f23ba3a4688d061a070e6860, type: 3}
+  _clip: {fileID: 8300000, guid: 989f92756765f0241bcad4ef618ff8f9, type: 3}
   _audioChannelEvent: {fileID: 11400000, guid: 9ec582eee007ecb4f9ae5f186b2ed60e, type: 2}
   _loop: 1
   _playOnAwake: 1

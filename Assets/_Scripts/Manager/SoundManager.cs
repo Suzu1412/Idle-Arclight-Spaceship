@@ -31,6 +31,10 @@ public class SoundManager : MonoBehaviour, ISaveable
     [SerializeField] private AudioMixerGroup _sfxMixerGroup = default;
     [SerializeField] private AudioMixerGroup _musicMixerGroup = default;
 
+    private float _masterVolume;
+    private float _musicVolume;
+    private float _sfxVolume;
+
     private void OnEnable()
     {
         OnPlaySfxEventListener.Register(PlaySound);
@@ -53,10 +57,15 @@ public class SoundManager : MonoBehaviour, ISaveable
 
     public void SaveData(GameDataSO gameData)
     {
+        gameData.SaveVolume(_masterVolume, _musicVolume, _sfxVolume);
     }
 
-    public void LoadDataAsync(GameDataSO gameData)
+    public void LoadData(GameDataSO gameData)
     {
+        ChangeMasterVolume(gameData.VolumeData.MasterVolume);
+        ChangeMusicVolume(gameData.VolumeData.MusicVolume);
+        ChangeSFXVolume(gameData.VolumeData.SFXVolume);
+
     }
 
     private bool CanPlaySound(SoundDataSO data)
@@ -102,16 +111,19 @@ public class SoundManager : MonoBehaviour, ISaveable
 
     private void ChangeMasterVolume(float volume)
     {
+        _masterVolume = volume;
         _masterMixerGroup.audioMixer.SetFloat("MasterVolume", volume);
     }
 
     private void ChangeMusicVolume(float volume)
     {
+        _musicVolume = volume;
         _musicMixerGroup.audioMixer.SetFloat("MusicVolume", volume);
     }
 
     private void ChangeSFXVolume(float volume)
     {
+        _sfxVolume = volume;
         _sfxMixerGroup.audioMixer.SetFloat("SFXVolume", volume);
     }
 

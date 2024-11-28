@@ -10,6 +10,7 @@ public class CurrencyUI : MonoBehaviour
     private FormattedNumber _currentValueFormatted;
     private float _currentValue;
     private float _targetValue;
+
     [Header("Formatted Number Listener")]
     [SerializeField] private FormattedNumberEventListener OnLoadCurrencyListener;
     [SerializeField] private FormattedNumberEventListener OnUpdateCurrencyTextListener;

@@ -71,10 +71,16 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         OnProductionChangedEventListener.DeRegister(UpdateProductionRate);
     }
 
-    private void Increment(double amount)
+    private void UpdateTotal(double amount)
     {
         _totalCurrency.Value += amount;
         _totalCurrency.Value = Math.Round(_totalCurrency.Value, 1);
+        _gameTotalCurrency.Value += amount;
+    }
+
+    private void IncrementPerSecond(double amount)
+    {
+        UpdateTotal(amount);
         OnCurrencyChangedEvent.RaiseEvent();
         OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
     }
@@ -82,7 +88,9 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     private void GetCrystal(double amount)
     {
         amount *= _crystalOnGetMultiplier.Value * _crystalTotalMultiplier.Value;
-        Increment(amount);
+        UpdateTotal(amount);
+        OnCurrencyChangedEvent.RaiseEvent();
+        OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
     }
 
     public void SaveData(GameDataSO gameData)
@@ -206,7 +214,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         while (true)
         {
             yield return Helpers.GetWaitForSeconds(_delayToGenerate);
-            Increment(GetProductionRate());
+            IncrementPerSecond(GetProductionRate());
         }
     }
 

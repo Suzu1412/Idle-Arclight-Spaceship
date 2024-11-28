@@ -30,7 +30,6 @@ public class RandomEventManager : Singleton<RandomEventManager>
     private void Start()
     {
         PopulateWeightList();
-        ActivateRandomEvent();
     }
 
     [ContextMenu("Activate Random Event")]
