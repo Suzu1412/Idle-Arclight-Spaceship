@@ -7,6 +7,9 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 [RequireComponent(typeof(AddSaveDataRunTimeSet))]
 public class PlayerManager : Singleton<PlayerManager>, ISaveable
 {
+    [Header("Void Game Event Listener")]
+    [SerializeField] private VoidGameEventListener OnStartGameEventListener;
+
     [SerializeField] private GameObject _playerPrefab;
     private GameObject _player;
     [SerializeField] private Vector2 _initialPosition = new(0f, -2f);
@@ -16,6 +19,16 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
     private Agent _agent;
     private Coroutine _respawnCoroutine;
     private float _respawnTime = 2.5f;
+
+    private void OnEnable()
+    {
+        OnStartGameEventListener.Register(SpawnPlayer);
+    }
+
+    private void OnDisable()
+    {
+        OnStartGameEventListener.DeRegister(SpawnPlayer);
+    }
 
     public async void LoadDataAsync(GameDataSO gameData)
     {
@@ -61,7 +74,7 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
         gameData.SavePlayers(players);
     }
 
-    public void SpawnPlayer()
+    private void SpawnPlayer()
     {
         if (_player == null)
         {

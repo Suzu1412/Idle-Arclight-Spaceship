@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class SoundManager : MonoBehaviour
+[RequireComponent(typeof(AddSaveDataRunTimeSet))]
+public class SoundManager : MonoBehaviour, ISaveable
 {
     [Header("SoundEmitters pool")]
     [SerializeField] private ObjectPoolSettingsSO _soundPool;
@@ -15,15 +16,15 @@ public class SoundManager : MonoBehaviour
 
     [Header("Event Listener")]
     [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to play SFXs")]
-    [SerializeField] private SoundGameEventListener _sfxEventChannel = default;
+    [SerializeField] private SoundGameEventListener OnPlaySfxEventListener = default;
     [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to play Music")]
-    [SerializeField] private SoundGameEventListener _musicEventChannel = default;
-    [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to change SFXs volume")]
-    [SerializeField] private FloatGameEventListener _SFXVolumeChangeEventChannel = default;
-    [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to change Music volume")]
-    [SerializeField] private FloatGameEventListener _musicVolumeChangeEventChannel = default;
+    [SerializeField] private SoundGameEventListener OnPlayMusicEventListener = default;
     [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to change Master volume")]
-    [SerializeField] private FloatGameEventListener _masterVolumeChangeEventChannel = default;
+    [SerializeField] private FloatGameEventListener OnMasterVolumeChangedEventListener = default;
+    [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to change Music volume")]
+    [SerializeField] private FloatGameEventListener OnMusicVolumeChangedEventListener = default;
+    [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to change SFXs volume")]
+    [SerializeField] private FloatGameEventListener OnSFXVolumeChangedEventListener = default;
 
     [Header("Audio Mixer Group")]
     [SerializeField] private AudioMixerGroup _masterMixerGroup = default;
@@ -32,22 +33,30 @@ public class SoundManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _sfxEventChannel.Register(PlaySound);
-        //_musicEventChannel.Register(PlayMusicTrack);
+        OnPlaySfxEventListener.Register(PlaySound);
+        OnPlayMusicEventListener.Register(PlayMusicTrack);
 
-        //_masterVolumeChangeEventChannel.Register(ChangeMasterVolume);
-        //_musicVolumeChangeEventChannel.Register(ChangeMusicVolume);
-        //_SFXVolumeChangeEventChannel.Register(ChangeSFXVolume);
+        OnMasterVolumeChangedEventListener.Register(ChangeMasterVolume);
+        OnMusicVolumeChangedEventListener.Register(ChangeMusicVolume);
+        OnSFXVolumeChangedEventListener.Register(ChangeSFXVolume);
     }
 
     private void OnDisable()
     {
-        _sfxEventChannel.DeRegister(PlaySound);
-        //_musicEventChannel.DeRegister(PlayMusicTrack);
+        OnPlaySfxEventListener.DeRegister(PlaySound);
+        OnPlayMusicEventListener.DeRegister(PlayMusicTrack);
 
-        //_masterVolumeChangeEventChannel.DeRegister(ChangeMasterVolume);
-        //_musicVolumeChangeEventChannel.DeRegister(ChangeMusicVolume);
-        //_SFXVolumeChangeEventChannel.DeRegister(ChangeSFXVolume);
+        OnMasterVolumeChangedEventListener.DeRegister(ChangeMasterVolume);
+        OnMusicVolumeChangedEventListener.DeRegister(ChangeMusicVolume);
+        OnSFXVolumeChangedEventListener.DeRegister(ChangeSFXVolume);
+    }
+
+    public void SaveData(GameDataSO gameData)
+    {
+    }
+
+    public void LoadDataAsync(GameDataSO gameData)
+    {
     }
 
     private bool CanPlaySound(SoundDataSO data)
@@ -59,7 +68,7 @@ public class SoundManager : MonoBehaviour
     {
         SoundEmitter soundEmitter = ObjectPoolFactory.Spawn(_soundPool).GetComponent<SoundEmitter>();
         soundEmitter.Initialize(sound, _sfxMixerGroup);
-        //_sfxSoundEmitterList.Add(soundEmitter);
+        _activeSoundEmitters.Add(soundEmitter);
 
         soundEmitter.PlayAudioClip(sound);
 
@@ -69,11 +78,41 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    private void PlayMusicTrack(ISound music)
+    {
+        SoundEmitter soundEmitter = ObjectPoolFactory.Spawn(_soundPool).GetComponent<SoundEmitter>();
+        soundEmitter.Initialize(music, _musicMixerGroup);
+        _activeSoundEmitters.Add(soundEmitter);
+
+        soundEmitter.PlayAudioClip(music);
+
+        if (!music.Loop)
+        {
+            soundEmitter.OnSoundFinishedPlaying += OnSoundEmitterFinishedPlaying;
+        }
+    }
+
     private void OnSoundEmitterFinishedPlaying(SoundEmitter soundEmitter)
     {
         soundEmitter.OnSoundFinishedPlaying -= OnSoundEmitterFinishedPlaying;
         soundEmitter.Stop();
-        //_sfxSoundEmitterList.Remove(soundEmitter);
+        _activeSoundEmitters.Remove(soundEmitter);
         ObjectPoolFactory.ReturnToPool(soundEmitter.Pool);
     }
+
+    private void ChangeMasterVolume(float volume)
+    {
+        _masterMixerGroup.audioMixer.SetFloat("MasterVolume", volume);
+    }
+
+    private void ChangeMusicVolume(float volume)
+    {
+        _musicMixerGroup.audioMixer.SetFloat("MusicVolume", volume);
+    }
+
+    private void ChangeSFXVolume(float volume)
+    {
+        _sfxMixerGroup.audioMixer.SetFloat("SFXVolume", volume);
+    }
+
 }

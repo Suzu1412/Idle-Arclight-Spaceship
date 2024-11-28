@@ -8,6 +8,9 @@ public class SaveSystem : Singleton<SaveSystem>
     IDataService _dataService;
     private bool _appIsPaused = false;
 
+    [Header("Void Game Event Listener")]
+    [SerializeField] private VoidGameEventListener OnStartGameEventListener;
+
     [Header("Persistence")]
     [SerializeField] private GameDataSO _gameDataSO = default;
     [SerializeField] private GameObjectRuntimeSetSO _saveDataRTS = default;
@@ -16,6 +19,16 @@ public class SaveSystem : Singleton<SaveSystem>
     {
         base.Awake();
         PrepareGameData();
+    }
+
+    private void OnEnable()
+    {
+        OnStartGameEventListener.Register(LoadGame);
+    }
+
+    private void OnDisable()
+    {
+        OnStartGameEventListener.DeRegister(LoadGame);
     }
 
     public async void LoadGame()

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/Events/Listener/String Event Listener", fileName = "String Event Listener")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Events/Listener/Sound Event Listener", fileName = "Sound Event Listener")]
 public class SoundGameEventListener : BaseGameEventListener<ISound>
 {
     [SerializeField] protected SoundGameEvent OnEvent = default;
