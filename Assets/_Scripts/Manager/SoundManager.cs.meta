@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 03ce49032b89bb74eb148b913c84a2fe
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _soundPool: {fileID: 11400000, guid: 805ed9d3fffaadf4baf1b4cd16adc276, type: 2}
+  - OnPlaySfxEventListener: {fileID: 11400000, guid: 7444ea4dffaf0894483afec84a57016c, type: 2}
+  - OnPlayMusicEventListener: {fileID: 11400000, guid: 61c5c3d364488c442ab32e4d70631818, type: 2}
+  - OnMasterVolumeChangedEventListener: {fileID: 11400000, guid: a2311fd7416e0c1418b1d0475390f959, type: 2}
+  - OnMusicVolumeChangedEventListener: {fileID: 11400000, guid: f568e79c4abbfd2469d09ec22d406ad2, type: 2}
+  - OnSFXVolumeChangedEventListener: {fileID: 11400000, guid: 1b908729ef8754c48a841ad773980827, type: 2}
+  - _masterMixerGroup: {fileID: 24300002, guid: 86f7e46642601c74db1fce9c9b0cd5c8, type: 2}
+  - _sfxMixerGroup: {fileID: -2631247058432068685, guid: 86f7e46642601c74db1fce9c9b0cd5c8, type: 2}
+  - _musicMixerGroup: {fileID: 835351367185149660, guid: 86f7e46642601c74db1fce9c9b0cd5c8, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

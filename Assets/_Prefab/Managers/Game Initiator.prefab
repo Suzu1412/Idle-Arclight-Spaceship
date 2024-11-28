@@ -44,10 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19bd0ba41ebdb934a8a8001e9c1c79de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameManager: {fileID: 0}
-  _saveSystem: {fileID: 3242648905930196911, guid: 3630631abf298469084191afca558079, type: 3}
-  _currencyManager: {fileID: 2810333893229376637, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
-  _playerManager: {fileID: 8611419925503800045, guid: ed53d2ca57481934fb074c26a1fdbdac, type: 3}
-  OnToggleLoadEvent: {fileID: 11400000, guid: 9112c7fe056764095a7be7e66db2e20a, type: 2}
-  OnSceneGroupLoadedEventListener: {fileID: 11400000, guid: c5e056e23576b0b45b597d20e0fb5f15, type: 2}
-  _gemSpawner: {fileID: 0}
+  _validActiveScenes:
+  - asset: {fileID: 102900000, guid: 6450f8dd17b95004089777e242729748, type: 3}
+    guid: 6450f8dd17b95004089777e242729748
+  OnStartGameEvent: {fileID: 11400000, guid: 4e0ad0de68d3b2541a1e86cc91bf1b4e, type: 2}

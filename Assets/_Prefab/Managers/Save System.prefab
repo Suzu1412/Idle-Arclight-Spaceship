@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13adbe1361b45324da858c629dab29a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnStartGameEventListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
   _gameDataSO: {fileID: 11400000, guid: 3da945cb89594eb45867596189c1ce08, type: 2}
   _saveDataRTS: {fileID: 11400000, guid: f5b7a800ff7044645ad77bace999d088, type: 2}

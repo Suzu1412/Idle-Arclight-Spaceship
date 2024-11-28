@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5292df93276f24ca40c803d01a9dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnStartGameEventListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
   _playerPrefab: {fileID: 1131754902826937617, guid: 7d59e6af296d4d34fb25b7f7f432f8ef, type: 3}
   _initialPosition: {x: 0, y: -2}
-  _defaultPlayerConfig: {fileID: 11400000, guid: a411c3feacc0c7b418fa819db824e7b8, type: 2}
+  _defaultPlayerData: {fileID: 11400000, guid: 0a4ec011e7c4d46d0968eeea28a6b23c, type: 2}
+  _players: {fileID: 11400000, guid: d2f45750ece0740569689aeb7d22c78a, type: 2}
 --- !u!114 &8684857235680444842
 MonoBehaviour:
   m_ObjectHideFlags: 0

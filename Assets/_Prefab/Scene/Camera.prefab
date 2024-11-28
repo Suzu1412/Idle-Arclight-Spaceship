@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 4087479968422183427}
   - component: {fileID: 4143727116132683619}
   - component: {fileID: 7410905212728562052}
+  - component: {fileID: 5044605616892604824}
   m_Layer: 0
   m_Name: Pixel Perfect Camera
   m_TagString: MainCamera
@@ -336,6 +337,14 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!81 &5044605616892604824
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869978296687914262}
+  m_Enabled: 1
 --- !u!1 &3375434813662636769
 GameObject:
   m_ObjectHideFlags: 0
