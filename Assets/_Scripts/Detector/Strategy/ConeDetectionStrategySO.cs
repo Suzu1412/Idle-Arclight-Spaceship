@@ -3,30 +3,33 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Cone Detection Strategy", menuName = "Scriptable Objects/Detector/ConeDetectionStrategySO")]
 public class ConeDetectionStrategySO : BaseDetectionStrategySO
 {
-    [SerializeField][Range(1f, 360f)] private float _detectionAngle = 60f; // Cone in front of enemy
-    [SerializeField][Range(1f, 10f)] private float _detectionRadius = 5f; // Cone distance from enemy
-    [SerializeField] private float _innerDetectionRadius = 5f; // Inner circle around enemy
-
-    public float DetectionAngle => _detectionAngle;
-    public float DetectionRadius => _detectionRadius;
+    [SerializeField][Range(1f, 360f)] private float _detectionAngle = 60f; // Cone in front of transform
+    [SerializeField][Range(1f, 10f)] private float _detectionRadius = 5f; // Cone distance from transform
+    [SerializeField][Range(0.25f, 3f)] private float _innerDetectionRadius = 5f; // Inner circle around transform
 
     public override Transform Detect(IAgent agent, Transform detector, Vector2 direction, LayerMask target)
     {
-        //RaycastHit2D hit = Physics2D.Raycast(detector.position, direction, target);
+        RaycastHit2D hit = Physics2D.CircleCast(detector.position, _innerDetectionRadius, Vector2.zero, Mathf.Infinity, target);
 
-        RaycastHit2D hit = Physics2D.CircleCast(detector.position, _detectionRadius, Vector2.zero, Mathf.Infinity, target);
+        if (hit.collider != null)
+        {
+            return hit.collider.transform;
 
-        if (hit.collider == null)
+        }
+
+        RaycastHit2D coneHit = Physics2D.CircleCast(detector.position, _detectionRadius, Vector2.zero, Mathf.Infinity, target);
+
+        if (coneHit.collider == null)
         {
             return null;
         }
 
-        Vector2 playerVector = (hit.collider.transform.position - detector.position).normalized;
+        Vector2 playerVector = (coneHit.collider.transform.position - detector.position).normalized;
         if (Vector3.Angle(playerVector, direction) < _detectionAngle * 0.5f)
         {
             if (playerVector.magnitude < _detectionRadius)
             {
-                return hit.collider.transform;
+                return coneHit.collider.transform;
             }
         }
 
@@ -36,9 +39,10 @@ public class ConeDetectionStrategySO : BaseDetectionStrategySO
     public override void DrawGizmos(IAgent agent, Transform detector, Vector2 direction, bool detected)
     {
         Gizmos.color = detected ? DetectedColor : UndetectedColor;
-        // Circulo
-        //Gizmos.DrawWireSphere(detector.position, _detectionRadius);
+        // Circle Detection
+        Gizmos.DrawWireSphere(detector.position, _innerDetectionRadius);
 
+        // Cone Detection
         float halfVisionAngle = _detectionAngle * 0.5f;
 
         Vector3 p1, p2;

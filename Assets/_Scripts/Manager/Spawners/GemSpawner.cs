@@ -5,7 +5,9 @@ using UnityEngine;
 public class GemSpawner : MonoBehaviour
 {
     [SerializeField] private float _initialDelay = 3f;
-    [SerializeField] private float _delayBetweenSpawns = 1.5f;
+    [SerializeField] private float _minDelayBetweenSpawns = 0.25f;
+    [SerializeField] private float _maxDelayBetweenSpawns = 1f;
+    private float _delayBetweenSpawns;
     [SerializeField] private BasePlacementStrategySO _placementStrategy;
     [SerializeField] private List<GemConfigSO> _gemConfigs;
 
@@ -43,6 +45,7 @@ public class GemSpawner : MonoBehaviour
 
             gem.transform.position = _placementStrategy.SetPosition(new Vector3(0f, 9f, 0f));
 
+            _delayBetweenSpawns = Random.Range(_minDelayBetweenSpawns, _maxDelayBetweenSpawns);
             yield return Helpers.GetWaitForSeconds(_delayBetweenSpawns);
         }
 

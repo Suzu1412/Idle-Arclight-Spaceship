@@ -45,7 +45,7 @@ public class GeneratorButtonController : MonoBehaviour
     private void Awake()
     {
         _isAlreadyActive = false;
-        ActivateButton(_isAlreadyActive);
+        ActivateButton(false);
         _localizedString = _descriptionLocalized.StringReference;
         SetAmountVariable();
     }
@@ -57,6 +57,8 @@ public class GeneratorButtonController : MonoBehaviour
         OnGeneratorUpgradeListener.Register(DisplayImage);
         OnProductionChangedEventListener.Register(DisplayProductionText);
         OnProductionChangedEventListener.Register(DisplayDescription);
+
+        ActivateButton(_isAlreadyActive);
 
         if (_generator == null) return;
 
@@ -115,10 +117,11 @@ public class GeneratorButtonController : MonoBehaviour
     {
         if (!_isAlreadyActive)
         {
-            if (_generator.IsUnlocked || _totalCurrency.Value >= _generator.CostRequirement)
+            _generator.CheckIfMeetRequirementsToUnlock(_totalCurrency.Value);
+
+            if (_generator.IsUnlocked)
             {
                 _isAlreadyActive = true;
-                _generator.CheckIfMeetRequirementsToUnlock(_totalCurrency.Value);
                 ActivateButton(_isAlreadyActive);
             }
         }
