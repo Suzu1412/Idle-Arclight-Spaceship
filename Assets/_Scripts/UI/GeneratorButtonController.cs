@@ -11,6 +11,8 @@ using System;
 
 public class GeneratorButtonController : MonoBehaviour
 {
+    [Header("Int Variable")]
+    [SerializeField] private IntVariableSO _amountToBuy;
     [Header("Double Variable")]
     [SerializeField] private DoubleVariableSO _totalCurrency;
 
@@ -58,6 +60,7 @@ public class GeneratorButtonController : MonoBehaviour
 
         if (_generator == null) return;
 
+        ChangeAmountToBuy();
         CheckIfCanBuy();
         DisplayAmountOwned();
         DisplayProductionText();
@@ -95,9 +98,10 @@ public class GeneratorButtonController : MonoBehaviour
         DisplayProductionText();
     }
 
-    public void ChangeAmountToBuy(int amount)
+    public void ChangeAmountToBuy()
     {
-        _generator.GetBulkCost(amount);
+        if (_generator == null) return;
+        _generator.GetBulkCost(_amountToBuy.Value);
         CheckIfCanBuy();
         DisplayPriceText();
     }

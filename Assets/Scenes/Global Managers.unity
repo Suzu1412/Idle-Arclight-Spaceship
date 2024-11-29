@@ -275,6 +275,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2810333893229376637, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
+      propertyPath: _amountToBuy
+      value: 
+      objectReference: {fileID: 11400000, guid: ced75ba67cb9f497da83291dde86fe33, type: 2}
+    - target: {fileID: 2810333893229376637, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
       propertyPath: OnAddCurrencyEvent
       value: 
       objectReference: {fileID: 11400000, guid: 5bd344dced403a640beaa76edd630fa4, type: 2}

@@ -9,7 +9,6 @@ public class ShopUI : Singleton<ShopUI>
     [SerializeField] private Transform _shopGeneratorContent;
     [SerializeField] private GameObject _generatorCanvasGO;
     private List<GeneratorButtonController> _generatorButtons = new();
-    private int _amountToBuy;
 
     [Header("Upgrade")]
     [SerializeField] private ListUpgradeSO _upgrades;
@@ -58,11 +57,6 @@ public class ShopUI : Singleton<ShopUI>
 
     private void PrepareUIGenerator(List<GeneratorSO> generators)
     {
-        if (_amountToBuy < 1)
-        {
-            _amountToBuy = 1;
-        }
-
         _generatorButtons.Clear();
 
         for (int i = 0; i < generators.Count; i++)
@@ -72,7 +66,7 @@ public class ShopUI : Singleton<ShopUI>
             button.SetIndex(i);
             button.SetGenerator(generators[i]);
             generators[i].GetProductionRate();
-            button.ChangeAmountToBuy(_amountToBuy);
+            button.ChangeAmountToBuy();
             button.OnBuyGeneratorClicked += BuyGenerator;
             button.PrepareButton();
             _generatorButtons.Add(button);
@@ -127,11 +121,9 @@ public class ShopUI : Singleton<ShopUI>
 
     private void ChangeAmountToBuy(int amount)
     {
-        _amountToBuy = amount;
-
         foreach (var button in _generatorButtons)
         {
-            button.ChangeAmountToBuy(amount);
+            button.ChangeAmountToBuy();
         }
     }
 }
