@@ -19,7 +19,10 @@ public class CinemachineTarget : MonoBehaviour
 
     private void SetTarget()
     {
-        _cm.Follow = _target;
+        if (_cm != null)
+        {
+            _cm.Follow = _target;
+        }
     }
 
 }

@@ -19,7 +19,7 @@ public class ShakeFeedback : Feedback
     private void Awake()
     {
         _affectedTransform = this.transform;
-        _originalPosition = this.transform.position;
+        _originalPosition = Vector2.zero;
     }
 
     private void OnEnable()
@@ -36,7 +36,7 @@ public class ShakeFeedback : Feedback
     public override void ResetFeedback()
     {
         _affectedTransform.DOKill();
-        _affectedTransform.position = _originalPosition;
+        _affectedTransform.localPosition = _originalPosition;
     }
 
     public override void StartFeedback()

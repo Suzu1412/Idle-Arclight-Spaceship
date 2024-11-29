@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -15,6 +16,5 @@ public static class ScriptableObjectUtilities
 
     // Use example
     // _unlockedSystems = ScriptableObjectUtilities.FindAllScriptableObjectsOfType<UnlockedSystemSO>("t:UnlockedSystemSO", "Assets/_Data/Incremental Scriptable Objects/Unlocked Systems");
-
-
 }
+#endif

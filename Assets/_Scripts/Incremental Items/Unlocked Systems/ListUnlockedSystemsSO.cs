@@ -16,6 +16,9 @@ public class ListUnlockedSystemsSO : ScriptableObject
     [ContextMenu("Load All")]
     private void LoadAll()
     {
+#if UNITY_EDITOR
+
         _unlockedSystems = ScriptableObjectUtilities.FindAllScriptableObjectsOfType<UnlockedSystemSO>("t:UnlockedSystemSO", "Assets/_Data/Incremental Scriptable Objects/Unlocked Systems");
+#endif
     }
 }

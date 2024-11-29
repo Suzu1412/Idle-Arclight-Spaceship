@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _detectedColor: {r: 0, g: 1, b: 0, a: 1}
   _undetectedColor: {r: 1, g: 0, b: 0, a: 1}
-  _detectionCooldown: 0.25
-  _detectionAngle: 60
+  _detectionCooldown: 0.1
+  _detectionAngle: 100
   _detectionRadius: 6
   _innerDetectionRadius: 5

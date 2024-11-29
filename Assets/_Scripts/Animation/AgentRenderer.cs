@@ -19,6 +19,7 @@ public class AgentRenderer : MonoBehaviour, IAgentRenderer
 
     private void OnDisable()
     {
+        SpriteRenderer.DOKill();
         Agent.OnChangeFacingDirection -= FaceDirection;
     }
 

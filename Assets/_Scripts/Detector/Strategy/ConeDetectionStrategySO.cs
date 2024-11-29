@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Cone Detection Strategy", menuName = "Scriptable Objects/Detector/ConeDetectionStrategySO")]
-public class ConeDetectionStrategySO : BaseDetectionStrategySO<ConeDetectionStrategy>
+public class ConeDetectionStrategySO : BaseDetectionStrategySO
 {
     [SerializeField][Range(1f, 360f)] private float _detectionAngle = 60f; // Cone in front of enemy
     [SerializeField][Range(1f, 10f)] private float _detectionRadius = 5f; // Cone distance from enemy
@@ -9,22 +9,8 @@ public class ConeDetectionStrategySO : BaseDetectionStrategySO<ConeDetectionStra
 
     public float DetectionAngle => _detectionAngle;
     public float DetectionRadius => _detectionRadius;
-}
 
-public class ConeDetectionStrategy : BaseDetectionStrategy
-{
-    private float _detectionAngle;
-    private float _detectionRadius;
-
-
-    public override void Initialize(IAgent agent, BaseDetectionStrategySO detector)
-    {
-        base.Initialize(agent, detector);
-        _detectionAngle = (detector as ConeDetectionStrategySO).DetectionAngle;
-        _detectionRadius = (detector as ConeDetectionStrategySO).DetectionRadius;
-    }
-
-    public override Transform Detect(Transform detector, Vector2 direction, LayerMask target)
+    public override Transform Detect(IAgent agent, Transform detector, Vector2 direction, LayerMask target)
     {
         //RaycastHit2D hit = Physics2D.Raycast(detector.position, direction, target);
 
@@ -47,9 +33,9 @@ public class ConeDetectionStrategy : BaseDetectionStrategy
         return null;
     }
 
-    public override void DrawGizmos(Transform detector, Vector2 direction, bool detected)
+    public override void DrawGizmos(IAgent agent, Transform detector, Vector2 direction, bool detected)
     {
-        Gizmos.color = detected ? _detector.DetectedColor : _detector.UndetectedColor;
+        Gizmos.color = detected ? DetectedColor : UndetectedColor;
         // Circulo
         //Gizmos.DrawWireSphere(detector.position, _detectionRadius);
 
@@ -58,19 +44,19 @@ public class ConeDetectionStrategy : BaseDetectionStrategy
         Vector3 p1, p2;
 
         float angleDirection = 0;
-        if (_agent.FacingDirection.x < 0)
+        if (agent.FacingDirection.x < 0)
         {
             angleDirection = 0f;
         }
-        else if (_agent.FacingDirection.y < 0)
+        else if (agent.FacingDirection.y < 0)
         {
             angleDirection = 270f;
         }
-        else if (_agent.FacingDirection.y > 0)
+        else if (agent.FacingDirection.y > 0)
         {
             angleDirection = 90f;
         }
-        else if (_agent.FacingDirection.x > 0)
+        else if (agent.FacingDirection.x > 0)
         {
             angleDirection = 180f;
         }
@@ -88,4 +74,5 @@ public class ConeDetectionStrategy : BaseDetectionStrategy
     {
         return new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * distance;
     }
+
 }

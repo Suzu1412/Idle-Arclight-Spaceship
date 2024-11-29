@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class BaseDetectionStrategy : IDetectionStrategy
+public abstract class BaseDetectionStrategy
 {
     protected IAgent _agent;
     protected BaseDetectionStrategySO _detector;
@@ -10,8 +10,4 @@ public abstract class BaseDetectionStrategy : IDetectionStrategy
         _agent = agent;
         _detector = detector;
     }
-
-    public abstract Transform Detect(Transform detector, Vector2 direction, LayerMask target);
-
-    public abstract void DrawGizmos(Transform detector, Vector2 direction, bool detected);
 }

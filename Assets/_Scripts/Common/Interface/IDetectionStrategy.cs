@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IDetectionStrategy
 {
-    Transform Detect(Transform detector, Vector2 direction, LayerMask target);
+    Transform Detect(IAgent agent, Transform detector, Vector2 direction, LayerMask target);
 
-    void DrawGizmos(Transform detector, Vector2 direction, bool detected);
+    void DrawGizmos(IAgent agent, Transform detector, Vector2 direction, bool detected);
 }

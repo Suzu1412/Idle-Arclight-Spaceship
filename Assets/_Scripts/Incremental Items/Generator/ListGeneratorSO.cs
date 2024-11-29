@@ -16,7 +16,9 @@ public class ListGeneratorSO : ScriptableObject
     [ContextMenu("Load All")]
     private void LoadAll()
     {
+#if UNITY_EDITOR
         _generators = ScriptableObjectUtilities.FindAllScriptableObjectsOfType<GeneratorSO>("t:GeneratorSO", "Assets/_Scripts/Incremental Items/Generator");
+#endif
     }
 
 }

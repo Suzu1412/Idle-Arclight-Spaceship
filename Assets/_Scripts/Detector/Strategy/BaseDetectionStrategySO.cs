@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class BaseDetectionStrategySO : ScriptableObject
+public abstract class BaseDetectionStrategySO : ScriptableObject, IDetectionStrategy
 {
     [SerializeField] private Color _detectedColor = Color.green;
     [SerializeField] private Color _undetectedColor = Color.red;
@@ -9,11 +9,7 @@ public abstract class BaseDetectionStrategySO : ScriptableObject
     public Color DetectedColor => _detectedColor;
     public Color UndetectedColor => _undetectedColor;
 
+    public abstract Transform Detect(IAgent agent, Transform detector, Vector2 direction, LayerMask target);
 
-    public abstract BaseDetectionStrategy CreateDetector();
-}
-
-public abstract class BaseDetectionStrategySO<T> : BaseDetectionStrategySO where T : BaseDetectionStrategy, new()
-{
-    public override BaseDetectionStrategy CreateDetector() => new T();
+    public abstract void DrawGizmos(IAgent agent, Transform detector, Vector2 direction, bool detected);
 }

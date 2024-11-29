@@ -16,6 +16,9 @@ public class ListUpgradeSO : ScriptableObject
     [ContextMenu("Load All")]
     private void LoadAll()
     {
+#if UNITY_EDITOR
+
         _upgrades = ScriptableObjectUtilities.FindAllScriptableObjectsOfType<BaseUpgradeSO>("t:BaseUpgradeSO", "Assets/_Scripts/Incremental Items/Upgrade");
+#endif
     }
 }

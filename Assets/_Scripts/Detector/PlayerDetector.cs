@@ -9,7 +9,6 @@ public class PlayerDetector : MonoBehaviour, IPlayerDetector
     [SerializeField] private LayerMask _targetMask;
     private Coroutine _detectionCoroutine;
     [SerializeField] private BaseDetectionStrategySO _detectionStrategySO;
-    private BaseDetectionStrategy _detectionStrategy;
     public bool IsDetected => PlayerDetected != null;
 
     internal IAgent Agent => _agent ??= GetComponent<IAgent>();
@@ -18,8 +17,6 @@ public class PlayerDetector : MonoBehaviour, IPlayerDetector
 
     private void Awake()
     {
-        _detectionStrategy = _detectionStrategySO.CreateDetector();
-        _detectionStrategy.Initialize(Agent, _detectionStrategySO);
         _transform = this.transform;
     }
 
@@ -31,23 +28,17 @@ public class PlayerDetector : MonoBehaviour, IPlayerDetector
 
     private IEnumerator DetectionCoroutine()
     {
-        if (_detectionStrategy == null)
-        {
-            Debug.LogError($"Detection Strategy not assigned to {gameObject}");
-            yield return null;
-        }
-
         while (true)
         {
-            _playerDetected = _detectionStrategy.Detect(_transform, Agent.FacingDirection, _targetMask);
+            _playerDetected = _detectionStrategySO.Detect(Agent, _transform, Agent.FacingDirection, _targetMask);
             yield return Helpers.GetWaitForSeconds(_detectionStrategySO.DetectionCooldown);
         }
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (_detectionStrategy == null) return;
-        _detectionStrategy.DrawGizmos(transform, Agent.FacingDirection, IsDetected);
+        if (_detectionStrategySO == null) return;
+        _detectionStrategySO.DrawGizmos(_agent, transform, Agent.FacingDirection, IsDetected);
     }
 
 }

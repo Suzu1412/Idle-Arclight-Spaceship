@@ -65,4 +65,13 @@ public class Agent : MonoBehaviour, IAgent
         HealthSystem.Initialize((int)GetStat(StatType.MaxHealth));
         AgentRenderer.SpriteRenderer.sprite = data.Sprite;
     }
+
+    public void SetEnemyData(EnemyAgentDataSO data)
+    {
+        _data = data;
+        MoveBehaviour.SetMoveData(data.MovementData);
+        StatsSystem.SetStatsData(data.AgentStats);
+        HealthSystem.Initialize((int)GetStat(StatType.MaxHealth));
+        //AgentRenderer.SpriteRenderer.sprite = data.Sprite;
+    }
 }
