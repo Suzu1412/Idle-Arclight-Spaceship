@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e540d979937a994ebab8a4f41968310, type: 3}
+  m_Name: 6
+  m_EditorClassIdentifier: 
+  _guid: 185c4e8e82a9f734a9848a5618aa39c9
+  _name: Zircon
+  _image: {fileID: 21300000, guid: deef9858b0c0dc04c98bfba6f5a97f5b, type: 3}
+  _baseCost: {fileID: 11400000, guid: 76a110e5ef628e243878e42477b4d9fd, type: 2}
+  _production: {fileID: 11400000, guid: ce64932ba596b0c4ba925402d28d797b, type: 2}
+  _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
+  _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
+  _amountOwned: 0
+  _priceGrowthRate: 1.15
+  _totalProduction: 0

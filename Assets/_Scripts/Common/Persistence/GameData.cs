@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -64,22 +65,26 @@ public class CurrencyData
     [SerializeField] private double _totalCurrency;
     [SerializeField] private double _gameTotalCurrency;
     [SerializeField] private int _amountToBuy = 1;
+    [SerializeField] private long _lastActiveDateTime;
 
     public double TotalCurrency => _totalCurrency;
     public double GameTotalCurrency => _gameTotalCurrency;
     public int AmountToBuy => _amountToBuy;
+    public long LastActiveDateTime => _lastActiveDateTime;
 
     public CurrencyData()
     {
         _totalCurrency = 0;
         _gameTotalCurrency = 0;
         _amountToBuy = 1;
+        _lastActiveDateTime = DateTime.Now.Ticks;
     }
 
     public CurrencyData(double totalCurrency, double gameTotalCurrency, int amountToBuy)
     {
         _totalCurrency = totalCurrency;
         _gameTotalCurrency = gameTotalCurrency;
+        _lastActiveDateTime = DateTime.Now.Ticks;
         if (amountToBuy < 1)
         {
             _amountToBuy = 1;

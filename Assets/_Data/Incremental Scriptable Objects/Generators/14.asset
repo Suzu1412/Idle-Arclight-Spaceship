@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e540d979937a994ebab8a4f41968310, type: 3}
+  m_Name: 14
+  m_EditorClassIdentifier: 
+  _guid: 7e787c2541a7b344b826b6e8353f121b
+  _name: Ruby
+  _image: {fileID: 21300000, guid: cb7e7ec290f9781429493d4d0b5ce3ab, type: 3}
+  _baseCost: {fileID: 11400000, guid: ee46d2e438f7a6142ae802d0c40dce56, type: 2}
+  _production: {fileID: 11400000, guid: 5f5f3d0ea1b8763408c4b29332b5ff7b, type: 2}
+  _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
+  _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
+  _amountOwned: 0
+  _priceGrowthRate: 1.15
+  _totalProduction: 0

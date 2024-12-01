@@ -5,14 +5,14 @@ public class GemUpgradeSO : BaseUpgradeSO
 {
     [SerializeField] private GeneratorSO _generator;
     [SerializeField] private int _amountRequired;
-    [SerializeField] private VoidGameEvent OnGeneratorUpgradeEvent;
+
+    public string GeneratorName => _generator.Name;
 
     internal override void BuyUpgrade(double currency)
     {
         if (currency >= Cost.Value)
         {
             ApplyUpgrade(true);
-            OnGeneratorUpgradeEvent.RaiseEvent();
         }
     }
 

@@ -31,12 +31,12 @@ MonoBehaviour:
     m_Key: UpgradeStore
     m_Metadata:
       m_Items: []
-  - m_Id: 5
-    m_Key: Garnet
+  - m_Id: 3587370630836224
+    m_Key: New Entry 4
     m_Metadata:
       m_Items: []
-  - m_Id: 6
-    m_Key: Tourmaline
+  - m_Id: 3587370630836225
+    m_Key: New Entry 5
     m_Metadata:
       m_Items: []
   - m_Id: 7
@@ -77,6 +77,74 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 22
     m_Key: gemDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3587370630836226
+    m_Key: New Entry 6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3587370630836227
+    m_Key: New Entry 7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100
+    m_Key: Amber
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101
+    m_Key: Silver
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102
+    m_Key: Gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103
+    m_Key: Turquoise
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104
+    m_Key: Lapis lazuli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 105
+    m_Key: Zircon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 106
+    m_Key: Garnet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 107
+    m_Key: Amethyst
+    m_Metadata:
+      m_Items: []
+  - m_Id: 108
+    m_Key: Tourmaline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 109
+    m_Key: Emerald
+    m_Metadata:
+      m_Items: []
+  - m_Id: 110
+    m_Key: Aquamarine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 111
+    m_Key: Topaz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112
+    m_Key: Sapphire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113
+    m_Key: Ruby
+    m_Metadata:
+      m_Items: []
+  - m_Id: 114
+    m_Key: Diamond
     m_Metadata:
       m_Items: []
   m_Metadata:

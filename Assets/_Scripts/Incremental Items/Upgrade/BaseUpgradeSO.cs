@@ -18,7 +18,7 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
     public string Name => _name;
     public string Description => _description;
     public FloatVariableSO Cost => _cost;
-    public double CostRequirement { get => Cost.Value * 0.5f; }
+    public double CostRequirement { get => Cost.Value * 0.15f; }
     public bool IsRequirementMet { get; internal set; }
     public bool IsApplied => _isApplied;
 

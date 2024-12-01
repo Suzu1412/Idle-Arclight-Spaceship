@@ -4,6 +4,10 @@ using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using Cysharp.Text;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
+using System;
 
 public class UpgradeButtonController : MonoBehaviour
 {
@@ -130,7 +134,15 @@ public class UpgradeButtonController : MonoBehaviour
 
     private void DisplayName()
     {
-        _nameText.SetTextFormat("{0}", _upgrade.Name);
+        if (_upgrade is GemUpgradeSO)
+        {
+
+        }
+        else
+        {
+            _nameText.SetTextFormat(format: "{0}", _upgrade.Name);
+
+        }
     }
 
     private void DisplayPriceText()

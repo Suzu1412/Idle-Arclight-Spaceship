@@ -38,27 +38,23 @@ public class GeneratorButtonController : MonoBehaviour
     [SerializeField] private string _table = "Tabla1";
     private string _gemDescription = "gemDescription";
     private DoubleVariable _amountVariable;
-    private bool _isAlreadyActive;
 
     public event UnityAction<int> OnBuyGeneratorClicked;
 
     private void Awake()
     {
-        _isAlreadyActive = false;
-        ActivateButton(false);
         _localizedString = _descriptionLocalized.StringReference;
         SetAmountVariable();
+        OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
     }
 
     private void OnEnable()
     {
         _buyButton.onClick.AddListener(HandleBuyButton);
-        OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
-        OnGeneratorUpgradeListener.Register(DisplayImage);
         OnProductionChangedEventListener.Register(DisplayProductionText);
         OnProductionChangedEventListener.Register(DisplayDescription);
 
-        ActivateButton(_isAlreadyActive);
+        ActivateButton(false);
 
         if (_generator == null) return;
 
@@ -73,10 +69,14 @@ public class GeneratorButtonController : MonoBehaviour
     private void OnDisable()
     {
         _buyButton.onClick.RemoveAllListeners();
-        OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
-        OnGeneratorUpgradeListener.DeRegister(DisplayImage);
         OnProductionChangedEventListener.DeRegister(DisplayProductionText);
         OnProductionChangedEventListener.DeRegister(DisplayDescription);
+
+    }
+
+    private void OnDestroy()
+    {
+        OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
 
     }
 
@@ -115,18 +115,16 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void CheckIfCanBuy()
     {
-        if (!_isAlreadyActive)
+        if (_generator == null) return;
+
+        if (!_generator.IsUnlocked)
         {
             _generator.CheckIfMeetRequirementsToUnlock(_totalCurrency.Value);
-
-            if (_generator.IsUnlocked)
-            {
-                _isAlreadyActive = true;
-                ActivateButton(_isAlreadyActive);
-            }
         }
-
+        ActivateButton(_generator.IsUnlocked);
         ToggleBuyButton(_totalCurrency.Value >= _generator.BulkCost);
+
+        gameObject.SetActive(_generator.IsUnlocked);
     }
 
     private void ToggleBuyButton(bool val)
@@ -151,7 +149,6 @@ public class GeneratorButtonController : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(val);
         }
-
     }
 
     private void DisplayImage()

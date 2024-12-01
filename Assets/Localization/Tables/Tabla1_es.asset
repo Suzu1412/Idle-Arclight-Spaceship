@@ -19,15 +19,6 @@ MonoBehaviour:
     m_Items:
     - rid: 6827601619408388418
   m_TableData:
-  - m_Id: 6
-    m_Localized: Turmalina
-    m_Metadata:
-      m_Items: []
-  - m_Id: 5
-    m_Localized: Granate
-    m_Metadata:
-      m_Items:
-      - rid: 6827601619408388418
   - m_Id: 1
     m_Localized: "Men\xFA"
     m_Metadata:
@@ -84,10 +75,70 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 22
-    m_Localized: Produce +{amount} CpS
+    m_Localized: Genera +{amount} CpS
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
+  - m_Id: 100
+    m_Localized: "\xC1mbar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101
+    m_Localized: Plata
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102
+    m_Localized: Oro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103
+    m_Localized: Turquesa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104
+    m_Localized: "lapisl\xE1zuli"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 105
+    m_Localized: "Circ\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 106
+    m_Localized: Granate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 107
+    m_Localized: Amatista
+    m_Metadata:
+      m_Items: []
+  - m_Id: 108
+    m_Localized: Turmalina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 109
+    m_Localized: Esmeralda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 110
+    m_Localized: Aguamarina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 111
+    m_Localized: Topacio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112
+    m_Localized: Zafiro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113
+    m_Localized: "Rub\xED"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 114
+    m_Localized: Diamante
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
@@ -99,5 +150,4 @@ MonoBehaviour:
         - id: 3
         - id: 12
         - id: 9
-        - id: 5
         - id: 22

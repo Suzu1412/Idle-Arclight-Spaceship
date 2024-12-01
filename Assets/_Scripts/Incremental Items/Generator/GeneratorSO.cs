@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 public class GeneratorSO : SerializableScriptableObject
 {
     [SerializeField] private string _name;
-    [SerializeField] private Sprite[] _image;
+    [SerializeField] private Sprite _image;
     [SerializeField] private FloatVariableSO _baseCost;
     [SerializeField] private FloatVariableSO _production;
     [SerializeField] private FloatVariableSO _generatorProductionMultiplier;
@@ -20,14 +20,13 @@ public class GeneratorSO : SerializableScriptableObject
     private bool _isDirty = true;
 
     public string Name => _name;
-    // Image is assigned according to the amount of modifiers
-    public Sprite Image => _image[_production.CountModifiers];
+    public Sprite Image => _image;
     public FloatVariableSO BaseCost { get => _baseCost; internal set => _baseCost = value; }
     public FloatVariableSO Production { get => _production; internal set => _production = value; }
     public int AmountOwned { get => _amountOwned; internal set => _amountOwned = value; }
     public double PriceGrowthRate { get => _priceGrowthRate; internal set => _priceGrowthRate = value; }
     public double TotalProduction { get => _totalProduction; internal set => _totalProduction = value; }
-    public double CostRequirement { get => BaseCost.Value * 0.25; }
+    public double CostRequirement { get => BaseCost.Value * 0.125; }
     public double BulkCost { get; private set; }
     public bool IsUnlocked { get; internal set; }
     public FormattedNumber CostFormatted { get; private set; }

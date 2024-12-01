@@ -32,7 +32,7 @@ public class PickUpSystem : MonoBehaviour
     {
         while (true)
         {
-            yield return Helpers.GetWaitForSeconds(0.1f);
+            yield return Helpers.GetWaitForSeconds(0.05f);
             RaycastHit2D hit = Physics2D.CircleCast(_transform.position, _pickUpRadius.Value, Vector2.zero, Mathf.Infinity, _targetLayer);
 
             if (hit.collider != null)

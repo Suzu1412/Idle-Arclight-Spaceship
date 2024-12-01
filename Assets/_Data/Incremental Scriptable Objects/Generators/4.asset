@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e540d979937a994ebab8a4f41968310, type: 3}
+  m_Name: 4
+  m_EditorClassIdentifier: 
+  _guid: c6f2163c941647e43b126ab9364ff53c
+  _name: Turquoise
+  _image: {fileID: 21300000, guid: 99fb2314fd36f454ca611330c787f10b, type: 3}
+  _baseCost: {fileID: 11400000, guid: 96f722b98ed6cbd4e91e56a0a456a2f3, type: 2}
+  _production: {fileID: 11400000, guid: 4c8e2e0f9184809409f5e1a7d66c037a, type: 2}
+  _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
+  _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
+  _amountOwned: 0
+  _priceGrowthRate: 1.15
+  _totalProduction: 0

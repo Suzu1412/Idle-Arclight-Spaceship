@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e540d979937a994ebab8a4f41968310, type: 3}
+  m_Name: 13
+  m_EditorClassIdentifier: 
+  _guid: a691c1f52c24a8d429c2ebe2b328ab87
+  _name: Sapphire
+  _image: {fileID: 21300000, guid: fb2d450bc33ce47478023e998b2feea5, type: 3}
+  _baseCost: {fileID: 11400000, guid: dee2cb14ad006ab4cb490c151001c3a0, type: 2}
+  _production: {fileID: 11400000, guid: b255be862039514449046befb90c9596, type: 2}
+  _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
+  _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
+  _amountOwned: 0
+  _priceGrowthRate: 1.15
+  _totalProduction: 0

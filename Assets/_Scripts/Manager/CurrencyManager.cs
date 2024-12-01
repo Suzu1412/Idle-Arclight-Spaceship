@@ -121,6 +121,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         LoadCurrency(gameData.CurrencyData);
         LoadGenerators(gameData.Generators);
         LoadUpgrades(gameData.Upgrades);
+        LoadOfflineReward(gameData.CurrencyData.LastActiveDateTime);
 
         UpdateCurrency();
         GetProductionRate();
@@ -252,5 +253,28 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             upgradeSO.IsRequirementMet = upgrade.IsRequirementMet;
             upgradeSO.ApplyUpgrade(upgrade.IsApplied);
         }
+    }
+
+    private void LoadOfflineReward(long lastActive)
+    {
+        long timeSpan = DateTime.Now.Ticks - lastActive;
+        double seconds = Math.Round(TimeSpan.FromTicks(timeSpan).TotalSeconds);
+
+        seconds = Math.Clamp(seconds, 0, 86400);
+
+        double production = 0;
+
+        foreach (var generator in _generators.Generators)
+        {
+            production += generator.GetProductionRate();
+        }
+
+        production *= seconds;
+
+        Debug.Log($"produccion desde la ultima conexion: {production} - segundos transcurridos: {seconds}");
+        IncrementPerSecond(production);
+
+        OnUpdateProductionFormatted.RaiseEvent(FormatNumber.FormatDouble(production, UpdateProductionFormatted));
+
     }
 }
