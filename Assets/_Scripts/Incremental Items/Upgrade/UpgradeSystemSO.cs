@@ -18,7 +18,7 @@ public class UpgradeSystemSO : BaseUpgradeSO
             return false;
         }
 
-        if (currency < _cost.Value)
+        if (currency < _cost)
         {
             return false;
         }

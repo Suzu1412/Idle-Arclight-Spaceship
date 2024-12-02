@@ -9,41 +9,72 @@ public class GeneratorSO : SerializableScriptableObject
 {
     [SerializeField] private string _name;
     [SerializeField] private Sprite _image;
-    [SerializeField] private FloatVariableSO _baseCost;
-    [SerializeField] private FloatVariableSO _production;
-    [SerializeField] private FloatVariableSO _generatorProductionMultiplier;
-    [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
     [SerializeField] private int _amountOwned;
+
+    [Header("Cost")]
+    [SerializeField] protected double _cost;
+    [SerializeField] protected double _costRequirement;
+    [SerializeField] private FloatVariableSO _gemCostMultiplier;
     [SerializeField] private double _priceGrowthRate;
-    [SerializeField] private double _totalProduction;
-    private double _currentProduction;
+
+    [Header("Production")]
+    [SerializeField] protected double _baseProduction;
+    [Header("Apply Multipliers to current gem")]
+    [SerializeField] private FloatVariableSO _gemProductionMultiplier;
+    [Header("Random Event Production Multiplier")]
+    [SerializeField] private FloatVariableSO _generatorProductionMultiplier;
+    [Header("Random Event Total Multiplier")]
+    [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
+
+    private DoubleVariableSO _bulkCost;
+    private DoubleVariableSO _currentProduction;
+    private DoubleVariableSO _totalProduction;
+    private DoubleVariableSO _production;
+
+    [SerializeField] private bool _isUnlocked;
     private bool _isDirty = true;
 
     public string Name => _name;
     public Sprite Image => _image;
-    public FloatVariableSO BaseCost { get => _baseCost; internal set => _baseCost = value; }
-    public FloatVariableSO Production { get => _production; internal set => _production = value; }
+    public double BaseCost { get => _cost; internal set => _cost = value; }
+    public double BaseProduction { get => _baseProduction; internal set => _baseProduction = value; }
     public int AmountOwned { get => _amountOwned; internal set => _amountOwned = value; }
     public double PriceGrowthRate { get => _priceGrowthRate; internal set => _priceGrowthRate = value; }
-    public double TotalProduction { get => _totalProduction; internal set => _totalProduction = value; }
-    public double CostRequirement { get => BaseCost.Value * 0.125; }
-    public double BulkCost { get; private set; }
-    public bool IsUnlocked { get; internal set; }
+    public double TotalProduction { get => _totalProduction.Value; internal set => SetTotalProduction(value); }
+    public double CostRequirement => _costRequirement;
+    public DoubleVariableSO Cost => _bulkCost;
+    public DoubleVariableSO Production => _production;
+    public bool IsUnlocked { get => _isUnlocked; internal set => _isUnlocked = value; }
     public FormattedNumber CostFormatted { get; private set; }
     public FormattedNumber ProductionFormatted { get; private set; }
+
+    private void OnEnable()
+    {
+        _bulkCost = ScriptableObject.CreateInstance<DoubleVariableSO>();
+        _bulkCost.Initialize(0, 0, double.MaxValue);
+
+        _currentProduction = ScriptableObject.CreateInstance<DoubleVariableSO>();
+        _currentProduction.Initialize(0, 0, double.MaxValue);
+
+        _production = ScriptableObject.CreateInstance<DoubleVariableSO>();
+        _production.Initialize(0, 0, double.MaxValue);
+
+        _totalProduction = ScriptableObject.CreateInstance<DoubleVariableSO>();
+        _totalProduction.Initialize(0, 0, double.MaxValue);
+    }
 
     internal void Initialize()
     {
         SetAmount(0);
         SetTotalProduction(0);
-        IsUnlocked = false;
+        _isUnlocked = false;
     }
 
     public void CheckIfMeetRequirementsToUnlock(double currency)
     {
         if (currency >= CostRequirement)
         {
-            IsUnlocked = true;
+            _isUnlocked = true;
         }
     }
     public void AddAmount(int amount)
@@ -54,8 +85,9 @@ public class GeneratorSO : SerializableScriptableObject
 
     public void CalculateProductionRate()
     {
-        _currentProduction = Math.Round(_production.Value * _generatorProductionMultiplier.Value * _crystalTotalMultiplier.Value * _amountOwned, 1);
-        ProductionFormatted = FormatNumber.FormatDouble(_currentProduction, ProductionFormatted);
+        _production.Value = _baseProduction * _gemProductionMultiplier.Value * _generatorProductionMultiplier.Value * _crystalTotalMultiplier.Value;
+        _currentProduction.Value = Math.Round(_production.Value * _amountOwned, 1);
+        ProductionFormatted = FormatNumber.FormatDouble(_currentProduction.Value, ProductionFormatted);
         _isDirty = false;
     }
 
@@ -65,21 +97,21 @@ public class GeneratorSO : SerializableScriptableObject
         {
             CalculateProductionRate();
         }
-        TotalProduction = Math.Round(TotalProduction + _currentProduction, 1);
-        return _currentProduction;
+        TotalProduction = Math.Round(TotalProduction + _currentProduction.Value, 1);
+        return _currentProduction.Value;
     }
 
     public double GetBulkCost(int amountTobuy)
     {
-        BulkCost = 0;
+        _bulkCost.Value = 0;
 
         for (int i = 0; i < amountTobuy; i++)
         {
-            BulkCost += GetNextCost(i);
+            _bulkCost.Value += GetNextCost(i);
         }
 
-        CostFormatted = FormatNumber.FormatDouble(BulkCost, CostFormatted);
-        return BulkCost;
+        CostFormatted = FormatNumber.FormatDouble(_bulkCost.Value, CostFormatted);
+        return _bulkCost.Value;
     }
 
     public int CalculateMaxAmountToBuy(double currency)
@@ -112,11 +144,11 @@ public class GeneratorSO : SerializableScriptableObject
 
     internal void SetTotalProduction(double totalProduction)
     {
-        _totalProduction = totalProduction;
+        _totalProduction.Value = totalProduction;
     }
 
     internal double GetNextCost(int addAmount = 0)
     {
-        return Math.Ceiling(BaseCost.Value * Math.Pow(_priceGrowthRate, _amountOwned + addAmount));
+        return Math.Ceiling(_cost * _gemCostMultiplier.Value * Math.Pow(_priceGrowthRate, _amountOwned + addAmount));
     }
 }

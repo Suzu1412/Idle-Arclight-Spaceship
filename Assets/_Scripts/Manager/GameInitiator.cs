@@ -1,39 +1,26 @@
-using System.Collections;
 using UnityEngine;
-using Unity.Cinemachine;
-using UnityEngine.SceneManagement;
-using Eflatun.SceneReference;
-using System.Collections.Generic;
+
 
 public class GameInitiator : Singleton<GameInitiator>
 {
-    [Header("Scene References")]
-    [SerializeField] private SceneReference _bootstrapperScene;
-
     [Header("Void Event")]
     [SerializeField] private VoidGameEvent OnStartGameEvent;
 
+    [Header("Void Event Listener")]
+    [SerializeField] private VoidGameEventListener OnFinishedLoadingEventListener;
+
     private void OnEnable()
     {
-        StartCoroutine(StartGame());
+        OnFinishedLoadingEventListener.Register(StartGame);
     }
 
-    private IEnumerator StartGame()
+    private void OnDisable()
     {
-        bool isValid = false;
+        OnFinishedLoadingEventListener.DeRegister(StartGame);
+    }
 
-        while (!isValid)
-        {
-
-            if (SceneManager.GetActiveScene().name != _bootstrapperScene.Name)
-            {
-                isValid = true;
-                break;
-            }
-
-            yield return Helpers.GetWaitForSeconds(0.05f);
-        }
-
+    private void StartGame()
+    {
         OnStartGameEvent.RaiseEvent();
     }
 }

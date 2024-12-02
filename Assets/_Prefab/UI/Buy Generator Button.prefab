@@ -389,7 +389,7 @@ MonoBehaviour:
     m_LocalVariables:
     - name: amount
       variable:
-        rid: 6827601650811666681
+        rid: 2699284591332032616
   m_FormatArguments: []
   m_UpdateString:
     m_PersistentCalls:
@@ -409,8 +409,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 6827601650811666681
-      type: {class: DoubleVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+    - rid: 2699284591332032616
+      type: {class: StringVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
         m_Value: 0
 --- !u!1 &1494101746775617029

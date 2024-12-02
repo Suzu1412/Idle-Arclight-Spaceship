@@ -23,7 +23,7 @@ public static class FormatNumber
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
-    public static FormattedNumber FormatDouble(double value, FormattedNumber formattedNumber)
+    public static FormattedNumber FormatDouble(double value, FormattedNumber formattedNumber = new())
     {
         if (value <= 0d)
         {
@@ -67,5 +67,10 @@ public struct FormattedNumber
     public readonly string GetFormat()
     {
         return ZString.Format("{0:F1} {1}", Value, Unit);
+    }
+
+    public readonly string GetFormatNoDecimals()
+    {
+        return ZString.Format("{0} {1}", Value, Unit);
     }
 }

@@ -1,11 +1,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoaderManager : MonoBehaviour
+public class SceneLoaderManager : MonoBehaviour, ISaveable
 {
+    private int _currentScene;
     [SerializeField] private GameObject _loadingCamera;
     [SerializeField] private Canvas _loadingCanvas;
     [SerializeField] private SceneGroup[] _sceneGroups;
+
+    [Header("Void Event")]
+    [SerializeField] private VoidGameEvent OnLoadLastSceneEvent;
+    [SerializeField] private VoidGameEvent OnFinishedLoadingEvent;
+
+    [Header("Int Event")]
+    [SerializeField] private IntGameEventListener OnChangeSceneEventListener;
 
     [Header("Bool Event")]
     [SerializeField] private BoolGameEvent OnSceneGroupLoadedEvent;
@@ -30,19 +38,26 @@ public class SceneLoaderManager : MonoBehaviour
         _manager.OnSceneGroupUnloaded += () => UpdateLoadProgress(0.2f);
     }
 
-    async void Start()
+    private void Start()
     {
-        await LoadSceneGroup(0);
+        OnLoadLastSceneEvent.RaiseEvent();
     }
 
     private void OnEnable()
     {
         OnToggleLoadEventListener.Register(EnableLoadingCanvas);
+        OnChangeSceneEventListener.Register(ChangeScene);
     }
 
     private void OnDisable()
     {
         OnToggleLoadEventListener.DeRegister(EnableLoadingCanvas);
+        OnChangeSceneEventListener.DeRegister(ChangeScene);
+    }
+
+    private async void ChangeScene(int level)
+    {
+        await LoadSceneGroup(level);
     }
 
     public async Awaitable LoadSceneGroup(int index)
@@ -58,8 +73,8 @@ public class SceneLoaderManager : MonoBehaviour
         UpdateLoadProgress(0f);
         OnToggleLoadEvent.RaiseEvent(true);
         await _manager.LoadScenes(_sceneGroups[index]);
-        //await Awaitable.WaitForSecondsAsync(0.1f);
         EnableLoadingCanvas(false);
+        OnFinishedLoadingEvent.RaiseEvent();
     }
 
     void EnableLoadingCanvas(bool enable = true)
@@ -83,5 +98,15 @@ public class SceneLoaderManager : MonoBehaviour
     private void UpdateLoadProgress(float value)
     {
         OnLoadProgressEvent.RaiseEvent(value);
+    }
+
+    public void SaveData(GameDataSO gameData)
+    {
+        gameData.SaveCurrentScene(_currentScene);
+    }
+
+    public void LoadData(GameDataSO gameData)
+    {
+        // Loaded Scene Data must be done before
     }
 }

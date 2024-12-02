@@ -8,9 +8,14 @@ public class SaveSystem : Singleton<SaveSystem>
     IDataService _dataService;
     private bool _appIsPaused = false;
     private bool _canSave;
+    private bool _isGameDataReady;
 
     [Header("Void Game Event Listener")]
     [SerializeField] private VoidGameEventListener OnStartGameEventListener;
+    [SerializeField] private VoidGameEventListener OnLoadLastSceneEventListener;
+
+    [Header("Int Game Event")]
+    [SerializeField] private IntGameEvent OnChangeSceneEvent;
 
     [Header("Persistence")]
     [SerializeField] private GameDataSO _gameDataSO = default;
@@ -26,16 +31,37 @@ public class SaveSystem : Singleton<SaveSystem>
     {
         _canSave = false;
         OnStartGameEventListener.Register(LoadGame);
+        OnLoadLastSceneEventListener.Register(LoadLastScene);
     }
 
     private void OnDisable()
     {
         OnStartGameEventListener.DeRegister(LoadGame);
+        OnLoadLastSceneEventListener.DeRegister(LoadLastScene);
+
     }
 
-    public async void LoadGame()
+    private async void LoadLastScene()
     {
-        _gameData = await LoadDataFromFile(_gameDataSO.Name);
+        if (_gameData == null)
+        {
+            _gameData = await LoadDataFromFile(_gameDataSO.Name);
+        }
+
+        if (_gameData == null)
+        {
+            NewGame();
+        }
+
+        OnChangeSceneEvent.RaiseEvent(_gameData.CurrentSceneGroupID);
+    }
+
+    private async void LoadGame()
+    {
+        if (_gameData == null)
+        {
+            _gameData = await LoadDataFromFile(_gameDataSO.Name);
+        }
 
         if (_gameData == null)
         {
@@ -51,7 +77,7 @@ public class SaveSystem : Singleton<SaveSystem>
         _canSave = true;
     }
 
-    public void SaveGame()
+    private void SaveGame()
     {
         foreach (var item in _saveDataRTS.Items)
         {

@@ -169,63 +169,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &538802796
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1599574858953912978, guid: 3630631abf298469084191afca558079, type: 3}
-      propertyPath: m_Name
-      value: Save System
-      objectReference: {fileID: 0}
-    - target: {fileID: 2626472514868784778, guid: 3630631abf298469084191afca558079, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2626472514868784778, guid: 3630631abf298469084191afca558079, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2626472514868784778, guid: 3630631abf298469084191afca558079, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2626472514868784778, guid: 3630631abf298469084191afca558079, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2626472514868784778, guid: 3630631abf298469084191afca558079, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2626472514868784778, guid: 3630631abf298469084191afca558079, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2626472514868784778, guid: 3630631abf298469084191afca558079, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2626472514868784778, guid: 3630631abf298469084191afca558079, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2626472514868784778, guid: 3630631abf298469084191afca558079, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2626472514868784778, guid: 3630631abf298469084191afca558079, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3630631abf298469084191afca558079, type: 3}
 --- !u!1001 &994672718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -274,14 +217,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2810333893229376637, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
-      propertyPath: _amountToBuy
-      value: 
-      objectReference: {fileID: 11400000, guid: ced75ba67cb9f497da83291dde86fe33, type: 2}
-    - target: {fileID: 2810333893229376637, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
-      propertyPath: OnAddCurrencyEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 5bd344dced403a640beaa76edd630fa4, type: 2}
     - target: {fileID: 8180101144524932358, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
       propertyPath: m_Name
       value: Currency Manager
@@ -300,13 +235,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1385602748037994800, guid: 09232bba6e990184c93be847d6b949ad, type: 3}
+      propertyPath: _loaderScene.guid
+      value: 5e73b9c06ca9a2442b54030da5bffdd2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385602748037994800, guid: 09232bba6e990184c93be847d6b949ad, type: 3}
+      propertyPath: _loaderScene.asset
+      value: 
+      objectReference: {fileID: 102900000, guid: 5e73b9c06ca9a2442b54030da5bffdd2, type: 3}
+    - target: {fileID: 1385602748037994800, guid: 09232bba6e990184c93be847d6b949ad, type: 3}
       propertyPath: _bootstrapperScene.guid
-      value: b96a2f470e3a1f3429eb205b47118b32
+      value: 5e73b9c06ca9a2442b54030da5bffdd2
       objectReference: {fileID: 0}
     - target: {fileID: 1385602748037994800, guid: 09232bba6e990184c93be847d6b949ad, type: 3}
       propertyPath: _bootstrapperScene.asset
       value: 
-      objectReference: {fileID: 102900000, guid: b96a2f470e3a1f3429eb205b47118b32, type: 3}
+      objectReference: {fileID: 102900000, guid: 5e73b9c06ca9a2442b54030da5bffdd2, type: 3}
+    - target: {fileID: 1385602748037994800, guid: 09232bba6e990184c93be847d6b949ad, type: 3}
+      propertyPath: OnFinishedLoadingEventListener
+      value: 
+      objectReference: {fileID: 11400000, guid: 42d9079e6bd41794481fac42087efdc2, type: 2}
     - target: {fileID: 8463079187461242157, guid: 09232bba6e990184c93be847d6b949ad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -458,7 +405,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initialDelay: 3
-  _delayBetweenSpawns: 1.5
+  _minDelayBetweenSpawns: 0.25
+  _maxDelayBetweenSpawns: 1
   _placementStrategy: {fileID: 11400000, guid: a0e8ac4c9ba61fc4daf23a4c8ef4a945, type: 2}
   _gemConfigs:
   - {fileID: 11400000, guid: eac2c2c79b35a764f9ab740a335e110b, type: 2}
@@ -665,7 +613,6 @@ SceneRoots:
   - {fileID: 1350739343}
   - {fileID: 1488717027}
   - {fileID: 994672718}
-  - {fileID: 538802796}
   - {fileID: 384830879433975160}
   - {fileID: 856451586824009297}
   - {fileID: 228448589717511854}

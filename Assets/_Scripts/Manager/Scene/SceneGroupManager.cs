@@ -92,7 +92,7 @@ public class SceneGroupManager
 
             var sceneName = sceneAt.name;
 
-            if (sceneName.Equals(activeScene) || sceneName == "Bootstrapper") continue;
+            if (sceneName.Equals(activeScene) || sceneName == "Scene Loader") continue;
             if (_handleGroup.Handles.Any(h => h.IsValid() && h.Result.Scene.name == sceneName)) continue;
 
             scenes.Add(sceneName);

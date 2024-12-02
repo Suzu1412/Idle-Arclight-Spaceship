@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1e6d47ff7df2d46a7fe68082b49070, type: 3}
   m_Name: GameDataSO
   m_EditorClassIdentifier: 
-  _name: d21
+  _name: d24
   GameData:
-    Name: d20
+    Name: d23
     LocationId: 
     CurrentLevelName: 
     CurrentGameState: 0
@@ -24,29 +24,30 @@ MonoBehaviour:
       _isActive: 1
       _isUnlocked: 1
     CurrencyData:
-      _totalCurrency: 322090.1
-      _gameTotalCurrency: 688099.0999445913
+      _totalCurrency: 2285
+      _gameTotalCurrency: 5724.890013117341
       _amountToBuy: 1
+      _lastActiveDateTime: 638686729520392671
     Generators:
     - _guid: 274494024297a8e44a9090bed95ba8ca
-      _amount: 25
-      _totalProduction: 6045.6
+      _amount: 15
+      _totalProduction: 755.4
       _isUnlocked: 1
     - _guid: 45a9c9cc35838824097ca45e92e5a7d8
-      _amount: 17
-      _totalProduction: 35382.3
+      _amount: 12
+      _totalProduction: 3864
       _isUnlocked: 1
     - _guid: c2f46407d0a839a46bd2f0eb1f4f2833
-      _amount: 14
-      _totalProduction: 179984.8
+      _amount: 0
+      _totalProduction: 0
       _isUnlocked: 1
     - _guid: c6f2163c941647e43b126ab9364ff53c
-      _amount: 4
-      _totalProduction: 205244.1
+      _amount: 0
+      _totalProduction: 0
       _isUnlocked: 1
     - _guid: 5ec76d4159cb8ea42996331c6f423866
-      _amount: 3
-      _totalProduction: 268222.5
+      _amount: 0
+      _totalProduction: 0
       _isUnlocked: 1
     - _guid: 185c4e8e82a9f734a9848a5618aa39c9
       _amount: 0
@@ -59,42 +60,42 @@ MonoBehaviour:
     - _guid: 09139eb29fa22564cbc855584564caf4
       _amount: 0
       _totalProduction: 0
-      _isUnlocked: 0
+      _isUnlocked: 1
     - _guid: 6d7504daf1adfdf40bda471778edaa1b
       _amount: 0
       _totalProduction: 0
-      _isUnlocked: 0
+      _isUnlocked: 1
     - _guid: a1da32dffb8c580428fd57903c3cb803
       _amount: 0
       _totalProduction: 0
-      _isUnlocked: 0
+      _isUnlocked: 1
     - _guid: ba414e3f95c244a46aba4b585358d10a
       _amount: 0
       _totalProduction: 0
-      _isUnlocked: 0
+      _isUnlocked: 1
     - _guid: 63b9ee0872b866547bc1cfcfdef88d6d
       _amount: 0
       _totalProduction: 0
-      _isUnlocked: 0
+      _isUnlocked: 1
     - _guid: a691c1f52c24a8d429c2ebe2b328ab87
       _amount: 0
       _totalProduction: 0
-      _isUnlocked: 0
+      _isUnlocked: 1
     - _guid: 7e787c2541a7b344b826b6e8353f121b
       _amount: 0
       _totalProduction: 0
-      _isUnlocked: 0
+      _isUnlocked: 1
     - _guid: 1221112d43b14124e805c2a01e95c0a9
       _amount: 0
       _totalProduction: 0
-      _isUnlocked: 0
+      _isUnlocked: 1
     Upgrades:
     - _guid: f2e35f9103f93854ea7bbd7299c87324
       _isRequirementMet: 1
-      _isApplied: 1
+      _isApplied: 0
     - _guid: f5258c38138cd7649a8dcf6dd81dbc3a
       _isRequirementMet: 1
-      _isApplied: 1
+      _isApplied: 0
     UnlockedSystems: []
     LocalizationData:
       _locale: 

@@ -15,10 +15,13 @@ MonoBehaviour:
   _guid: 7e787c2541a7b344b826b6e8353f121b
   _name: Ruby
   _image: {fileID: 21300000, guid: cb7e7ec290f9781429493d4d0b5ce3ab, type: 3}
-  _baseCost: {fileID: 11400000, guid: ee46d2e438f7a6142ae802d0c40dce56, type: 2}
-  _production: {fileID: 11400000, guid: 5f5f3d0ea1b8763408c4b29332b5ff7b, type: 2}
+  _amountOwned: 0
+  _cost: 6250000000000000
+  _costRequirement: 350000000000000
+  _gemCostMultiplier: {fileID: 11400000, guid: d4159609c13d586439af8e9e600a0681, type: 2}
+  _priceGrowthRate: 1.15
+  _baseProduction: 250000000
+  _gemProductionMultiplier: {fileID: 11400000, guid: 5f61b0a341ee1b045bb03ea21cfad2da, type: 2}
   _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
-  _amountOwned: 0
-  _priceGrowthRate: 1.15
-  _totalProduction: 0
+  _isUnlocked: 0

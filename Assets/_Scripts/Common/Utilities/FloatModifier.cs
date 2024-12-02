@@ -21,4 +21,9 @@ public class FloatModifier
         _value = value;
         _source = source;
     }
+
+    public void SetSource(string source)
+    {
+        _source = source;
+    }
 }

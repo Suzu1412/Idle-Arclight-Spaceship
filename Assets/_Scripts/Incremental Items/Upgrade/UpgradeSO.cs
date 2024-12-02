@@ -5,7 +5,7 @@ public class UpgradeSO : BaseUpgradeSO
 {
     protected override bool CheckIfMeetRequirementToUnlock(double currency)
     {
-        if (currency < _cost.Value)
+        if (currency < _cost)
         {
             return false;
         }

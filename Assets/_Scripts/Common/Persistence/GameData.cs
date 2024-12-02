@@ -5,9 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public string Name;
-    public string LocationId;
-    public string CurrentLevelName;
+    [HideInInspector] public string Name;
+    public int CurrentSceneGroupID;
 
     [Header("Game Manager")]
     public GameStateType CurrentGameState;
@@ -37,6 +36,7 @@ public class GameData
     {
         Name = name;
 
+        CurrentSceneGroupID = 0;
         CurrentGameState = GameStateType.Init;
         Players = new();
         CurrencyData = new();

@@ -5,7 +5,7 @@ public class DamageDealer : MonoBehaviour
     [SerializeField] private bool _destroyOnContact = false;
     private ObjectPooler _pool;
     private IAgent _agent;
-    internal IAgent Agent => _agent ??= GetComponent<IAgent>();
+    internal IAgent Agent => _agent ??= GetComponentInParent<IAgent>();
 
     private void Start()
     {

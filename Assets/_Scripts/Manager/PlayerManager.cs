@@ -111,6 +111,10 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
             return;
         }
 
+        if (_agent == null)
+        {
+            SpawnPlayer();
+        }
         _agent.SetPlayerData(playerData);
         _currentPlayerData = playerData;
     }

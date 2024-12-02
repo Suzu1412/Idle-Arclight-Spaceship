@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player MovementDataSO
   m_EditorClassIdentifier: 
   _acceleration: 20
-  _deceleration: 10
+  _deceleration: 15
   _maxSpeed: 3.5

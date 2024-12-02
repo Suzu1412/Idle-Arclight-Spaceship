@@ -15,12 +15,14 @@ MonoBehaviour:
   _guid: b67c77ad3e468e64e9ca4edb3e5bd1c0
   _name: ElementalGem
   _description: GemProductionMultiplier
-  _cost: {fileID: 11400000, guid: 9c4faaed4ce120f42a4ed306c36500f0, type: 2}
-  _variableToModify: {fileID: 11400000, guid: 8a44f648d7483483fafdbdb748d89036, type: 2}
+  _cost: 0
+  _costRequirement: 0
+  _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
+  _variableToModify: {fileID: 11400000, guid: b2ad4b59e59d5404ab90d976994c7155, type: 2}
   _modifierToApply:
-    _modifierType: 2
+    _modifierType: 1
     _value: 2
-    _source: 
+    _source: 1- GemUpgradeSO 4
   _isApplied: 0
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
   _generator: {fileID: 11400000, guid: 274494024297a8e44a9090bed95ba8ca, type: 2}

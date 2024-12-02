@@ -7,8 +7,10 @@ public class GameDataSO : ScriptableObject
 	[SerializeField] private string _name;
 	public string Name => _name;
 	public GameData GameData;
+	public int CurrentSceneGroupID => GameData.CurrentSceneGroupID;
 
-	public List<GeneratorData> Generators => GameData.Generators;
+
+    public List<GeneratorData> Generators => GameData.Generators;
 	public List<PlayerAgentData> Players => GameData.Players;
 	public List<UpgradeData> Upgrades => GameData.Upgrades;
 	public List<UnlockSystemData> UnlockedSystems => GameData.UnlockedSystems;
@@ -67,5 +69,10 @@ public class GameDataSO : ScriptableObject
 	public void SaveLocalization(string locale)
 	{
 		GameData.LocalizationData = new(locale);
+	}
+
+	public void SaveCurrentScene(int currentSceneGroupID)
+	{
+		GameData.CurrentSceneGroupID = currentSceneGroupID;
 	}
 }

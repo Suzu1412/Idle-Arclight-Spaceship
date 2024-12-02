@@ -17,4 +17,4 @@ MonoBehaviour:
   _detectionCooldown: 0.25
   _detectionAngle: 60
   _detectionRadius: 5
-  _innerDetectionRadius: 5
+  _innerDetectionRadius: 3

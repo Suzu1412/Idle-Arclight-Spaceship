@@ -18,6 +18,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [Header("Float Variable")]
     [SerializeField] private FloatVariableSO _crystalOnGetMultiplier;
     [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
+    [SerializeField] private FloatVariableSO _productionOfflineMultiplier;
 
     [Header("Int Event")]
     [SerializeField] private IntGameEvent OnGeneratorAmountChangedEvent;
@@ -133,9 +134,9 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void BuyGenerator(int index)
     {
-        if (_totalCurrency.Value >= _generators.Generators[index].BulkCost)
+        if (_totalCurrency.Value >= _generators.Generators[index].Cost.Value)
         {
-            _totalCurrency.Value -= _generators.Generators[index].BulkCost;
+            _totalCurrency.Value -= _generators.Generators[index].Cost.Value;
             _generators.Generators[index].AddAmount(_amountToBuy.Value);
             _generators.Generators[index].GetBulkCost(_amountToBuy.Value);
             _generators.Generators[index].CalculateProductionRate();
@@ -270,8 +271,11 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         }
 
         production *= seconds;
+        production *= _productionOfflineMultiplier.Value;
 
-        Debug.Log($"produccion desde la ultima conexion: {production} - segundos transcurridos: {seconds}");
+        var productionOffline = FormatNumber.FormatDouble(production);
+
+        Debug.Log($"produccion desde la ultima conexion: {productionOffline.GetFormat()} - segundos transcurridos: {seconds}");
         IncrementPerSecond(production);
 
         OnUpdateProductionFormatted.RaiseEvent(FormatNumber.FormatDouble(production, UpdateProductionFormatted));

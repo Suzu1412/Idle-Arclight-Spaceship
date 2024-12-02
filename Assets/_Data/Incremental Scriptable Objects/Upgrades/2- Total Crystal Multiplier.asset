@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: 2- Total Crystal Multiplier
   m_EditorClassIdentifier: 
   _guid: f5258c38138cd7649a8dcf6dd81dbc3a
-  _name: 5% Total Crystal
-  _description: Aumenta los cristales conseguidos en 5%
-  _cost: {fileID: 11400000, guid: 2f9956968c3187d4aaf4cd2024b79052, type: 2}
+  _name: 1% Total Crystal
+  _description: Aumenta los cristales conseguidos en 1%
+  _cost: 150
+  _costRequirement: 50
+  _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
   _variableToModify: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
   _modifierToApply:
     _modifierType: 1
-    _value: 0.05
+    _value: 0.01
     _source: 2- Total Crystal Multiplier
   _isApplied: 0
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}

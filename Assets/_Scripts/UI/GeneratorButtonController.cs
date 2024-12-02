@@ -37,7 +37,7 @@ public class GeneratorButtonController : MonoBehaviour
     private LocalizedString _localizedString;
     [SerializeField] private string _table = "Tabla1";
     private string _gemDescription = "gemDescription";
-    private DoubleVariable _amountVariable;
+    private StringVariable _amountVariable;
 
     public event UnityAction<int> OnBuyGeneratorClicked;
 
@@ -122,7 +122,7 @@ public class GeneratorButtonController : MonoBehaviour
             _generator.CheckIfMeetRequirementsToUnlock(_totalCurrency.Value);
         }
         ActivateButton(_generator.IsUnlocked);
-        ToggleBuyButton(_totalCurrency.Value >= _generator.BulkCost);
+        ToggleBuyButton(_totalCurrency.Value >= _generator.Cost.Value);
 
         gameObject.SetActive(_generator.IsUnlocked);
     }
@@ -171,7 +171,7 @@ public class GeneratorButtonController : MonoBehaviour
     {
         if (_generator == null) return;
         _descriptionLocalized.StringReference.SetReference(_table, _gemDescription);
-        _amountVariable.Value = Math.Round(_generator.Production.Value, 1);
+        _amountVariable.Value = FormatNumber.FormatDouble(_generator.Production.Value).GetFormatNoDecimals();
         _descriptionLocalized.RefreshString();
     }
 
@@ -190,12 +190,12 @@ public class GeneratorButtonController : MonoBehaviour
     {
         if (!_localizedString.TryGetValue("amount", out var variable))
         {
-            _amountVariable = new DoubleVariable();
+            _amountVariable = new StringVariable();
             _localizedString.Add("amount", _amountVariable);
         }
         else
         {
-            _amountVariable = variable as DoubleVariable;
+            _amountVariable = variable as StringVariable;
         }
     }
 }

@@ -25,7 +25,7 @@ public class ConeDetectionStrategySO : BaseDetectionStrategySO
         }
 
         Vector2 playerVector = (coneHit.collider.transform.position - detector.position).normalized;
-        if (Vector3.Angle(playerVector, direction) < _detectionAngle * 0.5f)
+        if (Vector3.Angle(playerVector, direction) < _detectionAngle)
         {
             if (playerVector.magnitude < _detectionRadius)
             {
