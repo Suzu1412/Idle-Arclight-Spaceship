@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Events;
+using DG.Tweening;
 
 public class SoundEmitter : MonoBehaviour
 {
@@ -9,11 +10,14 @@ public class SoundEmitter : MonoBehaviour
     private ObjectPooler _pool;
 
     [Header("Coroutine Variables")]
-    private Coroutine _playingCoroutine;
+    private Coroutine _playingSoundCoroutine;
+    private Coroutine _playingMusicCoroutine;
     private Coroutine _fadeInMusicCoroutine;
     private Coroutine _fadeOutMusicCoroutine;
     private float _fadeDuration = 2f;
     private bool _isFadingOut = false;
+    private ISound _data;
+    private AudioClip _currentClip;
 
     public event UnityAction<SoundEmitter> OnSoundFinishedPlaying;
     public ObjectPooler Pool => _pool = _pool != null ? _pool : _pool = gameObject.GetOrAdd<ObjectPooler>();
@@ -21,7 +25,7 @@ public class SoundEmitter : MonoBehaviour
 
     public void Initialize(ISound data, AudioMixerGroup audioMixer)
     {
-        AudioSource.clip = data.Clip;
+        _data = data;
         AudioSource.outputAudioMixerGroup = audioMixer;
         AudioSource.volume = data.Volume;
         AudioSource.loop = data.Loop;
@@ -30,17 +34,9 @@ public class SoundEmitter : MonoBehaviour
         if (data.RandomizePitch)
         {
             _audioSource.pitch = 1f;
-            _audioSource.pitch += Random.Range(-0.05f, 0.05f);
+            _audioSource.pitch += Random.Range(-3f, 3f);
         }
 
-    }
-
-    public void Play(SoundDataSO data)
-    {
-        if (_playingCoroutine != null) { StopCoroutine(_playingCoroutine); }
-
-        AudioSource.Play();
-        _playingCoroutine = StartCoroutine(FinishedPlaying(data.Clip.length));
     }
 
     /// <summary>
@@ -50,23 +46,26 @@ public class SoundEmitter : MonoBehaviour
     /// <param name="settings"></param>
     /// <param name="hasToLoop"></param>
     /// <param name="position"></param>
-    public void PlayAudioClip(ISound sound, Vector3 position = default)
+    public void PlaySoundClip(ISound sound, Vector3 position = default)
     {
-        _audioSource.clip = sound.Clip;
+        _currentClip = sound.GetClip();
+        _audioSource.clip = _currentClip;
         _audioSource.transform.position = position;
         _audioSource.loop = sound.Loop;
         _audioSource.Play();
 
-        if (sound.RandomizePitch)
-        {
-            _audioSource.pitch = 1f;
-            _audioSource.pitch += Random.Range(-0.05f, 0.05f);
-        }
-
         if (!sound.Loop)
         {
-            StartCoroutine(FinishedPlaying(sound.Clip.length));
+            _playingSoundCoroutine = StartCoroutine(SoundFinishedPlaying(_currentClip.length));
         }
+    }
+
+    public void PlayMusicClip()
+    {
+        FadeMusicOut(2f);
+        FadeMusicIn(2f, 0f);
+
+        _playingMusicCoroutine = StartCoroutine(MusicFinishedPlaying(_currentClip.length));
     }
 
     /// <summary>
@@ -90,10 +89,10 @@ public class SoundEmitter : MonoBehaviour
     /// </summary>
     public void Stop()
     {
-        if (_playingCoroutine != null)
+        if (_playingSoundCoroutine != null)
         {
-            StopCoroutine(_playingCoroutine);
-            _playingCoroutine = null;
+            StopCoroutine(_playingSoundCoroutine);
+            _playingSoundCoroutine = null;
         }
 
         _audioSource.Stop();
@@ -105,15 +104,15 @@ public class SoundEmitter : MonoBehaviour
         if (_audioSource.loop)
         {
             _audioSource.loop = false;
-            if (_playingCoroutine != null)
+            if (_playingSoundCoroutine != null)
             {
-                StopCoroutine(_playingCoroutine);
-                _playingCoroutine = null;
+                StopCoroutine(_playingSoundCoroutine);
+                _playingSoundCoroutine = null;
             }
         }
 
         float timeRemaining = _audioSource.clip.length - _audioSource.time;
-        _playingCoroutine = StartCoroutine(FinishedPlaying(timeRemaining));
+        _playingSoundCoroutine = StartCoroutine(SoundFinishedPlaying(timeRemaining));
     }
 
     public bool IsInUse()
@@ -144,57 +143,41 @@ public class SoundEmitter : MonoBehaviour
         return _audioSource.clip;
     }
 
-    IEnumerator FinishedPlaying(float duration)
+    IEnumerator SoundFinishedPlaying(float duration)
     {
         yield return Helpers.GetWaitForSeconds(duration);
         OnSoundFinishedPlaying?.Invoke(this); // The AudioManager will pick this up
     }
 
-    internal void FadeMusicIn(float start, float end)
+    IEnumerator MusicFinishedPlaying(float duration)
     {
-        if (_fadeInMusicCoroutine != null) StopCoroutine(_fadeInMusicCoroutine);
-        _fadeInMusicCoroutine = StartCoroutine(FadeMusicInCoroutine(start, end));
+        yield return Helpers.GetWaitForSeconds(duration);
+        PlayMusicClip();
     }
 
-    internal void FadeMusicOut()
+    internal void FadeMusicIn(float duration, float startTime = 0f)
     {
-
-    }
-
-    IEnumerator FadeMusicInCoroutine(float start, float end)
-    {
-        float timeElapsed = 0f;
-
-        while (timeElapsed < _fadeDuration)
-        {
-            if (!_isFadingOut)
-            {
-                float t = timeElapsed / _fadeDuration;
-                _audioSource.volume = Mathf.Lerp(start, end, t);
-            }
-
-            yield return null;
-        }
-
-        _audioSource.volume = end;
-    }
-
-    IEnumerator FadeMusicOutCoroutine()
-    {
-        float timeElapsed = 0f;
-        float start = _audioSource.volume;
-        _isFadingOut = true;
-
-        while (timeElapsed < _fadeDuration)
-        {
-            float t = timeElapsed / _fadeDuration;
-            _audioSource.volume = Mathf.Lerp(start, 0f, t);
-
-            yield return null;
-        }
-
+        PlayMusicClip();
         _audioSource.volume = 0f;
-        _isFadingOut = false;
+
+        //Start the clip at the same time the previous one left, if length allows
+        //TODO: find a better way to sync fading songs
+        if (startTime <= _audioSource.clip.length)
+            _audioSource.time = startTime;
+
+        _audioSource.DOFade(_data.Volume, duration);
+    }
+
+    internal float FadeMusicOut(float duration)
+    {
+        _audioSource.DOFade(0f, duration).onComplete += OnFadeOutComplete;
+
+        return _audioSource.time;
+    }
+
+    private void OnFadeOutComplete()
+    {
+        OnSoundFinishedPlaying.Invoke(this);
     }
 
 }
