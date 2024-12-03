@@ -52,9 +52,12 @@ MonoBehaviour:
   OnMasterVolumeChangedEventListener: {fileID: 11400000, guid: a2311fd7416e0c1418b1d0475390f959, type: 2}
   OnMusicVolumeChangedEventListener: {fileID: 11400000, guid: f568e79c4abbfd2469d09ec22d406ad2, type: 2}
   OnSFXVolumeChangedEventListener: {fileID: 11400000, guid: 1b908729ef8754c48a841ad773980827, type: 2}
-  _masterMixerGroup: {fileID: 24300002, guid: 86f7e46642601c74db1fce9c9b0cd5c8, type: 2}
+  _audioMixer: {fileID: 24100000, guid: 86f7e46642601c74db1fce9c9b0cd5c8, type: 2}
   _sfxMixerGroup: {fileID: -2631247058432068685, guid: 86f7e46642601c74db1fce9c9b0cd5c8, type: 2}
   _musicMixerGroup: {fileID: 835351367185149660, guid: 86f7e46642601c74db1fce9c9b0cd5c8, type: 2}
+  _masterVolume: {fileID: 11400000, guid: 9af9ec6c0af164761b93c2c257c3ab11, type: 2}
+  _musicVolume: {fileID: 11400000, guid: a0f135071b457460686fe6c8168de135, type: 2}
+  _sfxVolume: {fileID: 11400000, guid: dd9b81a3302ef42fe9a992355f3a1492, type: 2}
 --- !u!114 &3337462116719731534
 MonoBehaviour:
   m_ObjectHideFlags: 0

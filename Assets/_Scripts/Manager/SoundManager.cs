@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour, ISaveable
 {
     [Header("SoundEmitters pool")]
     [SerializeField] private ObjectPoolSettingsSO _soundPool;
+    [SerializeField][ReadOnly] private SoundEmitter _activeMusicEmitter;
     [SerializeField] private readonly List<SoundEmitter> _activeSoundEmitters = new();
 
     // Ensure that there won't be too many sounds playing at the same time
@@ -27,22 +28,22 @@ public class SoundManager : MonoBehaviour, ISaveable
     [SerializeField] private FloatGameEventListener OnSFXVolumeChangedEventListener = default;
 
     [Header("Audio Mixer Group")]
-    [SerializeField] private AudioMixerGroup _masterMixerGroup = default;
+    [SerializeField] private AudioMixer _audioMixer = default;
     [SerializeField] private AudioMixerGroup _sfxMixerGroup = default;
     [SerializeField] private AudioMixerGroup _musicMixerGroup = default;
 
-    private float _masterVolume;
-    private float _musicVolume;
-    private float _sfxVolume;
+    [SerializeField] private FloatVariableSO _masterVolume;
+    [SerializeField] private FloatVariableSO _musicVolume;
+    [SerializeField] private FloatVariableSO _sfxVolume;
 
     private void OnEnable()
     {
         OnPlaySfxEventListener.Register(PlaySound);
         OnPlayMusicEventListener.Register(PlayMusicTrack);
 
-        OnMasterVolumeChangedEventListener.Register(ChangeMasterVolume);
-        OnMusicVolumeChangedEventListener.Register(ChangeMusicVolume);
-        OnSFXVolumeChangedEventListener.Register(ChangeSFXVolume);
+        OnMasterVolumeChangedEventListener.Register(SetMasterVolume);
+        OnMusicVolumeChangedEventListener.Register(SetMusicVolume);
+        OnSFXVolumeChangedEventListener.Register(SetSFXVolume);
     }
 
     private void OnDisable()
@@ -50,22 +51,25 @@ public class SoundManager : MonoBehaviour, ISaveable
         OnPlaySfxEventListener.DeRegister(PlaySound);
         OnPlayMusicEventListener.DeRegister(PlayMusicTrack);
 
-        OnMasterVolumeChangedEventListener.DeRegister(ChangeMasterVolume);
-        OnMusicVolumeChangedEventListener.DeRegister(ChangeMusicVolume);
-        OnSFXVolumeChangedEventListener.DeRegister(ChangeSFXVolume);
+        OnMasterVolumeChangedEventListener.DeRegister(SetMasterVolume);
+        OnMusicVolumeChangedEventListener.DeRegister(SetMusicVolume);
+        OnSFXVolumeChangedEventListener.DeRegister(SetSFXVolume);
     }
 
     public void SaveData(GameDataSO gameData)
     {
-        gameData.SaveVolume(_masterVolume, _musicVolume, _sfxVolume);
+        gameData.SaveVolume(_masterVolume.Value, _musicVolume.Value, _sfxVolume.Value);
     }
 
     public void LoadData(GameDataSO gameData)
     {
-        ChangeMasterVolume(gameData.VolumeData.MasterVolume);
-        ChangeMusicVolume(gameData.VolumeData.MusicVolume);
-        ChangeSFXVolume(gameData.VolumeData.SFXVolume);
+        _masterVolume.Initialize(gameData.VolumeData.MasterVolume, 0f, 1f);
+        _musicVolume.Initialize(gameData.VolumeData.MusicVolume, 0f, 1f);
+        _sfxVolume.Initialize(gameData.VolumeData.SFXVolume, 0f, 1f);
 
+        SetMasterVolume(_masterVolume.Value);
+        SetMusicVolume(_musicVolume.Value);
+        SetSFXVolume(_sfxVolume.Value);
     }
 
     private bool CanPlaySound(SoundDataSO data)
@@ -75,11 +79,16 @@ public class SoundManager : MonoBehaviour, ISaveable
 
     private void PlaySound(ISound sound)
     {
+        if (!CanPlaySound(sound as SoundDataSO))
+        {
+            return;
+        }
+
         SoundEmitter soundEmitter = ObjectPoolFactory.Spawn(_soundPool).GetComponent<SoundEmitter>();
         soundEmitter.Initialize(sound, _sfxMixerGroup);
         _activeSoundEmitters.Add(soundEmitter);
 
-        soundEmitter.PlayAudioClip(sound);
+        soundEmitter.PlaySoundClip(sound);
 
         if (!sound.Loop)
         {
@@ -89,16 +98,16 @@ public class SoundManager : MonoBehaviour, ISaveable
 
     private void PlayMusicTrack(ISound music)
     {
-        SoundEmitter soundEmitter = ObjectPoolFactory.Spawn(_soundPool).GetComponent<SoundEmitter>();
-        soundEmitter.Initialize(music, _musicMixerGroup);
-        _activeSoundEmitters.Add(soundEmitter);
-
-        soundEmitter.PlayAudioClip(music);
-
-        if (!music.Loop)
+        if (_activeMusicEmitter == null)
         {
-            soundEmitter.OnSoundFinishedPlaying += OnSoundEmitterFinishedPlaying;
+            _activeMusicEmitter = ObjectPoolFactory.Spawn(_soundPool).GetComponent<SoundEmitter>();
         }
+
+        _activeMusicEmitter.Initialize(music, _musicMixerGroup);
+        _activeMusicEmitter.PlayMusicClip();
+
+        _activeMusicEmitter.OnSoundFinishedPlaying += OnMusicEmitterFinishedPlaying;
+
     }
 
     private void OnSoundEmitterFinishedPlaying(SoundEmitter soundEmitter)
@@ -109,22 +118,76 @@ public class SoundManager : MonoBehaviour, ISaveable
         ObjectPoolFactory.ReturnToPool(soundEmitter.Pool);
     }
 
-    private void ChangeMasterVolume(float volume)
+    private void OnMusicEmitterFinishedPlaying(SoundEmitter soundEmitter)
     {
-        _masterVolume = volume;
-        _masterMixerGroup.audioMixer.SetFloat("MasterVolume", volume);
+        soundEmitter.OnSoundFinishedPlaying -= OnMusicEmitterFinishedPlaying;
+        soundEmitter.Stop();
+        ObjectPoolFactory.ReturnToPool(soundEmitter.Pool);
     }
 
-    private void ChangeMusicVolume(float volume)
+    private void SetMasterVolume(float volume)
     {
-        _musicVolume = volume;
-        _musicMixerGroup.audioMixer.SetFloat("MusicVolume", volume);
+        SetGroupVolume("MasterVolume", volume);
     }
 
-    private void ChangeSFXVolume(float volume)
+    private void SetMusicVolume(float volume)
     {
-        _sfxVolume = volume;
-        _sfxMixerGroup.audioMixer.SetFloat("SFXVolume", volume);
+        SetGroupVolume("MusicVolume", volume);
+    }
+
+    private void SetSFXVolume(float volume)
+    {
+        SetGroupVolume("SFXVolume", volume);
+    }
+
+    private float GetMasterVolume()
+    {
+        return GetGroupVolume("MasterVolume");
+    }
+
+    private float GetMusicVolume()
+    {
+        return GetGroupVolume("MusicVolume");
+    }
+
+    private float GetSFXVolume()
+    {
+        return GetGroupVolume("SFXVolume");
+    }
+
+    // Audio Mixer
+    public float GetGroupVolume(string parameterName)
+    {
+        if (_audioMixer.GetFloat(parameterName, out float rawVolume))
+        {
+            return MixerValueToNormalized(rawVolume);
+        }
+        else
+        {
+            Debug.LogError("The AudioMixer parameter was not found");
+            return 0f;
+        }
+    }
+
+    public void SetGroupVolume(string parameterName, float normalizedVolume)
+    {
+        bool volumeSet = _audioMixer.SetFloat(parameterName, NormalizedToMixerValue(normalizedVolume));
+        if (!volumeSet)
+            Debug.LogError("The AudioMixer parameter was not found");
+    }
+
+    // Both MixerValueNormalized and NormalizedToMixerValue functions are used for easier transformations
+    /// when using UI sliders normalized format
+    private float MixerValueToNormalized(float mixerValue)
+    {
+        // We're assuming the range [-80dB to 0dB] becomes [0 to 1]
+        return 1f + (mixerValue / 80f);
+    }
+    private float NormalizedToMixerValue(float normalizedValue)
+    {
+        // We're assuming the range [0 to 1] becomes [-80dB to 0dB]
+        // This doesn't allow values over 0dB
+        return (normalizedValue - 1f) * 80f;
     }
 
 }
