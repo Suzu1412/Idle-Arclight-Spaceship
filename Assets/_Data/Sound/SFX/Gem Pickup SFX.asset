@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b2a7266128a3d4f8b03378fb2739a8, type: 3}
   m_Name: Gem Pickup SFX
   m_EditorClassIdentifier: 
-  _clip: {fileID: 8300000, guid: 55f66078eaddade4a96834f87fd35500, type: 3}
+  _audioClipGroup:
+    sequenceMode: 1
+    audioClips:
+    - {fileID: 8300000, guid: 7648b3762da9757409feed9b3e08a4b2, type: 3}
   _audioChannelEvent: {fileID: 11400000, guid: 899dbe93a02f7be4a9b8b79f14d3d708, type: 2}
   _loop: 0
   _playOnAwake: 1
-  _volume: 0.2
-  _randomizePitch: 0
+  _volume: 1
+  _randomizePitch: 1

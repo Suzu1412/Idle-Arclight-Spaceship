@@ -20,21 +20,26 @@ public class SoundEmitter : MonoBehaviour
     private AudioClip _currentClip;
 
     public event UnityAction<SoundEmitter> OnSoundFinishedPlaying;
+    public event UnityAction<ISound> OnMusicFinishedPlaying;
+
     public ObjectPooler Pool => _pool = _pool != null ? _pool : _pool = gameObject.GetOrAdd<ObjectPooler>();
     internal AudioSource AudioSource => _audioSource != null ? _audioSource : _audioSource = gameObject.GetOrAdd<AudioSource>();
 
-    public void Initialize(ISound data, AudioMixerGroup audioMixer)
+    private void ApplySettings(ISound data, AudioMixerGroup audioMixer)
     {
         _data = data;
+        _currentClip = data.GetClip();
+        AudioSource.clip = _currentClip;
         AudioSource.outputAudioMixerGroup = audioMixer;
         AudioSource.volume = data.Volume;
         AudioSource.loop = data.Loop;
+        AudioSource.time = 0;
+        AudioSource.pitch = 1f;
         AudioSource.playOnAwake = data.PlayOnAwake;
 
         if (data.RandomizePitch)
         {
-            _audioSource.pitch = 1f;
-            _audioSource.pitch += Random.Range(-3f, 3f);
+            AudioSource.pitch += Random.Range(-0.05f, 0.05f);
         }
 
     }
@@ -46,26 +51,25 @@ public class SoundEmitter : MonoBehaviour
     /// <param name="settings"></param>
     /// <param name="hasToLoop"></param>
     /// <param name="position"></param>
-    public void PlaySoundClip(ISound sound, Vector3 position = default)
+    public void PlaySoundClip(ISound sound, AudioMixerGroup audioMixer, Vector3 position = default)
     {
-        _currentClip = sound.GetClip();
-        _audioSource.clip = _currentClip;
-        _audioSource.transform.position = position;
-        _audioSource.loop = sound.Loop;
-        _audioSource.Play();
+        ApplySettings(sound, audioMixer);
+        AudioSource.transform.position = position;
+        AudioSource.Play();
 
         if (!sound.Loop)
         {
+            if (_playingSoundCoroutine != null) StopCoroutine(_playingSoundCoroutine);
             _playingSoundCoroutine = StartCoroutine(SoundFinishedPlaying(_currentClip.length));
         }
     }
 
-    public void PlayMusicClip()
+    public void PlayMusicClip(ISound sound, AudioMixerGroup audioMixer)
     {
-        FadeMusicOut(2f);
-        FadeMusicIn(2f, 0f);
+        ApplySettings(sound, audioMixer);
+        AudioSource.Play();
 
-        _playingMusicCoroutine = StartCoroutine(MusicFinishedPlaying(_currentClip.length));
+        _playingMusicCoroutine = StartCoroutine(MusicFinishedPlaying(sound, _currentClip.length - _fadeDuration));
     }
 
     /// <summary>
@@ -73,7 +77,7 @@ public class SoundEmitter : MonoBehaviour
 	/// </summary>
 	public void Resume()
     {
-        _audioSource.Play();
+        AudioSource.Play();
     }
 
     /// <summary>
@@ -81,7 +85,7 @@ public class SoundEmitter : MonoBehaviour
     /// </summary>
     public void Pause()
     {
-        _audioSource.Pause();
+        AudioSource.Pause();
     }
 
     /// <summary>
@@ -89,14 +93,7 @@ public class SoundEmitter : MonoBehaviour
     /// </summary>
     public void Stop()
     {
-        if (_playingSoundCoroutine != null)
-        {
-            StopCoroutine(_playingSoundCoroutine);
-            _playingSoundCoroutine = null;
-        }
-
-        _audioSource.Stop();
-        OnSoundFinishedPlaying?.Invoke(this);
+        AudioSource.Stop();
     }
 
     public void Finish()
@@ -115,24 +112,19 @@ public class SoundEmitter : MonoBehaviour
         _playingSoundCoroutine = StartCoroutine(SoundFinishedPlaying(timeRemaining));
     }
 
-    public bool IsInUse()
-    {
-        return _audioSource.isPlaying;
-    }
-
     public bool IsPlaying()
     {
-        return _audioSource.isPlaying;
+        return AudioSource.isPlaying;
     }
 
     public bool IsLooping()
     {
-        return _audioSource.loop;
+        return AudioSource.loop;
     }
 
     public bool IsFinishing()
     {
-        return !_audioSource.loop;
+        return !AudioSource.loop;
     }
 
     /// <summary>
@@ -140,7 +132,7 @@ public class SoundEmitter : MonoBehaviour
 	/// </summary>
 	public AudioClip GetClip()
     {
-        return _audioSource.clip;
+        return AudioSource.clip;
     }
 
     IEnumerator SoundFinishedPlaying(float duration)
@@ -149,15 +141,15 @@ public class SoundEmitter : MonoBehaviour
         OnSoundFinishedPlaying?.Invoke(this); // The AudioManager will pick this up
     }
 
-    IEnumerator MusicFinishedPlaying(float duration)
+    IEnumerator MusicFinishedPlaying(ISound sound, float duration)
     {
         yield return Helpers.GetWaitForSeconds(duration);
-        PlayMusicClip();
+        OnMusicFinishedPlaying?.Invoke(sound);
     }
 
-    internal void FadeMusicIn(float duration, float startTime = 0f)
+    public void FadeMusicIn(ISound sound, AudioMixerGroup audioMixer, float duration, float startTime = 0f)
     {
-        PlayMusicClip();
+        PlayMusicClip(sound, audioMixer);
         _audioSource.volume = 0f;
 
         //Start the clip at the same time the previous one left, if length allows
@@ -168,11 +160,11 @@ public class SoundEmitter : MonoBehaviour
         _audioSource.DOFade(_data.Volume, duration);
     }
 
-    internal float FadeMusicOut(float duration)
+    public float FadeMusicOut(float duration)
     {
-        _audioSource.DOFade(0f, duration).onComplete += OnFadeOutComplete;
+        AudioSource.DOFade(0f, duration);
 
-        return _audioSource.time;
+        return 0f;
     }
 
     private void OnFadeOutComplete()

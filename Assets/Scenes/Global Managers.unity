@@ -423,6 +423,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sound Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 3741806871769426758, guid: a3630e1759fe4274da449fae420d1274, type: 3}
+      propertyPath: _sfxMixerGroup
+      value: 
+      objectReference: {fileID: 835351367185149660, guid: 86f7e46642601c74db1fce9c9b0cd5c8, type: 2}
+    - target: {fileID: 3741806871769426758, guid: a3630e1759fe4274da449fae420d1274, type: 3}
+      propertyPath: _musicMixerGroup
+      value: 
+      objectReference: {fileID: -2631247058432068685, guid: 86f7e46642601c74db1fce9c9b0cd5c8, type: 2}
     - target: {fileID: 8227488706577232358, guid: a3630e1759fe4274da449fae420d1274, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

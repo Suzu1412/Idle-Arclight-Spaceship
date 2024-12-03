@@ -85,10 +85,14 @@ public class SoundManager : MonoBehaviour, ISaveable
         }
 
         SoundEmitter soundEmitter = ObjectPoolFactory.Spawn(_soundPool).GetComponent<SoundEmitter>();
-        soundEmitter.Initialize(sound, _sfxMixerGroup);
+        if (soundEmitter.IsPlaying())
+        {
+            soundEmitter.Finish();
+        }
+
         _activeSoundEmitters.Add(soundEmitter);
 
-        soundEmitter.PlaySoundClip(sound);
+        soundEmitter.PlaySoundClip(sound, _sfxMixerGroup);
 
         if (!sound.Loop)
         {
@@ -96,18 +100,28 @@ public class SoundManager : MonoBehaviour, ISaveable
         }
     }
 
-    private void PlayMusicTrack(ISound music)
+    private void PlayMusicTrack(ISound sound)
     {
+        float fadeDuration = 2f;
+        float startTime = 0f;
+
         if (_activeMusicEmitter == null)
         {
             _activeMusicEmitter = ObjectPoolFactory.Spawn(_soundPool).GetComponent<SoundEmitter>();
         }
 
-        _activeMusicEmitter.Initialize(music, _musicMixerGroup);
-        _activeMusicEmitter.PlayMusicClip();
+        if (_activeMusicEmitter != null && _activeMusicEmitter.IsPlaying())
+        {
+            startTime = _activeMusicEmitter.FadeMusicOut(fadeDuration);
 
-        _activeMusicEmitter.OnSoundFinishedPlaying += OnMusicEmitterFinishedPlaying;
+        }
 
+        _activeMusicEmitter.FadeMusicIn(sound, _musicMixerGroup, 1f, startTime);
+
+        if (!sound.Loop) // playlist functionality depends on not active
+        {
+            _activeMusicEmitter.OnMusicFinishedPlaying += OnMusicEmitterFinishedPlaying;
+        }
     }
 
     private void OnSoundEmitterFinishedPlaying(SoundEmitter soundEmitter)
@@ -118,11 +132,10 @@ public class SoundManager : MonoBehaviour, ISaveable
         ObjectPoolFactory.ReturnToPool(soundEmitter.Pool);
     }
 
-    private void OnMusicEmitterFinishedPlaying(SoundEmitter soundEmitter)
+    private void OnMusicEmitterFinishedPlaying(ISound sound)
     {
-        soundEmitter.OnSoundFinishedPlaying -= OnMusicEmitterFinishedPlaying;
-        soundEmitter.Stop();
-        ObjectPoolFactory.ReturnToPool(soundEmitter.Pool);
+        PlayMusicTrack(sound);
+        _activeMusicEmitter.OnMusicFinishedPlaying -= OnMusicEmitterFinishedPlaying;
     }
 
     private void SetMasterVolume(float volume)

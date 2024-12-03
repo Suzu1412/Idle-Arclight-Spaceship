@@ -1,19 +1,15 @@
 using Eflatun.SceneReference;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
 public class Bootstrapper : Singleton<Bootstrapper>
 {
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    static async void Init()
+    static void Init()
     {
-        if (SceneManager.GetActiveScene().name == "Bootstrapper")
-        {
-            return;
-        }
-
-        await SceneManager.LoadSceneAsync("Scene Loader", LoadSceneMode.Single);
+        Addressables.LoadSceneAsync("Assets/Scenes/Scene Loader.unity", LoadSceneMode.Single);
     }
 
 }

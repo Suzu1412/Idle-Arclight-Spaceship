@@ -8,10 +8,10 @@ public class ItemPickUp : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private CircleCollider2D _pickableCollider;
     [SerializeField] private ItemSO _item;
-
     [SerializeField] private Color gizmoColor = Color.magenta;
     [SerializeField] private SoundDataSO _soundOnPickup;
     [SerializeField] private float animationDuration = 0.3f;
+    private bool _isPicked;
     private ObjectPooler _pool;
     public ObjectPooler Pool => _pool = _pool != null ? _pool : gameObject.GetOrAdd<ObjectPooler>();
 
@@ -29,7 +29,7 @@ public class ItemPickUp : MonoBehaviour
     private void OnEnable()
     {
         transform.localScale = Vector3.one;
-        _pickableCollider.enabled = true;
+        _isPicked = false;
     }
 
     public void SetItem(ItemSO item)
@@ -40,15 +40,15 @@ public class ItemPickUp : MonoBehaviour
 
     public void PickUp(IAgent agent)
     {
+        if (_isPicked) return;
+        _isPicked = true;
         _item.PickUp(agent);
         DestroyItem();
     }
 
     private void DestroyItem()
     {
-        _pickableCollider.enabled = false;
         StartCoroutine(AnimateItemPickUp());
-
     }
 
     private IEnumerator AnimateItemPickUp()
@@ -77,6 +77,6 @@ public class ItemPickUp : MonoBehaviour
             return;
 
         Gizmos.color = gizmoColor;
-        Gizmos.DrawWireSphere(_pickableCollider.transform.position, _pickableCollider.radius);
+        Gizmos.DrawWireSphere(transform.position, _pickableCollider.radius);
     }
 }

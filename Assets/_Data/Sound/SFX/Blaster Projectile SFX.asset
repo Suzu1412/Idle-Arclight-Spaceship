@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b2a7266128a3d4f8b03378fb2739a8, type: 3}
   m_Name: Blaster Projectile SFX
   m_EditorClassIdentifier: 
-  _clip: {fileID: 8300000, guid: 2ab5e6581b8da4099b0b9bb20e299948, type: 3}
+  _audioClipGroup:
+    sequenceMode: 0
+    audioClips:
+    - {fileID: 8300000, guid: 2ab5e6581b8da4099b0b9bb20e299948, type: 3}
+    - {fileID: 8300000, guid: 4fd106d3dd1584d9983dc2525e85dba0, type: 3}
+    - {fileID: 8300000, guid: f68c01c1d73964d7eb240cac2882db68, type: 3}
   _audioChannelEvent: {fileID: 11400000, guid: 899dbe93a02f7be4a9b8b79f14d3d708, type: 2}
   _loop: 0
   _playOnAwake: 1
-  _volume: 0.15
+  _volume: 1
   _randomizePitch: 1
