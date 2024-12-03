@@ -62,7 +62,7 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
         }
     }
 
-    public void UnlockUpgradeInStore(double currency)
+    public void UnlockRequirements(double currency)
     {
         if (CheckIfMeetRequirementToUnlock(currency))
         {
