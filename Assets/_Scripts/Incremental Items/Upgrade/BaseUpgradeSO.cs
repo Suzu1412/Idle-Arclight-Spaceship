@@ -8,21 +8,21 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
     [SerializeField] protected string _name;
     [SerializeField] protected string _description;
     [SerializeField] protected double _cost;
-    [SerializeField] protected double _costRequirement;
     [SerializeField] protected FloatVariableSO _upgradeCostMultiplier = default;
-    [SerializeField] protected FloatVariableSO _variableToModify;
+
     [SerializeField] protected FloatModifier _modifierToApply;
-    [SerializeField] protected bool _isApplied;
     [SerializeField] protected VoidGameEvent OnProductionChangedEvent;
     protected DoubleVariableSO _finalCost;
+    [SerializeField] protected bool _isApplied;
+    [SerializeField] protected bool _isRequirementMet;
+
 
     protected FormattedNumber CostFormatted { get; private set; }
     protected bool _isDirty;
 
     public string Name => _name;
     public string Description => _description;
-    public double CostRequirement => _costRequirement;
-    public bool IsRequirementMet { get; internal set; }
+    public bool IsRequirementMet { get => _isRequirementMet; internal set => _isRequirementMet = value; }
     public bool IsApplied => _isApplied;
 
     public DoubleVariableSO Cost
@@ -44,7 +44,7 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
 
     private void OnDisable()
     {
-        _variableToModify.RemoveModifier(_modifierToApply);
+        RemoveUpgrade();
         _isApplied = false;
     }
 
@@ -70,15 +70,9 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
         }
     }
 
-    internal void ApplyUpgrade(bool val)
-    {
-        if (val)
-        {
-            _variableToModify.AddModifier(_modifierToApply);
-            _isApplied = true;
-            OnProductionChangedEvent.RaiseEvent();
-        }
-    }
+    internal abstract void ApplyUpgrade(bool val);
+
+    internal abstract void RemoveUpgrade();
 
     public FormattedNumber GetCost()
     {

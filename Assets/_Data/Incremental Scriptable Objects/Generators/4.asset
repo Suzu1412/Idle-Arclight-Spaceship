@@ -15,13 +15,13 @@ MonoBehaviour:
   _guid: c6f2163c941647e43b126ab9364ff53c
   _name: Turquoise
   _image: {fileID: 21300000, guid: 99fb2314fd36f454ca611330c787f10b, type: 3}
-  _amountOwned: 0
-  _cost: 11250
+  _amountOwned: 4
+  _cost: 17850
   _costRequirement: 750
   _gemCostMultiplier: {fileID: 11400000, guid: d4159609c13d586439af8e9e600a0681, type: 2}
   _priceGrowthRate: 1.15
-  _baseProduction: 45
+  _baseProduction: 71.4
   _gemProductionMultiplier: {fileID: 11400000, guid: 9dc8558e9e1b1ae49b895d5f1607bf6d, type: 2}
   _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
-  _isUnlocked: 0
+  _isUnlocked: 1
