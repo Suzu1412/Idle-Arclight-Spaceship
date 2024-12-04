@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f19343bffa55e40689623188c4872340, type: 3}
-  m_Name: 3- GemUpgradeSO 1
+  m_Name: 4- GemUpgradeSO 1
   m_EditorClassIdentifier: 
-  _guid: 
+  _guid: 9d23abc4f6a6a473186003f2377a128f
   _name: SpecialGem
   _description: GemProductionMultiplier
-  _cost: 10000
+  _cost: 100000
   _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
   _modifierToApply:
     _modifierType: 2
     _value: 2
-    _source: 3- GemUpgradeSO 1
+    _source: 4- GemUpgradeSO 1
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
   _isApplied: 0
   _isRequirementMet: 1
-  _generator: {fileID: 11400000, guid: c2f46407d0a839a46bd2f0eb1f4f2833, type: 2}
+  _generator: {fileID: 11400000, guid: c6f2163c941647e43b126ab9364ff53c, type: 2}
   _amountRequired: 10

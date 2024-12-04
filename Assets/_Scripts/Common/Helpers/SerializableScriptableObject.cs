@@ -12,6 +12,12 @@ public class SerializableScriptableObject : ScriptableObject
 #if UNITY_EDITOR
     void OnEnable()
     {
+        GenerateGuid();
+    }
+
+    [ContextMenu("Generate Guid")]
+    void GenerateGuid()
+    {
         var path = AssetDatabase.GetAssetPath(this);
         _guid = AssetDatabase.AssetPathToGUID(path);
     }

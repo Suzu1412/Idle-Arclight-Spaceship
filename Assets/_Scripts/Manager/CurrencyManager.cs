@@ -235,6 +235,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         foreach (var generator in generatorDatas)
         {
             var generatorSO = _generators.Find(generator.Guid);
+            if (generatorSO == null) return;
             generatorSO.SetAmount(generator.Amount);
             generatorSO.SetTotalProduction(generator.TotalProduction);
             generatorSO.IsUnlocked = generator.IsUnlocked;
@@ -251,6 +252,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         foreach (var upgrade in upgradeDatas)
         {
             var upgradeSO = _upgrades.Find(upgrade.Guid);
+            if (upgradeSO == null) return;
             upgradeSO.IsRequirementMet = upgrade.IsRequirementMet;
             upgradeSO.ApplyUpgrade(upgrade.IsApplied);
         }
