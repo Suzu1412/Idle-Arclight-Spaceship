@@ -25,4 +25,12 @@ public class UpgradeSystemSO : BaseUpgradeSO
 
         return true;
     }
+
+    internal override void ApplyUpgrade(bool val)
+    {
+    }
+
+    internal override void RemoveUpgrade()
+    {
+    }
 }

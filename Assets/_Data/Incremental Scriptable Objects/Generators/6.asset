@@ -16,12 +16,12 @@ MonoBehaviour:
   _name: Zircon
   _image: {fileID: 21300000, guid: deef9858b0c0dc04c98bfba6f5a97f5b, type: 3}
   _amountOwned: 0
-  _cost: 500000
-  _costRequirement: 70000
+  _cost: 1480000
+  _costRequirement: 25000
   _gemCostMultiplier: {fileID: 11400000, guid: d4159609c13d586439af8e9e600a0681, type: 2}
   _priceGrowthRate: 1.15
-  _baseProduction: 500
+  _baseProduction: 1480
   _gemProductionMultiplier: {fileID: 11400000, guid: 6059d22915a713b42a8b2e964c808f09, type: 2}
   _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
-  _isUnlocked: 0
+  _isUnlocked: 1

@@ -151,4 +151,14 @@ public class GeneratorSO : SerializableScriptableObject
     {
         return Math.Ceiling(_cost * _gemCostMultiplier.Value * Math.Pow(_priceGrowthRate, _amountOwned + addAmount));
     }
+
+    internal void AddModifier(FloatModifier modifier)
+    {
+        _gemProductionMultiplier.AddModifier(modifier);
+    }
+
+    internal void RemoveModifier(FloatModifier modifier)
+    {
+        _gemProductionMultiplier.RemoveModifier(modifier);
+    }
 }

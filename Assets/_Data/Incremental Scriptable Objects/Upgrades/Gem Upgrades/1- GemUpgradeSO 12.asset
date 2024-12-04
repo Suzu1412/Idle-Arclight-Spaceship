@@ -16,14 +16,13 @@ MonoBehaviour:
   _name: UltimateGem
   _description: GemProductionMultiplier
   _cost: 0
-  _costRequirement: 0
   _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
-  _variableToModify: {fileID: 11400000, guid: b2ad4b59e59d5404ab90d976994c7155, type: 2}
   _modifierToApply:
-    _modifierType: 1
+    _modifierType: 2
     _value: 100
     _source: 1- GemUpgradeSO 12
-  _isApplied: 0
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
+  _isApplied: 0
+  _isRequirementMet: 0
   _generator: {fileID: 11400000, guid: 274494024297a8e44a9090bed95ba8ca, type: 2}
   _amountRequired: 500

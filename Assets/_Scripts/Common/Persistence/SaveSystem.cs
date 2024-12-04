@@ -110,6 +110,19 @@ public class SaveSystem : Singleton<SaveSystem>
         _dataService.Save(gameData);
     }
 
+    private void DeleteFileData(GameDataSO gameDataSO)
+    {
+        _dataService.Delete(gameDataSO.name);
+    }
+
+    [ContextMenu("Delete All Save Datas")]
+    private void DeleteAllFileData()
+    {
+        _dataService = new FileDataService(new JsonSerializer());
+        _dataService.DeleteAll();
+        Debug.Log("Deleted all save datas");
+    }
+
     private void PrepareGameData()
     {
         if (_gameDataSO == null)

@@ -90,10 +90,9 @@ public class UpgradeButtonController : MonoBehaviour
 
         if (_upgrade.IsApplied) return;
 
-        if (_upgrade.IsRequirementMet || _totalCurrency.Value >= _upgrade.CostRequirement)
+        if (!_upgrade.IsRequirementMet)
         {
             _upgrade.UnlockRequirements(_totalCurrency.Value);
-
         }
 
         ActivateButton(_upgrade.IsRequirementMet);

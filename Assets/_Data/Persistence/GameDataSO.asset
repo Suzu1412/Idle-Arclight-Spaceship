@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1e6d47ff7df2d46a7fe68082b49070, type: 3}
   m_Name: GameDataSO
   m_EditorClassIdentifier: 
-  _name: d25
+  _name: d26
   GameData:
-    Name: d24
+    Name: d25
     CurrentSceneGroupID: 0
     CurrentGameState: 0
     Players:
@@ -23,30 +23,30 @@ MonoBehaviour:
       _isActive: 1
       _isUnlocked: 1
     CurrencyData:
-      _totalCurrency: 6696925.1
-      _gameTotalCurrency: 7055336.34593742
+      _totalCurrency: 276525.7
+      _gameTotalCurrency: 541802.7048289413
       _amountToBuy: 1
-      _lastActiveDateTime: 638687675354213222
+      _lastActiveDateTime: 638688549982231827
     Generators:
     - _guid: 274494024297a8e44a9090bed95ba8ca
-      _amount: 25
-      _totalProduction: 5572.3
+      _amount: 13
+      _totalProduction: 2520.8
       _isUnlocked: 1
     - _guid: 45a9c9cc35838824097ca45e92e5a7d8
-      _amount: 13
-      _totalProduction: 20734.6
+      _amount: 2
+      _totalProduction: 1668
       _isUnlocked: 1
     - _guid: c2f46407d0a839a46bd2f0eb1f4f2833
-      _amount: 10
-      _totalProduction: 110811.5
+      _amount: 4
+      _totalProduction: 24653.3
       _isUnlocked: 1
     - _guid: c6f2163c941647e43b126ab9364ff53c
-      _amount: 5
-      _totalProduction: 284586.4
+      _amount: 0
+      _totalProduction: 0
       _isUnlocked: 1
     - _guid: 5ec76d4159cb8ea42996331c6f423866
       _amount: 3
-      _totalProduction: 209373
+      _totalProduction: 200149.5
       _isUnlocked: 1
     - _guid: 185c4e8e82a9f734a9848a5618aa39c9
       _amount: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
     - _guid: 1cf2da6fdd7c11041a457c9a40a00523
       _amount: 0
       _totalProduction: 0
-      _isUnlocked: 1
+      _isUnlocked: 0
     - _guid: 09139eb29fa22564cbc855584564caf4
       _amount: 0
       _totalProduction: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
       _isApplied: 1
     - _guid: f61c227f58b14e2429fd436a75433c3d
       _isRequirementMet: 1
-      _isApplied: 0
+      _isApplied: 1
     UnlockedSystems: []
     LocalizationData:
       _locale: 

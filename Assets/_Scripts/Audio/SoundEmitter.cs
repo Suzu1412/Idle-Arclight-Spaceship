@@ -67,7 +67,10 @@ public class SoundEmitter : MonoBehaviour
     public void PlayMusicClip(ISound sound, AudioMixerGroup audioMixer)
     {
         ApplySettings(sound, audioMixer);
+        AudioSource.volume = 0f;
         AudioSource.Play();
+        AudioSource.DOFade(_data.Volume, 1f);
+
 
         _playingMusicCoroutine = StartCoroutine(MusicFinishedPlaying(sound, _currentClip.length - _fadeDuration));
     }
@@ -146,30 +149,4 @@ public class SoundEmitter : MonoBehaviour
         yield return Helpers.GetWaitForSeconds(duration);
         OnMusicFinishedPlaying?.Invoke(sound);
     }
-
-    public void FadeMusicIn(ISound sound, AudioMixerGroup audioMixer, float duration, float startTime = 0f)
-    {
-        PlayMusicClip(sound, audioMixer);
-        _audioSource.volume = 0f;
-
-        //Start the clip at the same time the previous one left, if length allows
-        //TODO: find a better way to sync fading songs
-        if (startTime <= _audioSource.clip.length)
-            _audioSource.time = startTime;
-
-        _audioSource.DOFade(_data.Volume, duration);
-    }
-
-    public float FadeMusicOut(float duration)
-    {
-        AudioSource.DOFade(0f, duration);
-
-        return 0f;
-    }
-
-    private void OnFadeOutComplete()
-    {
-        OnSoundFinishedPlaying.Invoke(this);
-    }
-
 }

@@ -102,21 +102,12 @@ public class SoundManager : MonoBehaviour, ISaveable
 
     private void PlayMusicTrack(ISound sound)
     {
-        float fadeDuration = 2f;
-        float startTime = 0f;
-
         if (_activeMusicEmitter == null)
         {
             _activeMusicEmitter = ObjectPoolFactory.Spawn(_soundPool).GetComponent<SoundEmitter>();
         }
 
-        if (_activeMusicEmitter != null && _activeMusicEmitter.IsPlaying())
-        {
-            startTime = _activeMusicEmitter.FadeMusicOut(fadeDuration);
-
-        }
-
-        _activeMusicEmitter.FadeMusicIn(sound, _musicMixerGroup, 1f, startTime);
+        _activeMusicEmitter.PlayMusicClip(sound, _musicMixerGroup);
 
         if (!sound.Loop) // playlist functionality depends on not active
         {

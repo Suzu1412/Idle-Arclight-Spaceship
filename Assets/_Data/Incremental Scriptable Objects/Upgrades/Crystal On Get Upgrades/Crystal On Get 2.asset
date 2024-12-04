@@ -9,20 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f19343bffa55e40689623188c4872340, type: 3}
-  m_Name: 1- GemUpgradeSO 3
+  m_Script: {fileID: 11500000, guid: d55d2816300d66f4eabb4d81f2c6c37c, type: 3}
+  m_Name: Crystal On Get 2
   m_EditorClassIdentifier: 
-  _guid: f09f823221d1ea04ab352f252a9235a6
-  _name: AncientGem
-  _description: GemProductionMultiplier
-  _cost: 0
+  _guid: f2e35f9103f93854ea7bbd7299c87324
+  _name: Duplicador
+  _description: Obtiene el doble de Cristales
+  _cost: 1500
   _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
   _modifierToApply:
-    _modifierType: 2
-    _value: 4
-    _source: 1- GemUpgradeSO 3
+    _modifierType: 0
+    _value: 3
+    _source: Crystal On Get 2
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
   _isApplied: 0
-  _isRequirementMet: 0
-  _generator: {fileID: 11400000, guid: 274494024297a8e44a9090bed95ba8ca, type: 2}
-  _amountRequired: 50
+  _isRequirementMet: 1
+  _costRequirement: 750
+  _variableToModify: {fileID: 11400000, guid: 040b947bc1d6d4246909cf21658dd890, type: 2}

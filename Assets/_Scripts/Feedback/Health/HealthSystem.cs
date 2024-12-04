@@ -149,7 +149,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
             OnDeath?.Invoke();
         }
 
-        transform.parent.gameObject.SetActive(false);
+        //transform.parent.gameObject.SetActive(false);
     }
 
     public void GetHit(GameObject damageDealer)

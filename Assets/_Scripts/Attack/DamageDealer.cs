@@ -9,7 +9,7 @@ public class DamageDealer : MonoBehaviour
 
     private void Start()
     {
-        _pool = GetComponent<ObjectPooler>();
+        _pool = GetComponentInParent<ObjectPooler>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
