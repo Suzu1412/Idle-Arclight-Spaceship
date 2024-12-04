@@ -659,6 +659,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""0a9df083-6847-4d4a-af51-e515aa45e781"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ScrollWheel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""24066f69-da47-44f3-a07e-0015fb02eb2e"",
                     ""path"": ""<Mouse>/middleButton"",
                     ""interactions"": """",
