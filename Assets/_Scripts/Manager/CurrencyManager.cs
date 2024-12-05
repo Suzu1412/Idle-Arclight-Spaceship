@@ -12,12 +12,11 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [Header("Double Variable")]
     [SerializeField] private DoubleVariableSO _totalCurrency;
     [SerializeField] private DoubleVariableSO _gameTotalCurrency;
+    [SerializeField] private DoubleVariableSO _currentProduction;
     [Header("Int Variable")]
     [SerializeField] private IntVariableSO _amountToBuy;
 
-    [Header("Float Variable")]
-    [SerializeField] private FloatVariableSO _crystalOnGetMultiplier;
-    [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
+    [Header("Float Variable")] 
     [SerializeField] private FloatVariableSO _productionOfflineMultiplier;
 
     [Header("Int Event")]
@@ -90,7 +89,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void GetCrystal(double amount)
     {
-        amount *= _crystalOnGetMultiplier.Value * _crystalTotalMultiplier.Value;
+        //amount *= _crystalOnGetMultiplier.Value * _crystalTotalMultiplier.Value;
         UpdateTotal(amount);
         OnCurrencyChangedEvent.RaiseEvent();
         OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
@@ -188,19 +187,21 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         {
             generator.CalculateProductionRate();
         }
+
+        GetProductionRate();
     }
 
     private double GetProductionRate()
     {
-        double production = 0;
+        _currentProduction.Value = 0;
 
         foreach (var generator in _generators.Generators)
         {
-            production += generator.GetProductionRate();
+            _currentProduction.Value += generator.GetProductionRate();
         }
 
-        OnUpdateProductionFormatted.RaiseEvent(FormatNumber.FormatDouble(production, UpdateProductionFormatted));
-        return production;
+        OnUpdateProductionFormatted.RaiseEvent(FormatNumber.FormatDouble(_currentProduction.Value, UpdateProductionFormatted));
+        return _currentProduction.Value;
     }
 
     private void UpdateCurrency()
@@ -213,7 +214,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         while (true)
         {
             yield return Helpers.GetWaitForSeconds(_delayToGenerate);
-            IncrementPerSecond(GetProductionRate());
+            IncrementPerSecond(_currentProduction.Value);
         }
     }
 

@@ -17,4 +17,6 @@ MonoBehaviour:
   _itemImage: {fileID: 7853928126660864544, guid: 8f71290730ef495488798a80e843a05d, type: 3}
   Name: Gem
   _currencyGainEvent: {fileID: 11400000, guid: 272b4dfd9f38aa64199fdd1c05d2d19c, type: 2}
+  _crystalOnGetMultiplier: {fileID: 11400000, guid: 040b947bc1d6d4246909cf21658dd890, type: 2}
+  _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
   _amount: 1

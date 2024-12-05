@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19343bffa55e40689623188c4872340, type: 3}
   m_Name: 3- GemUpgradeSO 1
   m_EditorClassIdentifier: 
-  _guid: 
+  _guid: 2e87a15490b0c714e9520d0362bf2d41
   _name: SpecialGem
   _description: GemProductionMultiplier
   _cost: 10000

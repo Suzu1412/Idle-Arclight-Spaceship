@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19343bffa55e40689623188c4872340, type: 3}
+  m_Name: 6- GemUpgradeSO 1
+  m_EditorClassIdentifier: 
+  _guid: 8bcbe59832683704eb1815159e19a866
+  _name: SpecialGem
+  _description: GemProductionMultiplier
+  _cost: 7500000
+  _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
+  _modifierToApply:
+    _modifierType: 2
+    _value: 2
+    _source: 6- GemUpgradeSO 1
+  OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
+  _isApplied: 0
+  _isRequirementMet: 1
+  _generator: {fileID: 11400000, guid: 185c4e8e82a9f734a9848a5618aa39c9, type: 2}
+  _amountRequired: 10

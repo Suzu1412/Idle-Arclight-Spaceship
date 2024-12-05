@@ -34,6 +34,7 @@ public class GeneratorButtonController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _priceText;
     [SerializeField] private TextMeshProUGUI _productionText;
     [SerializeField] private Button _buyButton;
+    [Header("Localization")]
     private LocalizedString _localizedString;
     [SerializeField] private string _table = "Tabla1";
     private string _gemDescription = "gemDescription";

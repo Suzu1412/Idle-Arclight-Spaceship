@@ -488,6 +488,7 @@ GameObject:
   - component: {fileID: 5148100649829050187}
   - component: {fileID: 3590712862300400453}
   - component: {fileID: 1064183381651918135}
+  - component: {fileID: 7333365436195074522}
   m_Layer: 8
   m_Name: Avatar & Feedback
   m_TagString: Untagged
@@ -759,3 +760,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 0.1
+--- !u!114 &7333365436195074522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5311107909362892236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1791aa838041bc4a8ee4ab547f3532d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textData: {fileID: 11400000, guid: 6540930267f9de0478c03e1364470ba2, type: 2}
+  _positionOffset: {x: 0, y: 0.5}
+  _currencyGainEventListener: {fileID: 11400000, guid: f064a081be429904d8e0307f1538492c, type: 2}

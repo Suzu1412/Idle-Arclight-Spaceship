@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19343bffa55e40689623188c4872340, type: 3}
   m_Name: 2- GemUpgradeSO 2
   m_EditorClassIdentifier: 
-  _guid: 
+  _guid: cfaa1ba68a8bd4cfab372fc834aa3010
   _name: ReinforcedGem
   _description: GemProductionMultiplier
   _cost: 7500
@@ -23,6 +23,6 @@ MonoBehaviour:
     _source: 2- GemUpgradeSO 2
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
   _isApplied: 0
-  _isRequirementMet: 0
+  _isRequirementMet: 1
   _generator: {fileID: 11400000, guid: 45a9c9cc35838824097ca45e92e5a7d8, type: 2}
   _amountRequired: 0
