@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8848424986104097849}
   - component: {fileID: 8478759536805784156}
   - component: {fileID: 567068392710465452}
+  - component: {fileID: 4544153958115887827}
   m_Layer: 13
   m_Name: Gem Pick Up
   m_TagString: Untagged
@@ -65,6 +66,7 @@ MonoBehaviour:
   gizmoColor: {r: 1, g: 0, b: 1, a: 1}
   _soundOnPickup: {fileID: 11400000, guid: ae4c65620b991416595e047f7659c015, type: 2}
   animationDuration: 0.1
+  IsPicked: 0
 --- !u!58 &8478759536805784156
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -72,7 +74,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615512277431425734}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -116,6 +118,33 @@ MonoBehaviour:
   _direction: {x: 0, y: -1}
   _moveSpeed: 0
   _maxDurationTime: 15
+--- !u!50 &4544153958115887827
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615512277431425734}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8246370035892537992
 GameObject:
   m_ObjectHideFlags: 0

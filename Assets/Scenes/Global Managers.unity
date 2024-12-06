@@ -573,6 +573,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrameRateManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3067172662698016917, guid: 33783c273617a6c4d92d304f34cf23a2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6830396501551628443, guid: 33783c273617a6c4d92d304f34cf23a2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

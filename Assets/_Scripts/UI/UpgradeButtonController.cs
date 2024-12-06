@@ -9,6 +9,7 @@ using UnityEngine.Localization.Components;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using System;
 using System.Reflection.Emit;
+using UnityEngine.Localization.Settings;
 
 public class UpgradeButtonController : MonoBehaviour
 {
@@ -149,9 +150,10 @@ public class UpgradeButtonController : MonoBehaviour
         if (_upgrade is GemUpgradeSO)
         {
             _nameLocalized.StringReference.SetReference(_table, _upgrade.Name);
-            Debug.Log((_upgrade as GemUpgradeSO).GeneratorName);
             _gemLocalized.SetReference(_table, (_upgrade as GemUpgradeSO).GeneratorName);
+            _gemLocalized.RefreshString();
             _nameLocalized.RefreshString();
+
         }
         else
         {

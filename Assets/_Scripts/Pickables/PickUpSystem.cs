@@ -5,7 +5,6 @@ public class PickUpSystem : MonoBehaviour
 {
     private IAgent agent;
     public IAgent Agent => agent;
-    private bool _isPicked = false;
     [SerializeField] private FloatVariableSO _pickUpRadius;
     [SerializeField] private LayerMask _targetLayer;
     private Transform _transform;
@@ -32,14 +31,17 @@ public class PickUpSystem : MonoBehaviour
     {
         while (true)
         {
-            yield return Helpers.GetWaitForSeconds(0.05f);
-            RaycastHit2D hit = Physics2D.CircleCast(_transform.position, _pickUpRadius.Value, Vector2.zero, Mathf.Infinity, _targetLayer);
+            yield return Helpers.GetWaitForSeconds(0.005f);
+            Collider2D collider = Physics2D.OverlapCircle(_transform.position, _pickUpRadius.Value, _targetLayer);
 
-            if (hit.collider != null)
+            if (collider != null)
             {
-                if (hit.collider.TryGetComponent(out ItemPickUp item))
+                if (collider.TryGetComponent(out ItemPickUp item))
                 {
+                    if (item.IsPicked) continue;
                     item.PickUp(agent);
+                    item.IsPicked = true;
+                    item.gameObject.SetActive(false);
                 }
             }
         }

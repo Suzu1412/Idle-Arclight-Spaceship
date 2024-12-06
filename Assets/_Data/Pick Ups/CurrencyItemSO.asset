@@ -19,4 +19,6 @@ MonoBehaviour:
   _currencyGainEvent: {fileID: 11400000, guid: 272b4dfd9f38aa64199fdd1c05d2d19c, type: 2}
   _crystalOnGetMultiplier: {fileID: 11400000, guid: 040b947bc1d6d4246909cf21658dd890, type: 2}
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
+  _currentProduction: {fileID: 11400000, guid: 3333a232e7612214f89041268b3a20cd, type: 2}
+  _productionPercentage: {fileID: 11400000, guid: 9684dc626b62cd84c906f7dfd7de4bae, type: 2}
   _amount: 1

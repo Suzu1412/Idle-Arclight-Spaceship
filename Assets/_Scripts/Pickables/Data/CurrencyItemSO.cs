@@ -10,15 +10,16 @@ public class CurrencyItemSO : ItemSO
 
     [Header("Gem Production Multiplier")]
     [SerializeField] private DoubleVariableSO _currentProduction;
-
+    [SerializeField] private FloatVariableSO _productionPercentage;
 
     [SerializeField][Range(1, 9999)] private double _amount;
 
     public override void PickUp(IAgent agent)
     {
-        // Pick Up By Currency Manager
         double amount = _amount;
-        amount *= _crystalOnGetMultiplier.Value * _crystalTotalMultiplier.Value;
+        amount *= _crystalOnGetMultiplier.Value * _crystalTotalMultiplier.Value + (_currentProduction.Value * _productionPercentage.Value);
+
+        // Pick Up By Currency Manager
         _currencyGainEvent.RaiseEvent(amount);
     }
 }

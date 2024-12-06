@@ -86,11 +86,13 @@ MonoBehaviour:
   - m_Id: 101
     m_Localized: Silver
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388423
   - m_Id: 102
     m_Localized: Gold
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388423
   - m_Id: 103
     m_Localized: Turquoise
     m_Metadata:
@@ -152,11 +154,13 @@ MonoBehaviour:
   - m_Id: 151
     m_Localized: Reinforced {gem}
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388423
   - m_Id: 152
     m_Localized: Ancient {gem}
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388423
   - m_Id: 153
     m_Localized: Elemental {gem}
     m_Metadata:
@@ -165,31 +169,38 @@ MonoBehaviour:
   - m_Id: 154
     m_Localized: Mystic {gem}
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388423
   - m_Id: 155
     m_Localized: Sacred {gem}
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388423
   - m_Id: 156
     m_Localized: Enchanted {gem}
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388423
   - m_Id: 157
     m_Localized: Supreme {gem}
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388423
   - m_Id: 158
     m_Localized: Legendary {gem}
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388423
   - m_Id: 159
     m_Localized: Demonic {gem}
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388423
   - m_Id: 160
     m_Localized: Divine {gem}
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388423
   - m_Id: 161
     m_Localized: Ultimate {gem}
     m_Metadata:
@@ -198,6 +209,16 @@ MonoBehaviour:
     m_Localized: '{gem} produce more crystals by x{amount}'
     m_Metadata:
       m_Items: []
+  - m_Id: 5072808109469696
+    m_Localized: 
+    m_Metadata:
+      m_Items:
+      - rid: 6827601619408388423
+  - m_Id: 5072808105275394
+    m_Localized: 
+    m_Metadata:
+      m_Items:
+      - rid: 6827601619408388423
   references:
     version: 2
     RefIds:
@@ -213,3 +234,16 @@ MonoBehaviour:
         - id: 150
         - id: 153
         - id: 107
+        - id: 151
+        - id: 5072808109469696
+        - id: 152
+        - id: 154
+        - id: 155
+        - id: 156
+        - id: 157
+        - id: 158
+        - id: 159
+        - id: 160
+        - id: 5072808105275394
+        - id: 101
+        - id: 102

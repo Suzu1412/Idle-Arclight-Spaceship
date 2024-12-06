@@ -25,4 +25,4 @@ MonoBehaviour:
   _isApplied: 0
   _isRequirementMet: 1
   _generator: {fileID: 11400000, guid: 45a9c9cc35838824097ca45e92e5a7d8, type: 2}
-  _amountRequired: 0
+  _amountRequired: 25
