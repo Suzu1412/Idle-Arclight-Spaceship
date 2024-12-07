@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      apple_red_with_leaf_0: -5998942249431791431
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

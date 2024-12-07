@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      headphones_0: 6666983705086131383
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

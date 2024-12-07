@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ammo_B_violet_0: -8066933101698297706
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

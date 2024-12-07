@@ -151,7 +151,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:4393d53c1e2fb70459aa954af38d89fd
     m_TableEntryReference:
-      m_KeyId: 12
+      m_KeyId: 10
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -526,7 +526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3150271598287104571, guid: 18a946ea462db064a91d27481b83db3a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -119.06998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4038176590217479498, guid: 18a946ea462db064a91d27481b83db3a, type: 3}
       propertyPath: m_AnchorMax.x

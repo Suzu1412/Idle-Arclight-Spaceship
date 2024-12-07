@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Gem On Get 5
   m_EditorClassIdentifier: 
   _guid: 81e0c2dab29a7014e94b3f38f9fa5e66
-  _name: Duplicador
-  _description: Obtiene el doble de Cristales
-  _cost: 50000
+  _name: specializedCollector
+  _description: gemPickupGPSMultiplier
+  _cost: 1000000
   _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
   _modifierToApply:
     _modifierType: 0
-    _value: 0.1
+    _value: 0.25
     _source: Gem On Get 5
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
   _isApplied: 0
-  _isRequirementMet: 1
+  _isRequirementMet: 0
   _costRequirement: 15000
   _variableToModify: {fileID: 11400000, guid: 9684dc626b62cd84c906f7dfd7de4bae, type: 2}

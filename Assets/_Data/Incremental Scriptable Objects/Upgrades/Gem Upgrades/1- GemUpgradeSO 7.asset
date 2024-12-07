@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _guid: fac3d700d1e36ee44b42def00e8befda
   _name: EnchantedGem
-  _description: GemProductionMultiplier
+  _description: gemProductionMultiplier
   _cost: 0
   _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
   _modifierToApply:

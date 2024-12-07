@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      potion_B_red_full_0: -7680137070033484715
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

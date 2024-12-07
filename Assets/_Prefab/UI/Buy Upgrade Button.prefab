@@ -75,8 +75,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289105791
-  m_fontColor: {r: 0.49803922, g: 0.56078434, b: 0.6509804, a: 1}
+    rgba: 4292591283
+  m_fontColor: {r: 0.7019608, g: 0.74509805, b: 0.85882354, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_fontSizeMax: 48
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: -0.5
   m_wordSpacing: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 33.496754, y: 0, z: -197.09418, w: 123.02368}
+  m_margin: {x: 33.496754, y: -27.862488, z: -197.09418, w: 123.02368}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -157,7 +157,19 @@ MonoBehaviour:
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
-    m_LocalVariables: []
+    m_LocalVariables:
+    - name: gem
+      variable:
+        rid: 631344062910955923
+    - name: gems
+      variable:
+        rid: 631344062910955924
+    - name: gps
+      variable:
+        rid: 631344062910955926
+    - name: amount
+      variable:
+        rid: 631344062910955928
   m_FormatArguments: []
   m_UpdateString:
     m_PersistentCalls:
@@ -176,7 +188,44 @@ MonoBehaviour:
         m_CallState: 1
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 631344062910955923
+      type: {class: LocalizedString, ns: UnityEngine.Localization, asm: Unity.Localization}
+      data:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - rid: 631344062910955924
+      type: {class: LocalizedString, ns: UnityEngine.Localization, asm: Unity.Localization}
+      data:
+        m_TableReference:
+          m_TableCollectionName: GUID:4393d53c1e2fb70459aa954af38d89fd
+        m_TableEntryReference:
+          m_KeyId: 6
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - rid: 631344062910955926
+      type: {class: LocalizedString, ns: UnityEngine.Localization, asm: Unity.Localization}
+      data:
+        m_TableReference:
+          m_TableCollectionName: GUID:4393d53c1e2fb70459aa954af38d89fd
+        m_TableEntryReference:
+          m_KeyId: 12
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - rid: 631344062910955928
+      type: {class: FloatVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 0
 --- !u!1 &551319191954620405
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,8 +419,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4292663764
-  m_fontColor: {r: 0.83137256, g: 0.8509804, b: 0.8627451, a: 1}
+    rgba: 4294637301
+  m_fontColor: {r: 0.9607843, g: 0.9647059, b: 0.98039216, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -426,7 +475,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -153.89813, w: 123.02368}
+  m_margin: {x: 0, y: 0, z: -153.89813, w: 160.17365}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -448,14 +497,14 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:4393d53c1e2fb70459aa954af38d89fd
     m_TableEntryReference:
-      m_KeyId: 150
+      m_KeyId: 125
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables:
     - name: gem
       variable:
-        rid: 2699284658975932922
+        rid: 631344062910955710
   m_FormatArguments: []
   m_UpdateString:
     m_PersistentCalls:
@@ -475,13 +524,13 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 2699284658975932922
+    - rid: 631344062910955710
       type: {class: LocalizedString, ns: UnityEngine.Localization, asm: Unity.Localization}
       data:
         m_TableReference:
           m_TableCollectionName: GUID:4393d53c1e2fb70459aa954af38d89fd
         m_TableEntryReference:
-          m_KeyId: 107
+          m_KeyId: 100
           m_Key: 
         m_FallbackState: 0
         m_WaitForCompletion: 0

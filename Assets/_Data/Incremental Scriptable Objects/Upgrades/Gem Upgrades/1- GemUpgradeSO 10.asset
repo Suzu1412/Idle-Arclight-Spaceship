@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _guid: 24371039a8fe1ef4e8bdae7913182453
   _name: DemonicGem
-  _description: GemProductionMultiplier
+  _description: gemProductionMultiplier
   _cost: 0
   _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
   _modifierToApply:

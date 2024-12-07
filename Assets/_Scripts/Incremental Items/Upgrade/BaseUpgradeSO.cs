@@ -22,6 +22,7 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
 
     public string Name => _name;
     public string Description => _description;
+    public float AmountToModify => _modifierToApply.Value;
     public bool IsRequirementMet { get => _isRequirementMet; internal set => _isRequirementMet = value; }
     public bool IsApplied => _isApplied;
 

@@ -21,4 +21,6 @@ MonoBehaviour:
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
   _currentProduction: {fileID: 11400000, guid: 3333a232e7612214f89041268b3a20cd, type: 2}
   _productionPercentage: {fileID: 11400000, guid: 9684dc626b62cd84c906f7dfd7de4bae, type: 2}
+  _gemTotalAmount: {fileID: 11400000, guid: e78fee59deefe49038c0b57c7f497566, type: 2}
+  _gemTotalAmountMultiplier: {fileID: 11400000, guid: 22354081230674fd48596efdb2ac167e, type: 2}
   _amount: 1

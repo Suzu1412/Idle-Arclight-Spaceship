@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ps_touchpad_swipe_0: 3483597972557007369
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

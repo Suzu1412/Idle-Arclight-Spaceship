@@ -30,7 +30,7 @@ MonoBehaviour:
         - rid: 4748584485101764841
         - rid: 4748584485101764842
         - rid: 4748584485101764843
-        m_ConnectedFile: J:/Escritorio/Idle Spaceship Localization - Hoja 1.csv
+        m_ConnectedFile: /Users/suzu/Desktop/Idle Spaceship Localization - Hoja 1.csv
     - rid: 4748584485101764841
       type: {class: KeyIdColumns, ns: UnityEditor.Localization.Plugins.CSV.Columns, asm: Unity.Localization.Editor}
       data:

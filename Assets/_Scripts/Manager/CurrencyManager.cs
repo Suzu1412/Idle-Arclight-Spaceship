@@ -13,10 +13,12 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [SerializeField] private DoubleVariableSO _totalCurrency;
     [SerializeField] private DoubleVariableSO _gameTotalCurrency;
     [SerializeField] private DoubleVariableSO _currentProduction;
+    [SerializeField] private DoubleVariableSO _gemGeneratorTotalAmount;
+
     [Header("Int Variable")]
     [SerializeField] private IntVariableSO _amountToBuy;
 
-    [Header("Float Variable")] 
+    [Header("Float Variable")]
     [SerializeField] private FloatVariableSO _productionOfflineMultiplier;
 
     [Header("Int Event")]
@@ -121,7 +123,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         LoadCurrency(gameData.CurrencyData);
         LoadGenerators(gameData.Generators);
         LoadUpgrades(gameData.Upgrades);
-        LoadOfflineReward(gameData.CurrencyData.LastActiveDateTime);
+        //LoadOfflineReward(gameData.CurrencyData.LastActiveDateTime);
 
         UpdateCurrency();
         GetProductionRate();
@@ -142,6 +144,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             OnGeneratorAmountChangedEvent.RaiseEvent(index);
             GetProductionRate();
             UpdateCurrency();
+            _gemGeneratorTotalAmount.Value += _amountToBuy.Value;
             OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
         }
     }
@@ -233,6 +236,8 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             generatorSO.Initialize();
         }
 
+        _gemGeneratorTotalAmount.Initialize(0);
+
         foreach (var generator in generatorDatas)
         {
             var generatorSO = _generators.Find(generator.Guid);
@@ -240,6 +245,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             generatorSO.SetAmount(generator.Amount);
             generatorSO.SetTotalProduction(generator.TotalProduction);
             generatorSO.IsUnlocked = generator.IsUnlocked;
+            _gemGeneratorTotalAmount.Value += generatorSO.AmountOwned;
         }
     }
 

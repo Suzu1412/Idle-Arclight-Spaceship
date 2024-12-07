@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      emoji_shocked_0: 2457225650321516683
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -34,9 +34,13 @@ public class UpgradeButtonController : MonoBehaviour
 
     [Header("Localization")]
     private LocalizedString _localizedString;
+    private LocalizedString _descriptionLocalizedString;
     [SerializeField] private string _table = "Tabla1";
     private string _gemName = "gemName";
     private LocalizedString _gemLocalized;
+    private LocalizedString _gemDescriptionLocalized;
+
+    private FloatVariable _amountVariable;
 
     public event UnityAction<int> OnBuyUpgradeClicked;
 
@@ -44,7 +48,10 @@ public class UpgradeButtonController : MonoBehaviour
     {
         _isAlreadyBought = false;
         _localizedString = _nameLocalized.StringReference;
+        _descriptionLocalizedString = _descriptionLocalized.StringReference;
         SetGemLocalized();
+        SetGemDescriptionLocalized();
+        SetAmountVariable();
         OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
     }
 
@@ -153,7 +160,6 @@ public class UpgradeButtonController : MonoBehaviour
             _gemLocalized.SetReference(_table, (_upgrade as GemUpgradeSO).GeneratorName);
             _gemLocalized.RefreshString();
             _nameLocalized.RefreshString();
-
         }
         else
         {
@@ -169,7 +175,17 @@ public class UpgradeButtonController : MonoBehaviour
 
     private void DisplayDescriptionText()
     {
-        //_descriptionText.SetTextFormat("{0}", _upgrade.Description);
+        _descriptionLocalized.StringReference.SetReference(_table, _upgrade.Description);
+        _amountVariable.Value = (_upgrade.AmountToModify < 1) ? _upgrade.AmountToModify * 100 : _upgrade.AmountToModify;
+
+        if (_upgrade is GemUpgradeSO)
+        {
+            _gemDescriptionLocalized.SetReference(_table, (_upgrade as GemUpgradeSO).GeneratorName);
+            _gemDescriptionLocalized.RefreshString();
+        }
+
+        _descriptionLocalized.RefreshString();
+
     }
 
     private void SetGemLocalized()
@@ -182,6 +198,32 @@ public class UpgradeButtonController : MonoBehaviour
         else
         {
             _gemLocalized = localizedVariable as LocalizedString;
+        }
+    }
+
+    private void SetGemDescriptionLocalized()
+    {
+        if (!_descriptionLocalizedString.TryGetValue("gem", out var localizedVariable))
+        {
+            _gemDescriptionLocalized = new LocalizedString();
+            _descriptionLocalizedString.Add("gem", localizedVariable);
+        }
+        else
+        {
+            _gemDescriptionLocalized = localizedVariable as LocalizedString;
+        }
+    }
+
+    private void SetAmountVariable()
+    {
+        if (!_descriptionLocalizedString.TryGetValue("amount", out var variable))
+        {
+            _amountVariable = new FloatVariable();
+            _descriptionLocalizedString.Add("amount", variable);
+        }
+        else
+        {
+            _amountVariable = variable as FloatVariable;
         }
     }
 

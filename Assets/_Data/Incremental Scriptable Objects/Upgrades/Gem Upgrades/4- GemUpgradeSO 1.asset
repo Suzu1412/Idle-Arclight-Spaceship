@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _guid: 9d23abc4f6a6a473186003f2377a128f
   _name: SpecialGem
-  _description: GemProductionMultiplier
+  _description: gemProductionMultiplier
   _cost: 100000
   _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
   _modifierToApply:

@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d55d2816300d66f4eabb4d81f2c6c37c, type: 3}
-  m_Name: Gem On Get 1
+  m_Name: Gem Value Upgrade 1
   m_EditorClassIdentifier: 
-  _guid: f2e35f9103f93854ea7bbd7299c87324
-  _name: Duplicador
-  _description: Obtiene el doble de Cristales
-  _cost: 25
+  _guid: 10a567fcc715e44499eadc4953fce6a4
+  _name: refinedGem
+  _description: GemValueMultiplier
+  _cost: 200
   _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
   _modifierToApply:
     _modifierType: 0
-    _value: 1
-    _source: Gem On Get 1
+    _value: 0.02
+    _source: Gem Value Upgrade 1
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
   _isApplied: 0
   _isRequirementMet: 1
-  _costRequirement: 10
-  _variableToModify: {fileID: 11400000, guid: 040b947bc1d6d4246909cf21658dd890, type: 2}
+  _costRequirement: 50
+  _variableToModify: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}

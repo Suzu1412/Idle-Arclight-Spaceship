@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      speech_bubble_center_right_0: -190296264198081072
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ammo_B_yellow_0: 3868615409181158954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

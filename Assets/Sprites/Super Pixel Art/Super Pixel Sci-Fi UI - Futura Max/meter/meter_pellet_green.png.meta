@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      meter_pellet_green_0: -2826903409379479201
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
