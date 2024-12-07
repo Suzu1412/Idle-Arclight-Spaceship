@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1e6d47ff7df2d46a7fe68082b49070, type: 3}
   m_Name: GameDataSO
   m_EditorClassIdentifier: 
-  _name: d27
+  _name: demo0.12
   GameData:
-    Name: d26
+    Name: d27
     CurrentSceneGroupID: 0
     CurrentGameState: 0
     Players:
@@ -23,47 +23,47 @@ MonoBehaviour:
       _isActive: 1
       _isUnlocked: 1
     CurrencyData:
-      _totalCurrency: 986634699.6
-      _gameTotalCurrency: 1118787413.5013032
+      _totalCurrency: 22618
+      _gameTotalCurrency: 58408.404977416816
       _amountToBuy: 1
-      _lastActiveDateTime: 638690614810407260
+      _lastActiveDateTime: 638691222861340340
     Generators:
     - _guid: 274494024297a8e44a9090bed95ba8ca
-      _amount: 100
-      _totalProduction: 57765.4
+      _amount: 25
+      _totalProduction: 367.5
       _isUnlocked: 1
     - _guid: 45a9c9cc35838824097ca45e92e5a7d8
-      _amount: 60
-      _totalProduction: 100087.6
+      _amount: 13
+      _totalProduction: 1193.4
       _isUnlocked: 1
     - _guid: c2f46407d0a839a46bd2f0eb1f4f2833
-      _amount: 25
-      _totalProduction: 551155.6
+      _amount: 10
+      _totalProduction: 2925.8
       _isUnlocked: 1
     - _guid: c6f2163c941647e43b126ab9364ff53c
-      _amount: 10
-      _totalProduction: 840025.5
+      _amount: 0
+      _totalProduction: 0
       _isUnlocked: 1
     - _guid: 5ec76d4159cb8ea42996331c6f423866
-      _amount: 10
-      _totalProduction: 2322124.7
+      _amount: 0
+      _totalProduction: 0
       _isUnlocked: 1
     - _guid: 185c4e8e82a9f734a9848a5618aa39c9
-      _amount: 6
-      _totalProduction: 3622196.4
-      _isUnlocked: 1
+      _amount: 0
+      _totalProduction: 0
+      _isUnlocked: 0
     - _guid: 1cf2da6fdd7c11041a457c9a40a00523
       _amount: 0
       _totalProduction: 0
-      _isUnlocked: 1
+      _isUnlocked: 0
     - _guid: 09139eb29fa22564cbc855584564caf4
       _amount: 0
       _totalProduction: 0
-      _isUnlocked: 1
+      _isUnlocked: 0
     - _guid: 6d7504daf1adfdf40bda471778edaa1b
       _amount: 0
       _totalProduction: 0
-      _isUnlocked: 1
+      _isUnlocked: 0
     - _guid: a1da32dffb8c580428fd57903c3cb803
       _amount: 0
       _totalProduction: 0
@@ -100,16 +100,22 @@ MonoBehaviour:
       _isApplied: 1
     - _guid: 12425dd5a35477a4e838e8fa9be7eb55
       _isRequirementMet: 1
-      _isApplied: 1
+      _isApplied: 0
     - _guid: 81e0c2dab29a7014e94b3f38f9fa5e66
       _isRequirementMet: 1
-      _isApplied: 1
+      _isApplied: 0
     - _guid: f102626efd735bb4aaa3b3dd68834672
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: 9230821aed781084facff6cf7ee277f8
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: 0898ae2cb22bf477d90aa09cfa9ece7a
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: 10a567fcc715e44499eadc4953fce6a4
       _isRequirementMet: 1
-      _isApplied: 1
-    - _guid: f5258c38138cd7649a8dcf6dd81dbc3a
-      _isRequirementMet: 1
-      _isApplied: 1
+      _isApplied: 0
     - _guid: f61c227f58b14e2429fd436a75433c3d
       _isRequirementMet: 1
       _isApplied: 1
@@ -117,29 +123,29 @@ MonoBehaviour:
       _isRequirementMet: 1
       _isApplied: 1
     - _guid: f09f823221d1ea04ab352f252a9235a6
-      _isRequirementMet: 1
-      _isApplied: 1
+      _isRequirementMet: 0
+      _isApplied: 0
     - _guid: b67c77ad3e468e64e9ca4edb3e5bd1c0
-      _isRequirementMet: 1
+      _isRequirementMet: 0
       _isApplied: 0
     - _guid: d3e1e7a8b3ac0794486a1892c3d4320d
       _isRequirementMet: 1
       _isApplied: 1
     - _guid: cfaa1ba68a8bd4cfab372fc834aa3010
-      _isRequirementMet: 1
-      _isApplied: 1
+      _isRequirementMet: 0
+      _isApplied: 0
     - _guid: 81dc54f011873954f82c7bf40fad1948
-      _isRequirementMet: 1
+      _isRequirementMet: 0
       _isApplied: 0
     - _guid: 2e87a15490b0c714e9520d0362bf2d41
       _isRequirementMet: 1
       _isApplied: 1
     - _guid: bfe340b0e07574548b53e750abd04e57
-      _isRequirementMet: 1
-      _isApplied: 1
+      _isRequirementMet: 0
+      _isApplied: 0
     - _guid: 9d23abc4f6a6a473186003f2377a128f
-      _isRequirementMet: 1
-      _isApplied: 1
+      _isRequirementMet: 0
+      _isApplied: 0
     - _guid: 0116d532c8fedf5458f55a50b80cc84b
       _isRequirementMet: 0
       _isApplied: 0
@@ -147,8 +153,8 @@ MonoBehaviour:
       _isRequirementMet: 0
       _isApplied: 0
     - _guid: c144c91b2fbf30648a15ba41b74a8b07
-      _isRequirementMet: 1
-      _isApplied: 1
+      _isRequirementMet: 0
+      _isApplied: 0
     - _guid: 897608e90cacbfa47bd5285f0809203b
       _isRequirementMet: 0
       _isApplied: 0
@@ -158,21 +164,9 @@ MonoBehaviour:
     - _guid: 3f9b9c8f4fbc96245ac764250ec9b542
       _isRequirementMet: 0
       _isApplied: 0
-    - _guid: 066345cd76fbf494b8d9ca6ca1a26cd2
-      _isRequirementMet: 1
-      _isApplied: 1
-    - _guid: 38e38e04509806b4788fdb1e3e5ad0a3
-      _isRequirementMet: 1
-      _isApplied: 1
-    - _guid: 9230821aed781084facff6cf7ee277f8
-      _isRequirementMet: 1
-      _isApplied: 1
-    - _guid: 53be3961b5ed29c4fa76ee14beaaba7f
-      _isRequirementMet: 1
-      _isApplied: 1
-    - _guid: 21bea1df7b7b933409f632e7be24b8d2
-      _isRequirementMet: 1
-      _isApplied: 1
+    - _guid: b67c77ad3e468e64e9ca4edb3e5bd1c0
+      _isRequirementMet: 0
+      _isApplied: 0
     UnlockedSystems: []
     LocalizationData:
       _locale: 
