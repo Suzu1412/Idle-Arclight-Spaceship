@@ -3,6 +3,9 @@ using TMPro;
 using System.Collections;
 using System;
 using Cysharp.Text;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 
 public class CurrencyUI : MonoBehaviour
 {
@@ -18,7 +21,19 @@ public class CurrencyUI : MonoBehaviour
 
     [Header("Text")]
     [SerializeField] private TextMeshProUGUI _currencyText;
-    [SerializeField] private TextMeshProUGUI _productionText;
+
+    [Header("Localization")]
+    [SerializeField] private LocalizeStringEvent _productionLocalized;
+    private LocalizedString _localizedString;
+    [SerializeField] private string _table = "Tabla1";
+
+    private StringVariable _amountVariable;
+
+    private void Awake()
+    {
+        _localizedString = _productionLocalized.StringReference;
+        SetAmountVariable();
+    }
 
     private void OnEnable()
     {
@@ -53,7 +68,9 @@ public class CurrencyUI : MonoBehaviour
 
     private void UpdateProductionText(FormattedNumber formatValue)
     {
-        _productionText.SetTextFormat("{0} CpS", formatValue.GetFormat());
+        _productionLocalized.StringReference.SetReference(_table, "gpsAmount");
+        _amountVariable.Value = formatValue.GetFormat();
+        //_productionText.SetTextFormat("{0} CpS", formatValue.GetFormat());
     }
 
     private IEnumerator CountToCoroutine(FormattedNumber formatValue)
@@ -74,6 +91,18 @@ public class CurrencyUI : MonoBehaviour
             _currencyText.SetTextFormat("{0}", _currentValueFormatted.GetFormat());
             yield return null;
         }
+    }
 
+    private void SetAmountVariable()
+    {
+        if (!_localizedString.TryGetValue("amount", out var variable))
+        {
+            _amountVariable = new StringVariable();
+            _localizedString.Add("amount", variable);
+        }
+        else
+        {
+            _amountVariable = variable as StringVariable;
+        }
     }
 }

@@ -31,17 +31,14 @@ public class PickUpSystem : MonoBehaviour
     {
         while (true)
         {
-            yield return Helpers.GetWaitForSeconds(0.005f);
+            yield return Helpers.GetWaitForSeconds(0.05f);
             Collider2D collider = Physics2D.OverlapCircle(_transform.position, _pickUpRadius.Value, _targetLayer);
 
             if (collider != null)
             {
                 if (collider.TryGetComponent(out ItemPickUp item))
                 {
-                    if (item.IsPicked) continue;
-                    item.PickUp(agent);
-                    item.IsPicked = true;
-                    item.gameObject.SetActive(false);
+                    item.Magnet(this.transform);
                 }
             }
         }

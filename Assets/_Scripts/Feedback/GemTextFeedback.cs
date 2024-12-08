@@ -1,3 +1,4 @@
+using Cysharp.Text;
 using TMPro;
 using UnityEngine;
 
@@ -26,11 +27,11 @@ public class GemTextFeedback : TextPopUp
 
     protected override void SpawnPopUp(double text)
     {
-        var _popUpGameObject = ObjectPoolFactory.Spawn(_textData).gameObject;
-        SetPosition(_popUpGameObject);
+        ObjectPooler _popUpGameObject = ObjectPoolFactory.Spawn(_textData);
+        SetPosition(_popUpGameObject.gameObject);
 
         var _popUp = _popUpGameObject.GetComponentInChildren<TextMeshPro>();
-        _popUp.text = $"+ {FormatNumber.FormatDouble(text).GetFormatNoDecimals()}";
+        _popUp.SetTextFormat("+ {0}", FormatNumber.FormatDouble(text).GetFormatNoDecimals());
     }
 
     private void SetPosition(GameObject popUp)

@@ -40,10 +40,11 @@ public class GemSpawner : MonoBehaviour
         {
             GameObject gem = ObjectPoolFactory.Spawn(_gemConfigs[0].PoolSettings).gameObject;
             gem.GetComponent<ItemPickUp>().SetItem(_gemConfigs[0].Item);
-            //gem.GetComponentInChildren<SpriteRenderer>().material = _gemConfigs[0].Material;
-            gem.GetComponent<TransformMover>().SetMoveSpeed(_gemConfigs[0].moveSpeed);
+            gem.GetComponent<ItemPickUp>().SetMaxSpeed(_gemConfigs[0].moveSpeed);
 
             gem.transform.position = _placementStrategy.SetPosition(new Vector3(0f, 9f, 0f));
+            gem.GetComponent<ItemPickUp>().EnableMagnet(true);
+
 
             _delayBetweenSpawns = Random.Range(_minDelayBetweenSpawns, _maxDelayBetweenSpawns);
             yield return Helpers.GetWaitForSeconds(_delayBetweenSpawns);

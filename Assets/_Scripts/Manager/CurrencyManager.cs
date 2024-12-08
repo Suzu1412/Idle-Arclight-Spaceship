@@ -123,7 +123,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         LoadCurrency(gameData.CurrencyData);
         LoadGenerators(gameData.Generators);
         LoadUpgrades(gameData.Upgrades);
-        //LoadOfflineReward(gameData.CurrencyData.LastActiveDateTime);
+        LoadOfflineReward(gameData.CurrencyData.LastActiveDateTime);
 
         UpdateCurrency();
         GetProductionRate();

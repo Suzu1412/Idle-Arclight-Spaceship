@@ -14,6 +14,7 @@ public class Agent : MonoBehaviour, IAgent
     private IAgentAnimation _agentAnimation;
     private IAgentRenderer _agentRenderer;
     private IPlayerDetector _playerDetector;
+    private Collider2D _collider;
     private AgentDataSO _data;
 
     public IHealthSystem HealthSystem => _healthSystem ??= GetComponent<IHealthSystem>();
@@ -29,10 +30,21 @@ public class Agent : MonoBehaviour, IAgent
     public event UnityAction<Vector2> OnChangeFacingDirection;
     public Vector2 FacingDirection => _facingDirection;
 
+    private void Awake()
+    {
+        _collider = GetComponent<Collider2D>();
+    }
 
-    private void OnEnable()
+    private async void OnEnable()
     {
         SetFacingDirection(_initialFacingDirection);
+        await Awaitable.WaitForSecondsAsync(0.1f);
+        _collider.enabled = true;
+    }
+
+    private void OnDisable()
+    {
+        _collider.enabled = false;
     }
 
 

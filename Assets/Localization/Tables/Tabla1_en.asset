@@ -52,7 +52,8 @@ MonoBehaviour:
   - m_Id: 13
     m_Localized: Generator
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388423
   - m_Id: 17
     m_Localized: '{gem} Production increases by x{amount}'
     m_Metadata:
@@ -865,6 +866,39 @@ MonoBehaviour:
     m_Localized: Refined Gem
     m_Metadata:
       m_Items: []
+  - m_Id: 14
+    m_Localized: '{amount} {gps}'
+    m_Metadata:
+      m_Items:
+      - rid: 6827601619408388423
+  - m_Id: 89
+    m_Localized: A new Quest has been added
+    m_Metadata:
+      m_Items: []
+  - m_Id: 90
+    m_Localized: A new Generator has been added
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91
+    m_Localized: A new Upgrade has been added
+    m_Metadata:
+      m_Items: []
+  - m_Id: 92
+    m_Localized: '{upgrade} is available to buy'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 93
+    m_Localized: '{gem} is available to buy'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 94
+    m_Localized: '{amount} has been produced while you were offline'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 95
+    m_Localized: Quest has been completed
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
@@ -919,3 +953,5 @@ MonoBehaviour:
         - id: 134
         - id: 135
         - id: 10
+        - id: 13
+        - id: 14

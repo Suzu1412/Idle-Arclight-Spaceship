@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7559680779180049772}
   - component: {fileID: 8848424986104097849}
   - component: {fileID: 8478759536805784156}
-  - component: {fileID: 567068392710465452}
   - component: {fileID: 4544153958115887827}
   m_Layer: 13
   m_Name: Gem Pick Up
@@ -65,8 +64,8 @@ MonoBehaviour:
   _item: {fileID: 11400000, guid: eca2ace93676bbc4199d96ba71efa26a, type: 2}
   gizmoColor: {r: 1, g: 0, b: 1, a: 1}
   _soundOnPickup: {fileID: 11400000, guid: ae4c65620b991416595e047f7659c015, type: 2}
-  animationDuration: 0.1
-  IsPicked: 0
+  _movementSpeed: 5
+  _lifeTime: 10
 --- !u!58 &8478759536805784156
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -74,7 +73,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615512277431425734}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -103,21 +102,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.15
---- !u!114 &567068392710465452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1615512277431425734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cc6fd17984630e45897487de96ed7ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _direction: {x: 0, y: -1}
-  _moveSpeed: 0
-  _maxDurationTime: 15
 --- !u!50 &4544153958115887827
 Rigidbody2D:
   serializedVersion: 5

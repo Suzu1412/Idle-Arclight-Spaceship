@@ -5,7 +5,8 @@
         "Suzu.Common",
         "Unity.TextMeshPro",
         "Suzu.Agent",
-        "Suzu.Audio"
+        "Suzu.Audio",
+        "ZString"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

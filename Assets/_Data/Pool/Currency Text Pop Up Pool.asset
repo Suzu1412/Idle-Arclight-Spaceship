@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Currency Text Pop Up Pool
   m_EditorClassIdentifier: 
   _type: 5
-  _prefab: {fileID: 4935296351923539931, guid: 4f14e62f02c354b4dbefca0485411db8, type: 3}
+  _prefab: {fileID: 4558377407826194586, guid: 4f14e62f02c354b4dbefca0485411db8, type: 3}
   _defaultCapacity: 10
   _maxPoolSize: 100

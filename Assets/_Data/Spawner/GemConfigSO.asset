@@ -15,5 +15,5 @@ MonoBehaviour:
   _poolSettings: {fileID: 11400000, guid: 7734e2c0df8419146b0b359fb157545a, type: 2}
   _item: {fileID: 11400000, guid: eca2ace93676bbc4199d96ba71efa26a, type: 2}
   _material: {fileID: 2100000, guid: 7cd9f7a5dea7ce44db2a0e2d5f4d3c1b, type: 2}
-  _spawnChance: 0
+  _spawnChance: 1
   _moveSpeed: 4

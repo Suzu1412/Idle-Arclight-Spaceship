@@ -66,7 +66,7 @@ public struct FormattedNumber
 
     public readonly string GetFormat()
     {
-        return ZString.Format("{0:F1} {1}", Value, Unit);
+        return ZString.Format("{0:F2} {1}", Value, Unit);
     }
 
     public readonly string GetFormatNoDecimals()
