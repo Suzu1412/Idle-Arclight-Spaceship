@@ -56,6 +56,10 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
     private Vector2 TargetMoveSpeed(float lerpAmount)
     {
         // Direction we want to move in and our desired velocity
+        if (_moveData == null)
+        {
+            return Vector2.zero;
+        }
         Vector2 targetSpeed = _direction * _moveData.MaxSpeed;
 
         // Smooth changes to are direction and speed

@@ -29,9 +29,12 @@ public class CurrencyUI : MonoBehaviour
 
     private StringVariable _amountVariable;
 
+    private Utf16ValueStringBuilder _sb;
+
     private void Awake()
     {
         _localizedString = _productionLocalized.StringReference;
+        _sb = ZString.CreateStringBuilder();
         SetAmountVariable();
     }
 
@@ -88,6 +91,12 @@ public class CurrencyUI : MonoBehaviour
                 _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, -rate * 4 * Time.deltaTime);
             }
             _currentValueFormatted.Init(_currentValue, formatValue.Unit);
+
+            _sb.Clear();
+            _currentValueFormatted.GetFormat();
+            //_sb.AppendFormat("{0}", );
+
+            //_currencyText.SetText(_sb.ToString());
             _currencyText.SetTextFormat("{0}", _currentValueFormatted.GetFormat());
             yield return null;
         }
