@@ -6,7 +6,7 @@ public class Deadzone : MonoBehaviour
     {
         if (collision.TryGetComponent<IHealthSystem>(out var damageable))
         {
-            damageable.Death(false);
+            damageable.Death(true);
             return;
         }
 

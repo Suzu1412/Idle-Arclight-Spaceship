@@ -44,7 +44,7 @@ public class NotifyMessageUI : MonoBehaviour
 
         }
         _openPosition = Vector2.zero;
-        transform.position = new Vector3(_parentRectTransform.rect.width, transform.position.y);
+        transform.position = new Vector3(_openPosition.x, transform.position.y);
     }
 
     private void GetMultiplierVariable()
@@ -77,16 +77,31 @@ public class NotifyMessageUI : MonoBehaviour
     {
         _image.sprite = randomEvent.Image;
         _duration = randomEvent.Duration;
-        UpgradeDescription(randomEvent);
+        RandomEventDescription(randomEvent);
         _updateTimerCoroutine = StartCoroutine(UpdateTimerCoroutine(randomEvent));
         transform.DOLocalMoveX(_openPosition.x, _easeDuration).SetEase(Ease.InOutSine);
     }
 
-    private void UpgradeDescription(BaseRandomEventSO randomEvent)
+    private void RandomEventDescription(BaseRandomEventSO randomEvent)
     {
         _localizedStringEvent.StringReference.SetReference(_table, randomEvent.Description);
         _multiplierVariable.Value = randomEvent.Multiplier;
         _localizedStringEvent.RefreshString();
+    }
+
+    public async void SetShopMessage(INotification notification)
+    {
+        _closePosition = new Vector2(_parentRectTransform.rect.width, 0f);
+        transform.localPosition = _closePosition;
+        transform.DOLocalMoveX(_openPosition.x, _easeDuration).SetEase(Ease.InOutSine);
+
+        _localizedStringEvent.StringReference.SetReference(_table, notification.Message);
+        _localizedStringEvent.RefreshString();
+
+        await Awaitable.WaitForSecondsAsync(5f);
+        transform.DOLocalMoveX(_closePosition.x, _easeDuration).SetEase(Ease.InOutSine);
+        await Awaitable.WaitForSecondsAsync(_easeDuration);
+        gameObject.SetActive(false);
     }
 
 
