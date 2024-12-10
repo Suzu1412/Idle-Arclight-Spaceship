@@ -3,5 +3,5 @@ using UnityEngine;
 public interface IDamageable
 {
     void Damage(int amount);
-    void Death(bool invokeEvents = true);
+    void Death(bool activateDeathEvents = true);
 }

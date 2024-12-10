@@ -35,7 +35,7 @@ public class PlayerDetector : MonoBehaviour, IPlayerDetector
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         if (_detectionStrategySO == null) return;
         _detectionStrategySO.DrawGizmos(_agent, transform, Agent.FacingDirection, IsDetected);

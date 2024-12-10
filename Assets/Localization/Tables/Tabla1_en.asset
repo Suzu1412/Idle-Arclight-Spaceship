@@ -301,7 +301,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 326
-    m_Localized: Gemshin impact
+    m_Localized: Gem-shin impact
     m_Metadata:
       m_Items: []
   - m_Id: 327
@@ -409,7 +409,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 353
-    m_Localized: 'Metal Gem Rising: Revengeance'
+    m_Localized: 'Metal Gem Rising: Revengems'
     m_Metadata:
       m_Items: []
   - m_Id: 354
@@ -585,7 +585,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 397
-    m_Localized: GemDeoKojima
+    m_Localized: GemDeo Kojima
     m_Metadata:
       m_Items: []
   - m_Id: 398
@@ -661,7 +661,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 416
-    m_Localized: DraGem Ball Z
+    m_Localized: Dragon Gem Z
     m_Metadata:
       m_Items: []
   - m_Id: 417
@@ -672,28 +672,28 @@ MonoBehaviour:
     m_Localized: King Of Gems
     m_Metadata:
       m_Items: []
-  - m_Id: 5603279005278208
-    m_Localized: Gears Of Gems
+  - m_Id: 6575623336161280
+    m_Localized: Gem Grand Order
     m_Metadata:
       m_Items: []
-  - m_Id: 5603279005278209
-    m_Localized: Trauma Gemter
+  - m_Id: 6575623331966980
+    m_Localized: 'Gem Musume: Pretty Derby'
     m_Metadata:
       m_Items: []
-  - m_Id: 5603279005278210
-    m_Localized: Shin Megami Gemsei
+  - m_Id: 6575623331966979
+    m_Localized: Never gonna Gem You Up!
     m_Metadata:
       m_Items: []
-  - m_Id: 5603279009472512
-    m_Localized: Gem & Knuckles
+  - m_Id: 6575623331966978
+    m_Localized: Age of Gemstones
     m_Metadata:
       m_Items: []
-  - m_Id: 5603279009472513
-    m_Localized: Gem Featuring Dante of GMC
+  - m_Id: 6575623331966977
+    m_Localized: Plants vs Gems
     m_Metadata:
       m_Items: []
-  - m_Id: 5603279009472514
-    m_Localized: Gem Invaders
+  - m_Id: 6575623331966976
+    m_Localized: Gems of the Storm
     m_Metadata:
       m_Items: []
   - m_Id: 6
@@ -897,6 +897,110 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 95
     m_Localized: Quest has been completed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15
+    m_Localized: Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 216
+    m_Localized: Small Magnet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 217
+    m_Localized: Medium Magnet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 218
+    m_Localized: Big Magnet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 219
+    m_Localized: Advanced Magnet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 220
+    m_Localized: Super Magnet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 221
+    m_Localized: Hyper Magnet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 222
+    m_Localized: Ultra Magnet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 223
+    m_Localized: Supreme Magnet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 224
+    m_Localized: Legendary Magnet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575618198138880
+    m_Localized: Small Gem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575618198138881
+    m_Localized: Rough Gem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575618198138882
+    m_Localized: Flawed Gem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575618198138883
+    m_Localized: Medium Gem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575618198138884
+    m_Localized: Fine Gem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575618198138885
+    m_Localized: Luxurious Gem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 419
+    m_Localized: Gears Of Gems
+    m_Metadata:
+      m_Items: []
+  - m_Id: 420
+    m_Localized: Trauma Gemter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 421
+    m_Localized: Shin Megami Gemsei
+    m_Metadata:
+      m_Items: []
+  - m_Id: 422
+    m_Localized: Gem & Knuckles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 423
+    m_Localized: Gem Featuring Dante of GMC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 424
+    m_Localized: Gem Invaders
+    m_Metadata:
+      m_Items: []
+  - m_Id: 425
+    m_Localized: Gem Gem Hakusho!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575623336161281
+    m_Localized: Doctor GemStone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575623336161282
+    m_Localized: The Gemstones
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575623340355584
+    m_Localized: The Fairy GemFathers
     m_Metadata:
       m_Items: []
   references:

@@ -13,12 +13,12 @@ public class ReturnToPoolOnDeath : MonoBehaviour
 
     private void OnEnable()
     {
-        HealthSystem.OnDeath += ReturnToPool;
+        HealthSystem.OnDestroyGO += ReturnToPool;
     }
 
     private void OnDisable()
     {
-        HealthSystem.OnDeath -= ReturnToPool;
+        HealthSystem.OnDestroyGO -= ReturnToPool;
     }
 
     private void ReturnToPool()

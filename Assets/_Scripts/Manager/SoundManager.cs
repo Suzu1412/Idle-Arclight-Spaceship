@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(AddSaveDataRunTimeSet))]
 public class SoundManager : MonoBehaviour, ISaveable
@@ -35,6 +37,13 @@ public class SoundManager : MonoBehaviour, ISaveable
     [SerializeField] private FloatVariableSO _masterVolume;
     [SerializeField] private FloatVariableSO _musicVolume;
     [SerializeField] private FloatVariableSO _sfxVolume;
+
+    private UnityAction<SoundEmitter> soundEmitterFinished;
+
+    private void Awake()
+    {
+        soundEmitterFinished = OnSoundEmitterFinishedPlaying;
+    }
 
     private void OnEnable()
     {
@@ -96,7 +105,7 @@ public class SoundManager : MonoBehaviour, ISaveable
 
         if (!sound.Loop)
         {
-            soundEmitter.OnSoundFinishedPlaying += OnSoundEmitterFinishedPlaying;
+            soundEmitter.OnSoundFinishedPlaying += soundEmitterFinished;
         }
     }
 
@@ -117,7 +126,7 @@ public class SoundManager : MonoBehaviour, ISaveable
 
     private void OnSoundEmitterFinishedPlaying(SoundEmitter soundEmitter)
     {
-        soundEmitter.OnSoundFinishedPlaying -= OnSoundEmitterFinishedPlaying;
+        soundEmitter.OnSoundFinishedPlaying -= soundEmitterFinished;
         soundEmitter.Stop();
         _activeSoundEmitters.Remove(soundEmitter);
         ObjectPoolFactory.ReturnToPool(soundEmitter.Pool);

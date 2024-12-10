@@ -44,7 +44,7 @@ public class NotifyMessageUI : MonoBehaviour
 
         }
         _openPosition = Vector2.zero;
-        transform.position = new Vector3(_parentRectTransform.rect.width, transform.position.y);
+        transform.position = new Vector3(_openPosition.x, transform.position.y);
     }
 
     private void GetMultiplierVariable()
@@ -77,12 +77,12 @@ public class NotifyMessageUI : MonoBehaviour
     {
         _image.sprite = randomEvent.Image;
         _duration = randomEvent.Duration;
-        UpgradeDescription(randomEvent);
+        RandomEventDescription(randomEvent);
         _updateTimerCoroutine = StartCoroutine(UpdateTimerCoroutine(randomEvent));
         transform.DOLocalMoveX(_openPosition.x, _easeDuration).SetEase(Ease.InOutSine);
     }
 
-    private void UpgradeDescription(BaseRandomEventSO randomEvent)
+    private void RandomEventDescription(BaseRandomEventSO randomEvent)
     {
         _localizedStringEvent.StringReference.SetReference(_table, randomEvent.Description);
         _multiplierVariable.Value = randomEvent.Multiplier;
@@ -95,7 +95,6 @@ public class NotifyMessageUI : MonoBehaviour
         transform.localPosition = _closePosition;
         transform.DOLocalMoveX(_openPosition.x, _easeDuration).SetEase(Ease.InOutSine);
 
-        _image.sprite = notification.Sprite;
         _localizedStringEvent.StringReference.SetReference(_table, notification.Message);
         _localizedStringEvent.RefreshString();
 
@@ -104,6 +103,7 @@ public class NotifyMessageUI : MonoBehaviour
         await Awaitable.WaitForSecondsAsync(_easeDuration);
         gameObject.SetActive(false);
     }
+
 
     private IEnumerator UpdateTimerCoroutine(BaseRandomEventSO randomEvent)
     {

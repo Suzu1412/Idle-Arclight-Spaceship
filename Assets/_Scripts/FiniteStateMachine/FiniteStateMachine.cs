@@ -82,7 +82,7 @@ public class FiniteStateMachine : MonoBehaviour
         while (true)
         {
             Transition(_currentState?.HandleTransition());
-            yield return new WaitForSeconds(_handleTransitionTime);
+            yield return Helpers.GetWaitForSeconds(_handleTransitionTime);
         }
     }
 }

@@ -9,7 +9,6 @@ public interface INotification
 
     public float Amount { get; }
     public float Multiplier { get; }
-    public Sprite Sprite { get; }
 
     public void SetMessage(string message);
 
@@ -17,6 +16,4 @@ public interface INotification
     public void SetAmount(float amount);
 
     public void SetMultiplier(float multiplier);
-
-    public void SetSprite(Sprite sprite);
 }

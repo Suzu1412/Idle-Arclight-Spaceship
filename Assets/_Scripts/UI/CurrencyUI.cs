@@ -70,7 +70,6 @@ public class CurrencyUI : MonoBehaviour
     {
         _productionLocalized.StringReference.SetReference(_table, "gpsAmount");
         _amountVariable.Value = formatValue.GetFormat();
-        //_productionText.SetTextFormat("{0} CpS", formatValue.GetFormat());
     }
 
     private IEnumerator CountToCoroutine(FormattedNumber formatValue)
@@ -88,6 +87,7 @@ public class CurrencyUI : MonoBehaviour
                 _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, -rate * 4 * Time.deltaTime);
             }
             _currentValueFormatted.Init(_currentValue, formatValue.Unit);
+
             _currencyText.SetTextFormat("{0}", _currentValueFormatted.GetFormat());
             yield return null;
         }

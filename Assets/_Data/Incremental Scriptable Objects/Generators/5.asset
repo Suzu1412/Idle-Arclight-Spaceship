@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e540d979937a994ebab8a4f41968310, type: 3}
-  m_Name: 2
+  m_Name: 5
   m_EditorClassIdentifier: 
-  _guid: 45a9c9cc35838824097ca45e92e5a7d8
-  _name: Silver
-  _image: {fileID: 21300000, guid: c85c1f82e6ce7184ab084dded8aac5da, type: 3}
-  _amountOwned: 25
-  _cost: 100
-  _costRequirement: 15
+  _guid: 5ec76d4159cb8ea42996331c6f423866
+  _name: Lapis lazuli
+  _image: {fileID: 21300000, guid: eb86d9b27bf867645bfcc5d3349e81c6, type: 3}
+  _amountOwned: 0
+  _cost: 215000
+  _costRequirement: 11000
   _gemCostMultiplier: {fileID: 11400000, guid: d4159609c13d586439af8e9e600a0681, type: 2}
   _priceGrowthRate: 1.15
-  _baseProduction: 1
-  _gemProductionMultiplier: {fileID: 11400000, guid: 01f351936402cc84b959f4e89347f122, type: 2}
+  _baseProduction: 430
+  _gemProductionMultiplier: {fileID: 11400000, guid: fc99f84b21a7dcb4a9f24feb4f619102, type: 2}
   _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
   OnShopNotificationEvent: {fileID: 11400000, guid: fcc3fc94497431d4ab0a3e2ebf062ea7, type: 2}

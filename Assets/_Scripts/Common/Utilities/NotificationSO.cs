@@ -7,7 +7,6 @@ public class NotificationSO : ScriptableObject, INotification
     [SerializeField] private float _duration = 5f;
     [SerializeField] private float _amount = 0f;
     [SerializeField] private float _multiplier = 0f;
-    [SerializeField] private Sprite _sprite;
 
     public string Message => _message;
 
@@ -15,7 +14,6 @@ public class NotificationSO : ScriptableObject, INotification
 
     public float Amount => _amount;
     public float Multiplier => _multiplier;
-    public Sprite Sprite => _sprite;
 
     public void SetMessage(string message)
     {
@@ -35,10 +33,5 @@ public class NotificationSO : ScriptableObject, INotification
     public void SetMultiplier(float multiplier)
     {
         _multiplier = multiplier;
-    }
-
-    public void SetSprite(Sprite sprite)
-    {
-        _sprite = sprite;
     }
 }

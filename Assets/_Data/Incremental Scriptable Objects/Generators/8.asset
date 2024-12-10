@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e540d979937a994ebab8a4f41968310, type: 3}
-  m_Name: 2
+  m_Name: 8
   m_EditorClassIdentifier: 
-  _guid: 45a9c9cc35838824097ca45e92e5a7d8
-  _name: Silver
-  _image: {fileID: 21300000, guid: c85c1f82e6ce7184ab084dded8aac5da, type: 3}
-  _amountOwned: 25
-  _cost: 100
-  _costRequirement: 15
+  _guid: 09139eb29fa22564cbc855584564caf4
+  _name: Amethyst
+  _image: {fileID: 21300000, guid: f87b195835e016f47b12a58fa9271e0a, type: 3}
+  _amountOwned: 0
+  _cost: 450000000
+  _costRequirement: 10000000
   _gemCostMultiplier: {fileID: 11400000, guid: d4159609c13d586439af8e9e600a0681, type: 2}
   _priceGrowthRate: 1.15
-  _baseProduction: 1
-  _gemProductionMultiplier: {fileID: 11400000, guid: 01f351936402cc84b959f4e89347f122, type: 2}
+  _baseProduction: 45000
+  _gemProductionMultiplier: {fileID: 11400000, guid: daacbab46f247cc46b3053f159423f98, type: 2}
   _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
   OnShopNotificationEvent: {fileID: 11400000, guid: fcc3fc94497431d4ab0a3e2ebf062ea7, type: 2}
-  _isUnlocked: 1
+  _isUnlocked: 0

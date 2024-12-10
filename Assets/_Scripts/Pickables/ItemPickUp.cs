@@ -100,7 +100,7 @@ public class ItemPickUp : MonoBehaviour
 
     private void CalculateMovement() 
     {
-        if (_hasTarget)
+        if (_hasTarget && _followTarget != null)
         {
             _direction = (_followTarget.position - transform.position).normalized;
         }

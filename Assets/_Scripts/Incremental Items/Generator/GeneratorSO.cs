@@ -26,18 +26,13 @@ public class GeneratorSO : SerializableScriptableObject
     [Header("Random Event Total Multiplier")]
     [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
 
-
-    [Header("Notification")]
     [SerializeField] private NotificationGameEvent OnShopNotificationEvent;
-    [SerializeField] private Sprite _notificationIcon;
-    private NotificationSO _notification;
-
 
     private DoubleVariableSO _bulkCost;
     private DoubleVariableSO _currentProduction;
     private DoubleVariableSO _totalProduction;
     private DoubleVariableSO _production;
-
+    private NotificationSO _notification;
 
     [SerializeField] private bool _isUnlocked;
     private bool _isDirty = true;
@@ -71,6 +66,7 @@ public class GeneratorSO : SerializableScriptableObject
         _totalProduction.Initialize(0, 0, double.MaxValue);
 
         _notification = ScriptableObject.CreateInstance<NotificationSO>();
+
     }
 
     internal void Initialize()
@@ -85,6 +81,7 @@ public class GeneratorSO : SerializableScriptableObject
         if (currency >= CostRequirement)
         {
             _isUnlocked = true;
+            Notificate();
         }
     }
     public void AddAmount(int amount)
@@ -171,10 +168,10 @@ public class GeneratorSO : SerializableScriptableObject
     {
         _gemProductionMultiplier.RemoveModifier(modifier);
     }
+
     private void Notificate()
     {
         _notification.SetMessage("newGeneratorNotification");
-        _notification.SetSprite(_notificationIcon);
         OnShopNotificationEvent.RaiseEvent(_notification);
 
     }

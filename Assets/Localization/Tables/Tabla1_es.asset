@@ -393,7 +393,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 225
-    m_Localized: Gema Refinada
+    m_Localized: Gema diminuta
     m_Metadata:
       m_Items: []
   - m_Id: 14
@@ -427,6 +427,74 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 95
     m_Localized: "Se ha completado la misi\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15
+    m_Localized: Tienda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 216
+    m_Localized: " Im\xE1n peque\xF1o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 217
+    m_Localized: "Im\xE1n mediano"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 218
+    m_Localized: "Im\xE1n grande"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 219
+    m_Localized: "Im\xE1n Avanzado"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 220
+    m_Localized: "Super Im\xE1n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 221
+    m_Localized: "Hiper Im\xE1n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 222
+    m_Localized: "Ultra Im\xE1n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 223
+    m_Localized: "Im\xE1n Supremo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 224
+    m_Localized: "Im\xE1n Legendario"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575618198138880
+    m_Localized: "Gema peque\xF1a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575618198138881
+    m_Localized: Gema en bruto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575618198138882
+    m_Localized: Gema defectuosa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575618198138883
+    m_Localized: Gema mediana
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575618198138884
+    m_Localized: Gema fina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575618198138885
+    m_Localized: Gema de lujo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6575623336161282
+    m_Localized: Los PicaGemas
     m_Metadata:
       m_Items: []
   references:

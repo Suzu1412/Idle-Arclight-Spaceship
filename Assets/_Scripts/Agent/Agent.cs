@@ -39,12 +39,12 @@ public class Agent : MonoBehaviour, IAgent
     {
         SetFacingDirection(_initialFacingDirection);
         await Awaitable.WaitForSecondsAsync(0.1f);
-        _collider.enabled = true;
+        //_collider.enabled = true;
     }
 
     private void OnDisable()
     {
-        _collider.enabled = false;
+        //_collider.enabled = false;
     }
 
 
