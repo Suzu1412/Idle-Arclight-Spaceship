@@ -20,7 +20,6 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
     [SerializeField] private NotificationGameEvent OnShopNotificationEvent;
     [SerializeField] private Sprite _notificationIcon;
 
-
     protected FormattedNumber CostFormatted { get; private set; }
     private NotificationSO _notification;
 

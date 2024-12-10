@@ -5,19 +5,12 @@ public class NotificationUI : MonoBehaviour
 {
     [SerializeField] private RandomEventGameEventListener OnNotificateRandomEventListener;
     [SerializeField] private Transform _notificationParent;
-<<<<<<< Updated upstream
     [SerializeField] protected ObjectPoolSettingsSO _activeQuestPool;
     [SerializeField] protected ObjectPoolSettingsSO _completeQuestPool;
     [SerializeField] protected ObjectPoolSettingsSO _randomEventPool;
     
-
-=======
     [SerializeField] private Transform _shopMessagePanelParent;
-    [SerializeField] protected ObjectPoolSettingsSO _activeQuestPool;
-    [SerializeField] protected ObjectPoolSettingsSO _completeQuestPool;
-    [SerializeField] protected ObjectPoolSettingsSO _randomEventPool;
     [SerializeField] protected ObjectPoolSettingsSO _shopNotificationPool;
->>>>>>> Stashed changes
 
     private void OnEnable()
     {
@@ -35,8 +28,7 @@ public class NotificationUI : MonoBehaviour
         message.transform.SetParent(_notificationParent, false);
         message.SetRandomEvent(randomEvent);
     }
-<<<<<<< Updated upstream
-=======
+
 
     private void NotifyShopEvent(INotification notification)
     {
@@ -44,5 +36,4 @@ public class NotificationUI : MonoBehaviour
         message.transform.SetParent(_shopMessagePanelParent, worldPositionStays: false);
         message.SetShopMessage(notification);
     }
->>>>>>> Stashed changes
 }

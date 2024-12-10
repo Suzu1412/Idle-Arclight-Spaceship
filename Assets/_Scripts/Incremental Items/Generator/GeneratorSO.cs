@@ -30,11 +30,14 @@ public class GeneratorSO : SerializableScriptableObject
     [Header("Notification")]
     [SerializeField] private NotificationGameEvent OnShopNotificationEvent;
     [SerializeField] private Sprite _notificationIcon;
+    private NotificationSO _notification;
+
 
     private DoubleVariableSO _bulkCost;
     private DoubleVariableSO _currentProduction;
     private DoubleVariableSO _totalProduction;
     private DoubleVariableSO _production;
+
 
     [SerializeField] private bool _isUnlocked;
     private bool _isDirty = true;
@@ -66,6 +69,8 @@ public class GeneratorSO : SerializableScriptableObject
 
         _totalProduction = ScriptableObject.CreateInstance<DoubleVariableSO>();
         _totalProduction.Initialize(0, 0, double.MaxValue);
+
+        _notification = ScriptableObject.CreateInstance<NotificationSO>();
     }
 
     internal void Initialize()
@@ -166,9 +171,6 @@ public class GeneratorSO : SerializableScriptableObject
     {
         _gemProductionMultiplier.RemoveModifier(modifier);
     }
-<<<<<<< Updated upstream
-=======
-
     private void Notificate()
     {
         _notification.SetMessage("newGeneratorNotification");
@@ -176,5 +178,4 @@ public class GeneratorSO : SerializableScriptableObject
         OnShopNotificationEvent.RaiseEvent(_notification);
 
     }
->>>>>>> Stashed changes
 }

@@ -89,8 +89,6 @@ public class NotifyMessageUI : MonoBehaviour
         _localizedStringEvent.RefreshString();
     }
 
-<<<<<<< Updated upstream
-=======
     public async void SetShopMessage(INotification notification)
     {
         _closePosition = new Vector2(_parentRectTransform.rect.width, 0f);
@@ -106,8 +104,6 @@ public class NotifyMessageUI : MonoBehaviour
         await Awaitable.WaitForSecondsAsync(_easeDuration);
         gameObject.SetActive(false);
     }
-
->>>>>>> Stashed changes
 
     private IEnumerator UpdateTimerCoroutine(BaseRandomEventSO randomEvent)
     {
