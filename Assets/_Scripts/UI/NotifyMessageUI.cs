@@ -91,6 +91,7 @@ public class NotifyMessageUI : MonoBehaviour
 
     public async void SetShopMessage(INotification notification)
     {
+        _image.sprite = notification.Sprite;
         _closePosition = new Vector2(_parentRectTransform.rect.width, 0f);
         transform.localPosition = _closePosition;
         transform.DOLocalMoveX(_openPosition.x, _easeDuration).SetEase(Ease.InOutSine);

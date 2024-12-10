@@ -25,7 +25,7 @@ public class GeneratorSO : SerializableScriptableObject
     [SerializeField] private FloatVariableSO _generatorProductionMultiplier;
     [Header("Random Event Total Multiplier")]
     [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
-
+    [SerializeField] private Sprite _notificationIcon;
     [SerializeField] private NotificationGameEvent OnShopNotificationEvent;
 
     private DoubleVariableSO _bulkCost;
@@ -172,7 +172,7 @@ public class GeneratorSO : SerializableScriptableObject
     private void Notificate()
     {
         _notification.SetMessage("newGeneratorNotification");
+        _notification.SetSprite(_notificationIcon);
         OnShopNotificationEvent.RaiseEvent(_notification);
-
     }
 }
