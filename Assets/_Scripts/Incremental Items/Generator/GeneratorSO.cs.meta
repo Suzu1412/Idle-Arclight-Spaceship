@@ -4,11 +4,13 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - _baseCost: {instanceID: 0}
-  - _production: {instanceID: 0}
+  - _image: {instanceID: 0}
+  - _gemCostMultiplier: {fileID: 11400000, guid: d4159609c13d586439af8e9e600a0681, type: 2}
+  - _gemProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
   - _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
   - _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
-  - OnShopNotificationEvent: {fileID: 11400000, guid: fcc3fc94497431d4ab0a3e2ebf062ea7, type: 2}
+  - OnShopNotificationEvent: {fileID: 11400000, guid: 22013b92c0172b742ae78cfa53b3643a, type: 2}
+  - _notificationIcon: {fileID: 21300000, guid: f0e4acf0c5a0d4ed6979cdb1edb5d040, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

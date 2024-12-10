@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e540d979937a994ebab8a4f41968310, type: 3}
+  m_Name: GeneratorSO
+  m_EditorClassIdentifier: 
+  _guid: 
+  _name: 
+  _image: {fileID: 0}
+  _amountOwned: 0
+  _cost: 0
+  _costRequirement: 0
+  _gemCostMultiplier: {fileID: 0}
+  _priceGrowthRate: 0
+  _baseProduction: 0
+  _gemProductionMultiplier: {fileID: 0}
+  _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
+  _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
+  OnShopNotificationEvent: {fileID: 0}
+  _notificationIcon: {fileID: 0}
+  _isUnlocked: 0
