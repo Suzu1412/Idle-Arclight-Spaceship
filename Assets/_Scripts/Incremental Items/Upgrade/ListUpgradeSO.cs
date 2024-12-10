@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ListUpgradeSO", menuName = "Scriptable Objects/Incremental/Upgrade/ListUpgradeSO")]
@@ -8,12 +9,25 @@ public class ListUpgradeSO : ScriptableObject
 
     public List<BaseUpgradeSO> Upgrades => _upgrades;
 
+    private void OnEnable()
+    {
+        //OrderByCost();
+    }
+
     public BaseUpgradeSO Find(string guid)
     {
         return _upgrades.Find(x => x.Guid == guid);
     }
 
-    [ContextMenu("Load All")]
+    [ContextMenu(itemName: "Order By Cost")]
+    private void OrderByCost()
+    {
+        _upgrades = _upgrades.OrderBy(x => x.Cost.Value).ToList();
+    }
+
+
+
+    [ContextMenu(itemName: "Load All")]
     private void LoadAll()
     {
 #if UNITY_EDITOR

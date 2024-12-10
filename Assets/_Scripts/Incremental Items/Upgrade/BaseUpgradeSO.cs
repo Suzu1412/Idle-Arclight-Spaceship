@@ -16,8 +16,14 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
     [SerializeField] protected bool _isApplied;
     [SerializeField] protected bool _isRequirementMet;
 
+    [Header("Notification")]
+    [SerializeField] private NotificationGameEvent OnShopNotificationEvent;
+    [SerializeField] private Sprite _notificationIcon;
+
 
     protected FormattedNumber CostFormatted { get; private set; }
+    private NotificationSO _notification;
+
     protected bool _isDirty;
 
     public string Name => _name;
@@ -40,6 +46,9 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
         _finalCost = ScriptableObject.CreateInstance<DoubleVariableSO>();
         _finalCost.Initialize(0, 0, double.MaxValue);
         _modifierToApply.SetSource(name);
+
+        _notification = ScriptableObject.CreateInstance<NotificationSO>();
+
     }
 
 
@@ -68,6 +77,7 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
         if (CheckIfMeetRequirementToUnlock(currency))
         {
             IsRequirementMet = true;
+            Notificate();
         }
     }
 
@@ -82,4 +92,12 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
     }
 
     protected abstract bool CheckIfMeetRequirementToUnlock(double currency);
+
+    private void Notificate()
+    {
+        _notification.SetMessage("newUpgradeNotification");
+        _notification.SetSprite(_notificationIcon);
+        OnShopNotificationEvent.RaiseEvent(_notification);
+
+    }
 }

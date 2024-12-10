@@ -23,6 +23,8 @@ MonoBehaviour:
     _source: Gem On Get 3
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
   _isApplied: 0
-  _isRequirementMet: 0
+  _isRequirementMet: 1
+  OnShopNotificationEvent: {fileID: 11400000, guid: fcc3fc94497431d4ab0a3e2ebf062ea7, type: 2}
+  _notificationIcon: {fileID: 21300000, guid: be6579725c4624670bfe01bc4afe70c8, type: 3}
   _costRequirement: 250
   _variableToModify: {fileID: 11400000, guid: 9684dc626b62cd84c906f7dfd7de4bae, type: 2}

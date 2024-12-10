@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f2fc2fa01885b4e4da4b945530678b7f, type: 2}
+  - {fileID: -876546973899608171, guid: 375aa04d5f3ec7c4798384a8357d07ab, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,8 +151,10 @@ MonoBehaviour:
   _item: {fileID: 11400000, guid: eca2ace93676bbc4199d96ba71efa26a, type: 2}
   gizmoColor: {r: 1, g: 0, b: 1, a: 1}
   _soundOnPickup: {fileID: 0}
-  _movementSpeed: 5
+  _maxSpeed: 5
   _lifeTime: 10
+  _acceleration: 15
+  _deceleration: 5
 --- !u!58 &461301352558699462
 CircleCollider2D:
   m_ObjectHideFlags: 0

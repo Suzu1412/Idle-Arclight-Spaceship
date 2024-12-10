@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: d55d2816300d66f4eabb4d81f2c6c37c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _upgradeCostMultiplier: {instanceID: 0}
+  - OnProductionChangedEvent: {instanceID: 0}
+  - OnShopNotificationEvent: {fileID: 11400000, guid: fcc3fc94497431d4ab0a3e2ebf062ea7, type: 2}
+  - _variableToModify: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

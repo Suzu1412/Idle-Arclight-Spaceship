@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gem Value Upgrade 1
   m_EditorClassIdentifier: 
   _guid: 10a567fcc715e44499eadc4953fce6a4
-  _name: refinedGem
+  _name: tinyGem
   _description: GemValueMultiplier
   _cost: 200
   _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
@@ -24,5 +24,7 @@ MonoBehaviour:
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
   _isApplied: 0
   _isRequirementMet: 1
+  OnShopNotificationEvent: {fileID: 11400000, guid: fcc3fc94497431d4ab0a3e2ebf062ea7, type: 2}
+  _notificationIcon: {fileID: 21300000, guid: be6579725c4624670bfe01bc4afe70c8, type: 3}
   _costRequirement: 50
   _variableToModify: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}

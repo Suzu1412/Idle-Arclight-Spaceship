@@ -89,6 +89,25 @@ public class NotifyMessageUI : MonoBehaviour
         _localizedStringEvent.RefreshString();
     }
 
+<<<<<<< Updated upstream
+=======
+    public async void SetShopMessage(INotification notification)
+    {
+        _closePosition = new Vector2(_parentRectTransform.rect.width, 0f);
+        transform.localPosition = _closePosition;
+        transform.DOLocalMoveX(_openPosition.x, _easeDuration).SetEase(Ease.InOutSine);
+
+        _image.sprite = notification.Sprite;
+        _localizedStringEvent.StringReference.SetReference(_table, notification.Message);
+        _localizedStringEvent.RefreshString();
+
+        await Awaitable.WaitForSecondsAsync(5f);
+        transform.DOLocalMoveX(_closePosition.x, _easeDuration).SetEase(Ease.InOutSine);
+        await Awaitable.WaitForSecondsAsync(_easeDuration);
+        gameObject.SetActive(false);
+    }
+
+>>>>>>> Stashed changes
 
     private IEnumerator UpdateTimerCoroutine(BaseRandomEventSO randomEvent)
     {

@@ -225,6 +225,87 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a015cff1f95ebd4584a26886199aa8c, type: 3}
+--- !u!1001 &847977685
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1615512277431425734, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_Name
+      value: Bronze Coin Pick Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615512277431425734, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593899171388926807, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593899171388926807, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593899171388926807, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593899171388926807, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593899171388926807, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593899171388926807, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593899171388926807, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593899171388926807, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593899171388926807, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593899171388926807, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746616718134461854, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746616718134461854, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746616718134461854, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746616718134461854, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746616718134461854, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: 375aa04d5f3ec7c4798384a8357d07ab, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8ec2003a6164c9d4ab8e0c19b47da535, type: 3}
 --- !u!1 &2063966318
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,3 +541,4 @@ SceneRoots:
   - {fileID: 821656274}
   - {fileID: 353023303}
   - {fileID: 2063966319}
+  - {fileID: 847977685}

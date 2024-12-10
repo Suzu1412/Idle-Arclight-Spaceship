@@ -26,6 +26,13 @@ public class GeneratorSO : SerializableScriptableObject
     [Header("Random Event Total Multiplier")]
     [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
 
+<<<<<<< Updated upstream
+=======
+    [Header("Notification")]
+    [SerializeField] private NotificationGameEvent OnShopNotificationEvent;
+    [SerializeField] private Sprite _notificationIcon;
+
+>>>>>>> Stashed changes
     private DoubleVariableSO _bulkCost;
     private DoubleVariableSO _currentProduction;
     private DoubleVariableSO _totalProduction;
@@ -161,4 +168,15 @@ public class GeneratorSO : SerializableScriptableObject
     {
         _gemProductionMultiplier.RemoveModifier(modifier);
     }
+<<<<<<< Updated upstream
+=======
+
+    private void Notificate()
+    {
+        _notification.SetMessage("newGeneratorNotification");
+        _notification.SetSprite(_notificationIcon);
+        OnShopNotificationEvent.RaiseEvent(_notification);
+
+    }
+>>>>>>> Stashed changes
 }

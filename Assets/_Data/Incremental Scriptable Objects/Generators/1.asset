@@ -15,7 +15,11 @@ MonoBehaviour:
   _guid: 274494024297a8e44a9090bed95ba8ca
   _name: Amber
   _image: {fileID: 21300000, guid: 07f6fa132bb15334b95ec5c1e5873ddd, type: 3}
+<<<<<<< Updated upstream
   _amountOwned: 12
+=======
+  _amountOwned: 15
+>>>>>>> Stashed changes
   _cost: 10
   _costRequirement: 3
   _gemCostMultiplier: {fileID: 11400000, guid: d4159609c13d586439af8e9e600a0681, type: 2}
@@ -24,4 +28,10 @@ MonoBehaviour:
   _gemProductionMultiplier: {fileID: 11400000, guid: b2ad4b59e59d5404ab90d976994c7155, type: 2}
   _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
+<<<<<<< Updated upstream
   _isUnlocked: 0
+=======
+  OnShopNotificationEvent: {fileID: 11400000, guid: fcc3fc94497431d4ab0a3e2ebf062ea7, type: 2}
+  _notificationIcon: {fileID: 21300000, guid: f0e4acf0c5a0d4ed6979cdb1edb5d040, type: 3}
+  _isUnlocked: 1
+>>>>>>> Stashed changes
