@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour
 
     private void OnEnable()
     {
-        _disableProjectileAfterDistance = StartCoroutine(DisableProjectileAfterDistanceCoroutine());
+        //_disableProjectileAfterDistance = StartCoroutine(DisableProjectileAfterDistanceCoroutine());
     }
 
     private void FixedUpdate()

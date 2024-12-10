@@ -41,6 +41,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     public event Action OnHitStun;
     public event Action OnHit;
     public event Action OnInvulnerabilityPeriod;
+    public event Action OnDestroyGO;
     #endregion
 
     private void Awake()
@@ -142,14 +143,13 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         SetInvulnerability(true, _defaultInvulnerability);
     }
 
-    public void Death(bool invokeEvents = true)
+    public void Death(bool activateDeathEvents = true)
     {
-        if (invokeEvents)
+        if (activateDeathEvents)
         {
             OnDeath?.Invoke();
         }
-
-        //transform.parent.gameObject.SetActive(false);
+        OnDestroyGO?.Invoke();
     }
 
     public void GetHit(GameObject damageDealer)

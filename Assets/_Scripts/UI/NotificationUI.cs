@@ -11,8 +11,6 @@ public class NotificationUI : MonoBehaviour
     [SerializeField] protected ObjectPoolSettingsSO _activeQuestPool;
     [SerializeField] protected ObjectPoolSettingsSO _completeQuestPool;
     [SerializeField] protected ObjectPoolSettingsSO _randomEventPool;
-    
-
 
     private void OnEnable()
     {
@@ -36,7 +34,6 @@ public class NotificationUI : MonoBehaviour
 
     private void NotifyShopEvent(INotification notification)
     {
-        Debug.Log(message: "recibe evento");
         _shopMessagePanel.gameObject.SetActive(true);
         _shopMessagePanel.transform.SetParent(_shopMessagePanelParent, worldPositionStays: false);
         _shopMessagePanel.SetShopMessage(notification);

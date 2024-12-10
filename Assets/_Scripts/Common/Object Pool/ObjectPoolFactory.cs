@@ -76,6 +76,19 @@ public class ObjectPoolFactory : Singleton<ObjectPoolFactory>
             settings.MaxPoolSize // After max achieved destroy new objects on pool
             );
 
+        if (settings.Prewarm)
+        {
+            if (!settings.HasBeenPreWarmed)
+            {
+                for (int i = 0; i < settings.DefaultCapacity; i++)
+                {
+                    settings.Create();
+                }
+
+                settings.HasBeenPreWarmed = true;
+            }
+        }
+
         _pools.Add(poolKey, pool);
         return pool;
     }

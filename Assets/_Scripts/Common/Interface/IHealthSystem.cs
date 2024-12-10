@@ -10,6 +10,7 @@ public interface IHealthSystem : IDamageable, IHealable, IHittable
     event Action<int> OnHealed;
     event Action<int> OnDamaged;
     event Action OnDeath;
+    event Action OnDestroyGO;
     event Action OnInvulnerabilityPeriod;
     bool IsHurt { get; }
     bool IsDeath { get; }

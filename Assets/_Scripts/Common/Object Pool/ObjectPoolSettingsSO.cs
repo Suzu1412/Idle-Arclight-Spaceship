@@ -11,6 +11,8 @@ public class ObjectPoolSettingsSO : ScriptableObject
     private bool _collectionCheck = true;
     [SerializeField] private int _defaultCapacity = 10;
     [SerializeField] private int _maxPoolSize = 100;
+    [SerializeField] private bool _prewarm = false;
+    private bool _hasBeenPreWarmed = false;
 
     public ObjectPoolType Type => _type;
     public GameObject Prefab => _prefab;
@@ -18,6 +20,9 @@ public class ObjectPoolSettingsSO : ScriptableObject
     internal bool CollectionCheck => _collectionCheck;
     internal int DefaultCapacity => _defaultCapacity;
     internal int MaxPoolSize => _maxPoolSize;
+
+    internal bool Prewarm => _prewarm;
+    public bool HasBeenPreWarmed { get => _hasBeenPreWarmed; internal set => _hasBeenPreWarmed = value; }
 
     internal ObjectPooler Create()
     {
@@ -34,4 +39,9 @@ public class ObjectPoolSettingsSO : ScriptableObject
     internal void OnGet(ObjectPooler o) => o.gameObject.SetActive(true);
     internal void OnRelease(ObjectPooler o) => o.gameObject.SetActive(false);
     internal void OnDestroyPoolObject(ObjectPooler o) => Destroy(o.gameObject);
+
+    private void OnEnable()
+    {
+        _hasBeenPreWarmed = false;
+    }
 }
