@@ -25,7 +25,7 @@ public class ExplosionFeedback : Feedback
 
     public override void StartFeedback()
     {
-        ObjectPoolFactory.Spawn(_deathVFX).transform.SetPositionAndRotation(transform.parent.position, transform.parent.rotation);
+        ObjectPoolFactory.Spawn(_deathVFX).transform.position = transform.parent.position;
         _explosionSFX.PlayEvent();
     }
 }

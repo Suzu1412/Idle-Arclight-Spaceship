@@ -8,7 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MuseoModerno-ExtraBold Material
-  m_Shader: {fileID: 4800000, guid: 48bb5f55d8670e349b6e614913f9d910, type: 3}
+  m_Shader: {fileID: 4800000, guid: dd89cf5b9246416f84610a006f916af7, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -17,6 +19,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -108,6 +111,7 @@ Material:
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!28 &-2112081684617253514
 Texture2D:
   m_ObjectHideFlags: 0
@@ -118,10 +122,8 @@ Texture2D:
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
   m_IsAlphaChannelOptional: 0
-  serializedVersion: 2
+  serializedVersion: 3
   m_Width: 256
   m_Height: 256
   m_CompleteImageSize: 65536
@@ -130,7 +132,8 @@ Texture2D:
   m_MipCount: 1
   m_IsReadable: 0
   m_IsPreProcessed: 0
-  m_IgnoreMasterTextureLimit: 0
+  m_IgnoreMipmapLimit: 0
+  m_MipmapLimitGroupName: 
   m_StreamingMipmaps: 0
   m_StreamingMipmapsPriority: 0
   m_VTOnly: 0
@@ -167,14 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: MuseoModerno-CriticalNum_Red_64_Dark SDF
   m_EditorClassIdentifier: 
-  hashCode: -1376890334
-  material: {fileID: -4600244977325667205}
-  materialHashCode: 34900674
   m_Version: 1.1.0
-  m_SourceFontFileGUID: 2f3703b68435c41aab3bb9d087ca0c59
-  m_SourceFontFile_EditorRef: {fileID: 0}
-  m_SourceFontFile: {fileID: 0}
-  m_AtlasPopulationMode: 0
   m_FaceInfo:
     m_FaceIndex: 0
     m_FamilyName: MuseoModerno
@@ -197,6 +193,31 @@ MonoBehaviour:
     m_StrikethroughOffset: 13.2
     m_StrikethroughThickness: 5.12
     m_TabWidth: 17
+  m_Material: {fileID: -4600244977325667205}
+  m_SourceFontFileGUID: 2f3703b68435c41aab3bb9d087ca0c59
+  m_CreationSettings:
+    sourceFontFileName: 
+    sourceFontFileGUID: 2f3703b68435c41aab3bb9d087ca0c59
+    faceIndex: 0
+    pointSizeSamplingMode: 1
+    pointSize: 64
+    padding: 15
+    paddingMode: 0
+    packingMode: 0
+    atlasWidth: 256
+    atlasHeight: 256
+    characterSetSelectionMode: 7
+    characterSequence: 0123456789
+    referencedFontAssetGUID: d64dc76e624254135b7471c7fd5644cf
+    referencedTextAssetGUID: 
+    fontStyle: 0
+    fontStyleModifier: 0
+    renderMode: 4121
+    includeFontFeatures: 0
+  m_SourceFontFile: {fileID: 0}
+  m_SourceFontFilePath: 
+  m_AtlasPopulationMode: 0
+  InternalDynamicOS: 0
   m_GlyphTable:
   - m_Index: 749
     m_Metrics:
@@ -393,7 +414,12 @@ MonoBehaviour:
   - {fileID: -2112081684617253514}
   m_AtlasTextureIndex: 0
   m_IsMultiAtlasTexturesEnabled: 0
+  m_GetFontFeatures: 1
   m_ClearDynamicDataOnBuild: 0
+  m_AtlasWidth: 256
+  m_AtlasHeight: 256
+  m_AtlasPadding: 15
+  m_AtlasRenderMode: 4121
   m_UsedGlyphRects:
   - m_X: 0
     m_Y: 0
@@ -460,57 +486,14 @@ MonoBehaviour:
     m_Y: 150
     m_Width: 66
     m_Height: 106
-  m_fontInfo:
-    Name: 
-    PointSize: 0
-    Scale: 0
-    CharacterCount: 0
-    LineHeight: 0
-    Baseline: 0
-    Ascender: 0
-    CapHeight: 0
-    Descender: 0
-    CenterLine: 0
-    SuperscriptOffset: 0
-    SubscriptOffset: 0
-    SubSize: 0
-    Underline: 0
-    UnderlineThickness: 0
-    strikethrough: 0
-    strikethroughThickness: 0
-    TabWidth: 0
-    Padding: 0
-    AtlasWidth: 0
-    AtlasHeight: 0
-  atlas: {fileID: 0}
-  m_AtlasWidth: 256
-  m_AtlasHeight: 256
-  m_AtlasPadding: 15
-  m_AtlasRenderMode: 4121
-  m_glyphInfoList: []
-  m_KerningTable:
-    kerningPairs: []
   m_FontFeatureTable:
+    m_MultipleSubstitutionRecords: []
+    m_LigatureSubstitutionRecords: []
     m_GlyphPairAdjustmentRecords: []
-  fallbackFontAssets: []
+    m_MarkToBaseAdjustmentRecords: []
+    m_MarkToMarkAdjustmentRecords: []
+  m_ShouldReimportFontFeatures: 0
   m_FallbackFontAssetTable: []
-  m_CreationSettings:
-    sourceFontFileName: 
-    sourceFontFileGUID: 2f3703b68435c41aab3bb9d087ca0c59
-    pointSizeSamplingMode: 1
-    pointSize: 64
-    padding: 15
-    packingMode: 0
-    atlasWidth: 256
-    atlasHeight: 256
-    characterSetSelectionMode: 7
-    characterSequence: 0123456789
-    referencedFontAssetGUID: d64dc76e624254135b7471c7fd5644cf
-    referencedTextAssetGUID: 
-    fontStyle: 0
-    fontStyleModifier: 0
-    renderMode: 4121
-    includeFontFeatures: 0
   m_FontWeightTable:
   - regularTypeface: {fileID: 0}
     italicTypeface: {fileID: 0}
@@ -539,3 +522,30 @@ MonoBehaviour:
   boldSpacing: 7
   italicStyle: 35
   tabSize: 10
+  m_fontInfo:
+    Name: 
+    PointSize: 0
+    Scale: 0
+    CharacterCount: 0
+    LineHeight: 0
+    Baseline: 0
+    Ascender: 0
+    CapHeight: 0
+    Descender: 0
+    CenterLine: 0
+    SuperscriptOffset: 0
+    SubscriptOffset: 0
+    SubSize: 0
+    Underline: 0
+    UnderlineThickness: 0
+    strikethrough: 0
+    strikethroughThickness: 0
+    TabWidth: 0
+    Padding: 0
+    AtlasWidth: 0
+    AtlasHeight: 0
+  m_glyphInfoList: []
+  m_KerningTable:
+    kerningPairs: []
+  fallbackFontAssets: []
+  atlas: {fileID: 0}
