@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3829470634129112322}
   - component: {fileID: 8699735649020416086}
   - component: {fileID: 3787730755600848970}
+  - component: {fileID: 9220771128965568674}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -141,6 +142,23 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
+--- !u!114 &9220771128965568674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061486559714175941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseProfile: {fileID: 11400000, guid: 892e8f3c1345abb469a9eae90abc53d0, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0
+  FrequencyGain: 0
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1121084776460962211
 GameObject:
   m_ObjectHideFlags: 0
