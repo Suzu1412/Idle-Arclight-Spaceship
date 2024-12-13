@@ -93,7 +93,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
+  m_fontSize: 26.8
   m_fontSizeBase: 25.2
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -153,7 +153,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:4393d53c1e2fb70459aa954af38d89fd
     m_TableEntryReference:
-      m_KeyId: 9
+      m_KeyId: 94
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -161,6 +161,15 @@ MonoBehaviour:
     - name: multiplier
       variable:
         rid: 6827601619408388441
+    - name: gems
+      variable:
+        rid: 2699284820629913796
+    - name: shop
+      variable:
+        rid: 2699284820629913797
+    - name: amount
+      variable:
+        rid: 2699284820629913829
   m_FormatArguments: []
   m_UpdateString:
     m_PersistentCalls:
@@ -180,6 +189,32 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 2699284820629913796
+      type: {class: LocalizedString, ns: UnityEngine.Localization, asm: Unity.Localization}
+      data:
+        m_TableReference:
+          m_TableCollectionName: GUID:4393d53c1e2fb70459aa954af38d89fd
+        m_TableEntryReference:
+          m_KeyId: 6
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - rid: 2699284820629913797
+      type: {class: LocalizedString, ns: UnityEngine.Localization, asm: Unity.Localization}
+      data:
+        m_TableReference:
+          m_TableCollectionName: GUID:4393d53c1e2fb70459aa954af38d89fd
+        m_TableEntryReference:
+          m_KeyId: 15
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - rid: 2699284820629913829
+      type: {class: StringVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 0
     - rid: 6827601619408388441
       type: {class: FloatVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:

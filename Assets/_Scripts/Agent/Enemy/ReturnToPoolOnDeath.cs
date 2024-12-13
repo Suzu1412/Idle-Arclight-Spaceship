@@ -8,7 +8,7 @@ public class ReturnToPoolOnDeath : MonoBehaviour
 
     private void Start()
     {
-        _pool = GetComponentInParent<ObjectPooler>();
+        _pool = GetComponent<ObjectPooler>();
     }
 
     private void OnEnable()

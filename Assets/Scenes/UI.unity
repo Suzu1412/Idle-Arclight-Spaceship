@@ -390,6 +390,18 @@ PrefabInstance:
       propertyPath: _shopMessagePool
       value: 
       objectReference: {fileID: 11400000, guid: 2f862af61b850544ca2082b42e6ba135, type: 2}
+    - target: {fileID: 3925837635754914518, guid: 341bb524c5f806248bc4b205fa359265, type: 3}
+      propertyPath: _offlineEventPool
+      value: 
+      objectReference: {fileID: 11400000, guid: e079f0fa0121a2a499c65c57889df5d8, type: 2}
+    - target: {fileID: 3925837635754914518, guid: 341bb524c5f806248bc4b205fa359265, type: 3}
+      propertyPath: OnShopNotificationEventListener
+      value: 
+      objectReference: {fileID: 11400000, guid: c4b034a6f5ace834db84097862f01f4f, type: 2}
+    - target: {fileID: 3925837635754914518, guid: 341bb524c5f806248bc4b205fa359265, type: 3}
+      propertyPath: OnOfflineNotificationEventListener
+      value: 
+      objectReference: {fileID: 11400000, guid: bb818994cd463df4fb37ebad0dc6f685, type: 2}
     - target: {fileID: 4728558335655224980, guid: 341bb524c5f806248bc4b205fa359265, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

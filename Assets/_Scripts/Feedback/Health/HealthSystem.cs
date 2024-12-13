@@ -122,6 +122,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
     public void Damage(int amount)
     {
+
         if (amount <= 0f || _isInvulnerable) return;
 
         if (_health == null)
@@ -132,7 +133,6 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         OnHit?.Invoke();
         OnDamaged?.Invoke(amount);
         OnDamagedEvent?.RaiseEvent(amount);
-
 
         if (_health.Value <= 0)
         {
@@ -159,7 +159,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         OnHitStun?.Invoke();
     }
 
-    public void SetInvulnerability(bool isInvulnerable, float duration)
+    public async void SetInvulnerability(bool isInvulnerable, float duration)
     {
         _isInvulnerable = isInvulnerable;
         duration = Mathf.Clamp(duration, 0f, 5f);
@@ -167,14 +167,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         _invulnerabilityDuration = duration;
         OnInvulnerabilityPeriod?.Invoke();
 
-        if (_invulnerabilityPeriodCoroutine != null) StopCoroutine(_invulnerabilityPeriodCoroutine);
-        _invulnerabilityPeriodCoroutine = StartCoroutine(InvulnerabilityPeriodCoroutine());
-    }
-
-    private IEnumerator InvulnerabilityPeriodCoroutine()
-    {
-        _isInvulnerable = true;
-        yield return Helpers.GetWaitForSeconds(_invulnerabilityDuration);
+        await Awaitable.WaitForSecondsAsync(duration);
         _isInvulnerable = false;
     }
 

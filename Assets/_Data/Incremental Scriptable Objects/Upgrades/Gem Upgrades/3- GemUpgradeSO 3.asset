@@ -24,7 +24,7 @@ MonoBehaviour:
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
   _isApplied: 0
   _isRequirementMet: 0
-  OnShopNotificationEvent: {fileID: 11400000, guid: fcc3fc94497431d4ab0a3e2ebf062ea7, type: 2}
+  OnShopNotificationEvent: {fileID: 11400000, guid: 22013b92c0172b742ae78cfa53b3643a, type: 2}
   _notificationIcon: {fileID: 21300000, guid: be6579725c4624670bfe01bc4afe70c8, type: 3}
   _generator: {fileID: 11400000, guid: c2f46407d0a839a46bd2f0eb1f4f2833, type: 2}
   _amountRequired: 50

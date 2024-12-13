@@ -7,11 +7,6 @@ public class DamageDealer : MonoBehaviour
     private IAgent _agent;
     internal IAgent Agent => _agent ??= GetComponentInParent<IAgent>();
 
-    private void Start()
-    {
-        _pool = GetComponentInParent<ObjectPooler>();
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<IHittable>(out var hittable))

@@ -17,6 +17,11 @@ MonoBehaviour:
     audioClips:
     - {fileID: 8300000, guid: ddcbae248804f634ab29539bda24c459, type: 3}
     - {fileID: 8300000, guid: a6478847f23ba3a4688d061a070e6860, type: 3}
+    - {fileID: 8300000, guid: 9ff12f0e4d2e12b49b8db270db8fbba9, type: 3}
+    - {fileID: 8300000, guid: 3f4cafe1df058154ba70cc3bc5c7e46f, type: 3}
+    - {fileID: 8300000, guid: 81e2e8d1ac48ad24a81574d7218468fa, type: 3}
+    - {fileID: 8300000, guid: 74a755bc65acaea4b95119848693a9a8, type: 3}
+    - {fileID: 8300000, guid: 5c3594caf7c64004fb21593c04de8e17, type: 3}
   _audioChannelEvent: {fileID: 11400000, guid: 9ec582eee007ecb4f9ae5f186b2ed60e, type: 2}
   _loop: 0
   _playOnAwake: 1

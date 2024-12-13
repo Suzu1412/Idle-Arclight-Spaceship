@@ -45,6 +45,11 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [SerializeField] private ListGeneratorSO _generators;
     [SerializeField] private ListUpgradeSO _upgrades;
 
+    [Header("Notification")]
+    [SerializeField] private NotificationSO _offlineNotification;
+    [SerializeField] private NotificationGameEvent _offlineNotificationEvent;
+
+
     [Header("Save Data")]
     private FormattedNumber UpdateCurrencyFormatted;
     private FormattedNumber UpdateProductionFormatted;
@@ -283,11 +288,12 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         production *= _productionOfflineMultiplier.Value;
 
         var productionOffline = FormatNumber.FormatDouble(production);
+        _offlineNotification.SetAmount(productionOffline.GetFormat());
 
-        Debug.Log($"produccion desde la ultima conexion: {productionOffline.GetFormat()} - segundos transcurridos: {seconds}");
         IncrementPerSecond(production);
 
         OnUpdateProductionFormatted.RaiseEvent(FormatNumber.FormatDouble(production, UpdateProductionFormatted));
-
+        if (production == 0f) return; 
+        _offlineNotificationEvent.RaiseEvent(_offlineNotification);
     }
 }

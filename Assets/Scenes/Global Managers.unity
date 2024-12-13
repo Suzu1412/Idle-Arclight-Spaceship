@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e36efbef95a76d4cbefd9263706df3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialDelay: 0
-  _delayBetweenSpawns: 1
+  _initialDelay: 25
+  _delayBetweenSpawns: 10
   _placementStrategy: {fileID: 11400000, guid: a0e8ac4c9ba61fc4daf23a4c8ef4a945, type: 2}
   _enemyConfigs:
   - {fileID: 11400000, guid: f2fd5ddeb69d35249aa664060407fea5, type: 2}
@@ -226,9 +226,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 3333a232e7612214f89041268b3a20cd, type: 2}
     - target: {fileID: 2810333893229376637, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
+      propertyPath: _offlineNotification
+      value: 
+      objectReference: {fileID: 11400000, guid: 63374f083f9110345b3b516345cb52d1, type: 2}
+    - target: {fileID: 2810333893229376637, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
       propertyPath: _gemGeneratorTotalAmount
       value: 
       objectReference: {fileID: 11400000, guid: e78fee59deefe49038c0b57c7f497566, type: 2}
+    - target: {fileID: 2810333893229376637, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
+      propertyPath: _offlineNotificationEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d309f1012e55bb40bab4b5d5493bc31, type: 2}
     - target: {fileID: 8180101144524932358, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
       propertyPath: m_Name
       value: Currency Manager
@@ -417,8 +425,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initialDelay: 3
-  _minDelayBetweenSpawns: 0.25
-  _maxDelayBetweenSpawns: 1
+  _minDelayBetweenSpawns: {fileID: 11400000, guid: 2de357555a31174478dae732ee2ba5c4, type: 2}
+  _maxDelayBetweenSpawns: {fileID: 11400000, guid: 1e5b0151d4e46b34fa6b1bde14d1176d, type: 2}
   _placementStrategy: {fileID: 11400000, guid: a0e8ac4c9ba61fc4daf23a4c8ef4a945, type: 2}
   _gemConfigs:
   - {fileID: 11400000, guid: eac2c2c79b35a764f9ab740a335e110b, type: 2}

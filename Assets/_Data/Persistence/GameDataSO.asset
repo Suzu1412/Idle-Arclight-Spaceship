@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1e6d47ff7df2d46a7fe68082b49070, type: 3}
   m_Name: GameDataSO
   m_EditorClassIdentifier: 
-  _name: demo0.13
+  _name: demo0.14
   GameData:
-    Name: d27
+    Name: demo0.14
     CurrentSceneGroupID: 0
     CurrentGameState: 0
     Players:
@@ -23,31 +23,31 @@ MonoBehaviour:
       _isActive: 1
       _isUnlocked: 1
     CurrencyData:
-      _totalCurrency: 22618
-      _gameTotalCurrency: 58408.404977416816
+      _totalCurrency: 3
+      _gameTotalCurrency: 3
       _amountToBuy: 1
-      _lastActiveDateTime: 638691222861340340
+      _lastActiveDateTime: 638695273839837706
     Generators:
     - _guid: 274494024297a8e44a9090bed95ba8ca
-      _amount: 25
-      _totalProduction: 367.5
+      _amount: 0
+      _totalProduction: 0
       _isUnlocked: 1
-    - _guid: 45a9c9cc35838824097ca45e92e5a7d8
-      _amount: 13
-      _totalProduction: 1193.4
-      _isUnlocked: 1
+    - _guid: 7736daddc064a4f448a412fcb6552203
+      _amount: 0
+      _totalProduction: 0
+      _isUnlocked: 0
     - _guid: c2f46407d0a839a46bd2f0eb1f4f2833
-      _amount: 10
-      _totalProduction: 2925.8
-      _isUnlocked: 1
+      _amount: 0
+      _totalProduction: 0
+      _isUnlocked: 0
     - _guid: c6f2163c941647e43b126ab9364ff53c
       _amount: 0
       _totalProduction: 0
-      _isUnlocked: 1
+      _isUnlocked: 0
     - _guid: 5ec76d4159cb8ea42996331c6f423866
       _amount: 0
       _totalProduction: 0
-      _isUnlocked: 1
+      _isUnlocked: 0
     - _guid: 185c4e8e82a9f734a9848a5618aa39c9
       _amount: 0
       _totalProduction: 0
@@ -89,64 +89,79 @@ MonoBehaviour:
       _totalProduction: 0
       _isUnlocked: 0
     Upgrades:
+    - _guid: 61f26c90e80d9284e804f81a46775726
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: 7f1b648d129f3054fa26b934bd0494ee
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: fac3d700d1e36ee44b42def00e8befda
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: b31f95d6cb4a7424aa345ce27319f3cc
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: d7ccb34be9cbb7e4aaffa106f6d23b5e
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: 24371039a8fe1ef4e8bdae7913182453
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: 811cec6e8809b61489e2ca08eb51e2d2
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: 46cbcbac9d6cff741ac5f1dade5ec10a
+      _isRequirementMet: 0
+      _isApplied: 0
     - _guid: f2e35f9103f93854ea7bbd7299c87324
-      _isRequirementMet: 1
-      _isApplied: 1
-    - _guid: 7fbce578183834ebf892afc3840dc82b
-      _isRequirementMet: 1
-      _isApplied: 1
-    - _guid: 6d46c4e65d7a16e4e92f450ba06a79bf
-      _isRequirementMet: 1
-      _isApplied: 1
-    - _guid: 12425dd5a35477a4e838e8fa9be7eb55
-      _isRequirementMet: 1
-      _isApplied: 0
-    - _guid: 81e0c2dab29a7014e94b3f38f9fa5e66
-      _isRequirementMet: 1
-      _isApplied: 0
-    - _guid: f102626efd735bb4aaa3b3dd68834672
       _isRequirementMet: 0
       _isApplied: 0
-    - _guid: 9230821aed781084facff6cf7ee277f8
-      _isRequirementMet: 0
-      _isApplied: 0
-    - _guid: 0898ae2cb22bf477d90aa09cfa9ece7a
+    - _guid: f61c227f58b14e2429fd436a75433c3d
       _isRequirementMet: 0
       _isApplied: 0
     - _guid: 10a567fcc715e44499eadc4953fce6a4
-      _isRequirementMet: 1
-      _isApplied: 0
-    - _guid: f61c227f58b14e2429fd436a75433c3d
-      _isRequirementMet: 1
-      _isApplied: 1
-    - _guid: 05d64809dc3ddec48ab7a551a42c690b
-      _isRequirementMet: 1
-      _isApplied: 1
-    - _guid: f09f823221d1ea04ab352f252a9235a6
       _isRequirementMet: 0
       _isApplied: 0
-    - _guid: b67c77ad3e468e64e9ca4edb3e5bd1c0
+    - _guid: 7fbce578183834ebf892afc3840dc82b
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: 05d64809dc3ddec48ab7a551a42c690b
       _isRequirementMet: 0
       _isApplied: 0
     - _guid: d3e1e7a8b3ac0794486a1892c3d4320d
-      _isRequirementMet: 1
-      _isApplied: 1
-    - _guid: cfaa1ba68a8bd4cfab372fc834aa3010
       _isRequirementMet: 0
       _isApplied: 0
-    - _guid: 81dc54f011873954f82c7bf40fad1948
+    - _guid: 6d46c4e65d7a16e4e92f450ba06a79bf
       _isRequirementMet: 0
       _isApplied: 0
     - _guid: 2e87a15490b0c714e9520d0362bf2d41
-      _isRequirementMet: 1
-      _isApplied: 1
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: cfaa1ba68a8bd4cfab372fc834aa3010
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: f09f823221d1ea04ab352f252a9235a6
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: 12425dd5a35477a4e838e8fa9be7eb55
+      _isRequirementMet: 0
+      _isApplied: 0
     - _guid: bfe340b0e07574548b53e750abd04e57
       _isRequirementMet: 0
       _isApplied: 0
     - _guid: 9d23abc4f6a6a473186003f2377a128f
       _isRequirementMet: 0
       _isApplied: 0
+    - _guid: 81dc54f011873954f82c7bf40fad1948
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: f102626efd735bb4aaa3b3dd68834672
+      _isRequirementMet: 0
+      _isApplied: 0
     - _guid: 0116d532c8fedf5458f55a50b80cc84b
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: 81e0c2dab29a7014e94b3f38f9fa5e66
       _isRequirementMet: 0
       _isApplied: 0
     - _guid: 183bca7b51206da40be94345c9b58eaa
@@ -155,10 +170,19 @@ MonoBehaviour:
     - _guid: c144c91b2fbf30648a15ba41b74a8b07
       _isRequirementMet: 0
       _isApplied: 0
+    - _guid: 8bcbe59832683704eb1815159e19a866
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: 9230821aed781084facff6cf7ee277f8
+      _isRequirementMet: 0
+      _isApplied: 0
     - _guid: 897608e90cacbfa47bd5285f0809203b
       _isRequirementMet: 0
       _isApplied: 0
-    - _guid: 8bcbe59832683704eb1815159e19a866
+    - _guid: b67c77ad3e468e64e9ca4edb3e5bd1c0
+      _isRequirementMet: 0
+      _isApplied: 0
+    - _guid: 0898ae2cb22bf477d90aa09cfa9ece7a
       _isRequirementMet: 0
       _isApplied: 0
     - _guid: 3f9b9c8f4fbc96245ac764250ec9b542

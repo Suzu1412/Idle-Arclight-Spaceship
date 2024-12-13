@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deathVFX: {fileID: 11400000, guid: bfaf524f62273094eb74b090f1960bef, type: 2}
+  _explosionSFX: {fileID: 0}
 --- !u!114 &1083786016332213563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +188,6 @@ GameObject:
   m_Component:
   - component: {fileID: 542082732830502297}
   - component: {fileID: 8924316630225304020}
-  - component: {fileID: 501859268444439546}
   m_Layer: 9
   m_Name: Shy Enemy
   m_TagString: Untagged
@@ -223,19 +223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8b19fafcfb713429f71a7a5122bab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &501859268444439546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3502203731380140319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50972e85904910145899e8c431f78169, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: 5d48b490eecca48ddb90c135781ccbed, type: 2}
 --- !u!1 &5324876068420697187
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +412,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1604a5a525758844483e7faa5a5e2e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 0}
+  _leftBounds: -2.3
+  _rightBounds: 2.3
+  _topBounds: 3
+  _bottomBounds: -3
+  _hasBoundaries: 0
 --- !u!114 &1383294549933778088
 MonoBehaviour:
   m_ObjectHideFlags: 0

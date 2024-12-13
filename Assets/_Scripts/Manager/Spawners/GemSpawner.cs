@@ -5,8 +5,9 @@ using UnityEngine;
 public class GemSpawner : MonoBehaviour
 {
     [SerializeField] private float _initialDelay = 3f;
-    [SerializeField] private float _minDelayBetweenSpawns = 0.25f;
-    [SerializeField] private float _maxDelayBetweenSpawns = 1f;
+    [SerializeField] private FloatVariableSO _minDelayBetweenSpawns;
+    [SerializeField] private FloatVariableSO _maxDelayBetweenSpawns;
+
     private float _delayBetweenSpawns;
     [SerializeField] private BasePlacementStrategySO _placementStrategy;
     [SerializeField] private List<GemConfigSO> _gemConfigs;
@@ -46,7 +47,7 @@ public class GemSpawner : MonoBehaviour
             gem.GetComponent<ItemPickUp>().EnableMagnet(true);
 
 
-            _delayBetweenSpawns = Random.Range(_minDelayBetweenSpawns, _maxDelayBetweenSpawns);
+            _delayBetweenSpawns = Random.Range(_minDelayBetweenSpawns.Value, _maxDelayBetweenSpawns.Value);
             yield return Helpers.GetWaitForSeconds(_delayBetweenSpawns);
         }
 

@@ -22,6 +22,10 @@ public class NotifyMessageUI : MonoBehaviour
     private float _duration;
     private FloatVariable _multiplierVariable;
     private FloatVariable _durationVariable;
+    private StringVariable _amountVariable;
+    private LocalizedString _gemsLocalized;
+    private LocalizedString _shopLocalized;
+
     [SerializeField] private float _easeDuration = 0.4f;
     public ObjectPooler Pool => _pool = _pool != null ? _pool : gameObject.GetOrAdd<ObjectPooler>();
 
@@ -33,6 +37,7 @@ public class NotifyMessageUI : MonoBehaviour
 
         GetMultiplierVariable();
         GetDurationVariable();
+        GetAmountVariable();
 
     }
 
@@ -73,6 +78,20 @@ public class NotifyMessageUI : MonoBehaviour
         }
     }
 
+    private void GetAmountVariable()
+    {
+        if (!_localizedString.TryGetValue("amount", out var variable))
+        {
+            _amountVariable = new StringVariable();
+            _localizedString.Add("amount", _multiplierVariable);
+        }
+        else
+        {
+            _amountVariable = variable as StringVariable;
+        }
+    }
+
+
     public void SetRandomEvent(BaseRandomEventSO randomEvent)
     {
         _image.sprite = randomEvent.Image;
@@ -97,6 +116,25 @@ public class NotifyMessageUI : MonoBehaviour
         transform.DOLocalMoveX(_openPosition.x, _easeDuration).SetEase(Ease.InOutSine);
 
         _localizedStringEvent.StringReference.SetReference(_table, notification.Message);
+        _localizedStringEvent.RefreshString();
+
+        await Awaitable.WaitForSecondsAsync(5f);
+        transform.DOLocalMoveX(_closePosition.x, _easeDuration).SetEase(Ease.InOutSine);
+        await Awaitable.WaitForSecondsAsync(_easeDuration);
+        gameObject.SetActive(false);
+    }
+
+    public async void SetOfflineMessage(INotification notification)
+    {
+        _closePosition = new Vector2(_parentRectTransform.rect.width, 0f);
+        transform.localPosition = _closePosition;
+        transform.DOLocalMoveX(_openPosition.x, _easeDuration).SetEase(Ease.InOutSine);
+
+        _localizedStringEvent.StringReference.SetReference(_table, notification.Message);
+
+        Debug.Log(notification.Amount);
+
+        _amountVariable.Value = notification.Amount;
         _localizedStringEvent.RefreshString();
 
         await Awaitable.WaitForSecondsAsync(5f);

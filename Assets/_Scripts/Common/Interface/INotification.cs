@@ -1,4 +1,3 @@
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public interface INotification 
@@ -7,14 +6,14 @@ public interface INotification
 
     public float Duration { get; }
 
-    public float Amount { get; }
+    public string Amount { get; }
     public float Multiplier { get; }
     public Sprite Sprite { get; }
 
     public void SetMessage(string message);
 
     public void SetDuration(float duration);
-    public void SetAmount(float amount);
+    public void SetAmount(string amount);
 
     public void SetMultiplier(float multiplier);
 

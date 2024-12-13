@@ -404,27 +404,33 @@ MonoBehaviour:
   - m_Id: 89
     m_Localized: "Se ha agregado una nueva misi\xF3n"
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388418
   - m_Id: 90
-    m_Localized: Se ha agregado un nuevo generador
+    m_Localized: Se ha agregado un nuevo generador a {shop}
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388418
   - m_Id: 91
-    m_Localized: Se ha agregado una nueva mejora
+    m_Localized: Se ha agregado una nueva mejora a {shop}
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388418
   - m_Id: 92
     m_Localized: "{upgrade} est\xE1 disponible para comprar"
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388418
   - m_Id: 93
     m_Localized: "{gem} est\xE1 disponible para comprar"
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388418
   - m_Id: 94
-    m_Localized: '{amount} fue producido mientras estabas desconectado'
+    m_Localized: '{amount} {gems} fue producido mientras estabas desconectado'
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388418
   - m_Id: 95
     m_Localized: "Se ha completado la misi\xF3n"
     m_Metadata:
@@ -434,7 +440,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 216
-    m_Localized: " Im\xE1n peque\xF1o"
+    m_Localized: "Im\xE1n peque\xF1o"
     m_Metadata:
       m_Items: []
   - m_Id: 217
@@ -493,7 +499,7 @@ MonoBehaviour:
     m_Localized: Gema de lujo
     m_Metadata:
       m_Items: []
-  - m_Id: 6575623336161282
+  - m_Id: 7588531721531392
     m_Localized: Los PicaGemas
     m_Metadata:
       m_Items: []
@@ -554,3 +560,9 @@ MonoBehaviour:
         - id: 10
         - id: 13
         - id: 14
+        - id: 93
+        - id: 92
+        - id: 91
+        - id: 94
+        - id: 89
+        - id: 90

@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 183957404870945744}
   - component: {fileID: 8985400725948870505}
   - component: {fileID: 8514310416745343470}
-  m_Layer: 9
+  m_Layer: 16
   m_Name: Damage Dealer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

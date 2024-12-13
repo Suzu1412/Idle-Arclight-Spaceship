@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9812b6302fdbfe34481499843f00db24, type: 3}
   m_Name: PickUp Radius
   m_EditorClassIdentifier: 
-  _baseValue: 2
+  _baseValue: 0.25
   _minValue: 0.25
   _maxValue: 2
   _modifiers: []
-  _value: 2
+  _value: 0.25

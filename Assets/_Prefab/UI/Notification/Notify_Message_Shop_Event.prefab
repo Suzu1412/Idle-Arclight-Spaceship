@@ -161,6 +161,12 @@ MonoBehaviour:
     - name: multiplier
       variable:
         rid: 6827601619408388441
+    - name: gems
+      variable:
+        rid: 2699284820629913791
+    - name: shop
+      variable:
+        rid: 2699284820629913792
   m_FormatArguments: []
   m_UpdateString:
     m_PersistentCalls:
@@ -180,6 +186,28 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 2699284820629913791
+      type: {class: LocalizedString, ns: UnityEngine.Localization, asm: Unity.Localization}
+      data:
+        m_TableReference:
+          m_TableCollectionName: GUID:4393d53c1e2fb70459aa954af38d89fd
+        m_TableEntryReference:
+          m_KeyId: 6
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - rid: 2699284820629913792
+      type: {class: LocalizedString, ns: UnityEngine.Localization, asm: Unity.Localization}
+      data:
+        m_TableReference:
+          m_TableCollectionName: GUID:4393d53c1e2fb70459aa954af38d89fd
+        m_TableEntryReference:
+          m_KeyId: 15
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
     - rid: 6827601619408388441
       type: {class: FloatVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
       data:
