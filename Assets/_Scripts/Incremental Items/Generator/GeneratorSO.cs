@@ -108,7 +108,7 @@ public class GeneratorSO : SerializableScriptableObject
         return _currentProduction.Value;
     }
 
-    public double GetBulkCost(int amountTobuy)
+    public double GetBulkCost(int amountTobuy = 1)
     {
         _bulkCost.Value = 0;
 
@@ -174,5 +174,35 @@ public class GeneratorSO : SerializableScriptableObject
         _notification.SetMessage("newGeneratorNotification");
         _notification.SetSprite(_notificationIcon);
         OnShopNotificationEvent.RaiseEvent(_notification);
+    }
+
+    [ContextMenu("Show Bulk Cost")]
+    private void CalculateBulkCost()
+    {
+        Debug.Log($"Generator Name: {this.Name}");
+        SetAmount(9);
+        Debug.Log($"10 Bulk Cost: {GetBulkCost()}");
+        SetAmount(24);
+        Debug.Log($"25 Bulk Cost: {GetBulkCost()}");
+        SetAmount(49);
+        Debug.Log($"50 Bulk Cost: {GetBulkCost()}");
+        SetAmount(99);
+        Debug.Log($"100 Bulk Cost: {GetBulkCost()}");
+        SetAmount(149);
+        Debug.Log($"150 Bulk Cost: {GetBulkCost()}");
+        SetAmount(199);
+        Debug.Log($"200 Bulk Cost: {GetBulkCost()}");
+        SetAmount(249);
+        Debug.Log($"250 Bulk Cost: {GetBulkCost()}");
+        SetAmount(299);
+        Debug.Log($"300 Bulk Cost: {GetBulkCost()}");
+        SetAmount(349);
+        Debug.Log($"350 Bulk Cost: {GetBulkCost()}");
+        SetAmount(399);
+        Debug.Log($"400 Bulk Cost: {GetBulkCost()}");
+        SetAmount(449);
+        Debug.Log($"450 Bulk Cost: {GetBulkCost()}");
+        SetAmount(499);
+        Debug.Log($"500 Bulk Cost: {GetBulkCost()}");
     }
 }
