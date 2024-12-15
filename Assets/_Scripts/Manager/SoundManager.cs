@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Events;
@@ -194,13 +195,15 @@ public class SoundManager : MonoBehaviour, ISaveable
     private float MixerValueToNormalized(float mixerValue)
     {
         // We're assuming the range [-80dB to 0dB] becomes [0 to 1]
-        return 1f + (mixerValue / 80f);
+        return Mathf.Log10(1 + 9 * mixerValue) / Mathf.Log10(10);
+        //return 1f + (mixerValue / 80f);
     }
     private float NormalizedToMixerValue(float normalizedValue)
     {
         // We're assuming the range [0 to 1] becomes [-80dB to 0dB]
         // This doesn't allow values over 0dB
-        return (normalizedValue - 1f) * 80f;
+        return Mathf.Log10(Mathf.Max(normalizedValue, 0.0001f)) * 20;
+        //return (normalizedValue - 1f) * 80f;
     }
 
 }

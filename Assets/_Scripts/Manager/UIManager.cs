@@ -7,13 +7,18 @@ using Cysharp.Text;
 public class UIManager : Singleton<UIManager>
 {
     private Coroutine _disableShopCoroutine;
+    private Coroutine _disableMenuCoroutine;
 
-    [Header("Elements")]
+    [Header("Shop Elements")]
     [SerializeField] private GameObject _generatorShopTitle;
     [SerializeField] private GameObject _upgradeShopTitle;
 
     [SerializeField] private GameObject _shopGameObject;
     [SerializeField] private RectTransform _shopPanel;
+
+    [Header("Menu Elements")]
+    [SerializeField] private GameObject _menuGameObject;
+    [SerializeField] private RectTransform _menuPanel;
 
     [Header("Settings")]
     [SerializeField] private Vector2 _openPosition;
@@ -25,6 +30,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private IntGameEvent OnChangeBuyAmountEvent;
     [Header("Bool Event Listener")]
     [SerializeField] private BoolGameEventListener OnToggleShopEventListener;
+    [SerializeField] private BoolGameEventListener OnToggleMenuEventListener;
     [Header("Int Event Listener")]
     [SerializeField] private IntGameEventListener OnChangeBuyAmountEventListener;
 
@@ -45,6 +51,10 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject _upgradeShopUI;
     [SerializeField] private Button _upgradeShopDefaultButton;
 
+    [Header("Menu UI")]
+    [SerializeField] private Button _menuDefaultButton;
+
+
 
     private void Start()
     {
@@ -57,18 +67,25 @@ public class UIManager : Singleton<UIManager>
     private void OnEnable()
     {
         OnToggleShopEventListener.Register(ToggleShop);
+        OnToggleMenuEventListener.Register(ToggleMenu);
         OnChangeBuyAmountEventListener.Register(ChangeSelectedAmountButton);
     }
 
     private void OnDisable()
     {
         OnToggleShopEventListener.DeRegister(ToggleShop);
+        OnToggleMenuEventListener.DeRegister(ToggleMenu);
         OnChangeBuyAmountEventListener.DeRegister(ChangeSelectedAmountButton);
     }
 
     public void SetGeneratorShopDefaultButton()
     {
         _generatorShopDefaultButton.Select();
+    }
+
+    public void SetSettingMenuDefaultButton()
+    {
+        _menuDefaultButton.Select();
     }
 
     public void ChangeAmountToBuy(int amount)
@@ -126,6 +143,26 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    private void ToggleMenu(bool isActive)
+    {
+        _joystick.SetActive(!isActive);
+        if (isActive)
+        {
+            if (_disableMenuCoroutine != null) StopCoroutine(_disableMenuCoroutine);
+            _menuGameObject.SetActive(true);
+            _menuPanel.DOKill();
+            _menuPanel.DOLocalMove(_openPosition, 0.4f).SetEase(Ease.InOutSine);
+            SetSettingMenuDefaultButton();
+        }
+        else
+        {
+            _menuPanel.DOKill();
+            _menuPanel.DOLocalMove(_closePosition, 0.4f).SetEase(Ease.InOutSine);
+            if (_disableMenuCoroutine != null) StopCoroutine(_disableMenuCoroutine);
+            _disableMenuCoroutine = StartCoroutine(DisableMenuElements());
+        }
+    }
+
     private IEnumerator DisableShopElements()
     {
         yield return Helpers.GetWaitForSeconds(0.4f);
@@ -133,6 +170,12 @@ public class UIManager : Singleton<UIManager>
         _upgradeShopUI.SetActive(false);
 
         _shopGameObject.SetActive(false);
+    }
+
+    private IEnumerator DisableMenuElements()
+    {
+        yield return Helpers.GetWaitForSeconds(0.4f);
+        _menuGameObject.SetActive(false);
     }
 
 }

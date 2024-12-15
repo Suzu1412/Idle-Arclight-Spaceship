@@ -707,35 +707,44 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""TogglePauseMenu"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""f3b84c30-4368-4a21-ba0e-0f0edb894dd9"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""ToggleStats"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""e703d0d7-c140-43bf-bc67-11dd49ac839a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""ToggleQuest"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""bc96ddff-a310-4aec-949a-82c6bd467b1b"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""ToggleInventory"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""f6ba0e6a-dd51-4f34-a734-f7cdfd12fcc1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""CloseAllMenus"",
+                    ""type"": ""Button"",
+                    ""id"": ""f8964501-4099-4db3-a77d-6c529aae7de2"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -852,6 +861,28 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""ToggleInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a6074732-0f47-4029-a739-e3e671f519ee"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""CloseAllMenus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0803b52-2626-402e-9faf-b76fd49b7c77"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""CloseAllMenus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -939,6 +970,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_MenuToggle_ToggleStats = m_MenuToggle.FindAction("ToggleStats", throwIfNotFound: true);
         m_MenuToggle_ToggleQuest = m_MenuToggle.FindAction("ToggleQuest", throwIfNotFound: true);
         m_MenuToggle_ToggleInventory = m_MenuToggle.FindAction("ToggleInventory", throwIfNotFound: true);
+        m_MenuToggle_CloseAllMenus = m_MenuToggle.FindAction("CloseAllMenus", throwIfNotFound: true);
     }
 
     ~@GameInput()
@@ -1160,6 +1192,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_MenuToggle_ToggleStats;
     private readonly InputAction m_MenuToggle_ToggleQuest;
     private readonly InputAction m_MenuToggle_ToggleInventory;
+    private readonly InputAction m_MenuToggle_CloseAllMenus;
     public struct MenuToggleActions
     {
         private @GameInput m_Wrapper;
@@ -1169,6 +1202,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @ToggleStats => m_Wrapper.m_MenuToggle_ToggleStats;
         public InputAction @ToggleQuest => m_Wrapper.m_MenuToggle_ToggleQuest;
         public InputAction @ToggleInventory => m_Wrapper.m_MenuToggle_ToggleInventory;
+        public InputAction @CloseAllMenus => m_Wrapper.m_MenuToggle_CloseAllMenus;
         public InputActionMap Get() { return m_Wrapper.m_MenuToggle; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1193,6 +1227,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @ToggleInventory.started += instance.OnToggleInventory;
             @ToggleInventory.performed += instance.OnToggleInventory;
             @ToggleInventory.canceled += instance.OnToggleInventory;
+            @CloseAllMenus.started += instance.OnCloseAllMenus;
+            @CloseAllMenus.performed += instance.OnCloseAllMenus;
+            @CloseAllMenus.canceled += instance.OnCloseAllMenus;
         }
 
         private void UnregisterCallbacks(IMenuToggleActions instance)
@@ -1212,6 +1249,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @ToggleInventory.started -= instance.OnToggleInventory;
             @ToggleInventory.performed -= instance.OnToggleInventory;
             @ToggleInventory.canceled -= instance.OnToggleInventory;
+            @CloseAllMenus.started -= instance.OnCloseAllMenus;
+            @CloseAllMenus.performed -= instance.OnCloseAllMenus;
+            @CloseAllMenus.canceled -= instance.OnCloseAllMenus;
         }
 
         public void RemoveCallbacks(IMenuToggleActions instance)
@@ -1296,5 +1336,6 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnToggleStats(InputAction.CallbackContext context);
         void OnToggleQuest(InputAction.CallbackContext context);
         void OnToggleInventory(InputAction.CallbackContext context);
+        void OnCloseAllMenus(InputAction.CallbackContext context);
     }
 }

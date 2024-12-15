@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d55d2816300d66f4eabb4d81f2c6c37c, type: 3}
   m_Name: Gem Value Upgrade 5
   m_EditorClassIdentifier: 
-  _guid: 10a567fcc715e44499eadc4953fce6a4
+  _guid: 05ac903e06e9dbd4c8b261dc5a423589
   _name: mediumGem
   _description: GemValueMultiplier
   _cost: 750000
@@ -23,7 +23,7 @@ MonoBehaviour:
     _source: Gem Value Upgrade 5
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
   _isApplied: 0
-  _isRequirementMet: 1
+  _isRequirementMet: 0
   OnShopNotificationEvent: {fileID: 11400000, guid: 22013b92c0172b742ae78cfa53b3643a, type: 2}
   _notificationIcon: {fileID: 21300000, guid: be6579725c4624670bfe01bc4afe70c8, type: 3}
   _costRequirement: 2500000

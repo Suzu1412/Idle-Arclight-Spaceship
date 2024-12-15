@@ -11,13 +11,13 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
     private bool _isQuestActive;
     private bool _isStatsActive;
     private bool _isInventoryActive;
-    private bool _isPauseActive;
+    private bool _isMenuActive;
     [SerializeField] private Vector2GameEventListener OnStickChangeDirectionListener = default;
     [SerializeField] private BoolGameEvent OnToggleShopEvent;
     [SerializeField] private BoolGameEvent OnToggleQuestEvent;
     [SerializeField] private BoolGameEvent OnToggleInventoryEvent;
     [SerializeField] private BoolGameEvent OnToggleStatsEvent;
-    [SerializeField] private BoolGameEvent OnTogglePauseEvent;
+    [SerializeField] private BoolGameEvent OnToggleMenuEvent;
 
     public Vector2 Direction => _direction;
     public event UnityAction<Vector2> OnMovement;
@@ -43,13 +43,20 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
         _isQuestActive = false;
         _isStatsActive = false;
         _isInventoryActive = false;
-        _isPauseActive = false;
+        _isMenuActive = false;
     }
 
     private void OnDisable()
     {
         OnStickChangeDirectionListener.DeRegister(CallOnMovementInput);
         _direction = Vector2.zero;
+    }
+
+    private void OnDestroy()
+    {
+        DisablePlayerActions();
+        DisableMenuToggleActions();
+        DisableUIActions();
     }
 
 
@@ -109,6 +116,8 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
 
     public void OnToggleShop(InputAction.CallbackContext context)
     {
+        if (_isMenuActive) return;
+
         if (context.started)
         {
             _isShopActive = !_isShopActive;
@@ -127,7 +136,23 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
 
     public void OnTogglePauseMenu(InputAction.CallbackContext context)
     {
-        //throw new System.NotImplementedException();
+        if (_isShopActive) return;
+
+
+        if (context.started)
+        {
+            _isMenuActive = !_isMenuActive;
+            OnToggleMenuEvent.RaiseEvent(_isMenuActive);
+
+            if (!_isMenuActive)
+            {
+                EnablePlayerActions();
+            }
+            else
+            {
+                DisablePlayerActions();
+            }
+        }
     }
 
     public void OnToggleStats(InputAction.CallbackContext context)
@@ -143,5 +168,16 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
     public void OnToggleInventory(InputAction.CallbackContext context)
     {
         //throw new System.NotImplementedException();
+    }
+
+    public void OnCloseAllMenus(InputAction.CallbackContext context)
+    {
+        _isShopActive = false;
+        OnToggleShopEvent.RaiseEvent(_isShopActive);
+        _isMenuActive = false;
+        OnToggleMenuEvent.RaiseEvent(_isMenuActive);
+
+        EnablePlayerActions();
+
     }
 }

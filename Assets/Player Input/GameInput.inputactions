@@ -685,35 +685,44 @@
                 },
                 {
                     "name": "TogglePauseMenu",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "f3b84c30-4368-4a21-ba0e-0f0edb894dd9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "ToggleStats",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "e703d0d7-c140-43bf-bc67-11dd49ac839a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "ToggleQuest",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "bc96ddff-a310-4aec-949a-82c6bd467b1b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "ToggleInventory",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "f6ba0e6a-dd51-4f34-a734-f7cdfd12fcc1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "CloseAllMenus",
+                    "type": "Button",
+                    "id": "f8964501-4099-4db3-a77d-6c529aae7de2",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -828,6 +837,28 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "ToggleInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a6074732-0f47-4029-a739-e3e671f519ee",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "CloseAllMenus",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a0803b52-2626-402e-9faf-b76fd49b7c77",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "CloseAllMenus",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
