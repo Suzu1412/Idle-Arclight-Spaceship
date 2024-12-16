@@ -20,8 +20,8 @@ public class SoundUI : MonoBehaviour
 
     private void OnEnable()
     {
-        _musicSlider.value = _musicVolume.Value;
         _sfxSlider.value = _sfxVolume.Value;
+        _musicSlider.value = _musicVolume.Value;
     }
 
     public void MusicVolumeChanged()

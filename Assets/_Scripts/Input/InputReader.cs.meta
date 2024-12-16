@@ -5,6 +5,11 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - OnStickChangeDirectionListener: {fileID: 11400000, guid: 0af4af002a7e3654580c934df9f6e8e8, type: 2}
+  - OnToggleShopEvent: {fileID: 11400000, guid: f079c8f1f27aa884e91aec71b88bb5a5, type: 2}
+  - OnToggleQuestEvent: {fileID: 11400000, guid: 1978d8e7fac6e6046af92b7a672df032, type: 2}
+  - OnToggleInventoryEvent: {fileID: 11400000, guid: ce6f72027cc4525499da55aa695dbf9f, type: 2}
+  - OnToggleStatsEvent: {fileID: 11400000, guid: 2ea8ab3ab3264f14780d9d8188591b0a, type: 2}
+  - OnToggleMenuEvent: {fileID: 11400000, guid: 5aef7b5fb7bb7174fb12a01bc887e87a, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

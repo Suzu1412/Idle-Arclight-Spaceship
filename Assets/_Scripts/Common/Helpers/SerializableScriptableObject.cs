@@ -16,7 +16,7 @@ public class SerializableScriptableObject : ScriptableObject
     }
 
     [ContextMenu("Generate Guid")]
-    void GenerateGuid()
+    internal void GenerateGuid()
     {
         var path = AssetDatabase.GetAssetPath(this);
         _guid = AssetDatabase.AssetPathToGUID(path);

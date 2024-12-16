@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetFrameRate: 60
+  OnFPSChangeEventListener: {fileID: 11400000, guid: 5582fbe417eab4647ac94f4f795eb88e, type: 2}

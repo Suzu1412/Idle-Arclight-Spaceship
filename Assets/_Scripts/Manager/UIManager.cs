@@ -53,7 +53,8 @@ public class UIManager : Singleton<UIManager>
 
     [Header("Menu UI")]
     [SerializeField] private Button _menuDefaultButton;
-
+    [SerializeField] private GameObject _languageSelectorPopup;
+    [SerializeField] private GameObject _deleteDataConfirmPopup;
 
 
     private void Start()
@@ -150,6 +151,8 @@ public class UIManager : Singleton<UIManager>
         {
             if (_disableMenuCoroutine != null) StopCoroutine(_disableMenuCoroutine);
             _menuGameObject.SetActive(true);
+            _languageSelectorPopup.SetActive(false);
+            //_deleteDataConfirmPopup.SetActive(false);
             _menuPanel.DOKill();
             _menuPanel.DOLocalMove(_openPosition, 0.4f).SetEase(Ease.InOutSine);
             SetSettingMenuDefaultButton();

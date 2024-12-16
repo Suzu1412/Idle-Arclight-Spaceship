@@ -14,6 +14,19 @@ public class ListUpgradeSO : ScriptableObject
         //OrderByCost();
     }
 
+    private void OnValidate()
+    {
+        var allUnique = _upgrades.GroupBy(x => x.Guid).All(g => g.Count() == 1);
+
+        if (!allUnique)
+        {
+            foreach(var upgrade in _upgrades)
+            {
+                upgrade.GenerateGuid();
+            }
+        }
+    }
+
     public BaseUpgradeSO Find(string guid)
     {
         return _upgrades.Find(x => x.Guid == guid);

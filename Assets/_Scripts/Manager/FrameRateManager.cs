@@ -2,19 +2,37 @@ using System.Collections;
 using System.Threading;
 using UnityEngine;
 
-public class FrameRateManager : MonoBehaviour
+[RequireComponent(typeof(AddSaveDataRunTimeSet))]
+public class FrameRateManager : MonoBehaviour, ISaveable
 {
     [Header("Frame Settings")]
     int MaxRate = 9999;
-    [SerializeField] private float TargetFrameRate = 60.0f;
+    [SerializeField] private float TargetFrameRate = 30f;
+    private int _currentFrameRate;
+    private float _applicationFrameRate;
     float currentFrameTime;
+
+    [SerializeField] private FloatGameEventListener OnFPSChangeEventListener;
+
     void Awake()
     {
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = MaxRate;
         currentFrameTime = Time.realtimeSinceStartup;
-        StartCoroutine(WaitForNextFrame());
+        _applicationFrameRate = (int)Screen.currentResolution.refreshRateRatio.value;
+        //StartCoroutine(WaitForNextFrame());
     }
+
+    private void OnEnable()
+    {
+        OnFPSChangeEventListener.Register(ChangeFPSLimit);
+    }
+
+    private void OnDisable()
+    {
+        OnFPSChangeEventListener.DeRegister(ChangeFPSLimit);
+    }
+
     IEnumerator WaitForNextFrame()
     {
         while (true)
@@ -28,5 +46,30 @@ public class FrameRateManager : MonoBehaviour
             while (t < currentFrameTime)
                 t = Time.realtimeSinceStartup;
         }
+    }
+
+    private void ChangeFPSLimit(float amount)
+    {
+        if (amount > 0f)
+        {
+            _currentFrameRate = (int)amount;
+        }
+        else
+        {
+            _currentFrameRate = (int)_applicationFrameRate;
+        }
+        TargetFrameRate = _currentFrameRate;
+        Application.targetFrameRate = _currentFrameRate;
+
+    }
+
+    public void SaveData(GameDataSO gameData)
+    {
+        gameData.SaveFPS(_currentFrameRate);
+    }
+
+    public void LoadData(GameDataSO gameData)
+    {
+        ChangeFPSLimit(gameData.FPSData.FPSAmount);
     }
 }

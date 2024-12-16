@@ -18,6 +18,8 @@ public class GameDataSO : ScriptableObject
 	public VolumeData VolumeData => GameData.VolumeData;
 	public LocalizationData LocalizationData => GameData.LocalizationData;
 
+	public FPSData FPSData => GameData.FPSData;
+
 	public List<GeneratorData> GetClearGeneratorDatas()
 	{
 		GameData.Generators.Clear();
@@ -74,5 +76,10 @@ public class GameDataSO : ScriptableObject
 	public void SaveCurrentScene(int currentSceneGroupID)
 	{
 		GameData.CurrentSceneGroupID = currentSceneGroupID;
+	}
+
+	public void SaveFPS(int fpsAmount)
+	{
+		GameData.FPSData = new(fpsAmount);
 	}
 }

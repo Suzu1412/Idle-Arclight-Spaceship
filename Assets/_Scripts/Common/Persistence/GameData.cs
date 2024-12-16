@@ -29,7 +29,11 @@ public class GameData
     [Header("Language")]
     public LocalizationData LocalizationData;
 
+    [Header("Target Volume")]
     public VolumeData VolumeData;
+
+    [Header("Target FPS")]
+    public FPSData FPSData;
 
 
     public void NewGame(string name)
@@ -45,6 +49,7 @@ public class GameData
         UnlockedSystems = new();
         LocalizationData = new();
         VolumeData = new();
+        FPSData = new();
     }
 
 
@@ -221,5 +226,23 @@ public class LocalizationData
     public LocalizationData(string locale)
     {
         _locale = locale;
+    }
+}
+
+[System.Serializable]
+public class FPSData
+{
+    [SerializeField] private int _fpsAmount;
+
+    public int FPSAmount => _fpsAmount;
+
+    public FPSData()
+    {
+        _fpsAmount = 0;
+    }
+
+    public FPSData(int fpsAmount)
+    {
+        _fpsAmount = fpsAmount;
     }
 }
