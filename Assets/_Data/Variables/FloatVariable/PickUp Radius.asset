@@ -12,8 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9812b6302fdbfe34481499843f00db24, type: 3}
   m_Name: PickUp Radius
   m_EditorClassIdentifier: 
-  _baseValue: 0.25
-  _minValue: 0.25
+  _baseValue: 0
+  _minValue: 0
   _maxValue: 2
-  _modifiers: []
-  _value: 0.25
+  _modifiers:
+  - _modifierType: 0
+    _value: 0.25
+    _source: Magnet Upgrade SO 1
+  - _modifierType: 0
+    _value: 0.25
+    _source: Magnet Upgrade SO 2
+  - _modifierType: 0
+    _value: 0.25
+    _source: Magnet Upgrade SO 3
+  - _modifierType: 0
+    _value: 0.25
+    _source: Magnet Upgrade SO 4
+  - _modifierType: 0
+    _value: 0.25
+    _source: Magnet Upgrade SO 5
+  _value: 1.25

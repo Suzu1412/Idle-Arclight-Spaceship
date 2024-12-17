@@ -66,11 +66,12 @@ public class SceneGroupManager
             await Awaitable.WaitForSecondsAsync(delayTightLoad);
         }
 
-        Scene activeScene = SceneManager.GetSceneByName(ActiveSceneGroup.FindSceneNameByType(SceneType.ActiveScene));
+        Scene activeScene = SceneManager.GetSceneByPath(ActiveSceneGroup.FindScenePathByType(SceneType.ActiveScene));
 
-        if (activeScene.IsValid())
+        if (SceneManager.GetSceneByName(activeScene.name).isLoaded)
         {
             SceneManager.SetActiveScene(activeScene);
+
         }
 
         OnSceneGroupLoaded?.Invoke();
@@ -92,7 +93,7 @@ public class SceneGroupManager
 
             var sceneName = sceneAt.name;
 
-            if (sceneName.Equals(activeScene) || sceneName == "Scene Loader") continue;
+            if (sceneName == "Scene Loader") continue;
             if (_handleGroup.Handles.Any(h => h.IsValid() && h.Result.Scene.name == sceneName)) continue;
 
             scenes.Add(sceneName);

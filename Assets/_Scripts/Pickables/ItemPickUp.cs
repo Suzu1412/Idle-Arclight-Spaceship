@@ -10,17 +10,16 @@ public class ItemPickUp : MonoBehaviour
     [SerializeField] private ItemSO _item;
     [SerializeField] private Color gizmoColor = Color.magenta;
     [SerializeField] private SoundDataSO _soundOnPickup;
+    [SerializeField] private ItemMovementSO _movement;
     private Rigidbody2D _rb;
-    [SerializeField] private float _maxSpeed = 5f;
-    [SerializeField] private float _lifeTime = 10f;
-    [SerializeField] private float _acceleration = 15f;
-    [SerializeField] private float _deceleration = 5f;
+    private ItemBehaviour _behaviour;
+
     private Vector2 _currentSpeed;
     private Transform _followTarget;
-    private bool _hasRandomMovement;
-    private bool _isMagnetDrawEnabled;
     private Vector2 _direction;
     private bool _isPickedUp;
+    private float _spawnDuration;
+    private float _stillDuration;
     
     private bool _hasTarget = false;
 
@@ -39,25 +38,25 @@ public class ItemPickUp : MonoBehaviour
         }
     }
 
-    private async void OnEnable()
+    private void OnEnable()
     {
         transform.localScale = Vector3.one;
-        _isMagnetDrawEnabled = false;
         _isPickedUp = false;
-        await Awaitable.WaitForSecondsAsync(0.2f);
+        _spawnDuration = 0.3f;
+        _stillDuration = 1f;
+        _behaviour = ItemBehaviour.Spawning;
         _pickableCollider.enabled = true;
     }
 
     private void OnDisable()
     {
-        _pickableCollider.enabled = false;
         _hasTarget = false;
         _followTarget = null;
-        _isMagnetDrawEnabled = false;
     }
 
     private void Update()
     {
+        CalculateDirection();
         CalculateMovement();
     }
 
@@ -66,31 +65,16 @@ public class ItemPickUp : MonoBehaviour
         Move();
     }
 
-    public void SetMaxSpeed(float movementSpeed)
-    {
-        _maxSpeed = Mathf.Clamp(movementSpeed, 0f, 5f);
-    }
-
     public void SetItem(ItemSO item)
     {
         _item = item;
         _spriteRenderer.sprite = item.ItemImage;
     }
 
-    public void EnableMagnet(bool value)
-    {
-        _isMagnetDrawEnabled = value;
-        _hasTarget = false;
-        _followTarget = null;
-        
-    }
-
     public void Magnet(Transform other)
     {
-        if (!_isMagnetDrawEnabled) return;
         _followTarget = other;
         _hasTarget = true;
-        _isMagnetDrawEnabled = false;
     }
 
     private void Move()
@@ -98,17 +82,57 @@ public class ItemPickUp : MonoBehaviour
         RB.AddForce(_direction, ForceMode2D.Force);
     }
 
-    private void CalculateMovement() 
+    private void CalculateDirection()
     {
-        if (_hasTarget && _followTarget != null)
+
+
+        switch (_behaviour)
         {
-            _direction = (_followTarget.position - transform.position).normalized;
-        }
-        else
-        {
-            _direction = Vector2.down;
+            case ItemBehaviour.Spawning:
+                _spawnDuration -= Time.deltaTime;
+                _direction = Vector2.up;
+
+                if (_spawnDuration <= 0f)
+                {
+                    _behaviour = ItemBehaviour.Still;
+                }
+
+                break;
+
+            case ItemBehaviour.Still:
+                _stillDuration -= Time.deltaTime;
+                _direction = Vector2.zero;
+                if (_stillDuration <= 0f)
+                {
+                    _behaviour = ItemBehaviour.Falling;
+                }
+                break;
+
+            case ItemBehaviour.Falling:
+                if (_hasTarget && _followTarget != null)
+                {
+                    _behaviour = ItemBehaviour.Following;
+                    break;
+                }
+
+                _direction = Vector2.down;
+                break;
+
+            case ItemBehaviour.Following:
+                if (_followTarget == null)
+                {
+                    _behaviour = ItemBehaviour.Falling;
+                    break;
+                }
+
+                _direction = (_followTarget.position - transform.position).normalized * 1.5f;
+                break;
         }
 
+    }
+
+    private void CalculateMovement() 
+    {
         Vector2 targetSpeed = TargetMoveSpeed(1f);
         float accelRate = BaseAcceleration(targetSpeed);
 
@@ -122,7 +146,7 @@ public class ItemPickUp : MonoBehaviour
     private Vector2 TargetMoveSpeed(float lerpAmount)
     {
         // Direction we want to move in and our desired velocity
-        Vector2 targetSpeed = _direction * _maxSpeed;
+        Vector2 targetSpeed = _direction * _movement.MaxSpeed;
 
         // Smooth changes to are direction and speed
         targetSpeed = Vector2.Lerp(
@@ -137,7 +161,7 @@ public class ItemPickUp : MonoBehaviour
         // Acceleration value based on if we are
         // accelerating (includes turning) or trying to decelerate (stop).
         float accelRate = _direction != Vector2.zero ?
-          _acceleration: _deceleration;
+          _movement.Acceleration: _movement.Deceleration;
 
         return accelRate;
     }
@@ -167,5 +191,13 @@ public class ItemPickUp : MonoBehaviour
 
         Gizmos.color = gizmoColor;
         Gizmos.DrawWireSphere(transform.position, _pickableCollider.radius);
+    }
+
+    private enum ItemBehaviour
+    {
+        Spawning,
+        Still,
+        Falling,
+        Following
     }
 }

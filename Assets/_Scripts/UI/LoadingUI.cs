@@ -21,6 +21,11 @@ public class LoadingUI : MonoBehaviour
     private void OnEnable()
     {
         _currentValue = 0;
+        _slider.value = 0;
+        if (_amount != null)
+        {
+            _amount.Value = 0f;
+        }
         OnLoadProgressEventListener.Register(UpdateUIProgressBar);
     }
 

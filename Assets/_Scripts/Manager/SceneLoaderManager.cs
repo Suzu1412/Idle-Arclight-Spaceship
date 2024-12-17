@@ -1,3 +1,4 @@
+using Eflatun.SceneReference;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,6 +26,8 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
     [Header("Bool Event Listener")]
     [SerializeField] private BoolGameEventListener OnToggleLoadEventListener;
 
+    [SerializeField] private SceneReference _sceneLoader;
+
     [SerializeField] private float _unloadProgress = 0.2f;
     private float _loadedScenes;
 
@@ -34,24 +37,18 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
     {
         _manager.OnSceneLoaded += SceneLoaded;
         _manager.OnSceneUnloaded += sceneName => Debug.Log("Unloaded" + sceneName);
-        _manager.OnSceneGroupLoaded += () => SceneGroupLoaded();
         _manager.OnSceneGroupUnloaded += () => UpdateLoadProgress(0.2f);
     }
 
     private void Start()
     {
         OnLoadLastSceneEvent.RaiseEvent();
-    }
-
-    private void OnEnable()
-    {
-        OnToggleLoadEventListener.Register(EnableLoadingCanvas);
         OnChangeSceneEventListener.Register(ChangeScene);
+
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        OnToggleLoadEventListener.DeRegister(EnableLoadingCanvas);
         OnChangeSceneEventListener.DeRegister(ChangeScene);
     }
 
@@ -64,15 +61,18 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
     {
         _loadedScenes = 0;
 
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(_sceneLoader.Name));
+
         if (index < 0 || index >= _sceneGroups.Length)
         {
             Debug.LogError("Invalid Scene group index: " + index);
             index = 0;
         }
 
+        EnableLoadingCanvas();
         UpdateLoadProgress(0f);
         OnToggleLoadEvent.RaiseEvent(true);
-        await _manager.LoadScenes(_sceneGroups[index]);
+        await _manager.LoadScenes(_sceneGroups[index], false);
         EnableLoadingCanvas(false);
         OnFinishedLoadingEvent.RaiseEvent();
     }
@@ -88,11 +88,6 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
         _loadedScenes++;
         float progress = _unloadProgress + _loadedScenes * ((1f - _unloadProgress) / _sceneGroups[0].Scenes.Count);
         UpdateLoadProgress(progress);
-    }
-
-    private void SceneGroupLoaded()
-    {
-        OnSceneGroupLoadedEvent.RaiseEvent(true);
     }
 
     private void UpdateLoadProgress(float value)

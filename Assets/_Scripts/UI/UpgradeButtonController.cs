@@ -7,9 +7,6 @@ using Cysharp.Text;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
-using System;
-using System.Reflection.Emit;
-using UnityEngine.Localization.Settings;
 
 public class UpgradeButtonController : MonoBehaviour
 {

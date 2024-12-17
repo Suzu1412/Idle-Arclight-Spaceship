@@ -14,12 +14,12 @@ public class ListGeneratorSO : ScriptableObject
         return _generators.Find(x => x.Guid == guid);
     }
 
+#if UNITY_EDITOR
+
     [ContextMenu("Load All")]
     private void LoadAll()
     {
-#if UNITY_EDITOR
         _generators = ScriptableObjectUtilities.FindAllScriptableObjectsOfType<GeneratorSO>("t:GeneratorSO", "Assets/_Data/Incremental Scriptable Objects/Generators");
-#endif
     }
 
     private void OnValidate()
@@ -34,5 +34,5 @@ public class ListGeneratorSO : ScriptableObject
             }
         }
     }
-
+#endif
 }

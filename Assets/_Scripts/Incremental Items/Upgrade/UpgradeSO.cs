@@ -25,6 +25,12 @@ public class UpgradeSO : BaseUpgradeSO
             _isApplied = true;
             OnProductionChangedEvent.RaiseEvent();
         }
+        else
+        {
+            _variableToModify.RemoveModifier(_modifierToApply);
+            _isApplied = false;
+            OnProductionChangedEvent.RaiseEvent();
+        }
     }
 
     internal override void RemoveUpgrade()

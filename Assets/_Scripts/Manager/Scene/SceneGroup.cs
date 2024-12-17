@@ -12,4 +12,9 @@ public class SceneGroup
     {
         return Scenes.FirstOrDefault(scene => scene.SceneType == sceneType)?.Name;
     }
+
+    public string FindScenePathByType(SceneType sceneType)
+    {
+        return Scenes.FirstOrDefault(scene => scene.SceneType == sceneType)?.SceneReference.Path;
+    }
 }

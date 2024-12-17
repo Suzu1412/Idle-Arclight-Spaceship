@@ -14,18 +14,7 @@ public class ListUpgradeSO : ScriptableObject
         //OrderByCost();
     }
 
-    private void OnValidate()
-    {
-        var allUnique = _upgrades.GroupBy(x => x.Guid).All(g => g.Count() == 1);
-
-        if (!allUnique)
-        {
-            foreach(var upgrade in _upgrades)
-            {
-                upgrade.GenerateGuid();
-            }
-        }
-    }
+    
 
     public BaseUpgradeSO Find(string guid)
     {
@@ -39,13 +28,27 @@ public class ListUpgradeSO : ScriptableObject
     }
 
 
+#if UNITY_EDITOR
 
     [ContextMenu(itemName: "Load All")]
     private void LoadAll()
     {
-#if UNITY_EDITOR
 
         _upgrades = ScriptableObjectUtilities.FindAllScriptableObjectsOfType<BaseUpgradeSO>("t:BaseUpgradeSO", "Assets/_Data/Incremental Scriptable Objects/Upgrades");
-#endif
     }
+
+    private void OnValidate()
+    {
+        var allUnique = _upgrades.GroupBy(x => x.Guid).All(g => g.Count() == 1);
+
+        if (!allUnique)
+        {
+            foreach (var upgrade in _upgrades)
+            {
+                upgrade.GenerateGuid();
+            }
+        }
+    }
+#endif
+
 }

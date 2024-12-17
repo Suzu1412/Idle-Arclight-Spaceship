@@ -151,10 +151,7 @@ MonoBehaviour:
   _item: {fileID: 11400000, guid: eca2ace93676bbc4199d96ba71efa26a, type: 2}
   gizmoColor: {r: 1, g: 0, b: 1, a: 1}
   _soundOnPickup: {fileID: 0}
-  _maxSpeed: 5
-  _lifeTime: 10
-  _acceleration: 15
-  _deceleration: 5
+  _movement: {fileID: 11400000, guid: 386090861440af54bbd6c531f16b9ef4, type: 2}
 --- !u!58 &461301352558699462
 CircleCollider2D:
   m_ObjectHideFlags: 0

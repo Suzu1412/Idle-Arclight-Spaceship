@@ -16,6 +16,8 @@ public class GemSpawner : MonoBehaviour
     [SerializeField] private VoidGameEventListener OnStartGameEventListener;
     private Coroutine _spawnGemCoroutine;
 
+    private Vector3 _newPosition;
+
     private void OnEnable()
     {
         OnStartGameEventListener.Register(SpawnGem);
@@ -41,10 +43,11 @@ public class GemSpawner : MonoBehaviour
         {
             GameObject gem = ObjectPoolFactory.Spawn(_gemConfigs[0].PoolSettings).gameObject;
             gem.GetComponent<ItemPickUp>().SetItem(_gemConfigs[0].Item);
-            gem.GetComponent<ItemPickUp>().SetMaxSpeed(_gemConfigs[0].moveSpeed);
 
-            gem.transform.position = _placementStrategy.SetPosition(new Vector3(0f, 9f, 0f));
-            gem.GetComponent<ItemPickUp>().EnableMagnet(true);
+            _newPosition = _placementStrategy.SetPosition(new Vector3(0f, 9f, 0f));
+
+            gem.GetComponent<Rigidbody2D>().position = _newPosition;
+            gem.transform.position = _newPosition;
 
 
             _delayBetweenSpawns = Random.Range(_minDelayBetweenSpawns.Value, _maxDelayBetweenSpawns.Value);

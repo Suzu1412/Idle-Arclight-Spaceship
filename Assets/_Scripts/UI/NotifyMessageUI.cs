@@ -52,6 +52,12 @@ public class NotifyMessageUI : MonoBehaviour
         transform.position = new Vector3(_openPosition.x, transform.position.y);
     }
 
+    private void OnDisable()
+    {
+        _ = destroyCancellationToken;
+        transform.DOKill();
+    }
+
     private void GetMultiplierVariable()
     {
         if (!_localizedString.TryGetValue("multiplier", out var variable))
@@ -131,8 +137,6 @@ public class NotifyMessageUI : MonoBehaviour
         transform.DOLocalMoveX(_openPosition.x, _easeDuration).SetEase(Ease.InOutSine);
 
         _localizedStringEvent.StringReference.SetReference(_table, notification.Message);
-
-        Debug.Log(notification.Amount);
 
         _amountVariable.Value = notification.Amount;
         _localizedStringEvent.RefreshString();

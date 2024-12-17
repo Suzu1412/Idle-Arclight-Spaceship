@@ -41,6 +41,12 @@ public class GemUpgradeSO : BaseUpgradeSO
             _isApplied = true;
             OnProductionChangedEvent.RaiseEvent();
         }
+        else
+        {
+            _generator.RemoveModifier(_modifierToApply);
+            _isApplied = false;
+            OnProductionChangedEvent.RaiseEvent();
+        }
     }
 
     internal override void RemoveUpgrade()

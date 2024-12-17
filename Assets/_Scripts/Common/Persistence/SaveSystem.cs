@@ -13,9 +13,12 @@ public class SaveSystem : Singleton<SaveSystem>
     [Header("Void Game Event Listener")]
     [SerializeField] private VoidGameEventListener OnStartGameEventListener;
     [SerializeField] private VoidGameEventListener OnLoadLastSceneEventListener;
+    [SerializeField] private VoidGameEventListener OnDeleteSaveDataEventListener;
 
     [Header("Int Game Event")]
     [SerializeField] private IntGameEvent OnChangeSceneEvent;
+
+    [Header("Bool Game Event Listener")]
 
     [Header("Persistence")]
     [SerializeField] private GameDataSO _gameDataSO = default;
@@ -32,21 +35,20 @@ public class SaveSystem : Singleton<SaveSystem>
         _canSave = false;
         OnStartGameEventListener.Register(LoadGame);
         OnLoadLastSceneEventListener.Register(LoadLastScene);
+        OnDeleteSaveDataEventListener.Register(DeleteAllFileData);
     }
 
     private void OnDisable()
     {
         OnStartGameEventListener.DeRegister(LoadGame);
         OnLoadLastSceneEventListener.DeRegister(LoadLastScene);
+        OnDeleteSaveDataEventListener.DeRegister(DeleteAllFileData);
 
     }
 
     private async void LoadLastScene()
     {
-        if (_gameData == null)
-        {
-            _gameData = await LoadDataFromFile(_gameDataSO.Name);
-        }
+        _gameData ??= await LoadDataFromFile(_gameDataSO.Name);
 
         if (_gameData == null)
         {
@@ -115,12 +117,16 @@ public class SaveSystem : Singleton<SaveSystem>
         _dataService.Delete(gameDataSO.name);
     }
 
-    [ContextMenu("Delete All Save Datas")]
     private void DeleteAllFileData()
     {
         _dataService = new FileDataService(new JsonSerializer());
         _dataService.DeleteAll();
-        Debug.Log("Deleted all save datas");
+
+        NewGame();
+        //SaveGame();
+        //LoadGame();
+
+        LoadLastScene();
     }
 
     private void PrepareGameData()

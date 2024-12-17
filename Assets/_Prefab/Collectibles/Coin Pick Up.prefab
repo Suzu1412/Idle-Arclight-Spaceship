@@ -64,10 +64,7 @@ MonoBehaviour:
   _item: {fileID: 11400000, guid: eca2ace93676bbc4199d96ba71efa26a, type: 2}
   gizmoColor: {r: 1, g: 0, b: 1, a: 1}
   _soundOnPickup: {fileID: 11400000, guid: ae4c65620b991416595e047f7659c015, type: 2}
-  _maxSpeed: 5
-  _lifeTime: 10
-  _acceleration: 15
-  _deceleration: 5
+  _movement: {fileID: 11400000, guid: 386090861440af54bbd6c531f16b9ef4, type: 2}
 --- !u!58 &8478759536805784156
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -103,7 +100,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.2
+  m_Radius: 0.3
 --- !u!50 &4544153958115887827
 Rigidbody2D:
   serializedVersion: 5
