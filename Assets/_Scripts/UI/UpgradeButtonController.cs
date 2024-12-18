@@ -7,15 +7,22 @@ using Cysharp.Text;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
+using System.Collections.Generic;
 
 public class UpgradeButtonController : MonoBehaviour
 {
+    [Header("Run Time Set")]
+    [SerializeField] private GameObjectRuntimeSetSO _upgradesRTS;
+
     [Header("Double Variable")]
     [SerializeField] private DoubleVariableSO _totalCurrency;
 
     [Header("Void Event Listener")]
     [SerializeField] private VoidGameEventListener OnCurrencyChangedEventListener;
     [SerializeField] private VoidGameEventListener OnUpgradeBoughtEventListener;
+
+    [Header("Bool Event")]
+    [SerializeField] private BoolGameEvent OnUpgradeAvailableToBuyEvent;
 
     [Header("Assigned Automatically")]
     [SerializeField][ReadOnly] private BaseUpgradeSO _upgrade;
@@ -27,6 +34,7 @@ public class UpgradeButtonController : MonoBehaviour
     [SerializeField] private LocalizeStringEvent _descriptionLocalized;
     [SerializeField] private TextMeshProUGUI _priceText;
     [SerializeField] private Button _buyButton;
+    private bool _isAvailableToBuy;
     private bool _isAlreadyBought;
 
     [Header("Localization")]
@@ -41,6 +49,7 @@ public class UpgradeButtonController : MonoBehaviour
 
     public event UnityAction<int> OnBuyUpgradeClicked;
 
+
     private void Awake()
     {
         _isAlreadyBought = false;
@@ -50,6 +59,9 @@ public class UpgradeButtonController : MonoBehaviour
         SetGemDescriptionLocalized();
         SetAmountVariable();
         OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
+        OnUpgradeBoughtEventListener.Register(CheckIfBought);
+        _isAvailableToBuy = false;
+
     }
 
     private void OnEnable()
@@ -61,18 +73,18 @@ public class UpgradeButtonController : MonoBehaviour
 
         CheckIfCanBuy();
         CheckIfBought();
-        OnUpgradeBoughtEventListener.Register(CheckIfBought);
     }
 
     private void OnDisable()
     {
         _buyButton.onClick.RemoveAllListeners();
-        OnUpgradeBoughtEventListener.DeRegister(CheckIfBought);
     }
 
     private void OnDestroy()
     {
         OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
+        OnUpgradeBoughtEventListener.DeRegister(CheckIfBought);
+        _upgradesRTS.Remove(gameObject);
     }
 
     public void SetIndex(int index)
@@ -94,12 +106,18 @@ public class UpgradeButtonController : MonoBehaviour
 
     public void HandleBuyButton()
     {
+        _upgradesRTS.Remove(gameObject);
         OnBuyUpgradeClicked?.Invoke(_index);
     }
 
     private void CheckIfCanBuy()
     {
         if (_upgrade == null) return;
+
+        if (_isAlreadyBought || !_upgrade.IsRequirementMet)
+        {
+            _upgradesRTS.Remove(gameObject);
+        }
 
         if (_upgrade.IsApplied) return;
 
@@ -109,7 +127,11 @@ public class UpgradeButtonController : MonoBehaviour
         }
 
         ActivateButton(_upgrade.IsRequirementMet);
-        ToggleBuyButton(_totalCurrency.Value >= _upgrade.Cost.Value);
+        if (_upgrade.IsRequirementMet)
+        {
+            ToggleBuyButton(_totalCurrency.Value >= _upgrade.Cost.Value);
+        }
+
         gameObject.SetActive(_upgrade.IsRequirementMet);
     }
 
@@ -122,7 +144,7 @@ public class UpgradeButtonController : MonoBehaviour
             ActivateButton(false);
             _isAlreadyBought = true;
             gameObject.SetActive(false);
-
+            _isAvailableToBuy = false;
         }
     }
 
@@ -130,10 +152,26 @@ public class UpgradeButtonController : MonoBehaviour
     {
         if (!val)
         {
+            if (_buyButton == null) return;
+
             if (EventSystem.current.currentSelectedGameObject == _buyButton.gameObject)
             {
                 UIManager.Instance.SetGeneratorShopDefaultButton();
             }
+
+                _isAvailableToBuy = false;
+                _upgradesRTS.Remove(gameObject);
+            
+
+        }
+        else
+        {
+            if (!_isAvailableToBuy && !_upgrade.IsApplied)
+            {
+                _upgradesRTS.Add(gameObject);
+            }
+
+            _isAvailableToBuy = true;
         }
 
         _buyButton.interactable = val;
@@ -141,6 +179,11 @@ public class UpgradeButtonController : MonoBehaviour
 
     private void ActivateButton(bool val)
     {
+        if (_background == null)
+        {
+            return;
+        }
+
         _background.enabled = val;
 
         for (int i = 0; i < transform.childCount; i++)

@@ -11,6 +11,9 @@ using System;
 
 public class GeneratorButtonController : MonoBehaviour
 {
+    [Header("Run Time Set")]
+    [SerializeField] private GameObjectRuntimeSetSO _generatorRTS;
+
     [Header("Int Variable")]
     [SerializeField] private IntVariableSO _amountToBuy;
     [Header("Double Variable")]
@@ -34,6 +37,13 @@ public class GeneratorButtonController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _priceText;
     [SerializeField] private TextMeshProUGUI _productionText;
     [SerializeField] private Button _buyButton;
+    [SerializeField] private Image _notificationImage;
+
+    [Header("Notification Icons")]
+    [SerializeField] private Sprite _notificationOn;
+    [SerializeField] private Sprite _notificationOff;
+
+
     [Header("Localization")]
     private LocalizedString _localizedString;
     [SerializeField] private string _table = "Tabla1";
@@ -41,12 +51,17 @@ public class GeneratorButtonController : MonoBehaviour
     private StringVariable _amountVariable;
 
     public event UnityAction<int> OnBuyGeneratorClicked;
+    private bool _isAvailableToBuy;
+    private bool _shouldNotificate;
+
 
     private void Awake()
     {
         _localizedString = _descriptionLocalized.StringReference;
         SetAmountVariable();
         OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
+        _shouldNotificate = true;
+        _isAvailableToBuy = false;
     }
 
     private void OnEnable()
@@ -56,6 +71,7 @@ public class GeneratorButtonController : MonoBehaviour
         OnProductionChangedEventListener.Register(DisplayDescription);
 
         ActivateButton(false);
+        SetNotificationButtonImage();
 
         if (_generator == null) return;
 
@@ -78,7 +94,7 @@ public class GeneratorButtonController : MonoBehaviour
     private void OnDestroy()
     {
         OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
-
+        _generatorRTS.Remove(gameObject);
     }
 
     public void SetIndex(int index)
@@ -114,6 +130,19 @@ public class GeneratorButtonController : MonoBehaviour
         OnBuyGeneratorClicked?.Invoke(_index);
     }
 
+    public void ToggleNotification()
+    {
+        _shouldNotificate = !_shouldNotificate;
+
+        SetNotificationButtonImage();
+        _isAvailableToBuy = false;
+
+        if (!_shouldNotificate)
+        {
+            _generatorRTS.Remove(gameObject);
+        }
+    }
+
     private void CheckIfCanBuy()
     {
         if (_generator == null) return;
@@ -123,7 +152,11 @@ public class GeneratorButtonController : MonoBehaviour
             _generator.CheckIfMeetRequirementsToUnlock(_totalCurrency.Value);
         }
         ActivateButton(_generator.IsUnlocked);
-        ToggleBuyButton(_totalCurrency.Value >= _generator.Cost.Value);
+        if (_generator.IsUnlocked)
+        {
+            ToggleBuyButton(_totalCurrency.Value >= _generator.Cost.Value);
+        }
+
 
         gameObject.SetActive(_generator.IsUnlocked);
     }
@@ -132,10 +165,27 @@ public class GeneratorButtonController : MonoBehaviour
     {
         if (!val)
         {
+            if (_buyButton == null) return;
+
             if (EventSystem.current.currentSelectedGameObject == _buyButton.gameObject)
             {
                 UIManager.Instance.SetGeneratorShopDefaultButton();
             }
+            if (_isAvailableToBuy)
+            {
+                _isAvailableToBuy = false;
+                _generatorRTS.Remove(gameObject);
+            }
+
+        }
+        else
+        {
+            if (!_isAvailableToBuy && _shouldNotificate)
+            {
+                _generatorRTS.Add(gameObject);
+            }
+
+            _isAvailableToBuy = true;
         }
 
         _buyButton.interactable = val;
@@ -143,6 +193,10 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void ActivateButton(bool val)
     {
+        if (_background == null)
+        {
+            return;
+        }
 
         _background.enabled = val;
 
@@ -197,6 +251,18 @@ public class GeneratorButtonController : MonoBehaviour
         else
         {
             _amountVariable = variable as StringVariable;
+        }
+    }
+
+    private void SetNotificationButtonImage()
+    {
+        if (_shouldNotificate)
+        {
+            _notificationImage.sprite = _notificationOn;
+        }
+        else
+        {
+            _notificationImage.sprite = _notificationOff;
         }
     }
 }

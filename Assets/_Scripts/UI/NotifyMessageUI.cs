@@ -25,6 +25,7 @@ public class NotifyMessageUI : MonoBehaviour
     private StringVariable _amountVariable;
     private LocalizedString _gemsLocalized;
     private LocalizedString _shopLocalized;
+    private Coroutine _animateCoroutine;
 
     [SerializeField] private float _easeDuration = 0.4f;
     public ObjectPooler Pool => _pool = _pool != null ? _pool : gameObject.GetOrAdd<ObjectPooler>();
@@ -41,21 +42,13 @@ public class NotifyMessageUI : MonoBehaviour
 
     }
 
-    private void OnEnable()
+    private void Start()
     {
         if (_parentRectTransform == null)
         {
             _parentRectTransform = transform.GetComponent<RectTransform>();
 
         }
-        _openPosition = Vector2.zero;
-        transform.position = new Vector3(_openPosition.x, transform.position.y);
-    }
-
-    private void OnDisable()
-    {
-        _ = destroyCancellationToken;
-        transform.DOKill();
     }
 
     private void GetMultiplierVariable()
@@ -117,34 +110,26 @@ public class NotifyMessageUI : MonoBehaviour
     public async void SetShopMessage(INotification notification)
     {
         _image.sprite = notification.Sprite;
-        _closePosition = new Vector2(_parentRectTransform.rect.width, 0f);
         transform.localPosition = _closePosition;
-        transform.DOLocalMoveX(_openPosition.x, _easeDuration).SetEase(Ease.InOutSine);
 
         _localizedStringEvent.StringReference.SetReference(_table, notification.Message);
         _localizedStringEvent.RefreshString();
 
         await Awaitable.WaitForSecondsAsync(5f);
-        transform.DOLocalMoveX(_closePosition.x, _easeDuration).SetEase(Ease.InOutSine);
-        await Awaitable.WaitForSecondsAsync(_easeDuration);
-        gameObject.SetActive(false);
+        ObjectPoolFactory.ReturnToPool(Pool);
+
     }
 
     public async void SetOfflineMessage(INotification notification)
     {
-        _closePosition = new Vector2(_parentRectTransform.rect.width, 0f);
-        transform.localPosition = _closePosition;
-        transform.DOLocalMoveX(_openPosition.x, _easeDuration).SetEase(Ease.InOutSine);
-
         _localizedStringEvent.StringReference.SetReference(_table, notification.Message);
 
         _amountVariable.Value = notification.Amount;
         _localizedStringEvent.RefreshString();
 
         await Awaitable.WaitForSecondsAsync(5f);
-        transform.DOLocalMoveX(_closePosition.x, _easeDuration).SetEase(Ease.InOutSine);
-        await Awaitable.WaitForSecondsAsync(_easeDuration);
-        gameObject.SetActive(false);
+        ObjectPoolFactory.ReturnToPool(Pool);
+
     }
 
 

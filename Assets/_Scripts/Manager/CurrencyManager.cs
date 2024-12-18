@@ -160,10 +160,11 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         {
             _upgrades.Upgrades[index].BuyUpgrade(_totalCurrency.Value);
             _totalCurrency.Value -= _upgrades.Upgrades[index].Cost.Value;
-            UpdateCurrency();
             GetProductionRate();
             OnUpgradeBoughtEvent.RaiseEvent();
             OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
+            UpdateCurrency();
+
         }
     }
 
@@ -187,6 +188,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     private void ChangeAmountToBuy(int amount)
     {
         _amountToBuy.Value = amount;
+        UpdateCurrency();
     }
 
     private void UpdateProductionRate()

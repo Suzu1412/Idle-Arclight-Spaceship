@@ -15,7 +15,7 @@ MonoBehaviour:
   _guid: 7f1b648d129f3054fa26b934bd0494ee
   _name: SacredGem
   _description: gemProductionMultiplier
-  _cost: 0
+  _cost: 10000000000000000
   _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
   _modifierToApply:
     _modifierType: 2

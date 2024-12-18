@@ -45,4 +45,6 @@ public abstract class RuntimeSetSO<T> : ScriptableObject
     {
         return Items[index];
     }
+
+    public int Count => Items.Count;
 }
