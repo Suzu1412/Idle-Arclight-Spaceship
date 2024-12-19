@@ -7,6 +7,7 @@ using Cysharp.Text;
 
 public class HealthBarUI : MonoBehaviour
 {
+    [Header("")]
     [SerializeField] private Image _damagebar;
     [SerializeField] private Image _healthBar;
     [SerializeField] private IntVariableSO _health;
@@ -17,6 +18,8 @@ public class HealthBarUI : MonoBehaviour
     private Coroutine _damageAnimationCoroutine;
     private bool _isDamaged;
     [SerializeField] private TextMeshProUGUI _amountText;
+    [SerializeField] private float _damageAnimationDelay = 0.2f;
+    [SerializeField] private float _damageAnimationDuration = 0.01f;
 
     private void Awake()
     {
@@ -29,7 +32,8 @@ public class HealthBarUI : MonoBehaviour
         {
             _healthSystem.OnMaxHealthValueChanged += SetMaxHealth;
             _healthSystem.OnHealthValueChanged += SetHealth;
-            _healthSystem.OnDamaged -= ReceiveDamage;
+            _healthSystem.OnDamaged += ReceiveDamage;
+
         }
 
         OnHealthChangedEventListener?.Register(UpdateHealth);
@@ -120,8 +124,8 @@ public class HealthBarUI : MonoBehaviour
 
         //_damagebar.fillAmount = _healthBar.fillAmount;
         _healthBar.fillAmount = _health.Ratio;
-        yield return Helpers.GetWaitForSeconds(0.5f);
-        _damagebar.DOFillAmount(_health.Ratio, 0.5f);
+        yield return Helpers.GetWaitForSeconds(_damageAnimationDelay);
+        _damagebar.DOFillAmount(_health.Ratio, _damageAnimationDuration);
         _isDamaged = false;
 
     }

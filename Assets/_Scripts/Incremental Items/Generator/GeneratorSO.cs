@@ -35,6 +35,7 @@ public class GeneratorSO : SerializableScriptableObject
     private NotificationSO _notification;
 
     [SerializeField] private bool _isUnlocked;
+    [SerializeField] private bool _shouldNotify;
     private bool _isDirty = true;
 
     public string Name => _name;
@@ -50,6 +51,7 @@ public class GeneratorSO : SerializableScriptableObject
     public bool IsUnlocked { get => _isUnlocked; internal set => _isUnlocked = value; }
     public FormattedNumber CostFormatted { get; private set; }
     public FormattedNumber ProductionFormatted { get; private set; }
+    public bool ShouldNotify { get => _shouldNotify; set => _shouldNotify = value; }
 
     private void OnEnable()
     {
@@ -74,6 +76,7 @@ public class GeneratorSO : SerializableScriptableObject
         SetAmount(0);
         SetTotalProduction(0);
         _isUnlocked = false;
+        _shouldNotify = true;
     }
 
     public void CheckIfMeetRequirementsToUnlock(double currency)

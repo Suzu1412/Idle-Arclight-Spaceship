@@ -112,18 +112,21 @@ public class GeneratorData
     [SerializeField] private int _amount;
     [SerializeField] private double _totalProduction;
     [SerializeField] private bool _isUnlocked = false;
+    [SerializeField] private bool _shouldNotify = true;
 
     public string Guid => _guid;
     public int Amount => _amount;
     public double TotalProduction => _totalProduction;
     public bool IsUnlocked => _isUnlocked;
+    public bool ShouldNotify => _shouldNotify;
 
-    public GeneratorData(string guid, int amount, double totalProduction, bool isUnlocked)
+    public GeneratorData(string guid, int amount, double totalProduction, bool isUnlocked, bool shouldNotify)
     {
         _guid = guid;
         _amount = amount;
         _totalProduction = totalProduction;
         _isUnlocked = isUnlocked;
+        _shouldNotify = shouldNotify;
     }
 }
 

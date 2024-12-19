@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7ce9bf58f6139d4db2493ef579afb7b, type: 3}
-  m_Name: Meteor LV1 Movement Data
+  m_Script: {fileID: 11500000, guid: 925ee27451505bc49951d2f36c0dcd99, type: 3}
+  m_Name: 3- Big Enemy RandomCirclePlacementStrategySO 2
   m_EditorClassIdentifier: 
-  _acceleration: 50
-  _deceleration: 50
-  _maxSpeed: 2
+  _minDistance: 0
+  _maxDistance: 1.5

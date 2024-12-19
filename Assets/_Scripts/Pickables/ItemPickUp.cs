@@ -75,6 +75,11 @@ public class ItemPickUp : MonoBehaviour
     {
         _followTarget = other;
         _hasTarget = true;
+
+        if (_hasTarget && _followTarget != null)
+        {
+            _behaviour = ItemBehaviour.Following;
+        }
     }
 
     private void Move()
@@ -84,8 +89,6 @@ public class ItemPickUp : MonoBehaviour
 
     private void CalculateDirection()
     {
-
-
         switch (_behaviour)
         {
             case ItemBehaviour.Spawning:
@@ -102,6 +105,7 @@ public class ItemPickUp : MonoBehaviour
             case ItemBehaviour.Still:
                 _stillDuration -= Time.deltaTime;
                 _direction = Vector2.zero;
+
                 if (_stillDuration <= 0f)
                 {
                     _behaviour = ItemBehaviour.Falling;
@@ -109,12 +113,6 @@ public class ItemPickUp : MonoBehaviour
                 break;
 
             case ItemBehaviour.Falling:
-                if (_hasTarget && _followTarget != null)
-                {
-                    _behaviour = ItemBehaviour.Following;
-                    break;
-                }
-
                 _direction = Vector2.down;
                 break;
 

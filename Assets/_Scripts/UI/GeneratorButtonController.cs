@@ -52,7 +52,6 @@ public class GeneratorButtonController : MonoBehaviour
 
     public event UnityAction<int> OnBuyGeneratorClicked;
     private bool _isAvailableToBuy;
-    private bool _shouldNotificate;
 
 
     private void Awake()
@@ -60,7 +59,6 @@ public class GeneratorButtonController : MonoBehaviour
         _localizedString = _descriptionLocalized.StringReference;
         SetAmountVariable();
         OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
-        _shouldNotificate = true;
         _isAvailableToBuy = false;
     }
 
@@ -71,7 +69,6 @@ public class GeneratorButtonController : MonoBehaviour
         OnProductionChangedEventListener.Register(DisplayDescription);
 
         ActivateButton(false);
-        SetNotificationButtonImage();
 
         if (_generator == null) return;
 
@@ -81,6 +78,7 @@ public class GeneratorButtonController : MonoBehaviour
         DisplayProductionText();
         DisplayPriceText();
         DisplayDescription();
+        SetNotificationButtonImage();
     }
 
     private void OnDisable()
@@ -130,14 +128,17 @@ public class GeneratorButtonController : MonoBehaviour
         OnBuyGeneratorClicked?.Invoke(_index);
     }
 
+    // Called when pressing Notification Button
     public void ToggleNotification()
     {
-        _shouldNotificate = !_shouldNotificate;
+        if (_generator == null) return;
+
+        _generator.ShouldNotify = !_generator.ShouldNotify;
 
         SetNotificationButtonImage();
         _isAvailableToBuy = false;
 
-        if (!_shouldNotificate)
+        if (!_generator.ShouldNotify)
         {
             _generatorRTS.Remove(gameObject);
         }
@@ -180,7 +181,7 @@ public class GeneratorButtonController : MonoBehaviour
         }
         else
         {
-            if (!_isAvailableToBuy && _shouldNotificate)
+            if (!_isAvailableToBuy && _generator.ShouldNotify)
             {
                 _generatorRTS.Add(gameObject);
             }
@@ -256,13 +257,6 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void SetNotificationButtonImage()
     {
-        if (_shouldNotificate)
-        {
-            _notificationImage.sprite = _notificationOn;
-        }
-        else
-        {
-            _notificationImage.sprite = _notificationOff;
-        }
+        _notificationImage.sprite = _generator.ShouldNotify ? _notificationOn : _notificationOff;
     }
 }

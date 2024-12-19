@@ -5,10 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class DropDefinition
 {
-    [SerializeField] private ItemSO _item;
+    [SerializeField] private ObjectPoolSettingsSO _itemPool;
     [Range(0f, 1f)]
     [SerializeField] private float _dropChance;
 
-    public ItemSO Item => _item;
+    public ObjectPoolSettingsSO ItemPool => _itemPool;
     public float DropChance => _dropChance;
 }

@@ -13,18 +13,18 @@ public class ExpTextFeedback : TextPopUp
     private void Awake()
     {
         _transform = GetComponent<Transform>();
-        _deathReward = GetComponentInParent<DeathReward>();
+        //_deathReward = GetComponentInParent<DeathReward>();
 
     }
 
     private void OnEnable()
     {
-        _deathReward.OnGiveExp += SpawnPopUp;
+        //_deathReward.OnGiveExp += SpawnPopUp;
     }
 
     private void OnDisable()
     {
-        _deathReward.OnGiveExp -= SpawnPopUp;
+        //_deathReward.OnGiveExp -= SpawnPopUp;
     }
 
     protected override void SpawnPopUp(float text)

@@ -8,6 +8,6 @@ public class RandomCirclePlacementStrategySO : BasePlacementStrategySO
 
     public override Vector3 SetPosition(Vector3 origin)
     {
-        return origin.RandomPointInAnnulus(_minDistance, _maxDistance);
+        return origin.RandomPointInAnnulus2D(_minDistance, _maxDistance);
     }
 }

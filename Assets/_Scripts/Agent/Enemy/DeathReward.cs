@@ -37,8 +37,8 @@ public class DeathReward : MonoBehaviour
             return;
         }
 
-        OnGainCurrencyEvent.RaiseEvent(_reward.BaseCurrencyReward);
-        OnGainExpEvent.RaiseEvent(_reward.BaseExpReward);
-        OnGiveExp?.Invoke(_reward.BaseExpReward);
+        //OnGainCurrencyEvent.RaiseEvent(_reward.BaseCurrencyReward);
+        //OnGainExpEvent.RaiseEvent(_reward.BaseExpReward);
+        //OnGiveExp?.Invoke(_reward.BaseExpReward);
     }
 }

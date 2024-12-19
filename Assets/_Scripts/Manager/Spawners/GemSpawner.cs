@@ -46,7 +46,10 @@ public class GemSpawner : MonoBehaviour
 
             _newPosition = _placementStrategy.SetPosition(new Vector3(0f, 9f, 0f));
 
-            gem.GetComponent<Rigidbody2D>().position = _newPosition;
+            if (gem.TryGetComponent<Rigidbody2D>(out var rb))
+            {
+                rb.position = _newPosition;
+            }
             gem.transform.position = _newPosition;
 
 

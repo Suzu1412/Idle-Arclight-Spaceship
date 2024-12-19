@@ -15,7 +15,7 @@ MonoBehaviour:
   _guid: 3fa9b6a39b95d5343b74affdcf623ecf
   _name: supremeMagnet
   _description: MagnetSizeMultiplier
-  _cost: 75000000
+  _cost: 100000000
   _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
   _modifierToApply:
     _modifierType: 0

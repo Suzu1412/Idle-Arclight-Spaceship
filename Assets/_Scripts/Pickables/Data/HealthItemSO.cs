@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "DropItem/Health Drop", fileName = "New Health Drop")]
+[CreateAssetMenu(menuName = "Scriptable Objects/DropItem/Health Drop", fileName = "New Health Drop")]
 public class HealthItemSO : ItemSO
 {
     [SerializeField] private int healAmount = 1;

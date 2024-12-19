@@ -1,0 +1,4004 @@
+fileFormatVersion: 2
+guid: 4bc2a6bada0313b4a8386164fcaff5b1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5272821886142447001
+    second: Starfield_07-1024x1024 transparency_0
+  - first:
+      213: -7194013620251933809
+    second: Starfield_07-1024x1024 transparency_1
+  - first:
+      213: -6106931649291527182
+    second: Starfield_07-1024x1024 transparency_2
+  - first:
+      213: -8848415140691874166
+    second: Starfield_07-1024x1024 transparency_3
+  - first:
+      213: -3625879772122568071
+    second: Starfield_07-1024x1024 transparency_4
+  - first:
+      213: -6236252377040978775
+    second: Starfield_07-1024x1024 transparency_5
+  - first:
+      213: 6923534732618225009
+    second: Starfield_07-1024x1024 transparency_6
+  - first:
+      213: -6849806210249462829
+    second: Starfield_07-1024x1024 transparency_7
+  - first:
+      213: -4642148162856083987
+    second: Starfield_07-1024x1024 transparency_8
+  - first:
+      213: 8361688674543174524
+    second: Starfield_07-1024x1024 transparency_9
+  - first:
+      213: -7451467166125748278
+    second: Starfield_07-1024x1024 transparency_10
+  - first:
+      213: 8488442654429894431
+    second: Starfield_07-1024x1024 transparency_11
+  - first:
+      213: 5986551969255815028
+    second: Starfield_07-1024x1024 transparency_12
+  - first:
+      213: -2856405754288409141
+    second: Starfield_07-1024x1024 transparency_13
+  - first:
+      213: -7537796825083479641
+    second: Starfield_07-1024x1024 transparency_14
+  - first:
+      213: -6383536997185615302
+    second: Starfield_07-1024x1024 transparency_15
+  - first:
+      213: -526120925005700504
+    second: Starfield_07-1024x1024 transparency_16
+  - first:
+      213: -7334440385946019084
+    second: Starfield_07-1024x1024 transparency_17
+  - first:
+      213: 3523827676064249034
+    second: Starfield_07-1024x1024 transparency_18
+  - first:
+      213: 7085794845136227111
+    second: Starfield_07-1024x1024 transparency_19
+  - first:
+      213: -7070131645542962972
+    second: Starfield_07-1024x1024 transparency_20
+  - first:
+      213: 2453078944698536969
+    second: Starfield_07-1024x1024 transparency_21
+  - first:
+      213: -7278524652853125877
+    second: Starfield_07-1024x1024 transparency_22
+  - first:
+      213: 4054119189373502025
+    second: Starfield_07-1024x1024 transparency_23
+  - first:
+      213: 7646556009923489415
+    second: Starfield_07-1024x1024 transparency_24
+  - first:
+      213: -6326536564586351582
+    second: Starfield_07-1024x1024 transparency_25
+  - first:
+      213: -756644135291750442
+    second: Starfield_07-1024x1024 transparency_26
+  - first:
+      213: 182222367149304406
+    second: Starfield_07-1024x1024 transparency_27
+  - first:
+      213: 4407158390883849556
+    second: Starfield_07-1024x1024 transparency_28
+  - first:
+      213: 6755972955594512834
+    second: Starfield_07-1024x1024 transparency_29
+  - first:
+      213: -7182089954982384741
+    second: Starfield_07-1024x1024 transparency_30
+  - first:
+      213: -2727575920667245312
+    second: Starfield_07-1024x1024 transparency_31
+  - first:
+      213: 5677230275250010082
+    second: Starfield_07-1024x1024 transparency_32
+  - first:
+      213: -2590451020983878752
+    second: Starfield_07-1024x1024 transparency_33
+  - first:
+      213: 1024289799051453637
+    second: Starfield_07-1024x1024 transparency_34
+  - first:
+      213: 6465794421227708096
+    second: Starfield_07-1024x1024 transparency_35
+  - first:
+      213: -2518072456684060291
+    second: Starfield_07-1024x1024 transparency_36
+  - first:
+      213: 1461842066544880911
+    second: Starfield_07-1024x1024 transparency_37
+  - first:
+      213: -4403190157482626950
+    second: Starfield_07-1024x1024 transparency_38
+  - first:
+      213: 6529687345371544302
+    second: Starfield_07-1024x1024 transparency_39
+  - first:
+      213: 8909496069368196037
+    second: Starfield_07-1024x1024 transparency_40
+  - first:
+      213: 4236593773660029243
+    second: Starfield_07-1024x1024 transparency_41
+  - first:
+      213: 4884211629733508761
+    second: Starfield_07-1024x1024 transparency_42
+  - first:
+      213: -5050234985262320669
+    second: Starfield_07-1024x1024 transparency_43
+  - first:
+      213: -6668841920291733379
+    second: Starfield_07-1024x1024 transparency_44
+  - first:
+      213: 4697224812778187162
+    second: Starfield_07-1024x1024 transparency_45
+  - first:
+      213: 616868262518738811
+    second: Starfield_07-1024x1024 transparency_46
+  - first:
+      213: -7197126417369201131
+    second: Starfield_07-1024x1024 transparency_47
+  - first:
+      213: -4614015990231697147
+    second: Starfield_07-1024x1024 transparency_48
+  - first:
+      213: -7839712891997077376
+    second: Starfield_07-1024x1024 transparency_49
+  - first:
+      213: 5322361578134218712
+    second: Starfield_07-1024x1024 transparency_50
+  - first:
+      213: -3363987050475136654
+    second: Starfield_07-1024x1024 transparency_51
+  - first:
+      213: -6086768106561292
+    second: Starfield_07-1024x1024 transparency_52
+  - first:
+      213: -1004570215552093836
+    second: Starfield_07-1024x1024 transparency_53
+  - first:
+      213: -618135642964360200
+    second: Starfield_07-1024x1024 transparency_54
+  - first:
+      213: -1564351807811670813
+    second: Starfield_07-1024x1024 transparency_55
+  - first:
+      213: -6801588375576873837
+    second: Starfield_07-1024x1024 transparency_56
+  - first:
+      213: -6467479308311033920
+    second: Starfield_07-1024x1024 transparency_57
+  - first:
+      213: -7887901645296621542
+    second: Starfield_07-1024x1024 transparency_58
+  - first:
+      213: 6042764103995428822
+    second: Starfield_07-1024x1024 transparency_59
+  - first:
+      213: -8906381911065740964
+    second: Starfield_07-1024x1024 transparency_60
+  - first:
+      213: -7065863463953914147
+    second: Starfield_07-1024x1024 transparency_61
+  - first:
+      213: -5196178227611526635
+    second: Starfield_07-1024x1024 transparency_62
+  - first:
+      213: 6063454729765654485
+    second: Starfield_07-1024x1024 transparency_63
+  - first:
+      213: 3776891916853811971
+    second: Starfield_07-1024x1024 transparency_64
+  - first:
+      213: 4386075692358428981
+    second: Starfield_07-1024x1024 transparency_65
+  - first:
+      213: 3551086190481288245
+    second: Starfield_07-1024x1024 transparency_66
+  - first:
+      213: 6922289769468855082
+    second: Starfield_07-1024x1024 transparency_67
+  - first:
+      213: -1586066343857327906
+    second: Starfield_07-1024x1024 transparency_68
+  - first:
+      213: 2815545331669898584
+    second: Starfield_07-1024x1024 transparency_69
+  - first:
+      213: -4959747704475722483
+    second: Starfield_07-1024x1024 transparency_70
+  - first:
+      213: 5485739240682363572
+    second: Starfield_07-1024x1024 transparency_71
+  - first:
+      213: 2571515945611902259
+    second: Starfield_07-1024x1024 transparency_72
+  - first:
+      213: -9054149520015763674
+    second: Starfield_07-1024x1024 transparency_73
+  - first:
+      213: 3860155329365505259
+    second: Starfield_07-1024x1024 transparency_74
+  - first:
+      213: 2675981554852931395
+    second: Starfield_07-1024x1024 transparency_75
+  - first:
+      213: 7206058151784314904
+    second: Starfield_07-1024x1024 transparency_76
+  - first:
+      213: -1474534084991215215
+    second: Starfield_07-1024x1024 transparency_77
+  - first:
+      213: 5509411765639045422
+    second: Starfield_07-1024x1024 transparency_78
+  - first:
+      213: -6500180840456142789
+    second: Starfield_07-1024x1024 transparency_79
+  - first:
+      213: 2525619992599701165
+    second: Starfield_07-1024x1024 transparency_80
+  - first:
+      213: 6820186651041048346
+    second: Starfield_07-1024x1024 transparency_81
+  - first:
+      213: -5029467591610173866
+    second: Starfield_07-1024x1024 transparency_82
+  - first:
+      213: -138000611143915302
+    second: Starfield_07-1024x1024 transparency_83
+  - first:
+      213: -7233888740739165292
+    second: Starfield_07-1024x1024 transparency_84
+  - first:
+      213: 8013999260628692517
+    second: Starfield_07-1024x1024 transparency_85
+  - first:
+      213: 8510878588245465170
+    second: Starfield_07-1024x1024 transparency_86
+  - first:
+      213: 6853781530444101717
+    second: Starfield_07-1024x1024 transparency_87
+  - first:
+      213: 4400470360835449155
+    second: Starfield_07-1024x1024 transparency_88
+  - first:
+      213: 8995886812597917355
+    second: Starfield_07-1024x1024 transparency_89
+  - first:
+      213: 7662657102808231867
+    second: Starfield_07-1024x1024 transparency_90
+  - first:
+      213: 2002654450036827113
+    second: Starfield_07-1024x1024 transparency_91
+  - first:
+      213: 3902843344044864033
+    second: Starfield_07-1024x1024 transparency_92
+  - first:
+      213: 3840770164552734631
+    second: Starfield_07-1024x1024 transparency_93
+  - first:
+      213: -4383384025136535213
+    second: Starfield_07-1024x1024 transparency_94
+  - first:
+      213: -6620831317633228612
+    second: Starfield_07-1024x1024 transparency_95
+  - first:
+      213: 4819390819321135090
+    second: Starfield_07-1024x1024 transparency_96
+  - first:
+      213: -3382710012387253942
+    second: Starfield_07-1024x1024 transparency_97
+  - first:
+      213: 8859670141795692093
+    second: Starfield_07-1024x1024 transparency_98
+  - first:
+      213: -2272217709598258969
+    second: Starfield_07-1024x1024 transparency_99
+  - first:
+      213: -2744040272515438750
+    second: Starfield_07-1024x1024 transparency_100
+  - first:
+      213: -2810427653740370046
+    second: Starfield_07-1024x1024 transparency_101
+  - first:
+      213: 7021799821144419377
+    second: Starfield_07-1024x1024 transparency_102
+  - first:
+      213: 2549694104229714322
+    second: Starfield_07-1024x1024 transparency_103
+  - first:
+      213: -1087549910004866548
+    second: Starfield_07-1024x1024 transparency_104
+  - first:
+      213: 147219209835331087
+    second: Starfield_07-1024x1024 transparency_105
+  - first:
+      213: 5070728800701348281
+    second: Starfield_07-1024x1024 transparency_106
+  - first:
+      213: -3206922915271281013
+    second: Starfield_07-1024x1024 transparency_107
+  - first:
+      213: 8710391064051980048
+    second: Starfield_07-1024x1024 transparency_108
+  - first:
+      213: 267140944114051854
+    second: Starfield_07-1024x1024 transparency_109
+  - first:
+      213: 991512401017418982
+    second: Starfield_07-1024x1024 transparency_110
+  - first:
+      213: 646766163076939325
+    second: Starfield_07-1024x1024 transparency_111
+  - first:
+      213: 8296623392440397088
+    second: Starfield_07-1024x1024 transparency_112
+  - first:
+      213: -254139985509926765
+    second: Starfield_07-1024x1024 transparency_113
+  - first:
+      213: 7832410951076340434
+    second: Starfield_07-1024x1024 transparency_114
+  - first:
+      213: -8944726631580442265
+    second: Starfield_07-1024x1024 transparency_115
+  - first:
+      213: -3678764716468028520
+    second: Starfield_07-1024x1024 transparency_116
+  - first:
+      213: 6357357289636964518
+    second: Starfield_07-1024x1024 transparency_117
+  - first:
+      213: 6061870223645406503
+    second: Starfield_07-1024x1024 transparency_118
+  - first:
+      213: -5323764612599197245
+    second: Starfield_07-1024x1024 transparency_119
+  - first:
+      213: 7125361888923439336
+    second: Starfield_07-1024x1024 transparency_120
+  - first:
+      213: 1222752335288122459
+    second: Starfield_07-1024x1024 transparency_121
+  - first:
+      213: 3513902033541175741
+    second: Starfield_07-1024x1024 transparency_122
+  - first:
+      213: 5542504079097843458
+    second: Starfield_07-1024x1024 transparency_123
+  - first:
+      213: 2128564033257756918
+    second: Starfield_07-1024x1024 transparency_124
+  - first:
+      213: -7910881487889126190
+    second: Starfield_07-1024x1024 transparency_125
+  - first:
+      213: 729597098682605124
+    second: Starfield_07-1024x1024 transparency_126
+  - first:
+      213: -3956261515244284879
+    second: Starfield_07-1024x1024 transparency_127
+  - first:
+      213: 1683365557179210107
+    second: Starfield_07-1024x1024 transparency_128
+  - first:
+      213: -8617845149676510851
+    second: Starfield_07-1024x1024 transparency_129
+  - first:
+      213: -2637485452843791465
+    second: Starfield_07-1024x1024 transparency_130
+  - first:
+      213: 3286861113610774137
+    second: Starfield_07-1024x1024 transparency_131
+  - first:
+      213: -5567115005655155943
+    second: Starfield_07-1024x1024 transparency_132
+  - first:
+      213: -228214961601866939
+    second: Starfield_07-1024x1024 transparency_133
+  - first:
+      213: -8481744012903379857
+    second: Starfield_07-1024x1024 transparency_134
+  - first:
+      213: -8063348494028120800
+    second: Starfield_07-1024x1024 transparency_135
+  - first:
+      213: 8390592253288386961
+    second: Starfield_07-1024x1024 transparency_136
+  - first:
+      213: 2714075834487924041
+    second: Starfield_07-1024x1024 transparency_137
+  - first:
+      213: -1243827010791452226
+    second: Starfield_07-1024x1024 transparency_138
+  - first:
+      213: 3777090739209492561
+    second: Starfield_07-1024x1024 transparency_139
+  - first:
+      213: 7459099284382913932
+    second: Starfield_07-1024x1024 transparency_140
+  - first:
+      213: -8027768530954786987
+    second: Starfield_07-1024x1024 transparency_141
+  - first:
+      213: 8385581007645692003
+    second: Starfield_07-1024x1024 transparency_142
+  - first:
+      213: 40911008324114416
+    second: Starfield_07-1024x1024 transparency_143
+  - first:
+      213: 4861101452482854519
+    second: Starfield_07-1024x1024 transparency_144
+  - first:
+      213: -5427549781946428898
+    second: Starfield_07-1024x1024 transparency_145
+  - first:
+      213: 3973529881966068105
+    second: Starfield_07-1024x1024 transparency_146
+  - first:
+      213: -4731230874145286134
+    second: Starfield_07-1024x1024 transparency_147
+  - first:
+      213: 1148986882183661640
+    second: Starfield_07-1024x1024 transparency_148
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 900
+        width: 83
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76203906e6c23d6b0800000000000000
+      internalID: -5272821886142447001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_1
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 1011
+        width: 33
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f83cf875abab92c90800000000000000
+      internalID: -7194013620251933809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_2
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 996
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fb53685502df3ba0800000000000000
+      internalID: -6106931649291527182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_3
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 989
+        width: 14
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8e6fd97f4d143580800000000000000
+      internalID: -8848415140691874166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_4
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 1009
+        width: 70
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97a2c58de894eadc0800000000000000
+      internalID: -3625879772122568071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_5
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 956
+        width: 149
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ac79c011816479a0800000000000000
+      internalID: -6236252377040978775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_6
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 1013
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 175d9c72826551060800000000000000
+      internalID: 6923534732618225009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_7
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 992
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dbe0d92b8990f0a0800000000000000
+      internalID: -6849806210249462829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_8
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 998
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ded1b3e47d6c39fb0800000000000000
+      internalID: -4642148162856083987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_9
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 901
+        width: 15
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c738d802c8faa0470800000000000000
+      internalID: 8361688674543174524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_10
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 947
+        width: 60
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acf869b8712179890800000000000000
+      internalID: -7451467166125748278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_11
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 957
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f175199de910dc570800000000000000
+      internalID: 8488442654429894431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_12
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 910
+        width: 81
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47778e44c41841350800000000000000
+      internalID: 5986551969255815028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_13
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 906
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc5f141b9120c58d0800000000000000
+      internalID: -2856405754288409141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_14
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 915
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a9f4db79bd546790800000000000000
+      internalID: -7537796825083479641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_15
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 917
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3a00382cee1967a0800000000000000
+      internalID: -6383536997185615302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_16
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 938
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 862a2246ec7d2b8f0800000000000000
+      internalID: -526120925005700504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_17
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 913
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fa98691455d63a90800000000000000
+      internalID: -7334440385946019084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_18
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 829
+        width: 27
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac4ff71f99627e030800000000000000
+      internalID: 3523827676064249034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_19
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 917
+        width: 60
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72b83a79edcc55260800000000000000
+      internalID: 7085794845136227111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_20
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 904
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e8e9204ab8d1ed90800000000000000
+      internalID: -7070131645542962972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_21
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 765
+        width: 153
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9041fb0ad461b0220800000000000000
+      internalID: 2453078944698536969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_22
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 877
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0d14c9346c7dfa90800000000000000
+      internalID: -7278524652853125877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_23
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 848
+        width: 47
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 942c3bf4cef134830800000000000000
+      internalID: 4054119189373502025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_24
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 860
+        width: 14
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78e2e968d260e1a60800000000000000
+      internalID: 7646556009923489415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_25
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 873
+        width: 60
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2247f419380a338a0800000000000000
+      internalID: -6326536564586351582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_26
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 828
+        width: 49
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d77d86fa2cdf75f0800000000000000
+      internalID: -756644135291750442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_27
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 820
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65aa0180742678200800000000000000
+      internalID: 182222367149304406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_28
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 812
+        width: 75
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4559385d43f592d30800000000000000
+      internalID: 4407158390883849556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_29
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 821
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c95b52cb9902cd50800000000000000
+      internalID: 6755972955594512834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_30
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 824
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9baf500d37145c90800000000000000
+      internalID: -7182089954982384741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_31
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 805
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00548b6c624b52ad0800000000000000
+      internalID: -2727575920667245312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_32
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 767
+        width: 49
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e7be582bd299ce40800000000000000
+      internalID: 5677230275250010082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_33
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 762
+        width: 61
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ab353e658edc0cd0800000000000000
+      internalID: -2590451020983878752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_34
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 744
+        width: 58
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c4a4833522073e00800000000000000
+      internalID: 1024289799051453637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_35
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 716
+        width: 88
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cedaf3d4cd1bb950800000000000000
+      internalID: 6465794421227708096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_36
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 758
+        width: 56
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d71c6a421720e0dd0800000000000000
+      internalID: -2518072456684060291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_37
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 744
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0d61264d91894410800000000000000
+      internalID: 1461842066544880911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_38
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 690
+        width: 37
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7070c081e9b4e2c0800000000000000
+      internalID: -4403190157482626950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_39
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 746
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eeafb3b7b0c1e9a50800000000000000
+      internalID: 6529687345371544302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_40
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 739
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cb2e667873e4ab70800000000000000
+      internalID: 8909496069368196037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_41
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 722
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3143a837976bca30800000000000000
+      internalID: 4236593773660029243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_42
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 708
+        width: 27
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 996f81e799438c340800000000000000
+      internalID: 4884211629733508761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_43
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 716
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e37037c906f9e9b0800000000000000
+      internalID: -5050234985262320669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_44
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 716
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7007c54b938373a0800000000000000
+      internalID: -6668841920291733379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_45
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 709
+        width: 30
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a996bcb8415ef2140800000000000000
+      internalID: 4697224812778187162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_46
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 652
+        width: 81
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7f44ac9a6e8f8800800000000000000
+      internalID: 616868262518738811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_47
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 687
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5160129c7abae1c90800000000000000
+      internalID: -7197126417369201131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_48
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 669
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 509744a27e8b7ffb0800000000000000
+      internalID: -4614015990231697147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_49
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 653
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 080c67b49aeb33390800000000000000
+      internalID: -7839712891997077376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_50
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 648
+        width: 27
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d7a0eef7a3dcd940800000000000000
+      internalID: 5322361578134218712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_51
+      rect:
+        serializedVersion: 2
+        x: 982
+        y: 674
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2795a6bc997b051d0800000000000000
+      internalID: -3363987050475136654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_52
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 648
+        width: 49
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f0ad2ddd106aeff0800000000000000
+      internalID: -6086768106561292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_53
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 611
+        width: 56
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 471741e16bc0f02f0800000000000000
+      internalID: -1004570215552093836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_54
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 625
+        width: 36
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f30a1268e0fb67f0800000000000000
+      internalID: -618135642964360200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_55
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 638
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ec25afa15e4a4ae0800000000000000
+      internalID: -1564351807811670813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_56
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 645
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3947055a867eb91a0800000000000000
+      internalID: -6801588375576873837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_57
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 618
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c78ee3d5d5ee36a0800000000000000
+      internalID: -6467479308311033920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_58
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 610
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1820e8de3b888290800000000000000
+      internalID: -7887901645296621542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_59
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 625
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6df0128cfe53cd350800000000000000
+      internalID: 6042764103995428822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_60
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 628
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5936f407dc266480800000000000000
+      internalID: -8906381911065740964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_61
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 629
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd6ad97bd9201fd90800000000000000
+      internalID: -7065863463953914147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_62
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 570
+        width: 39
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51a9899be6773e7b0800000000000000
+      internalID: -5196178227611526635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_63
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 607
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5df085f73f7b52450800000000000000
+      internalID: 6063454729765654485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_64
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 582
+        width: 8
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30b9d1300373a6430800000000000000
+      internalID: 3776891916853811971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_65
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 599
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 539eff09a987edc30800000000000000
+      internalID: 4386075692358428981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_66
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 601
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53cae66631ef74130800000000000000
+      internalID: 3551086190481288245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_67
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 562
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2303859ed9e01060800000000000000
+      internalID: 6922289769468855082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_68
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 548
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed07e2840192df9e0800000000000000
+      internalID: -1586066343857327906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_69
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 554
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 855913fcf83d21720800000000000000
+      internalID: 2815545331669898584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_70
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 569
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0d5a2b9dbf6b2bb0800000000000000
+      internalID: -4959747704475722483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_71
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 555
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ba1b4356c2412c40800000000000000
+      internalID: 5485739240682363572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_72
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 549
+        width: 39
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33d3378c02cdfa320800000000000000
+      internalID: 2571515945611902259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_73
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 517
+        width: 49
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 627df248bf2395280800000000000000
+      internalID: -9054149520015763674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_74
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 540
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be479a0f1d6029530800000000000000
+      internalID: 3860155329365505259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_75
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 551
+        width: 35
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 347a182db0ff22520800000000000000
+      internalID: 2675981554852931395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_76
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 526
+        width: 37
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81879efa5bf010460800000000000000
+      internalID: 7206058151784314904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_77
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 539
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19994e6ef07698be0800000000000000
+      internalID: -1474534084991215215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_78
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 545
+        width: 36
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e21e54c8fcc557c40800000000000000
+      internalID: 5509411765639045422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_79
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 509
+        width: 19
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b30cfcc07f7bac5a0800000000000000
+      internalID: -6500180840456142789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_80
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 335
+        width: 168
+        height: 183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da6a780800ecc0320800000000000000
+      internalID: 2525619992599701165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_81
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 516
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a17a92dcf9b26ae50800000000000000
+      internalID: 6820186651041048346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_82
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 509
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6567cb86fddb33ab0800000000000000
+      internalID: -5029467591610173866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_83
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 499
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad8eaf1ec29b51ef0800000000000000
+      internalID: -138000611143915302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_84
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 495
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4935b8f54801c9b90800000000000000
+      internalID: -7233888740739165292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_85
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 457
+        width: 41
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52e24081ed1773f60800000000000000
+      internalID: 8013999260628692517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_86
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 494
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25859d2cbf6bc1670800000000000000
+      internalID: 8510878588245465170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_87
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 469
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 558f0423df58d1f50800000000000000
+      internalID: 6853781530444101717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_88
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 464
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3416b3e7a7c911d30800000000000000
+      internalID: 4400470360835449155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_89
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 389
+        width: 70
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba61580d46fc7dc70800000000000000
+      internalID: 8995886812597917355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_90
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 446
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbf2288590a375a60800000000000000
+      internalID: 7662657102808231867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_91
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 425
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e3ec4e9c9bdacb10800000000000000
+      internalID: 2002654450036827113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_92
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 396
+        width: 43
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 122bacfd75fa92630800000000000000
+      internalID: 3902843344044864033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_93
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 427
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a7951a8d182d4530800000000000000
+      internalID: 3840770164552734631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_94
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 364
+        width: 60
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3596d9b04771b23c0800000000000000
+      internalID: -4383384025136535213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_95
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 393
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb0a0bacef41e14a0800000000000000
+      internalID: -6620831317633228612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_96
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 401
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ff3a6b7a6ae1e240800000000000000
+      internalID: 4819390819321135090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_97
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 375
+        width: 38
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4120858a233e01d0800000000000000
+      internalID: -3382710012387253942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_98
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 352
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3eeddcad0fd3fa70800000000000000
+      internalID: 8859670141795692093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_99
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 354
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e84b0728067770e0800000000000000
+      internalID: -2272217709598258969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_100
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 364
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 267e95329e53be9d0800000000000000
+      internalID: -2744040272515438750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_101
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 357
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 287eedf60fa5ff8d0800000000000000
+      internalID: -2810427653740370046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_102
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 363
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13ce637fbb1727160800000000000000
+      internalID: 7021799821144419377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_103
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 317
+        width: 44
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29915886745526320800000000000000
+      internalID: 2549694104229714322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_104
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 340
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c02e6a27e1f38e0f0800000000000000
+      internalID: -1087549910004866548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_105
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 311
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0e395267170b0200800000000000000
+      internalID: 147219209835331087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_106
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 295
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b975267af8de5640800000000000000
+      internalID: 5070728800701348281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_107
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 215
+        width: 48
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b86f13d7998be73d0800000000000000
+      internalID: -3206922915271281013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_108
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 202
+        width: 95
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0171e8be58681e870800000000000000
+      internalID: 8710391064051980048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_109
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 173
+        width: 92
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0b61e6f54315b300800000000000000
+      internalID: 267140944114051854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_110
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 141
+        width: 97
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e4b905864f82cd00800000000000000
+      internalID: 991512401017418982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_111
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 274
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3e71fa0666c9f800800000000000000
+      internalID: 646766163076939325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_112
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 223
+        width: 76
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02d2b9d9407832370800000000000000
+      internalID: 8296623392440397088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_113
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 264
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3983578970d197cf0800000000000000
+      internalID: -254139985509926765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_114
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 189
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d2e8c9134052bc60800000000000000
+      internalID: 7832410951076340434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_115
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 203
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 761ebaf0582fdd380800000000000000
+      internalID: -8944726631580442265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_116
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 186
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89bbea63bf662fcc0800000000000000
+      internalID: -3678764716468028520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_117
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 172
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a82d0fa5ced93850800000000000000
+      internalID: 6357357289636964518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_118
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 149
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 725f6eae9d6102450800000000000000
+      internalID: 6061870223645406503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_119
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 102
+        width: 60
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c1da369a403e16b0800000000000000
+      internalID: -5323764612599197245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_120
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 121
+        width: 24
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e0536dd2ee52e260800000000000000
+      internalID: 7125361888923439336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_121
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 156
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5cb02145c618f010800000000000000
+      internalID: 1222752335288122459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_122
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 147
+        width: 19
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db99eb43843e3c030800000000000000
+      internalID: 3513902033541175741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_123
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 99
+        width: 35
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20fc7c0381eeaec40800000000000000
+      internalID: 5542504079097843458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_124
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 157
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f8500ce5bd2a8d10800000000000000
+      internalID: 2128564033257756918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_125
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 99
+        width: 73
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dca72e4337e63290800000000000000
+      internalID: -7910881487889126190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_126
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 118
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44ed12812bc002a00800000000000000
+      internalID: 729597098682605124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_127
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 67
+        width: 62
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 134d051fc198819c0800000000000000
+      internalID: -3956261515244284879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_128
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 129
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b795bce2e048c5710800000000000000
+      internalID: 1683365557179210107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_129
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 100
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d716534ee73476880800000000000000
+      internalID: -8617845149676510851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_130
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 105
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79b4cf264f4c56bd0800000000000000
+      internalID: -2637485452843791465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_131
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 104
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 976a0dea4c64d9d20800000000000000
+      internalID: 3286861113610774137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_132
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 104
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91b7d20f562adb2b0800000000000000
+      internalID: -5567115005655155943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_133
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 91
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5439a4993b735dcf0800000000000000
+      internalID: -228214961601866939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_134
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 40
+        width: 23
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6c091b22caca4a80800000000000000
+      internalID: -8481744012903379857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_135
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 73
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02dd541244b391090800000000000000
+      internalID: -8063348494028120800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_136
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 59
+        width: 33
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1911668f23f517470800000000000000
+      internalID: 8390592253288386961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_137
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 72
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 945ef1877955aa520800000000000000
+      internalID: 2714075834487924041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_138
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 0
+        width: 24
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb15dbb7ce90dbee0800000000000000
+      internalID: -1243827010791452226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_139
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 40
+        width: 10
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 158dff2f30cea6430800000000000000
+      internalID: 3777090739209492561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_140
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 0
+        width: 44
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c859306774b048760800000000000000
+      internalID: 7459099284382913932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_141
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 23
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5576165dd03a79090800000000000000
+      internalID: -8027768530954786987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_142
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 0
+        width: 29
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 360dbfb6f719f5470800000000000000
+      internalID: 8385581007645692003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_143
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 11
+        width: 27
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f7df866858519000800000000000000
+      internalID: 40911008324114416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_144
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 0
+        width: 71
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77e306c040a167340800000000000000
+      internalID: 4861101452482854519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_145
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 5
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e12955eca387da4b0800000000000000
+      internalID: -5427549781946428898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_146
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 0
+        width: 34
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 981ccfeff50d42730800000000000000
+      internalID: 3973529881966068105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_147
+      rect:
+        serializedVersion: 2
+        x: 558
+        y: 0
+        width: 24
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a08953c469a475eb0800000000000000
+      internalID: -4731230874145286134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Starfield_07-1024x1024 transparency_148
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 10
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84804245b7502ff00800000000000000
+      internalID: 1148986882183661640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Starfield_07-1024x1024 transparency_0: -5272821886142447001
+      Starfield_07-1024x1024 transparency_1: -7194013620251933809
+      Starfield_07-1024x1024 transparency_10: -7451467166125748278
+      Starfield_07-1024x1024 transparency_100: -2744040272515438750
+      Starfield_07-1024x1024 transparency_101: -2810427653740370046
+      Starfield_07-1024x1024 transparency_102: 7021799821144419377
+      Starfield_07-1024x1024 transparency_103: 2549694104229714322
+      Starfield_07-1024x1024 transparency_104: -1087549910004866548
+      Starfield_07-1024x1024 transparency_105: 147219209835331087
+      Starfield_07-1024x1024 transparency_106: 5070728800701348281
+      Starfield_07-1024x1024 transparency_107: -3206922915271281013
+      Starfield_07-1024x1024 transparency_108: 8710391064051980048
+      Starfield_07-1024x1024 transparency_109: 267140944114051854
+      Starfield_07-1024x1024 transparency_11: 8488442654429894431
+      Starfield_07-1024x1024 transparency_110: 991512401017418982
+      Starfield_07-1024x1024 transparency_111: 646766163076939325
+      Starfield_07-1024x1024 transparency_112: 8296623392440397088
+      Starfield_07-1024x1024 transparency_113: -254139985509926765
+      Starfield_07-1024x1024 transparency_114: 7832410951076340434
+      Starfield_07-1024x1024 transparency_115: -8944726631580442265
+      Starfield_07-1024x1024 transparency_116: -3678764716468028520
+      Starfield_07-1024x1024 transparency_117: 6357357289636964518
+      Starfield_07-1024x1024 transparency_118: 6061870223645406503
+      Starfield_07-1024x1024 transparency_119: -5323764612599197245
+      Starfield_07-1024x1024 transparency_12: 5986551969255815028
+      Starfield_07-1024x1024 transparency_120: 7125361888923439336
+      Starfield_07-1024x1024 transparency_121: 1222752335288122459
+      Starfield_07-1024x1024 transparency_122: 3513902033541175741
+      Starfield_07-1024x1024 transparency_123: 5542504079097843458
+      Starfield_07-1024x1024 transparency_124: 2128564033257756918
+      Starfield_07-1024x1024 transparency_125: -7910881487889126190
+      Starfield_07-1024x1024 transparency_126: 729597098682605124
+      Starfield_07-1024x1024 transparency_127: -3956261515244284879
+      Starfield_07-1024x1024 transparency_128: 1683365557179210107
+      Starfield_07-1024x1024 transparency_129: -8617845149676510851
+      Starfield_07-1024x1024 transparency_13: -2856405754288409141
+      Starfield_07-1024x1024 transparency_130: -2637485452843791465
+      Starfield_07-1024x1024 transparency_131: 3286861113610774137
+      Starfield_07-1024x1024 transparency_132: -5567115005655155943
+      Starfield_07-1024x1024 transparency_133: -228214961601866939
+      Starfield_07-1024x1024 transparency_134: -8481744012903379857
+      Starfield_07-1024x1024 transparency_135: -8063348494028120800
+      Starfield_07-1024x1024 transparency_136: 8390592253288386961
+      Starfield_07-1024x1024 transparency_137: 2714075834487924041
+      Starfield_07-1024x1024 transparency_138: -1243827010791452226
+      Starfield_07-1024x1024 transparency_139: 3777090739209492561
+      Starfield_07-1024x1024 transparency_14: -7537796825083479641
+      Starfield_07-1024x1024 transparency_140: 7459099284382913932
+      Starfield_07-1024x1024 transparency_141: -8027768530954786987
+      Starfield_07-1024x1024 transparency_142: 8385581007645692003
+      Starfield_07-1024x1024 transparency_143: 40911008324114416
+      Starfield_07-1024x1024 transparency_144: 4861101452482854519
+      Starfield_07-1024x1024 transparency_145: -5427549781946428898
+      Starfield_07-1024x1024 transparency_146: 3973529881966068105
+      Starfield_07-1024x1024 transparency_147: -4731230874145286134
+      Starfield_07-1024x1024 transparency_148: 1148986882183661640
+      Starfield_07-1024x1024 transparency_15: -6383536997185615302
+      Starfield_07-1024x1024 transparency_16: -526120925005700504
+      Starfield_07-1024x1024 transparency_17: -7334440385946019084
+      Starfield_07-1024x1024 transparency_18: 3523827676064249034
+      Starfield_07-1024x1024 transparency_19: 7085794845136227111
+      Starfield_07-1024x1024 transparency_2: -6106931649291527182
+      Starfield_07-1024x1024 transparency_20: -7070131645542962972
+      Starfield_07-1024x1024 transparency_21: 2453078944698536969
+      Starfield_07-1024x1024 transparency_22: -7278524652853125877
+      Starfield_07-1024x1024 transparency_23: 4054119189373502025
+      Starfield_07-1024x1024 transparency_24: 7646556009923489415
+      Starfield_07-1024x1024 transparency_25: -6326536564586351582
+      Starfield_07-1024x1024 transparency_26: -756644135291750442
+      Starfield_07-1024x1024 transparency_27: 182222367149304406
+      Starfield_07-1024x1024 transparency_28: 4407158390883849556
+      Starfield_07-1024x1024 transparency_29: 6755972955594512834
+      Starfield_07-1024x1024 transparency_3: -8848415140691874166
+      Starfield_07-1024x1024 transparency_30: -7182089954982384741
+      Starfield_07-1024x1024 transparency_31: -2727575920667245312
+      Starfield_07-1024x1024 transparency_32: 5677230275250010082
+      Starfield_07-1024x1024 transparency_33: -2590451020983878752
+      Starfield_07-1024x1024 transparency_34: 1024289799051453637
+      Starfield_07-1024x1024 transparency_35: 6465794421227708096
+      Starfield_07-1024x1024 transparency_36: -2518072456684060291
+      Starfield_07-1024x1024 transparency_37: 1461842066544880911
+      Starfield_07-1024x1024 transparency_38: -4403190157482626950
+      Starfield_07-1024x1024 transparency_39: 6529687345371544302
+      Starfield_07-1024x1024 transparency_4: -3625879772122568071
+      Starfield_07-1024x1024 transparency_40: 8909496069368196037
+      Starfield_07-1024x1024 transparency_41: 4236593773660029243
+      Starfield_07-1024x1024 transparency_42: 4884211629733508761
+      Starfield_07-1024x1024 transparency_43: -5050234985262320669
+      Starfield_07-1024x1024 transparency_44: -6668841920291733379
+      Starfield_07-1024x1024 transparency_45: 4697224812778187162
+      Starfield_07-1024x1024 transparency_46: 616868262518738811
+      Starfield_07-1024x1024 transparency_47: -7197126417369201131
+      Starfield_07-1024x1024 transparency_48: -4614015990231697147
+      Starfield_07-1024x1024 transparency_49: -7839712891997077376
+      Starfield_07-1024x1024 transparency_5: -6236252377040978775
+      Starfield_07-1024x1024 transparency_50: 5322361578134218712
+      Starfield_07-1024x1024 transparency_51: -3363987050475136654
+      Starfield_07-1024x1024 transparency_52: -6086768106561292
+      Starfield_07-1024x1024 transparency_53: -1004570215552093836
+      Starfield_07-1024x1024 transparency_54: -618135642964360200
+      Starfield_07-1024x1024 transparency_55: -1564351807811670813
+      Starfield_07-1024x1024 transparency_56: -6801588375576873837
+      Starfield_07-1024x1024 transparency_57: -6467479308311033920
+      Starfield_07-1024x1024 transparency_58: -7887901645296621542
+      Starfield_07-1024x1024 transparency_59: 6042764103995428822
+      Starfield_07-1024x1024 transparency_6: 6923534732618225009
+      Starfield_07-1024x1024 transparency_60: -8906381911065740964
+      Starfield_07-1024x1024 transparency_61: -7065863463953914147
+      Starfield_07-1024x1024 transparency_62: -5196178227611526635
+      Starfield_07-1024x1024 transparency_63: 6063454729765654485
+      Starfield_07-1024x1024 transparency_64: 3776891916853811971
+      Starfield_07-1024x1024 transparency_65: 4386075692358428981
+      Starfield_07-1024x1024 transparency_66: 3551086190481288245
+      Starfield_07-1024x1024 transparency_67: 6922289769468855082
+      Starfield_07-1024x1024 transparency_68: -1586066343857327906
+      Starfield_07-1024x1024 transparency_69: 2815545331669898584
+      Starfield_07-1024x1024 transparency_7: -6849806210249462829
+      Starfield_07-1024x1024 transparency_70: -4959747704475722483
+      Starfield_07-1024x1024 transparency_71: 5485739240682363572
+      Starfield_07-1024x1024 transparency_72: 2571515945611902259
+      Starfield_07-1024x1024 transparency_73: -9054149520015763674
+      Starfield_07-1024x1024 transparency_74: 3860155329365505259
+      Starfield_07-1024x1024 transparency_75: 2675981554852931395
+      Starfield_07-1024x1024 transparency_76: 7206058151784314904
+      Starfield_07-1024x1024 transparency_77: -1474534084991215215
+      Starfield_07-1024x1024 transparency_78: 5509411765639045422
+      Starfield_07-1024x1024 transparency_79: -6500180840456142789
+      Starfield_07-1024x1024 transparency_8: -4642148162856083987
+      Starfield_07-1024x1024 transparency_80: 2525619992599701165
+      Starfield_07-1024x1024 transparency_81: 6820186651041048346
+      Starfield_07-1024x1024 transparency_82: -5029467591610173866
+      Starfield_07-1024x1024 transparency_83: -138000611143915302
+      Starfield_07-1024x1024 transparency_84: -7233888740739165292
+      Starfield_07-1024x1024 transparency_85: 8013999260628692517
+      Starfield_07-1024x1024 transparency_86: 8510878588245465170
+      Starfield_07-1024x1024 transparency_87: 6853781530444101717
+      Starfield_07-1024x1024 transparency_88: 4400470360835449155
+      Starfield_07-1024x1024 transparency_89: 8995886812597917355
+      Starfield_07-1024x1024 transparency_9: 8361688674543174524
+      Starfield_07-1024x1024 transparency_90: 7662657102808231867
+      Starfield_07-1024x1024 transparency_91: 2002654450036827113
+      Starfield_07-1024x1024 transparency_92: 3902843344044864033
+      Starfield_07-1024x1024 transparency_93: 3840770164552734631
+      Starfield_07-1024x1024 transparency_94: -4383384025136535213
+      Starfield_07-1024x1024 transparency_95: -6620831317633228612
+      Starfield_07-1024x1024 transparency_96: 4819390819321135090
+      Starfield_07-1024x1024 transparency_97: -3382710012387253942
+      Starfield_07-1024x1024 transparency_98: 8859670141795692093
+      Starfield_07-1024x1024 transparency_99: -2272217709598258969
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

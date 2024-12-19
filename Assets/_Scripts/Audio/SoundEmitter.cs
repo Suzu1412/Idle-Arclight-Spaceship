@@ -72,7 +72,7 @@ public class SoundEmitter : MonoBehaviour
         AudioSource.DOFade(_data.Volume, 1f);
 
 
-        _playingMusicCoroutine = StartCoroutine(MusicFinishedPlaying(sound, _currentClip.length - _fadeDuration));
+        _playingMusicCoroutine = StartCoroutine(MusicFinishedPlaying(sound, _currentClip.length - _fadeDuration - 10f));
     }
 
     /// <summary>
