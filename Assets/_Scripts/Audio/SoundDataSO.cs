@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable Object/Sound Data")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Sound Data")]
 public class SoundDataSO : ScriptableObject, ISound
 {
     [SerializeField] private AudioClipsGroup _audioClipGroup = default;

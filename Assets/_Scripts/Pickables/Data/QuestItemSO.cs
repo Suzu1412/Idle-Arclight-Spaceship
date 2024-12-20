@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "DropItem/Quest Item Drop", fileName = "New Quest Item Drop")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Item/Quest Item Drop", fileName = "New Quest Item Drop")]
 public class QuestItemSO : ItemSO
 {
     [SerializeField][Range(1, 99)] private int itemAmount;

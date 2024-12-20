@@ -12,12 +12,12 @@ public class GlowMaterialFeedback : Feedback
 
     private void OnEnable()
     {
-        HealthSystem.OnHit += StartFeedback;
+        HealthSystem.OnHealthValueChanged += StartFeedback;
     }
 
     private void OnDisable()
     {
-        HealthSystem.OnHit -= StartFeedback;
+        HealthSystem.OnHealthValueChanged -= StartFeedback;
         ResetFeedback();
     }
 

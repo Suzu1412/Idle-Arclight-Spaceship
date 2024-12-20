@@ -170,7 +170,7 @@ public class UIManager : Singleton<UIManager>
 
     private IEnumerator DisableShopElements()
     {
-        yield return Helpers.GetWaitForSeconds(0.4f);
+        yield return Helpers.GetWaitForSeconds(0.2f);
         _generatorShopUI.SetActive(false);
         _upgradeShopUI.SetActive(false);
 

@@ -13,9 +13,11 @@ public class HealthBarUI : MonoBehaviour
     [SerializeField] private IntVariableSO _health;
     [SerializeField] private VoidGameEventListener OnHealthChangedEventListener;
     [SerializeField] private IntGameEventListener OnDamagedEventListener;
+    [SerializeField] private IntGameEventListener OnHealedEventListener;
     private float _previousValue;
     private IHealthSystem _healthSystem;
     private Coroutine _damageAnimationCoroutine;
+    private Coroutine _healAnimationCoroutine;
     private bool _isDamaged;
     [SerializeField] private TextMeshProUGUI _amountText;
     [SerializeField] private float _damageAnimationDelay = 0.2f;
@@ -31,13 +33,14 @@ public class HealthBarUI : MonoBehaviour
         if (_healthSystem != null)
         {
             _healthSystem.OnMaxHealthValueChanged += SetMaxHealth;
-            _healthSystem.OnHealthValueChanged += SetHealth;
             _healthSystem.OnDamaged += ReceiveDamage;
+            _healthSystem.OnHealed += ReceiveHeal;
 
         }
 
-        OnHealthChangedEventListener?.Register(UpdateHealth);
+        //OnHealthChangedEventListener?.Register(UpdateHealth);
         OnDamagedEventListener?.Register(ReceiveDamage);
+        OnHealedEventListener?.Register(ReceiveHeal);
     }
 
     private void OnDisable()
@@ -45,12 +48,14 @@ public class HealthBarUI : MonoBehaviour
         if (_healthSystem != null)
         {
             _healthSystem.OnMaxHealthValueChanged -= SetMaxHealth;
-            _healthSystem.OnHealthValueChanged -= SetHealth;
             _healthSystem.OnDamaged -= ReceiveDamage;
+            _healthSystem.OnHealed -= ReceiveHeal;
         }
 
-        OnHealthChangedEventListener?.DeRegister(UpdateHealth);
+        //OnHealthChangedEventListener?.DeRegister(UpdateHealth);
         OnDamagedEventListener?.DeRegister(ReceiveDamage);
+        OnHealedEventListener?.DeRegister(ReceiveHeal);
+
     }
 
     private void Start()
@@ -107,6 +112,13 @@ public class HealthBarUI : MonoBehaviour
         }
     }
 
+    private void ReceiveHeal(int amount)
+    {
+        UpdateText();
+        if (_healAnimationCoroutine != null) StopCoroutine(_healAnimationCoroutine);
+        _healAnimationCoroutine = StartCoroutine(HealAnimationCoroutine());
+    }
+
     private void ReceiveDamage(int amount)
     {
         UpdateText();
@@ -122,11 +134,22 @@ public class HealthBarUI : MonoBehaviour
             _isDamaged = true;
         }
 
-        //_damagebar.fillAmount = _healthBar.fillAmount;
+        _damagebar.fillAmount = _healthBar.fillAmount;
         _healthBar.fillAmount = _health.Ratio;
         yield return Helpers.GetWaitForSeconds(_damageAnimationDelay);
         _damagebar.DOFillAmount(_health.Ratio, _damageAnimationDuration);
         _isDamaged = false;
 
+    }
+
+    IEnumerator HealAnimationCoroutine()
+    {
+        if (_isDamaged)
+        {
+            _damagebar.DOKill();
+            _damagebar.DOFillAmount(_health.Ratio, _damageAnimationDuration);
+        }
+        yield return null;
+        _healthBar.DOFillAmount(_health.Ratio, _damageAnimationDuration);
     }
 }

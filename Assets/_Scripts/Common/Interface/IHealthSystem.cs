@@ -6,7 +6,7 @@ using System;
 public interface IHealthSystem : IDamageable, IHealable, IHittable
 {
     event Action<IntVariableSO> OnMaxHealthValueChanged;
-    event Action<IntVariableSO> OnHealthValueChanged;
+    event Action OnHealthValueChanged;
     event Action<int> OnHealed;
     event Action<int> OnDamaged;
     event Action OnDeath;

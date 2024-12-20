@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "DropItem/Crafting Material Drop", fileName = "New Health Drop")]
 public class CraftingItemSO : ItemSO
 {
     [SerializeField][Range(1, 99)] private int itemAmount = 1;

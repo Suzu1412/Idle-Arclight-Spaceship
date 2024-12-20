@@ -72,7 +72,7 @@ public class SoundEmitter : MonoBehaviour
         AudioSource.DOFade(_data.Volume, 1f);
 
 
-        _playingMusicCoroutine = StartCoroutine(MusicFinishedPlaying(sound, _currentClip.length - _fadeDuration - 10f));
+        _playingMusicCoroutine = StartCoroutine(MusicFinishedPlaying(sound, _currentClip.length - _fadeDuration - 3f));
     }
 
     /// <summary>
@@ -147,6 +147,8 @@ public class SoundEmitter : MonoBehaviour
     IEnumerator MusicFinishedPlaying(ISound sound, float duration)
     {
         yield return Helpers.GetWaitForSeconds(duration);
+        AudioSource.DOFade(0f, 1f);
+        yield return Helpers.GetWaitForSeconds(1f);
         OnMusicFinishedPlaying?.Invoke(sound);
     }
 }

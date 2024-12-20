@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Item/")]
 public abstract class ItemSO : ScriptableObject
 {
     [SerializeField] protected bool _isStackable;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/DropItem/Drop table", fileName = "New Drop Table")]
+[CreateAssetMenu(menuName = "Scriptable Objects/Item/Drop table", fileName = "New Drop Table")]
 public class DropTableSO : ScriptableObject
 {
     [SerializeField] private List<DropDefinition> _drops;

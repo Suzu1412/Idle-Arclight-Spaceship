@@ -3490,9 +3490,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8562369576632576516}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 541, y: -62.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 4, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &105662034603133332
@@ -3884,9 +3884,9 @@ RectTransform:
   - {fileID: 239898030}
   m_Father: {fileID: 8562369576632576516}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 231, y: -62.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &472401827641579849
@@ -13343,6 +13343,7 @@ MonoBehaviour:
   _health: {fileID: 11400000, guid: 54d8b71d3afb566438112aa3487b3ebb, type: 2}
   OnHealthChangedEventListener: {fileID: 11400000, guid: 2c0a703a9a2c8c54bb0b8891c7fafba4, type: 2}
   OnDamagedEventListener: {fileID: 11400000, guid: 6201b6a066ee5c746b1ae993f85efbc8, type: 2}
+  OnHealedEventListener: {fileID: 11400000, guid: af081dc963b2d074886409283d8080cb, type: 2}
   _amountText: {fileID: 8700812161524164321}
   _damageAnimationDelay: 0.5
   _damageAnimationDuration: 0.5
@@ -15343,7 +15344,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &7119563108976477853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16478,9 +16479,9 @@ RectTransform:
   - {fileID: 84427734}
   m_Father: {fileID: 8562369576632576516}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 851, y: -62.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7657655625551968324

@@ -288,6 +288,7 @@ MonoBehaviour:
   _defaultInvulnerability: 0.1
   OnHealthChangedEvent: {fileID: 11400000, guid: 18fa1ffee8e9a6a4a949a6654b20c2f5, type: 2}
   OnDamagedEvent: {fileID: 11400000, guid: bf8fdd3b8f6da754481bda4e9dcbc9d2, type: 2}
+  OnHealedEvent: {fileID: 11400000, guid: a87c78c29fe3c9e4888f8a4614c3d18e, type: 2}
 --- !u!114 &2736954739997381902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,20 +349,6 @@ MonoBehaviour:
   _targetLayer:
     serializedVersion: 2
     m_Bits: 8192
-  _contactFilter:
-    useTriggers: 0
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 8192
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
 --- !u!61 &4589728552326499288
 BoxCollider2D:
   m_ObjectHideFlags: 0

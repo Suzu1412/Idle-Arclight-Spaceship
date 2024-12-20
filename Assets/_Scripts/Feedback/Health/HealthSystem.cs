@@ -31,10 +31,11 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
     [SerializeField] private VoidGameEvent OnHealthChangedEvent;
     [SerializeField] private IntGameEvent OnDamagedEvent;
+    [SerializeField] private IntGameEvent OnHealedEvent;
 
     #region Events
     public event Action<IntVariableSO> OnMaxHealthValueChanged;
-    public event Action<IntVariableSO> OnHealthValueChanged;
+    public event Action OnHealthValueChanged;
     public event Action<int> OnHealed;
     public event Action<int> OnDamaged;
     public event Action OnDeath;
@@ -62,7 +63,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         }
 
         OnMaxHealthValueChanged?.Invoke(_health);
-        OnHealthValueChanged?.Invoke(_health);
+        OnHealthValueChanged?.Invoke();
         OnHealthChangedEvent?.RaiseEvent();
     }
 
@@ -108,7 +109,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     {
         _health.MaxValue = GetMaxValue();
         _health.Value = _health.MaxValue;
-        OnHealthValueChanged?.Invoke(_health);
+        OnHealthValueChanged?.Invoke();
         OnHealthChangedEvent?.RaiseEvent();
     }
 
@@ -118,6 +119,9 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
         _health.Value += amount;
         OnHealed?.Invoke(amount);
+        OnHealedEvent?.RaiseEvent(amount);
+        OnHealthValueChanged?.Invoke();
+        OnHealthChangedEvent?.RaiseEvent();
     }
 
     public void Damage(int amount)
@@ -133,6 +137,8 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         OnHit?.Invoke();
         OnDamaged?.Invoke(amount);
         OnDamagedEvent?.RaiseEvent(amount);
+        OnHealthValueChanged?.Invoke();
+        OnHealthChangedEvent?.RaiseEvent();
 
         if (_health.Value <= 0)
         {
