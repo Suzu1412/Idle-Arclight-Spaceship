@@ -241,7 +241,7 @@ public class FPSData
 
     public FPSData()
     {
-        _fpsAmount = 0;
+        _fpsAmount = 60;
     }
 
     public FPSData(int fpsAmount)

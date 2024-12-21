@@ -1,25 +1,24 @@
+using System.Collections;
 using UnityEngine;
-using DG.Tweening;
 
 public class ShakeFeedback : Feedback
 {
-    private Transform _affectedTransform;
+    private Transform _targetTransform;
     [SerializeField, Range(0, 1)]
-    private float _shakeStrength = 0.1f;
+    private float _magnitude = 0.1f;
     [SerializeField, Range(0, 1)]
-    private float _shakeDuration = 0.3f;
-    [SerializeField, Range(0, 100)]
-    private int _shakeVibrato = 30;
+    private float _duration = 0.3f;
     private Vector2 _originalPosition;
+    private Coroutine _shakeCoroutine;
 
     private IHealthSystem _healthSystem;
     internal IHealthSystem HealthSystem => _healthSystem ??= GetComponentInParent<IHealthSystem>();
 
 
-    private void Awake()
+    void Start()
     {
-        _affectedTransform = this.transform;
-        _originalPosition = Vector2.zero;
+        if (_targetTransform == null)
+            _targetTransform = transform; // Default to this object's transform
     }
 
     private void OnEnable()
@@ -35,13 +34,33 @@ public class ShakeFeedback : Feedback
 
     public override void ResetFeedback()
     {
-        _affectedTransform.DOKill();
-        _affectedTransform.localPosition = _originalPosition;
+        _targetTransform.localPosition = _originalPosition;
     }
 
     public override void StartFeedback()
     {
         ResetFeedback();
-        _affectedTransform.DOShakePosition(_shakeDuration, _shakeStrength, _shakeVibrato);
+        if (_shakeCoroutine != null) StopCoroutine(_shakeCoroutine);
+        _shakeCoroutine = StartCoroutine(ShakeCoroutine());
+    }
+
+    private IEnumerator ShakeCoroutine()
+    {
+        _originalPosition = _targetTransform.localPosition;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < _duration)
+        {
+            float offsetX = Random.Range(-1f, 1f) * _magnitude;
+            float offsetY = Random.Range(-1f, 1f) * _magnitude;
+
+            _targetTransform.localPosition = new Vector3(_originalPosition.x + offsetX, _originalPosition.y + offsetY, _targetTransform.position.z);
+
+            elapsedTime += Time.deltaTime;
+            yield return null; // Wait for the next frame
+        }
+
+        // Reset to the original position
+        _targetTransform.localPosition = _originalPosition;
     }
 }

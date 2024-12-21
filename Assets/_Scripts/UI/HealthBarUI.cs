@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using DG.Tweening;
 using Cysharp.Text;
 
 public class HealthBarUI : MonoBehaviour
@@ -137,7 +136,7 @@ public class HealthBarUI : MonoBehaviour
         _damagebar.fillAmount = _healthBar.fillAmount;
         _healthBar.fillAmount = _health.Ratio;
         yield return Helpers.GetWaitForSeconds(_damageAnimationDelay);
-        _damagebar.DOFillAmount(_health.Ratio, _damageAnimationDuration);
+        //_damagebar.DOFillAmount(_health.Ratio, _damageAnimationDuration);
         _isDamaged = false;
 
     }
@@ -146,10 +145,11 @@ public class HealthBarUI : MonoBehaviour
     {
         if (_isDamaged)
         {
-            _damagebar.DOKill();
-            _damagebar.DOFillAmount(_health.Ratio, _damageAnimationDuration);
+            //_damagebar.DOKill();
+            //_damagebar.DOFillAmount(_health.Ratio, _damageAnimationDuration);
         }
         yield return null;
-        _healthBar.DOFillAmount(_health.Ratio, _damageAnimationDuration);
+        _healthBar.fillAmount = _health.Ratio;
+        //_healthBar.DOFillAmount(_health.Ratio, _damageAnimationDuration);
     }
 }

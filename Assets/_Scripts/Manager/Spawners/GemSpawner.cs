@@ -30,6 +30,7 @@ public class GemSpawner : MonoBehaviour
 
     private void SpawnGem()
     {
+        Debug.Log("times called");
         if (_spawnGemCoroutine != null) StopCoroutine(_spawnGemCoroutine);
         _spawnGemCoroutine = StartCoroutine(SpawnGemCoroutine());
     }
@@ -55,6 +56,7 @@ public class GemSpawner : MonoBehaviour
 
             _delayBetweenSpawns = Random.Range(_minDelayBetweenSpawns.Value, _maxDelayBetweenSpawns.Value);
             yield return Helpers.GetWaitForSeconds(_delayBetweenSpawns);
+
         }
 
     }

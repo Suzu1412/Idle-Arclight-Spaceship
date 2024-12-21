@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -55,7 +54,6 @@ public class NotifyMessageUI : MonoBehaviour
 
     private void OnDisable()
     {
-        transform.DOKill();
         StopAllCoroutines();
     }
 
@@ -105,7 +103,7 @@ public class NotifyMessageUI : MonoBehaviour
         _duration = randomEvent.Duration;
         RandomEventDescription(randomEvent);
         _updateTimerCoroutine = StartCoroutine(UpdateTimerCoroutine(randomEvent));
-        transform.DOLocalMoveX(_openPosition.x, _easeDuration).SetEase(Ease.InOutSine);
+        //transform.DOLocalMoveX(_openPosition.x, _easeDuration).SetEase(Ease.InOutSine);
     }
 
     private void RandomEventDescription(BaseRandomEventSO randomEvent)
@@ -152,7 +150,7 @@ public class NotifyMessageUI : MonoBehaviour
         }
 
         _closePosition = new Vector2(_parentRectTransform.rect.width, transform.position.y);
-        transform.DOLocalMoveX(_closePosition.x, _easeDuration).SetEase(Ease.InOutSine);
+        //transform.DOLocalMoveX(_closePosition.x, _easeDuration).SetEase(Ease.InOutSine);
         if (_returnToPoolCoroutine != null) StopCoroutine(_returnToPoolCoroutine);
         _returnToPoolCoroutine = StartCoroutine(ReturnToPoolCoroutine(_easeDuration));
     }

@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Events;
-using DG.Tweening;
 
 public class SoundEmitter : MonoBehaviour
 {
@@ -12,8 +11,7 @@ public class SoundEmitter : MonoBehaviour
     [Header("Coroutine Variables")]
     private Coroutine _playingSoundCoroutine;
     private Coroutine _playingMusicCoroutine;
-    private Coroutine _fadeInMusicCoroutine;
-    private Coroutine _fadeOutMusicCoroutine;
+    private Coroutine _fadeVolumeCoroutine;
     private float _fadeDuration = 2f;
     private bool _isFadingOut = false;
     private ISound _data;
@@ -44,6 +42,11 @@ public class SoundEmitter : MonoBehaviour
 
     }
 
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     /// <summary>
     /// Instructs the AudioSource to play a single clip, with optional looping, in a position in 3D space.
     /// </summary>
@@ -69,8 +72,8 @@ public class SoundEmitter : MonoBehaviour
         ApplySettings(sound, audioMixer);
         AudioSource.volume = 0f;
         AudioSource.Play();
-        AudioSource.DOFade(_data.Volume, 1f);
-
+        if (_fadeVolumeCoroutine != null) StopCoroutine(_fadeVolumeCoroutine);
+        _fadeVolumeCoroutine = StartCoroutine(FadeVolumeCoroutine(_data.Volume, 1f));
 
         _playingMusicCoroutine = StartCoroutine(MusicFinishedPlaying(sound, _currentClip.length - _fadeDuration - 3f));
     }
@@ -147,8 +150,25 @@ public class SoundEmitter : MonoBehaviour
     IEnumerator MusicFinishedPlaying(ISound sound, float duration)
     {
         yield return Helpers.GetWaitForSeconds(duration);
-        AudioSource.DOFade(0f, 1f);
+        if (_fadeVolumeCoroutine != null) StopCoroutine(_fadeVolumeCoroutine);
+        _fadeVolumeCoroutine = StartCoroutine(FadeVolumeCoroutine(0f, 1f));
         yield return Helpers.GetWaitForSeconds(1f);
         OnMusicFinishedPlaying?.Invoke(sound);
+    }
+
+    private IEnumerator FadeVolumeCoroutine(float targetVolume, float duration)
+    {
+        float startVolume = AudioSource.volume;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            AudioSource.volume = Mathf.Lerp(startVolume, targetVolume, elapsedTime / duration);
+            yield return null; // Wait for the next frame
+        }
+
+        // Ensure the final volume is set
+        AudioSource.volume = targetVolume;
     }
 }

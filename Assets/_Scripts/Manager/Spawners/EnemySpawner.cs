@@ -39,10 +39,11 @@ public class EnemySpawner : MonoBehaviour
             GameObject enemy = ObjectPoolFactory.Spawn(_enemyConfigs[0].PoolSettings).gameObject;
             enemy.GetComponentInChildren<Agent>().SetEnemyData(_enemyConfigs[0].AgentData);
             var position = _placementStrategy.SetPosition(new Vector3(0f, 9f, 0f));
-            enemy.GetComponentInChildren<MovementBehaviour>().RB.position = position; 
+            enemy.GetComponentInChildren<MovementBehaviour>().RB.position = position;
             enemy.transform.GetChild(0).position = position;
 
             yield return Helpers.GetWaitForSeconds(_delayBetweenSpawns);
+            Debug.Log(_delayBetweenSpawns);
         }
 
     }

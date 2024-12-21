@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 using System.Collections;
 using Cysharp.Text;
 
@@ -133,14 +132,16 @@ public class UIManager : Singleton<UIManager>
             if (_disableShopCoroutine != null) StopCoroutine(_disableShopCoroutine);
             _shopGameObject.SetActive(true);
             OpenGeneratorStore();
-            _shopPanel.DOKill();
-            _shopPanel.DOLocalMove(_openPosition, 0.4f).SetEase(Ease.InOutSine);
+            //_shopPanel.DOKill();
+            //_shopPanel.DOLocalMove(_openPosition, 0.4f).SetEase(Ease.InOutSine);
+            _shopPanel.transform.localPosition = _openPosition;
             SetGeneratorShopDefaultButton();
         }
         else
         {
-            _shopPanel.DOKill();
-            _shopPanel.DOLocalMove(_closePosition, 0.4f).SetEase(Ease.InOutSine);
+            //_shopPanel.DOKill();
+            //_shopPanel.DOLocalMove(_closePosition, 0.4f).SetEase(Ease.InOutSine);
+            _shopPanel.transform.localPosition = _closePosition;
             if (_disableShopCoroutine != null) StopCoroutine(_disableShopCoroutine);
             _disableShopCoroutine = StartCoroutine(DisableShopElements());
         }
@@ -155,14 +156,16 @@ public class UIManager : Singleton<UIManager>
             _menuGameObject.SetActive(true);
             _languageSelectorPopup.SetActive(false);
             _deleteDataConfirmPopup.SetActive(false);
-            _menuPanel.DOKill();
-            _menuPanel.DOLocalMove(_openPosition, 0.4f).SetEase(Ease.InOutSine);
+            //_menuPanel.DOKill();
+            //_menuPanel.DOLocalMove(_openPosition, 0.4f).SetEase(Ease.InOutSine);
+            _menuPanel.transform.localPosition = _openPosition;
             SetSettingMenuDefaultButton();
         }
         else
         {
-            _menuPanel.DOKill();
-            _menuPanel.DOLocalMove(_closePosition, 0.4f).SetEase(Ease.InOutSine);
+            //_menuPanel.DOKill();
+            //_menuPanel.DOLocalMove(_closePosition, 0.4f).SetEase(Ease.InOutSine);
+            _menuPanel.transform.localPosition = _closePosition;
             if (_disableMenuCoroutine != null) StopCoroutine(_disableMenuCoroutine);
             _disableMenuCoroutine = StartCoroutine(DisableMenuElements());
         }

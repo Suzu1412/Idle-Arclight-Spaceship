@@ -1,5 +1,5 @@
+using System.Collections;
 using UnityEngine;
-using DG.Tweening;
 
 public class AgentRenderer : MonoBehaviour, IAgentRenderer
 {
@@ -12,6 +12,8 @@ public class AgentRenderer : MonoBehaviour, IAgentRenderer
     public SpriteRenderer SpriteRenderer => _spriteRenderer != null ? _spriteRenderer : _spriteRenderer = GetComponent<SpriteRenderer>();
     public Vector2 FacingDirection => _facingDirection;
 
+    private Coroutine _changeAlphaCoroutine;
+
     private void OnEnable()
     {
         Agent.OnChangeFacingDirection += FaceDirection;
@@ -19,8 +21,8 @@ public class AgentRenderer : MonoBehaviour, IAgentRenderer
 
     private void OnDisable()
     {
-        SpriteRenderer.DOKill();
         Agent.OnChangeFacingDirection -= FaceDirection;
+        StopAllCoroutines();
     }
 
     private void FaceDirection(Vector2 input)
@@ -44,7 +46,8 @@ public class AgentRenderer : MonoBehaviour, IAgentRenderer
 
     public void TransparencyOverTime(float targetAlpha, float duration)
     {
-        SpriteRenderer.DOFade(targetAlpha, duration).SetEase(Ease.Linear);
+        if (_changeAlphaCoroutine != null) StopCoroutine(_changeAlphaCoroutine);
+        _changeAlphaCoroutine = StartCoroutine(ChangeAlphaCoroutine(targetAlpha, duration));
     }
 
     public void ChangeSpriteColor(float r, float g, float b, float a)
@@ -55,5 +58,23 @@ public class AgentRenderer : MonoBehaviour, IAgentRenderer
         _spriteTargetColor.a = a;
 
         SpriteRenderer.color = _spriteTargetColor;
+    }
+
+    private IEnumerator ChangeAlphaCoroutine(float targetAlpha, float duration)
+    {
+        Color originalColor = SpriteRenderer.color;
+        float startAlpha = originalColor.a;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float newAlpha = Mathf.Lerp(startAlpha, targetAlpha, elapsedTime / duration);
+            SpriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, newAlpha);
+            yield return null; // Wait for the next frame
+        }
+
+        // Ensure the final alpha is set
+        SpriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, targetAlpha);
     }
 }
