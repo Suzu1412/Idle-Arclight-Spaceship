@@ -52,35 +52,58 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
         OnChangeSceneEventListener.DeRegister(ChangeScene);
     }
 
-    private async void ChangeScene(int level)
+    private void ChangeScene(int level)
     {
-        await LoadSceneGroup(level);
+        LoadSceneGroup(level);
     }
 
-    public async Awaitable LoadSceneGroup(int index)
+    private void LoadSceneGroup(int index)
     {
         _loadedScenes = 0;
-
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(_sceneLoader.Name));
 
         if (index < 0 || index >= _sceneGroups.Length)
         {
             Debug.LogError("Invalid Scene group index: " + index);
-            index = 0;
+            return;
+        }
+
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(_sceneLoader.Name));
+
+        if (SceneManager.GetActiveScene().name != _sceneLoader.Name)
+        {
+            Debug.LogError("Loading Scene not set as Active Scene");
+            return;
         }
 
         EnableLoadingCanvas();
         UpdateLoadProgress(0f);
         OnToggleLoadEvent.RaiseEvent(true);
+
+
+    }
+
+    public async Awaitable LoadSceneGroups(int index)
+    {
+
+
+
+
+
         await _manager.LoadScenes(_sceneGroups[index], false);
-        EnableLoadingCanvas(false);
+        DisableLoadingCanvas();
         OnFinishedLoadingEvent.RaiseEvent();
     }
 
-    void EnableLoadingCanvas(bool enable = true)
+    void EnableLoadingCanvas()
     {
-        _loadingCanvas.gameObject.SetActive(enable);
-        _loadingCamera.SetActive(enable);
+        _loadingCanvas.gameObject.SetActive(true);
+        _loadingCamera.SetActive(true);
+    }
+
+    void DisableLoadingCanvas()
+    {
+        _loadingCanvas.gameObject.SetActive(false);
+        _loadingCamera.SetActive(false);
     }
 
     private void SceneLoaded(string sceneName)
