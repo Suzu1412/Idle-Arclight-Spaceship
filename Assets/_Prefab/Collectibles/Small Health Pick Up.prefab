@@ -63,7 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _item: {fileID: 11400000, guid: 95e4085ed5d78514481cc181103e516c, type: 2}
   gizmoColor: {r: 1, g: 0, b: 1, a: 1}
-  _soundOnPickup: {fileID: 0}
+  _soundOnPickup: {fileID: 11400000, guid: 8bd6cba8b659e764b9a2e83aa56fbc76, type: 2}
   _movement: {fileID: 11400000, guid: 386090861440af54bbd6c531f16b9ef4, type: 2}
 --- !u!58 &8348999380830936070
 CircleCollider2D:
@@ -100,7 +100,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.265625
+  m_Radius: 0.4
 --- !u!50 &5578521965697314482
 Rigidbody2D:
   serializedVersion: 5

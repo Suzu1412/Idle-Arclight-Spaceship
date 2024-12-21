@@ -90,11 +90,8 @@
     <type fullname=".FPSData" preserve="nothing" serialized="true" />
     <type fullname=".FloatModifier" preserve="nothing" serialized="true" />
     <type fullname=".GameData" preserve="nothing" serialized="true" />
-    <type fullname=".GeneratorData" preserve="nothing" serialized="true" />
     <type fullname=".LocalizationData" preserve="nothing" serialized="true" />
-    <type fullname=".PlayerAgentData" preserve="nothing" serialized="true" />
     <type fullname=".StatType" preserve="nothing" serialized="true" />
-    <type fullname=".UpgradeData" preserve="nothing" serialized="true" />
     <type fullname=".VolumeData" preserve="nothing" serialized="true" />
     <type fullname=".WeightedItem" preserve="nothing" serialized="true" />
   </assembly>

@@ -16,6 +16,7 @@ public class FloatVariableSO : ScriptableObject
 
     private void OnEnable()
     {
+        RemoveAllModifiers();
         _isDirty = true;
         _baseValue = Mathf.Clamp(_baseValue, _minValue, _maxValue);
     }

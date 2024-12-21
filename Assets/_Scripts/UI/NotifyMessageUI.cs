@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -26,9 +27,10 @@ public class NotifyMessageUI : MonoBehaviour
     private LocalizedString _gemsLocalized;
     private LocalizedString _shopLocalized;
     private Coroutine _animateCoroutine;
+    private Coroutine _returnToPoolCoroutine;
 
     [SerializeField] private float _easeDuration = 0.4f;
-    public ObjectPooler Pool => _pool = _pool != null ? _pool : gameObject.GetOrAdd<ObjectPooler>();
+    public ObjectPooler Pool => _pool = _pool != null ? _pool : _pool = gameObject.GetOrAdd<ObjectPooler>();
 
     private void Awake()
     {
@@ -49,6 +51,12 @@ public class NotifyMessageUI : MonoBehaviour
             _parentRectTransform = transform.GetComponent<RectTransform>();
 
         }
+    }
+
+    private void OnDisable()
+    {
+        transform.DOKill();
+        StopAllCoroutines();
     }
 
     private void GetMultiplierVariable()
@@ -107,7 +115,7 @@ public class NotifyMessageUI : MonoBehaviour
         _localizedStringEvent.RefreshString();
     }
 
-    public async void SetShopMessage(INotification notification)
+    public void SetShopMessage(INotification notification)
     {
         _image.sprite = notification.Sprite;
         transform.localPosition = _closePosition;
@@ -115,20 +123,20 @@ public class NotifyMessageUI : MonoBehaviour
         _localizedStringEvent.StringReference.SetReference(_table, notification.Message);
         _localizedStringEvent.RefreshString();
 
-        await Awaitable.WaitForSecondsAsync(5f);
-        ObjectPoolFactory.ReturnToPool(Pool);
+        if (_returnToPoolCoroutine != null) StopCoroutine(_returnToPoolCoroutine);
+        _returnToPoolCoroutine = StartCoroutine(ReturnToPoolCoroutine(5f));
 
     }
 
-    public async void SetOfflineMessage(INotification notification)
+    public void SetOfflineMessage(INotification notification)
     {
         _localizedStringEvent.StringReference.SetReference(_table, notification.Message);
 
         _amountVariable.Value = notification.Amount;
         _localizedStringEvent.RefreshString();
 
-        await Awaitable.WaitForSecondsAsync(5f);
-        ObjectPoolFactory.ReturnToPool(Pool);
+        if (_returnToPoolCoroutine != null) StopCoroutine(_returnToPoolCoroutine);
+        _returnToPoolCoroutine = StartCoroutine(ReturnToPoolCoroutine(5f));
 
     }
 
@@ -145,7 +153,13 @@ public class NotifyMessageUI : MonoBehaviour
 
         _closePosition = new Vector2(_parentRectTransform.rect.width, transform.position.y);
         transform.DOLocalMoveX(_closePosition.x, _easeDuration).SetEase(Ease.InOutSine);
-        yield return Helpers.GetWaitForSeconds(_easeDuration);
+        if (_returnToPoolCoroutine != null) StopCoroutine(_returnToPoolCoroutine);
+        _returnToPoolCoroutine = StartCoroutine(ReturnToPoolCoroutine(_easeDuration));
+    }
+
+    private IEnumerator ReturnToPoolCoroutine(float delay)
+    {
+        yield return Helpers.GetWaitForSeconds(delay);
         ObjectPoolFactory.ReturnToPool(Pool);
     }
 }

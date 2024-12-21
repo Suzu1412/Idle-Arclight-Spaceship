@@ -103,7 +103,6 @@ public class SaveSystem : Singleton<SaveSystem>
         _fileGameData = await _dataService.Load(gameName);
 
         return _fileGameData;
-        //SceneManager.LoadScene(gameData.CurrentLevelName);
     }
 
     private void SaveDataToFile(GameData gameData)
@@ -119,13 +118,8 @@ public class SaveSystem : Singleton<SaveSystem>
 
     private void DeleteAllFileData()
     {
-        _dataService = new FileDataService(new JsonSerializer());
-        _dataService.DeleteAll();
-
         NewGame();
-        //SaveGame();
-        //LoadGame();
-
+        SaveGame();
         LoadLastScene();
     }
 
