@@ -51,10 +51,10 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
     private List<AsyncOperation> _sceneManagerLoadOperations = new List<AsyncOperation>();
     private List<AsyncOperationHandle<SceneInstance>> _addressableLoadOperations = new List<AsyncOperationHandle<SceneInstance>>();
 
-    SceneGroup ActiveSceneGroup;
-
     // Addressable Scene Dictionary
     private Dictionary<string, AsyncOperationHandle<SceneInstance>> _addressableScenes = new Dictionary<string, AsyncOperationHandle<SceneInstance>>();
+
+    SceneGroup ActiveSceneGroup;
 
     private UnityAction OnUnloadScene;
     private UnityAction OnLoadScene;
@@ -151,7 +151,7 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
     private void UpdateLoadProgress(float value)
     {
         OnLoadProgressEvent.RaiseEvent(value);
-    } 
+    }
 
     private IEnumerator UnloadScenes()
     {
@@ -185,7 +185,6 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
                 AsyncOperationHandle<SceneInstance> unloadHandle = Addressables.UnloadSceneAsync(_addressableScenes[scene]);
                 _addressableUnloadOperations.Add(unloadHandle);
                 StartCoroutine(WaitForUnloadCompletion(unloadHandle));
-                _addressableScenes.Remove(scene);
             }
             else
             {
@@ -211,38 +210,13 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
 
         //Load Main Scene
         var scene = group.Scene;
-
-        if (scene.SceneReference.State == SceneReferenceState.Regular)
-        {
-            AsyncOperation LoadOperation = SceneManager.LoadSceneAsync(scene.SceneReference.Path, LoadSceneMode.Additive);
-            _sceneManagerLoadOperations.Add(LoadOperation);
-            StartCoroutine(WaitForLoadCompletion(LoadOperation));
-        }
-        else if (scene.SceneReference.State == SceneReferenceState.Addressable)
-        {
-            AsyncOperationHandle<SceneInstance> loadHandle = Addressables.LoadSceneAsync(_addressableScenes[scene.SceneReference.Path]);
-            _addressableLoadOperations.Add(loadHandle);
-            StartCoroutine(WaitForLoadCompletion(loadHandle));
-        }
-
+        LoadScene(scene);
 
         // Load Sub Scenes
         for (int i = 0; i < group.SubScenes.Count; i++)
         {
             var sceneData = group.SubScenes[i];
-
-            if (sceneData.SceneReference.State == SceneReferenceState.Regular)
-            {
-                AsyncOperation LoadOperation = SceneManager.LoadSceneAsync(sceneData.SceneReference.Path, LoadSceneMode.Additive);
-                _sceneManagerLoadOperations.Add(LoadOperation);
-                StartCoroutine(WaitForLoadCompletion(LoadOperation));
-            }
-            else if (sceneData.SceneReference.State == SceneReferenceState.Addressable)
-            {
-                AsyncOperationHandle<SceneInstance> loadHandle = Addressables.LoadSceneAsync(_addressableScenes[sceneData.SceneReference.Path]);
-                _addressableLoadOperations.Add(loadHandle);
-                StartCoroutine(WaitForLoadCompletion(loadHandle));
-            }
+            LoadScene(sceneData);
         }
 
         while (!AreAllLoadingOperationsComplete())
@@ -253,6 +227,22 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene.Name));
 
         OnLoadSceneGroup?.Invoke();
+    }
+
+    private void LoadScene(SceneData sceneData)
+    {
+        if (sceneData.SceneReference.State == SceneReferenceState.Regular)
+        {
+            AsyncOperation LoadOperation = SceneManager.LoadSceneAsync(sceneData.SceneReference.Path, LoadSceneMode.Additive);
+            _sceneManagerLoadOperations.Add(LoadOperation);
+            StartCoroutine(WaitForLoadCompletion(LoadOperation));
+        }
+        else if (sceneData.SceneReference.State == SceneReferenceState.Addressable)
+        {
+            AsyncOperationHandle<SceneInstance> loadHandle = Addressables.LoadSceneAsync(sceneData.SceneReference.Path, LoadSceneMode.Additive);
+            _addressableLoadOperations.Add(loadHandle);
+            StartCoroutine(WaitForLoadCompletion(loadHandle));
+        }
     }
 
     // Check if all unloading operations are completed
@@ -268,13 +258,6 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
         // If there are no active unload operations, return true
         return _sceneManagerLoadOperations.Count == 0 && _addressableLoadOperations.Count == 0;
     }
-
-    // Check if a scene is loaded via Addressables
-    private bool IsAddressableSceneLoaded(string sceneAddress)
-    {
-        return _addressableScenes.ContainsKey(sceneAddress);
-    }
-
 
     // Coroutine to wait for the unloading operation to complete (for SceneManager)
     private IEnumerator WaitForUnloadCompletion(AsyncOperation unloadOperation)
@@ -307,7 +290,7 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
             yield return null;
         }
         _sceneManagerLoadOperations.Remove(loadOperation);
-        _scenesLoaded++;      
+        _scenesLoaded++;
         OnLoadScene.Invoke();
     }
 
@@ -321,6 +304,12 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
         _addressableLoadOperations.Remove(loadHandle);
         _scenesLoaded++;
         OnLoadScene.Invoke();
+    }
+
+    // Check if a scene is loaded via Addressables
+    private bool IsAddressableSceneLoaded(string sceneAddress)
+    {
+        return _addressableScenes.ContainsKey(sceneAddress);
     }
 
     private void UpdateLoadingBarOnUnload()
@@ -342,13 +331,12 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
         float progress = _unloadProgress;
         if (_scenesToLoad > 0)
         {
-            progress = _scenesLoaded * ((1f - _unloadProgress)  / _scenesToLoad);
+            progress = _scenesLoaded * ((1f - _unloadProgress) / _scenesToLoad);
         }
         else
         {
             progress = 1f;
         }
-        Debug.Log(progress);
         UpdateLoadProgress(progress);
     }
 }
