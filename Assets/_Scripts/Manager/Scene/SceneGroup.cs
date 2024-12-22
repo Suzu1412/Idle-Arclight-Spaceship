@@ -6,15 +6,11 @@ using System.Collections.Generic;
 public class SceneGroup
 {
     public string GroupName = "New Scene Group";
-    public List<SceneData> Scenes;
+    public SceneData Scene;
+    public List<SceneData> SubScenes;
 
-    public string FindSceneNameByType(SceneType sceneType)
+    public string FindSubSceneNameByType(SceneType sceneType)
     {
-        return Scenes.FirstOrDefault(scene => scene.SceneType == sceneType)?.Name;
-    }
-
-    public string FindScenePathByType(SceneType sceneType)
-    {
-        return Scenes.FirstOrDefault(scene => scene.SceneType == sceneType)?.SceneReference.Path;
+        return SubScenes.FirstOrDefault(subScene => subScene.SceneType == sceneType)?.Name;
     }
 }

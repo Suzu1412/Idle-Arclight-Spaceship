@@ -684,6 +684,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 853860984}
     - target: {fileID: 5376562726477573808, guid: d3137d512ee62144f97bd40db726b6f1, type: 3}
+      propertyPath: _unloadProgress
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5376562726477573808, guid: d3137d512ee62144f97bd40db726b6f1, type: 3}
       propertyPath: _sceneLoader.guid
       value: 5e73b9c06ca9a2442b54030da5bffdd2
       objectReference: {fileID: 0}
@@ -703,6 +707,42 @@ PrefabInstance:
       propertyPath: OnChangeSceneEventListener
       value: 
       objectReference: {fileID: 11400000, guid: fd40ca024910f954ebb2613334595cbe, type: 2}
+    - target: {fileID: 5376562726477573808, guid: d3137d512ee62144f97bd40db726b6f1, type: 3}
+      propertyPath: _sceneGroups.Array.data[0].SubScenes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5376562726477573808, guid: d3137d512ee62144f97bd40db726b6f1, type: 3}
+      propertyPath: _sceneGroups.Array.data[0].Scene._sceneReference.guid
+      value: 6450f8dd17b95004089777e242729748
+      objectReference: {fileID: 0}
+    - target: {fileID: 5376562726477573808, guid: d3137d512ee62144f97bd40db726b6f1, type: 3}
+      propertyPath: _sceneGroups.Array.data[0].Scene._sceneReference.asset
+      value: 
+      objectReference: {fileID: 102900000, guid: 6450f8dd17b95004089777e242729748, type: 3}
+    - target: {fileID: 5376562726477573808, guid: d3137d512ee62144f97bd40db726b6f1, type: 3}
+      propertyPath: _sceneGroups.Array.data[0].SubScenes.Array.data[0]._sceneType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5376562726477573808, guid: d3137d512ee62144f97bd40db726b6f1, type: 3}
+      propertyPath: _sceneGroups.Array.data[0].SubScenes.Array.data[1]._sceneType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5376562726477573808, guid: d3137d512ee62144f97bd40db726b6f1, type: 3}
+      propertyPath: _sceneGroups.Array.data[0].SubScenes.Array.data[0]._sceneReference.guid
+      value: 00860c658223c424f912bd682c180ffd
+      objectReference: {fileID: 0}
+    - target: {fileID: 5376562726477573808, guid: d3137d512ee62144f97bd40db726b6f1, type: 3}
+      propertyPath: _sceneGroups.Array.data[0].SubScenes.Array.data[1]._sceneReference.guid
+      value: 2d1f8c0e3e17144e2a9885d35e42d619
+      objectReference: {fileID: 0}
+    - target: {fileID: 5376562726477573808, guid: d3137d512ee62144f97bd40db726b6f1, type: 3}
+      propertyPath: _sceneGroups.Array.data[0].SubScenes.Array.data[0]._sceneReference.asset
+      value: 
+      objectReference: {fileID: 102900000, guid: 00860c658223c424f912bd682c180ffd, type: 3}
+    - target: {fileID: 5376562726477573808, guid: d3137d512ee62144f97bd40db726b6f1, type: 3}
+      propertyPath: _sceneGroups.Array.data[0].SubScenes.Array.data[1]._sceneReference.asset
+      value: 
+      objectReference: {fileID: 102900000, guid: 2d1f8c0e3e17144e2a9885d35e42d619, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

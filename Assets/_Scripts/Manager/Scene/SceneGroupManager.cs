@@ -9,6 +9,8 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 using Eflatun.SceneReference;
 using UnityEngine.AddressableAssets;
+using System.Collections;
+
 
 [System.Serializable]
 public class SceneGroupManager
@@ -24,6 +26,13 @@ public class SceneGroupManager
 
     SceneGroup ActiveSceneGroup;
 
+    public void LoadSceneGroup(SceneGroup group)
+    {
+    }
+
+
+
+    /*
     public async Awaitable LoadScenes(SceneGroup group, bool reloadDupscenes = false)
     {
         ActiveSceneGroup = group;
@@ -129,6 +138,7 @@ public class SceneGroupManager
 
         OnSceneGroupUnloaded?.Invoke();
     }
+    */
 }
 
 // load Scenes
