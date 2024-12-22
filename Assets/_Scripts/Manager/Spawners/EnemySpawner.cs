@@ -43,7 +43,6 @@ public class EnemySpawner : MonoBehaviour
             enemy.transform.GetChild(0).position = position;
 
             yield return Helpers.GetWaitForSeconds(_delayBetweenSpawns);
-            Debug.Log(_delayBetweenSpawns);
         }
 
     }

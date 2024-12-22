@@ -30,7 +30,6 @@ public class GemSpawner : MonoBehaviour
 
     private void SpawnGem()
     {
-        Debug.Log("times called");
         if (_spawnGemCoroutine != null) StopCoroutine(_spawnGemCoroutine);
         _spawnGemCoroutine = StartCoroutine(SpawnGemCoroutine());
     }

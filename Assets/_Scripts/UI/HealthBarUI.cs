@@ -37,7 +37,7 @@ public class HealthBarUI : MonoBehaviour
 
         }
 
-        //OnHealthChangedEventListener?.Register(UpdateHealth);
+        OnHealthChangedEventListener?.Register(UpdateHealth);
         OnDamagedEventListener?.Register(ReceiveDamage);
         OnHealedEventListener?.Register(ReceiveHeal);
     }
@@ -51,7 +51,7 @@ public class HealthBarUI : MonoBehaviour
             _healthSystem.OnHealed -= ReceiveHeal;
         }
 
-        //OnHealthChangedEventListener?.DeRegister(UpdateHealth);
+        OnHealthChangedEventListener?.DeRegister(UpdateHealth);
         OnDamagedEventListener?.DeRegister(ReceiveDamage);
         OnHealedEventListener?.DeRegister(ReceiveHeal);
 
@@ -136,6 +136,21 @@ public class HealthBarUI : MonoBehaviour
         _damagebar.fillAmount = _healthBar.fillAmount;
         _healthBar.fillAmount = _health.Ratio;
         yield return Helpers.GetWaitForSeconds(_damageAnimationDelay);
+
+        float elapsedTime = 0f;
+        float startValue = _damagebar.fillAmount;
+
+        while (elapsedTime < _damageAnimationDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / _damageAnimationDuration; // Normalize elapsed time
+            _damagebar.fillAmount = Mathf.Lerp(startValue, _health.Ratio, t);
+            yield return null;
+        }
+
+        // Ensure the final value is set correctly
+        _damagebar.fillAmount = _health.Ratio;
+
         //_damagebar.DOFillAmount(_health.Ratio, _damageAnimationDuration);
         _isDamaged = false;
 
@@ -143,13 +158,20 @@ public class HealthBarUI : MonoBehaviour
 
     IEnumerator HealAnimationCoroutine()
     {
-        if (_isDamaged)
+        float elapsedTime = 0f;
+        float startValue = _healthBar.fillAmount;
+
+        while (elapsedTime < _damageAnimationDuration)
         {
-            //_damagebar.DOKill();
-            //_damagebar.DOFillAmount(_health.Ratio, _damageAnimationDuration);
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / _damageAnimationDuration; // Normalize elapsed time
+            _healthBar.fillAmount = Mathf.Lerp(startValue, _health.Ratio, t);
+            yield return null;
         }
+
         yield return null;
+
+
         _healthBar.fillAmount = _health.Ratio;
-        //_healthBar.DOFillAmount(_health.Ratio, _damageAnimationDuration);
     }
 }

@@ -121,7 +121,6 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         OnHealed?.Invoke(amount);
         OnHealedEvent?.RaiseEvent(amount);
         OnHealthValueChanged?.Invoke();
-        OnHealthChangedEvent?.RaiseEvent();
     }
 
     public void Damage(int amount)
@@ -138,7 +137,6 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         OnDamaged?.Invoke(amount);
         OnDamagedEvent?.RaiseEvent(amount);
         OnHealthValueChanged?.Invoke();
-        OnHealthChangedEvent?.RaiseEvent();
 
         if (_health.Value <= 0)
         {

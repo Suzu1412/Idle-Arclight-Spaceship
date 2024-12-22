@@ -30,6 +30,9 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
 
     [Header("Float Event")]
     [SerializeField] private FloatGameEvent OnLoadProgressEvent;
+    [SerializeField] private FloatGameEvent OnScreenFadeOutEvent;
+    [SerializeField] private FloatGameEvent OnScreenFadeInEvent;
+
 
     [Header("Bool Event Listener")]
     [SerializeField] private BoolGameEventListener OnToggleLoadEventListener;
@@ -58,8 +61,6 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
 
     private UnityAction OnUnloadScene;
     private UnityAction OnLoadScene;
-    private UnityAction OnUnloadSceneGroup;
-    private UnityAction OnLoadSceneGroup;
 
     private void Start()
     {
@@ -67,10 +68,8 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
         OnChangeSceneEventListener.Register(ChangeScene);
 
         OnUnloadScene += UpdateLoadingBarOnUnload;
-        OnUnloadSceneGroup += LoadSceneGroup;
 
         OnLoadScene += UpdateLoadingBarOnLoad;
-        OnLoadSceneGroup += FinishedLoading;
     }
 
     private void OnDestroy()
@@ -146,6 +145,7 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
     {
         DisableLoadingCanvas();
         OnFinishedLoadingEvent.RaiseEvent();
+        OnScreenFadeInEvent.RaiseEvent(1.5f);
     }
 
     private void UpdateLoadProgress(float value)
@@ -199,7 +199,7 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
             yield return null;
         }
 
-        OnUnloadSceneGroup.Invoke();
+        LoadSceneGroup();
     }
 
     private IEnumerator LoadScenes(SceneGroup group)
@@ -226,7 +226,7 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene.Name));
 
-        OnLoadSceneGroup?.Invoke();
+        FinishedLoading();
     }
 
     private void LoadScene(SceneData sceneData)
@@ -331,7 +331,7 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
         float progress = _unloadProgress;
         if (_scenesToLoad > 0)
         {
-            progress = _scenesLoaded * ((1f - _unloadProgress) / _scenesToLoad);
+            progress = _unloadProgress + _scenesLoaded * ((1f - _unloadProgress) / _scenesToLoad);
         }
         else
         {

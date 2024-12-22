@@ -163,9 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01893052164cdcd4c9c2ff28b4aeb8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shakeStrength: 0.05
-  _shakeDuration: 0.3
-  _shakeVibrato: 5
+  _magnitude: 0.1
+  _duration: 0.3
 --- !u!114 &1689546129171308470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -652,8 +651,9 @@ MonoBehaviour:
   _health: {fileID: 0}
   OnHealthChangedEventListener: {fileID: 0}
   OnDamagedEventListener: {fileID: 0}
+  OnHealedEventListener: {fileID: 0}
   _amountText: {fileID: 0}
-  _damageAnimationDelay: 0.125
+  _damageAnimationDelay: 0.05
   _damageAnimationDuration: 0.3
 --- !u!1 &6233625989351331620
 GameObject:
@@ -786,6 +786,7 @@ MonoBehaviour:
   _defaultInvulnerability: 0.1
   OnHealthChangedEvent: {fileID: 0}
   OnDamagedEvent: {fileID: 0}
+  OnHealedEvent: {fileID: 0}
 --- !u!50 &7847641929431290436
 Rigidbody2D:
   serializedVersion: 5
