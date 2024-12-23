@@ -226,6 +226,8 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene.Name));
 
+        yield return Helpers.GetWaitForSeconds(1f);
+
         FinishedLoading();
     }
 
