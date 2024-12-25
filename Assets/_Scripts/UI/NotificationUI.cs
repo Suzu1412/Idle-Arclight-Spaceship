@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NotificationUI : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class NotificationUI : MonoBehaviour
     [SerializeField] private GameObject _shopBlueNotification;
     [SerializeField] private GameObject _upgradeShopNotification;
     [SerializeField] private GameObject _generatorShopNotification;
+    [SerializeField] private Button _buyEverythingButton;
 
 
 
@@ -78,9 +80,11 @@ public class NotificationUI : MonoBehaviour
 
         _shopRedNotification.SetActive(_upgradesRTS.Count > 0);
         _upgradeShopNotification.SetActive(_upgradesRTS.Count > 0);
+        _buyEverythingButton.interactable = _upgradesRTS.Count > 0;
 
         _shopBlueNotification.SetActive(_generatorRTS.Count > 0);
         _generatorShopNotification.SetActive(_generatorRTS.Count > 0);
+
 
     }
 }

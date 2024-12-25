@@ -150,8 +150,6 @@ public class HealthBarUI : MonoBehaviour
 
         // Ensure the final value is set correctly
         _damagebar.fillAmount = 0f;
-
-        //_damagebar.DOFillAmount(_health.Ratio, _damageAnimationDuration);
         _isDamaged = false;
 
     }

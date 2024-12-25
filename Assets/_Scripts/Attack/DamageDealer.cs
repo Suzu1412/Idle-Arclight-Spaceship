@@ -3,6 +3,7 @@ using UnityEngine;
 public class DamageDealer : MonoBehaviour
 {
     [SerializeField] private bool _destroyOnContact = false;
+    [SerializeField] private SoundDataSO _impactSound;
     private ObjectPooler _pool;
     private IAgent _agent;
     internal IAgent Agent => _agent ??= GetComponentInParent<IAgent>();
@@ -18,6 +19,7 @@ public class DamageDealer : MonoBehaviour
         {
             if (Agent == null) return;
             damageable.Damage((int)Agent.GetStat(StatType.Strength));
+            _impactSound.PlayEvent();
 
             if (_destroyOnContact)
             {

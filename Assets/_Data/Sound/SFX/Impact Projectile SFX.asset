@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Impact Projectile SFX
   m_EditorClassIdentifier: 
   _audioClipGroup:
-    sequenceMode: 1
+    sequenceMode: 2
     audioClips:
-    - {fileID: 8300000, guid: 9cb84b9472f644f47a8e961e45bac7d7, type: 3}
+    - {fileID: 8300000, guid: 05cbbf8c5f6f84dffba13a1e3440a7a1, type: 3}
+    - {fileID: 8300000, guid: 84a4102d7bb6e4670b5653a288f66c89, type: 3}
   _audioChannelEvent: {fileID: 11400000, guid: 899dbe93a02f7be4a9b8b79f14d3d708, type: 2}
   _loop: 0
   _playOnAwake: 1

@@ -18,6 +18,8 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
     [SerializeField] private BoolGameEvent OnToggleInventoryEvent;
     [SerializeField] private BoolGameEvent OnToggleStatsEvent;
     [SerializeField] private BoolGameEvent OnToggleMenuEvent;
+    [SerializeField] private SoundDataSO _confirmSound;
+    [SerializeField] private SoundDataSO _cancelSound;
 
     public Vector2 Direction => _direction;
     public event UnityAction<Vector2> OnMovement;
@@ -126,10 +128,12 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
             if (!_isShopActive)
             {
                 EnablePlayerActions();
+                _confirmSound.PlayEvent();
             }
             else
             {
                 DisablePlayerActions();
+                _cancelSound.PlayEvent();
             }
         }
     }
@@ -147,10 +151,12 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
             if (!_isMenuActive)
             {
                 EnablePlayerActions();
+                _confirmSound.PlayEvent();
             }
             else
             {
                 DisablePlayerActions();
+                _cancelSound.PlayEvent();
             }
         }
     }
@@ -172,12 +178,16 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
 
     public void OnCloseAllMenus(InputAction.CallbackContext context)
     {
-        _isShopActive = false;
-        OnToggleShopEvent.RaiseEvent(_isShopActive);
-        _isMenuActive = false;
-        OnToggleMenuEvent.RaiseEvent(_isMenuActive);
+        if (_isShopActive || _isMenuActive)
+        {
+            _isShopActive = false;
+            OnToggleShopEvent.RaiseEvent(_isShopActive);
+            _isMenuActive = false;
+            OnToggleMenuEvent.RaiseEvent(_isMenuActive);
 
-        EnablePlayerActions();
-
+            EnablePlayerActions();
+            _confirmSound.PlayEvent();
+        }
+        
     }
 }
