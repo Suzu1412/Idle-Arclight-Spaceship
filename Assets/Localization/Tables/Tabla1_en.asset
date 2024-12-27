@@ -672,27 +672,7 @@ MonoBehaviour:
     m_Localized: King Of Gems
     m_Metadata:
       m_Items: []
-  - m_Id: 7588531717337090
-    m_Localized: Never gonna Gem You Up!
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7588531717337091
-    m_Localized: 'Gem Musume: Pretty Derby'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7588531717337092
-    m_Localized: Gem Grand Order
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7588531717337093
-    m_Localized: Doctor GemStone
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7588531721531392
-    m_Localized: The Gemstones
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7588531721531393
+  - m_Id: 190
     m_Localized: The Fairy GemFathers
     m_Metadata:
       m_Items: []
@@ -716,7 +696,7 @@ MonoBehaviour:
       m_Items:
       - rid: 6827601619408388423
   - m_Id: 19
-    m_Localized: Increases Magnet Size by x{amount}%
+    m_Localized: Increases Magnet Size
     m_Metadata:
       m_Items:
       - rid: 6827601619408388423
@@ -763,7 +743,8 @@ MonoBehaviour:
   - m_Id: 31
     m_Localized: Increases {gems} collected value by {amount}%  per each day played
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388423
   - m_Id: 85
     m_Localized: Pickup x{multiplier} More gems for {duration}s
     m_Metadata:
@@ -945,30 +926,6 @@ MonoBehaviour:
     m_Localized: Legendary Magnet
     m_Metadata:
       m_Items: []
-  - m_Id: 6575618198138880
-    m_Localized: Small Gem
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6575618198138881
-    m_Localized: Rough Gem
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6575618198138882
-    m_Localized: Flawed Gem
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6575618198138883
-    m_Localized: Medium Gem
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6575618198138884
-    m_Localized: Fine Gem
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6575618198138885
-    m_Localized: Luxurious Gem
-    m_Metadata:
-      m_Items: []
   - m_Id: 419
     m_Localized: Gears Of Gems
     m_Metadata:
@@ -997,18 +954,123 @@ MonoBehaviour:
     m_Localized: Gem Gem Hakusho!
     m_Metadata:
       m_Items: []
-  - m_Id: 7588531717337089
-    m_Localized: Age of Gemstones
+  - m_Id: 32
+    m_Localized: Increases {gems} appearance rate
     m_Metadata:
       m_Items: []
-  - m_Id: 7588531717337088
-    m_Localized: Plants vs Gems
+  - m_Id: 50
+    m_Localized: Back
     m_Metadata:
       m_Items: []
-  - m_Id: 7588531713142787
-    m_Localized: Gems of the Storm
+  - m_Id: 51
+    m_Localized: Settings
     m_Metadata:
       m_Items: []
+  - m_Id: 52
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 53
+    m_Localized: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54
+    m_Localized: Acceleration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 55
+    m_Localized: Deceleration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57
+    m_Localized: Select Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 58
+    m_Localized: Delete Data
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191
+    m_Localized: Lucky Collector I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 192
+    m_Localized: Lucky Collector II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193
+    m_Localized: Lucky Collector III
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194
+    m_Localized: Lucky Collector IV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195
+    m_Localized: Lucky Collector V
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196
+    m_Localized: Novice Treasure Hunter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 197
+    m_Localized: Competent Treasure Hunter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198
+    m_Localized: Expert Treasure Hunter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 199
+    m_Localized: Master Treasure Hunter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200
+    m_Localized: Ultimate Treasure Hunter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226
+    m_Localized: Small Gem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227
+    m_Localized: Rough Gem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 228
+    m_Localized: Flawed Gem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 229
+    m_Localized: Medium Gem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 230
+    m_Localized: Fine Gem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 231
+    m_Localized: Luxurious Gem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84
+    m_Localized: 
+    m_Metadata:
+      m_Items:
+      - rid: 6827601619408388423
   references:
     version: 2
     RefIds:
@@ -1071,3 +1133,5 @@ MonoBehaviour:
         - id: 94
         - id: 89
         - id: 90
+        - id: 84
+        - id: 31

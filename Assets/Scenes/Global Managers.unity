@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initialDelay: 25
   _delayBetweenSpawns: 10
-  _placementStrategy: {fileID: 11400000, guid: a0e8ac4c9ba61fc4daf23a4c8ef4a945, type: 2}
+  _placementStrategy: {fileID: 11400000, guid: f67319a964eb2844297b5b50ee221b19, type: 2}
   _enemyConfigs:
   - {fileID: 11400000, guid: f2fd5ddeb69d35249aa664060407fea5, type: 2}
   OnStartGameEventListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
@@ -228,37 +228,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _saveDataRunTimeSet: {fileID: 11400000, guid: f5b7a800ff7044645ad77bace999d088, type: 2}
---- !u!1 &762798654
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 762798655}
-  m_Layer: 0
-  m_Name: Pattern 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &762798655
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 762798654}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &994672718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -520,6 +489,12 @@ MonoBehaviour:
   _placementStrategy: {fileID: 11400000, guid: a0e8ac4c9ba61fc4daf23a4c8ef4a945, type: 2}
   _gemConfigs:
   - {fileID: 11400000, guid: eac2c2c79b35a764f9ab740a335e110b, type: 2}
+  _gemPatterns:
+  - {fileID: 11400000, guid: f8a3250740388b24f82241818dff9d8d, type: 2}
+  - {fileID: 11400000, guid: 342441f692bc4214ea7ead802eb8ee33, type: 2}
+  - {fileID: 11400000, guid: 17c567201c32e584e914fa1e192f012b, type: 2}
+  - {fileID: 11400000, guid: ec1355823b024c54e8691e3b631959d4, type: 2}
+  _currentGemPattern: {fileID: 11400000, guid: ac725eef63641054d91ebe58d651e623, type: 2}
   OnStartGameEventListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
 --- !u!1001 &228448589717511854
 PrefabInstance:
@@ -737,4 +712,3 @@ SceneRoots:
   - {fileID: 1827642338}
   - {fileID: 148453615}
   - {fileID: 447385084}
-  - {fileID: 762798655}

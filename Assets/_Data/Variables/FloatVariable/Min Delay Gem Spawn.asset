@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9812b6302fdbfe34481499843f00db24, type: 3}
   m_Name: Min Delay Gem Spawn
   m_EditorClassIdentifier: 
-  _baseValue: 0.25
-  _minValue: 0.25
-  _maxValue: 1
-  _modifiers: []
-  _value: 0.25
+  _baseValue: 2
+  _minValue: 1
+  _maxValue: 2
+  _modifiers:
+  - _modifierType: 0
+    _value: -0.5
+    _source: Gem Spawn Upgrade 2
+  - _modifierType: 0
+    _value: -0.5
+    _source: Gem Spawn Upgrade 4
+  _value: 1

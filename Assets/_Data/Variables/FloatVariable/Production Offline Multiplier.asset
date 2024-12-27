@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9812b6302fdbfe34481499843f00db24, type: 3}
   m_Name: Production Offline Multiplier
   m_EditorClassIdentifier: 
-  _baseValue: 0.1
+  _baseValue: 0.05
   _minValue: 0.05
   _maxValue: 1
   _modifiers: []
-  _value: 0.1
+  _value: 0.05

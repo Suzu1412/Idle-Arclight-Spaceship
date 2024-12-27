@@ -65,11 +65,12 @@ public class FrameRateManager : MonoBehaviour, ISaveable
 
     public void SaveData(GameDataSO gameData)
     {
-        gameData.SaveFPS(_currentFrameRate);
+        PlayerPrefs.SetFloat("FPSAmount", _currentFrameRate);
+
     }
 
     public void LoadData(GameDataSO gameData)
     {
-        ChangeFPSLimit(gameData.FPSData.FPSAmount);
+        ChangeFPSLimit(PlayerPrefs.GetFloat("FPSAmount"));
     }
 }

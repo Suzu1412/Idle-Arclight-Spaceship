@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Events;
@@ -67,14 +68,20 @@ public class SoundManager : MonoBehaviour, ISaveable
 
     public void SaveData(GameDataSO gameData)
     {
-        gameData.SaveVolume(_masterVolume.Value, _musicVolume.Value, _sfxVolume.Value);
+        PlayerPrefs.SetFloat("MasterVolume", _masterVolume.Value);
+        PlayerPrefs.SetFloat("MusicVolume", _musicVolume.Value);
+        PlayerPrefs.SetFloat("SFXVolume", _sfxVolume.Value);
     }
 
     public void LoadData(GameDataSO gameData)
     {
-        _masterVolume.Initialize(gameData.VolumeData.MasterVolume, 0f, 1f);
-        _musicVolume.Initialize(gameData.VolumeData.MusicVolume, 0f, 1f);
-        _sfxVolume.Initialize(gameData.VolumeData.SFXVolume, 0f, 1f);
+        float masterVolume = PlayerPrefs.HasKey("MasterVolume") ? PlayerPrefs.GetFloat("MasterVolume") : 1f;
+        float musicVolume = PlayerPrefs.HasKey("MusicVolume") ? PlayerPrefs.GetFloat("MusicVolume") : 1f;
+        float sfxVolume = PlayerPrefs.HasKey("SFXVolume") ? PlayerPrefs.GetFloat("SFXVolume") : 1f;
+
+        _masterVolume.Initialize(masterVolume, 0f, 1f);
+        _musicVolume.Initialize(musicVolume, 0f, 1f);
+        _sfxVolume.Initialize(sfxVolume, 0f, 1f);
 
         SetMasterVolume(_masterVolume.Value);
         SetMusicVolume(_musicVolume.Value);

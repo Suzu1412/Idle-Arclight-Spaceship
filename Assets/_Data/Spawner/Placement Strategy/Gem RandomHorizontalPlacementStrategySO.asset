@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0434f0b34fd4348aeee9d17bd19079, type: 3}
   m_Name: Gem RandomHorizontalPlacementStrategySO
   m_EditorClassIdentifier: 
-  _minPositionX: -2
-  _maxPositionX: 2
+  _minPositionX: -1.8
+  _maxPositionX: 1.8

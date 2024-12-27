@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59fa376b6957b2b4ab73737d74c4f21e, type: 3}
+  m_Name: GemPatternSO 3
+  m_EditorClassIdentifier: 
+  _gemPatternPools:
+  - {fileID: 11400000, guid: 499e96004838f8646b3d7b33ea979d67, type: 2}
+  - {fileID: 11400000, guid: fd1f68a1c7a9bbc47b25f52a1a2edbc4, type: 2}
+  - {fileID: 11400000, guid: 80c2a10d90f0546429aa6d515adb404d, type: 2}

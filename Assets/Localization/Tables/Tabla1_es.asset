@@ -245,7 +245,7 @@ MonoBehaviour:
       m_Items:
       - rid: 6827601619408388418
   - m_Id: 19
-    m_Localized: "Incrementa el tama\xF1o del im\xE1n por {amount}%"
+    m_Localized: "Incrementa el tama\xF1o del im\xE1n"
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
@@ -293,7 +293,8 @@ MonoBehaviour:
     m_Localized: "Aumenta el valor de {gems} recogidas en {amount}% por cada d\xEDa
       jugado"
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388418
   - m_Id: 85
     m_Localized: Aumenta el valor de {gems} recogidas x{multiplier} por {duration}s
     m_Metadata:
@@ -475,34 +476,127 @@ MonoBehaviour:
     m_Localized: "Im\xE1n Legendario"
     m_Metadata:
       m_Items: []
-  - m_Id: 6575618198138880
+  - m_Id: 190
+    m_Localized: 
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32
+    m_Localized: "Aumenta la taza de aparici\xF3n de {gems}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50
+    m_Localized: Volver
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51
+    m_Localized: "Configuraci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52
+    m_Localized: "M\xFAsica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 53
+    m_Localized: Sonido
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54
+    m_Localized: "Aceleraci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 55
+    m_Localized: "Deceleraci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56
+    m_Localized: Idioma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57
+    m_Localized: Seleccionar Idioma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 58
+    m_Localized: Borrar Data
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59
+    m_Localized: "Cr\xE9ditos"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60
+    m_Localized: Cancelar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191
+    m_Localized: Coleccionista suertudo I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 192
+    m_Localized: Coleccionista suertudo II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193
+    m_Localized: Coleccionista suertudo III
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194
+    m_Localized: Coleccionista suertudo IV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195
+    m_Localized: Coleccionista suertudo V
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196
+    m_Localized: Cazador de Tesoros Novato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 197
+    m_Localized: Cazador de Tesoros Competente
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198
+    m_Localized: Cazador de Tesoros Experto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 199
+    m_Localized: Cazador de Tesoros Maestro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200
+    m_Localized: Cazador de Tesoros Definitivo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226
     m_Localized: "Gema peque\xF1a"
     m_Metadata:
       m_Items: []
-  - m_Id: 6575618198138881
+  - m_Id: 227
     m_Localized: Gema en bruto
     m_Metadata:
       m_Items: []
-  - m_Id: 6575618198138882
+  - m_Id: 228
     m_Localized: Gema defectuosa
     m_Metadata:
       m_Items: []
-  - m_Id: 6575618198138883
+  - m_Id: 229
     m_Localized: Gema mediana
     m_Metadata:
       m_Items: []
-  - m_Id: 6575618198138884
+  - m_Id: 230
     m_Localized: Gema fina
     m_Metadata:
       m_Items: []
-  - m_Id: 6575618198138885
+  - m_Id: 231
     m_Localized: Gema de lujo
     m_Metadata:
       m_Items: []
-  - m_Id: 7588531721531392
-    m_Localized: Los PicaGemas
+  - m_Id: 84
+    m_Localized: 
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388418
   references:
     version: 2
     RefIds:
@@ -566,3 +660,5 @@ MonoBehaviour:
         - id: 94
         - id: 89
         - id: 90
+        - id: 84
+        - id: 31

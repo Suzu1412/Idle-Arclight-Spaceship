@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GemPatternSO", menuName = "Scriptable Objects/GemPatternSO")]
 public class GemPatternSO : ScriptableObject
 {
-    [SerializeField] private GameObject _gemPattern;
+    [SerializeField] private ObjectPoolSettingsSO[] _gemPatternPools;
 
-    public GameObject GemPattern => _gemPattern;
+    public ObjectPoolSettingsSO[] GemPatternPools => _gemPatternPools;
 }

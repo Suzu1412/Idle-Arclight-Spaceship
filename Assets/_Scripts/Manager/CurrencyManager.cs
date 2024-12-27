@@ -278,7 +278,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         long timeSpan = DateTime.Now.Ticks - lastActive;
         double seconds = Math.Round(TimeSpan.FromTicks(timeSpan).TotalSeconds);
 
-        seconds = Math.Clamp(seconds, 0, 86400);
+        seconds = Math.Clamp(seconds, 0, 300);
 
         double production = 0;
 

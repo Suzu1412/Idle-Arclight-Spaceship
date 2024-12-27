@@ -24,7 +24,7 @@ public class ItemPickUp : MonoBehaviour
     private bool _hasTarget = false;
 
     private ObjectPooler _pool;
-    internal Rigidbody2D RB => _rb != null ? _rb : _rb = GetComponent<Rigidbody2D>();
+    public Rigidbody2D RB => _rb != null ? _rb : _rb = GetComponent<Rigidbody2D>();
     public ObjectPooler Pool => _pool = _pool != null ? _pool : gameObject.GetOrAdd<ObjectPooler>();
 
     private void Awake()

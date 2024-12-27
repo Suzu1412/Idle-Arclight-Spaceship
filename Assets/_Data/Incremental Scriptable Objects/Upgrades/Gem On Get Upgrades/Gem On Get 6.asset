@@ -15,7 +15,7 @@ MonoBehaviour:
   _guid: f102626efd735bb4aaa3b3dd68834672
   _name: advancedCollector
   _description: gemPickupGPSMultiplier
-  _cost: 2500000
+  _cost: 25000000
   _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
   _modifierToApply:
     _modifierType: 0
@@ -23,8 +23,8 @@ MonoBehaviour:
     _source: Gem On Get 6
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
   _isApplied: 0
-  _isRequirementMet: 1
+  _isRequirementMet: 0
   OnShopNotificationEvent: {fileID: 11400000, guid: 22013b92c0172b742ae78cfa53b3643a, type: 2}
   _notificationIcon: {fileID: 21300000, guid: be6579725c4624670bfe01bc4afe70c8, type: 3}
-  _costRequirement: 1500000
+  _costRequirement: 15000000
   _variableToModify: {fileID: 11400000, guid: 9684dc626b62cd84c906f7dfd7de4bae, type: 2}

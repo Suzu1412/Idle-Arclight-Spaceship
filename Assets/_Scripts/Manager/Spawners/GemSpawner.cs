@@ -11,12 +11,15 @@ public class GemSpawner : MonoBehaviour
     private float _delayBetweenSpawns;
     [SerializeField] private BasePlacementStrategySO _placementStrategy;
     [SerializeField] private List<GemConfigSO> _gemConfigs;
+    [SerializeField] private GemPatternSO[] _gemPatterns;
+    [SerializeField] private FloatVariableSO _currentGemPattern;
 
     [Header("Void Game Event Listener")]
     [SerializeField] private VoidGameEventListener OnStartGameEventListener;
     private Coroutine _spawnGemCoroutine;
 
     private Vector3 _newPosition;
+    private int _randomPattern;
 
     private void OnEnable()
     {
@@ -41,17 +44,21 @@ public class GemSpawner : MonoBehaviour
 
         while (true)
         {
-            GameObject gem = ObjectPoolFactory.Spawn(_gemConfigs[0].PoolSettings).gameObject;
-            gem.GetComponent<ItemPickUp>().SetItem(_gemConfigs[0].Item);
+            _randomPattern = Random.Range(0, _gemPatterns[(int)_currentGemPattern.Value].GemPatternPools.Length);
 
+            GameObject pattern = ObjectPoolFactory.Spawn(_gemPatterns[(int)_currentGemPattern.Value].GemPatternPools[_randomPattern]).gameObject;
             _newPosition = _placementStrategy.SetPosition(new Vector3(0f, 9f, 0f));
 
-            if (gem.TryGetComponent<Rigidbody2D>(out var rb))
+            for(int i= 0; i < pattern.transform.childCount; i++)
             {
-                rb.position = _newPosition;
-            }
-            gem.transform.position = _newPosition;
+                ItemPickUp gem = ObjectPoolFactory.Spawn(_gemConfigs[0].PoolSettings).GetComponent<ItemPickUp>();
+                gem.SetItem(_gemConfigs[0].Item);
 
+                pattern.transform.position = _newPosition;
+
+                gem.RB.position = pattern.transform.GetChild(i).position; 
+                gem.transform.position = pattern.transform.GetChild(i).position; 
+            }
 
             _delayBetweenSpawns = Random.Range(_minDelayBetweenSpawns.Value, _maxDelayBetweenSpawns.Value);
             yield return Helpers.GetWaitForSeconds(_delayBetweenSpawns);
