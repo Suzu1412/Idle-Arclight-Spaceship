@@ -18,6 +18,8 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
     [SerializeField] private BoolGameEvent OnToggleInventoryEvent;
     [SerializeField] private BoolGameEvent OnToggleStatsEvent;
     [SerializeField] private BoolGameEvent OnToggleMenuEvent;
+    [SerializeField] private BoolGameEvent OnGameplayPauseEvent;
+
     [SerializeField] private SoundDataSO _confirmSound;
     [SerializeField] private SoundDataSO _cancelSound;
 
@@ -46,6 +48,7 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
         _isStatsActive = false;
         _isInventoryActive = false;
         _isMenuActive = false;
+        OnGameplayPauseEvent.RaiseEvent(false);
     }
 
     private void OnDisable()
@@ -128,12 +131,16 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
             if (!_isShopActive)
             {
                 EnablePlayerActions();
-                _confirmSound.PlayEvent();
+                _cancelSound.PlayEvent();
+                OnGameplayPauseEvent.RaiseEvent(false);
+
             }
             else
             {
                 DisablePlayerActions();
-                _cancelSound.PlayEvent();
+                _confirmSound.PlayEvent();
+                OnGameplayPauseEvent.RaiseEvent(true);
+
             }
         }
     }
@@ -151,12 +158,16 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
             if (!_isMenuActive)
             {
                 EnablePlayerActions();
-                _confirmSound.PlayEvent();
+                _cancelSound.PlayEvent();
+                OnGameplayPauseEvent.RaiseEvent(false);
+
             }
             else
             {
                 DisablePlayerActions();
-                _cancelSound.PlayEvent();
+                _confirmSound.PlayEvent();
+                OnGameplayPauseEvent.RaiseEvent(true);
+
             }
         }
     }
@@ -187,7 +198,8 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
 
             EnablePlayerActions();
             _confirmSound.PlayEvent();
+            OnGameplayPauseEvent.RaiseEvent(false);
         }
-        
+
     }
 }

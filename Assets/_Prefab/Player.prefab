@@ -145,6 +145,7 @@ MonoBehaviour:
   OnToggleInventoryEvent: {fileID: 11400000, guid: ce6f72027cc4525499da55aa695dbf9f, type: 2}
   OnToggleStatsEvent: {fileID: 11400000, guid: 2ea8ab3ab3264f14780d9d8188591b0a, type: 2}
   OnToggleMenuEvent: {fileID: 11400000, guid: 5aef7b5fb7bb7174fb12a01bc887e87a, type: 2}
+  OnGameplayPauseEvent: {fileID: 11400000, guid: 2589804ce8dc04f01bb69b4266b30917, type: 2}
   _confirmSound: {fileID: 11400000, guid: 563429b49bb4a4ee385961cdb8b5370c, type: 2}
   _cancelSound: {fileID: 11400000, guid: b0ec7d8dbb60f3d429f913e6a368bc70, type: 2}
 --- !u!114 &8124682318559238475

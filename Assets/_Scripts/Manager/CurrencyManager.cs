@@ -296,7 +296,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         IncrementPerSecond(production);
 
         OnUpdateProductionFormatted.RaiseEvent(FormatNumber.FormatDouble(production, UpdateProductionFormatted));
-        if (production == 0f) return; 
+        if (production == 0f) return;
         _offlineNotificationEvent.RaiseEvent(_offlineNotification);
     }
 }

@@ -153,6 +153,7 @@ public class SoundEmitter : MonoBehaviour
         if (_fadeVolumeCoroutine != null) StopCoroutine(_fadeVolumeCoroutine);
         _fadeVolumeCoroutine = StartCoroutine(FadeVolumeCoroutine(0f, 1f));
         yield return Helpers.GetWaitForSeconds(1f);
+
         OnMusicFinishedPlaying?.Invoke(sound);
     }
 
