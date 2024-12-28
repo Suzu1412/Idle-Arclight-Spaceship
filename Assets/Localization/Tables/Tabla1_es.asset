@@ -152,7 +152,8 @@ MonoBehaviour:
   - m_Id: 23
     m_Localized: Agrega nuevos patrones de {gems}
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388418
   - m_Id: 5
     m_Localized: Tienda de Mejoras
     m_Metadata:
@@ -483,7 +484,8 @@ MonoBehaviour:
   - m_Id: 32
     m_Localized: "Aumenta la taza de aparici\xF3n de {gems}"
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 6827601619408388418
   - m_Id: 50
     m_Localized: Volver
     m_Metadata:
@@ -597,6 +599,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
+  - m_Id: 33
+    m_Localized: '{amount} {gps}'
+    m_Metadata:
+      m_Items:
+      - rid: 6827601619408388418
   references:
     version: 2
     RefIds:
@@ -662,3 +669,6 @@ MonoBehaviour:
         - id: 90
         - id: 84
         - id: 31
+        - id: 23
+        - id: 33
+        - id: 32

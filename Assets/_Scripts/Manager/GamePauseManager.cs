@@ -3,6 +3,7 @@ using UnityEngine;
 public class GamePauseManager : MonoBehaviour
 {
     [SerializeField] private BoolGameEventListener OnGameplayPausedListener;
+    [SerializeField] private PausableRunTimeSetSO _pausable;
 
     void Start()
     {
@@ -27,13 +28,11 @@ public class GamePauseManager : MonoBehaviour
 
     private void PauseGameplay(bool isPaused)
     {
-        if (isPaused)
+        Screen.sleepTimeout = isPaused ? SleepTimeout.SystemSetting : SleepTimeout.NeverSleep;
+
+        foreach (var pausable in _pausable.Items)
         {
-            Screen.sleepTimeout = SleepTimeout.SystemSetting;
-        }
-        else
-        {
-            Screen.sleepTimeout = SleepTimeout.NeverSleep;
+            pausable.Pause(isPaused);
         }
     }
 }

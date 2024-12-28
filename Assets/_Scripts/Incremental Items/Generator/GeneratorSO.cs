@@ -27,6 +27,8 @@ public class GeneratorSO : SerializableScriptableObject
     [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
     [SerializeField] private Sprite _notificationIcon;
     [SerializeField] private NotificationGameEvent OnShopNotificationEvent;
+    [Header("Double Variable")]
+    [SerializeField] private DoubleVariableSO _generatorsTotalProduction;
 
     private DoubleVariableSO _bulkCost;
     private DoubleVariableSO _currentProduction;
@@ -36,6 +38,7 @@ public class GeneratorSO : SerializableScriptableObject
 
     [SerializeField] private bool _isUnlocked;
     [SerializeField] private bool _shouldNotify;
+    [SerializeField] private float _productionPercentage;
     private bool _isDirty = true;
 
     public string Name => _name;
@@ -52,6 +55,8 @@ public class GeneratorSO : SerializableScriptableObject
     public FormattedNumber CostFormatted { get; private set; }
     public FormattedNumber ProductionFormatted { get; private set; }
     public bool ShouldNotify { get => _shouldNotify; set => _shouldNotify = value; }
+    public float ProductionPercentage => _productionPercentage;
+    public bool IsDirty { set  => _isDirty = value; }
 
     private void OnEnable()
     {
@@ -75,6 +80,7 @@ public class GeneratorSO : SerializableScriptableObject
     {
         SetAmount(0);
         SetTotalProduction(0);
+        _productionPercentage = 0;
         _isUnlocked = false;
         _shouldNotify = true;
     }
@@ -98,7 +104,20 @@ public class GeneratorSO : SerializableScriptableObject
         _production.Value = _baseProduction * _gemProductionMultiplier.Value * _generatorProductionMultiplier.Value * _crystalTotalMultiplier.Value;
         _currentProduction.Value = Math.Round(_production.Value * _amountOwned, 1);
         ProductionFormatted = FormatNumber.FormatDouble(_currentProduction.Value, ProductionFormatted);
+        
         _isDirty = false;
+    }
+
+    public void CalculatePercentage()
+    {
+        if (_generatorsTotalProduction.Value != 0) // Evita división por Cero
+        {
+            _productionPercentage = (float)(_currentProduction.Value / _generatorsTotalProduction.Value) * 100;
+        }
+        else
+        {
+            _productionPercentage = 0;
+        }
     }
 
     public double GetProductionRate()

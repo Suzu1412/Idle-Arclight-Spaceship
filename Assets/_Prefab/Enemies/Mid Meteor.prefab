@@ -923,6 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea65c7598fc3848cdadb45dff6dbc21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
   _debugCurrentState: {fileID: 0}
   _stateList:
   - {fileID: 11400000, guid: 653f2a8fb2b1a462f9fcaeffd69c9a4a, type: 2}
@@ -943,6 +944,7 @@ MonoBehaviour:
   _topBounds: 3
   _bottomBounds: -3
   _hasBoundaries: 0
+  _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
 --- !u!114 &420599516321568518
 MonoBehaviour:
   m_ObjectHideFlags: 0

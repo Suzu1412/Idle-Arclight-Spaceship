@@ -4,7 +4,9 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
   - particleOnHitPrefabVFX: {instanceID: 0}
+  - _impactSFX: {instanceID: 0}
   - _impactPool: {fileID: 11400000, guid: 23b1f4e6dcf134f6995b67e4896187ba, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}

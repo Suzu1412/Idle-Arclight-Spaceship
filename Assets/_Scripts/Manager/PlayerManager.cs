@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-[RequireComponent(typeof(AddSaveDataRunTimeSet))]
 public class PlayerManager : Singleton<PlayerManager>, ISaveable
 {
+    [SerializeField] private SaveableRunTimeSetSO _saveable;
+
     [Header("Void Game Event Listener")]
     [SerializeField] private VoidGameEventListener OnStartGameEventListener;
 
@@ -23,11 +24,13 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
     
     private void OnEnable()
     {
+        _saveable.Add(this);
         OnStartGameEventListener.Register(SpawnPlayer);
     }
 
     private void OnDisable()
     {
+        _saveable.Remove(this);
         OnStartGameEventListener.DeRegister(SpawnPlayer);
     }
 
@@ -73,6 +76,11 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
             ));
         }
         gameData.SavePlayers(players);
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 
     private void SpawnPlayer()

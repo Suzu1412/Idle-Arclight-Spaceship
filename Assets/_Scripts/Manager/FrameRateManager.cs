@@ -2,9 +2,9 @@ using System.Collections;
 using System.Threading;
 using UnityEngine;
 
-[RequireComponent(typeof(AddSaveDataRunTimeSet))]
 public class FrameRateManager : MonoBehaviour, ISaveable
 {
+    [SerializeField] private SaveableRunTimeSetSO _saveable;
     [Header("Frame Settings")]
     int MaxRate = 9999;
     [SerializeField] private float TargetFrameRate = 30f;
@@ -12,7 +12,8 @@ public class FrameRateManager : MonoBehaviour, ISaveable
     private float _applicationFrameRate;
     float currentFrameTime;
 
-    [SerializeField] private FloatGameEventListener OnFPSChangeEventListener;
+    [SerializeField] private FloatVariableSO _fpsAmount;
+    [SerializeField] private FloatGameEventListener OnFPSChangeEventListener; // Listen to FPS UI
 
     void Awake()
     {
@@ -25,11 +26,13 @@ public class FrameRateManager : MonoBehaviour, ISaveable
 
     private void OnEnable()
     {
+        _saveable.Add(this);
         OnFPSChangeEventListener.Register(ChangeFPSLimit);
     }
 
     private void OnDisable()
     {
+        _saveable.Remove(this);
         OnFPSChangeEventListener.DeRegister(ChangeFPSLimit);
     }
 
@@ -53,10 +56,12 @@ public class FrameRateManager : MonoBehaviour, ISaveable
         if (amount > 0f)
         {
             _currentFrameRate = (int)amount;
+            _fpsAmount.Initialize(_currentFrameRate);
         }
         else
         {
             _currentFrameRate = (int)_applicationFrameRate;
+            _fpsAmount.Initialize(0f);
         }
         TargetFrameRate = _currentFrameRate;
         Application.targetFrameRate = _currentFrameRate;
@@ -72,5 +77,10 @@ public class FrameRateManager : MonoBehaviour, ISaveable
     public void LoadData(GameDataSO gameData)
     {
         ChangeFPSLimit(PlayerPrefs.GetFloat("FPSAmount"));
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

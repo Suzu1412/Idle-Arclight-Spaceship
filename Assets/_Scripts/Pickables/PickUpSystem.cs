@@ -36,7 +36,7 @@ public class PickUpSystem : MonoBehaviour
 
             if (collider != null)
             {
-                if (collider.TryGetComponent(out ItemPickUp item))
+                if (collider.TryGetComponent(out ItemMagnet item))
                 {
                     item.Magnet(this.transform);
                 }

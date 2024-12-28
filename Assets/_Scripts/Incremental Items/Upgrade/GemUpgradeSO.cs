@@ -45,7 +45,6 @@ public class GemUpgradeSO : BaseUpgradeSO
         {
             _generator.RemoveModifier(_modifierToApply);
             _isApplied = false;
-            OnProductionChangedEvent.RaiseEvent();
         }
     }
 

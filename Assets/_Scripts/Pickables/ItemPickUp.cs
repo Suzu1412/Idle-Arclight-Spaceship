@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ObjectPooler))]
-public class ItemPickUp : MonoBehaviour
+public class ItemPickUp : MonoBehaviour, IPausable
 {
+    [SerializeField] private PausableRunTimeSetSO _pausable;
     private SpriteRenderer _spriteRenderer;
     private CircleCollider2D _pickableCollider;
     [SerializeField] private ItemSO _item;
@@ -20,6 +21,7 @@ public class ItemPickUp : MonoBehaviour
     private bool _isPickedUp;
     private float _spawnDuration;
     private float _stillDuration;
+    private bool _isPaused;
     
     private bool _hasTarget = false;
 
@@ -40,6 +42,7 @@ public class ItemPickUp : MonoBehaviour
 
     private void OnEnable()
     {
+        _pausable.Add(this);
         transform.localScale = Vector3.one;
         _isPickedUp = false;
         _spawnDuration = 0.3f;
@@ -50,18 +53,21 @@ public class ItemPickUp : MonoBehaviour
 
     private void OnDisable()
     {
+        _pausable.Remove(this);
         _hasTarget = false;
         _followTarget = null;
     }
 
     private void Update()
     {
+        if (_isPaused) return;
         CalculateDirection();
         CalculateMovement();
     }
 
     private void FixedUpdate()
     {
+        if (_isPaused) return;
         Move();
     }
 
@@ -189,6 +195,25 @@ public class ItemPickUp : MonoBehaviour
 
         Gizmos.color = gizmoColor;
         Gizmos.DrawWireSphere(transform.position, _pickableCollider.radius);
+    }
+
+    public void Pause(bool isPaused)
+    {
+        _isPaused = isPaused;
+
+        if (isPaused)
+        {
+            RB.constraints |= RigidbodyConstraints2D.FreezePosition;
+        }
+        else
+        {
+            RB.constraints &= ~RigidbodyConstraints2D.FreezePosition;
+        }
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 
     private enum ItemBehaviour

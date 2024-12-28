@@ -87,6 +87,11 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
         // Loaded Scene Data must be done before
     }
 
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
     private void ChangeScene(int index)
     {
         _scenesUnloaded = 0;

@@ -43,6 +43,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     public event Action OnHit;
     public event Action OnInvulnerabilityPeriod;
     public event Action OnDestroyGO;
+    public event Action OnHeal;
     #endregion
 
     private void Awake()
@@ -118,6 +119,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         if (amount <= 0f) return;
 
         _health.Value += amount;
+        OnHeal?.Invoke();
         OnHealed?.Invoke(amount);
         OnHealedEvent?.RaiseEvent(amount);
         OnHealthValueChanged?.Invoke();

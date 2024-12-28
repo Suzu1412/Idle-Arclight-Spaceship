@@ -23,7 +23,12 @@ public class UnlockManager : MonoBehaviour, ISaveable
 		OnUnlockEvent.RaiseEvent();
 	}
 
-	private void LoadUnlockedSystem(List<UnlockSystemData> unlockedDatas)
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
+    private void LoadUnlockedSystem(List<UnlockSystemData> unlockedDatas)
 	{
 		foreach (var unlockedSO in _unlockedSystems.UnlockedSystems)
 		{

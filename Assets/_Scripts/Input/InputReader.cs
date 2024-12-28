@@ -37,7 +37,6 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
     {
         EnablePlayerActions();
         EnableMenuToggleActions();
-        DisableUIActions();
     }
 
     private void OnEnable()
@@ -49,6 +48,7 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
         _isInventoryActive = false;
         _isMenuActive = false;
         OnGameplayPauseEvent.RaiseEvent(false);
+        DisableUIActions();
     }
 
     private void OnDisable()
@@ -197,6 +197,7 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
             OnToggleMenuEvent.RaiseEvent(_isMenuActive);
 
             EnablePlayerActions();
+            DisableUIActions();
             _confirmSound.PlayEvent();
             OnGameplayPauseEvent.RaiseEvent(false);
         }

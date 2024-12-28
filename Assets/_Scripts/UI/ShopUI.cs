@@ -106,7 +106,10 @@ public class ShopUI : Singleton<ShopUI>
 
     private void UpdateButtonInfo(int index)
     {
-        _generatorButtons[index].PrepareButton();
+        foreach(var generatorButton in _generatorButtons)
+        {
+            generatorButton.PrepareButton();
+        }
     }
 
     private void BuyGenerator(int index)

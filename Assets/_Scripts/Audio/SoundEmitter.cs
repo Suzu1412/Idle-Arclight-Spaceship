@@ -13,7 +13,6 @@ public class SoundEmitter : MonoBehaviour
     private Coroutine _playingMusicCoroutine;
     private Coroutine _fadeVolumeCoroutine;
     private float _fadeDuration = 2f;
-    private bool _isFadingOut = false;
     private ISound _data;
     private AudioClip _currentClip;
 

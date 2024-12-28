@@ -22,7 +22,7 @@ public class SaveSystem : Singleton<SaveSystem>
 
     [Header("Persistence")]
     [SerializeField] private GameDataSO _gameDataSO = default;
-    [SerializeField] private GameObjectRuntimeSetSO _saveDataRTS = default;
+    [SerializeField] private SaveableRunTimeSetSO _saveDataRTS = default;
 
     protected override void Awake()
     {
@@ -74,7 +74,7 @@ public class SaveSystem : Singleton<SaveSystem>
 
         foreach (var item in _saveDataRTS.Items)
         {
-            item.GetComponent<ISaveable>().LoadData(_gameDataSO);
+            item.LoadData(_gameDataSO);
         }
         _canSave = true;
     }
@@ -83,7 +83,7 @@ public class SaveSystem : Singleton<SaveSystem>
     {
         foreach (var item in _saveDataRTS.Items)
         {
-            item.GetComponent<ISaveable>().SaveData(_gameDataSO);
+            item.SaveData(_gameDataSO);
         }
 
         SaveDataToFile(_gameDataSO.GameData);

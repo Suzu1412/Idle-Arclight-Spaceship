@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 394818362350170975}
-  - component: {fileID: 3675975866132940545}
   - component: {fileID: 2810333893229376637}
   m_Layer: 0
   m_Name: Currency Manager
@@ -33,19 +32,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3675975866132940545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8180101144524932358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0aa52367560640bfa34874b5a130450, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _saveDataRunTimeSet: {fileID: 11400000, guid: f5b7a800ff7044645ad77bace999d088, type: 2}
 --- !u!114 &2810333893229376637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,12 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9afffddf648bb4c99608ef8333229e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _saveable: {fileID: 11400000, guid: e7213c21199ce404fb056957629494aa, type: 2}
   _delayToGenerate: 1
   _totalCurrency: {fileID: 11400000, guid: 5ff754d7192604832a00d5cf0c8ff24d, type: 2}
   _gameTotalCurrency: {fileID: 11400000, guid: 967164b2c9ed14646b5f97791afa3fac, type: 2}
+  _generatorsTotalProduction: {fileID: 11400000, guid: 3333a232e7612214f89041268b3a20cd, type: 2}
+  _gemGeneratorTotalAmount: {fileID: 11400000, guid: e78fee59deefe49038c0b57c7f497566, type: 2}
   _amountToBuy: {fileID: 11400000, guid: ced75ba67cb9f497da83291dde86fe33, type: 2}
-  _crystalOnGetMultiplier: {fileID: 11400000, guid: 040b947bc1d6d4246909cf21658dd890, type: 2}
-  _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
   _productionOfflineMultiplier: {fileID: 11400000, guid: 058483fa6e86a8a4aa32ad1ca07e30cb, type: 2}
   OnGeneratorAmountChangedEvent: {fileID: 11400000, guid: ed7dedcf3aab54e709171f8864d63ce9, type: 2}
   OnChangeBuyAmountEvent: {fileID: 11400000, guid: b8b90167f58d94ee391e69875a58d3dd, type: 2}
@@ -80,3 +67,5 @@ MonoBehaviour:
   OnUpdateProductionFormatted: {fileID: 11400000, guid: d930e72f3007ea247b944f3be57a7ddd, type: 2}
   _generators: {fileID: 11400000, guid: ce4c74a3b5cde4af8b5f425ab30f204c, type: 2}
   _upgrades: {fileID: 11400000, guid: 4ffa9bed5669641aaa21b888413cad8f, type: 2}
+  _offlineNotification: {fileID: 11400000, guid: 63374f083f9110345b3b516345cb52d1, type: 2}
+  _offlineNotificationEvent: {fileID: 11400000, guid: 6d309f1012e55bb40bab4b5d5493bc31, type: 2}

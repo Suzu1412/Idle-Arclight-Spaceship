@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class FiniteStateMachine : MonoBehaviour
+public class FiniteStateMachine : MonoBehaviour, IPausable
 {
+    [SerializeField] private PausableRunTimeSetSO _pausable = default;
+
+    private bool _isPaused;
     private IAgent _agent;
     private BaseState _currentState;
     private Coroutine _transitionCoroutine;
@@ -24,23 +26,27 @@ public class FiniteStateMachine : MonoBehaviour
 
     private void OnEnable()
     {
+        _pausable.Add(this);
         Transition(_stateList[0]);
         _transitionCoroutine = StartCoroutine(TransitionCoroutine());
     }
 
     private void OnDisable()
     {
+        _pausable.Remove(this);
         StopAllCoroutines();
         _currentState?.OnExit();
     }
 
     private void Update()
     {
+        if (_isPaused) return;
         _currentState?.OnUpdate();
     }
 
     private void FixedUpdate()
     {
+        if (_isPaused) return;
         _currentState?.OnFixedUpdate();
     }
 
@@ -84,5 +90,15 @@ public class FiniteStateMachine : MonoBehaviour
             Transition(_currentState?.HandleTransition());
             yield return Helpers.GetWaitForSeconds(_handleTransitionTime);
         }
+    }
+
+    public void Pause(bool isPaused)
+    {
+        _isPaused = isPaused;
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

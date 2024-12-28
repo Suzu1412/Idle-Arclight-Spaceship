@@ -148,7 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e36efbef95a76d4cbefd9263706df3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialDelay: 25
+  _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
+  _initialDelay: 15
   _delayBetweenSpawns: 10
   _placementStrategy: {fileID: 11400000, guid: f67319a964eb2844297b5b50ee221b19, type: 2}
   _enemyConfigs:
@@ -214,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnGameplayPausedListener: {fileID: 11400000, guid: 9c454593d11a040e0af304c4b194a6a8, type: 2}
+  _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
 --- !u!1 &447385082
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +226,6 @@ GameObject:
   m_Component:
   - component: {fileID: 447385084}
   - component: {fileID: 447385083}
-  - component: {fileID: 447385085}
   m_Layer: 0
   m_Name: Language Manager
   m_TagString: Untagged
@@ -244,6 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e15e5fa6849514192dee9de2c8a893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _saveable: {fileID: 11400000, guid: e7213c21199ce404fb056957629494aa, type: 2}
   _changeLocaleEventListener: {fileID: 11400000, guid: fdcbc2654d3c45e48bc16f10db723426, type: 2}
 --- !u!4 &447385084
 Transform:
@@ -260,19 +262,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &447385085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447385082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0aa52367560640bfa34874b5a130450, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _saveDataRunTimeSet: {fileID: 11400000, guid: f5b7a800ff7044645ad77bace999d088, type: 2}
 --- !u!1001 &994672718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -321,26 +310,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2810333893229376637, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
-      propertyPath: _gemTotalAmount
-      value: 
-      objectReference: {fileID: 11400000, guid: 9cbf71973393f4ef38507be21962bc91, type: 2}
-    - target: {fileID: 2810333893229376637, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
-      propertyPath: _currentProduction
-      value: 
-      objectReference: {fileID: 11400000, guid: 3333a232e7612214f89041268b3a20cd, type: 2}
-    - target: {fileID: 2810333893229376637, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
-      propertyPath: _offlineNotification
-      value: 
-      objectReference: {fileID: 11400000, guid: 63374f083f9110345b3b516345cb52d1, type: 2}
-    - target: {fileID: 2810333893229376637, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
-      propertyPath: _gemGeneratorTotalAmount
-      value: 
-      objectReference: {fileID: 11400000, guid: e78fee59deefe49038c0b57c7f497566, type: 2}
-    - target: {fileID: 2810333893229376637, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
-      propertyPath: _offlineNotificationEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 6d309f1012e55bb40bab4b5d5493bc31, type: 2}
     - target: {fileID: 8180101144524932358, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
       propertyPath: m_Name
       value: Currency Manager
@@ -528,6 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d07bc08e7de8484a8bf4449a23c5efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
   _initialDelay: 3
   _minDelayBetweenSpawns: {fileID: 11400000, guid: 2de357555a31174478dae732ee2ba5c4, type: 2}
   _maxDelayBetweenSpawns: {fileID: 11400000, guid: 1e5b0151d4e46b34fa6b1bde14d1176d, type: 2}
@@ -553,14 +523,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sound Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 3741806871769426758, guid: a3630e1759fe4274da449fae420d1274, type: 3}
-      propertyPath: _sfxMixerGroup
-      value: 
-      objectReference: {fileID: 835351367185149660, guid: 86f7e46642601c74db1fce9c9b0cd5c8, type: 2}
-    - target: {fileID: 3741806871769426758, guid: a3630e1759fe4274da449fae420d1274, type: 3}
-      propertyPath: _musicMixerGroup
-      value: 
-      objectReference: {fileID: -2631247058432068685, guid: 86f7e46642601c74db1fce9c9b0cd5c8, type: 2}
     - target: {fileID: 8227488706577232358, guid: a3630e1759fe4274da449fae420d1274, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -658,30 +620,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7921322146628114214, guid: 9466aeff83afe114eaf80d76cdcb22f4, type: 3}
-      propertyPath: OnActivateRandomEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 3634901eabd4d194eb3aa237cf8b2a24, type: 2}
-    - target: {fileID: 7921322146628114214, guid: 9466aeff83afe114eaf80d76cdcb22f4, type: 3}
-      propertyPath: OnNotificateRandomEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 3634901eabd4d194eb3aa237cf8b2a24, type: 2}
-    - target: {fileID: 7921322146628114214, guid: 9466aeff83afe114eaf80d76cdcb22f4, type: 3}
-      propertyPath: _randomEvents.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7921322146628114214, guid: 9466aeff83afe114eaf80d76cdcb22f4, type: 3}
-      propertyPath: '_randomEvents.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e0ec1385a6cd1774cad9379a55d3a552, type: 2}
-    - target: {fileID: 7921322146628114214, guid: 9466aeff83afe114eaf80d76cdcb22f4, type: 3}
-      propertyPath: '_randomEvents.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 068c1ab2542f0c84cbbf39dede75050b, type: 2}
-    - target: {fileID: 7921322146628114214, guid: 9466aeff83afe114eaf80d76cdcb22f4, type: 3}
-      propertyPath: '_randomEvents.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: bbaffc36623cfb745919091e26249636, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -739,6 +677,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8284372144002422128, guid: 33783c273617a6c4d92d304f34cf23a2, type: 3}
+      propertyPath: _fpsAmount
+      value: 
+      objectReference: {fileID: 11400000, guid: 187c28dbb5c267c44ac5f931fac75d0d, type: 2}
+    - target: {fileID: 8284372144002422128, guid: 33783c273617a6c4d92d304f34cf23a2, type: 3}
+      propertyPath: OnFPSChangeEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: b7c6231dcf0e70c46ac1f5b93533f754, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

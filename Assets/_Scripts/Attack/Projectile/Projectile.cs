@@ -1,8 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviour, IPausable
 {
+    [SerializeField] private PausableRunTimeSetSO _pausable;
     private Rigidbody2D _rb;
     [SerializeField] private LayerMask whatDestroyBullet;
     [SerializeField] private float _projectileSpeed = 10f;
@@ -16,6 +17,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float projectileDuration = 6f;
     public float ProjectileRange => _projectileRange;
     private Coroutine _disableProjectileAfterDistance;
+    private bool _isPaused;
 
     public ObjectPooler Pool => _pool = _pool != null ? _pool : gameObject.GetOrAdd<ObjectPooler>();
 
@@ -34,12 +36,18 @@ public class Projectile : MonoBehaviour
 
     private void OnEnable()
     {
-        //_disableProjectileAfterDistance = StartCoroutine(DisableProjectileAfterDistanceCoroutine());
+        _pausable.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        _pausable.Remove(this);
     }
 
     private void FixedUpdate()
     {
         // Rotate Bullet in direction of velocity
+        if (_isPaused) return;
         RB.linearVelocity = transform.right * _projectileSpeed;
     }
 
@@ -106,5 +114,24 @@ public class Projectile : MonoBehaviour
         }
 
         ObjectPoolFactory.ReturnToPool(Pool);
+    }
+
+    public void Pause(bool isPaused)
+    {
+        _isPaused = isPaused;
+
+        if (isPaused)
+        {
+            RB.constraints |= RigidbodyConstraints2D.FreezePosition;
+        }
+        else
+        {
+            RB.constraints &= ~RigidbodyConstraints2D.FreezePosition;
+        }
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

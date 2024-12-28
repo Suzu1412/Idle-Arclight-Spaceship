@@ -33,9 +33,10 @@ public class GeneratorButtonController : MonoBehaviour
     [SerializeField] private Image _generatorIcon;
     [SerializeField] private LocalizeStringEvent _nameLocalized;
     [SerializeField] private LocalizeStringEvent _descriptionLocalized;
+    [SerializeField] private LocalizeStringEvent _productionLocalized;
     [SerializeField] private TextMeshProUGUI _amountText;
     [SerializeField] private TextMeshProUGUI _priceText;
-    [SerializeField] private TextMeshProUGUI _productionText;
+    [SerializeField] private TextMeshProUGUI _percentageText;
     [SerializeField] private Button _buyButton;
     [SerializeField] private Image _notificationImage;
 
@@ -46,9 +47,12 @@ public class GeneratorButtonController : MonoBehaviour
 
     [Header("Localization")]
     private LocalizedString _localizedString;
+    private LocalizedString _productionLocalizedString;
     [SerializeField] private string _table = "Tabla1";
     private string _gemDescription = "gemDescription";
+    private string _gemProduction = "gemProduction";
     private StringVariable _amountVariable;
+    private StringVariable _amountProductionVariable;
 
     public event UnityAction<int> OnBuyGeneratorClicked;
     private bool _isAvailableToBuy;
@@ -57,7 +61,9 @@ public class GeneratorButtonController : MonoBehaviour
     private void Awake()
     {
         _localizedString = _descriptionLocalized.StringReference;
+        _productionLocalizedString = _productionLocalized.StringReference;
         SetAmountVariable();
+        SetAmountProductionVariable();
         OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
         _isAvailableToBuy = false;
     }
@@ -67,6 +73,7 @@ public class GeneratorButtonController : MonoBehaviour
         _buyButton.onClick.AddListener(HandleBuyButton);
         OnProductionChangedEventListener.Register(DisplayProductionText);
         OnProductionChangedEventListener.Register(DisplayDescription);
+        OnProductionChangedEventListener.Register(DisplayPercentageText);
 
         ActivateButton(false);
 
@@ -78,6 +85,7 @@ public class GeneratorButtonController : MonoBehaviour
         DisplayProductionText();
         DisplayPriceText();
         DisplayDescription();
+        DisplayPercentageText();
         SetNotificationButtonImage();
     }
 
@@ -86,6 +94,7 @@ public class GeneratorButtonController : MonoBehaviour
         _buyButton.onClick.RemoveAllListeners();
         OnProductionChangedEventListener.DeRegister(DisplayProductionText);
         OnProductionChangedEventListener.DeRegister(DisplayDescription);
+        OnProductionChangedEventListener.DeRegister(DisplayPercentageText);
 
     }
 
@@ -113,6 +122,7 @@ public class GeneratorButtonController : MonoBehaviour
         DisplayDescription();
         DisplayPriceText();
         DisplayProductionText();
+        DisplayPercentageText();
     }
 
     public void ChangeAmountToBuy()
@@ -239,7 +249,15 @@ public class GeneratorButtonController : MonoBehaviour
     private void DisplayProductionText()
     {
         if (_generator == null) return;
-        _productionText.SetTextFormat("{0} CpS", _generator.ProductionFormatted.GetFormat());
+        _productionLocalized.StringReference.SetReference(_table, _gemProduction);
+        _amountProductionVariable.Value = _generator.ProductionFormatted.GetFormat();
+        _productionLocalized.RefreshString();
+    }
+
+    private void DisplayPercentageText()
+    {
+        if (_generator == null) return;
+        _percentageText.SetTextFormat("{0}%", _generator.ProductionPercentage.ToString("F2"));
     }
 
     private void SetAmountVariable()
@@ -252,6 +270,19 @@ public class GeneratorButtonController : MonoBehaviour
         else
         {
             _amountVariable = variable as StringVariable;
+        }
+    }
+
+    private void SetAmountProductionVariable()
+    {
+        if (!_productionLocalizedString.TryGetValue("amount", out var variable))
+        {
+            _amountProductionVariable = new StringVariable();
+            _productionLocalizedString.Add("amount", _amountProductionVariable);
+        }
+        else
+        {
+            _amountProductionVariable = variable as StringVariable;
         }
     }
 

@@ -534,6 +534,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3242648905930196911, guid: 3630631abf298469084191afca558079, type: 3}
+      propertyPath: _saveDataRTS
+      value: 
+      objectReference: {fileID: 11400000, guid: e7213c21199ce404fb056957629494aa, type: 2}
+    - target: {fileID: 3242648905930196911, guid: 3630631abf298469084191afca558079, type: 3}
       propertyPath: OnChangeSceneEvent
       value: 
       objectReference: {fileID: 11400000, guid: cac302163ba337e4492bc0d4e55ebc3f, type: 2}

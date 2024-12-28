@@ -2,22 +2,23 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
-[RequireComponent(typeof(AddSaveDataRunTimeSet))]
 public class LanguageManager : MonoBehaviour, ISaveable
 {
+    [SerializeField] private SaveableRunTimeSetSO _saveable;
+
     private Locale _currentLocale;
     [SerializeField] private StringGameEventListener _changeLocaleEventListener;
 
-
     private void OnEnable()
     {
+        _saveable.Add(this);
         _changeLocaleEventListener.Register(ChangeLocale);
     }
 
     private void OnDisable()
     {
+        _saveable.Remove(this);
         _changeLocaleEventListener.DeRegister(ChangeLocale);
-
     }
 
     public void LoadData(GameDataSO gameData)
@@ -45,5 +46,10 @@ public class LanguageManager : MonoBehaviour, ISaveable
             default:
                 break;
         }
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

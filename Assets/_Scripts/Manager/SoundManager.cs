@@ -5,9 +5,10 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(AddSaveDataRunTimeSet))]
 public class SoundManager : MonoBehaviour, ISaveable
 {
+    [SerializeField] private SaveableRunTimeSetSO _saveable;
+
     [Header("SoundEmitters pool")]
     [SerializeField] private ObjectPoolSettingsSO _soundPool;
     [SerializeField][ReadOnly] private SoundEmitter _activeMusicEmitter;
@@ -48,6 +49,7 @@ public class SoundManager : MonoBehaviour, ISaveable
 
     private void OnEnable()
     {
+        _saveable.Add(this);
         OnPlaySfxEventListener.Register(PlaySound);
         OnPlayMusicEventListener.Register(PlayMusicTrack);
 
@@ -58,6 +60,7 @@ public class SoundManager : MonoBehaviour, ISaveable
 
     private void OnDisable()
     {
+        _saveable.Remove(this);
         OnPlaySfxEventListener.DeRegister(PlaySound);
         OnPlayMusicEventListener.DeRegister(PlayMusicTrack);
 
@@ -86,6 +89,11 @@ public class SoundManager : MonoBehaviour, ISaveable
         SetMasterVolume(_masterVolume.Value);
         SetMusicVolume(_musicVolume.Value);
         SetSFXVolume(_sfxVolume.Value);
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 
     private bool CanPlaySound(SoundDataSO data)

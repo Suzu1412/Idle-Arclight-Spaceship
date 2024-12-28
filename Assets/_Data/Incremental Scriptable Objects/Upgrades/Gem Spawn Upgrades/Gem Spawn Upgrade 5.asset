@@ -26,5 +26,5 @@ MonoBehaviour:
   _isRequirementMet: 1
   OnShopNotificationEvent: {fileID: 11400000, guid: 22013b92c0172b742ae78cfa53b3643a, type: 2}
   _notificationIcon: {fileID: 21300000, guid: be6579725c4624670bfe01bc4afe70c8, type: 3}
-  _costRequirement: 750
+  _costRequirement: 2000
   _variableToModify: {fileID: 11400000, guid: 1e5b0151d4e46b34fa6b1bde14d1176d, type: 2}

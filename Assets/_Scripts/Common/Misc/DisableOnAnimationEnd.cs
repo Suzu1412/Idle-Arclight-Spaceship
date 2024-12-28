@@ -6,6 +6,7 @@ public class DisableOnAnimationEnd : MonoBehaviour
     private Animator _animator;
     private ObjectPooler _pool;
     private float _delay;
+    [SerializeField] private bool _shouldDisable;
 
     private void Awake()
     {
@@ -32,6 +33,10 @@ public class DisableOnAnimationEnd : MonoBehaviour
         if (_pool != null)
         {
             ObjectPoolFactory.ReturnToPool(_pool);
+        }
+        else if (_shouldDisable)
+        {
+            gameObject.SetActive(false);
         }
         else
         {

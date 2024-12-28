@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class MovementBehaviour : MonoBehaviour, ICanMove
+public class MovementBehaviour : MonoBehaviour, ICanMove, IPausable
 {
     private IAgent _agent;
     private Vector2 _direction;
@@ -17,9 +17,20 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
     private Rigidbody2D _rb;
     [SerializeField] private bool _hasBoundaries;
     private IMoveData _moveData;
+    [SerializeField] private PausableRunTimeSetSO _pausable;
 
     public IAgent Agent => _agent ??= GetComponent<IAgent>();
     public Rigidbody2D RB => _rb != null ? _rb : _rb = GetComponent<Rigidbody2D>();
+
+    private void OnEnable()
+    {
+        _pausable.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        _pausable.Remove(this);   
+    }
 
     public void StopMovement()
     {
@@ -130,5 +141,22 @@ public class MovementBehaviour : MonoBehaviour, ICanMove
     public void SetMoveData(IMoveData moveData)
     {
         _moveData = moveData;
+    }
+
+    public void Pause(bool isPaused)
+    {
+        if (isPaused)
+        {
+            RB.constraints |= RigidbodyConstraints2D.FreezePosition;
+        }
+        else
+        {
+            RB.constraints &= ~RigidbodyConstraints2D.FreezePosition;
+        }
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

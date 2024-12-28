@@ -29,7 +29,6 @@ public class UpgradeSO : BaseUpgradeSO
         {
             _variableToModify.RemoveModifier(_modifierToApply);
             _isApplied = false;
-            OnProductionChangedEvent.RaiseEvent();
         }
     }
 

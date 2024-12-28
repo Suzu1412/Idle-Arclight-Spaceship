@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class AddSaveDataRunTimeSet : MonoBehaviour
 {
-    [SerializeField] private GameObjectRuntimeSetSO _saveDataRunTimeSet = default;
+    [SerializeField] private SaveableRunTimeSetSO _saveDataRunTimeSet = default;
 
     private void OnEnable()
     {
-        _saveDataRunTimeSet.Add(gameObject);
+        _saveDataRunTimeSet.Add(gameObject.GetComponent<ISaveable>());
     }
 
     private void OnDisable()
     {
-        _saveDataRunTimeSet.Remove(gameObject);
+        //_saveDataRunTimeSet.Remove(gameObject);
     }
 }

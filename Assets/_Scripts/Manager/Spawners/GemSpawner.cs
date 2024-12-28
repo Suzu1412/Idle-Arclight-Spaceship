@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GemSpawner : MonoBehaviour
+public class GemSpawner : MonoBehaviour, IPausable
 {
+    [SerializeField] private PausableRunTimeSetSO _pausable;
     [SerializeField] private float _initialDelay = 3f;
     [SerializeField] private FloatVariableSO _minDelayBetweenSpawns;
     [SerializeField] private FloatVariableSO _maxDelayBetweenSpawns;
 
-    private float _delayBetweenSpawns;
     [SerializeField] private BasePlacementStrategySO _placementStrategy;
     [SerializeField] private List<GemConfigSO> _gemConfigs;
     [SerializeField] private GemPatternSO[] _gemPatterns;
@@ -20,15 +20,20 @@ public class GemSpawner : MonoBehaviour
 
     private Vector3 _newPosition;
     private int _randomPattern;
+    private bool _isPaused;
+
 
     private void OnEnable()
     {
         OnStartGameEventListener.Register(SpawnGem);
+        _pausable.Add(this);
     }
 
     private void OnDisable()
     {
         OnStartGameEventListener.DeRegister(SpawnGem);
+        _pausable.Remove(this);
+
     }
 
     private void SpawnGem()
@@ -41,29 +46,48 @@ public class GemSpawner : MonoBehaviour
     private IEnumerator SpawnGemCoroutine()
     {
         yield return Helpers.GetWaitForSeconds(_initialDelay);
+        float delayBetweenSpawns = 0f;
 
         while (true)
         {
-            _randomPattern = Random.Range(0, _gemPatterns[(int)_currentGemPattern.Value].GemPatternPools.Length);
-
-            GameObject pattern = ObjectPoolFactory.Spawn(_gemPatterns[(int)_currentGemPattern.Value].GemPatternPools[_randomPattern]).gameObject;
-            _newPosition = _placementStrategy.SetPosition(new Vector3(0f, 9f, 0f));
-
-            for(int i= 0; i < pattern.transform.childCount; i++)
+            if (!_isPaused)
             {
-                ItemPickUp gem = ObjectPoolFactory.Spawn(_gemConfigs[0].PoolSettings).GetComponent<ItemPickUp>();
-                gem.SetItem(_gemConfigs[0].Item);
-
-                pattern.transform.position = _newPosition;
-
-                gem.RB.position = pattern.transform.GetChild(i).position; 
-                gem.transform.position = pattern.transform.GetChild(i).position; 
+                delayBetweenSpawns -= Time.deltaTime;
             }
 
-            _delayBetweenSpawns = Random.Range(_minDelayBetweenSpawns.Value, _maxDelayBetweenSpawns.Value);
-            yield return Helpers.GetWaitForSeconds(_delayBetweenSpawns);
+            yield return null;
 
+            if (delayBetweenSpawns <= 0f)
+            {
+                _randomPattern = Random.Range(0, _gemPatterns[(int)_currentGemPattern.Value].GemPatternPools.Length);
+
+                GameObject pattern = ObjectPoolFactory.Spawn(_gemPatterns[(int)_currentGemPattern.Value].GemPatternPools[_randomPattern]).gameObject;
+                _newPosition = _placementStrategy.SetPosition(new Vector3(0f, 9f, 0f));
+
+                for (int i = 0; i < pattern.transform.childCount; i++)
+                {
+                    ItemPickUp gem = ObjectPoolFactory.Spawn(_gemConfigs[0].PoolSettings).GetComponent<ItemPickUp>();
+                    gem.SetItem(_gemConfigs[0].Item);
+
+                    pattern.transform.position = _newPosition;
+
+                    gem.RB.position = pattern.transform.GetChild(i).position;
+                    gem.transform.position = pattern.transform.GetChild(i).position;
+                }
+
+                delayBetweenSpawns = Random.Range(_minDelayBetweenSpawns.Value, _maxDelayBetweenSpawns.Value);
+            }
         }
 
+    }
+
+    public void Pause(bool isPaused)
+    {
+        _isPaused = isPaused;
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }
