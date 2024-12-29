@@ -26,16 +26,6 @@ public class GameData
     [Header("Unlocked Systems")]
     public List<UnlockSystemData> UnlockedSystems;
 
-    [Header("Language")]
-    public LocalizationData LocalizationData;
-
-    [Header("Target Volume")]
-    public VolumeData VolumeData;
-
-    [Header("Target FPS")]
-    public FPSData FPSData;
-
-
     public void NewGame(string name)
     {
         Name = name;
@@ -47,9 +37,6 @@ public class GameData
         Generators = new();
         Upgrades = new();
         UnlockedSystems = new();
-        LocalizationData = new();
-        VolumeData = new();
-        FPSData = new();
     }
 
 
@@ -184,68 +171,5 @@ public class UnlockSystemData
     {
         _guid = guid;
         _isUnlocked = isUnlocked;
-    }
-}
-
-[System.Serializable]
-public class VolumeData
-{
-    [SerializeField] private float _masterVolume;
-    [SerializeField] private float _musicVolume;
-    [SerializeField] private float _sfxVolume;
-
-    public float MasterVolume => _masterVolume;
-    public float MusicVolume => _musicVolume;
-    public float SFXVolume => _sfxVolume;
-
-    public VolumeData()
-    {
-        _masterVolume = 1f;
-        _musicVolume = 1f;
-        _sfxVolume = 1f;
-    }
-
-    public VolumeData(float masterVolume, float musicVolume, float sfxVolume)
-    {
-        _masterVolume = masterVolume;
-        _musicVolume = musicVolume;
-        _sfxVolume = sfxVolume;
-    }
-
-}
-
-[System.Serializable]
-public class LocalizationData
-{
-    [SerializeField] private string _locale;
-
-    public string Locale => _locale;
-
-    public LocalizationData()
-    {
-        _locale = null;
-    }
-
-    public LocalizationData(string locale)
-    {
-        _locale = locale;
-    }
-}
-
-[System.Serializable]
-public class FPSData
-{
-    [SerializeField] private int _fpsAmount;
-
-    public int FPSAmount => _fpsAmount;
-
-    public FPSData()
-    {
-        _fpsAmount = 60;
-    }
-
-    public FPSData(int fpsAmount)
-    {
-        _fpsAmount = fpsAmount;
     }
 }

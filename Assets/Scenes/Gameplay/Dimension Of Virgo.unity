@@ -296,6 +296,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a015cff1f95ebd4584a26886199aa8c, type: 3}
+--- !u!60 &1536755986 stripped
+PolygonCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8479320726003977989, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
+  m_PrefabInstance: {fileID: 6815753576215138127}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1650353420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -478,11 +483,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9187385312093071590, guid: 1941a7ce721e3f140b979c728509f732, type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9187385312093071590, guid: 1941a7ce721e3f140b979c728509f732, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9187385312093071590, guid: 1941a7ce721e3f140b979c728509f732, type: 3}
       propertyPath: m_LocalPosition.y
@@ -556,6 +561,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnGameStartListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
   _playMusic: {fileID: 11400000, guid: c07d05429f6581f45bff3d9dfc42909b, type: 2}
+--- !u!1 &2143681739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1061486559714175941, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
+  m_PrefabInstance: {fileID: 6815753576215138127}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2143681746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143681739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ad4c81b696b894ebf4f4e9a656d29c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundingShape: {fileID: 1536755986}
 --- !u!1001 &6815753576215138127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -568,9 +591,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 1194192498563947860, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
+      propertyPath: Lens.OrthographicSize
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4087479968422183427, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
       propertyPath: orthographic size
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4087479968422183427, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
@@ -631,7 +658,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1061486559714175941, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2143681746}
   m_SourcePrefab: {fileID: 100100000, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
 --- !u!1001 &8369186162210470129
 PrefabInstance:
@@ -647,7 +677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1268783141289101902, guid: a4203390db9864864a14e6eb90f8ce57, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 2585613459779794397, guid: a4203390db9864864a14e6eb90f8ce57, type: 3}
       propertyPath: m_LocalPosition.y

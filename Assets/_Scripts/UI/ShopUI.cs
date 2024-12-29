@@ -73,7 +73,6 @@ public class ShopUI : Singleton<ShopUI>
         }
 
         _generatorInitialized = true;
-        CloseCanvas();
     }
 
     private void PrepareUIUpgrade(List<BaseUpgradeSO> upgrades)
@@ -93,7 +92,6 @@ public class ShopUI : Singleton<ShopUI>
         }
 
         _upgradeInitialized = true;
-        CloseCanvas();
     }
 
     private void CloseCanvas()

@@ -8,17 +8,11 @@ public class GameDataSO : ScriptableObject
 	public string Name => _name;
 	public GameData GameData;
 	public int CurrentSceneGroupID => GameData.CurrentSceneGroupID;
-
-
     public List<GeneratorData> Generators => GameData.Generators;
 	public List<PlayerAgentData> Players => GameData.Players;
 	public List<UpgradeData> Upgrades => GameData.Upgrades;
 	public List<UnlockSystemData> UnlockedSystems => GameData.UnlockedSystems;
 	public CurrencyData CurrencyData => GameData.CurrencyData;
-	public VolumeData VolumeData => GameData.VolumeData;
-	public LocalizationData LocalizationData => GameData.LocalizationData;
-
-	public FPSData FPSData => GameData.FPSData;
 
 	public List<GeneratorData> GetClearGeneratorDatas()
 	{
@@ -63,23 +57,8 @@ public class GameDataSO : ScriptableObject
 		GameData.Players = players;
 	}
 
-	public void SaveVolume(float masterVolume, float musicVolume, float sfxVolume)
-	{
-		GameData.VolumeData = new(masterVolume, musicVolume, sfxVolume);
-	}
-
-	public void SaveLocalization(string locale)
-	{
-		GameData.LocalizationData = new(locale);
-	}
-
 	public void SaveCurrentScene(int currentSceneGroupID)
 	{
 		GameData.CurrentSceneGroupID = currentSceneGroupID;
-	}
-
-	public void SaveFPS(int fpsAmount)
-	{
-		GameData.FPSData = new(fpsAmount);
 	}
 }

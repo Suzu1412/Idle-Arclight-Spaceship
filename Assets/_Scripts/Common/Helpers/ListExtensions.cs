@@ -58,4 +58,28 @@ public static class ListExtensions
             list.Add(newValue);
         }
     }
+
+    /// <summary>
+    /// Move Forward and wrap around if needed
+    /// </summary>
+    /// <returns>Next Index</returns>
+    public static int MoveForward<T>(this IList<T> list, int currentIndex)
+    {
+        if (list.Count == 0) throw new ArgumentException("List count must be greater than zero.");
+
+        // Move forward and wrap around if needed
+        return (currentIndex + 1) % list.Count;
+    }
+
+    /// <summary>
+    /// Move Backward and wrap around if needed
+    /// </summary>
+    /// <returns>Next Index</returns>
+    public static int MoveBackward<T>(this IList<T> list, int currentIndex)
+    {
+        if (list.Count == 0) throw new ArgumentException("List count must be greater than zero.");
+
+        // Move backward and wrap around if needed
+        return (currentIndex - 1 + list.Count) % list.Count;
+    }
 }
