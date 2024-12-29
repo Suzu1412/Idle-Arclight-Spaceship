@@ -519,7 +519,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 58
-    m_Localized: Borrar Data
+    m_Localized: Borrar partida
     m_Metadata:
       m_Items: []
   - m_Id: 59
@@ -604,6 +604,18 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
+  - m_Id: 61
+    m_Localized: Defecto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62
+    m_Localized: Notificaciones
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63
+    m_Localized: "Vibraci\xF3n"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

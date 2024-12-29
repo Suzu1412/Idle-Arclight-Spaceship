@@ -1078,6 +1078,18 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 6827601619408388423
+  - m_Id: 61
+    m_Localized: Default
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62
+    m_Localized: Notifications
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63
+    m_Localized: Vibration
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
