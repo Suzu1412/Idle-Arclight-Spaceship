@@ -1,4 +1,3 @@
-using Mono.Cecil.Cil;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +14,7 @@ public class ScreenFader : MonoBehaviour
     {
         _fadeImage = GetComponent<Image>();
 
-        
+
     }
 
     private void OnEnable()
