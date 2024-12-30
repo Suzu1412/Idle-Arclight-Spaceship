@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Cinemachine;
+using System.Collections;
 
 [RequireComponent(typeof(CinemachineCamera))]
 public class DynamicCameraBoundsManager : MonoBehaviour
@@ -8,8 +9,18 @@ public class DynamicCameraBoundsManager : MonoBehaviour
     private CinemachineConfiner2D confiner;
     private CinemachineCamera virtualCamera;
 
+    private int previousWidth;
+    private int previousHeight;
+    private ScreenOrientation previousOrientation;
+
+
     void Start()
     {
+        // Initialize tracking variables
+        previousWidth = Screen.width;
+        previousHeight = Screen.height;
+        previousOrientation = Screen.orientation;
+
         virtualCamera = GetComponent<CinemachineCamera>();
         confiner = GetComponent<CinemachineConfiner2D>();
 
@@ -21,6 +32,8 @@ public class DynamicCameraBoundsManager : MonoBehaviour
             // Adjust the camera size
             AdjustOrthographicSize();
         }
+
+        StartCoroutine(TrackOrientationChange());
     }
 
     void AdjustOrthographicSize()
@@ -43,9 +56,35 @@ public class DynamicCameraBoundsManager : MonoBehaviour
         }
     }
 
-    void Update()
+    private IEnumerator TrackOrientationChange()
     {
-        // Recalculate orthographic size on resolution or aspect ratio change
+        yield return Helpers.GetWaitForSeconds(0.5f);
         AdjustOrthographicSize();
+
+        while (true)
+        {
+            yield return Helpers.GetWaitForSeconds(0.5f);
+
+            // Check for screen size changes
+            if (Screen.width != previousWidth || Screen.height != previousHeight)
+            {
+                previousWidth = Screen.width;
+                previousHeight = Screen.height;
+
+                Debug.Log($"Screen size changed: {Screen.width}x{Screen.height}");
+                //OnScreenSizeChanged?.Invoke(); // Trigger the event
+                AdjustOrthographicSize();
+            }
+
+            // Check for orientation changes
+            if (Screen.orientation != previousOrientation)
+            {
+                previousOrientation = Screen.orientation;
+
+                Debug.Log($"Orientation changed: {Screen.orientation}");
+                //OnOrientationChanged?.Invoke(); // Trigger the event
+                AdjustOrthographicSize();
+            }
+        }
     }
 }
