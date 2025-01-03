@@ -15,6 +15,11 @@ public class SerializableScriptableObject : ScriptableObject
         GenerateGuid();
     }
 
+    private void OnValidate()
+    {
+        GenerateGuid();
+    }
+
     [ContextMenu("Generate Guid")]
     internal void GenerateGuid()
     {

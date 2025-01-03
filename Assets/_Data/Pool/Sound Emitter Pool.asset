@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ff54005d3434733b8777fc2d305339, type: 3}
   m_Name: Sound Emitter Pool
   m_EditorClassIdentifier: 
-  _type: 3
+  _type: 2
   _prefab: {fileID: 7795755848796652116, guid: 1598bc8ca6cb7f748bc6fbf7824a0780, type: 3}
   _defaultCapacity: 100
   _maxPoolSize: 200
+  _prewarm: 0

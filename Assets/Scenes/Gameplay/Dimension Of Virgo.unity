@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  fadeDuration: 1
+  _fadeDuration: 1
 --- !u!1001 &821656274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -593,7 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  fadeDuration: 1
+  _fadeDuration: 1
 --- !u!1 &1189715203
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,7 +742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  fadeDuration: 1
+  _fadeDuration: 1
 --- !u!1 &1382452962
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,7 +845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  fadeDuration: 1
+  _fadeDuration: 1
 --- !u!61 &1382452966
 BoxCollider2D:
   m_ObjectHideFlags: 0

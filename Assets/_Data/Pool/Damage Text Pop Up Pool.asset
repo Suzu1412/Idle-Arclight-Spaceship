@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ff54005d3434733b8777fc2d305339, type: 3}
   m_Name: Damage Text Pop Up Pool
   m_EditorClassIdentifier: 
-  _type: 5
+  _type: 4
   _prefab: {fileID: 4935296351923539931, guid: 00ea748c59e2505419752124b10ba644, type: 3}
   _defaultCapacity: 10
   _maxPoolSize: 100
+  _prewarm: 0

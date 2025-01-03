@@ -198,7 +198,7 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
 
             EnablePlayerActions();
             DisableUIActions();
-            _confirmSound.PlayEvent();
+            _cancelSound.PlayEvent();
             OnGameplayPauseEvent.RaiseEvent(false);
         }
 

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ff54005d3434733b8777fc2d305339, type: 3}
   m_Name: Agent Explossion Pool
   m_EditorClassIdentifier: 
-  _type: 6
+  _type: 5
   _prefab: {fileID: 5467838728892565393, guid: 174af930dc4d8854f82e0bed5c8f4597, type: 3}
   _defaultCapacity: 10
   _maxPoolSize: 10
+  _prewarm: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ff54005d3434733b8777fc2d305339, type: 3}
   m_Name: Pattern_1
   m_EditorClassIdentifier: 
-  _type: 4
+  _type: 3
   _prefab: {fileID: 1506980640527394462, guid: ff6452039a5bf444caf72fe4b5349f46, type: 3}
   _defaultCapacity: 5
   _maxPoolSize: 5

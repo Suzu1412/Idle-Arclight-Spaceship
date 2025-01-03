@@ -6,9 +6,9 @@ public enum ObjectPoolType
 {
     Projectiles,
     Enemies,
-    Coins,
     Audio,
     PickUp,
     TextPopUp,
     Effects,
+    Foreground,
 }

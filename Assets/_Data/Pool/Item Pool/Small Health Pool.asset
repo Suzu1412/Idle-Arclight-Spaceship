@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ff54005d3434733b8777fc2d305339, type: 3}
   m_Name: Small Health Pool
   m_EditorClassIdentifier: 
-  _type: 4
+  _type: 3
   _prefab: {fileID: 3452556530360443837, guid: e60f91a8230037041a8e7ac76de61344, type: 3}
   _defaultCapacity: 3
   _maxPoolSize: 5

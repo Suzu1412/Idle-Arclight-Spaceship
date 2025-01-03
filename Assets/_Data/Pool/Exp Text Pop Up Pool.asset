@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ff54005d3434733b8777fc2d305339, type: 3}
   m_Name: Exp Text Pop Up Pool
   m_EditorClassIdentifier: 
-  _type: 5
+  _type: 4
   _prefab: {fileID: 2490523210788282114, guid: e9b3fdbc3b0e7a54384213f02c64894a, type: 3}
   _defaultCapacity: 10
   _maxPoolSize: 50
+  _prewarm: 0

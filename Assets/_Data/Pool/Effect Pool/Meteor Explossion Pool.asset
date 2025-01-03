@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ff54005d3434733b8777fc2d305339, type: 3}
   m_Name: Meteor Explossion Pool
   m_EditorClassIdentifier: 
-  _type: 6
+  _type: 5
   _prefab: {fileID: 2045321146445613916, guid: e31526c58afc844b9bfc8011e254a095, type: 3}
   _defaultCapacity: 10
   _maxPoolSize: 10
+  _prewarm: 0

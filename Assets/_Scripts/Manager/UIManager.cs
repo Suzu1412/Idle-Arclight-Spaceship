@@ -15,6 +15,8 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject _shopGameObject;
     [SerializeField] private RectTransform _shopPanel;
 
+    [SerializeField] private Canvas _shopCanvas;
+
     [Header("Menu Elements")]
     [SerializeField] private GameObject _menuGameObject;
     [SerializeField] private RectTransform _menuPanel;
@@ -130,7 +132,7 @@ public class UIManager : Singleton<UIManager>
         if (isActive)
         {
             if (_disableShopCoroutine != null) StopCoroutine(_disableShopCoroutine);
-            _shopGameObject.SetActive(true);
+            _shopCanvas.transform.localPosition = Vector3.zero;
             OpenGeneratorStore();
             //_shopPanel.DOKill();
             //_shopPanel.DOLocalMove(_openPosition, 0.4f).SetEase(Ease.InOutSine);
@@ -141,6 +143,7 @@ public class UIManager : Singleton<UIManager>
         {
             //_shopPanel.DOKill();
             //_shopPanel.DOLocalMove(_closePosition, 0.4f).SetEase(Ease.InOutSine);
+            _shopCanvas.transform.position = new Vector3(4000, 0, 0);
             _shopPanel.transform.localPosition = _closePosition;
             if (_disableShopCoroutine != null) StopCoroutine(_disableShopCoroutine);
             _disableShopCoroutine = StartCoroutine(DisableShopElements());
@@ -174,15 +177,15 @@ public class UIManager : Singleton<UIManager>
     private IEnumerator DisableShopElements()
     {
         yield return Helpers.GetWaitForSeconds(0.2f);
-        _generatorShopUI.SetActive(false);
-        _upgradeShopUI.SetActive(false);
+        //_generatorShopUI.SetActive(false);
+        //_upgradeShopUI.SetActive(false);
 
-        _shopGameObject.SetActive(false);
+        //_shopGameObject.SetActive(false);
     }
 
     private IEnumerator DisableMenuElements()
     {
-        yield return Helpers.GetWaitForSeconds(0.4f);
+        yield return Helpers.GetWaitForSeconds(0.2f);
         _menuGameObject.SetActive(false);
     }
 

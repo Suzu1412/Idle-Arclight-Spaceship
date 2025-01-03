@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ff54005d3434733b8777fc2d305339, type: 3}
   m_Name: Notify Random Event Pool
   m_EditorClassIdentifier: 
-  _type: 5
+  _type: 4
   _prefab: {fileID: 4254466601443691102, guid: 4f653aa8fd7ce4e6a98887245c5a51b5, type: 3}
   _defaultCapacity: 10
   _maxPoolSize: 10
+  _prewarm: 0

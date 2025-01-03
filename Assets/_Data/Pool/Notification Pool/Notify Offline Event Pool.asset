@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ff54005d3434733b8777fc2d305339, type: 3}
   m_Name: Notify Offline Event Pool
   m_EditorClassIdentifier: 
-  _type: 5
+  _type: 4
   _prefab: {fileID: 6165863954712600196, guid: 88bf1a557f6354f4390eda0f8f0d7e69, type: 3}
   _defaultCapacity: 10
   _maxPoolSize: 10
