@@ -61,21 +61,22 @@ public class GemSpawner : MonoBehaviour, IPausable
             {
                 _randomPattern = Random.Range(0, _gemPatterns[(int)_currentGemPattern.Value].GemPatternPools.Length);
 
-                GameObject pattern = ObjectPoolFactory.Spawn(_gemPatterns[(int)_currentGemPattern.Value].GemPatternPools[_randomPattern]).gameObject;
+                ObjectPooler patternPool = ObjectPoolFactory.Spawn(_gemPatterns[(int)_currentGemPattern.Value].GemPatternPools[_randomPattern]);
                 _newPosition = _placementStrategy.SetPosition(new Vector3(0f, 9f, 0f));
 
-                for (int i = 0; i < pattern.transform.childCount; i++)
+                for (int i = 0; i < patternPool.transform.childCount; i++)
                 {
                     ItemPickUp gem = ObjectPoolFactory.Spawn(_gemConfigs[0].PoolSettings).GetComponent<ItemPickUp>();
                     gem.SetItem(_gemConfigs[0].Item);
 
-                    pattern.transform.position = _newPosition;
+                    patternPool.transform.position = _newPosition;
 
-                    gem.RB.position = pattern.transform.GetChild(i).position;
-                    gem.transform.position = pattern.transform.GetChild(i).position;
+                    gem.RB.position = patternPool.transform.GetChild(i).position;
+                    gem.transform.position = patternPool.transform.GetChild(i).position;
                 }
 
                 delayBetweenSpawns = Random.Range(_minDelayBetweenSpawns.Value, _maxDelayBetweenSpawns.Value);
+                ObjectPoolFactory.ReturnToPool(patternPool);
             }
         }
 

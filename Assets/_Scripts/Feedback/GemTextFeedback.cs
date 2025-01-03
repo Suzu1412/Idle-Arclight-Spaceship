@@ -1,10 +1,11 @@
 using Cysharp.Text;
+using DamageNumbersPro;
 using TMPro;
 using UnityEngine;
 
 public class GemTextFeedback : TextPopUp
 {
-    [SerializeField] private ObjectPoolSettingsSO _textData;
+    [SerializeField] private DamageNumber numberPrefab;
     [SerializeField] private Vector2 _positionOffset;
     [SerializeField] private DoubleGameEventListener _currencyGainEventListener;
     private Transform _transform;
@@ -27,11 +28,7 @@ public class GemTextFeedback : TextPopUp
 
     protected override void SpawnPopUp(double text)
     {
-        ObjectPooler _popUpGameObject = ObjectPoolFactory.Spawn(_textData);
-        SetPosition(_popUpGameObject.gameObject);
-
-        var _popUp = _popUpGameObject.GetComponentInChildren<TextMeshPro>();
-        _popUp.SetTextFormat("+ {0}", FormatNumber.FormatDouble(text).GetFormatNoDecimals());
+        DamageNumber damageNumber = numberPrefab.Spawn((Vector2)_transform.position + _positionOffset, FormatNumber.FormatDouble(text).GetFormatNoDecimals());
     }
 
     private void SetPosition(GameObject popUp)

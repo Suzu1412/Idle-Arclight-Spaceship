@@ -15,5 +15,5 @@ MonoBehaviour:
   _type: 3
   _prefab: {fileID: 1615512277431425734, guid: c7ac7ce0f000d7b44bfe3d05cd2d0340, type: 3}
   _defaultCapacity: 15
-  _maxPoolSize: 100
+  _maxPoolSize: 20
   _prewarm: 1
