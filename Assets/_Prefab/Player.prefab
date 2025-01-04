@@ -849,9 +849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e0157566f54f8479b724b816cc5e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textData: {fileID: 11400000, guid: be76e86c201f7c1439a5f22c2099f88d, type: 2}
-  _positionOffset: {x: 0, y: 0}
-  _isPositionRandom: 0
+  _numberPrefab: {fileID: 461407026122476882, guid: 7b0b446720b535e45ad79250bd50fdf9, type: 3}
 --- !u!114 &5148100649829050187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,7 +903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1791aa838041bc4a8ee4ab547f3532d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberPrefab: {fileID: 6534419476703416628, guid: a42117cfb613d40f59c3f872ff0b4bff, type: 3}
+  _numberPrefab: {fileID: 6534419476703416628, guid: a42117cfb613d40f59c3f872ff0b4bff, type: 3}
   _positionOffset: {x: 0, y: 0.5}
   _currencyGainEventListener: {fileID: 11400000, guid: f064a081be429904d8e0307f1538492c, type: 2}
 --- !u!114 &9206652475737035502
