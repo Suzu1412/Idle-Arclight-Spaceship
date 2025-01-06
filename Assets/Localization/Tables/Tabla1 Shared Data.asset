@@ -143,8 +143,8 @@ MonoBehaviour:
     m_Key: gemProduction
     m_Metadata:
       m_Items: []
-  - m_Id: 190
-    m_Key: 
+  - m_Id: 34
+    m_Key: buyAmount
     m_Metadata:
       m_Items: []
   - m_Id: 190

@@ -616,6 +616,11 @@ MonoBehaviour:
     m_Localized: "Vibraci\xF3n"
     m_Metadata:
       m_Items: []
+  - m_Id: 34
+    m_Localized: Comprar {amountToBuy}
+    m_Metadata:
+      m_Items:
+      - rid: 6827601619408388418
   references:
     version: 2
     RefIds:
@@ -684,3 +689,4 @@ MonoBehaviour:
         - id: 23
         - id: 33
         - id: 32
+        - id: 34

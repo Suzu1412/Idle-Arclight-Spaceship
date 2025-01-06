@@ -1090,6 +1090,11 @@ MonoBehaviour:
     m_Localized: Vibration
     m_Metadata:
       m_Items: []
+  - m_Id: 34
+    m_Localized: Buy {amountToBuy}
+    m_Metadata:
+      m_Items:
+      - rid: 6827601619408388423
   references:
     version: 2
     RefIds:
@@ -1157,3 +1162,4 @@ MonoBehaviour:
         - id: 23
         - id: 33
         - id: 32
+        - id: 34

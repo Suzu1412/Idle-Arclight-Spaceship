@@ -537,6 +537,7 @@ MonoBehaviour:
   _nameLocalized: {fileID: 7170765897245868419}
   _descriptionLocalized: {fileID: 7643302844201131732}
   _productionLocalized: {fileID: 1969704590911151496}
+  _buyAmountLocalized: {fileID: 7389842598175406124}
   _amountText: {fileID: 9166258388167318685}
   _priceText: {fileID: 6267839520823332536}
   _percentageText: {fileID: 1081885100971899019}
@@ -2165,7 +2166,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
+  m_fontSize: 41.7
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2203,7 +2204,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 97.40804, z: 0, w: 92.37921}
+  m_margin: {x: 41.951233, y: 110.474815, z: 36.4494, w: 92.37921}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2225,11 +2226,14 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:4393d53c1e2fb70459aa954af38d89fd
     m_TableEntryReference:
-      m_KeyId: 7
+      m_KeyId: 34
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
-    m_LocalVariables: []
+    m_LocalVariables:
+    - name: amountToBuy
+      variable:
+        rid: 6529818258272158222
   m_FormatArguments: []
   m_UpdateString:
     m_PersistentCalls:
@@ -2248,4 +2252,8 @@ MonoBehaviour:
         m_CallState: 1
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 6529818258272158222
+      type: {class: IntVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 999

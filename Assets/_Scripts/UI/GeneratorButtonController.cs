@@ -8,6 +8,7 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using System;
+using System.Reflection;
 
 public class GeneratorButtonController : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class GeneratorButtonController : MonoBehaviour
     [SerializeField] private LocalizeStringEvent _nameLocalized;
     [SerializeField] private LocalizeStringEvent _descriptionLocalized;
     [SerializeField] private LocalizeStringEvent _productionLocalized;
+    [SerializeField] private LocalizeStringEvent _buyAmountLocalized;
     [SerializeField] private TextMeshProUGUI _amountText;
     [SerializeField] private TextMeshProUGUI _priceText;
     [SerializeField] private TextMeshProUGUI _percentageText;
@@ -48,11 +50,13 @@ public class GeneratorButtonController : MonoBehaviour
     [Header("Localization")]
     private LocalizedString _localizedString;
     private LocalizedString _productionLocalizedString;
+    private LocalizedString _buyLocalizedString;
     [SerializeField] private string _table = "Tabla1";
     private string _gemDescription = "gemDescription";
     private string _gemProduction = "gemProduction";
     private StringVariable _amountVariable;
     private StringVariable _amountProductionVariable;
+    private IntVariable _amountToBuyVariable;
 
     public event UnityAction<int> OnBuyGeneratorClicked;
     private bool _isAvailableToBuy;
@@ -62,15 +66,18 @@ public class GeneratorButtonController : MonoBehaviour
     {
         _localizedString = _descriptionLocalized.StringReference;
         _productionLocalizedString = _productionLocalized.StringReference;
+        _buyLocalizedString = _buyAmountLocalized.StringReference;
         SetAmountVariable();
         SetAmountProductionVariable();
-        OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
+        SetAmountToBuyVariable();
         _isAvailableToBuy = false;
     }
 
     private void OnEnable()
     {
         _buyButton.onClick.AddListener(HandleBuyButton);
+        OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
+        OnCurrencyChangedEventListener.Register(UpdatePrice);
         OnProductionChangedEventListener.Register(DisplayProductionText);
         OnProductionChangedEventListener.Register(DisplayDescription);
         OnProductionChangedEventListener.Register(DisplayPercentageText);
@@ -92,6 +99,8 @@ public class GeneratorButtonController : MonoBehaviour
     private void OnDisable()
     {
         _buyButton.onClick.RemoveAllListeners();
+        OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
+        OnCurrencyChangedEventListener.DeRegister(UpdatePrice);
         OnProductionChangedEventListener.DeRegister(DisplayProductionText);
         OnProductionChangedEventListener.DeRegister(DisplayDescription);
         OnProductionChangedEventListener.DeRegister(DisplayPercentageText);
@@ -100,7 +109,6 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void OnDestroy()
     {
-        OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
         _generatorRTS.Remove(gameObject);
     }
 
@@ -116,11 +124,11 @@ public class GeneratorButtonController : MonoBehaviour
 
     public void PrepareButton()
     {
+        UpdatePrice();
         DisplayImage();
         DisplayAmountOwned();
         DisplayName();
         DisplayDescription();
-        DisplayPriceText();
         DisplayProductionText();
         DisplayPercentageText();
     }
@@ -128,7 +136,8 @@ public class GeneratorButtonController : MonoBehaviour
     public void ChangeAmountToBuy()
     {
         if (_generator == null) return;
-        _generator.GetBulkCost(_amountToBuy.Value);
+
+        CalculateAmountToBuy();
         CheckIfCanBuy();
         DisplayPriceText();
     }
@@ -222,6 +231,13 @@ public class GeneratorButtonController : MonoBehaviour
         _generatorIcon.sprite = _generator.Image;
     }
 
+    private void DisplayAmountToBuy(int amount)
+    {
+        if (_generator == null) return;
+        _amountToBuyVariable.Value = amount;
+        _buyAmountLocalized.RefreshString();
+    }
+
     private void DisplayAmountOwned()
     {
         _amountText.SetTextFormat("{0}", _generator.AmountOwned);
@@ -260,6 +276,27 @@ public class GeneratorButtonController : MonoBehaviour
         _percentageText.SetTextFormat("{0}%", _generator.ProductionPercentage.ToString("F2"));
     }
 
+    private void UpdatePrice()
+    {
+        DisplayAmountToBuy(CalculateAmountToBuy());
+        DisplayPriceText();
+    }
+
+    private int CalculateAmountToBuy()
+    {
+        int amount = 0;
+        if (_amountToBuy.Value > 0)
+        {
+            amount = _amountToBuy.Value;
+        }
+        else
+        {
+            amount = _generator.CalculateMaxAmountToBuy(_totalCurrency.Value);
+        }
+        _generator.GetBulkCost(amount > 0 ? amount : 1);
+        return amount > 0 ? amount : 1;
+    }
+
     private void SetAmountVariable()
     {
         if (!_localizedString.TryGetValue("amount", out var variable))
@@ -270,6 +307,19 @@ public class GeneratorButtonController : MonoBehaviour
         else
         {
             _amountVariable = variable as StringVariable;
+        }
+    }
+
+    private void SetAmountToBuyVariable()
+    {
+        if (!_buyLocalizedString.TryGetValue("amountToBuy", out var variable))
+        {
+            _amountToBuyVariable = new IntVariable();
+            _buyLocalizedString.Add("amount", _amountToBuyVariable);
+        }
+        else
+        {
+            _amountToBuyVariable = variable as IntVariable;
         }
     }
 

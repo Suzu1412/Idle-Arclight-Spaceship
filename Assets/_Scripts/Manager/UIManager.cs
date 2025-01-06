@@ -121,9 +121,9 @@ public class UIManager : Singleton<UIManager>
     private void ChangeSelectedAmountButton(int amount)
     {
         _buy1AmountImage.sprite = (amount == 1) ? _buttonAmountChecked : _buttonAmountUnchecked;
-        _buy10AmountImage.sprite = (amount == 2) ? _buttonAmountChecked : _buttonAmountUnchecked;
-        _buy50AmountImage.sprite = (amount == 5) ? _buttonAmountChecked : _buttonAmountUnchecked;
-        _buy100AmountImage.sprite = (amount == 10) ? _buttonAmountChecked : _buttonAmountUnchecked;
+        _buy10AmountImage.sprite = (amount == 5) ? _buttonAmountChecked : _buttonAmountUnchecked;
+        _buy50AmountImage.sprite = (amount == 10) ? _buttonAmountChecked : _buttonAmountUnchecked;
+        _buy100AmountImage.sprite = (amount == 0) ? _buttonAmountChecked : _buttonAmountUnchecked;
     }
 
     private void ToggleShop(bool isActive)
@@ -147,6 +147,7 @@ public class UIManager : Singleton<UIManager>
             _shopPanel.transform.localPosition = _closePosition;
             if (_disableShopCoroutine != null) StopCoroutine(_disableShopCoroutine);
             _disableShopCoroutine = StartCoroutine(DisableShopElements());
+
         }
     }
 

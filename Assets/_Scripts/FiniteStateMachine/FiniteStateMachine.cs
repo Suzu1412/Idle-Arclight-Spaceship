@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,27 +8,34 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
     [SerializeField] private PausableRunTimeSetSO _pausable = default;
 
     private bool _isPaused;
+    [SerializeField][ReadOnly] private int _currentPhase = 0;
     private IAgent _agent;
-    private BaseState _currentState;
     private Coroutine _transitionCoroutine;
     private float _handleTransitionTime = 0.1f;
-    [SerializeField] [ReadOnly] BaseStateSO _debugCurrentState;
-    [SerializeField] private List<BaseStateSO> _stateList;
-    private Dictionary<BaseStateSO, BaseState> _stateDictionary = new();
+    [SerializeField] private StateListSO _states; // All Possible States
+    [SerializeField][ReadOnly] private StateSO _currentState;
+    [SerializeField] private StateContext _context;
+
+    private Dictionary<StateSO, Queue<StateContext>> _contextPool = new();
     internal IAgent Agent => _agent ??= GetComponent<IAgent>();
+
+    internal StateContext ActiveContext => _context;
 
     private void Awake()
     {
-        for (int i = 0; i < _stateList.Count; i++)
+        if (_states == null)
         {
-            InitializeState(_stateList[i]);
+            Debug.LogError(gameObject.transform.parent.name + " has no states assigned, please fix");
         }
     }
 
     private void OnEnable()
     {
         _pausable.Add(this);
-        Transition(_stateList[0]);
+        _currentPhase = 0;
+        ResetContext();
+        ChangePhase(_currentPhase);
+        ChangeState(_states.DefaultState);
         _transitionCoroutine = StartCoroutine(TransitionCoroutine());
     }
 
@@ -35,60 +43,112 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
     {
         _pausable.Remove(this);
         StopAllCoroutines();
-        _currentState?.OnExit();
+        _currentState?.ExitState(this);
     }
 
     private void Update()
     {
         if (_isPaused) return;
-        _currentState?.OnUpdate();
+        _currentState?.UpdateState(this);
     }
 
     private void FixedUpdate()
     {
         if (_isPaused) return;
-        _currentState?.OnFixedUpdate();
+        _currentState?.FixedUpdateState(this);
     }
 
-    private BaseState InitializeState(BaseStateSO stateSO)
+    internal void Transition()
     {
-        var state = stateSO.CreateState();
-        state.Initialize(Agent, stateSO, this);
-        if (!_stateDictionary.TryAdd(stateSO, state))
+        StateSO bestState = null;
+        float highestUtility = 0f;
+
+
+        if (ActiveContext == null) return;
+
+
+        foreach (var state in _states.GetPhaseStates())
         {
-            Debug.LogError($"{this.gameObject} already have {stateSO}. Please Remove");
-            return null;
+            float utility = state.EvaluateUtility(ActiveContext);
+
+            if (utility > highestUtility)
+            {
+                highestUtility = utility;
+                bestState = state;
+
+            }
         }
 
-        return state;
+        if (bestState != null && bestState != _currentState)
+        {
+            ChangeState(bestState);
+        }
     }
 
-
-    internal void Transition(BaseStateSO newStateSO)
+    internal void ChangeState(StateSO state)
     {
-        if (newStateSO == null)
+        if (_currentState != null)
         {
-            return;
+            _currentState.ExitState(this);
+            ReturnContextToPool(state, _context);
         }
 
-        _currentState?.OnExit();
+        _currentState = state;
 
-        if (!_stateDictionary.TryGetValue(newStateSO, out var newState))
+        if (_currentState != null)
         {
-            newState = InitializeState(newStateSO);
+            _context = GetOrCreateContext(_currentState);
+            _context.Initialize(Agent);
+            _currentState.EnterState(this);
         }
-
-        _currentState = newState;
-        _debugCurrentState = newStateSO;
-        _currentState?.OnEnter();
     }
+
+    internal void ChangePhase(int phase)
+    {
+        _currentPhase = phase;
+        _states.UpdatePhaseStates(_currentPhase);
+    }
+
 
     private IEnumerator TransitionCoroutine()
     {
         while (true)
         {
-            Transition(_currentState?.HandleTransition());
+            Transition();
             yield return Helpers.GetWaitForSeconds(_handleTransitionTime);
+        }
+    }
+
+    internal StateContext GetActiveContext()
+    {
+        return ActiveContext;
+    }
+
+    private StateContext GetOrCreateContext(StateSO state)
+    {
+        if (!_contextPool.TryGetValue(state, out var pool))
+        {
+            pool = new Queue<StateContext>();
+            _contextPool[state] = pool;
+        }
+        return pool.Count > 0 ? pool.Dequeue() : state.CreateContext();
+    }
+
+    private void ReturnContextToPool(StateSO state, StateContext context)
+    {
+        if (!_contextPool.ContainsKey(state))
+        {
+            _contextPool[state] = new Queue<StateContext>();
+        }
+
+        _contextPool[state].Enqueue(context);
+    }
+
+    private void ResetContext()
+    {
+        foreach(var context in _contextPool)
+        {
+            context.Value.Dequeue().Reset();
         }
     }
 

@@ -25,7 +25,6 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
 
     public Vector2 Direction => _direction;
     public event UnityAction<Vector2> OnMovement;
-    public event UnityAction<Vector2> OnSetDestination;
     public event UnityAction<bool> Attack;
 
     private void Awake()
@@ -131,6 +130,7 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
             if (!_isShopActive)
             {
                 EnablePlayerActions();
+                DisableUIActions();
                 _cancelSound.PlayEvent();
                 OnGameplayPauseEvent.RaiseEvent(false);
 
@@ -138,6 +138,7 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
             else
             {
                 DisablePlayerActions();
+                DisableUIActions();
                 _confirmSound.PlayEvent();
                 OnGameplayPauseEvent.RaiseEvent(true);
 
@@ -158,6 +159,7 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
             if (!_isMenuActive)
             {
                 EnablePlayerActions();
+                DisableUIActions();
                 _cancelSound.PlayEvent();
                 OnGameplayPauseEvent.RaiseEvent(false);
 

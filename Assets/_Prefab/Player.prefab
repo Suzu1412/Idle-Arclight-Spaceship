@@ -411,11 +411,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
-  _debugCurrentState: {fileID: 0}
-  _stateList:
-  - {fileID: 11400000, guid: a8a22618d5b22c44d9b3e8a2f8611cff, type: 2}
-  - {fileID: 11400000, guid: 5f009a4d6530e954ba3a6e07884eb75c, type: 2}
-  - {fileID: 11400000, guid: 1206044144521494e93bcb66b6cdbc7d, type: 2}
+  _currentPhase: 0
+  _states: {fileID: 11400000, guid: 971f386abdfa2e84e85df3fb83531768, type: 2}
+  _currentState: {fileID: 0}
 --- !u!114 &6803927108223902700
 MonoBehaviour:
   m_ObjectHideFlags: 0

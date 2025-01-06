@@ -147,13 +147,23 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     {
         if (_totalCurrency.Value >= _generators.Generators[index].Cost.Value)
         {
+            int amountToBuy = 0;
+
+            if (_amountToBuy.Value > 0)
+            {
+                amountToBuy = _amountToBuy.Value;
+            }
+            else
+            {
+                amountToBuy = _generators.Generators[index].CalculateMaxAmountToBuy(_totalCurrency.Value);
+            }
+            _generators.Generators[index].GetBulkCost(amountToBuy);
             _totalCurrency.Value -= _generators.Generators[index].Cost.Value;
-            _generators.Generators[index].AddAmount(_amountToBuy.Value);
-            _generators.Generators[index].GetBulkCost(_amountToBuy.Value);
+            _generators.Generators[index].AddAmount(amountToBuy);
             _generators.Generators[index].CalculateProductionRate();
             GetProductionRate();
             UpdateCurrency();
-            _gemGeneratorTotalAmount.Value += _amountToBuy.Value;
+            _gemGeneratorTotalAmount.Value += amountToBuy;
             OnGeneratorAmountChangedEvent.RaiseEvent(index);
             OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
         }
