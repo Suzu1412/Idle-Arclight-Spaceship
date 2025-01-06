@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: 13
   m_EditorClassIdentifier: 
   _guid: a691c1f52c24a8d429c2ebe2b328ab87
-  _name: Sapphire
-  _image: {fileID: 21300000, guid: fb2d450bc33ce47478023e998b2feea5, type: 3}
+  _name: Amethyst
+  _image: {fileID: 21300000, guid: f87b195835e016f47b12a58fa9271e0a, type: 3}
   _amountOwned: 0
-  _cost: 375000000000000
-  _costRequirement: 4800000000000
+  _cost: 120000000000
+  _costRequirement: 450000000
   _gemCostMultiplier: {fileID: 11400000, guid: d4159609c13d586439af8e9e600a0681, type: 2}
   _priceGrowthRate: 1.15
-  _baseProduction: 375000000
+  _baseProduction: 12000000
   _gemProductionMultiplier: {fileID: 11400000, guid: e2ee7fd9bc677ac40bc6df40e52c77aa, type: 2}
   _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: 14
   m_EditorClassIdentifier: 
   _guid: 7e787c2541a7b344b826b6e8353f121b
-  _name: Ruby
-  _image: {fileID: 21300000, guid: cb7e7ec290f9781429493d4d0b5ce3ab, type: 3}
+  _name: Tourmaline
+  _image: {fileID: 21300000, guid: 62be9fb74d7754e45885f2e6b39dfc67, type: 3}
   _amountOwned: 0
-  _cost: 6250000000000000
-  _costRequirement: 350000000000000
+  _cost: 650000000000
+  _costRequirement: 5000000000
   _gemCostMultiplier: {fileID: 11400000, guid: d4159609c13d586439af8e9e600a0681, type: 2}
   _priceGrowthRate: 1.15
-  _baseProduction: 250000000
+  _baseProduction: 32500000
   _gemProductionMultiplier: {fileID: 11400000, guid: 5f61b0a341ee1b045bb03ea21cfad2da, type: 2}
   _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: 7
   m_EditorClassIdentifier: 
   _guid: 1cf2da6fdd7c11041a457c9a40a00523
-  _name: Garnet
-  _image: {fileID: 21300000, guid: 19a1a81426a90444d85961707e359df7, type: 3}
+  _name: Pyrite
+  _image: {fileID: 21300000, guid: db80bfd57d7d4884d8ff849076243ee2, type: 3}
   _amountOwned: 0
-  _cost: 67000000
-  _costRequirement: 450000
+  _cost: 900000
+  _costRequirement: 180000
   _gemCostMultiplier: {fileID: 11400000, guid: d4159609c13d586439af8e9e600a0681, type: 2}
   _priceGrowthRate: 1.15
-  _baseProduction: 13400
+  _baseProduction: 1200
   _gemProductionMultiplier: {fileID: 11400000, guid: 878e84455ecd20b48aa5b64c0edf4f83, type: 2}
   _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}

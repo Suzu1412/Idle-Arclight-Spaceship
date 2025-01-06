@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e540d979937a994ebab8a4f41968310, type: 3}
   m_Name: 18
   m_EditorClassIdentifier: 
-  _guid: 1221112d43b14124e805c2a01e95c0a9
-  _name: Diamond
-  _image: {fileID: 21300000, guid: e1b7eba11810f5345853f569cd81bc91, type: 3}
+  _guid: b0ad226efc328e744943f64c11d81f82
+  _name: Topaz
+  _image: {fileID: 21300000, guid: 092f2741b6657d64ead3715196ffb6e6, type: 3}
   _amountOwned: 0
-  _cost: 4.95e+17
-  _costRequirement: 6000000000000000
+  _cost: 350000000000000
+  _costRequirement: 50000000000000
   _gemCostMultiplier: {fileID: 11400000, guid: d4159609c13d586439af8e9e600a0681, type: 2}
   _priceGrowthRate: 1.15
-  _baseProduction: 1500000000
+  _baseProduction: 1400000000
   _gemProductionMultiplier: {fileID: 11400000, guid: fc060c699feb9424393818dba7f51af1, type: 2}
   _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
   _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
