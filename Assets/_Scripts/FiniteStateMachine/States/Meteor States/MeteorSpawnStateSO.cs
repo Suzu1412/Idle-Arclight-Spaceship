@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/FSM/Player/Intro State")]
-public class IntroStateSO : StateSO<IntroStateContext>
+[CreateAssetMenu(menuName = "Scriptable Objects/FSM/Meteor/Spawn State")]
+public class MeteorSpawnStateSO : StateSO<MeteorSpawnContext>
 {
-    [SerializeField] private float _invulnerabilityDuration = 3f;
+    [SerializeField] private GameObjectRuntimeSetSO _activeMeteors;
 
     protected override float _highestUtility => 999f;
 
@@ -13,15 +12,9 @@ public class IntroStateSO : StateSO<IntroStateContext>
         base.EnterState(fsm);
         var context = GetContext(fsm, this);
         context.HasBeenExecuted = false;
-        context.Agent.HealthSystem.SetInvulnerability(true, _invulnerabilityDuration);
+        _activeMeteors.Add(fsm.gameObject);
+        fsm.Agent.MoveBehaviour.StopMovement();
         context.HasBeenExecuted = true;
-    }
-
-    public override void UpdateState(FiniteStateMachine fsm)
-    {
-        base.UpdateState(fsm);
-        var context = GetContext(fsm, this);
-        context.UpdateTimerDeltaTime();
     }
 
     public override float EvaluateUtility(FiniteStateMachine fsm)
@@ -32,7 +25,7 @@ public class IntroStateSO : StateSO<IntroStateContext>
 }
 
 [System.Serializable]
-public class IntroStateContext : StateContext
+public class MeteorSpawnContext : StateContext
 {
     public bool HasBeenExecuted = false;
 

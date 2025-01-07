@@ -2,15 +2,14 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/FSM/Player/Idle State")]
-public class IdleStateSO : StateSO
+public class IdleStateSO : StateSO<IdleStateContext>
 {
-    [SerializeField] private float _maxUtility = 10f;
-
+    protected override float _highestUtility => 10f;
 
     public override void EnterState(FiniteStateMachine fsm)
     {
         base.EnterState(fsm);
-        GetContext(fsm).Agent.MoveBehaviour.StopMovement();
+        fsm.Agent.MoveBehaviour.StopMovement();
     }
 
     public override void FixedUpdateState(FiniteStateMachine fsm)
@@ -19,7 +18,7 @@ public class IdleStateSO : StateSO
 
     public override void UpdateState(FiniteStateMachine fsm)
     {
-        var context = GetContext(fsm);
+        var context = GetContext(fsm, this);
 
         if (context.Agent.PlayerDetector.IsDetected)
         {
@@ -27,7 +26,7 @@ public class IdleStateSO : StateSO
         }
     }
 
-    public override float EvaluateUtility(StateContext context)
+    public override float EvaluateUtility(FiniteStateMachine fsm)
     {
         // for boss fight use: 
         //if (context.stateMachine.currentPhase != phase)
@@ -35,12 +34,8 @@ public class IdleStateSO : StateSO
         //    return 0f; // Ignore if not in the correct phase
         //}
 
-        return context.Agent.Input.Direction == Vector2.zero ? _maxUtility : 0f;
-    }
 
-    public override StateContext CreateContext()
-    {
-        return new IdleStateContext();
+        return fsm.Agent.Input.Direction == Vector2.zero ? _highestUtility : 0f;
     }
 }
 

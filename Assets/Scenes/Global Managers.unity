@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
-  _initialDelay: 15
-  _delayBetweenSpawns: 10
+  _initialDelay: 5
+  _delayBetweenSpawns: 5
   _placementStrategy: {fileID: 11400000, guid: f67319a964eb2844297b5b50ee221b19, type: 2}
   _enemyConfigs:
   - {fileID: 11400000, guid: f2fd5ddeb69d35249aa664060407fea5, type: 2}

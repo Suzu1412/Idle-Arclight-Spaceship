@@ -14,18 +14,13 @@ public class HealthBarUI : MonoBehaviour
     [SerializeField] private IntGameEventListener OnDamagedEventListener;
     [SerializeField] private IntGameEventListener OnHealedEventListener;
     private float _previousValue;
-    private IHealthSystem _healthSystem;
+    [SerializeField] private HealthSystem _healthSystem;
     private Coroutine _damageAnimationCoroutine;
     private Coroutine _healAnimationCoroutine;
     private bool _isDamaged;
     [SerializeField] private TextMeshProUGUI _amountText;
     [SerializeField] private float _damageAnimationDelay = 0.2f;
     [SerializeField] private float _damageAnimationDuration = 0.01f;
-
-    private void Awake()
-    {
-        _healthSystem = GetComponentInParent<IHealthSystem>();
-    }
 
     private void OnEnable()
     {

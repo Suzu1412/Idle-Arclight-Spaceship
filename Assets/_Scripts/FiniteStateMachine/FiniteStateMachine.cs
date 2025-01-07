@@ -14,12 +14,13 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
     private float _handleTransitionTime = 0.1f;
     [SerializeField] private StateListSO _states; // All Possible States
     [SerializeField][ReadOnly] private StateSO _currentState;
-    [SerializeField] private StateContext _context;
+    [SerializeField] private StateContext _currentContext;
 
+    private Dictionary<StateSO, StateContext> _stateContexts = new();
     private Dictionary<StateSO, Queue<StateContext>> _contextPool = new();
     internal IAgent Agent => _agent ??= GetComponent<IAgent>();
 
-    internal StateContext ActiveContext => _context;
+    internal StateContext ActiveContext => _currentContext;
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
         {
             Debug.LogError(gameObject.transform.parent.name + " has no states assigned, please fix");
         }
+        InitializeContext();
     }
 
     private void OnEnable()
@@ -69,7 +71,7 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
 
         foreach (var state in _states.GetPhaseStates())
         {
-            float utility = state.EvaluateUtility(ActiveContext);
+            float utility = state.EvaluateUtility(this);
 
             if (utility > highestUtility)
             {
@@ -90,15 +92,20 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
         if (_currentState != null)
         {
             _currentState.ExitState(this);
-            ReturnContextToPool(state, _context);
+            ReturnContextToPool(state, _currentContext);
         }
 
         _currentState = state;
 
         if (_currentState != null)
         {
-            _context = GetOrCreateContext(_currentState);
-            _context.Initialize(Agent);
+            if (!_stateContexts.TryGetValue(_currentState, out var context))
+            {
+                context = GetOrCreateContext(_currentState);
+                _stateContexts.Add(_currentState, context);
+            }
+            _currentContext = context; //
+            _currentContext.Initialize(Agent);
             _currentState.EnterState(this);
         }
     }
@@ -119,9 +126,14 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
         }
     }
 
-    internal StateContext GetActiveContext()
+    internal StateContext GetContext(StateSO state)
     {
-        return ActiveContext;
+        if (_stateContexts.TryGetValue(state, out var context))
+        {
+            return context;
+        }
+        Debug.LogError("Could not find appropiate context for: " + state);
+        return null;
     }
 
     private StateContext GetOrCreateContext(StateSO state)
@@ -146,9 +158,19 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
 
     private void ResetContext()
     {
-        foreach(var context in _contextPool)
+        foreach(var context in _stateContexts)
         {
-            context.Value.Dequeue().Reset();
+
+            //context.Value.Dequeue().Reset();
+        }
+    }
+
+    private void InitializeContext()
+    {
+        foreach(var state in _states.GetStates)
+        {
+            _stateContexts[state] = GetOrCreateContext(state);
+            ReturnContextToPool(state, _stateContexts[state]);
         }
     }
 

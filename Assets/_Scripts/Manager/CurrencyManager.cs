@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -136,6 +137,11 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         OnChangeBuyAmountEvent.RaiseEvent(_amountToBuy.Value);
         OnUpgradeBoughtEvent.RaiseEvent();
         OnLoadCurrencyEvent.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
+   
+        for(int i= 0; i < _generators.Generators.Count; i++)
+        {
+            OnGeneratorAmountChangedEvent.RaiseEvent(i);
+        }
     }
 
     public GameObject GetGameObject()

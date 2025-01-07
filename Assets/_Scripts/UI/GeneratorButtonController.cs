@@ -70,17 +70,18 @@ public class GeneratorButtonController : MonoBehaviour
         SetAmountVariable();
         SetAmountProductionVariable();
         SetAmountToBuyVariable();
+        OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
+        OnCurrencyChangedEventListener.Register(UpdatePrice);
+        OnProductionChangedEventListener.Register(DisplayProductionText);
+        OnProductionChangedEventListener.Register(DisplayDescription);
+        OnProductionChangedEventListener.Register(DisplayPercentageText);
         _isAvailableToBuy = false;
     }
 
     private void OnEnable()
     {
         _buyButton.onClick.AddListener(HandleBuyButton);
-        OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
-        OnCurrencyChangedEventListener.Register(UpdatePrice);
-        OnProductionChangedEventListener.Register(DisplayProductionText);
-        OnProductionChangedEventListener.Register(DisplayDescription);
-        OnProductionChangedEventListener.Register(DisplayPercentageText);
+        
 
         ActivateButton(false);
 
@@ -99,17 +100,18 @@ public class GeneratorButtonController : MonoBehaviour
     private void OnDisable()
     {
         _buyButton.onClick.RemoveAllListeners();
-        OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
-        OnCurrencyChangedEventListener.DeRegister(UpdatePrice);
-        OnProductionChangedEventListener.DeRegister(DisplayProductionText);
-        OnProductionChangedEventListener.DeRegister(DisplayDescription);
-        OnProductionChangedEventListener.DeRegister(DisplayPercentageText);
+        
 
     }
 
     private void OnDestroy()
     {
         _generatorRTS.Remove(gameObject);
+        OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
+        OnCurrencyChangedEventListener.DeRegister(UpdatePrice);
+        OnProductionChangedEventListener.DeRegister(DisplayProductionText);
+        OnProductionChangedEventListener.DeRegister(DisplayDescription);
+        OnProductionChangedEventListener.DeRegister(DisplayPercentageText);
     }
 
     public void SetIndex(int index)
@@ -264,9 +266,17 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void DisplayProductionText()
     {
-        if (_generator == null) return;
+        if (_generator == null)
+        {
+            Debug.Log("too early");
+            return;
+        }
+
+        Debug.Log("intentando colocar production " + _generator);
+
         _productionLocalized.StringReference.SetReference(_table, _gemProduction);
         _amountProductionVariable.Value = _generator.ProductionFormatted.GetFormat();
+        Debug.Log(_generator.ProductionFormatted.GetFormat());
         _productionLocalized.RefreshString();
     }
 

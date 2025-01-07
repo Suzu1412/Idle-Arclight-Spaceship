@@ -2,13 +2,13 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/FSM/Player/Move State")]
-public class MoveStateSO : StateSO
+public class MoveStateSO : StateSO<MoveStateContext>
 {
-    [SerializeField] private float _highestUtility = 20f;
+    protected override float _highestUtility => 15f;
 
     public override void UpdateState(FiniteStateMachine fsm)
     {
-        var context = GetContext(fsm);
+        var context = GetContext(fsm, this);
 
         if (context.Agent.PlayerDetector.IsDetected)
         {
@@ -18,19 +18,14 @@ public class MoveStateSO : StateSO
 
     public override void FixedUpdateState(FiniteStateMachine fsm)
     {
-        var context = GetContext(fsm);
+        var context = GetContext(fsm, this);
         context.Agent.MoveBehaviour.Move();
         context.Agent.MoveBehaviour.BoundMovement();
     }
 
-    public override float EvaluateUtility(StateContext context)
+    public override float EvaluateUtility(FiniteStateMachine fsm)
     {
-        return context.Agent.Input.Direction != Vector2.zero ? _highestUtility : 0f;
-    }
-
-    public override StateContext CreateContext()
-    {
-        return new MoveStateContext();
+        return fsm.Agent.Input.Direction != Vector2.zero ? _highestUtility : 0f;
     }
 }
 

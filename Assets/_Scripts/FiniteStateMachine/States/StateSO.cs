@@ -3,14 +3,11 @@ using UnityEngine;
 
 public abstract class StateSO : ScriptableObject
 {
-    public int phase = 0;
+    public virtual int phase => 0;
+    protected abstract float _highestUtility { get; }
+
 
     public abstract StateContext CreateContext();
-
-    internal StateContext GetContext(FiniteStateMachine fsm)
-    {
-        return fsm.GetActiveContext();
-    }
 
     public virtual void EnterState(FiniteStateMachine fsm)
     {
@@ -28,5 +25,21 @@ public abstract class StateSO : ScriptableObject
     {
         fsm.ActiveContext.DisableEvents();
     }
-    public abstract float EvaluateUtility(StateContext context);
+
+    public abstract float EvaluateUtility(FiniteStateMachine fsm);
+
+}
+
+public abstract class StateSO<T> : StateSO where T : StateContext, new()
+{
+    public override StateContext CreateContext()
+    {
+        return new T();
+    }
+
+
+    internal T GetContext(FiniteStateMachine fsm, StateSO state)
+    {
+        return fsm.GetContext(state) as T;
+    }
 }

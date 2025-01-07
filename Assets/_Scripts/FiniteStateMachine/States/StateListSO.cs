@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEditor.VersionControl.Asset;
 
 [CreateAssetMenu(fileName = "StateListSO", menuName = "Scriptable Objects/FSM/StateListSO")]
 public class StateListSO : ScriptableObject
@@ -11,6 +10,8 @@ public class StateListSO : ScriptableObject
     private List<StateSO> _phaseStates;
 
     public StateSO DefaultState => _defaultState;
+
+    public List<StateSO> GetStates => _states;
 
     public List<StateSO> GetPhaseStates()
     {

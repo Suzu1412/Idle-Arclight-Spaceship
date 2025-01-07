@@ -15,7 +15,7 @@ public class EnemyInput : MonoBehaviour, IAgentInput
 
     public void CallOnMovementInput(Vector2 direction)
     {
-        Direction = direction;
-        OnMovement?.Invoke(direction);
+        Direction = direction.normalized;
+        OnMovement?.Invoke(Direction);
     }
 }
