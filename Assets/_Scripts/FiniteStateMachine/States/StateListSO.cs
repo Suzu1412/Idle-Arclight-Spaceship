@@ -11,7 +11,7 @@ public class StateListSO : ScriptableObject
 
     public StateSO DefaultState => _defaultState;
 
-    public List<StateSO> GetStates => _states;
+    public List<StateSO> GetStates() => _states;
 
     public List<StateSO> GetPhaseStates()
     {
@@ -20,6 +20,6 @@ public class StateListSO : ScriptableObject
 
     public void UpdatePhaseStates(int currentPhase)
     {
-        _phaseStates = _states.Where(state => state.phase == currentPhase).ToList();
+        _phaseStates = _states.Where(state => state.Phase == currentPhase).ToList();
     }
 }

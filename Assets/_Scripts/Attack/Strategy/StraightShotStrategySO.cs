@@ -31,7 +31,7 @@ public class StraightShotStrategy : BaseAttackStrategy
         _isAttacking = true;
         Projectile projectile = ObjectPoolFactory.Spawn(_projectilePool).GetComponent<Projectile>();
         projectile.SetProjectileSpeed(10f);
-        projectile.SetProjectileDamage(_agent.GetStat(StatType.Strength));
+        projectile.SetProjectileDamage(_agent.StatsSystem.GetStatValue<AttackStatSO>());
         projectile.SetLayerMask(_agent.AttackSystem.ProjectileMask);
         projectile.transform.position = _spawnPosition.position;
         projectile.transform.right = CalculateSpreadAngle(_agent.FacingDirection);

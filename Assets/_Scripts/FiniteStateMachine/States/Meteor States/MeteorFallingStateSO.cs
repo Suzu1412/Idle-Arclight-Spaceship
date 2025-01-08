@@ -4,91 +4,22 @@ using UnityEngine;
 public class MeteorFallingStateSO : StateSO<MeteorFallingContext>
 {
     [SerializeField] private GameObjectRuntimeSetSO _activeMeteors;
-    protected override float _highestUtility => 10f;
+    [SerializeField] private float _fallingSpeed = 5f;
+    [SerializeField] private float _trajectoryVariation = 2f;
+    [SerializeField] private float _boundaryX = 2.3f; // Horizontal screen limits
+    [SerializeField] private float _elasticity = 0.8f;
+    [SerializeField] private float _angularBounceFactor = 10f; // Controls rotational speed after bounce
+    [SerializeField] private float _bounceCooldown = 0.2f;
 
-    [SerializeField] private float fallingSpeed = 5f;
-    [SerializeField] private float trajectoryVariation = 2f;
-    [SerializeField] private float boundaryX = 2.3f; // Horizontal screen limits
-    [SerializeField] private float elasticity = 0.8f;
-    [SerializeField] private float angularBounceFactor = 10f; // Controls rotational speed after bounce
+    public GameObjectRuntimeSetSO ActiveMeteors => _activeMeteors;
+    public float FallingSpeed => _fallingSpeed;
+    public float TrajectoryVariation => _trajectoryVariation;
+    public float BoundaryX => _boundaryX;
+    public float Elasticity => _elasticity;
+    public float AngularBounceFactor => _angularBounceFactor;
 
-    public override void EnterState(FiniteStateMachine fsm)
-    {
-        base.EnterState(fsm);
-        var direction = new Vector2(Random.Range(-trajectoryVariation, trajectoryVariation), -fallingSpeed);
-        fsm.Agent.Input.CallOnMovementInput(direction);
-        fsm.Agent.AgentRenderer.RotateSpriteToDirection(direction);
-    }
+    public float BounceCooldown => _bounceCooldown;
 
-    public override void UpdateState(FiniteStateMachine fsm)
-    {
-        base.UpdateState(fsm);
-        var context = GetContext(fsm, this);
-        context.UpdateBounceTimerDeltaTime(Time.deltaTime);
-        // Optional: Gradually adjust trajectory while falling
-        Vector2 randomForce = new Vector2(
-            Random.Range(-trajectoryVariation * 0.1f, trajectoryVariation * 0.1f),
-            0 // Keep the force horizontal to add wobble
-        );
-
-        fsm.Agent.MoveBehaviour.ApplyForce(randomForce, ForceMode2D.Force);
-        HandleBoundaryBounce(fsm, context);
-    }
-
-    public override void FixedUpdateState(FiniteStateMachine fsm)
-    {
-        base.FixedUpdateState(fsm);
-        var context = GetContext(fsm, this);
-        fsm.Agent.MoveBehaviour.Move();
-        //HandleMeteorCollisions();
-    }
-
-    public override void ExitState(FiniteStateMachine fsm)
-    {
-        base.ExitState(fsm);
-        _activeMeteors.Remove(fsm.gameObject);
-    }
-
-    public override float EvaluateUtility(FiniteStateMachine fsm)
-    {
-        return _highestUtility;
-    }
-
-    private void HandleBoundaryBounce(FiniteStateMachine fsm, MeteorFallingContext context)
-    {
-        if (context.BounceCooldown > 0f)
-        {
-            return;
-        }
-        Vector2 position = fsm.transform.position;
-
-        if (position.x <= -boundaryX)
-        {
-            Debug.Log(position.x);
-        }
-
-        // Check horizontal boundaries
-        if (position.x <= -boundaryX && fsm.Agent.MoveBehaviour.RB.linearVelocityX < 0)
-        {
-            Vector2 direction = new(-fsm.Agent.Input.Direction.x * elasticity, fsm.Agent.Input.Direction.y); // Reverse horizontal velocity
-            //agent.MoveBehaviour.RB.position = new Vector2(-boundaryX, position.y); // Clamp position
-            fsm.Agent.MoveBehaviour.RB.angularVelocity = Random.Range(-angularBounceFactor, angularBounceFactor); // Add spin
-            fsm.Agent.Input.CallOnMovementInput(direction);
-            fsm.Agent.AgentRenderer.RotateSpriteToDirection(direction);
-
-        }
-        else if (position.x >= boundaryX && fsm.Agent.MoveBehaviour.RB.linearVelocityX > 0)
-        {
-            Vector2 direction = new(-fsm.Agent.Input.Direction.x * elasticity, fsm.Agent.Input.Direction.y); // Reverse horizontal velocity
-            //agent.MoveBehaviour.RB.position = new Vector2(boundaryX, position.y); // Clamp position
-            fsm.Agent.MoveBehaviour.RB.angularVelocity = Random.Range(-angularBounceFactor, angularBounceFactor); // Add spin
-            fsm.Agent.Input.CallOnMovementInput(direction);
-            fsm.Agent.AgentRenderer.RotateSpriteToDirection(direction);
-        }
-
-        context.BounceCooldown = 0.2f;
-    }
-    
     /*
     private void HandleMeteorCollisions()
     {
@@ -139,34 +70,88 @@ public class MeteorFallingStateSO : StateSO<MeteorFallingContext>
 
 
 [System.Serializable]
-public class MeteorFallingContext : StateContext
+public class MeteorFallingContext : StateContext<MeteorFallingStateSO>
 {
-    public bool HasBeenExecuted = false;
-    public float BounceCooldown;
+    private float _bounceCooldown;
 
-    public override void HandleMovement(Vector2 direction)
+    public override void OnEnter()
     {
-        base.HandleMovement(direction);
-        Agent.MoveBehaviour.ReadInputDirection(direction);
+        base.OnEnter();
+        var direction = new Vector2(Random.Range(-State.TrajectoryVariation, State.TrajectoryVariation), -State.FallingSpeed);
+        Agent.Input.CallOnMovementInput(direction);
+        Agent.AgentRenderer.RotateSpriteToDirection(direction);
     }
 
-    public override void HandleAttack(bool isAttacking)
+    public override void OnUpdate()
     {
-        base.HandleAttack(isAttacking);
+        base.OnUpdate();
+        UpdateBounceCooldown(Time.deltaTime);
+
+        // Optional: Gradually adjust trajectory while falling
+        Vector2 randomForce = new Vector2(
+            Random.Range(-State.TrajectoryVariation * 0.1f, State.TrajectoryVariation * 0.1f),
+            0 // Keep the force horizontal to add wobble
+        );
+
+        Agent.MoveBehaviour.ApplyForce(randomForce, ForceMode2D.Force);
+        HandleBoundaryBounce();
     }
 
-    public void UpdateBounceTimerDeltaTime(float seconds)
+    public override void OnFixedUpdate()
     {
-        BounceCooldown -= seconds;
+        base.OnFixedUpdate();
+        Agent.MoveBehaviour.Move();
+        //HandleMeteorCollisions();
+    }
 
-        if (BounceCooldown < 0f)
+    public override void OnExit()
+    {
+        base.OnExit();
+        State.ActiveMeteors.Remove(_fsm.gameObject);
+    }
+
+    public override float EvaluateUtility()
+    {
+        return Agent.HealthSystem.GetCurrentHealth() > 0f ? State.HighestUtility : 0f;
+    }
+
+    private void HandleBoundaryBounce()
+    {
+        if (_bounceCooldown > 0f)
         {
-            BounceCooldown = 0f;
+            return;
         }
+        Vector2 position = _fsm.transform.position;
+
+        // Check horizontal boundaries
+        if (position.x <= -State.BoundaryX && Agent.MoveBehaviour.RB.linearVelocityX < 0)
+        {
+            Vector2 direction = new(-Agent.Input.Direction.x * State.Elasticity, Agent.Input.Direction.y); // Reverse horizontal velocity
+            //agent.MoveBehaviour.RB.position = new Vector2(-boundaryX, position.y); // Clamp position
+            Agent.MoveBehaviour.RB.angularVelocity = Random.Range(-State.AngularBounceFactor, State.AngularBounceFactor); // Add spin
+            Agent.Input.CallOnMovementInput(direction);
+            Agent.AgentRenderer.RotateSpriteToDirection(direction);
+
+        }
+        else if (position.x >= State.BoundaryX && Agent.MoveBehaviour.RB.linearVelocityX > 0)
+        {
+            Vector2 direction = new(-Agent.Input.Direction.x * State.Elasticity, Agent.Input.Direction.y); // Reverse horizontal velocity
+            //agent.MoveBehaviour.RB.position = new Vector2(boundaryX, position.y); // Clamp position
+            Agent.MoveBehaviour.RB.angularVelocity = Random.Range(-State.AngularBounceFactor, State.AngularBounceFactor); // Add spin
+            Agent.Input.CallOnMovementInput(direction);
+            Agent.AgentRenderer.RotateSpriteToDirection(direction);
+        }
+
+        _bounceCooldown = State.BounceCooldown;
     }
 
-    public override void Reset()
+    private void UpdateBounceCooldown(float seconds)
     {
-        Timer = 0;
+        _bounceCooldown -= seconds;
+
+        if (_bounceCooldown < 0f)
+        {
+            _bounceCooldown = 0f;
+        }
     }
 }

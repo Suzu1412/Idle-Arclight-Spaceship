@@ -4,37 +4,22 @@ using UnityEngine;
 public class MeteorDestroyedStateSO : StateSO<MeteorDestroyedContext>
 {
     [SerializeField] private GameObjectRuntimeSetSO _activeMeteors;
-    protected override float _highestUtility => 999f;
-
-    public override void EnterState(FiniteStateMachine fsm)
-    {
-        base.EnterState(fsm);
-        _activeMeteors.Remove(fsm.gameObject);
-    }
-
-    public override float EvaluateUtility(FiniteStateMachine fsm)
-    {
-        return fsm.Agent.HealthSystem.GetCurrentHealth() == 0 ? _highestUtility : 0;
-    }
+    public GameObjectRuntimeSetSO ActiveMeteors => _activeMeteors;
 }
 
 [System.Serializable]
-public class MeteorDestroyedContext : StateContext
+public class MeteorDestroyedContext : StateContext<MeteorDestroyedStateSO>
 {
     public bool HasBeenExecuted = false;
 
-    public override void HandleMovement(Vector2 direction)
+    public override void OnExit()
     {
-        base.HandleMovement(direction);
+        base.OnExit();
+        State.ActiveMeteors.Remove(_fsm.gameObject);
     }
 
-    public override void HandleAttack(bool isAttacking)
+    public override float EvaluateUtility()
     {
-        base.HandleAttack(isAttacking);
-    }
-
-    public override void Reset()
-    {
-        Timer = 0;
+        return Agent.HealthSystem.GetCurrentHealth() == 0 ? State.HighestUtility : 0;
     }
 }

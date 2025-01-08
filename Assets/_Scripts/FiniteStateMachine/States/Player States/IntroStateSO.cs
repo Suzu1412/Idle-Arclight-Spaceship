@@ -6,48 +6,32 @@ public class IntroStateSO : StateSO<IntroStateContext>
 {
     [SerializeField] private float _invulnerabilityDuration = 3f;
 
-    protected override float _highestUtility => 999f;
-
-    public override void EnterState(FiniteStateMachine fsm)
-    {
-        base.EnterState(fsm);
-        var context = GetContext(fsm, this);
-        context.HasBeenExecuted = false;
-        context.Agent.HealthSystem.SetInvulnerability(true, _invulnerabilityDuration);
-        context.HasBeenExecuted = true;
-    }
-
-    public override void UpdateState(FiniteStateMachine fsm)
-    {
-        base.UpdateState(fsm);
-        var context = GetContext(fsm, this);
-        context.UpdateTimerDeltaTime();
-    }
-
-    public override float EvaluateUtility(FiniteStateMachine fsm)
-    {
-        var context = GetContext(fsm, this);
-        return !context.HasBeenExecuted ? _highestUtility : 0; // Never Return this
-    }
+    public float InvulnerabilityDuration => _invulnerabilityDuration;
 }
 
 [System.Serializable]
-public class IntroStateContext : StateContext
+public class IntroStateContext : StateContext<IntroStateSO>
 {
-    public bool HasBeenExecuted = false;
+    [SerializeField] private bool _hasBeenExecuted = false;
 
-    public override void HandleMovement(Vector2 direction)
+    public override void OnEnter()
     {
-        base.HandleMovement(direction);
+        base.OnEnter();
+        Agent.HealthSystem.SetInvulnerability(true, State.InvulnerabilityDuration);
+        Debug.Log("es invulnerable?");
+        _hasBeenExecuted = true;
     }
 
-    public override void HandleAttack(bool isAttacking)
+    protected override void HandleMovement(Vector2 direction)
     {
-        base.HandleAttack(isAttacking);
     }
 
-    public override void Reset()
+    protected override void HandleAttack(bool isAttacking)
     {
-        Timer = 0;
+    }
+
+    public override float EvaluateUtility()
+    {
+        return !_hasBeenExecuted ? State.HighestUtility : 0f;
     }
 }

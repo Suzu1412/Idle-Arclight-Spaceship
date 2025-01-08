@@ -5,42 +5,24 @@ public class MeteorSpawnStateSO : StateSO<MeteorSpawnContext>
 {
     [SerializeField] private GameObjectRuntimeSetSO _activeMeteors;
 
-    protected override float _highestUtility => 999f;
-
-    public override void EnterState(FiniteStateMachine fsm)
-    {
-        base.EnterState(fsm);
-        var context = GetContext(fsm, this);
-        context.HasBeenExecuted = false;
-        _activeMeteors.Add(fsm.gameObject);
-        fsm.Agent.MoveBehaviour.StopMovement();
-        context.HasBeenExecuted = true;
-    }
-
-    public override float EvaluateUtility(FiniteStateMachine fsm)
-    {
-        var context = GetContext(fsm, this);
-        return !context.HasBeenExecuted ? _highestUtility : 0; // Never Return this
-    }
+    public GameObjectRuntimeSetSO ActiveMeteors => _activeMeteors;
 }
 
 [System.Serializable]
-public class MeteorSpawnContext : StateContext
+public class MeteorSpawnContext : StateContext<MeteorSpawnStateSO>
 {
-    public bool HasBeenExecuted = false;
+    [SerializeField] private bool _hasBeenExecuted = false;
 
-    public override void HandleMovement(Vector2 direction)
+    public override void OnEnter()
     {
-        base.HandleMovement(direction);
+        base.OnEnter();
+        State.ActiveMeteors.Add(_fsm.gameObject);
+        Agent.MoveBehaviour.StopMovement();
+        _hasBeenExecuted = true;
     }
 
-    public override void HandleAttack(bool isAttacking)
+    public override float EvaluateUtility()
     {
-        base.HandleAttack(isAttacking);
-    }
-
-    public override void Reset()
-    {
-        Timer = 0;
+        return _hasBeenExecuted ? State.HighestUtility : 0f;
     }
 }

@@ -3,53 +3,85 @@ using UnityEngine;
 [System.Serializable]
 public abstract class StateContext
 {
-    public IAgent Agent;
-    public float Timer;
+    protected IAgent _agent;
+    [SerializeField] protected float _stateTime;
+    protected FiniteStateMachine _fsm;
+    internal IAgent Agent => _agent;
+    public bool IsInitialized { get; private set; }
 
-    public void Initialize(IAgent agent)
+    public abstract void Initialize(IAgent agent, FiniteStateMachine fsm, StateSO state);
+
+    public virtual void OnEnter()
     {
-        Agent = agent;
+        ActivateEvents();
+        _stateTime = 0f;
     }
 
-    public void SetTimer(float timer)
+    public virtual void OnUpdate()
     {
-        Timer = timer;
+        Tick();
     }
 
-    public virtual void Reset()
+    public virtual void OnFixedUpdate()
     {
-        Timer = 0f;
+
     }
 
-    public void UpdateTimerDeltaTime()
+    public virtual void OnExit()
     {
-        Timer -= Time.deltaTime;
-
-        if (Timer <= 0f)
-        {
-            Timer = 0f;
-        }
+        DisableEvents();
     }
 
-    public void EnableEvents()
+    public abstract float EvaluateUtility();
+
+    protected T GetState<T>(StateSO state) where T : StateSO
+    {
+        return state as T;
+    }
+
+    protected void ActivateEvents()
     {
         Agent.Input.OnMovement += HandleMovement;
         Agent.Input.Attack += HandleAttack;
+
     }
 
-    public void DisableEvents()
+    protected void DisableEvents()
     {
         Agent.Input.OnMovement -= HandleMovement;
         Agent.Input.Attack -= HandleAttack;
     }
 
-    public virtual void HandleMovement(Vector2 direction)
+    protected void Tick()
+    {
+        _stateTime += Time.deltaTime;
+    }
+
+    protected virtual void HandleMovement(Vector2 direction)
     {
         Agent.MoveBehaviour.ReadInputDirection(direction);
     }
 
-    public virtual void HandleAttack(bool isAttacking)
+    protected virtual void HandleAttack(bool isAttacking)
     {
         Agent.AttackSystem.Attack(isAttacking);
+    }
+}
+
+[System.Serializable]
+public class StateContext<T> : StateContext where T : StateSO
+{
+    [SerializeField] protected T State;
+
+    public override void Initialize(IAgent agent, FiniteStateMachine fsm, StateSO state)
+    {
+        _agent = agent;
+        _fsm = fsm;
+        State = GetState<T>(state);
+    }
+
+    public override float EvaluateUtility()
+    {
+        return 0;
     }
 }

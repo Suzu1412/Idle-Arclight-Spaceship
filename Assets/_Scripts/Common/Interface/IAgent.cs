@@ -5,7 +5,7 @@ public interface IAgent
 {
     IHealthSystem HealthSystem { get; }
     IAgentInput Input { get; }
-    IStatsSystem StatsSystem { get; }
+    StatsSystem StatsSystem { get; }
     IAttack AttackSystem { get; }
     ICanMove MoveBehaviour { get; }
     IAgentAnimation AgentAnimation { get; }
@@ -14,9 +14,7 @@ public interface IAgent
     IPlayerDetector PlayerDetector { get; }
     Vector2 FacingDirection { get; }
     event UnityAction<Vector2> OnChangeFacingDirection;
-
-    float GetStat(StatType statType);
-    float GetStatMaxValue(StatType statType);
-    float GetStatMinValue(StatType statType);
     void SetFacingDirection(Vector2 direction);
+
+    Stat GetStat(StatComponentSO statComponent);
 }

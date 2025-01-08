@@ -81,7 +81,7 @@ public class GeneratorButtonController : MonoBehaviour
     private void OnEnable()
     {
         _buyButton.onClick.AddListener(HandleBuyButton);
-        
+
 
         ActivateButton(false);
 
@@ -100,7 +100,7 @@ public class GeneratorButtonController : MonoBehaviour
     private void OnDisable()
     {
         _buyButton.onClick.RemoveAllListeners();
-        
+
 
     }
 
@@ -268,15 +268,11 @@ public class GeneratorButtonController : MonoBehaviour
     {
         if (_generator == null)
         {
-            Debug.Log("too early");
             return;
         }
 
-        Debug.Log("intentando colocar production " + _generator);
-
         _productionLocalized.StringReference.SetReference(_table, _gemProduction);
         _amountProductionVariable.Value = _generator.ProductionFormatted.GetFormat();
-        Debug.Log(_generator.ProductionFormatted.GetFormat());
         _productionLocalized.RefreshString();
     }
 

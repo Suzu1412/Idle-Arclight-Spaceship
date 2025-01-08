@@ -83,17 +83,17 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
     private int GetMinPossiblevalue()
     {
-        return Mathf.RoundToInt(Agent.GetStatMinValue(_statType));
+        return Mathf.RoundToInt(Agent.StatsSystem.GetStatMinValue<HealthStatSO>());
     }
 
     private int GetMaxPossibleValue()
     {
-        return Mathf.RoundToInt(Agent.GetStatMaxValue(_statType));
+        return Mathf.RoundToInt(Agent.StatsSystem.GetStatMaxValue<HealthStatSO>());
     }
 
     private int GetMaxValue()
     {
-        return Mathf.RoundToInt(Agent.GetStat(_statType));
+        return Mathf.RoundToInt(Agent.StatsSystem.GetStatValue<HealthStatSO>());
     }
 
     public int GetMaxHealth()

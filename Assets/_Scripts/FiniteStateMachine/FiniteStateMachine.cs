@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 public class FiniteStateMachine : MonoBehaviour, IPausable
@@ -16,7 +17,7 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
     [SerializeField][ReadOnly] private StateSO _currentState;
     [SerializeField] private StateContext _currentContext;
 
-    private Dictionary<StateSO, StateContext> _stateContexts = new();
+    [SerializeField] private SerializedDictionary<StateSO, StateContext> _stateContexts = new();
     private Dictionary<StateSO, Queue<StateContext>> _contextPool = new();
     internal IAgent Agent => _agent ??= GetComponent<IAgent>();
 
@@ -45,19 +46,19 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
     {
         _pausable.Remove(this);
         StopAllCoroutines();
-        _currentState?.ExitState(this);
+        _currentContext?.OnExit();
     }
 
     private void Update()
     {
         if (_isPaused) return;
-        _currentState?.UpdateState(this);
+        _currentContext?.OnUpdate();
     }
 
     private void FixedUpdate()
     {
         if (_isPaused) return;
-        _currentState?.FixedUpdateState(this);
+        _currentContext?.OnFixedUpdate();
     }
 
     internal void Transition()
@@ -69,14 +70,14 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
         if (ActiveContext == null) return;
 
 
-        foreach (var state in _states.GetPhaseStates())
+        foreach (var context in _stateContexts)
         {
-            float utility = state.EvaluateUtility(this);
+            float utility = context.Value.EvaluateUtility();
 
             if (utility > highestUtility)
             {
                 highestUtility = utility;
-                bestState = state;
+                bestState = context.Key;
 
             }
         }
@@ -89,13 +90,13 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
 
     internal void ChangeState(StateSO state)
     {
-        if (_currentState != null)
+        if (_currentContext != null)
         {
-            _currentState.ExitState(this);
-            ReturnContextToPool(state, _currentContext);
+            _currentContext.OnExit();
         }
 
         _currentState = state;
+        Debug.Log(_currentState);
 
         if (_currentState != null)
         {
@@ -104,9 +105,9 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
                 context = GetOrCreateContext(_currentState);
                 _stateContexts.Add(_currentState, context);
             }
-            _currentContext = context; //
-            _currentContext.Initialize(Agent);
-            _currentState.EnterState(this);
+            _currentContext = context;
+            _currentContext.OnEnter();
+            Debug.Log(_currentContext);
         }
     }
 
@@ -124,16 +125,6 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
             Transition();
             yield return Helpers.GetWaitForSeconds(_handleTransitionTime);
         }
-    }
-
-    internal StateContext GetContext(StateSO state)
-    {
-        if (_stateContexts.TryGetValue(state, out var context))
-        {
-            return context;
-        }
-        Debug.LogError("Could not find appropiate context for: " + state);
-        return null;
     }
 
     private StateContext GetOrCreateContext(StateSO state)
@@ -158,7 +149,7 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
 
     private void ResetContext()
     {
-        foreach(var context in _stateContexts)
+        foreach (var context in _stateContexts)
         {
 
             //context.Value.Dequeue().Reset();
@@ -167,9 +158,10 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
 
     private void InitializeContext()
     {
-        foreach(var state in _states.GetStates)
+        foreach (var state in _states.GetStates())
         {
             _stateContexts[state] = GetOrCreateContext(state);
+            _stateContexts[state].Initialize(Agent, this, state);
             ReturnContextToPool(state, _stateContexts[state]);
         }
     }

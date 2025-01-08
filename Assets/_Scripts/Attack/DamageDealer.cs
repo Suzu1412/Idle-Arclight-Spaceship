@@ -18,7 +18,7 @@ public class DamageDealer : MonoBehaviour
         if (collision.TryGetComponent<IDamageable>(out var damageable))
         {
             if (Agent == null) return;
-            damageable.Damage((int)Agent.GetStat(StatType.Strength));
+            damageable.Damage((int)Agent.StatsSystem.GetStatValue<AttackStatSO>());
             _impactSound.PlayEvent();
 
             if (_destroyOnContact)

@@ -5,19 +5,19 @@ using UnityEngine;
 [System.Serializable]
 public class Stat
 {
-    [SerializeField] private StatInfoSO _statInfo;
+    [SerializeField][ReadOnly] private StatComponentSO _statComponent;
     [SerializeField] private float _baseValue;
     [SerializeField][ReadOnly][Tooltip("Value is calculated by Base Value and Modifiers")] private float _value;
     private bool _isDirty = true;
 
-    public StatInfoSO StatInfo { get => _statInfo; internal set => _statInfo = value; }
+    public StatComponentSO StatComponent { get => _statComponent; internal set => _statComponent = value; }
     public float BaseValue { get => _baseValue; internal set => _baseValue = value; }
     [SerializeField] private List<StatModifier> _modifiers = new();
     internal List<StatModifier> Modifiers => _modifiers;
 
-    public Stat(StatInfoSO statInfo, float baseValue)
+    public Stat(StatComponentSO statComponent, float baseValue)
     {
-        _statInfo = statInfo;
+        _statComponent = statComponent;
         _baseValue = baseValue;
         _modifiers = new();
     }
@@ -37,7 +37,7 @@ public class Stat
 
     internal void CalculateValue()
     {
-        _baseValue = Mathf.Clamp(_baseValue, _statInfo.MinValue, _statInfo.MaxValue);
+        _baseValue = Mathf.Clamp(_baseValue, _statComponent.MinValue, _statComponent.MaxValue);
         float sumPercentAdditive = 0f;
         float finalValue = _baseValue;
 
@@ -63,7 +63,7 @@ public class Stat
             }
         }
 
-        _value = Mathf.Clamp(finalValue, StatInfo.MinValue, StatInfo.MaxValue);
+        _value = Mathf.Clamp(finalValue, StatComponent.MinValue, StatComponent.MaxValue);
     }
 
     internal void AddModifier(StatModifier modifier)

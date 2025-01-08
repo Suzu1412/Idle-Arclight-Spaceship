@@ -7,7 +7,7 @@ public class Agent : MonoBehaviour, IAgent
     private Vector2 _facingDirection;
     private IHealthSystem _healthSystem;
     private IAgentInput _input;
-    private IStatsSystem _statsSystem;
+    private StatsSystem _statsSystem;
     private IAttack _attackSystem;
     private ICanMove _moveBehaviour;
     private ILevelSystem _levelSystem;
@@ -19,7 +19,7 @@ public class Agent : MonoBehaviour, IAgent
 
     public IHealthSystem HealthSystem => _healthSystem ??= GetComponent<IHealthSystem>();
     public IAgentInput Input => _input ??= GetComponentInParent<IAgentInput>();
-    public IStatsSystem StatsSystem => _statsSystem ??= GetComponent<IStatsSystem>();
+    public StatsSystem StatsSystem => _statsSystem ??= GetComponent<StatsSystem>();
     public IAttack AttackSystem => _attackSystem ??= GetComponent<IAttack>();
     public ICanMove MoveBehaviour => _moveBehaviour ??= GetComponent<ICanMove>();
     public ILevelSystem LevelSystem => _levelSystem ??= GetComponent<ILevelSystem>();
@@ -47,22 +47,6 @@ public class Agent : MonoBehaviour, IAgent
         //_collider.enabled = false;
     }
 
-
-    public float GetStat(StatType statType)
-    {
-        return StatsSystem.GetStatValue(statType);
-    }
-
-    public float GetStatMaxValue(StatType statType)
-    {
-        return StatsSystem.GetStatMaxValue(statType);
-    }
-
-    public float GetStatMinValue(StatType statType)
-    {
-        return StatsSystem.GetStatMinValue(statType);
-    }
-
     public void SetFacingDirection(Vector2 direction)
     {
         _facingDirection = direction;
@@ -74,7 +58,7 @@ public class Agent : MonoBehaviour, IAgent
         _data = data;
         MoveBehaviour.SetMoveData(data.MovementData);
         StatsSystem.SetStatsData(data.AgentStats);
-        HealthSystem.Initialize((int)GetStat(StatType.MaxHealth));
+        HealthSystem.Initialize((int)StatsSystem.GetStat<HealthStatSO>().Value);
         AgentRenderer.SpriteRenderer.sprite = data.Sprite;
     }
 
@@ -83,7 +67,12 @@ public class Agent : MonoBehaviour, IAgent
         _data = data;
         MoveBehaviour.SetMoveData(data.MovementData);
         StatsSystem.SetStatsData(data.AgentStats);
-        HealthSystem.Initialize((int)GetStat(StatType.MaxHealth));
+        HealthSystem.Initialize((int)StatsSystem.GetStat<HealthStatSO>().Value);
         //AgentRenderer.SpriteRenderer.sprite = data.Sprite;
+    }
+
+    public Stat GetStat(StatComponentSO statComponent)
+    {
+        return StatsSystem.GetStat(statComponent);
     }
 }
