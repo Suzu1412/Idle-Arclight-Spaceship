@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 public class FiniteStateMachine : MonoBehaviour, IPausable
@@ -15,9 +14,9 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
     private float _handleTransitionTime = 0.1f;
     [SerializeField] private StateListSO _states; // All Possible States
     [SerializeField][ReadOnly] private StateSO _currentState;
-    [SerializeField] private StateContext _currentContext;
+    [SerializeReference] private StateContext _currentContext;
 
-    [SerializeField] private SerializedDictionary<StateSO, StateContext> _stateContexts = new();
+    private Dictionary<StateSO, StateContext> _stateContexts = new();
     private Dictionary<StateSO, Queue<StateContext>> _contextPool = new();
     internal IAgent Agent => _agent ??= GetComponent<IAgent>();
 
@@ -93,10 +92,10 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
         if (_currentContext != null)
         {
             _currentContext.OnExit();
+            ReturnContextToPool(state, _currentContext);
         }
 
         _currentState = state;
-        Debug.Log(_currentState);
 
         if (_currentState != null)
         {
@@ -107,7 +106,6 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
             }
             _currentContext = context;
             _currentContext.OnEnter();
-            Debug.Log(_currentContext);
         }
     }
 
@@ -164,6 +162,11 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
             _stateContexts[state].Initialize(Agent, this, state);
             ReturnContextToPool(state, _stateContexts[state]);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        _currentContext.DrawGizmos();
     }
 
     public void Pause(bool isPaused)

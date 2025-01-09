@@ -55,6 +55,7 @@ public class EnemySpawner : MonoBehaviour, IPausable
                 var position = _placementStrategy.SetPosition(new Vector3(0f, 9f, 0f));
                 enemy.GetComponentInChildren<MovementBehaviour>().RB.position = position;
                 enemy.transform.GetChild(0).position = position;
+                enemy.transform.GetChild(1).position = position;
 
                 delayBetweenSpawns = _delayBetweenSpawns;
             }

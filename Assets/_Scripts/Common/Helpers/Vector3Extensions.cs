@@ -32,6 +32,28 @@ public static class Vector3Extensions
     }
 
     /// <summary>
+    /// Returns the float distance Magnitude
+    /// </summary>
+    /// <param name="current"></param>
+    /// <param name="target"></param>
+    /// <returns></returns>
+    public static float Distance(this Vector3 current, Vector3 target)
+    {
+        return (current - target).magnitude;
+    }
+
+    /// <summary>
+    /// Returns a Vector3 with the Direction normalized to a target
+    /// </summary>
+    /// <param name="current"></param>
+    /// <param name="target"></param>
+    /// <returns></returns>
+    public static Vector3 DirectionToTarget(this Vector3 current, Vector3 target)
+    {
+        return (target - current).normalized;
+    }
+
+    /// <summary>
     /// Divides two Vector3 objects component-wise.
     /// </summary>
     /// <remarks>

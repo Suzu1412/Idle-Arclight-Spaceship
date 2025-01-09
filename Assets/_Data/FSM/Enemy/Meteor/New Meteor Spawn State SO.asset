@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909632ad015c4c94d9b95e1e7fb6b2fe, type: 3}
   m_Name: New Meteor Spawn State SO
   m_EditorClassIdentifier: 
+  phase: 0
+  _highestUtility: 99
+  _actions: []
   _activeMeteors: {fileID: 11400000, guid: 6a954c88ca656b143852a97a733741de, type: 2}
+  _enemyRTS: {fileID: 11400000, guid: 04ad7ad121264bc4dbf23820d961fc73, type: 2}

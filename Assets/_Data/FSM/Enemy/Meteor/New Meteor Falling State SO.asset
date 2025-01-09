@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55628cf8d2bc364408f03dd8046263c9, type: 3}
   m_Name: New Meteor Falling State SO
   m_EditorClassIdentifier: 
-  _activeMeteors: {fileID: 11400000, guid: 6a954c88ca656b143852a97a733741de, type: 2}
-  fallingSpeed: 5
-  trajectoryVariation: 5
-  boundaryX: 2
-  elasticity: 0.8
-  angularBounceFactor: 10
+  phase: 0
+  _highestUtility: 5
+  _actions:
+  - {fileID: 11400000, guid: bdf2fb42025d98540ae225dbc5b25120, type: 2}
+  _fallingSpeed: 5
+  _trajectoryVariation: 2
+  _boundaryX: 2.3
+  _elasticity: 0.8
+  _angularBounceFactor: 10
+  _bounceCooldown: 0.2

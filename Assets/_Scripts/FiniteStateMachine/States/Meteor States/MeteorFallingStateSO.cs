@@ -3,7 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptable Objects/FSM/Meteor/Falling State")]
 public class MeteorFallingStateSO : StateSO<MeteorFallingContext>
 {
-    [SerializeField] private GameObjectRuntimeSetSO _activeMeteors;
     [SerializeField] private float _fallingSpeed = 5f;
     [SerializeField] private float _trajectoryVariation = 2f;
     [SerializeField] private float _boundaryX = 2.3f; // Horizontal screen limits
@@ -11,7 +10,6 @@ public class MeteorFallingStateSO : StateSO<MeteorFallingContext>
     [SerializeField] private float _angularBounceFactor = 10f; // Controls rotational speed after bounce
     [SerializeField] private float _bounceCooldown = 0.2f;
 
-    public GameObjectRuntimeSetSO ActiveMeteors => _activeMeteors;
     public float FallingSpeed => _fallingSpeed;
     public float TrajectoryVariation => _trajectoryVariation;
     public float BoundaryX => _boundaryX;
@@ -104,11 +102,6 @@ public class MeteorFallingContext : StateContext<MeteorFallingStateSO>
         //HandleMeteorCollisions();
     }
 
-    public override void OnExit()
-    {
-        base.OnExit();
-        State.ActiveMeteors.Remove(_fsm.gameObject);
-    }
 
     public override float EvaluateUtility()
     {

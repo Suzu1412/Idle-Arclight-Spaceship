@@ -32,6 +32,17 @@ public static class Vector2Extensions
     }
 
     /// <summary>
+    /// Returns a Vector2 with the Direction normalized to a target
+    /// </summary>
+    /// <param name="current"></param>
+    /// <param name="target"></param>
+    /// <returns></returns>
+    public static Vector2 DirectionToTarget(this Vector2 current, Vector2 target)
+    {
+        return (target - current).normalized;
+    }
+
+    /// <summary>
     /// Computes a random point in an annulus (a ring-shaped area) based on minimum and 
     /// maximum radius values around a central Vector2 point (origin).
     /// </summary>

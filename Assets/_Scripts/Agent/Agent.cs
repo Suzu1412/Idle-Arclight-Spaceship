@@ -13,7 +13,7 @@ public class Agent : MonoBehaviour, IAgent
     private ILevelSystem _levelSystem;
     private IAgentAnimation _agentAnimation;
     private IAgentRenderer _agentRenderer;
-    private IPlayerDetector _playerDetector;
+    private ITargetDetector _targetDetector;
     private Collider2D _collider;
     private AgentDataSO _data;
 
@@ -25,7 +25,7 @@ public class Agent : MonoBehaviour, IAgent
     public ILevelSystem LevelSystem => _levelSystem ??= GetComponent<ILevelSystem>();
     public IAgentAnimation AgentAnimation => _agentAnimation ??= GetComponentInChildren<IAgentAnimation>();
     public IAgentRenderer AgentRenderer => _agentRenderer ??= GetComponentInChildren<IAgentRenderer>();
-    public IPlayerDetector PlayerDetector => _playerDetector ??= GetComponent<IPlayerDetector>();
+    public ITargetDetector TargetDetector => _targetDetector ??= GetComponent<ITargetDetector>();
 
     public event UnityAction<Vector2> OnChangeFacingDirection;
     public Vector2 FacingDirection => _facingDirection;

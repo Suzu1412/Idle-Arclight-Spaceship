@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 8108717298127303986}
   - component: {fileID: 6803927108223902700}
   - component: {fileID: 7832870896999039643}
-  - component: {fileID: 8065363009078484177}
+  - component: {fileID: 4383240863268287992}
   m_Layer: 8
   m_Name: Agent
   m_TagString: Player
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: {fileID: 11400000, guid: 54d8b71d3afb566438112aa3487b3ebb, type: 2}
   _hurtDuration: 0.2
-  _defaultInvulnerability: 0.1
+  _defaultInvulnerability: 1
   OnHealthChangedEvent: {fileID: 11400000, guid: 18fa1ffee8e9a6a4a949a6654b20c2f5, type: 2}
   OnDamagedEvent: {fileID: 11400000, guid: bf8fdd3b8f6da754481bda4e9dcbc9d2, type: 2}
   OnHealedEvent: {fileID: 11400000, guid: a87c78c29fe3c9e4888f8a4614c3d18e, type: 2}
@@ -414,6 +414,13 @@ MonoBehaviour:
   _currentPhase: 0
   _states: {fileID: 11400000, guid: 971f386abdfa2e84e85df3fb83531768, type: 2}
   _currentState: {fileID: 0}
+  _currentContext:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &6803927108223902700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,7 +462,7 @@ MonoBehaviour:
   _bottomBounds: -3.5
   _hasBoundaries: 1
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
---- !u!114 &8065363009078484177
+--- !u!114 &4383240863268287992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -464,13 +471,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3275472643666047418}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a11bae6a279e47148250c6eabd02ebf, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c084e0625d340244b68028922f8f1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetMask:
-    serializedVersion: 2
-    m_Bits: 512
-  _detectionStrategySO: {fileID: 11400000, guid: 7c0771f53448e462f9c7b935394aee96, type: 2}
+  _targetRTS: {fileID: 11400000, guid: 04ad7ad121264bc4dbf23820d961fc73, type: 2}
+  _detectedColor: {r: 0, g: 1, b: 0, a: 1}
+  _undetectedColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &3908801659963395067
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,6 +817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2226f3041ea8a48bdc5fc2a2535f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _facingDirectionType: 0
 --- !u!114 &8956749658962079011
 MonoBehaviour:
   m_ObjectHideFlags: 0

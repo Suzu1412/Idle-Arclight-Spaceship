@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc7f3488c265dea4aab8d47bca11c47e, type: 3}
-  m_Name: New Idle State SO
+  m_Script: {fileID: 11500000, guid: dabd47493c45ade46934d1b0fe38438c, type: 3}
+  m_Name: Intro State
   m_EditorClassIdentifier: 
-  _maxUtility: 10
+  phase: 0
+  _highestUtility: 100
+  _actions: []
+  _invulnerabilityDuration: 3
+  _playerRTS: {fileID: 11400000, guid: f3fe25a9e8be0d048acc4ac67ad425f1, type: 2}

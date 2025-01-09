@@ -1633,7 +1633,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 888274691}
   m_HandleRect: {fileID: 888274690}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5797,6 +5797,7 @@ MonoBehaviour:
   OnHealthChangedEventListener: {fileID: 11400000, guid: 2c0a703a9a2c8c54bb0b8891c7fafba4, type: 2}
   OnDamagedEventListener: {fileID: 11400000, guid: 6201b6a066ee5c746b1ae993f85efbc8, type: 2}
   OnHealedEventListener: {fileID: 11400000, guid: af081dc963b2d074886409283d8080cb, type: 2}
+  _healthSystem: {fileID: 0}
   _amountText: {fileID: 251707595}
   _damageAnimationDelay: 0.25
   _damageAnimationDuration: 0.15
@@ -6988,7 +6989,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1491127284}
   m_HandleRect: {fileID: 1491127283}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -19141,7 +19142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1470128386
 RectTransform:
   m_ObjectHideFlags: 0

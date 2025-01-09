@@ -23,13 +23,19 @@ public class ReturnToPoolOnDeath : MonoBehaviour
 
     private void ReturnToPool()
     {
-        if (_pool != null)
+        if (_pool == null)
         {
-            ObjectPoolFactory.ReturnToPool(_pool);
+            if (TryGetComponent<ObjectPooler>(out var pool))
+            {
+                _pool = pool;
+            }
+            else
+            {
+                Destroy(gameObject);
+                return;
+            }
         }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+
+        ObjectPoolFactory.ReturnToPool(_pool);
     }
 }

@@ -95,57 +95,57 @@ MonoBehaviour:
       m_Items:
       - rid: 6827601619408388423
   - m_Id: 104
-    m_Localized: Lapis lazuli
+    m_Localized: Lazulite
     m_Metadata:
       m_Items:
       - rid: 6827601619408388423
   - m_Id: 105
-    m_Localized: Zircon
+    m_Localized: Lapis lazuli
     m_Metadata:
       m_Items:
       - rid: 6827601619408388423
   - m_Id: 106
-    m_Localized: Garnet
+    m_Localized: Pyrite
     m_Metadata:
       m_Items:
       - rid: 6827601619408388423
   - m_Id: 107
-    m_Localized: Amethyst
+    m_Localized: Jasper
     m_Metadata:
       m_Items:
       - rid: 6827601619408388423
   - m_Id: 108
-    m_Localized: Tourmaline
+    m_Localized: Jade
     m_Metadata:
       m_Items:
       - rid: 6827601619408388423
   - m_Id: 109
-    m_Localized: Emerald
+    m_Localized: Zircon
     m_Metadata:
       m_Items:
       - rid: 6827601619408388423
   - m_Id: 110
-    m_Localized: Aquamarine
+    m_Localized: Garnet
     m_Metadata:
       m_Items:
       - rid: 6827601619408388423
   - m_Id: 111
-    m_Localized: Topaz
+    m_Localized: Citrine
     m_Metadata:
       m_Items:
       - rid: 6827601619408388423
   - m_Id: 112
-    m_Localized: Sapphire
+    m_Localized: Amethyst
     m_Metadata:
       m_Items:
       - rid: 6827601619408388423
   - m_Id: 113
-    m_Localized: Ruby
+    m_Localized: Tourmaline
     m_Metadata:
       m_Items:
       - rid: 6827601619408388423
   - m_Id: 114
-    m_Localized: Diamond
+    m_Localized: Emerald
     m_Metadata:
       m_Items: []
   - m_Id: 23
@@ -1095,6 +1095,38 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 6827601619408388423
+  - m_Id: 115
+    m_Localized: Red Beryl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116
+    m_Localized: Aquamarine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 117
+    m_Localized: Topaz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 118
+    m_Localized: Sapphire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119
+    m_Localized: Spinel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 120
+    m_Localized: Alexandrite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 121
+    m_Localized: Ruby
+    m_Metadata:
+      m_Items: []
+  - m_Id: 122
+    m_Localized: Diamond
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

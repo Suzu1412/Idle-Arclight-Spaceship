@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 47ee52197b4d6434eae21e07fedcd002
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _playerRTS: {fileID: 11400000, guid: f3fe25a9e8be0d048acc4ac67ad425f1, type: 2}
+  - _impactSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

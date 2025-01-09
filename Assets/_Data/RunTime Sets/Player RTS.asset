@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dabd47493c45ade46934d1b0fe38438c, type: 3}
-  m_Name: New Intro State SO
+  m_Script: {fileID: 11500000, guid: 3350b6327e17d4d66842269984c33159, type: 3}
+  m_Name: Player RTS
   m_EditorClassIdentifier: 
-  phase: 0
-  _highestUtility: 999
-  _invulnerabilityDuration: 3

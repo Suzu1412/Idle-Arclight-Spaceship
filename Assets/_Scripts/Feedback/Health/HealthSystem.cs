@@ -9,7 +9,6 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     [SerializeField] private IntVariableSO _health;
 
     private IAgent _agent;
-    private StatType _statType;
     private bool _isHurt;
     private bool _isDeath;
     private bool _isInvulnerable;
@@ -46,10 +45,6 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     public event Action OnHeal;
     #endregion
 
-    private void Awake()
-    {
-        _statType = StatType.MaxHealth;
-    }
 
     public void Initialize(int currentHealth)
     {
@@ -103,7 +98,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
     public int GetCurrentHealth()
     {
-        return _health.Value;
+        return _health != null ? _health.Value : 1;
     }
 
     private void UpdateMaxHealth()
@@ -125,10 +120,10 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         OnHealthValueChanged?.Invoke();
     }
 
-    public void Damage(int amount)
+    public void Damage(int amount, bool ignoreInvulnerability = false)
     {
-
-        if (amount <= 0f || _isInvulnerable) return;
+        if (amount <= 0f) return;
+        if (!ignoreInvulnerability && _isInvulnerable) return;
 
         if (_health == null)
         {
@@ -140,13 +135,13 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         OnDamagedEvent?.RaiseEvent(amount);
         OnHealthValueChanged?.Invoke();
 
-        if (_health.Value <= 0)
+        if (_health.Value <= 0f)
         {
-            Death();
+            _isDeath = true;
             return;
         }
 
-        SetInvulnerability(true, _defaultInvulnerability);
+        SetInvulnerability(isInvulnerable: true, _defaultInvulnerability);
     }
 
     public void Death(bool activateDeathEvents = true)

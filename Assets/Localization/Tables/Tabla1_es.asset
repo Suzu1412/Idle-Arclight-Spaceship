@@ -96,57 +96,57 @@ MonoBehaviour:
       m_Items:
       - rid: 6827601619408388418
   - m_Id: 104
-    m_Localized: "Lapisl\xE1zuli"
+    m_Localized: Lazulita
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
   - m_Id: 105
-    m_Localized: "Circ\xF3n"
+    m_Localized: "Lapisl\xE1zuli"
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
   - m_Id: 106
-    m_Localized: Granate
+    m_Localized: Pirita
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
   - m_Id: 107
-    m_Localized: Amatista
+    m_Localized: Jaspe
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
   - m_Id: 108
-    m_Localized: Turmalina
+    m_Localized: Jade
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
   - m_Id: 109
-    m_Localized: Esmeralda
+    m_Localized: "Circ\xF3n"
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
   - m_Id: 110
-    m_Localized: Aguamarina
+    m_Localized: Granate
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
   - m_Id: 111
-    m_Localized: Topacio
+    m_Localized: Citrina
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
   - m_Id: 112
-    m_Localized: Zafiro
+    m_Localized: Amatista
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
   - m_Id: 113
-    m_Localized: "Rub\xED"
+    m_Localized: Turmalina
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
   - m_Id: 114
-    m_Localized: Diamante
+    m_Localized: Esmeralda
     m_Metadata:
       m_Items: []
   - m_Id: 23
@@ -621,6 +621,38 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 6827601619408388418
+  - m_Id: 115
+    m_Localized: Berilo Rojo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116
+    m_Localized: Aguamarina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 117
+    m_Localized: Topacio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 118
+    m_Localized: Zafiro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119
+    m_Localized: Espinela
+    m_Metadata:
+      m_Items: []
+  - m_Id: 120
+    m_Localized: Alejandrita
+    m_Metadata:
+      m_Items: []
+  - m_Id: 121
+    m_Localized: "Rub\xED"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 122
+    m_Localized: Diamante
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

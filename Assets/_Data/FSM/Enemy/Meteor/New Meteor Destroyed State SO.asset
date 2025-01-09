@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094a7006a3d708146b8a9afaf5d16a19, type: 3}
+  m_Name: New Meteor Destroyed State SO
+  m_EditorClassIdentifier: 
+  phase: 0
+  _highestUtility: 100
+  _actions: []
+  _activeMeteors: {fileID: 11400000, guid: 6a954c88ca656b143852a97a733741de, type: 2}
+  _enemyRTS: {fileID: 11400000, guid: 04ad7ad121264bc4dbf23820d961fc73, type: 2}

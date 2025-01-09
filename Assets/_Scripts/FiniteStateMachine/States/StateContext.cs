@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class StateContext
 {
     protected IAgent _agent;
-    [SerializeField] protected float _stateTime;
+    [SerializeField] [ReadOnly] protected float _stateTime;
     protected FiniteStateMachine _fsm;
     internal IAgent Agent => _agent;
     public bool IsInitialized { get; private set; }
@@ -31,6 +31,8 @@ public abstract class StateContext
     {
         DisableEvents();
     }
+
+    public abstract void DrawGizmos();
 
     public abstract float EvaluateUtility();
 
@@ -71,13 +73,33 @@ public abstract class StateContext
 [System.Serializable]
 public class StateContext<T> : StateContext where T : StateSO
 {
-    [SerializeField] protected T State;
+    [SerializeField][ReadOnly] protected T State;
 
     public override void Initialize(IAgent agent, FiniteStateMachine fsm, StateSO state)
     {
         _agent = agent;
         _fsm = fsm;
         State = GetState<T>(state);
+    }
+
+    public override void OnUpdate()
+    {
+        base.OnUpdate();
+        foreach(var action in State.Actions)
+        {
+            if (action.CanExecute(_fsm))
+            {
+                action.Execute(_fsm);
+            }
+        }
+    }
+
+    public override void DrawGizmos()
+    {
+        foreach (var action in State.Actions)
+        {
+            action.DrawGizmos(_fsm);
+        }
     }
 
     public override float EvaluateUtility()

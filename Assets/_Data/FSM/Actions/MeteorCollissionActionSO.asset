@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7be3df3a9d997fe49b42910a9c44183a, type: 3}
+  m_Name: MeteorCollissionActionSO
+  m_EditorClassIdentifier: 
+  _playerRTS: {fileID: 11400000, guid: f3fe25a9e8be0d048acc4ac67ad425f1, type: 2}
+  _impactSound: {fileID: 11400000, guid: 08194160922b48840b35bf31aeabef55, type: 2}
+  _color: {r: 0, g: 1, b: 0, a: 1}
