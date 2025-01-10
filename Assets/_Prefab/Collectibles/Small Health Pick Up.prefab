@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2885170731319631795}
   - component: {fileID: 8348999380830936070}
   - component: {fileID: 5578521965697314482}
+  - component: {fileID: 3423525140475800459}
   m_Layer: 13
   m_Name: Small Health Pick Up
   m_TagString: Untagged
@@ -130,6 +131,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3423525140475800459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3452556530360443837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b643e9f17a1b084197b3d7228899374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7146012497405793802
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,22 +1,19 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class Deadzone : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<IHealthSystem>(out var other))
+        if (collision.TryGetComponent<IKillable>(out var killable))
         {
-            other.Death(false);
-            return;
+            killable.Death(gameObject, DeathCauseType.DeadZone);
         }
 
-        if (collision.TryGetComponent<ObjectPooler>(out var objectPooler))
+        if (collision.TryGetComponent<IRemovable>(out var other))
         {
-            ObjectPoolFactory.ReturnToPool(objectPooler);
-        }
-        else
-        {
-            Destroy(collision.gameObject);
+            other.Remove(gameObject);
+            return;
         }
     }
 }

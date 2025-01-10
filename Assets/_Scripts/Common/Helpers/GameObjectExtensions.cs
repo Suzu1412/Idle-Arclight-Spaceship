@@ -32,6 +32,50 @@ public static class GameObjectExtensions
     }
 
     /// <summary>
+    /// Tries to get a component from the GameObject. If not found, searches in the children.
+    /// </summary>
+    /// <typeparam name="T">The type of component to find.</typeparam>
+    /// <param name="gameObject">The GameObject to search.</param>
+    /// <returns>The component if found, otherwise null.</returns>
+    public static T GetComponentInSelfOrChildren<T>(this GameObject gameObject) where T : Component
+    {
+        // Try to get the component on the GameObject itself
+        T component = gameObject.GetComponent<T>() ?? gameObject.GetComponentInChildren<T>();
+        return component;
+    }
+
+    /// <summary>
+    /// Tries to find a component implementing the specified interface.
+    /// First checks the GameObject itself, then its children.
+    /// </summary>
+    /// <typeparam name="T">The interface type to find.</typeparam>
+    /// <param name="gameObject">The GameObject to search.</param>
+    /// <returns>The component implementing the interface if found, otherwise null.</returns>
+    public static T GetInterfaceInSelfOrChildren<T>(this GameObject gameObject) where T : class
+    {
+        // Check the GameObject itself
+        foreach (var component in gameObject.GetComponents<MonoBehaviour>())
+        {
+            if (component is T targetInterface)
+            {
+                return targetInterface;
+            }
+        }
+
+        // Check the GameObject's children
+        foreach (var component in gameObject.GetComponentsInChildren<MonoBehaviour>())
+        {
+            if (component is T targetInterface)
+            {
+                return targetInterface;
+            }
+        }
+
+        // Return null if not found
+        return null;
+    }
+
+    /// <summary>
     /// Returns the object itself if it exists, null otherwise.
     /// </summary>
     /// <remarks>

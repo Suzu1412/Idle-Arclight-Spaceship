@@ -23,9 +23,9 @@ public class KamikazeChaseAcionSO : ActionSO
 
         foreach (var player in _playerRTS.Items)
         {
-            if (fsm.transform.position.InRangeOf(player.transform.position, _range))
+            if (fsm.transform.position.IsWithinRange(player.transform.position, _range))
             {
-                currentTarget = fsm.transform.position.Distance(player.transform.position);
+                currentTarget = fsm.transform.position.GetSquaredDistanceTo(player.transform.position);
                 detected = true;
 
                 if (currentTarget < closestTarget)
@@ -38,7 +38,7 @@ public class KamikazeChaseAcionSO : ActionSO
 
         if (detected)
         {
-            Vector2 direction = fsm.transform.position.DirectionToTarget(targetPosition);
+            Vector2 direction = fsm.transform.position.GetDirectionTo(targetPosition);
             fsm.Agent.Input.CallOnMovementInput(direction);
         }
     }

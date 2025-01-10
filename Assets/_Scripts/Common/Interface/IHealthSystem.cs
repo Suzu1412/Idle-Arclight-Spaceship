@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public interface IHealthSystem : IDamageable, IHealable, IHittable
+public interface IHealthSystem : IDamageable, IHealable, IHittable, IKillable, IRemovable
 {
     event Action<IntVariableSO> OnMaxHealthValueChanged;
     event Action OnHealthValueChanged;
     event Action<int> OnHealed;
     event Action<int> OnDamaged;
-    event Action OnDeath;
-    event Action OnDestroyGO;
     event Action OnInvulnerabilityPeriod;
     bool IsHurt { get; }
     bool IsDeath { get; }

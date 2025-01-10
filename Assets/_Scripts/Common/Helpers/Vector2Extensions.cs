@@ -20,26 +20,34 @@ public static class Vector2Extensions
     }
 
     /// <summary>
-    /// Returns a Boolean indicating whether the current Vector2 is in a given range from another Vector2
+    /// Checks if the current Vector3 is within the specified range (the distance is squared internally).
     /// </summary>
-    /// <param name="current">The current Vector2 position</param>
-    /// <param name="target">The Vector2 position to compare against</param>
-    /// <param name="range">The range value to compare against</param>
-    /// <returns>True if the current Vector2 is in the given range from the target Vector2, false otherwise</returns>
-    public static bool InRangeOf(this Vector2 current, Vector2 target, float range)
+    public static bool IsWithinRange(this Vector2 from, Vector2 to, float range)
     {
-        return (current - target).sqrMagnitude <= range * range;
+        return (to - from).sqrMagnitude <= range * range;
     }
 
     /// <summary>
-    /// Returns a Vector2 with the Direction normalized to a target
+    /// Returns the float distance Magnitude
     /// </summary>
     /// <param name="current"></param>
     /// <param name="target"></param>
     /// <returns></returns>
-    public static Vector2 DirectionToTarget(this Vector2 current, Vector2 target)
+    public static float GetSquaredDistanceTo(this Vector2 current, Vector2 target)
     {
-        return (target - current).normalized;
+        return (current - target).sqrMagnitude;
+    }
+
+    /// <summary>
+    /// Gets the normalized direction from one Vector2 to another.
+    /// </summary>
+    /// <param name="from">The starting point.</param>
+    /// <param name="to">The destination point.</param>
+    /// <returns>The normalized direction vector. Returns Vector2.zero if the direction is invalid.</returns>
+    public static Vector2 GetDirectionTo(this Vector2 from, Vector2 to)
+    {
+        Vector2 direction = to - from;
+        return direction.sqrMagnitude > Mathf.Epsilon ? direction.normalized : Vector2.zero;
     }
 
     /// <summary>

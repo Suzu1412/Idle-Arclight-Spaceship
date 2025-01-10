@@ -41,8 +41,8 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     public event Action OnHitStun;
     public event Action OnHit;
     public event Action OnInvulnerabilityPeriod;
-    public event Action OnDestroyGO;
     public event Action OnHeal;
+    public event Action OnRemove;
     #endregion
 
 
@@ -137,21 +137,30 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
         if (_health.Value <= 0f)
         {
-            _isDeath = true;
+            Death(gameObject, DeathCauseType.EnemyAttack);
             return;
         }
 
         SetInvulnerability(isInvulnerable: true, _defaultInvulnerability);
     }
 
-    public void Death(bool activateDeathEvents = true)
+    public void Death(GameObject source, DeathCauseType cause)
     {
-        if (activateDeathEvents)
+        if (_isDeath)
         {
-            OnDeath?.Invoke();
+            Debug.Log($"{gameObject} is already death");
+            return;
         }
-        OnDestroyGO?.Invoke();
+
+        if (!IsValidSource(source))
+        {
+            return;
+        }
+
+        _isDeath = true;
+        HandleDeathCause(cause);
     }
+
 
     public void GetHit(GameObject damageDealer)
     {
@@ -175,5 +184,56 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
     public float GetHealthPercent()
     {
         return _health.Ratio;
+    }
+
+    private bool IsValidSource(GameObject source)
+    {
+        return source == gameObject || source.CompareTag("DeadZone");
+    }
+    private void HandleDeathCause(DeathCauseType cause)
+    {
+        switch (cause)
+        {
+            case DeathCauseType.EnemyAttack:
+                OnDeath?.Invoke();
+                break;
+
+            case DeathCauseType.DeadZone:
+                // Doesn't give any reward
+                break;
+
+            case DeathCauseType.Kamikaze:
+                // Doesn't give any reward
+                break;
+
+            case DeathCauseType.Instakill:
+                OnDeath?.Invoke();
+                break;
+
+            default:
+                Debug.LogError("Death cause not set for " + this.gameObject);
+                break;
+        }
+    }
+
+    private void InvokeDeathEvents()
+    {
+        OnDeath?.Invoke();
+    }
+
+    public void Remove(GameObject source)
+    {
+        if (!_isDeath)
+        {
+            Debug.LogError("Must Call Death Method Before removing character");
+            return;
+        }
+
+        if (!IsValidSource(source))
+        {
+            return;
+        }
+
+        OnRemove?.Invoke();
     }
 }

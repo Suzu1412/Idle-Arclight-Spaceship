@@ -17,7 +17,7 @@ public class MeteorCollissionActionSO : ActionSO
     {
         foreach (var player in _playerRTS.Items)
         {
-            if (fsm.transform.position.InRangeOf(player.transform.position, fsm.Agent.StatsSystem.GetStatValue<DetectionDistanceStatSO>()))
+            if (fsm.transform.position.IsWithinRange(player.transform.position, fsm.Agent.StatsSystem.GetStatValue<DetectionDistanceStatSO>()))
             {
                 if (player.TryGetComponent<IHealthSystem>(out var damageable))
                 {

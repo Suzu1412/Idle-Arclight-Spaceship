@@ -1306,6 +1306,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Deadzone
       objectReference: {fileID: 0}
+    - target: {fileID: 337270541171919847, guid: a4203390db9864864a14e6eb90f8ce57, type: 3}
+      propertyPath: m_TagString
+      value: DeadZone
+      objectReference: {fileID: 0}
     - target: {fileID: 1268783141289101902, guid: a4203390db9864864a14e6eb90f8ce57, type: 3}
       propertyPath: m_LocalPosition.y
       value: -10
@@ -1313,6 +1317,22 @@ PrefabInstance:
     - target: {fileID: 2585613459779794397, guid: a4203390db9864864a14e6eb90f8ce57, type: 3}
       propertyPath: m_LocalPosition.y
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196376233677826271, guid: a4203390db9864864a14e6eb90f8ce57, type: 3}
+      propertyPath: m_TagString
+      value: DeadZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489944704281721286, guid: a4203390db9864864a14e6eb90f8ce57, type: 3}
+      propertyPath: m_TagString
+      value: DeadZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776303834973561594, guid: a4203390db9864864a14e6eb90f8ce57, type: 3}
+      propertyPath: m_TagString
+      value: DeadZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171281776403204407, guid: a4203390db9864864a14e6eb90f8ce57, type: 3}
+      propertyPath: m_TagString
+      value: DeadZone
       objectReference: {fileID: 0}
     - target: {fileID: 8154227804269916376, guid: a4203390db9864864a14e6eb90f8ce57, type: 3}
       propertyPath: m_LocalPosition.x

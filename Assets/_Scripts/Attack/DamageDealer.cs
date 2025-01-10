@@ -20,11 +20,6 @@ public class DamageDealer : MonoBehaviour
             if (Agent == null) return;
             damageable.Damage((int)Agent.StatsSystem.GetStatValue<AttackStatSO>());
             _impactSound.PlayEvent();
-
-            if (_destroyOnContact)
-            {
-                Agent.HealthSystem.Death();
-            }
         }
     }
 }

@@ -19,6 +19,8 @@ public class TargetDetector : MonoBehaviour, ITargetDetector
 
     internal IAgent Agent => _agent ??= GetComponent<IAgent>();
 
+    private Camera _mainCamera;
+
     private void Awake()
     {
         _transform = this.transform;
@@ -30,6 +32,8 @@ public class TargetDetector : MonoBehaviour, ITargetDetector
         {
             Debug.LogError($"{gameObject.name} has no Target RTS attached. Please Fix");
         }
+
+        _mainCamera = Camera.main;
     }
 
     private void OnEnable()
@@ -49,13 +53,13 @@ public class TargetDetector : MonoBehaviour, ITargetDetector
             foreach (var target in _targetRTS.Items)
             {
                 // Inner Detection
-                if (_transform.position.InRangeOf(target.transform.position, _minDistance))
+                if (_transform.position.IsWithinRange(target.transform.position, _minDistance) && IsVisibleToCamera(target.transform.position))
                 {
-                    float distance = _transform.position.Distance(target.transform.position);
+                    float distanceSquared = _transform.position.GetSquaredDistanceTo(target.transform.position);
 
-                    if (distance < closestDistance)
+                    if (distanceSquared < closestDistance)
                     {
-                        closestDistance = distance;
+                        closestDistance = distanceSquared;
                         _targetTransform = target.transform;
                         _targetDetected = true;
                         continue;
@@ -63,18 +67,19 @@ public class TargetDetector : MonoBehaviour, ITargetDetector
                 }
 
                 // Detect within a Radius of the Target
-                if (_transform.position.InRangeOf(target.transform.position, Agent.StatsSystem.GetStatValue<DetectionDistanceStatSO>()))
+                if (_transform.position.IsWithinRange(target.transform.position, Agent.StatsSystem.GetStatValue<DetectionDistanceStatSO>()))
                 {
                     // Detect in a Cone Shape Angle
-                    float dot = Vector3.Dot(Agent.FacingDirection, _transform.position.DirectionToTarget(target.transform.position));
+                    Vector3 targetDirection = _transform.position.GetDirectionTo(target.transform.position);
+                    float dot = Vector3.Dot(Agent.FacingDirection, targetDirection);
                     float coneAngle = Agent.StatsSystem.GetStatValue<DetectionAngleStatSO>();
-                    if (dot > Mathf.Cos(coneAngle * Mathf.Deg2Rad))
+                    if (dot > Mathf.Cos(coneAngle * Mathf.Deg2Rad / 2) && IsVisibleToCamera(target.transform.position))
                     {
-                        float distance = _transform.position.Distance(target.transform.position);
+                        float distanceSquared = _transform.position.GetSquaredDistanceTo(target.transform.position);
 
-                        if (distance < closestDistance)
+                        if (distanceSquared < closestDistance)
                         {
-                            closestDistance = distance;
+                            closestDistance = distanceSquared;
                             _targetTransform = target.transform;
                             _targetDetected = true;
                         }
@@ -84,6 +89,15 @@ public class TargetDetector : MonoBehaviour, ITargetDetector
 
             yield return Helpers.GetWaitForSeconds(0.1f);
         }
+    }
+
+    private bool IsVisibleToCamera(Vector3 targetPosition)
+    {
+        // Convert the target position to viewport space
+        Vector3 viewportPos = _mainCamera.WorldToViewportPoint(targetPosition);
+
+        // Check if the target is within the bounds of the camera's viewport
+        return viewportPos.x >= 0 && viewportPos.x <= 1 && viewportPos.y >= 0 && viewportPos.y <= 1;
     }
 
     private void OnDrawGizmos()
@@ -102,10 +116,20 @@ public class TargetDetector : MonoBehaviour, ITargetDetector
         Gizmos.DrawRay(transform.position, Agent.FacingDirection * Agent.StatsSystem.GetStatValue<DetectionDistanceStatSO>());
 
         // Draw Tolerance Lines
-        Quaternion leftRotation = Quaternion.Euler(0f, 0f, -Agent.StatsSystem.GetStatValue<DetectionAngleStatSO>());
-        Quaternion rightRotation = Quaternion.Euler(0f, 0f, Agent.StatsSystem.GetStatValue<DetectionAngleStatSO>());
+        Quaternion leftRotation = Quaternion.Euler(0f, 0f, -Agent.StatsSystem.GetStatValue<DetectionAngleStatSO>() / 2);
+        Quaternion rightRotation = Quaternion.Euler(0f, 0f, Agent.StatsSystem.GetStatValue<DetectionAngleStatSO>() / 2);
 
-        Gizmos.color = Color.blue;
+        if (IsDetected)
+        {
+            Gizmos.color = Color.green;
+
+        }
+        else
+        {
+            Gizmos.color = Color.blue;
+
+
+        }
         Gizmos.DrawRay(transform.position, leftRotation * Agent.FacingDirection * Agent.StatsSystem.GetStatValue<DetectionDistanceStatSO>());
         Gizmos.DrawRay(transform.position, rightRotation * Agent.FacingDirection * Agent.StatsSystem.GetStatValue<DetectionDistanceStatSO>());
 

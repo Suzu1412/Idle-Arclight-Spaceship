@@ -20,15 +20,11 @@ public static class Vector3Extensions
     }
 
     /// <summary>
-    /// Returns a Boolean indicating whether the current Vector3 is in a given range from another Vector3
+    /// Checks if the current Vector3 is within the specified range (the distance is squared internally).
     /// </summary>
-    /// <param name="current">The current Vector3 position</param>
-    /// <param name="target">The Vector3 position to compare against</param>
-    /// <param name="range">The range value to compare against</param>
-    /// <returns>True if the current Vector3 is in the given range from the target Vector3, false otherwise</returns>
-    public static bool InRangeOf(this Vector3 current, Vector3 target, float range)
+    public static bool IsWithinRange(this Vector3 from, Vector3 to, float range)
     {
-        return (current - target).sqrMagnitude <= range * range;
+        return (to - from).sqrMagnitude <= range * range;
     }
 
     /// <summary>
@@ -37,20 +33,21 @@ public static class Vector3Extensions
     /// <param name="current"></param>
     /// <param name="target"></param>
     /// <returns></returns>
-    public static float Distance(this Vector3 current, Vector3 target)
+    public static float GetSquaredDistanceTo(this Vector3 current, Vector3 target)
     {
-        return (current - target).magnitude;
+        return (current - target).sqrMagnitude;
     }
 
     /// <summary>
-    /// Returns a Vector3 with the Direction normalized to a target
+    /// Gets the normalized direction from one Vector3 to another.
     /// </summary>
-    /// <param name="current"></param>
-    /// <param name="target"></param>
-    /// <returns></returns>
-    public static Vector3 DirectionToTarget(this Vector3 current, Vector3 target)
+    /// <param name="from">The starting point.</param>
+    /// <param name="to">The destination point.</param>
+    /// <returns>The normalized direction vector. Returns Vector3.zero if the direction is invalid.</returns>
+    public static Vector3 GetDirectionTo(this Vector3 from, Vector3 to)
     {
-        return (target - current).normalized;
+        Vector3 direction = to - from;
+        return direction.sqrMagnitude > Mathf.Epsilon ? direction.normalized : Vector3.zero;
     }
 
     /// <summary>

@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ObjectPooler))]
-public class ItemPickUp : MonoBehaviour, IPausable
+public class ItemPickUp : MonoBehaviour, IPausable, IRemovable
 {
     [SerializeField] private PausableRunTimeSetSO _pausable;
     private SpriteRenderer _spriteRenderer;
@@ -25,9 +26,10 @@ public class ItemPickUp : MonoBehaviour, IPausable
     
     private bool _hasTarget = false;
 
-    private ObjectPooler _pool;
+
+    public event Action OnRemove;
+
     public Rigidbody2D RB => _rb != null ? _rb : _rb = GetComponent<Rigidbody2D>();
-    public ObjectPooler Pool => _pool = _pool != null ? _pool : gameObject.GetOrAdd<ObjectPooler>();
 
     private void Awake()
     {
@@ -183,7 +185,7 @@ public class ItemPickUp : MonoBehaviour, IPausable
             _item.PickUp(agent);
             _soundOnPickup?.PlayEvent();
             _isPickedUp = true;
-            ObjectPoolFactory.ReturnToPool(Pool);
+            Remove(this.gameObject);
         }
     }
 
@@ -216,11 +218,23 @@ public class ItemPickUp : MonoBehaviour, IPausable
         return gameObject;
     }
 
+    public void Remove(GameObject source)
+    {
+        if (!IsValidSource(source)) return;
+
+        OnRemove.Invoke();
+    }
+
     private enum ItemBehaviour
     {
         Spawning,
         Still,
         Falling,
         Following
+    }
+
+    private bool IsValidSource(GameObject source)
+    {
+        return source == gameObject || source.CompareTag("DeadZone");
     }
 }

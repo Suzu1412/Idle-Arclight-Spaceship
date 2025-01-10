@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 5806872353964205012}
   - component: {fileID: 461301352558699462}
   - component: {fileID: -2728792898768453387}
+  - component: {fileID: 5894170345791810202}
   m_Layer: 13
   m_Name: Item Pick Up
   m_TagString: Untagged
@@ -217,6 +218,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5894170345791810202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5185554113866654564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b643e9f17a1b084197b3d7228899374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8832122901574708724
 GameObject:
   m_ObjectHideFlags: 0

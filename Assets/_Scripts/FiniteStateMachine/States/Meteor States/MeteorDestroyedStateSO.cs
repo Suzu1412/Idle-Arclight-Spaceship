@@ -16,7 +16,7 @@ public class MeteorDestroyedContext : StateContext<MeteorDestroyedStateSO>
     public override void OnEnter()
     {
         base.OnEnter();
-        Agent.HealthSystem.Death();
+        Agent.HealthSystem.Remove(_fsm.gameObject);
     }
 
     public override void OnExit()

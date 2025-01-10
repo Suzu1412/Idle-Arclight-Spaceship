@@ -18,14 +18,14 @@ public class KamikazeCollissionActionSO : ActionSO
     {
         foreach (var player in _playerRTS.Items)
         {
-            if (fsm.transform.position.InRangeOf(player.transform.position, _range))
+            if (fsm.transform.position.IsWithinRange(player.transform.position, _range))
             {
                 if (player.TryGetComponent<IHealthSystem>(out var damageable))
                 {
                     if (damageable.IsInvulnerable) return;
                     damageable.Damage((int)fsm.Agent.StatsSystem.GetStatValue<AttackStatSO>());
                     _impactSound.PlayEvent();
-                    fsm.Agent.HealthSystem.Damage(int.MaxValue, true);
+                    fsm.Agent.HealthSystem.Death(fsm.gameObject, DeathCauseType.Kamikaze);
                 }
             }
         }
