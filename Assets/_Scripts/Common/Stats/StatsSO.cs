@@ -89,6 +89,7 @@ public class StatsSO : SerializableScriptableObject, IStatsData
             Debug.Log($"{stat.Value.StatComponent.GetType()}: {stat.Value.Value}");
         }
     }
+#if UNITY_EDITOR
 
     [ContextMenu("Load All")]
     private void LoadAll()
@@ -104,6 +105,7 @@ public class StatsSO : SerializableScriptableObject, IStatsData
 
         }
     }
+#endif
 
     internal void RemoveModifiers()
     {

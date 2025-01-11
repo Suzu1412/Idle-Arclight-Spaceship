@@ -47,8 +47,8 @@ MonoBehaviour:
     - Key: {fileID: 11400000, guid: 9e9cd6fafab1e22438394e2442456a82, type: 2}
       Value:
         _statComponent: {fileID: 11400000, guid: 9e9cd6fafab1e22438394e2442456a82, type: 2}
-        _baseValue: 6
-        _value: 6
+        _baseValue: 9
+        _value: 9
         _modifiers: []
     - Key: {fileID: 11400000, guid: ce4779da3f84fcf438b91eede9cd2cb1, type: 2}
       Value:

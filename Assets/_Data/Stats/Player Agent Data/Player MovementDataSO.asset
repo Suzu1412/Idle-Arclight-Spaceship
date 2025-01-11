@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _acceleration: 50
   _deceleration: 35
-  _maxSpeed: 3.5
+  _maxSpeed: 5

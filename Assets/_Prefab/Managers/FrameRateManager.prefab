@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93242a9175dfd184e8c375e35afc95b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _saveable: {fileID: 11400000, guid: e7213c21199ce404fb056957629494aa, type: 2}
-  TargetFrameRate: 60
-  OnFPSChangeEventListener: {fileID: 11400000, guid: 5582fbe417eab4647ac94f4f795eb88e, type: 2}
+  _targetFramerate: {fileID: 11400000, guid: 60445b1c15d994fdd8f569a177d5b50b, type: 2}
+  OnFPSChangeEventListener: {fileID: 11400000, guid: 9b1887b193fcb405c98a8afc17568f32, type: 2}
+  checkInterval: 5

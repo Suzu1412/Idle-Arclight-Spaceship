@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TargetFrameRate
   m_EditorClassIdentifier: 
   _value: 0
-  _minValue: 0
-  _maxValue: 0
+  _minValue: -1
+  _maxValue: 300

@@ -727,22 +727,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8284372144002422128, guid: 33783c273617a6c4d92d304f34cf23a2, type: 3}
-      propertyPath: _fpsAmount
-      value: 
-      objectReference: {fileID: 11400000, guid: 187c28dbb5c267c44ac5f931fac75d0d, type: 2}
-    - target: {fileID: 8284372144002422128, guid: 33783c273617a6c4d92d304f34cf23a2, type: 3}
-      propertyPath: OnFPSChangeEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: b7c6231dcf0e70c46ac1f5b93533f754, type: 2}
-    - target: {fileID: 8284372144002422128, guid: 33783c273617a6c4d92d304f34cf23a2, type: 3}
-      propertyPath: _targetFramerate
-      value: 
-      objectReference: {fileID: 11400000, guid: 60445b1c15d994fdd8f569a177d5b50b, type: 2}
-    - target: {fileID: 8284372144002422128, guid: 33783c273617a6c4d92d304f34cf23a2, type: 3}
-      propertyPath: OnFPSChangeEventListener
-      value: 
-      objectReference: {fileID: 11400000, guid: 9b1887b193fcb405c98a8afc17568f32, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

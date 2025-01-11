@@ -49,7 +49,7 @@ public class FrameRateManager : MonoBehaviour
 
         // Disable VSync if using Application.targetFrameRate
         QualitySettings.vSyncCount = (_targetFramerate.Value == -1) ? 1 : 0; // Enable VSync for unlimited FPS
-        //Debug.Log($"Frame rate set to: {(targetFrameRate == -1 ? "Unlimited" : targetFrameRate)}");
+        Debug.Log($"Frame rate set to: {(targetFrameRate == -1 ? "Unlimited" : targetFrameRate)}");
         PlayerPrefs.SetInt("FPSAmount", _targetFramerate.Value);
     }
 

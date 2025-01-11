@@ -16,12 +16,17 @@ MonoBehaviour:
     sequenceMode: 1
     audioClips:
     - {fileID: 8300000, guid: ddcbae248804f634ab29539bda24c459, type: 3}
-    - {fileID: 8300000, guid: a6478847f23ba3a4688d061a070e6860, type: 3}
-    - {fileID: 8300000, guid: 9ff12f0e4d2e12b49b8db270db8fbba9, type: 3}
-    - {fileID: 8300000, guid: 3f4cafe1df058154ba70cc3bc5c7e46f, type: 3}
+    - {fileID: 8300000, guid: db62edd5021788a4fa8291a5fede134a, type: 3}
+    - {fileID: 8300000, guid: 7ea2bce0e741e8b4ba6ef7189f9aa022, type: 3}
+    - {fileID: 8300000, guid: 52f0b704044a82f469d7c0b7c82b9219, type: 3}
     - {fileID: 8300000, guid: 81e2e8d1ac48ad24a81574d7218468fa, type: 3}
     - {fileID: 8300000, guid: 74a755bc65acaea4b95119848693a9a8, type: 3}
     - {fileID: 8300000, guid: 5c3594caf7c64004fb21593c04de8e17, type: 3}
+    - {fileID: 8300000, guid: 587c9a5aaad9f5c498c6535b0472ace4, type: 3}
+    - {fileID: 8300000, guid: fd57d61960198754b80db700171349aa, type: 3}
+    - {fileID: 8300000, guid: fa1f794f0e5a9f24a8881a4028a4eea3, type: 3}
+    - {fileID: 8300000, guid: 213631887fd24fb45ae1c1fbd87c67ee, type: 3}
+    - {fileID: 8300000, guid: 8d1e7df9d36f5c440be5f47d36ac4d0d, type: 3}
   _audioChannelEvent: {fileID: 11400000, guid: 9ec582eee007ecb4f9ae5f186b2ed60e, type: 2}
   _loop: 0
   _playOnAwake: 1

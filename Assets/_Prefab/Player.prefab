@@ -459,8 +459,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftBounds: -2.3
   _rightBounds: 2.3
-  _topBounds: 3.5
-  _bottomBounds: -3.5
+  _topBounds: 5
+  _bottomBounds: -5
   _hasBoundaries: 1
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
 --- !u!114 &4383240863268287992
