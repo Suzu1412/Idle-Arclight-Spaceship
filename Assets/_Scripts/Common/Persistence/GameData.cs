@@ -79,11 +79,11 @@ public class CurrencyData
         _lastActiveDateTime = DateTime.Now.Ticks;
         if (amountToBuy < 1)
         {
-            _amountToBuy = 1;
+            _amountToBuy = -1;
         }
         else if (amountToBuy > 100)
         {
-            _amountToBuy = 100;
+            _amountToBuy = -1;
         }
         else
         {

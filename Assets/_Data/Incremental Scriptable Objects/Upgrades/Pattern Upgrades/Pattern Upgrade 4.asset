@@ -15,7 +15,7 @@ MonoBehaviour:
   _guid: a256acf9828b2c54e927401cfd6d8e2e
   _name: masterTreasureHunter
   _description: addGemPattern
-  _cost: 150000000
+  _cost: 1500000000
   _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
   _modifierToApply:
     _modifierType: 0
@@ -26,5 +26,5 @@ MonoBehaviour:
   _isRequirementMet: 0
   OnShopNotificationEvent: {fileID: 11400000, guid: 22013b92c0172b742ae78cfa53b3643a, type: 2}
   _notificationIcon: {fileID: 21300000, guid: be6579725c4624670bfe01bc4afe70c8, type: 3}
-  _costRequirement: 100000000
+  _costRequirement: 1000000000
   _variableToModify: {fileID: 11400000, guid: ac725eef63641054d91ebe58d651e623, type: 2}

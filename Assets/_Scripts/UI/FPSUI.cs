@@ -3,13 +3,13 @@ using UnityEngine.UI;
 
 public class FPSUI : MonoBehaviour
 {
-    [SerializeField] private FloatGameEvent OnFPSChangeEvent; // Send Event to FrameRateManager
-    [SerializeField] private FloatVariableSO _fpsAmount;
+    [SerializeField] private IntGameEvent OnFPSChangeEvent; // Send Event to FrameRateManager
+    [SerializeField] private IntVariableSO _targetFramerate;
     [SerializeField] private Toggle _toggle30FPS;
     [SerializeField] private Toggle _toggle60FPS;
     [SerializeField] private Toggle _toggleMaxFPS;
 
-    public void ChangeFPS(float amount)
+    public void ChangeFPS(int amount)
     {
         OnFPSChangeEvent.RaiseEvent(amount);
         UpdateToggle();
@@ -22,8 +22,8 @@ public class FPSUI : MonoBehaviour
 
     private void UpdateToggle()
     {
-        _toggle30FPS.SetIsOnWithoutNotify(_fpsAmount.Value == 30);
-        _toggle60FPS.SetIsOnWithoutNotify(_fpsAmount.Value == 60);
-        _toggleMaxFPS.SetIsOnWithoutNotify(_fpsAmount.Value == 0);
+        _toggle30FPS.SetIsOnWithoutNotify(_targetFramerate.Value == 30);
+        _toggle60FPS.SetIsOnWithoutNotify(_targetFramerate.Value == 60);
+        _toggleMaxFPS.SetIsOnWithoutNotify(_targetFramerate.Value == -1);
     }
 }

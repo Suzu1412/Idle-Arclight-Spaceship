@@ -137,8 +137,8 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         OnChangeBuyAmountEvent.RaiseEvent(_amountToBuy.Value);
         OnUpgradeBoughtEvent.RaiseEvent();
         OnLoadCurrencyEvent.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted));
-   
-        for(int i= 0; i < _generators.Generators.Count; i++)
+
+        for (int i = 0; i < _generators.Generators.Count; i++)
         {
             OnGeneratorAmountChangedEvent.RaiseEvent(i);
         }
@@ -214,7 +214,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void UpdateProductionRate()
     {
-        foreach(var generator in _generators.Generators)
+        foreach (var generator in _generators.Generators)
         {
             generator.IsDirty = true;
         }
@@ -248,7 +248,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     {
         while (true)
         {
-            yield return Helpers.GetWaitForSeconds(_delayToGenerate);
+            yield return Helpers.WaitOneSecond;
             IncrementPerSecond(_generatorsTotalProduction.Value);
         }
     }

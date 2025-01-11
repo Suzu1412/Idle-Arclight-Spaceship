@@ -1,48 +1,74 @@
 using System.Collections;
-using System.Threading;
 using UnityEngine;
 
 public class FrameRateManager : MonoBehaviour
 {
-    [Header("Frame Settings")]
-    int MaxRate = 9999;
-    private int _currentFrameRate;
-    private float _applicationFrameRate;
+    private bool isMobile;
 
-    [SerializeField] private FloatVariableSO _fpsAmount;
-    [SerializeField] private FloatGameEventListener OnFPSChangeEventListener; // Listen to FPS UI
+    [SerializeField] private IntVariableSO _targetFramerate;
+    [SerializeField] private IntGameEventListener OnFPSChangeEventListener; // Listen to FPS UI
+    [SerializeField] private float checkInterval = 5f; // Interval in seconds for battery checks
 
     void Awake()
     {
         QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = MaxRate;
-        _applicationFrameRate = (int)Screen.currentResolution.refreshRateRatio.value;
-        ChangeFPSLimit(PlayerPrefs.GetFloat(key: "FPSAmount"));
+    }
+
+    void Start()
+    {
+        DeterminePlatform();
+        int fpsAmount = PlayerPrefs.GetInt(key: "FPSAmount");
+
+        if (fpsAmount <= 0 && isMobile)
+        {
+            fpsAmount = 60;
+        }
+        else if (fpsAmount <= 0 && !isMobile)
+        {
+            fpsAmount = -1;
+        }
+
+        SetFrameRate(fpsAmount);
     }
 
     private void OnEnable()
     {
-        OnFPSChangeEventListener.Register(ChangeFPSLimit);
+        OnFPSChangeEventListener.Register(SetFrameRate);
     }
 
     private void OnDisable()
     {
-        OnFPSChangeEventListener.DeRegister(ChangeFPSLimit);
+        OnFPSChangeEventListener.DeRegister(SetFrameRate);
     }
 
-    private void ChangeFPSLimit(float amount)
+    public void SetFrameRate(int targetFrameRate)
     {
-        if (amount > 0f)
+        _targetFramerate.Value = targetFrameRate;
+        Application.targetFrameRate = _targetFramerate.Value;
+        AdjustPhysicsTimestep(_targetFramerate.Value);
+
+        // Disable VSync if using Application.targetFrameRate
+        QualitySettings.vSyncCount = (_targetFramerate.Value == -1) ? 1 : 0; // Enable VSync for unlimited FPS
+        //Debug.Log($"Frame rate set to: {(targetFrameRate == -1 ? "Unlimited" : targetFrameRate)}");
+        PlayerPrefs.SetInt("FPSAmount", _targetFramerate.Value);
+    }
+
+    private void AdjustPhysicsTimestep(int targetFrameRate)
+    {
+        if (targetFrameRate > 0) // Adjust Fixed Timestep for specific frame rates
         {
-            _currentFrameRate = (int)amount;
-            _fpsAmount.Initialize(_currentFrameRate);
+            Time.fixedDeltaTime = 1f / targetFrameRate; // Match the physics calculation rate
+            //Debug.Log($"Fixed Timestep adjusted to {Time.fixedDeltaTime} for {targetFrameRate} FPS");
         }
         else
         {
-            _currentFrameRate = (int)_applicationFrameRate;
-            _fpsAmount.Initialize(0f);
+            Time.fixedDeltaTime = 0.02f; // Default Fixed Timestep for unlimited FPS
+            //Debug.Log("Fixed Timestep set to default (0.02) for unlimited FPS");
         }
-        Application.targetFrameRate = _currentFrameRate;
-        PlayerPrefs.SetFloat("FPSAmount", _currentFrameRate);
+    }
+
+    private void DeterminePlatform()
+    {
+        isMobile = Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer;
     }
 }

@@ -743,7 +743,7 @@ GameObject:
   - component: {fileID: 37907705}
   - component: {fileID: 37907706}
   m_Layer: 5
-  m_Name: Toggle_0
+  m_Name: Toggle_-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -820,12 +820,12 @@ MonoBehaviour:
       - m_Target: {fileID: 8358566593663915223}
         m_TargetAssemblyTypeName: FPSUI, Suzu.UI
         m_MethodName: ChangeFPS
-        m_Mode: 4
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
+          m_IntArgument: -1
+          m_FloatArgument: -1
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -17707,11 +17707,11 @@ MonoBehaviour:
       - m_Target: {fileID: 8358566593663915223}
         m_TargetAssemblyTypeName: FPSUI, Suzu.UI
         m_MethodName: ChangeFPS
-        m_Mode: 4
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 30
           m_FloatArgument: 30
           m_StringArgument: 
           m_BoolArgument: 0
@@ -25613,11 +25613,11 @@ MonoBehaviour:
       - m_Target: {fileID: 8358566593663915223}
         m_TargetAssemblyTypeName: FPSUI, Suzu.UI
         m_MethodName: ChangeFPS
-        m_Mode: 4
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 60
           m_FloatArgument: 60
           m_StringArgument: 
           m_BoolArgument: 0
@@ -32807,7 +32807,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -37610,8 +37610,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a643680b84821e54485b362373db1ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnFPSChangeEvent: {fileID: 11400000, guid: b7c6231dcf0e70c46ac1f5b93533f754, type: 2}
-  _fpsAmount: {fileID: 11400000, guid: 187c28dbb5c267c44ac5f931fac75d0d, type: 2}
+  OnFPSChangeEvent: {fileID: 11400000, guid: 75afaedbd5503426c8db445bbc15484f, type: 2}
+  _targetFramerate: {fileID: 11400000, guid: 60445b1c15d994fdd8f569a177d5b50b, type: 2}
   _toggle30FPS: {fileID: 1332145882}
   _toggle60FPS: {fileID: 1926201868}
   _toggleMaxFPS: {fileID: 37907706}

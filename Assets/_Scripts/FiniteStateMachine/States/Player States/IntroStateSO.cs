@@ -5,11 +5,9 @@ using UnityEngine;
 public class IntroStateSO : StateSO<IntroStateContext>
 {
     [SerializeField] private float _invulnerabilityDuration = 3f;
-    [SerializeField] private GameObjectRuntimeSetSO _playerRTS;
 
 
     public float InvulnerabilityDuration => _invulnerabilityDuration;
-    public GameObjectRuntimeSetSO PlayerRTS => _playerRTS;
 }
 
 [System.Serializable]
@@ -20,7 +18,6 @@ public class IntroStateContext : StateContext<IntroStateSO>
     public override void OnEnter()
     {
         base.OnEnter();
-        State.PlayerRTS.Add(_fsm.gameObject);
         Agent.HealthSystem.SetInvulnerability(true, State.InvulnerabilityDuration);
         _hasBeenExecuted = true;
     }

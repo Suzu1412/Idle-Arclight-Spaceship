@@ -8,6 +8,11 @@ public abstract class RuntimeSetSO<T> : ScriptableObject
     public List<T> Items { get; } = new();
     public UnityAction OnItemsChanged;
 
+    protected void OnEnable()
+    {
+        Items.Clear();
+    }
+
     public void Add(T item)
     {
         if (!Items.Contains(item))

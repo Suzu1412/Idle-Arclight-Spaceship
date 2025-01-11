@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19343bffa55e40689623188c4872340, type: 3}
+  m_Name: 11- GemUpgradeSO 19
+  m_EditorClassIdentifier: 
+  _guid: cb9494d303dd64afba30d5b349d25b2f
+  _name: DivineGem
+  _description: gemProductionMultiplier
+  _cost: 2.9e+42
+  _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
+  _modifierToApply:
+    _modifierType: 2
+    _value: 2
+    _source: 11- GemUpgradeSO 19
+  OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
+  _isApplied: 0
+  _isRequirementMet: 0
+  OnShopNotificationEvent: {fileID: 11400000, guid: 22013b92c0172b742ae78cfa53b3643a, type: 2}
+  _notificationIcon: {fileID: 21300000, guid: be6579725c4624670bfe01bc4afe70c8, type: 3}
+  _generator: {fileID: 11400000, guid: 3eff524fb9b43464590c41fd21baed37, type: 2}
+  _amountRequired: 450
+  _percentageIncrease: 0.15

@@ -9,6 +9,10 @@ using UnityEngine.UIElements;
 
 public static class Helpers
 {
+    public static readonly WaitForSecondsRealtime WaitOneSecond = new WaitForSecondsRealtime(1f);
+    public static readonly WaitForSecondsRealtime WaitHalfSecond = new WaitForSecondsRealtime(0.5f);
+    public static readonly WaitForSecondsRealtime WaitTwoSeconds = new WaitForSecondsRealtime(2f);
+
     public static Guid CreateGuidFromString(string input)
     {
         return new Guid(MD5.Create().ComputeHash(Encoding.Default.GetBytes(input)));
@@ -24,6 +28,8 @@ public static class Helpers
 
     static readonly Dictionary<float, WaitForSeconds> WaitForSecondsDict = new(100, new FloatComparer());
 
+    static readonly Dictionary<float, WaitForSecondsRealtime> WaitForRealTimeSecondsDict = new(100, new FloatComparer());
+
     /// <summary>
     /// Returns a WaitForSeconds object for the specified duration. </summary>
     /// <param name="seconds">The duration in seconds to wait.</param>
@@ -36,6 +42,17 @@ public static class Helpers
 
         var waitForSeconds = new WaitForSeconds(seconds);
         WaitForSecondsDict[seconds] = waitForSeconds;
+        return waitForSeconds;
+    }
+
+    public static WaitForSecondsRealtime GetWaitForSecondsRealtime(float seconds)
+    {
+        if (seconds < 1f / Application.targetFrameRate) return null;
+
+        if (WaitForRealTimeSecondsDict.TryGetValue(seconds, out var forSeconds)) return forSeconds;
+
+        var waitForSeconds = new WaitForSecondsRealtime(seconds);
+        WaitForRealTimeSecondsDict[seconds] = waitForSeconds;
         return waitForSeconds;
     }
 

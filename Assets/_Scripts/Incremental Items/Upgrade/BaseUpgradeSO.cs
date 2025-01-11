@@ -40,7 +40,7 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
         }
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         _finalCost = ScriptableObject.CreateInstance<DoubleVariableSO>();
         _finalCost.Initialize(0, 0, double.MaxValue);

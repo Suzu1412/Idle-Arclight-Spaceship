@@ -15,7 +15,7 @@ MonoBehaviour:
   _guid: 15a32b450df1ac7468f1a73be1689ca5
   _name: luckyCollectorII
   _description: fastSpawnMultiplier
-  _cost: 50
+  _cost: 175
   _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
   _modifierToApply:
     _modifierType: 0

@@ -6,6 +6,7 @@ using UnityEngine;
 public class FiniteStateMachine : MonoBehaviour, IPausable
 {
     [SerializeField] private PausableRunTimeSetSO _pausable = default;
+    [SerializeField][Tooltip("Agent - Enemy - Boss RTS goes here")] private GameObjectRuntimeSetSO _activeCharacterRTS;
 
     private bool _isPaused;
     [SerializeField][ReadOnly] private int _currentPhase = 0;
@@ -34,6 +35,7 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
     private void OnEnable()
     {
         _pausable.Add(this);
+        _activeCharacterRTS.Add(gameObject);
         _currentPhase = 0;
         ResetContext();
         ChangePhase(_currentPhase);
@@ -44,6 +46,7 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
     private void OnDisable()
     {
         _pausable.Remove(this);
+        _activeCharacterRTS.Remove(gameObject);
         StopAllCoroutines();
         _currentContext?.OnExit();
     }

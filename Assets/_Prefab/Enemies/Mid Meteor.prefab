@@ -688,6 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
+  _activeCharacterRTS: {fileID: 11400000, guid: 04ad7ad121264bc4dbf23820d961fc73, type: 2}
   _currentPhase: 0
   _states: {fileID: 11400000, guid: 27a4cbb4d51145245a6465358508ff52, type: 2}
   _currentState: {fileID: 0}
