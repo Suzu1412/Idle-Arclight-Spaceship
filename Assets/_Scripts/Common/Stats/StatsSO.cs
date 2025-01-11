@@ -90,6 +90,21 @@ public class StatsSO : SerializableScriptableObject, IStatsData
         }
     }
 
+    [ContextMenu("Load All")]
+    private void LoadAll()
+    {
+        var stats = ScriptableObjectUtilities.FindAllScriptableObjectsOfType<StatComponentSO>("t:StatComponentSO", "Assets/_Data/Stats/Stat Types");
+
+        _initialStats = new();
+
+        foreach (var stat in stats)
+        {
+            StatConfig statConfig = new StatConfig(stat);
+            _initialStats.Add(statConfig);
+
+        }
+    }
+
     internal void RemoveModifiers()
     {
         foreach (var stat in _runtimeStats)
@@ -106,6 +121,12 @@ public class StatConfig
     [SerializeField] private float _baseValue;
 
     public StatComponentSO StatComponent => _statComponent;
+
+    public StatConfig(StatComponentSO statComponent )
+    {
+        _statComponent = statComponent;
+        _baseValue = _statComponent.MinValue;
+    }
 
     public Stat CreateStat()
     {

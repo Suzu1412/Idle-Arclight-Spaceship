@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef29153c887be4f1597a8dcc56a7499c, type: 3}
-  m_Name: New Health Stat SO
+  m_Name: 1- Health Stat SO
   m_EditorClassIdentifier: 
