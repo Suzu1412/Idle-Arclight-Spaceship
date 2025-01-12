@@ -143,8 +143,9 @@ public class UpgradeButtonController : MonoBehaviour
         {
             ActivateButton(false);
             _isAlreadyBought = true;
-            gameObject.SetActive(false);
             _isAvailableToBuy = false;
+            Destroy(gameObject);
+
         }
     }
 
@@ -159,9 +160,9 @@ public class UpgradeButtonController : MonoBehaviour
                 UIManager.Instance.SetGeneratorShopDefaultButton();
             }
 
-                _isAvailableToBuy = false;
-                _upgradesRTS.Remove(gameObject);
-            
+            _isAvailableToBuy = false;
+            _upgradesRTS.Remove(gameObject);
+
 
         }
         else
