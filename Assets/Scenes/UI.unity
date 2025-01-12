@@ -169,8 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323fd70f089767e4bbaeadf187802d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalColor: {r: 0.043137256, g: 0.27450982, b: 0.5137255, a: 1}
-  highlightColor: {r: 0.7647059, g: 0.8901961, b: 1, a: 1}
+  normalColor: {r: 0, g: 0, b: 0, a: 0}
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &9639330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4615,8 +4615,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323fd70f089767e4bbaeadf187802d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalColor: {r: 0.043137256, g: 0.27450982, b: 0.5137255, a: 1}
-  highlightColor: {r: 0.7647059, g: 0.8901961, b: 1, a: 1}
+  normalColor: {r: 0, g: 0, b: 0, a: 0}
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &302560962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4879,8 +4879,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323fd70f089767e4bbaeadf187802d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalColor: {r: 0.043137256, g: 0.27450982, b: 0.5137255, a: 1}
-  highlightColor: {r: 0.7647059, g: 0.8901961, b: 1, a: 1}
+  normalColor: {r: 0, g: 0, b: 0, a: 0}
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &335578679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5637,8 +5637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323fd70f089767e4bbaeadf187802d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalColor: {r: 0.043137256, g: 0.27450982, b: 0.5137255, a: 1}
-  highlightColor: {r: 0.7647059, g: 0.8901961, b: 1, a: 1}
+  normalColor: {r: 0, g: 0, b: 0, a: 0}
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &378823863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7880,8 +7880,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323fd70f089767e4bbaeadf187802d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalColor: {r: 0.043137256, g: 0.27450982, b: 0.5137255, a: 1}
-  highlightColor: {r: 0.7647059, g: 0.8901961, b: 1, a: 1}
+  normalColor: {r: 0, g: 0, b: 0, a: 0}
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &595020143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23202,8 +23202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323fd70f089767e4bbaeadf187802d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalColor: {r: 0.043137256, g: 0.27450982, b: 0.5137255, a: 1}
-  highlightColor: {r: 0.7647059, g: 0.8901961, b: 1, a: 1}
+  normalColor: {r: 0, g: 0, b: 0, a: 0}
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1718480079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30218,7 +30218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97afc556caea1c44969477eb7ddec74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConformX: 0
+  ConformX: 1
   ConformY: 1
   Logging: 0
 --- !u!1 &1911749582158069183
@@ -32677,7 +32677,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

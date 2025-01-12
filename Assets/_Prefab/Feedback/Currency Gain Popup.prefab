@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6625961150518699713
 RectTransform:
   m_ObjectHideFlags: 0
@@ -185,8 +185,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 307004880420054071}
-  - component: {fileID: 6534419476703416628}
   - component: {fileID: 4288579106314814114}
+  - component: {fileID: 535659844088190090}
   m_Layer: 0
   m_Name: Currency Gain Popup
   m_TagString: Untagged
@@ -212,7 +212,19 @@ Transform:
   - {fileID: 3862869443720105681}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6534419476703416628
+--- !u!210 &4288579106314814114
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407242151853083383}
+  m_Enabled: 1
+  m_SortingLayerID: -62974719
+  m_SortingLayer: 8
+  m_SortingOrder: 1000
+  m_SortAtRoot: 0
+--- !u!114 &535659844088190090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   permanent: 0
-  lifetime: 0.2
+  lifetime: 1
   unscaledTime: 0
   enable3DGame: 0
   faceCameraView: 1
@@ -373,14 +385,14 @@ MonoBehaviour:
   durationFadeIn: 0.2
   enableOffsetFadeIn: 0
   offsetFadeIn: {x: 0.5, y: 0}
-  enableScaleFadeIn: 0
-  scaleFadeIn: {x: 2, y: 2}
+  enableScaleFadeIn: 1
+  scaleFadeIn: {x: 1, y: 2}
   enableCrossScaleFadeIn: 0
   crossScaleFadeIn: {x: 1, y: 1.5}
-  enableShakeFadeIn: 0
+  enableShakeFadeIn: 1
   shakeOffsetFadeIn: {x: 0, y: 1.5}
-  shakeFrequencyFadeIn: 4
-  durationFadeOut: 0.2
+  shakeFrequencyFadeIn: 2
+  durationFadeOut: 0.1
   enableOffsetFadeOut: 0
   offsetFadeOut: {x: 0.5, y: 0}
   enableScaleFadeOut: 0
@@ -627,22 +639,10 @@ MonoBehaviour:
     pushOffset: 1
   updateDelay: 0.0125
   enablePooling: 1
-  poolSize: 30
+  poolSize: 25
   disableOnSceneLoad: 1
-  editorLastFont: Gold
+  editorLastFont: 
   position: {x: 0, y: 0, z: 0}
---- !u!210 &4288579106314814114
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 407242151853083383}
-  m_Enabled: 1
-  m_SortingLayerID: -62974719
-  m_SortingLayer: 8
-  m_SortingOrder: 1000
-  m_SortAtRoot: 0
 --- !u!1 &2829123082442106057
 GameObject:
   m_ObjectHideFlags: 0
