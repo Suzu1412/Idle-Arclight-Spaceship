@@ -17,7 +17,7 @@ MonoBehaviour:
   _image: {fileID: 21300000, guid: 092f2741b6657d64ead3715196ffb6e6, type: 3}
   _amountOwned: 0
   _cost: 1250000000000000
-  _costRequirement: 50000000000000
+  _costRequirement: 500000000000000
   _gemCostMultiplier: {fileID: 11400000, guid: d4159609c13d586439af8e9e600a0681, type: 2}
   _priceGrowthRate: 1.15
   _baseProduction: 12500000000
