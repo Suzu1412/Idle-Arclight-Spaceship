@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 5045b5fce815a4058b0ff96f79bf5d92
   m_currentHash:
     serializedVersion: 2
-    Hash: b23e97518dc2dad04101631ccb8a4a50
+    Hash: b57e17e77635cbf256a7b51a9d1ef98b
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_CatalogRequestsTimeout: 0
@@ -85,6 +85,22 @@ MonoBehaviour:
       - m_Id: 5637a2cb9c1c341bca59256963afc671
         m_Value: dev
       - m_Id: 6bf3b1a15c16c48888f7644c426bed49
+        m_Value: <undefined>
+      - m_Id: be01e844afd0c4d3bafb28363bcc092d
+        m_Value: 'ServerData/[BuildTarget]'
+      - m_Id: ed1fea8e47dd1467487d955b26cc6a58
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+    - m_InheritedParent: 
+      m_Id: dc61ad1b925b94e98a35e6302c39e5b6
+      m_ProfileName: iOS
+      m_Values:
+      - m_Id: 2a00de978b93c456c985b23f1c90052a
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: 3461d16eeb42248d39ee90308d7a5964
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: 5637a2cb9c1c341bca59256963afc671
+        m_Value: dev
+      - m_Id: 6bf3b1a15c16c48888f7644c426bed49
         m_Value: https://2a48df1a-5554-41ba-8191-dd56719fc662.client-api.unity3dusercontent.com/client_api/v1/environments/dev/buckets/3a51af92-78ca-42ee-8448-0e38af499136/release_by_badge/latest/entry_by_path/content/?path=
       - m_Id: be01e844afd0c4d3bafb28363bcc092d
         m_Value: CCDBuildData/d47eb8be-c9f0-447f-ae57-7cb8f0ffef40/3a51af92-78ca-42ee-8448-0e38af499136/latest
@@ -129,7 +145,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f132c671d1b44d16a0c909bb83e4273, type: 2}
   - {fileID: 11400000, guid: addd4aa5a28014f0e9a7da0647945d22, type: 2}
   - {fileID: 11400000, guid: 2dc24e260cee64dc488d8a9be1c9ad3c, type: 2}
-  m_ActiveProfileId: 407f9f6aae5f744b98aa75a7f763f416
+  m_ActiveProfileId: dc61ad1b925b94e98a35e6302c39e5b6
   m_CcdManagedData:
     EnvironmentId: 
     EnvironmentName: 
