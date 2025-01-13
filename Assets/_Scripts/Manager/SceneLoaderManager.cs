@@ -1,16 +1,14 @@
 using Eflatun.SceneReference;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
-using UnityEngine.Networking;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
-public class SceneLoaderManager : MonoBehaviour, ISaveable
+public class SceneLoaderManager : Singleton<MonoBehaviour>, ISaveable
 {
     private int _currentScene;
     [SerializeField] private GameObject _loadingCamera;
@@ -62,6 +60,8 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
     private UnityAction OnUnloadScene;
     private UnityAction OnLoadScene;
 
+    private bool _isLoading = false;
+
     private void Start()
     {
         OnLoadLastSceneEvent.RaiseEvent();
@@ -109,6 +109,12 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
             return;
         }
 
+        if (_isLoading)
+        {
+            Debug.LogError($"Its already loading");
+            return;
+        }
+
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(_sceneLoader.Name));
 
         if (SceneManager.GetActiveScene().name != _sceneLoader.Name)
@@ -116,7 +122,7 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
             Debug.LogError("Loading Scene not set as Active Scene. Ensure its working correctly");
             return;
         }
-
+        _isLoading = true;
         EnableLoadingCanvas();
         UpdateLoadProgress(0f);
         OnToggleLoadEvent.RaiseEvent(true);
@@ -149,6 +155,7 @@ public class SceneLoaderManager : MonoBehaviour, ISaveable
     private void FinishedLoading()
     {
         DisableLoadingCanvas();
+        _isLoading = false;
         OnFinishedLoadingEvent.RaiseEvent();
         OnScreenFadeInEvent.RaiseEvent(1.5f);
     }

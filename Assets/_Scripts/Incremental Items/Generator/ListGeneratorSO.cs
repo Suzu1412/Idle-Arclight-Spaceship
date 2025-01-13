@@ -14,6 +14,11 @@ public class ListGeneratorSO : ScriptableObject
         return _generators.Find(x => x.Guid == guid);
     }
 
+    public GeneratorSO FindName(string name)
+    {
+        return _generators.Find(x => x.name == name);
+    }
+
 #if UNITY_EDITOR
 
     [ContextMenu("Load All")]
@@ -28,7 +33,7 @@ public class ListGeneratorSO : ScriptableObject
 
         if (!allUnique)
         {
-            foreach(var generator in _generators)
+            foreach (var generator in _generators)
             {
                 generator.GenerateGuid();
             }
