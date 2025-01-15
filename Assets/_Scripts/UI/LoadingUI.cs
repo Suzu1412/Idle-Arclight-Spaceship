@@ -11,7 +11,6 @@ public class LoadingUI : MonoBehaviour
     [SerializeField] private LocalizeStringEvent _localizedStringEvent;
     private LocalizedString _localizedString;
     private Coroutine _moveTowardsTargetValue;
-    private string _loading;
     private float _currentValue;
     private FloatVariable _amount = null;
 

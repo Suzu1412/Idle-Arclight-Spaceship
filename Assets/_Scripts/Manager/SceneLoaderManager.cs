@@ -75,6 +75,7 @@ public class SceneLoaderManager : Singleton<MonoBehaviour>, ISaveable
     private void OnDestroy()
     {
         OnChangeSceneEventListener.DeRegister(ChangeScene);
+        StopAllCoroutines();
     }
 
     public void SaveData(GameDataSO gameData)

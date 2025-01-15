@@ -48,21 +48,30 @@ MonoBehaviour:
   _loadingCanvas: {fileID: 0}
   _sceneGroups:
   - GroupName: First Level
-    Scenes:
-    - _sceneReference:
+    Scene:
+      _sceneReference:
         asset: {fileID: 102900000, guid: 6450f8dd17b95004089777e242729748, type: 3}
         guid: 6450f8dd17b95004089777e242729748
       _sceneType: 0
-    - _sceneReference:
-        asset: {fileID: 102900000, guid: 2d1f8c0e3e17144e2a9885d35e42d619, type: 3}
-        guid: 2d1f8c0e3e17144e2a9885d35e42d619
-      _sceneType: 2
+    SubScenes:
     - _sceneReference:
         asset: {fileID: 102900000, guid: 00860c658223c424f912bd682c180ffd, type: 3}
         guid: 00860c658223c424f912bd682c180ffd
       _sceneType: 7
+    - _sceneReference:
+        asset: {fileID: 102900000, guid: 2d1f8c0e3e17144e2a9885d35e42d619, type: 3}
+        guid: 2d1f8c0e3e17144e2a9885d35e42d619
+      _sceneType: 2
+  OnLoadLastSceneEvent: {fileID: 11400000, guid: f4f6f9249fccc38478df46745b450c46, type: 2}
+  OnFinishedLoadingEvent: {fileID: 11400000, guid: 8c17c2eb6dea1034396eefa31c5db2c7, type: 2}
+  OnChangeSceneEventListener: {fileID: 11400000, guid: fd40ca024910f954ebb2613334595cbe, type: 2}
   OnSceneGroupLoadedEvent: {fileID: 11400000, guid: 3db3ec670990fe4469daf9ba39dc55b9, type: 2}
   OnToggleLoadEvent: {fileID: 11400000, guid: 9112c7fe056764095a7be7e66db2e20a, type: 2}
   OnLoadProgressEvent: {fileID: 11400000, guid: fc85c36d32c259c4cbe5b9b65f15d5d5, type: 2}
+  OnScreenFadeOutEvent: {fileID: 11400000, guid: 8251c8fce645fe44c8f511c74290c39e, type: 2}
+  OnScreenFadeInEvent: {fileID: 11400000, guid: 5a78c23a0b09d7541ba244fbc32c00fc, type: 2}
   OnToggleLoadEventListener: {fileID: 11400000, guid: 4cf43f0d4537c49c6b101cee57a54160, type: 2}
-  _fillSpeed: 0.5
+  _sceneLoader:
+    asset: {fileID: 102900000, guid: 5e73b9c06ca9a2442b54030da5bffdd2, type: 3}
+    guid: 5e73b9c06ca9a2442b54030da5bffdd2
+  _unloadProgress: 0.25

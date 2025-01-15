@@ -45,24 +45,6 @@ MonoBehaviour:
       m_Value: https://2a48df1a-5554-41ba-8191-dd56719fc662.client-api.unity3dusercontent.com/client_api/v1/environments/dev/buckets/078a74f7-0faa-4d8f-ba67-c382ea922d58/release_by_badge/latest/entry_by_path/content/?path=
     - m_Suffix: PromoteOnly
       m_Value: False
-  - m_GroupTypePrefix: CCD.2a48df1a-5554-41ba-8191-dd56719fc662.d47eb8be-c9f0-447f-ae57-7cb8f0ffef40.19dde966-977d-487c-b827-71bfb8363d8a.latest
-    m_Variables:
-    - m_Suffix: BuildPath
-      m_Value: CCDBuildData/d47eb8be-c9f0-447f-ae57-7cb8f0ffef40/19dde966-977d-487c-b827-71bfb8363d8a/latest
-    - m_Suffix: CcdBadgeName
-      m_Value: latest
-    - m_Suffix: CcdBucketId
-      m_Value: 19dde966-977d-487c-b827-71bfb8363d8a
-    - m_Suffix: CcdBucketName
-      m_Value: Android
-    - m_Suffix: Environmentid
-      m_Value: d47eb8be-c9f0-447f-ae57-7cb8f0ffef40
-    - m_Suffix: Environmentname
-      m_Value: dev
-    - m_Suffix: LoadPath
-      m_Value: https://2a48df1a-5554-41ba-8191-dd56719fc662.client-api.unity3dusercontent.com/client_api/v1/environments/dev/buckets/19dde966-977d-487c-b827-71bfb8363d8a/release_by_badge/latest/entry_by_path/content/?path=
-    - m_Suffix: PromoteOnly
-      m_Value: False
   - m_GroupTypePrefix: CCD.2a48df1a-5554-41ba-8191-dd56719fc662.d47eb8be-c9f0-447f-ae57-7cb8f0ffef40.3a51af92-78ca-42ee-8448-0e38af499136.latest
     m_Variables:
     - m_Suffix: BuildPath
@@ -79,6 +61,24 @@ MonoBehaviour:
       m_Value: dev
     - m_Suffix: LoadPath
       m_Value: https://2a48df1a-5554-41ba-8191-dd56719fc662.client-api.unity3dusercontent.com/client_api/v1/environments/dev/buckets/3a51af92-78ca-42ee-8448-0e38af499136/release_by_badge/latest/entry_by_path/content/?path=
+    - m_Suffix: PromoteOnly
+      m_Value: False
+  - m_GroupTypePrefix: CCD.2a48df1a-5554-41ba-8191-dd56719fc662.d47eb8be-c9f0-447f-ae57-7cb8f0ffef40.c2b98d6b-b611-4043-96de-a947b03954bf.latest
+    m_Variables:
+    - m_Suffix: BuildPath
+      m_Value: CCDBuildData/d47eb8be-c9f0-447f-ae57-7cb8f0ffef40/c2b98d6b-b611-4043-96de-a947b03954bf/latest
+    - m_Suffix: CcdBadgeName
+      m_Value: latest
+    - m_Suffix: CcdBucketId
+      m_Value: c2b98d6b-b611-4043-96de-a947b03954bf
+    - m_Suffix: CcdBucketName
+      m_Value: Android Mobile
+    - m_Suffix: Environmentid
+      m_Value: d47eb8be-c9f0-447f-ae57-7cb8f0ffef40
+    - m_Suffix: Environmentname
+      m_Value: dev
+    - m_Suffix: LoadPath
+      m_Value: https://2a48df1a-5554-41ba-8191-dd56719fc662.client-api.unity3dusercontent.com/client_api/v1/environments/dev/buckets/c2b98d6b-b611-4043-96de-a947b03954bf/release_by_badge/latest/entry_by_path/content/?path=
     - m_Suffix: PromoteOnly
       m_Value: False
   environments:

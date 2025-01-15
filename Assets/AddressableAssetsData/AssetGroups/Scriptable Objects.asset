@@ -15,8 +15,8 @@ MonoBehaviour:
   m_GroupName: Scriptable Objects
   m_GUID: dce4b28c8d265400d889b86aa0ca7ccb
   m_SerializeEntries:
-  - m_GUID: 32ff32770855fe84284adc0d2a5e284c
-    m_Address: Assets/_Data/Variables/IntVariable
+  - m_GUID: 25f551907274f0b40abb2dfdab7589f6
+    m_Address: Assets/_Data/Persistence
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -25,13 +25,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 52a011d445e6d4e4e8086f03343c9dc2
-    m_Address: Assets/_Data/Variables/DoubleVariable
+  - m_GUID: 4d16452ab2406c44997fa3b9fe17572f
+    m_Address: Assets/_Data/Spawner
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 610f3d653dd5581419d53cd307d41856
-    m_Address: Assets/_Data/Variables/FloatVariable
+  - m_GUID: 52ec651414d7140048b85da2a8697444
+    m_Address: Assets/_Data/FSM
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6257c4f693024684c9421d4b48c986b5
+    m_Address: Assets/_Data/Pick Ups
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 628f4550c00ef4f77abc0ec25e206329
+    m_Address: Assets/_Data/Incremental Scriptable Objects
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6566a95e54db04b46bba8dd1f6926784
+    m_Address: Assets/_Data/Detection
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a997f71f2217674a9fd8a3fb6a4435a
+    m_Address: Assets/_Data/Attack
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -45,13 +65,28 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e149aee663474a839fdddd7f571f63e
+    m_Address: Assets/_Data/Variables
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a15c216388f2d1f4eb8f77ba7094a847
     m_Address: Assets/_Data/Events
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c76fc5c229c10bb438a805405a6c884b
+    m_Address: Assets/_Data/Pool
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ca2802766e353884096afac354698020
     m_Address: Assets/_Data/Audio
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa04b3e0bac0d79499e8cac6a63b1d15
+    m_Address: Assets/_Data/Notification
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
