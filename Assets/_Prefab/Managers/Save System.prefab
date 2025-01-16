@@ -45,5 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnStartGameEventListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
+  OnLoadLastSceneEventListener: {fileID: 11400000, guid: d366f59a8f19025439d45f99d7ce7977, type: 2}
+  OnDeleteSaveDataEventListener: {fileID: 11400000, guid: c9d23c0935643dc40b43e647938e2dac, type: 2}
+  OnChangeSceneEvent: {fileID: 11400000, guid: cac302163ba337e4492bc0d4e55ebc3f, type: 2}
   _gameDataSO: {fileID: 11400000, guid: 3da945cb89594eb45867596189c1ce08, type: 2}
-  _saveDataRTS: {fileID: 11400000, guid: f5b7a800ff7044645ad77bace999d088, type: 2}
+  _saveDataRTS: {fileID: 11400000, guid: e7213c21199ce404fb056957629494aa, type: 2}
