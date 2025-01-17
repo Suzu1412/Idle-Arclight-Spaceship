@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "KamikazeChaseStateSO", menuName = "Scriptable Objects/KamikazeChaseStateSO")]
+[CreateAssetMenu(fileName = "KamikazeChaseStateSO", menuName = "Scriptable Objects/FSM/Kamikaze/KamikazeChaseStateSO")]
 public class KamikazeChaseStateSO : StateSO<KamikazeChaseContext>
 {
 }
@@ -8,10 +8,14 @@ public class KamikazeChaseStateSO : StateSO<KamikazeChaseContext>
 [System.Serializable]
 public class KamikazeChaseContext : StateContext<KamikazeChaseStateSO>
 {
-    public override void OnEnter()
+    public override void OnUpdate()
     {
-        base.OnEnter();
-        var direction = Vector2.down;
+        base.OnUpdate();
+        if (Agent.TargetDetector.TargetTransform == null)
+        {
+            return;
+        }
+        var direction = _fsm.transform.position.GetDirectionTo(Agent.TargetDetector.TargetTransform.position);
         Agent.Input.CallOnMovementInput(direction);
         Agent.AgentRenderer.RotateSpriteToDirection(direction);
     }

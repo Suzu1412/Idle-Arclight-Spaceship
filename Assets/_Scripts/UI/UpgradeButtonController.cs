@@ -41,7 +41,6 @@ public class UpgradeButtonController : MonoBehaviour
     private LocalizedString _localizedString;
     private LocalizedString _descriptionLocalizedString;
     [SerializeField] private string _table = "Tabla1";
-    private string _gemName = "gemName";
     private LocalizedString _gemLocalized;
     private LocalizedString _gemDescriptionLocalized;
 

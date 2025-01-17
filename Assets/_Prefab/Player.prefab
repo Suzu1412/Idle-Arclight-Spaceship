@@ -146,6 +146,7 @@ MonoBehaviour:
   OnToggleStatsEvent: {fileID: 11400000, guid: 2ea8ab3ab3264f14780d9d8188591b0a, type: 2}
   OnToggleMenuEvent: {fileID: 11400000, guid: 5aef7b5fb7bb7174fb12a01bc887e87a, type: 2}
   OnGameplayPauseEvent: {fileID: 11400000, guid: 2589804ce8dc04f01bb69b4266b30917, type: 2}
+  _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
   _confirmSound: {fileID: 11400000, guid: 563429b49bb4a4ee385961cdb8b5370c, type: 2}
   _cancelSound: {fileID: 11400000, guid: b0ec7d8dbb60f3d429f913e6a368bc70, type: 2}
 --- !u!114 &8124682318559238475
@@ -411,6 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
+  _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
   _activeCharacterRTS: {fileID: 11400000, guid: f3fe25a9e8be0d048acc4ac67ad425f1, type: 2}
   _currentPhase: 0
   _states: {fileID: 11400000, guid: 971f386abdfa2e84e85df3fb83531768, type: 2}
@@ -463,6 +465,7 @@ MonoBehaviour:
   _bottomBounds: -5
   _hasBoundaries: 1
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
+  _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
 --- !u!114 &4383240863268287992
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,20 +5,20 @@ public class KamikazeCollissionActionSO : ActionSO
 {
     [SerializeField] private GameObjectRuntimeSetSO _playerRTS;
     [SerializeField] private SoundDataSO _impactSound;
-    [SerializeField] private float _range = 1f;
-    [SerializeField] private Color _color = Color.green;
+    [SerializeField] private Color _color = Color.red;
 
     public override void DrawGizmos(FiniteStateMachine fsm)
     {
         Gizmos.color = _color;
-        Gizmos.DrawWireSphere(fsm.transform.position, _range);
+        Gizmos.DrawWireSphere(fsm.transform.position, fsm.Agent.StatsSystem.GetStatValue<CollissionDistanceStatSO>());
+
     }
 
     public override void Execute(FiniteStateMachine fsm)
     {
         foreach (var player in _playerRTS.Items)
         {
-            if (fsm.transform.position.IsWithinRange(player.transform.position, _range))
+            if (fsm.transform.position.IsWithinRange(player.transform.position, fsm.Agent.StatsSystem.GetStatValue<CollissionDistanceStatSO>()))
             {
                 if (player.TryGetComponent<IHealthSystem>(out var damageable))
                 {

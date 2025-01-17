@@ -135,20 +135,20 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         OnDamagedEvent?.RaiseEvent(amount);
         OnHealthValueChanged?.Invoke();
 
+        SetInvulnerability(isInvulnerable: true, _defaultInvulnerability);
+
         if (_health.Value <= 0f)
         {
             Death(gameObject, DeathCauseType.EnemyAttack);
             return;
         }
-
-        SetInvulnerability(isInvulnerable: true, _defaultInvulnerability);
     }
 
     public void Death(GameObject source, DeathCauseType cause)
     {
         if (_isDeath)
         {
-            Debug.Log($"{gameObject} is already death");
+            Debug.Log($"{gameObject.transform.parent} is already death");
             return;
         }
 

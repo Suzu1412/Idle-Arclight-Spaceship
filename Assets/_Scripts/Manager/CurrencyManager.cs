@@ -10,7 +10,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 {
     [SerializeField] private SaveableRunTimeSetSO _saveable;
 
-    [SerializeField] private float _delayToGenerate = 1f;
     [Header("Double Variable")]
     [SerializeField] private DoubleVariableSO _totalCurrency;
     [SerializeField] private DoubleVariableSO _gameTotalCurrency;

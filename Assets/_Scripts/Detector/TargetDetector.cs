@@ -93,6 +93,7 @@ public class TargetDetector : MonoBehaviour, ITargetDetector
 
     private bool IsVisibleToCamera(Vector3 targetPosition)
     {
+        if (_mainCamera == null)  return false;
         // Convert the target position to viewport space
         Vector3 viewportPos = _mainCamera.WorldToViewportPoint(targetPosition);
 

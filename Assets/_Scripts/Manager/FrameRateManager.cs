@@ -7,7 +7,6 @@ public class FrameRateManager : MonoBehaviour
 
     [SerializeField] private IntVariableSO _targetFramerate;
     [SerializeField] private IntGameEventListener OnFPSChangeEventListener; // Listen to FPS UI
-    [SerializeField] private float checkInterval = 5f; // Interval in seconds for battery checks
 
     void Awake()
     {

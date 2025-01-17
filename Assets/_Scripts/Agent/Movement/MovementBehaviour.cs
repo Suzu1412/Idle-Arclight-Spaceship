@@ -18,9 +18,13 @@ public class MovementBehaviour : MonoBehaviour, ICanMove, IPausable
     [SerializeField] private bool _hasBoundaries;
     private IMoveData _moveData;
     [SerializeField] private PausableRunTimeSetSO _pausable;
+    [SerializeField] private BoolVariableSO _isPaused;
+
 
     public IAgent Agent => _agent ??= GetComponent<IAgent>();
     public Rigidbody2D RB => _rb != null ? _rb : _rb = GetComponent<Rigidbody2D>();
+
+    public BoolVariableSO IsPaused => _isPaused;
 
     private void OnEnable()
     {
@@ -39,6 +43,11 @@ public class MovementBehaviour : MonoBehaviour, ICanMove, IPausable
 
     public void Move()
     {
+        if (_isPaused.Value)
+        {
+            return;
+        }
+
         Vector2 targetSpeed = TargetMoveSpeed(1f);
         float accelRate = BaseAcceleration(targetSpeed);
 

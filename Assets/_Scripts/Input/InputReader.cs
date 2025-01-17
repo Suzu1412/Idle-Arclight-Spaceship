@@ -8,9 +8,6 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
     private GameInput _inputActions;
     private Vector2 _direction;
     private bool _isShopActive;
-    private bool _isQuestActive;
-    private bool _isStatsActive;
-    private bool _isInventoryActive;
     private bool _isMenuActive;
     [SerializeField] private Vector2GameEventListener OnStickChangeDirectionListener = default;
     [SerializeField] private BoolGameEvent OnToggleShopEvent;
@@ -19,6 +16,7 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
     [SerializeField] private BoolGameEvent OnToggleStatsEvent;
     [SerializeField] private BoolGameEvent OnToggleMenuEvent;
     [SerializeField] private BoolGameEvent OnGameplayPauseEvent;
+    [SerializeField] private BoolVariableSO _isPaused;
 
     [SerializeField] private SoundDataSO _confirmSound;
     [SerializeField] private SoundDataSO _cancelSound;
@@ -42,9 +40,6 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
     {
         OnStickChangeDirectionListener.Register(CallOnMovementInput);
         _isShopActive = false;
-        _isQuestActive = false;
-        _isStatsActive = false;
-        _isInventoryActive = false;
         _isMenuActive = false;
         OnGameplayPauseEvent.RaiseEvent(false);
         DisableUIActions();
@@ -133,6 +128,8 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
                 DisableUIActions();
                 _cancelSound.PlayEvent();
                 OnGameplayPauseEvent.RaiseEvent(false);
+                _isPaused.Value = false;
+
 
             }
             else
@@ -141,6 +138,8 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
                 DisableUIActions();
                 _confirmSound.PlayEvent();
                 OnGameplayPauseEvent.RaiseEvent(true);
+                _isPaused.Value = true;
+
 
             }
         }
@@ -162,6 +161,8 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
                 DisableUIActions();
                 _cancelSound.PlayEvent();
                 OnGameplayPauseEvent.RaiseEvent(false);
+                _isPaused.Value = false;
+
 
             }
             else
@@ -169,6 +170,7 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
                 DisablePlayerActions();
                 _confirmSound.PlayEvent();
                 OnGameplayPauseEvent.RaiseEvent(true);
+                _isPaused.Value = true;
 
             }
         }
@@ -202,6 +204,7 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
             DisableUIActions();
             _cancelSound.PlayEvent();
             OnGameplayPauseEvent.RaiseEvent(false);
+            _isPaused.Value = false;
         }
 
     }

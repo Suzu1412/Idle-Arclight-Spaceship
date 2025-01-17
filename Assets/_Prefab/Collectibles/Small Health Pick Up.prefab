@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33555f68b45a54a0ab63fb8ca96b9949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
   _item: {fileID: 11400000, guid: 95e4085ed5d78514481cc181103e516c, type: 2}
   gizmoColor: {r: 1, g: 0, b: 1, a: 1}

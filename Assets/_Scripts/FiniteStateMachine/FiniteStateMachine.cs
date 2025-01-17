@@ -6,9 +6,9 @@ using UnityEngine;
 public class FiniteStateMachine : MonoBehaviour, IPausable
 {
     [SerializeField] private PausableRunTimeSetSO _pausable = default;
+    [SerializeField] private BoolVariableSO _isPaused;
     [SerializeField][Tooltip("Agent - Enemy - Boss RTS goes here")] private GameObjectRuntimeSetSO _activeCharacterRTS;
 
-    private bool _isPaused;
     [SerializeField][ReadOnly] private int _currentPhase = 0;
     private IAgent _agent;
     private Coroutine _transitionCoroutine;
@@ -22,6 +22,8 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
     internal IAgent Agent => _agent ??= GetComponent<IAgent>();
 
     internal StateContext ActiveContext => _currentContext;
+
+    public BoolVariableSO IsPaused => _isPaused;
 
     private void Awake()
     {
@@ -53,13 +55,13 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
 
     private void Update()
     {
-        if (_isPaused) return;
+        if (_isPaused.Value) return;
         _currentContext?.OnUpdate();
     }
 
     private void FixedUpdate()
     {
-        if (_isPaused) return;
+        if (_isPaused.Value) return;
         _currentContext?.OnFixedUpdate();
     }
 
@@ -169,12 +171,13 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
 
     private void OnDrawGizmos()
     {
+        if (_currentContext == null)
+            return;
         _currentContext.DrawGizmos();
     }
 
     public void Pause(bool isPaused)
     {
-        _isPaused = isPaused;
     }
 
     public GameObject GetGameObject()

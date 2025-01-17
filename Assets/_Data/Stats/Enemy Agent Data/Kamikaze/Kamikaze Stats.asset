@@ -10,35 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fff26f9fe0a814bf5acd1f64b633d763, type: 3}
-  m_Name: Meteor Stats SO
+  m_Name: Kamikaze Stats
   m_EditorClassIdentifier: 
-  _guid: 64b3b608ec9daca4095ea41f5c03a16e
+  _guid: c3afff565ed68994a818fc813903f662
   _initialStats:
   - _statComponent: {fileID: 11400000, guid: f6f410320cb9f4faeadb63a83fd8b6ba, type: 2}
-    _baseValue: 7
+    _baseValue: 5
   - _statComponent: {fileID: 11400000, guid: d17c678bb247d0642af464d89adadd07, type: 2}
-    _baseValue: 2
+    _baseValue: 5
   - _statComponent: {fileID: 11400000, guid: b07280ea56f7f0d4abaa8e5470cbcd11, type: 2}
     _baseValue: 1
   - _statComponent: {fileID: 11400000, guid: ce4779da3f84fcf438b91eede9cd2cb1, type: 2}
-    _baseValue: 1
+    _baseValue: 180
   - _statComponent: {fileID: 11400000, guid: 9e9cd6fafab1e22438394e2442456a82, type: 2}
-    _baseValue: 0.55
+    _baseValue: 5
   - _statComponent: {fileID: 11400000, guid: 853badfb65930724d984381cb7956f2f, type: 2}
-    _baseValue: 0.55
+    _baseValue: 0.5
   _runtimeStats:
     _serializedList:
     - Key: {fileID: 11400000, guid: f6f410320cb9f4faeadb63a83fd8b6ba, type: 2}
       Value:
         _statComponent: {fileID: 11400000, guid: f6f410320cb9f4faeadb63a83fd8b6ba, type: 2}
-        _baseValue: 7
-        _value: 7
+        _baseValue: 5
+        _value: 5
         _modifiers: []
     - Key: {fileID: 11400000, guid: d17c678bb247d0642af464d89adadd07, type: 2}
       Value:
         _statComponent: {fileID: 11400000, guid: d17c678bb247d0642af464d89adadd07, type: 2}
-        _baseValue: 2
-        _value: 2
+        _baseValue: 5
+        _value: 5
         _modifiers: []
     - Key: {fileID: 11400000, guid: b07280ea56f7f0d4abaa8e5470cbcd11, type: 2}
       Value:
@@ -46,15 +46,21 @@ MonoBehaviour:
         _baseValue: 1
         _value: 1
         _modifiers: []
-    - Key: {fileID: 11400000, guid: 9e9cd6fafab1e22438394e2442456a82, type: 2}
-      Value:
-        _statComponent: {fileID: 11400000, guid: 9e9cd6fafab1e22438394e2442456a82, type: 2}
-        _baseValue: 0.55
-        _value: 0.55
-        _modifiers: []
     - Key: {fileID: 11400000, guid: ce4779da3f84fcf438b91eede9cd2cb1, type: 2}
       Value:
         _statComponent: {fileID: 11400000, guid: ce4779da3f84fcf438b91eede9cd2cb1, type: 2}
-        _baseValue: 1
-        _value: 1
+        _baseValue: 180
+        _value: 180
+        _modifiers: []
+    - Key: {fileID: 11400000, guid: 9e9cd6fafab1e22438394e2442456a82, type: 2}
+      Value:
+        _statComponent: {fileID: 11400000, guid: 9e9cd6fafab1e22438394e2442456a82, type: 2}
+        _baseValue: 5
+        _value: 5
+        _modifiers: []
+    - Key: {fileID: 11400000, guid: 853badfb65930724d984381cb7956f2f, type: 2}
+      Value:
+        _statComponent: {fileID: 11400000, guid: 853badfb65930724d984381cb7956f2f, type: 2}
+        _baseValue: 0.5
+        _value: 0.5
         _modifiers: []

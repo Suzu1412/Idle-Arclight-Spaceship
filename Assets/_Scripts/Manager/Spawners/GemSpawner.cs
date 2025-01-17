@@ -8,6 +8,7 @@ public class GemSpawner : MonoBehaviour, IPausable
     [SerializeField] private float _initialDelay = 3f;
     [SerializeField] private FloatVariableSO _minDelayBetweenSpawns;
     [SerializeField] private FloatVariableSO _maxDelayBetweenSpawns;
+    [SerializeField] private BoolVariableSO _isPaused;
 
     [SerializeField] private BasePlacementStrategySO _placementStrategy;
     [SerializeField] private List<GemConfigSO> _gemConfigs;
@@ -20,8 +21,8 @@ public class GemSpawner : MonoBehaviour, IPausable
 
     private Vector3 _newPosition;
     private int _randomPattern;
-    private bool _isPaused;
 
+    public BoolVariableSO IsPaused => _isPaused;
 
     private void OnEnable()
     {
@@ -50,7 +51,7 @@ public class GemSpawner : MonoBehaviour, IPausable
 
         while (true)
         {
-            if (!_isPaused)
+            if (!_isPaused.Value)
             {
                 delayBetweenSpawns -= Time.deltaTime;
             }
@@ -84,7 +85,6 @@ public class GemSpawner : MonoBehaviour, IPausable
 
     public void Pause(bool isPaused)
     {
-        _isPaused = isPaused;
     }
 
     public GameObject GetGameObject()

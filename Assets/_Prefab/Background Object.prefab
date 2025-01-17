@@ -102,6 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34174f803bba484eb4447818ba80848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
+  _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
 --- !u!50 &539439610195448236
 Rigidbody2D:
   serializedVersion: 5

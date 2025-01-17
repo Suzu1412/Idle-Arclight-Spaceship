@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(ObjectPooler))]
 public class ItemPickUp : MonoBehaviour, IPausable, IRemovable
 {
+    [SerializeField] private BoolVariableSO _isPaused;
     [SerializeField] private PausableRunTimeSetSO _pausable;
     private SpriteRenderer _spriteRenderer;
     private CircleCollider2D _pickableCollider;
@@ -22,7 +23,6 @@ public class ItemPickUp : MonoBehaviour, IPausable, IRemovable
     private bool _isPickedUp;
     private float _spawnDuration;
     private float _stillDuration;
-    private bool _isPaused;
     
     private bool _hasTarget = false;
 
@@ -30,6 +30,8 @@ public class ItemPickUp : MonoBehaviour, IPausable, IRemovable
     public event Action OnRemove;
 
     public Rigidbody2D RB => _rb != null ? _rb : _rb = GetComponent<Rigidbody2D>();
+
+    public BoolVariableSO IsPaused => _isPaused;
 
     private void Awake()
     {
@@ -62,14 +64,14 @@ public class ItemPickUp : MonoBehaviour, IPausable, IRemovable
 
     private void Update()
     {
-        if (_isPaused) return;
+        if (_isPaused.Value) return;
         CalculateDirection();
         CalculateMovement();
     }
 
     private void FixedUpdate()
     {
-        if (_isPaused) return;
+        if (_isPaused.Value) return;
         Move();
     }
 
@@ -201,8 +203,6 @@ public class ItemPickUp : MonoBehaviour, IPausable, IRemovable
 
     public void Pause(bool isPaused)
     {
-        _isPaused = isPaused;
-
         if (isPaused)
         {
             RB.constraints |= RigidbodyConstraints2D.FreezePosition;

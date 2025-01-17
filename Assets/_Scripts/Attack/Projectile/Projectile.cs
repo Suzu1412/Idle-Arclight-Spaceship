@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour, IPausable
 {
+    [SerializeField] private BoolVariableSO _isPaused;
     [SerializeField] private PausableRunTimeSetSO _pausable;
     private Rigidbody2D _rb;
     [SerializeField] private LayerMask whatDestroyBullet;
     [SerializeField] private float _projectileSpeed = 10f;
-    [SerializeField] private GameObject particleOnHitPrefabVFX;
     [SerializeField] private float _projectileRange = 10f;
     [SerializeField] private float _damage = 5;
     private SpriteRenderer spriteRenderer;
@@ -16,13 +16,12 @@ public class Projectile : MonoBehaviour, IPausable
     [SerializeField] private ObjectPoolSettingsSO _impactPool = default;
     [SerializeField] private float projectileDuration = 6f;
     public float ProjectileRange => _projectileRange;
-    private Coroutine _disableProjectileAfterDistance;
-    private bool _isPaused;
 
     public ObjectPooler Pool => _pool = _pool != null ? _pool : gameObject.GetOrAdd<ObjectPooler>();
 
     public Rigidbody2D RB => _rb != null ? _rb : _rb = gameObject.GetOrAdd<Rigidbody2D>();
 
+    public BoolVariableSO IsPaused => _isPaused;
 
     private void Awake()
     {
@@ -47,7 +46,7 @@ public class Projectile : MonoBehaviour, IPausable
     private void FixedUpdate()
     {
         // Rotate Bullet in direction of velocity
-        if (_isPaused) return;
+        if (_isPaused.Value) return;
         RB.linearVelocity = transform.right * _projectileSpeed;
     }
 
@@ -100,26 +99,8 @@ public class Projectile : MonoBehaviour, IPausable
 
     }
 
-    private IEnumerator DisableProjectileAfterDistanceCoroutine()
-    {
-        float elapsedTime = 0f;
-        Vector3 target = new(transform.position.x + _projectileRange, transform.position.y);
-        Vector3 offset = target - transform.position;
-        float sqrLen = offset.sqrMagnitude;
-
-        while (elapsedTime < projectileDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        ObjectPoolFactory.ReturnToPool(Pool);
-    }
-
     public void Pause(bool isPaused)
     {
-        _isPaused = isPaused;
-
         if (isPaused)
         {
             RB.constraints |= RigidbodyConstraints2D.FreezePosition;

@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class BackgroundObjectSpawner : MonoBehaviour, IPausable
 {
+    [SerializeField] private BoolVariableSO _isPaused;
     [SerializeField] private PausableRunTimeSetSO _pausable;
     [SerializeField] private float _minDelayBetweenSpawns = 30f;
     [SerializeField] private float _maxDelayBetweenSpawns = 30f;
     [SerializeField] private BasePlacementStrategySO _placementStrategy;
     [SerializeField] private BackgroundObjectConfigSO _objectConfig;
-    private bool _isPaused;
 
 
     [Header("Void Game Event Listener")]
     [SerializeField] private VoidGameEventListener OnStartGameEventListener;
     private Coroutine _spawnObjectCoroutine;
+
+    public BoolVariableSO IsPaused => _isPaused;
 
     private void OnEnable()
     {
@@ -40,7 +42,7 @@ public class BackgroundObjectSpawner : MonoBehaviour, IPausable
         float delayBetweenSpawns = Random.Range(_minDelayBetweenSpawns, _maxDelayBetweenSpawns);
         while (true)
         {
-            if (!_isPaused)
+            if (!_isPaused.Value)
             {
                 delayBetweenSpawns -= Time.deltaTime;
             }
@@ -68,7 +70,6 @@ public class BackgroundObjectSpawner : MonoBehaviour, IPausable
 
     public void Pause(bool isPaused)
     { 
-        _isPaused = isPaused;
     }
 
     public GameObject GetGameObject()

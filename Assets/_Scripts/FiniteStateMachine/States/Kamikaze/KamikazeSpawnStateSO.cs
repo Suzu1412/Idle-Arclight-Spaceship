@@ -3,11 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "KamikazeSpawnStateSO", menuName = "Scriptable Objects/FSM/Kamikaze/KamikazeSpawnStateSO")]
 public class KamikazeSpawnStateSO : StateSO<KamikazeSpawnContext>
 {
-    [SerializeField] private GameObjectRuntimeSetSO _enemyRTS;
-
-    public GameObjectRuntimeSetSO EnemyRTS => _enemyRTS;
-
-
 }
 
 
@@ -20,7 +15,6 @@ public class KamikazeSpawnContext : StateContext<KamikazeSpawnStateSO>
     public override void OnEnter()
     {
         base.OnEnter();
-        State.EnemyRTS.Add(_fsm.gameObject);
         Agent.MoveBehaviour.StopMovement();
         _hasBeenExecuted = true;
     }

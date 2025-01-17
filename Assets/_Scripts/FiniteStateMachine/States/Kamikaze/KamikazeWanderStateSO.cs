@@ -25,6 +25,6 @@ public class KamikazeWanderContext : StateContext<KamikazeWanderStateSO>
 
     public override float EvaluateUtility()
     {
-        return Agent.TargetDetector.IsDetected ? State.HighestUtility : 0f;
+        return !Agent.TargetDetector.IsDetected ? State.HighestUtility : 0f;
     }
 }

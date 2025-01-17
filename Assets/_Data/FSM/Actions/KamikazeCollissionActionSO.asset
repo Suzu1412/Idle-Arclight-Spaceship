@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6826570bd0a15479f655c45cef8931, type: 3}
+  m_Name: KamikazeCollissionActionSO
+  m_EditorClassIdentifier: 
+  _playerRTS: {fileID: 11400000, guid: f3fe25a9e8be0d048acc4ac67ad425f1, type: 2}
+  _impactSound: {fileID: 11400000, guid: 9369e5e0b004b4d19a7c8326c1512289, type: 2}
+  _color: {r: 0, g: 1, b: 0, a: 1}

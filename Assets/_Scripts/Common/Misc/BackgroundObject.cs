@@ -3,6 +3,7 @@ using UnityEngine;
 public class BackgroundObject : MonoBehaviour, IPausable
 {
     [SerializeField] private PausableRunTimeSetSO _pausable;
+    [SerializeField] private BoolVariableSO _isPaused;
     private Transform _transform;
     private SpriteRenderer _spriteRenderer;
     private Vector2 _direction = Vector2.down;
@@ -10,6 +11,8 @@ public class BackgroundObject : MonoBehaviour, IPausable
     private Rigidbody2D _rb;
 
     public Rigidbody2D RB => _rb != null ? _rb : _rb = GetComponent<Rigidbody2D>();
+
+    public BoolVariableSO IsPaused => _isPaused;
 
     private void Awake()
     {
@@ -19,6 +22,10 @@ public class BackgroundObject : MonoBehaviour, IPausable
 
     private void FixedUpdate()
     {
+        if (_isPaused.Value)
+        {
+            return;
+        }
         RB.linearVelocity = _direction * _moveSpeed;
     }
 

@@ -148,12 +148,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e36efbef95a76d4cbefd9263706df3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
-  _initialDelay: 25
-  _delayBetweenSpawns: 15
+  _initialDelay: 10
+  _delayBetweenSpawns: 5
   _placementStrategy: {fileID: 11400000, guid: f67319a964eb2844297b5b50ee221b19, type: 2}
   _enemyConfigs:
   - {fileID: 11400000, guid: f2fd5ddeb69d35249aa664060407fea5, type: 2}
+  - {fileID: 11400000, guid: 062be0d777886444da3538397421150c, type: 2}
   OnStartGameEventListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
 --- !u!4 &148453615
 Transform:
@@ -481,6 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ebce0c116adce4ab6444c0ab008a8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
   _minDelayBetweenSpawns: 15
   _maxDelayBetweenSpawns: 75
@@ -496,7 +499,7 @@ Transform:
   m_GameObject: {fileID: 1737741695}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6177206, y: -2.549771, z: -0.014248713}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -550,6 +553,7 @@ MonoBehaviour:
   _initialDelay: 3
   _minDelayBetweenSpawns: {fileID: 11400000, guid: 2de357555a31174478dae732ee2ba5c4, type: 2}
   _maxDelayBetweenSpawns: {fileID: 11400000, guid: 1e5b0151d4e46b34fa6b1bde14d1176d, type: 2}
+  _isPaused: {fileID: 11400000, guid: 24b745dfb6bb5f441a19cd193109cba5, type: 2}
   _placementStrategy: {fileID: 11400000, guid: a0e8ac4c9ba61fc4daf23a4c8ef4a945, type: 2}
   _gemConfigs:
   - {fileID: 11400000, guid: eac2c2c79b35a764f9ab740a335e110b, type: 2}
