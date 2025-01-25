@@ -2,23 +2,29 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/FSM/Player/Move State")]
-public class MoveStateSO : StateSO<MoveStateContext>
+public class MoveStateSO : StateSO<PlayerContext>
 {
-}
-
-
-[System.Serializable]
-public class MoveStateContext : StateContext<MoveStateSO>
-{
-    public override void OnFixedUpdate()
+    public override float EvaluateUtility(PlayerContext context)
     {
-        base.OnFixedUpdate();
-        Agent.MoveBehaviour.Move();
-        Agent.MoveBehaviour.BoundMovement();
+        return context.Agent.Input.Direction != Vector2.zero ? HighestUtility : 0f;
+
     }
 
-    public override float EvaluateUtility()
+    public override void OnEnter(PlayerContext context)
     {
-        return Agent.Input.Direction != Vector2.zero ? State.HighestUtility : 0f;
+    }
+
+    public override void OnExit(PlayerContext context)
+    {
+    }
+
+    public override void OnFixedUpdate(PlayerContext context)
+    {
+        context.Agent.MoveBehaviour.Move();
+        context.Agent.MoveBehaviour.BoundMovement();
+    }
+
+    public override void OnUpdate(PlayerContext context)
+    {
     }
 }

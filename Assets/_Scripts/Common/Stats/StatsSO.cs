@@ -16,6 +16,11 @@ public class StatsSO : SerializableScriptableObject, IStatsData
         Recalculate();
     }
 
+    private void OnValidate()
+    {
+        Recalculate();
+    }
+
     [ContextMenu("Create Stats")]
     public void CreateStats()
     {
@@ -73,6 +78,11 @@ public class StatsSO : SerializableScriptableObject, IStatsData
     [ContextMenu("Recalculate")]
     private void Recalculate()
     {
+        foreach (var stat in _initialStats)
+        {
+            stat.Recalculate();
+        }
+
         foreach (var stat in _runtimeStats)
         {
             stat.Value.CalculateValue();
@@ -133,5 +143,18 @@ public class StatConfig
     public Stat CreateStat()
     {
         return _statComponent.CreateStat(_baseValue);
+    }
+    
+    public void Recalculate()
+    {
+        if (_baseValue < _statComponent.MinValue)
+        {
+            _baseValue = _statComponent.MinValue;
+        }
+
+        if (_baseValue > _statComponent.MaxValue)
+        {
+            _baseValue = _statComponent.MaxValue;
+        }
     }
 }

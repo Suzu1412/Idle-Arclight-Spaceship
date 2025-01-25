@@ -2,7 +2,8 @@ using UnityEngine;
 
 public interface IPausable
 {
-    BoolVariableSO IsPaused { get; }
+    WaitUntilSO WaitUntil { get; set; }
+    BoolVariableSO IsPaused { get; set; }
 
     void Pause(bool isPaused);
 

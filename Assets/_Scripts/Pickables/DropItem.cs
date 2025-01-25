@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DropItem : MonoBehaviour
 {
-    [SerializeField] private DropTableSO dropTable;
+    [SerializeField] private DropTableSO _dropTable;
     [SerializeField] private RandomCirclePlacementStrategySO _randomCirclePlacementStrategy;
     private Vector2 _placement;
     private IHealthSystem healthSystem;
@@ -24,9 +24,14 @@ public class DropItem : MonoBehaviour
         healthSystem.OnDeath -= SpawnItemPickUp;
     }
 
+    public void SetDropTable(DropTableSO dropTable)
+    {
+        _dropTable = dropTable;
+    }
+
     public void SpawnItemPickUp()
     {
-        List<ObjectPoolSettingsSO> dropItems = dropTable.GetDrop();
+        List<ObjectPoolSettingsSO> dropItems = _dropTable.GetDrop();
 
         foreach (ObjectPoolSettingsSO item in dropItems)
         {

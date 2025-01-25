@@ -5,6 +5,7 @@ using UnityEngine;
 public class BackgroundObjectSpawner : MonoBehaviour, IPausable
 {
     [SerializeField] private BoolVariableSO _isPaused;
+    [SerializeField] private WaitUntilSO _waitUntil;
     [SerializeField] private PausableRunTimeSetSO _pausable;
     [SerializeField] private float _minDelayBetweenSpawns = 30f;
     [SerializeField] private float _maxDelayBetweenSpawns = 30f;
@@ -16,7 +17,8 @@ public class BackgroundObjectSpawner : MonoBehaviour, IPausable
     [SerializeField] private VoidGameEventListener OnStartGameEventListener;
     private Coroutine _spawnObjectCoroutine;
 
-    public BoolVariableSO IsPaused => _isPaused;
+    public WaitUntilSO WaitUntil { get => _waitUntil; set => _waitUntil = value; }
+    public BoolVariableSO IsPaused { get => _isPaused; set => _isPaused = value; }
 
     private void OnEnable()
     {

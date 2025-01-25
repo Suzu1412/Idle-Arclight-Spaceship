@@ -4,6 +4,7 @@ public class BackgroundObject : MonoBehaviour, IPausable
 {
     [SerializeField] private PausableRunTimeSetSO _pausable;
     [SerializeField] private BoolVariableSO _isPaused;
+    [SerializeField] private WaitUntilSO _waitUntil;
     private Transform _transform;
     private SpriteRenderer _spriteRenderer;
     private Vector2 _direction = Vector2.down;
@@ -12,7 +13,8 @@ public class BackgroundObject : MonoBehaviour, IPausable
 
     public Rigidbody2D RB => _rb != null ? _rb : _rb = GetComponent<Rigidbody2D>();
 
-    public BoolVariableSO IsPaused => _isPaused;
+    public WaitUntilSO WaitUntil { get => _waitUntil; set => _waitUntil = value; }
+    public BoolVariableSO IsPaused { get => _isPaused; set => _isPaused = value; }
 
     private void Awake()
     {

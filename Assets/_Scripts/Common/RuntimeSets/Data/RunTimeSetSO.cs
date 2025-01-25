@@ -13,7 +13,7 @@ public abstract class RuntimeSetSO<T> : ScriptableObject
         Items.Clear();
     }
 
-    public void Add(T item)
+    public virtual void Add(T item)
     {
         if (!Items.Contains(item))
         {
@@ -22,7 +22,7 @@ public abstract class RuntimeSetSO<T> : ScriptableObject
         }
     }
 
-    public void Remove(T item)
+    public virtual void Remove(T item)
     {
         if (Items.Contains(item))
         {

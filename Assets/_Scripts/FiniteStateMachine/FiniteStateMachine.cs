@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,42 +6,28 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
 {
     [SerializeField] private PausableRunTimeSetSO _pausable = default;
     [SerializeField] private BoolVariableSO _isPaused;
+    [SerializeField] private WaitUntilSO _waitUntil;
     [SerializeField][Tooltip("Agent - Enemy - Boss RTS goes here")] private GameObjectRuntimeSetSO _activeCharacterRTS;
 
-    [SerializeField][ReadOnly] private int _currentPhase = 0;
     private IAgent _agent;
     private Coroutine _transitionCoroutine;
     private float _handleTransitionTime = 0.1f;
     [SerializeField] private StateListSO _states; // All Possible States
     [SerializeField][ReadOnly] private StateSO _currentState;
     [SerializeReference] private StateContext _currentContext;
-
-    private Dictionary<StateSO, StateContext> _stateContexts = new();
-    private Dictionary<StateSO, Queue<StateContext>> _contextPool = new();
+    
     internal IAgent Agent => _agent ??= GetComponent<IAgent>();
 
-    internal StateContext ActiveContext => _currentContext;
-
-    public BoolVariableSO IsPaused => _isPaused;
-
-    private void Awake()
-    {
-        if (_states == null)
-        {
-            Debug.LogError(gameObject.transform.parent.name + " has no states assigned, please fix");
-        }
-        InitializeContext();
-    }
+    public WaitUntilSO WaitUntil { get => _waitUntil; set => _waitUntil = value; }
+    public BoolVariableSO IsPaused { get => _isPaused; set => _isPaused = value; }
 
     private void OnEnable()
     {
         _pausable.Add(this);
         _activeCharacterRTS.Add(gameObject);
-        _currentPhase = 0;
-        ResetContext();
-        ChangePhase(_currentPhase);
-        ChangeState(_states.DefaultState);
         _transitionCoroutine = StartCoroutine(TransitionCoroutine());
+        Agent.Input.OnMovement += HandleMovement;
+        Agent.Input.Attack += HandleAttack;
     }
 
     private void OnDisable()
@@ -50,39 +35,51 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
         _pausable.Remove(this);
         _activeCharacterRTS.Remove(gameObject);
         StopAllCoroutines();
-        _currentContext?.OnExit();
+        Agent.Input.OnMovement -= HandleMovement;
+        Agent.Input.Attack -= HandleAttack;
+
+        if (_currentState == null || _currentContext == null) return;
+        _currentState.OnExit(_currentContext);
+
     }
 
     private void Update()
     {
         if (_isPaused.Value) return;
-        _currentContext?.OnUpdate();
+        if (_currentState == null || _currentContext == null) return;
+        _currentState?.OnUpdate(_currentContext);
     }
 
     private void FixedUpdate()
     {
         if (_isPaused.Value) return;
-        _currentContext?.OnFixedUpdate();
+        if (_currentState == null || _currentContext == null) return;
+        _currentState.OnFixedUpdate(_currentContext);
     }
+
+    public void SetStates(StateListSO states)
+    {
+        _states = states;
+        InitializeContext();
+        ChangeState(_states.DefaultState);
+    }
+
 
     internal void Transition()
     {
         StateSO bestState = null;
         float highestUtility = 0f;
 
+        if (_currentState == null || _currentContext == null) return;
 
-        if (ActiveContext == null) return;
-
-
-        foreach (var context in _stateContexts)
+        foreach (var state in _states.GetStates())
         {
-            float utility = context.Value.EvaluateUtility();
+            float utility = state.EvaluateUtility(_currentContext);
 
             if (utility > highestUtility)
             {
                 highestUtility = utility;
-                bestState = context.Key;
-
+                bestState = state;
             }
         }
 
@@ -94,32 +91,18 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
 
     internal void ChangeState(StateSO state)
     {
-        if (_currentContext != null)
+        if (_currentState != null && _currentContext != null)
         {
-            _currentContext.OnExit();
-            ReturnContextToPool(state, _currentContext);
+            _currentState.OnExit(_currentContext);
         }
 
         _currentState = state;
 
-        if (_currentState != null)
+        if (_currentState != null && _currentContext != null)
         {
-            if (!_stateContexts.TryGetValue(_currentState, out var context))
-            {
-                context = GetOrCreateContext(_currentState);
-                _stateContexts.Add(_currentState, context);
-            }
-            _currentContext = context;
-            _currentContext.OnEnter();
+            _currentState.OnEnter(_currentContext);
         }
     }
-
-    internal void ChangePhase(int phase)
-    {
-        _currentPhase = phase;
-        _states.UpdatePhaseStates(_currentPhase);
-    }
-
 
     private IEnumerator TransitionCoroutine()
     {
@@ -130,50 +113,28 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
         }
     }
 
-    private StateContext GetOrCreateContext(StateSO state)
-    {
-        if (!_contextPool.TryGetValue(state, out var pool))
-        {
-            pool = new Queue<StateContext>();
-            _contextPool[state] = pool;
-        }
-        return pool.Count > 0 ? pool.Dequeue() : state.CreateContext();
-    }
-
-    private void ReturnContextToPool(StateSO state, StateContext context)
-    {
-        if (!_contextPool.ContainsKey(state))
-        {
-            _contextPool[state] = new Queue<StateContext>();
-        }
-
-        _contextPool[state].Enqueue(context);
-    }
-
-    private void ResetContext()
-    {
-        foreach (var context in _stateContexts)
-        {
-
-            //context.Value.Dequeue().Reset();
-        }
-    }
-
     private void InitializeContext()
     {
-        foreach (var state in _states.GetStates())
-        {
-            _stateContexts[state] = GetOrCreateContext(state);
-            _stateContexts[state].Initialize(Agent, this, state);
-            ReturnContextToPool(state, _stateContexts[state]);
-        }
+        _currentContext = _states.DefaultState.CreateContext();
+        _currentContext.Initialize(Agent, this);
     }
 
     private void OnDrawGizmos()
     {
-        if (_currentContext == null)
-            return;
-        _currentContext.DrawGizmos();
+        if (_currentState == null || _currentContext == null) return;
+        _currentState.DrawGizmos(_currentContext);
+    }
+
+    private void HandleMovement(Vector2 direction)
+    {
+        if (_currentState == null || _currentContext == null) return;
+        _currentState.HandleMovement(_currentContext, direction);
+    }
+
+    private void HandleAttack(bool isAttacking)
+    {
+        if (_currentState == null || _currentContext == null) return;
+        _currentState.HandleAttack(_currentContext, isAttacking);
     }
 
     public void Pause(bool isPaused)

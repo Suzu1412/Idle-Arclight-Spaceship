@@ -14,12 +14,15 @@ public class Agent : MonoBehaviour, IAgent
     private IAgentAnimation _agentAnimation;
     private IAgentRenderer _agentRenderer;
     private ITargetDetector _targetDetector;
+    private FiniteStateMachine _fsm;
     private Collider2D _collider;
-    private AgentDataSO _data;
+    private DropItem _dropItem;
 
     public IHealthSystem HealthSystem => _healthSystem ??= GetComponent<IHealthSystem>();
     public IAgentInput Input => _input ??= GetComponentInParent<IAgentInput>();
-    public StatsSystem StatsSystem => _statsSystem ??= GetComponent<StatsSystem>();
+    public FiniteStateMachine FSM => _fsm = _fsm != null ? _fsm : _fsm = GetComponent<FiniteStateMachine>();
+    public DropItem DropItem => _dropItem != null ? _dropItem : _dropItem = GetComponent<DropItem>();
+    public StatsSystem StatsSystem => _statsSystem = _statsSystem != null ? _statsSystem : _statsSystem = GetComponent<StatsSystem>();
     public IAttack AttackSystem => _attackSystem ??= GetComponent<IAttack>();
     public ICanMove MoveBehaviour => _moveBehaviour ??= GetComponent<ICanMove>();
     public ILevelSystem LevelSystem => _levelSystem ??= GetComponent<ILevelSystem>();
@@ -55,20 +58,16 @@ public class Agent : MonoBehaviour, IAgent
 
     public void SetPlayerData(PlayerAgentDataSO data)
     {
-        _data = data;
-        MoveBehaviour.SetMoveData(data.MovementData);
-        StatsSystem.SetStatsData(data.AgentStats);
-        HealthSystem.Initialize((int)StatsSystem.GetStat<HealthStatSO>().Value);
-        AgentRenderer.SpriteRenderer.sprite = data.Sprite;
+        
     }
 
     public void SetEnemyData(EnemyAgentDataSO data)
     {
-        _data = data;
-        MoveBehaviour.SetMoveData(data.MovementData);
-        StatsSystem.SetStatsData(data.AgentStats);
-        HealthSystem.Initialize((int)StatsSystem.GetStat<HealthStatSO>().Value);
-        //AgentRenderer.SpriteRenderer.sprite = data.Sprite;
+    }
+
+    public Stat GetStat<T>() where T : StatComponentSO
+    {
+        return StatsSystem.GetStat<T>();
     }
 
     public Stat GetStat(StatComponentSO statComponent)

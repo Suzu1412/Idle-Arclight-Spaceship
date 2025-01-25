@@ -105,9 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e0157566f54f8479b724b816cc5e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textData: {fileID: 11400000, guid: be76e86c201f7c1439a5f22c2099f88d, type: 2}
-  _positionOffset: {x: 0.5, y: 0.2}
-  _isPositionRandom: 1
+  _numberPrefab: {fileID: 0}
 --- !u!114 &7239761768296501281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,9 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01893052164cdcd4c9c2ff28b4aeb8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shakeStrength: 0.1
-  _shakeDuration: 0.3
-  _shakeVibrato: 30
+  _magnitude: 0.1
+  _duration: 0.3
 --- !u!114 &5919154438100999507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +237,6 @@ GameObject:
   - component: {fileID: 2322346657717201167}
   - component: {fileID: 8452328445759861596}
   - component: {fileID: 1383294549933778088}
-  - component: {fileID: 8992151313031998956}
   - component: {fileID: 474114576896889552}
   - component: {fileID: 6888704489164043810}
   m_Layer: 9
@@ -356,6 +352,7 @@ MonoBehaviour:
   _defaultInvulnerability: 0.1
   OnHealthChangedEvent: {fileID: 0}
   OnDamagedEvent: {fileID: 0}
+  OnHealedEvent: {fileID: 0}
 --- !u!50 &3502664268840731446
 Rigidbody2D:
   serializedVersion: 5
@@ -395,11 +392,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea65c7598fc3848cdadb45dff6dbc21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debugCurrentState: {fileID: 0}
-  _stateList:
-  - {fileID: 11400000, guid: b879dc9f0d3b9439399216e09cdac253, type: 2}
-  - {fileID: 11400000, guid: a55135c15ca684b1f88dfbe0506be4fc, type: 2}
-  - {fileID: 11400000, guid: 92d4ef6d305ac4a77a6ecfdfd9c8e306, type: 2}
+  _pausable: {fileID: 0}
+  _isPaused: {fileID: 0}
+  _activeCharacterRTS: {fileID: 0}
+  _currentPhase: 0
+  _states: {fileID: 0}
+  _currentState: {fileID: 0}
+  _currentContext:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &8452328445759861596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,6 +422,9 @@ MonoBehaviour:
   _topBounds: 3
   _bottomBounds: -3
   _hasBoundaries: 0
+  _moveStat: {fileID: 0}
+  _pausable: {fileID: 0}
+  _isPaused: {fileID: 0}
 --- !u!114 &1383294549933778088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,19 +440,6 @@ MonoBehaviour:
   _reward: {fileID: 0}
   OnGainCurrencyEvent: {fileID: 11400000, guid: 272b4dfd9f38aa64199fdd1c05d2d19c, type: 2}
   OnGainExpEvent: {fileID: 11400000, guid: 091533ac90c2d564ba610df62567201e, type: 2}
---- !u!114 &8992151313031998956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5324876068420697187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32f79b68b2bbc6f44b7a0e0a6ad975f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _destroyOnContact: 1
 --- !u!114 &474114576896889552
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,29 +1,31 @@
+using JetBrains.Annotations;
 using System;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/FSM/Player/Idle State")]
-public class IdleStateSO : StateSO<IdleStateContext>
+public class IdleStateSO : StateSO<PlayerContext>
 {
-}
-
-[System.Serializable]
-public class IdleStateContext : StateContext<IdleStateSO>
-{
-    public override void OnEnter()
+    public override float EvaluateUtility(PlayerContext context)
     {
-        base.OnEnter();
-        _agent.MoveBehaviour.StopMovement();
+        return context.Agent.Input.Direction == Vector2.zero ? HighestUtility : 0f;
+
     }
 
-    public override float EvaluateUtility()
+    public override void OnEnter(PlayerContext context)
     {
-        // for boss fight use: 
-        //if (context.stateMachine.currentPhase != phase)
-        //{
-        //    return 0f; // Ignore if not in the correct phase
-        //}
+        context.Agent.MoveBehaviour.StopMovement();
+    }
 
-        return Agent.Input.Direction == Vector2.zero ? State.HighestUtility : 0f;
+    public override void OnExit(PlayerContext context)
+    {
+    }
 
+    public override void OnFixedUpdate(PlayerContext context)
+    {
+    }
+
+    public override void OnUpdate(PlayerContext context)
+    {
     }
 }
+

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -11,7 +10,7 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
     [Header("Void Game Event Listener")]
     [SerializeField] private VoidGameEventListener OnStartGameEventListener;
 
-    [SerializeField] private GameObject _playerPrefab;
+    [SerializeField] private ObjectPoolSettingsSO _playerPrefabPool;
     private GameObject _player;
     [SerializeField] private Vector2 _initialPosition = new(0f, -2f);
     [SerializeField] private PlayerAgentDataSO _defaultPlayerData = default;
@@ -85,14 +84,13 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
 
     private void SpawnPlayer()
     {
-        if (_player == null)
-        {
-            _player = Instantiate(_playerPrefab);
-        }
-        _player.SetActive(true);
+        _player = ObjectPoolFactory.Spawn(_playerPrefabPool).gameObject;
+        
         _agent = _player.GetComponentInChildren<Agent>();
+
+        _defaultPlayerData.InitializeAgent(_agent, _initialPosition);
         _agent.HealthSystem.OnDeath += PlayerDeath;
-        SetPosition();
+        //SetPosition();
     }
 
     private void SetPosition()

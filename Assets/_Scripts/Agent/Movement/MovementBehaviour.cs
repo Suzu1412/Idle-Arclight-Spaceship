@@ -17,14 +17,17 @@ public class MovementBehaviour : MonoBehaviour, ICanMove, IPausable
     private Rigidbody2D _rb;
     [SerializeField] private bool _hasBoundaries;
     private IMoveData _moveData;
+    [SerializeField] private MovementStatSO _moveStat;
     [SerializeField] private PausableRunTimeSetSO _pausable;
     [SerializeField] private BoolVariableSO _isPaused;
+    [SerializeField] private WaitUntilSO _waitUntil;
 
 
     public IAgent Agent => _agent ??= GetComponent<IAgent>();
     public Rigidbody2D RB => _rb != null ? _rb : _rb = GetComponent<Rigidbody2D>();
 
-    public BoolVariableSO IsPaused => _isPaused;
+    public WaitUntilSO WaitUntil { get => _waitUntil; set => _waitUntil = value; }
+    public BoolVariableSO IsPaused { get => _isPaused; set => _isPaused = value; }
 
     private void OnEnable()
     {
@@ -80,7 +83,8 @@ public class MovementBehaviour : MonoBehaviour, ICanMove, IPausable
         {
             return Vector2.zero;
         }
-        Vector2 targetSpeed = _direction * _moveData.MaxSpeed;
+
+        Vector2 targetSpeed = _direction * Agent.GetStat(_moveStat).Value;
 
         // Smooth changes to are direction and speed
         targetSpeed = Vector2.Lerp(
@@ -103,7 +107,6 @@ public class MovementBehaviour : MonoBehaviour, ICanMove, IPausable
     public void MoveTowards(Vector2 position)
     {
         _targetPosition = position;
-        Debug.Log(_targetPosition);
         StopAllCoroutines();
         StartCoroutine(MoveTowardsCoroutine());
     }

@@ -19,7 +19,7 @@ MonoBehaviour:
   _upgradeCostMultiplier: {fileID: 11400000, guid: e546580656121af4894547570ecaf71a, type: 2}
   _modifierToApply:
     _modifierType: 0
-    _value: 0.25
+    _value: 0.15
     _source: Gem On Get 3
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
   _isApplied: 1

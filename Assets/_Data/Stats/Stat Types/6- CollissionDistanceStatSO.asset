@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: 6- CollissionDistanceStatSO
   m_EditorClassIdentifier: 
   _minValue: 0.25
-  _maxValue: 1
+  _maxValue: 3

@@ -38,7 +38,7 @@ public class PickUpSystem : MonoBehaviour
             {
                 if (collider.TryGetComponent(out ItemMagnet item))
                 {
-                    item.Magnet(this.transform);
+                    item.Magnet(gameObject);
                 }
             }
         }

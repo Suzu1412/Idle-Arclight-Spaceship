@@ -1,9 +1,17 @@
 using UnityEngine;
 
-public class GamePauseManager : MonoBehaviour
+public class GamePauseManager : Singleton<GamePauseManager>
 {
     [SerializeField] private BoolGameEventListener OnGameplayPausedListener;
     [SerializeField] private PausableRunTimeSetSO _pausable;
+    [SerializeField] private BoolVariableSO _isPaused;
+    [SerializeField] private WaitUntilSO _waitUntil;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _waitUntil.Initialize();
+    }
 
     void Start()
     {
@@ -23,7 +31,6 @@ public class GamePauseManager : MonoBehaviour
     private void OnDisable()
     {
         OnGameplayPausedListener.DeRegister(PauseGameplay);
-
     }
 
     private void PauseGameplay(bool isPaused)

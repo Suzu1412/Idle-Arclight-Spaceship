@@ -1,24 +1,28 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/FSM/Meteor/Spawn State")]
-public class MeteorSpawnStateSO : StateSO<MeteorSpawnContext>
+public class MeteorSpawnStateSO : StateSO<MeteorContext>
 {
-}
-
-[System.Serializable]
-public class MeteorSpawnContext : StateContext<MeteorSpawnStateSO>
-{
-    [SerializeField] private bool _hasBeenExecuted = false;
-
-    public override void OnEnter()
+    public override float EvaluateUtility(MeteorContext context)
     {
-        base.OnEnter();
-        Agent.MoveBehaviour.StopMovement();
-        _hasBeenExecuted = true;
+        return !context.IsIntroExecuted ? HighestUtility : 0f;
     }
 
-    public override float EvaluateUtility()
+    public override void OnEnter(MeteorContext context)
     {
-        return !_hasBeenExecuted ? State.HighestUtility : 0f;
+        context.Agent.MoveBehaviour.StopMovement();
+        context.IsIntroExecuted = true;
+    }
+
+    public override void OnExit(MeteorContext context)
+    {
+    }
+
+    public override void OnFixedUpdate(MeteorContext context)
+    {
+    }
+
+    public override void OnUpdate(MeteorContext context)
+    {
     }
 }

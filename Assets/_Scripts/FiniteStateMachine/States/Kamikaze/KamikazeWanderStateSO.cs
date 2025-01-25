@@ -1,30 +1,31 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "KamikazeWanderStateSO", menuName = "Scriptable Objects/FSM/Kamikaze/KamikazeWanderStateSO")]
-public class KamikazeWanderStateSO : StateSO<KamikazeWanderContext>
+public class KamikazeWanderStateSO : StateSO<KamikazeContext>
 {
-    
-}
-
-[System.Serializable]
-public class KamikazeWanderContext : StateContext<KamikazeWanderStateSO>
-{
-    public override void OnEnter()
+    public override float EvaluateUtility(KamikazeContext context)
     {
-        base.OnEnter();
-        var direction = Vector2.down;
-        Agent.Input.CallOnMovementInput(direction);
-        Agent.AgentRenderer.RotateSpriteToDirection(direction);
+        return !context.Agent.TargetDetector.IsDetected ? HighestUtility : 0f;
+
     }
 
-    public override void OnFixedUpdate()
+    public override void OnEnter(KamikazeContext context)
     {
-        base.OnFixedUpdate();
-        Agent.MoveBehaviour.Move();
+        var direction = context.Agent.Input.Direction; // Set on the Spawn State. Else will follow the last direction
+        context.Agent.Input.CallOnMovementInput(direction);
+        context.Agent.AgentRenderer.RotateSpriteToDirection(direction);
     }
 
-    public override float EvaluateUtility()
+    public override void OnExit(KamikazeContext context)
     {
-        return !Agent.TargetDetector.IsDetected ? State.HighestUtility : 0f;
+    }
+
+    public override void OnFixedUpdate(KamikazeContext context)
+    {
+        context.Agent.MoveBehaviour.Move();
+    }
+
+    public override void OnUpdate(KamikazeContext context)
+    {
     }
 }

@@ -166,7 +166,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
-  m_RendererPriority: 0
+  m_RendererPriority: -1
   m_Materials:
   - {fileID: 2100000, guid: 5bd08783c3cf03943a6c9d043e12104a, type: 2}
   m_StaticBatchInfo:
@@ -1088,6 +1088,10 @@ PrefabInstance:
     - target: {fileID: 9187385312093071590, guid: 1941a7ce721e3f140b979c728509f732, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9187385312093071590, guid: 1941a7ce721e3f140b979c728509f732, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4907867506967537612, guid: 1941a7ce721e3f140b979c728509f732, type: 3}

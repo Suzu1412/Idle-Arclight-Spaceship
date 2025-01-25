@@ -1,34 +1,63 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class AttackSystem : MonoBehaviour, IAttack
+public class AttackSystem : MonoBehaviour, IAttack, IPausable
 {
-    private IAgent _agent;
+    private Agent _agent;
+
+    private Coroutine _attackCoroutine;
+    [SerializeField] private WaitUntilSO _waitUntil;
+    [SerializeField] private BoolVariableSO _isPaused;
     [SerializeField] private Transform _attackPosition;
-    [SerializeField] private BaseAttackStrategySO _attackStrategySO;
+    [SerializeField] private AttackPatternSO _attackPattern;
     [SerializeField] private LayerMask _projectileMask;
-    private BaseAttackStrategy _attackStrategy;
-    private float _attackDelay;
-    internal IAgent Agent => _agent ??= GetComponent<IAgent>();
+    internal Agent Agent => _agent = _agent != null ? _agent : _agent = GetComponent<Agent>();
     public Transform AttackPosition => _attackPosition;
 
     public LayerMask ProjectileMask => _projectileMask;
 
-    private void Awake()
+    public WaitUntilSO WaitUntil { get => _waitUntil; set => _waitUntil = value; }
+    public BoolVariableSO IsPaused { get => _isPaused; set => _isPaused = value; }
+
+    private void OnEnable()
     {
-        _attackStrategy = _attackStrategySO.CreateAttack();
-        _attackStrategy.Initialize(Agent, _attackStrategySO, _attackPosition);
+        _attackCoroutine = null;
     }
 
     private void Update()
     {
-        _attackDelay -= Time.deltaTime;
+        if (_isPaused.Value) return;
     }
 
     public void Attack(bool isPressed)
     {
-        if (_attackDelay > 0f) return;
-        _attackStrategy.Attack(isPressed);
-        _attackDelay = _attackStrategySO.AttackDelay;
+        if (isPressed)
+        {
+            if (_attackCoroutine != null)
+            {
+                return; // Do not start a new coroutine if one is already running
+            }
+
+            _attackCoroutine = StartCoroutine(RunAttackPattern());
+        }
+    }
+
+    private IEnumerator RunAttackPattern()
+    {
+        yield return _attackPattern.Execute(_attackPosition, this, Agent);
+
+        // Coroutine finished
+        _attackCoroutine = null;
+    }
+
+
+    public void Pause(bool isPaused)
+    {
+    }
+
+    public GameObject GetGameObject()
+    {
+        return this.gameObject;
     }
 }

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _saveable: {fileID: 11400000, guid: e7213c21199ce404fb056957629494aa, type: 2}
   OnStartGameEventListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
-  _playerPrefab: {fileID: 1131754902826937617, guid: 7d59e6af296d4d34fb25b7f7f432f8ef, type: 3}
+  _playerPrefabPool: {fileID: 11400000, guid: 0adae1f257e0ee94ea0b3ef25e6f82e0, type: 2}
   _initialPosition: {x: 0, y: -2}
   _defaultPlayerData: {fileID: 11400000, guid: 0a4ec011e7c4d46d0968eeea28a6b23c, type: 2}
   _players: {fileID: 11400000, guid: d2f45750ece0740569689aeb7d22c78a, type: 2}

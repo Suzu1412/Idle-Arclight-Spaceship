@@ -9,6 +9,7 @@ public class TargetDetector : MonoBehaviour, ITargetDetector
     [SerializeField] private Color _undetectedColor = Color.red;
     [SerializeField] private float _minDistance = 2f;
     private bool _targetDetected = false;
+    private bool _isVisibleToCamera = false;
     private Transform _transform;
     private Transform _targetTransform;
     private Coroutine _detectionCoroutine;
@@ -18,6 +19,8 @@ public class TargetDetector : MonoBehaviour, ITargetDetector
     public bool IsDetected => _targetDetected;
 
     internal IAgent Agent => _agent ??= GetComponent<IAgent>();
+
+    public bool IsVisibleToCamera => _isVisibleToCamera;
 
     private Camera _mainCamera;
 
@@ -46,14 +49,22 @@ public class TargetDetector : MonoBehaviour, ITargetDetector
     {
         while (true)
         {
+            _isVisibleToCamera = false;
             _targetTransform = null;
             _targetDetected = false;
             float closestDistance = float.MaxValue;
 
+            if (CheckIsVisibleToCamera(transform.position))
+            {
+                _isVisibleToCamera = true;
+            }
+
             foreach (var target in _targetRTS.Items)
             {
+                if (!IsVisibleToCamera) break;
+
                 // Inner Detection
-                if (_transform.position.IsWithinRange(target.transform.position, _minDistance) && IsVisibleToCamera(target.transform.position))
+                if (_transform.position.IsWithinRange(target.transform.position, _minDistance) && CheckIsVisibleToCamera(target.transform.position))
                 {
                     float distanceSquared = _transform.position.GetSquaredDistanceTo(target.transform.position);
 
@@ -73,7 +84,7 @@ public class TargetDetector : MonoBehaviour, ITargetDetector
                     Vector3 targetDirection = _transform.position.GetDirectionTo(target.transform.position);
                     float dot = Vector3.Dot(Agent.FacingDirection, targetDirection);
                     float coneAngle = Agent.StatsSystem.GetStatValue<DetectionAngleStatSO>();
-                    if (dot > Mathf.Cos(coneAngle * Mathf.Deg2Rad / 2) && IsVisibleToCamera(target.transform.position))
+                    if (dot > Mathf.Cos(coneAngle * Mathf.Deg2Rad / 2) && CheckIsVisibleToCamera(target.transform.position))
                     {
                         float distanceSquared = _transform.position.GetSquaredDistanceTo(target.transform.position);
 
@@ -91,7 +102,7 @@ public class TargetDetector : MonoBehaviour, ITargetDetector
         }
     }
 
-    private bool IsVisibleToCamera(Vector3 targetPosition)
+    private bool CheckIsVisibleToCamera(Vector3 targetPosition)
     {
         if (_mainCamera == null)  return false;
         // Convert the target position to viewport space

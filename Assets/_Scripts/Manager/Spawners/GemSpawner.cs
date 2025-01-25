@@ -5,6 +5,7 @@ using UnityEngine;
 public class GemSpawner : MonoBehaviour, IPausable
 {
     [SerializeField] private PausableRunTimeSetSO _pausable;
+    [SerializeField] private WaitUntilSO _waitUntil;
     [SerializeField] private float _initialDelay = 3f;
     [SerializeField] private FloatVariableSO _minDelayBetweenSpawns;
     [SerializeField] private FloatVariableSO _maxDelayBetweenSpawns;
@@ -22,7 +23,8 @@ public class GemSpawner : MonoBehaviour, IPausable
     private Vector3 _newPosition;
     private int _randomPattern;
 
-    public BoolVariableSO IsPaused => _isPaused;
+    public WaitUntilSO WaitUntil { get => _waitUntil; set => _waitUntil = value; }
+    public BoolVariableSO IsPaused { get => _isPaused; set => _isPaused = value; }
 
     private void OnEnable()
     {
@@ -51,11 +53,8 @@ public class GemSpawner : MonoBehaviour, IPausable
 
         while (true)
         {
-            if (!_isPaused.Value)
-            {
-                delayBetweenSpawns -= Time.deltaTime;
-            }
-
+            yield return _waitUntil;
+            delayBetweenSpawns -= Time.deltaTime;
             yield return null;
 
             if (delayBetweenSpawns <= 0f)

@@ -1,33 +1,27 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Death State", menuName = "Scriptable Objects/FSM/Player/Death State")]
-public class DeathStateSO : StateSO<DeathStateContext>
+public class DeathStateSO : StateSO<PlayerContext>
 {
-}
-[System.Serializable]
-public class DeathStateContext : StateContext<DeathStateSO>
-{
-    public override void OnEnter()
+    public override float EvaluateUtility(PlayerContext context)
     {
-        base.OnEnter();
-        Agent.HealthSystem.Remove(_fsm.gameObject);
+        return context.Agent.HealthSystem.IsDeath ? HighestUtility : 0f;
     }
 
-    public override void OnExit()
+    public override void OnEnter(PlayerContext context)
     {
-        base.OnExit();
+        context.Agent.HealthSystem.Remove(context.FSM.gameObject);
     }
 
-    protected override void HandleMovement(Vector2 direction)
+    public override void OnExit(PlayerContext context)
     {
     }
 
-    protected override void HandleAttack(bool isAttacking)
+    public override void OnFixedUpdate(PlayerContext context)
     {
     }
 
-    public override float EvaluateUtility()
+    public override void OnUpdate(PlayerContext context)
     {
-        return Agent.HealthSystem.IsDeath ? State.HighestUtility : 0f;
     }
 }

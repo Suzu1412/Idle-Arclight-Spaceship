@@ -1,34 +1,27 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "KamikazeDeathStateSO", menuName = "Scriptable Objects/FSM/Kamikaze/KamikazeDeathStateSO")]
-public class KamikazeDeathStateSO : StateSO<KamikazeDeathStateContext>
+public class KamikazeDeathStateSO : StateSO<KamikazeContext>
 {
-}
-
-[System.Serializable]
-public class KamikazeDeathStateContext : StateContext<KamikazeDeathStateSO>
-{
-    public override void OnEnter()
+    public override float EvaluateUtility(KamikazeContext context)
     {
-        base.OnEnter();
-        Agent.HealthSystem.Remove(_fsm.gameObject);
+        return context.Agent.HealthSystem.IsDeath ? HighestUtility : 0f;
     }
 
-    public override void OnExit()
+    public override void OnEnter(KamikazeContext context)
     {
-        base.OnExit();
+        context.Agent.HealthSystem.Remove(context.FSM.gameObject);
     }
 
-    protected override void HandleMovement(Vector2 direction)
+    public override void OnExit(KamikazeContext context)
     {
     }
 
-    protected override void HandleAttack(bool isAttacking)
+    public override void OnFixedUpdate(KamikazeContext context)
     {
     }
 
-    public override float EvaluateUtility()
+    public override void OnUpdate(KamikazeContext context)
     {
-        return Agent.HealthSystem.IsDeath ? State.HighestUtility : 0f;
     }
 }

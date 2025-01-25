@@ -18,8 +18,7 @@ public class ItemMagnet : MonoBehaviour
         _collider.enabled = true;
     }
 
-
-    public void Magnet(Transform other)
+    public void Magnet(GameObject other)
     {
         PickUp.Magnet(other);
         _collider.enabled = false;

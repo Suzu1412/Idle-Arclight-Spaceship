@@ -1,26 +1,28 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/FSM/Meteor/Destroyed State")]
-public class MeteorDestroyedStateSO : StateSO<MeteorDestroyedContext>
+public class MeteorDestroyedStateSO : StateSO<MeteorContext>
 {
-}
-
-[System.Serializable]
-public class MeteorDestroyedContext : StateContext<MeteorDestroyedStateSO>
-{
-    public override void OnEnter()
+    public override float EvaluateUtility(MeteorContext context)
     {
-        base.OnEnter();
-        Agent.HealthSystem.Remove(_fsm.gameObject);
+        return context.Agent.HealthSystem.IsDeath ? HighestUtility : 0;
+
     }
 
-    public override void OnExit()
+    public override void OnEnter(MeteorContext context)
     {
-        base.OnExit();
+        context.Agent.HealthSystem.Remove(context.FSM.gameObject);
     }
 
-    public override float EvaluateUtility()
+    public override void OnExit(MeteorContext context)
     {
-        return Agent.HealthSystem.IsDeath ? State.HighestUtility : 0;
+    }
+
+    public override void OnFixedUpdate(MeteorContext context)
+    {
+    }
+
+    public override void OnUpdate(MeteorContext context)
+    {
     }
 }

@@ -5,23 +5,23 @@ public class Projectile : MonoBehaviour, IPausable
 {
     [SerializeField] private BoolVariableSO _isPaused;
     [SerializeField] private PausableRunTimeSetSO _pausable;
+    [SerializeField] private WaitUntilSO _waitUntil;
     private Rigidbody2D _rb;
     [SerializeField] private LayerMask whatDestroyBullet;
     [SerializeField] private float _projectileSpeed = 10f;
-    [SerializeField] private float _projectileRange = 10f;
-    [SerializeField] private float _damage = 5;
+    [SerializeField] private float _projectileLifeTime = 10f;
+    private float _damage;
     private SpriteRenderer spriteRenderer;
     private ObjectPooler _pool;
     [SerializeField] private SoundDataSO _impactSFX;
     [SerializeField] private ObjectPoolSettingsSO _impactPool = default;
-    [SerializeField] private float projectileDuration = 6f;
-    public float ProjectileRange => _projectileRange;
 
     public ObjectPooler Pool => _pool = _pool != null ? _pool : gameObject.GetOrAdd<ObjectPooler>();
 
     public Rigidbody2D RB => _rb != null ? _rb : _rb = gameObject.GetOrAdd<Rigidbody2D>();
 
-    public BoolVariableSO IsPaused => _isPaused;
+    public WaitUntilSO WaitUntil { get => _waitUntil; set => _waitUntil = value; }
+    public BoolVariableSO IsPaused { get => _isPaused; set => _isPaused = value; }
 
     private void Awake()
     {
@@ -43,6 +43,17 @@ public class Projectile : MonoBehaviour, IPausable
         _pausable.Remove(this);
     }
 
+    private void Update()
+    {
+        if (_isPaused.Value) return;
+        _projectileLifeTime -= Time.deltaTime;
+
+        if (_projectileLifeTime <= 0f)
+        {
+            ObjectPoolFactory.ReturnToPool(Pool);
+        }
+    }
+
     private void FixedUpdate()
     {
         // Rotate Bullet in direction of velocity
@@ -50,11 +61,17 @@ public class Projectile : MonoBehaviour, IPausable
         RB.linearVelocity = transform.right * _projectileSpeed;
     }
 
-    public void Initialize(Sprite sprite)
+    public void SetSprite(Sprite sprite)
     {
         spriteRenderer.sprite = sprite;
 
     }
+
+    public void SetLifeTime(float lifeTime)
+    {
+        _projectileLifeTime = lifeTime;
+    }
+
     public void SetProjectileDamage(float damage)
     {
         _damage = damage;
@@ -68,11 +85,6 @@ public class Projectile : MonoBehaviour, IPausable
     public void SetLayerMask(LayerMask layerMask)
     {
         this.gameObject.layer = layerMask.GetLayer();
-    }
-
-    public void UpdateWeaponInfo(float projectileRange)
-    {
-        _projectileRange = projectileRange;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

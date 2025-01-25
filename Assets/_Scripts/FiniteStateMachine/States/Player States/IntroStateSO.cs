@@ -2,36 +2,31 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "IntroStateSO", menuName = "Scriptable Objects/FSM/Player/Intro State")]
-public class IntroStateSO : StateSO<IntroStateContext>
+public class IntroStateSO : StateSO<PlayerContext>
 {
     [SerializeField] private float _invulnerabilityDuration = 3f;
 
 
-    public float InvulnerabilityDuration => _invulnerabilityDuration;
-}
-
-[System.Serializable]
-public class IntroStateContext : StateContext<IntroStateSO>
-{
-    [SerializeField] private bool _hasBeenExecuted = false;
-
-    public override void OnEnter()
+    public override float EvaluateUtility(PlayerContext context)
     {
-        base.OnEnter();
-        Agent.HealthSystem.SetInvulnerability(true, State.InvulnerabilityDuration);
-        _hasBeenExecuted = true;
+        return !context.IsIntroExecuted ? HighestUtility : 0f;
     }
 
-    protected override void HandleMovement(Vector2 direction)
+    public override void OnEnter(PlayerContext context)
+    {
+        context.Agent.HealthSystem.SetInvulnerability(true, _invulnerabilityDuration);
+        context.IsIntroExecuted = true;
+    }
+
+    public override void OnExit(PlayerContext context)
     {
     }
 
-    protected override void HandleAttack(bool isAttacking)
+    public override void OnFixedUpdate(PlayerContext context)
     {
     }
 
-    public override float EvaluateUtility()
+    public override void OnUpdate(PlayerContext context)
     {
-        return !_hasBeenExecuted ? State.HighestUtility : 0f;
     }
 }

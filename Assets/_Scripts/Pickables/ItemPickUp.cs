@@ -7,6 +7,7 @@ using UnityEngine;
 public class ItemPickUp : MonoBehaviour, IPausable, IRemovable
 {
     [SerializeField] private BoolVariableSO _isPaused;
+    [SerializeField] private WaitUntilSO _waitUntil;
     [SerializeField] private PausableRunTimeSetSO _pausable;
     private SpriteRenderer _spriteRenderer;
     private CircleCollider2D _pickableCollider;
@@ -18,7 +19,7 @@ public class ItemPickUp : MonoBehaviour, IPausable, IRemovable
     private ItemBehaviour _behaviour;
 
     private Vector2 _currentSpeed;
-    private Transform _followTarget;
+    private GameObject _followTarget;
     private Vector2 _direction;
     private bool _isPickedUp;
     private float _spawnDuration;
@@ -31,7 +32,8 @@ public class ItemPickUp : MonoBehaviour, IPausable, IRemovable
 
     public Rigidbody2D RB => _rb != null ? _rb : _rb = GetComponent<Rigidbody2D>();
 
-    public BoolVariableSO IsPaused => _isPaused;
+    public WaitUntilSO WaitUntil { get => _waitUntil; set => _waitUntil = value; }
+    public BoolVariableSO IsPaused { get => _isPaused; set => _isPaused = value; }
 
     private void Awake()
     {
@@ -81,7 +83,7 @@ public class ItemPickUp : MonoBehaviour, IPausable, IRemovable
         _spriteRenderer.sprite = item.ItemImage;
     }
 
-    public void Magnet(Transform other)
+    public void Magnet(GameObject other)
     {
         _followTarget = other;
         _hasTarget = true;
@@ -127,13 +129,13 @@ public class ItemPickUp : MonoBehaviour, IPausable, IRemovable
                 break;
 
             case ItemBehaviour.Following:
-                if (_followTarget == null)
+                if (_followTarget == null || !_followTarget.activeInHierarchy)
                 {
                     _behaviour = ItemBehaviour.Falling;
                     break;
                 }
 
-                _direction = (_followTarget.position - transform.position).normalized * 1.5f;
+                _direction = (_followTarget.transform.position - transform.position).normalized * 1.5f;
                 break;
         }
 

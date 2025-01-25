@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/FSM/Meteor/Falling State")]
-public class MeteorFallingStateSO : StateSO<MeteorFallingContext>
+public class MeteorFallingStateSO : StateSO<MeteorContext>
 {
     [SerializeField] private float _fallingSpeed = 5f;
     [SerializeField] private float _trajectoryVariation = 2f;
@@ -18,133 +18,69 @@ public class MeteorFallingStateSO : StateSO<MeteorFallingContext>
 
     public float BounceCooldown => _bounceCooldown;
 
-    /*
-    private void HandleMeteorCollisions()
+    public override float EvaluateUtility(MeteorContext context)
     {
-        foreach (var otherMeteor in _activeMeteors.Items)
-        {
-            if (otherMeteor == this) continue;
-
-            Vector2 positionA = transform.position;
-            Vector2 positionB = otherMeteor.transform.position;
-
-            // Calculate the distance between this meteor and the other
-            float distance = Vector2.Distance(positionA, positionB);
-            float radiusSum = 0.5f; // Assume meteors have a radius of 0.5 units
-
-            if (distance < radiusSum)
-            {
-                ResolveCollision(otherMeteor);
-            }
-        }
+        return context.Agent.HealthSystem.GetCurrentHealth() > 0f ? HighestUtility : 0f;
     }
 
-    private void ResolveCollision(Meteor otherMeteor)
+    public override void OnEnter(MeteorContext context)
     {
-        Vector2 positionA = transform.position;
-        Vector2 positionB = otherMeteor.transform.position;
-
-        Vector2 velocityA = rb.velocity;
-        Vector2 velocityB = otherMeteor.rb.velocity;
-
-        // Normal vector between the meteors
-        Vector2 collisionNormal = (positionB - positionA).normalized;
-
-        // Project velocities onto the normal
-        float velocityAlongNormalA = Vector2.Dot(velocityA, collisionNormal);
-        float velocityAlongNormalB = Vector2.Dot(velocityB, collisionNormal);
-
-        // Exchange velocities along the normal
-        float temp = velocityAlongNormalA;
-        velocityAlongNormalA = velocityAlongNormalB;
-        velocityAlongNormalB = temp;
-
-        // Update velocities
-        rb.velocity = velocityA - velocityAlongNormalA * collisionNormal + velocityAlongNormalB * collisionNormal;
-        otherMeteor.rb.velocity = velocityB - velocityAlongNormalB * collisionNormal + velocityAlongNormalA * collisionNormal;
-    }
-    */
-}
-
-
-[System.Serializable]
-public class MeteorFallingContext : StateContext<MeteorFallingStateSO>
-{
-    private float _bounceCooldown;
-
-    public override void OnEnter()
-    {
-        base.OnEnter();
-        var direction = new Vector2(Random.Range(-State.TrajectoryVariation, State.TrajectoryVariation), -State.FallingSpeed);
-        Agent.Input.CallOnMovementInput(direction);
-        Agent.AgentRenderer.RotateSpriteToDirection(direction);
+        var direction = new Vector2(Random.Range(-TrajectoryVariation, TrajectoryVariation), -FallingSpeed);
+        context.Agent.Input.CallOnMovementInput(direction);
+        context.Agent.AgentRenderer.RotateSpriteToDirection(direction);
     }
 
-    public override void OnUpdate()
+    public override void OnExit(MeteorContext context)
     {
-        base.OnUpdate();
-        UpdateBounceCooldown(Time.deltaTime);
-
-        // Optional: Gradually adjust trajectory while falling
-        Vector2 randomForce = new Vector2(
-            Random.Range(-State.TrajectoryVariation * 0.1f, State.TrajectoryVariation * 0.1f),
-            0 // Keep the force horizontal to add wobble
-        );
-
-        Agent.MoveBehaviour.ApplyForce(randomForce, ForceMode2D.Force);
-        HandleBoundaryBounce();
     }
 
-    public override void OnFixedUpdate()
+    public override void OnFixedUpdate(MeteorContext context)
     {
-        base.OnFixedUpdate();
-        Agent.MoveBehaviour.Move();
+        context.Agent.MoveBehaviour.Move();
         //HandleMeteorCollisions();
     }
 
-
-    public override float EvaluateUtility()
+    public override void OnUpdate(MeteorContext context)
     {
-        return Agent.HealthSystem.GetCurrentHealth() > 0f ? State.HighestUtility : 0f;
+        context.BounceTick();
+
+        // Optional: Gradually adjust trajectory while falling
+        Vector2 randomForce = new Vector2(
+            Random.Range(-TrajectoryVariation * 0.1f, TrajectoryVariation * 0.1f),
+            0 // Keep the force horizontal to add wobble
+        );
+
+        context.Agent.MoveBehaviour.ApplyForce(randomForce, ForceMode2D.Force);
+        HandleBoundaryBounce(context);
     }
 
-    private void HandleBoundaryBounce()
+    private void HandleBoundaryBounce(MeteorContext context)
     {
-        if (_bounceCooldown > 0f)
+        if (context.BounceCooldown > 0f)
         {
             return;
         }
-        Vector2 position = _fsm.transform.position;
+        Vector2 position = context.FSM.transform.position;
 
         // Check horizontal boundaries
-        if (position.x <= -State.BoundaryX && Agent.MoveBehaviour.RB.linearVelocityX < 0)
+        if (position.x <= -BoundaryX && context.Agent.MoveBehaviour.RB.linearVelocityX < 0)
         {
-            Vector2 direction = new(-Agent.Input.Direction.x * State.Elasticity, Agent.Input.Direction.y); // Reverse horizontal velocity
+            Vector2 direction = new(-context.Agent.Input.Direction.x * Elasticity, context.Agent.Input.Direction.y); // Reverse horizontal velocity
             //agent.MoveBehaviour.RB.position = new Vector2(-boundaryX, position.y); // Clamp position
-            Agent.MoveBehaviour.RB.angularVelocity = Random.Range(-State.AngularBounceFactor, State.AngularBounceFactor); // Add spin
-            Agent.Input.CallOnMovementInput(direction);
-            Agent.AgentRenderer.RotateSpriteToDirection(direction);
-
+            context.Agent.MoveBehaviour.RB.angularVelocity = Random.Range(-AngularBounceFactor, AngularBounceFactor); // Add spin
+            context.Agent.Input.CallOnMovementInput(direction);
+            context.Agent.AgentRenderer.RotateSpriteToDirection(direction);
+            context.BounceCooldown = BounceCooldown;
         }
-        else if (position.x >= State.BoundaryX && Agent.MoveBehaviour.RB.linearVelocityX > 0)
+        else if (position.x >= BoundaryX && context.Agent.MoveBehaviour.RB.linearVelocityX > 0)
         {
-            Vector2 direction = new(-Agent.Input.Direction.x * State.Elasticity, Agent.Input.Direction.y); // Reverse horizontal velocity
+            Vector2 direction = new(-context.Agent.Input.Direction.x * Elasticity, context.Agent.Input.Direction.y); // Reverse horizontal velocity
             //agent.MoveBehaviour.RB.position = new Vector2(boundaryX, position.y); // Clamp position
-            Agent.MoveBehaviour.RB.angularVelocity = Random.Range(-State.AngularBounceFactor, State.AngularBounceFactor); // Add spin
-            Agent.Input.CallOnMovementInput(direction);
-            Agent.AgentRenderer.RotateSpriteToDirection(direction);
+            context.Agent.MoveBehaviour.RB.angularVelocity = Random.Range(-AngularBounceFactor, AngularBounceFactor); // Add spin
+            context.Agent.Input.CallOnMovementInput(direction);
+            context.Agent.AgentRenderer.RotateSpriteToDirection(direction);
+            context.BounceCooldown = BounceCooldown;
         }
 
-        _bounceCooldown = State.BounceCooldown;
-    }
-
-    private void UpdateBounceCooldown(float seconds)
-    {
-        _bounceCooldown -= seconds;
-
-        if (_bounceCooldown < 0f)
-        {
-            _bounceCooldown = 0f;
-        }
     }
 }

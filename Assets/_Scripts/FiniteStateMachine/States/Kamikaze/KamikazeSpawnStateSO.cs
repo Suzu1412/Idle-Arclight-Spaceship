@@ -1,26 +1,39 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "KamikazeSpawnStateSO", menuName = "Scriptable Objects/FSM/Kamikaze/KamikazeSpawnStateSO")]
-public class KamikazeSpawnStateSO : StateSO<KamikazeSpawnContext>
+public class KamikazeSpawnStateSO : StateSO<KamikazeContext>
 {
-}
-
-
-
-[System.Serializable]
-public class KamikazeSpawnContext : StateContext<KamikazeSpawnStateSO>
-{
-    [SerializeField] private bool _hasBeenExecuted = false;
-
-    public override void OnEnter()
+    public override float EvaluateUtility(KamikazeContext context)
     {
-        base.OnEnter();
-        Agent.MoveBehaviour.StopMovement();
-        _hasBeenExecuted = true;
+        return !context.IsIntroExecuted ? HighestUtility : 0f;
+
     }
 
-    public override float EvaluateUtility()
+    public override void OnEnter(KamikazeContext context)
     {
-        return !_hasBeenExecuted ? State.HighestUtility : 0f;
+        context.Agent.MoveBehaviour.StopMovement();
+        context.Agent.Input.CallOnMovementInput(Vector2.down);
+        context.IsIntroExecuted = true;
+    }
+
+    public override void OnExit(KamikazeContext context)
+    {
+
+    }
+
+    public override void OnFixedUpdate(KamikazeContext context)
+    {
+    }
+
+    public override void OnUpdate(KamikazeContext context)
+    {
+    }
+
+    public override void HandleMovement(StateContext context, Vector2 direction)
+    {
+    }
+
+    public override void HandleAttack(StateContext context, bool isAttacking)
+    {
     }
 }
