@@ -1,16 +1,27 @@
 using UnityEngine;
 
-public class FighterDeathStateSO : MonoBehaviour
+[CreateAssetMenu(menuName = "Scriptable Objects/FSM/Fighter/Death State", fileName = "FighterDeathState")]
+public class FighterDeathStateSO : StateSO<FighterContext>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override float EvaluateUtility(FighterContext context)
     {
-        
+        return context.Agent.HealthSystem.IsDeath ? HighestUtility : 0f;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnEnter(FighterContext context)
     {
-        
+        context.Agent.HealthSystem.Remove(context.FSM.gameObject);
+    }
+
+    public override void OnExit(FighterContext context)
+    {
+    }
+
+    public override void OnFixedUpdate(FighterContext context)
+    {
+    }
+
+    public override void OnUpdate(FighterContext context)
+    {
     }
 }

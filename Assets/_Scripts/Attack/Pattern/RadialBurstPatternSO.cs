@@ -19,16 +19,22 @@ public class RadialBurstPatternSO : AttackPatternSO
     protected override IEnumerator ExecuteNestedCoroutine(Transform spawnPoint, Agent agent, float angle, float duration)
     {
         float elapsedTime = 0f;
-        float currentAngle = 0f;
 
         while (elapsedTime < duration)
         {
+            while (_isPaused.Value)
+            {
+                yield return null; // Wait until unpaused
+            }
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         for (int j = 0; j < _bulletsPerShot; j++)
         {
+            float currentAngle;
+
             if (_bulletsPerShot == 1)
             {
                 // If only one bullet, fire it directly at the base angle

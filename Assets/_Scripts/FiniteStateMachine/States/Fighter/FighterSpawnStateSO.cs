@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Scriptable Objects/FSM/Fighter/Spawn State", fileName = "FighterSpawnState")]
 public class FighterSpawnStateSO : StateSO<FighterContext>
 {
     public override float EvaluateUtility(FighterContext context)

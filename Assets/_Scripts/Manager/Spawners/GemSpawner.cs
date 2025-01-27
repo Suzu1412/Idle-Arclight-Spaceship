@@ -53,9 +53,17 @@ public class GemSpawner : MonoBehaviour, IPausable
 
         while (true)
         {
-            yield return _waitUntil;
-            delayBetweenSpawns -= Time.deltaTime;
-            yield return null;
+            while (delayBetweenSpawns > 0)
+            {
+                while (_isPaused.Value)
+                {
+                    yield return null; // Wait until unpaused
+                }
+
+                // Increment elapsed time while unpaused
+                delayBetweenSpawns -= Time.deltaTime;
+                yield return null;
+            }
 
             if (delayBetweenSpawns <= 0f)
             {

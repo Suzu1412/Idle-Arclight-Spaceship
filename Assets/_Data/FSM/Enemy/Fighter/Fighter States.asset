@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5bf24452627b5946911abc1ea803d2c, type: 3}
+  m_Name: Fighter States
+  m_EditorClassIdentifier: 
+  _defaultState: {fileID: 11400000, guid: 5ecaa3816d978844ead1354893046439, type: 2}
+  _states:
+  - {fileID: 11400000, guid: 5ecaa3816d978844ead1354893046439, type: 2}
+  - {fileID: 11400000, guid: 464759baf39d2a146a7148116d79e634, type: 2}
+  - {fileID: 11400000, guid: 49ef5e39beabe7a4ea345ebe12894a33, type: 2}
+  - {fileID: 11400000, guid: 799a8b17779af8843b8e93eb05b19b14, type: 2}

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "FighterAttackActionSO", menuName = "Scriptable Objects/FSM/Action/FighterAttackActionSO")]
 public class FighterAttackActionSO : ActionSO<FighterContext>
 {
     public override bool CanExecute(FighterContext context)

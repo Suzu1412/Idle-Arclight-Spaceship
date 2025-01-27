@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AttackPatternSO : ScriptableObject
 {
-    [SerializeField] protected WaitUntilSO _waitUntil = default;
+    [SerializeField] protected BoolVariableSO _isPaused;
     [SerializeField] protected ObjectPoolSettingsSO _projectilePool;
     [SerializeField] protected ProjectileDataSO _projectileData; // Set Projectile Sprite and other attributes
     [SerializeField] protected SoundDataSO _projectileSFX;

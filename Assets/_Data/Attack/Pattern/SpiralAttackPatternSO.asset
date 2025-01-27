@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a20d24bea86962f4babcbb3cf25545e7, type: 3}
   m_Name: SpiralAttackPatternSO
   m_EditorClassIdentifier: 
-  _waitUntil: {fileID: 11400000, guid: a5a348848e12b38488bb428f0e897e11, type: 2}
+  _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
   _projectilePool: {fileID: 11400000, guid: 428aa4bb4beecc043be2b9585610d64b, type: 2}
   _projectileData: {fileID: 11400000, guid: 5750114f07ad3284ea16d66e09347bc2, type: 2}
-  _repetitions: 36
   _projectileSFX: {fileID: 11400000, guid: 6342db354e93d4984a55893e5d8b19fb, type: 2}
+  _projectileSpeed: 1
   _fireRate: 0.05
   _cooldown: 3
-  _rotationSpeed: 10
+  _repetitions: 36
   _bulletsPerShot: 3
+  _rotationSpeed: 10

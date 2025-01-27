@@ -24,6 +24,11 @@ public class RandomAttackPatternSO : AttackPatternSO
 
         while (elapsedTime < duration)
         {
+            while (_isPaused.Value)
+            {
+                yield return null; // Wait until unpaused
+            }
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }

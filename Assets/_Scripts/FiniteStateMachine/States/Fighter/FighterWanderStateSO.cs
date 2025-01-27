@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Scriptable Objects/FSM/Fighter/Wander State", fileName = "FighterWanderState")]
 public class FighterWanderStateSO : StateSO<FighterContext>
 {
     public override float EvaluateUtility(FighterContext context)
