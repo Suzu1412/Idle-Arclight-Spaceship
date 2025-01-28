@@ -64,7 +64,8 @@ public class SceneLoaderManager : Singleton<MonoBehaviour>, ISaveable
 
     private void Start()
     {
-        OnLoadLastSceneEvent.RaiseEvent();
+        //OnLoadLastSceneEvent.RaiseEvent();
+        ChangeScene(0);
         OnChangeSceneEventListener.Register(ChangeScene);
 
         OnUnloadScene += UpdateLoadingBarOnUnload;
@@ -80,7 +81,7 @@ public class SceneLoaderManager : Singleton<MonoBehaviour>, ISaveable
 
     public void SaveData(GameDataSO gameData)
     {
-        gameData.SaveCurrentScene(_currentScene);
+        //gameData.SaveCurrentScene(_currentScene);
     }
 
     public void LoadData(GameDataSO gameData)
@@ -95,6 +96,7 @@ public class SceneLoaderManager : Singleton<MonoBehaviour>, ISaveable
 
     private void ChangeScene(int index)
     {
+        Debug.Log("cambiando escena");
         _scenesUnloaded = 0;
         _scenesLoaded = 0;
 

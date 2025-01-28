@@ -3,8 +3,8 @@ using UnityEngine;
 
 public interface ICloudService
 {
-    void Save(GameData data, bool overwrite = true);
-    Awaitable<GameData> Load(string name);
+    void Save(GameDataSO data, bool overwrite = true);
+    Awaitable<GameDataSO> Load(string name);
     void Delete(string name);
     void DeleteAll();
     IEnumerable<string> ListSaves();

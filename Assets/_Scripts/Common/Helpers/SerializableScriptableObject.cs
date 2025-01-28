@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Suzu.Systems")]
 
 public class SerializableScriptableObject : ScriptableObject
 {

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AddSaveDataRunTimeSet))]
 public class UnlockManager : MonoBehaviour, ISaveable
 {
 	[SerializeField] private VoidGameEvent OnUnlockEvent;
@@ -9,12 +8,13 @@ public class UnlockManager : MonoBehaviour, ISaveable
 
 	public void SaveData(GameDataSO gameData)
 	{
-		List<UnlockSystemData> unlockedDatas = gameData.GetClearUnlockedSystemsData();
+		gameData.UnlockedSystems.Clear();
+		List<UnlockSystemData> unlockedDatas = gameData.UnlockedSystems;
 		foreach (var unlocked in _unlockedSystems.UnlockedSystems)
 		{
 			unlockedDatas.Add(new(unlocked.Guid, unlocked.IsUnlocked));
 		}
-		gameData.SaveUnlockedSystems(unlockedDatas);
+		gameData.UnlockedSystems = unlockedDatas;
 	}
 
 	public void LoadData(GameDataSO gameData)
@@ -23,12 +23,12 @@ public class UnlockManager : MonoBehaviour, ISaveable
 		OnUnlockEvent.RaiseEvent();
 	}
 
-    public GameObject GetGameObject()
-    {
-        return gameObject;
-    }
+	public GameObject GetGameObject()
+	{
+		return gameObject;
+	}
 
-    private void LoadUnlockedSystem(List<UnlockSystemData> unlockedDatas)
+	private void LoadUnlockedSystem(List<UnlockSystemData> unlockedDatas)
 	{
 		foreach (var unlockedSO in _unlockedSystems.UnlockedSystems)
 		{

@@ -605,6 +605,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Loading Bar Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3361821262932663749, guid: 18a946ea462db064a91d27481b83db3a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -6.2250977
+      objectReference: {fileID: 0}
     - target: {fileID: 8897929188663625701, guid: 18a946ea462db064a91d27481b83db3a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

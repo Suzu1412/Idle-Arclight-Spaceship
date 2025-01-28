@@ -4,7 +4,6 @@ using UnityEngine;
 public class PausableRunTimeSetSO : RuntimeSetSO<IPausable>
 {
     [SerializeField] private BoolVariableSO _pausable;
-    [SerializeField] private WaitUntilSO _waitUntil;
 
     public override void Add(IPausable item)
     {
@@ -12,10 +11,6 @@ public class PausableRunTimeSetSO : RuntimeSetSO<IPausable>
         if (item.IsPaused == null)
         {
             item.IsPaused = _pausable;
-        }
-        if (item.WaitUntil == null)
-        {
-            item.WaitUntil = _waitUntil;
         }
     }
 }

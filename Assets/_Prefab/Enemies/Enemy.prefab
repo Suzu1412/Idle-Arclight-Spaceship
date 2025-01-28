@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 924302235491273121}
   - component: {fileID: 7166755013389402437}
   - component: {fileID: 1550624690756902960}
-  - component: {fileID: 2880532358367089672}
   - component: {fileID: 974587146845377338}
   - component: {fileID: 6867805684470172223}
   - component: {fileID: 4386240422490216029}
@@ -138,21 +137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numberPrefab: {fileID: 461407026122476882, guid: 7b0b446720b535e45ad79250bd50fdf9, type: 3}
---- !u!114 &2880532358367089672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090146522955931733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22bfae3f02559f44a942b5756ae97fd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _textData: {fileID: 0}
-  _positionOffset: {x: 0, y: 0}
-  _isPositionRandom: 0
 --- !u!114 &974587146845377338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,10 +505,16 @@ MonoBehaviour:
   OnHealthChangedEventListener: {fileID: 0}
   OnDamagedEventListener: {fileID: 0}
   OnHealedEventListener: {fileID: 0}
-  _healthSystem: {fileID: 3483539676383952236}
+  _healthSystem:
+    rid: -2
   _amountText: {fileID: 71018955365424483}
   _damageAnimationDelay: 0.05
   _damageAnimationDuration: 0.3
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &6233625989351331620
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,7 +688,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
   _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
-  _waitUntil: {fileID: 0}
   _activeCharacterRTS: {fileID: 11400000, guid: 04ad7ad121264bc4dbf23820d961fc73, type: 2}
   _states: {fileID: 0}
   _currentState: {fileID: 0}
@@ -729,7 +718,6 @@ MonoBehaviour:
   _moveStat: {fileID: 11400000, guid: c377e9f1a9166264ba0178e4fd3db023, type: 2}
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
   _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
-  _waitUntil: {fileID: 0}
 --- !u!114 &420599516321568518
 MonoBehaviour:
   m_ObjectHideFlags: 0

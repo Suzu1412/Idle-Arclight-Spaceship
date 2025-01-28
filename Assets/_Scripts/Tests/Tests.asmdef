@@ -5,9 +5,12 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Suzu.Common",
-        "BoundfoxStudios.FluentAssertions"
+        "BoundfoxStudios.FluentAssertions",
+        "Suzu.Systems"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,

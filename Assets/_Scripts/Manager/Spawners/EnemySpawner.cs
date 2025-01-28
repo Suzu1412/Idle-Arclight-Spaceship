@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour, IPausable
 {
     [SerializeField] private BoolVariableSO _isPaused;
-    [SerializeField] private WaitUntilSO _waitUntil;
     [SerializeField] private PausableRunTimeSetSO _pausable;
     [SerializeField] private float _initialDelay = 60f;
     [SerializeField] private float _delayBetweenWaves = 10f;
@@ -19,7 +18,6 @@ public class EnemySpawner : MonoBehaviour, IPausable
     [SerializeField] private VoidGameEventListener OnStartGameEventListener;
     private Coroutine _spawnEnemyCoroutine;
 
-    public WaitUntilSO WaitUntil { get => _waitUntil; set => _waitUntil = value; }
     public BoolVariableSO IsPaused { get => _isPaused; set => _isPaused = value; }
 
     private void OnEnable()
@@ -49,9 +47,17 @@ public class EnemySpawner : MonoBehaviour, IPausable
 
         while (true)
         {
-            yield return _waitUntil.WaitUntil;
-            delayBetweenSpawns -= Time.deltaTime;
-            yield return null;
+            while (delayBetweenSpawns > 0)
+            {
+                while (_isPaused.Value)
+                {
+                    yield return null; // Wait until unpaused
+                }
+
+                // Increment elapsed time while unpaused
+                delayBetweenSpawns -= Time.deltaTime;
+                yield return null;
+            }
 
             if (delayBetweenSpawns <= 0f)
             {
@@ -67,55 +73,55 @@ public class EnemySpawner : MonoBehaviour, IPausable
         }
 
 
-            //    AdvanceWave();
+        //    AdvanceWave();
 
-            //    float delayBetweenSpawns = 0f;
+        //    float delayBetweenSpawns = 0f;
 
-            //    while (true)
-            //    {
-            //        if (!_isPaused.Value)
-            //        {
-            //            delayBetweenSpawns -= Time.deltaTime;
-            //        }
+        //    while (true)
+        //    {
+        //        if (!_isPaused.Value)
+        //        {
+        //            delayBetweenSpawns -= Time.deltaTime;
+        //        }
 
-            //        yield return null;
+        //        yield return null;
 
-            //        if (delayBetweenSpawns <= 0f)
-            //        {
-            //            switch (_waveType)
-            //            {
-            //                case SpawnWaveType.Enemies:
+        //        if (delayBetweenSpawns <= 0f)
+        //        {
+        //            switch (_waveType)
+        //            {
+        //                case SpawnWaveType.Enemies:
 
-            //                    break;
+        //                    break;
 
-            //                case SpawnWaveType.Obstacle:
-            //                    var obstacle = _obstacleWave;
+        //                case SpawnWaveType.Obstacle:
+        //                    var obstacle = _obstacleWave;
 
-            //                    break;
+        //                    break;
 
-            //                case SpawnWaveType.Boss:
+        //                case SpawnWaveType.Boss:
 
-            //                    break;
+        //                    break;
 
-            //                default:
-            //                    Debug.LogError("Enemy Wave should not be here, there's an error");
-            //                    break;
-            //            }
+        //                default:
+        //                    Debug.LogError("Enemy Wave should not be here, there's an error");
+        //                    break;
+        //            }
 
 
-            //            var randomEnemy = Random.Range(0, _enemyConfigs.Count);
-            //            GameObject enemy = ObjectPoolFactory.Spawn(_enemyPrefabPool).gameObject;
-            //            //enemy.GetComponentInChildren<Agent>().SetEnemyData(_enemyConfigs[randomEnemy].AgentData);
-            //            var position = _placementStrategy.SetPosition(new Vector3(0f, 9f, 0f));
-            //            //enemy.GetComponentInChildren<MovementBehaviour>().RB.position = position;
-            //            //enemy.transform.GetChild(0).position = position;
-            //            //enemy.transform.GetChild(1).position = position;
+        //            var randomEnemy = Random.Range(0, _enemyConfigs.Count);
+        //            GameObject enemy = ObjectPoolFactory.Spawn(_enemyPrefabPool).gameObject;
+        //            //enemy.GetComponentInChildren<Agent>().SetEnemyData(_enemyConfigs[randomEnemy].AgentData);
+        //            var position = _placementStrategy.SetPosition(new Vector3(0f, 9f, 0f));
+        //            //enemy.GetComponentInChildren<MovementBehaviour>().RB.position = position;
+        //            //enemy.transform.GetChild(0).position = position;
+        //            //enemy.transform.GetChild(1).position = position;
 
-            //            delayBetweenSpawns = _delayBetweenSpawns;
+        //            delayBetweenSpawns = _delayBetweenSpawns;
 
-            //            AdvanceWave();
-            //        }
-            //    }
+        //            AdvanceWave();
+        //        }
+        //    }
 
     }
 
@@ -135,7 +141,7 @@ public class EnemySpawner : MonoBehaviour, IPausable
         }
         //else if (cycle == 4) // special kind of wave
         //{
-            // 
+        // 
         //}
         else if (cycle == 9)
         {

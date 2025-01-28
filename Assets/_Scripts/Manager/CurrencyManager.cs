@@ -107,23 +107,25 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     public void SaveData(GameDataSO gameData)
     {
-        gameData.SaveCurrency(_totalCurrency.Value, _gameTotalCurrency.Value, _amountToBuy.Value);
+        gameData.CurrencyData = new(_totalCurrency.Value, _gameTotalCurrency.Value, _amountToBuy.Value);
 
-        List<GeneratorData> generatorDatas = gameData.GetClearGeneratorDatas();
+        gameData.Generators.Clear();
+        List<GeneratorData> generatorDatas = gameData.Generators;
         foreach (var generator in _generators.Generators)
         {
             generatorDatas.Add(new(generator.Guid, generator.AmountOwned, generator.TotalProduction, generator.IsUnlocked, generator.ShouldNotify));
         }
 
-        gameData.SaveGenerators(generatorDatas);
+        gameData.Generators = generatorDatas;
 
-        List<UpgradeData> upgradeDatas = gameData.GetClearUpgradeDatas();
+        gameData.Upgrades.Clear();
+        List<UpgradeData> upgradeDatas = gameData.Upgrades;
         foreach (var upgrade in _upgrades.Upgrades)
         {
             upgradeDatas.Add(new(upgrade.Guid, upgrade.IsRequirementMet, upgrade.IsApplied));
         }
 
-        gameData.SaveUpgrades(upgradeDatas);
+        gameData.Upgrades = upgradeDatas;
     }
 
     public void LoadData(GameDataSO gameData)

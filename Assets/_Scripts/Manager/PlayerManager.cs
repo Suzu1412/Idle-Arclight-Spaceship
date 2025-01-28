@@ -20,7 +20,7 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
     private Coroutine _respawnCoroutine;
     private float _respawnTime = 2.5f;
 
-    
+
     private void OnEnable()
     {
         _saveable.Add(this);
@@ -74,7 +74,7 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
             playerData.IsUnlocked
             ));
         }
-        gameData.SavePlayers(players);
+        gameData.Players = players;
     }
 
     public GameObject GetGameObject()
@@ -85,7 +85,7 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
     private void SpawnPlayer()
     {
         _player = ObjectPoolFactory.Spawn(_playerPrefabPool).gameObject;
-        
+
         _agent = _player.GetComponentInChildren<Agent>();
 
         _defaultPlayerData.InitializeAgent(_agent, _initialPosition);
