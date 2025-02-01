@@ -13,6 +13,7 @@ public class EnemyAgentDataSO : AgentDataSO
     public override void InitializeAgent(Agent agent, Vector3 position)
     {
         base.InitializeAgent(agent, position);
+        //agent.EnemyHealthUI.transform.localPosition = position;
         agent.DropItem.SetDropTable(_dropTable);
 
         foreach (var rare in _rareVariant)

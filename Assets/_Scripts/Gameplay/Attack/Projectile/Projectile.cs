@@ -46,10 +46,16 @@ public class Projectile : MonoBehaviour, IPausable
         if (_isPaused.Value) return;
         _projectileLifeTime -= Time.deltaTime;
 
-        if (_projectileLifeTime <= 0f)
+        if (_projectileLifeTime <= 0f && gameObject.activeSelf)
         {
             ObjectPoolFactory.ReturnToPool(Pool);
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        if (gameObject.activeSelf)
+            ObjectPoolFactory.ReturnToPool(Pool);
     }
 
     private void FixedUpdate()

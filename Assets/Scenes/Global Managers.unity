@@ -149,7 +149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
-  _waitUntil: {fileID: 11400000, guid: a5a348848e12b38488bb428f0e897e11, type: 2}
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
   _initialDelay: 5
   _delayBetweenWaves: 3
@@ -157,7 +156,7 @@ MonoBehaviour:
   _currentWave: 0
   _waveType: 0
   _allWaves:
-  - {fileID: 11400000, guid: 77a8bed33eaf8df48973f11ae4835ad0, type: 2}
+  - {fileID: 11400000, guid: e61e1904b0442d24c85be5e31b5f3f5a, type: 2}
   OnStartGameEventListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
 --- !u!4 &148453615
 Transform:
@@ -221,7 +220,6 @@ MonoBehaviour:
   OnGameplayPausedListener: {fileID: 11400000, guid: 9c454593d11a040e0af304c4b194a6a8, type: 2}
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
   _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
-  _waitUntil: {fileID: 11400000, guid: a5a348848e12b38488bb428f0e897e11, type: 2}
 --- !u!1 &447385082
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +486,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
-  _waitUntil: {fileID: 0}
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
   _minDelayBetweenSpawns: 15
   _maxDelayBetweenSpawns: 75
@@ -555,7 +552,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
-  _waitUntil: {fileID: 11400000, guid: a5a348848e12b38488bb428f0e897e11, type: 2}
   _initialDelay: 3
   _minDelayBetweenSpawns: {fileID: 11400000, guid: 2de357555a31174478dae732ee2ba5c4, type: 2}
   _maxDelayBetweenSpawns: {fileID: 11400000, guid: 1e5b0151d4e46b34fa6b1bde14d1176d, type: 2}
@@ -680,6 +676,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7921322146628114214, guid: 9466aeff83afe114eaf80d76cdcb22f4, type: 3}
+      propertyPath: '_randomEvents.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e0ec1385a6cd1774cad9379a55d3a552, type: 2}
+    - target: {fileID: 7921322146628114214, guid: 9466aeff83afe114eaf80d76cdcb22f4, type: 3}
+      propertyPath: '_randomEvents.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 068c1ab2542f0c84cbbf39dede75050b, type: 2}
+    - target: {fileID: 7921322146628114214, guid: 9466aeff83afe114eaf80d76cdcb22f4, type: 3}
+      propertyPath: '_randomEvents.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bbaffc36623cfb745919091e26249636, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

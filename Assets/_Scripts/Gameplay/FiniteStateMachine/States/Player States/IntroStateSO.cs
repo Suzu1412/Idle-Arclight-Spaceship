@@ -14,7 +14,7 @@ public class IntroStateSO : StateSO<PlayerContext>
 
     public override void OnEnter(PlayerContext context)
     {
-        context.Agent.HealthSystem.SetInvulnerability(true, _invulnerabilityDuration);
+        context.Agent.HealthSystem.SetInvulnerability(true, _invulnerabilityDuration, context.FSM.gameObject);
         context.IsIntroExecuted = true;
     }
 

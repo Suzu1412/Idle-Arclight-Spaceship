@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e95f1baa65e1594e9bef79b1b4b9cca, type: 3}
+  m_Name: Boss Chaser Wave
+  m_EditorClassIdentifier: 
+  _baseEnemiesPerWave: 1
+  _wavesToIncreaseAmount: 5
+  _maxAmountOfEnemies: 20
+  _elapsedTime: 0.021040808
+  _spawnTimer: 0
+  _spawnInterval: 0
+  WaveEnded: 0
+  _enemyPrefabPool: {fileID: 11400000, guid: ae77964a8d29c6a4aafd67693bd3efd0, type: 2}
+  _spawnEnemies:
+  - EnemyData: {fileID: 11400000, guid: 5cd0cd6223c39d74990c5ebd267a910d, type: 2}
+    Position: {x: 0, y: -9, z: 0}

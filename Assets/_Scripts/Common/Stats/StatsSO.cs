@@ -38,7 +38,7 @@ public class StatsSO : SerializableScriptableObject, IStatsData
     public float GetStatValue<T>() where T : StatComponentSO
     {
         return GetStat<T>().Value;
-    }
+    }   
 
     public float GetStatMinValue<T>() where T : StatComponentSO
     {
@@ -147,6 +147,8 @@ public class StatConfig
     
     public void Recalculate()
     {
+        if (StatComponent == null) return;
+
         if (_baseValue < _statComponent.MinValue)
         {
             _baseValue = _statComponent.MinValue;

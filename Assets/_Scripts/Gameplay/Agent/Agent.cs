@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class Agent : MonoBehaviour, IAgent
 {
     [SerializeField] private Vector2 _initialFacingDirection;
+    [SerializeField] private Transform _enemyHealthUI;
     private Vector2 _facingDirection;
     private IHealthSystem _healthSystem;
     private IAgentInput _input;
@@ -29,6 +30,7 @@ public class Agent : MonoBehaviour, IAgent
     public IAgentAnimation AgentAnimation => _agentAnimation ??= GetComponentInChildren<IAgentAnimation>();
     public IAgentRenderer AgentRenderer => _agentRenderer ??= GetComponentInChildren<IAgentRenderer>();
     public ITargetDetector TargetDetector => _targetDetector ??= GetComponent<ITargetDetector>();
+    public Transform EnemyHealthUI => _enemyHealthUI;
 
     public event UnityAction<Vector2> OnChangeFacingDirection;
     public Vector2 FacingDirection => _facingDirection;

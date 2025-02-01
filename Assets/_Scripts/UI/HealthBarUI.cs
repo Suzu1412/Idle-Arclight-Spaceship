@@ -14,7 +14,7 @@ public class HealthBarUI : MonoBehaviour
     [SerializeField] private IntGameEventListener OnDamagedEventListener;
     [SerializeField] private IntGameEventListener OnHealedEventListener;
     private float _previousValue;
-    [SerializeReference] private IHealthSystem _healthSystem;
+    [SerializeField] private HealthSystem _healthSystem;
     private Coroutine _damageAnimationCoroutine;
     private Coroutine _healAnimationCoroutine;
     private bool _isDamaged;

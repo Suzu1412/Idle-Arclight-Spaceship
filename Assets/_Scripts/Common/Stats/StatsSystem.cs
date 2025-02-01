@@ -7,15 +7,17 @@ public class StatsSystem : MonoBehaviour
 
     public event Action OnMaxHealthChange;
 
+    private void OnEnable()
+    {
+        _stats.CreateStats();
+    }
+
     private void OnDisable()
     {
         _stats.RemoveModifiers();
     }
 
-    private void Awake()
-    {
-        _stats.CreateStats();
-    }
+    
 
     public Stat GetStat(StatComponentSO statComponent)
     {

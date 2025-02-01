@@ -266,13 +266,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2414812755240777875}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2401854555546382616}
-  m_Father: {fileID: 4012993540992643134}
+  m_Father: {fileID: 6539688628170306318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4060985186084401915
 MonoBehaviour:
@@ -422,7 +422,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6539688628170306318}
-  - {fileID: 7893432615960813323}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8731175806926287692
@@ -505,16 +504,10 @@ MonoBehaviour:
   OnHealthChangedEventListener: {fileID: 0}
   OnDamagedEventListener: {fileID: 0}
   OnHealedEventListener: {fileID: 0}
-  _healthSystem:
-    rid: -2
+  _healthSystem: {fileID: 3483539676383952236}
   _amountText: {fileID: 71018955365424483}
   _damageAnimationDelay: 0.05
   _damageAnimationDuration: 0.3
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
 --- !u!1 &6233625989351331620
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,6 +548,7 @@ Transform:
   m_Children:
   - {fileID: 924302235491273121}
   - {fileID: 98035767380872005}
+  - {fileID: 7893432615960813323}
   m_Father: {fileID: 4012993540992643134}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6001147696526124466
@@ -616,6 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initialFacingDirection: {x: 0, y: -1}
+  _enemyHealthUI: {fileID: 4496499465792470897}
 --- !u!114 &1825057643187846638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -806,7 +801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7607843, g: 0.21176471, b: 0.08627451, a: 1}
+  m_Color: {r: 0.9098039, g: 0.25490198, b: 0.09411765, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -818,7 +813,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.609
+  m_FillAmount: 0.341
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -881,19 +876,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8627451, g: 0.8666667, b: 0.88235295, a: 1}
+  m_Color: {r: 0.9843137, g: 0.77254903, b: 0.19215687, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1e902c37b98dd5c48aa088ae6cc5b12f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a3fd9449bd66e78459d5ba8f5a744428, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.736
+  m_FillAmount: 0.717
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -1093,7 +1088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.29803923}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

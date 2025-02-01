@@ -11,6 +11,8 @@ public interface IHittable
     bool IsInvulnerable { get; }
 
     void GetHit(GameObject damageDealer);
+    void SetInvulnerability(bool isInvulnerable, float duration, GameObject source);
+
 
     event Action OnHit;
     event Action OnHitStun;

@@ -56,7 +56,7 @@ public class AgentRenderer : MonoBehaviour, IAgentRenderer
         if (input.y < 0)
         {
             _facingDirection.y = -1f;
-            transform.parent.localScale = new Vector3(
+            transform.localScale = new Vector3(
                 1,
                 -1 * Mathf.Abs(transform.parent.localScale.y),
                 transform.localScale.z);
@@ -64,7 +64,7 @@ public class AgentRenderer : MonoBehaviour, IAgentRenderer
         else if (input.y > 0)
         {
             _facingDirection.y = 1f;
-            transform.parent.localScale = new Vector3(1,
+            transform.localScale = new Vector3(1,
                 Mathf.Abs(transform.parent.localScale.y),
                 transform.localScale.z);
         }
@@ -110,6 +110,6 @@ public class AgentRenderer : MonoBehaviour, IAgentRenderer
 
         angle += _rotationOffset;
 
-        transform.parent.rotation = Quaternion.Euler(0f, 0f, angle);
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 }

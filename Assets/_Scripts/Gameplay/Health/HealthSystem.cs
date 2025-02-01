@@ -135,7 +135,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         OnDamagedEvent?.RaiseEvent(amount);
         OnHealthValueChanged?.Invoke();
 
-        SetInvulnerability(isInvulnerable: true, _defaultInvulnerability);
+        SetInvulnerability(isInvulnerable: true, _defaultInvulnerability, gameObject);
 
         if (_health.Value <= 0f)
         {
@@ -169,11 +169,13 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         OnHitStun?.Invoke();
     }
 
-    public async void SetInvulnerability(bool isInvulnerable, float duration)
+    public async void SetInvulnerability(bool isInvulnerable, float duration, GameObject source)
     {
+        if (source != gameObject) return;
+
         _isInvulnerable = isInvulnerable;
         duration = Mathf.Clamp(duration, 0f, 5f);
-        if (duration == 0) return;
+        if (duration == 0) return;  
         _invulnerabilityDuration = duration;
         OnInvulnerabilityPeriod?.Invoke();
 
