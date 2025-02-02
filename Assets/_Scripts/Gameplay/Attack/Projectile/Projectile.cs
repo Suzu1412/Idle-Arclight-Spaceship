@@ -9,6 +9,8 @@ public class Projectile : MonoBehaviour, IPausable
     [SerializeField] private LayerMask whatDestroyBullet;
     [SerializeField] private float _projectileSpeed = 10f;
     [SerializeField] private float _projectileLifeTime = 10f;
+    [SerializeField] private int _projectileDuration = 1;
+
     private float _damage;
     private SpriteRenderer spriteRenderer;
     private ObjectPooler _pool;
@@ -34,6 +36,7 @@ public class Projectile : MonoBehaviour, IPausable
     private void OnEnable()
     {
         _pausable.Add(this);
+        Pause(_isPaused.Value);
     }
 
     private void OnDisable()
@@ -86,6 +89,11 @@ public class Projectile : MonoBehaviour, IPausable
         _projectileSpeed = speed;
     }
 
+    public void SetProjectileDuration(int duration)
+    {
+        _projectileDuration = duration;
+    }
+
     public void SetLayerMask(LayerMask layerMask)
     {
         this.gameObject.layer = layerMask.GetLayer();
@@ -93,6 +101,8 @@ public class Projectile : MonoBehaviour, IPausable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (_projectileDuration <= 0) return;
+
         if (other.TryGetComponent(out IHittable hittable))
         {
             hittable.GetHit(this.gameObject);
@@ -103,7 +113,12 @@ public class Projectile : MonoBehaviour, IPausable
             damageable.Damage(Mathf.RoundToInt(_damage));
             SpawnImpactEffect();
             _impactSFX.PlayEvent();
-            ObjectPoolFactory.ReturnToPool(Pool);
+            _projectileDuration--;
+
+            if (_projectileDuration <= 0 && gameObject.activeSelf)
+            {
+                ObjectPoolFactory.ReturnToPool(Pool);
+            }
         }
     }
 

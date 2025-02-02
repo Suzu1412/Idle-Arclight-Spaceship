@@ -51,6 +51,7 @@ public class RadialBurstPatternSO : AttackPatternSO
 
             Projectile bullet = ObjectPoolFactory.Spawn(_projectilePool).GetComponent<Projectile>();
             _projectileData.Initialize(bullet, agent, direction, spawnPoint.position, _projectileSpeed);
+            _projectileSFX.PlayEvent();
 
         }
     }

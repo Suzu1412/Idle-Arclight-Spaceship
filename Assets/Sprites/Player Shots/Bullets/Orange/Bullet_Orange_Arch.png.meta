@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bullet_Orange_Arch_0: -5435353984528093801
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

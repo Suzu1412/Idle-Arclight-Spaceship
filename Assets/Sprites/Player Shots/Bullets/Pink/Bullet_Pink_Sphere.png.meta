@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bullet_Pink_Sphere_0: 5337563045895648200
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

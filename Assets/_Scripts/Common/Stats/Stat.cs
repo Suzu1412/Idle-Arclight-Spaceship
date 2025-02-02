@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 [System.Serializable]
 public class Stat
 {
     [SerializeField][ReadOnly] private StatComponentSO _statComponent;
-    [SerializeField] private float _baseValue;
+    [SerializeField][ReadOnly] private float _baseValue;
+    [SerializeField][ReadOnly] private StatConfig _config;
     [SerializeField][ReadOnly][Tooltip("Value is calculated by Base Value and Modifiers")] private float _value;
     private bool _isDirty = true;
 
@@ -15,10 +17,10 @@ public class Stat
     [SerializeField] private List<StatModifier> _modifiers = new();
     internal List<StatModifier> Modifiers => _modifiers;
 
-    public Stat(StatComponentSO statComponent, float baseValue)
+    public Stat(StatConfig config)
     {
-        _statComponent = statComponent;
-        _baseValue = baseValue;
+        _statComponent = config.StatComponent;
+        _config = config;
         _modifiers = new();
     }
 
@@ -26,18 +28,19 @@ public class Stat
     {
         get
         {
-            if (_isDirty)
-            {
-                CalculateValue();
-                _isDirty = false;
-            }
+            //if (_isDirty)
+            //{
+            //    CalculateValue();    
+            //    _isDirty = false;
+            //}
+            CalculateValue();
             return _value;
         }
     }
 
     internal void CalculateValue()
     {
-        _baseValue = Mathf.Clamp(_baseValue, _statComponent.MinValue, _statComponent.MaxValue);
+        _baseValue = Mathf.Clamp(_config.BaseValue, _statComponent.MinValue, _statComponent.MaxValue);
         float sumPercentAdditive = 0f;
         float finalValue = _baseValue;
 

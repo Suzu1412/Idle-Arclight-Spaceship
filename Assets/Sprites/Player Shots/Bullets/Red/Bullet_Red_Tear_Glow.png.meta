@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bullet_Red_Tear_Glow_0: 894769629125362242
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

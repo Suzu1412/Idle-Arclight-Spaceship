@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class AttackSystem : MonoBehaviour, IAttack, IPausable
 {
@@ -47,6 +46,11 @@ public class AttackSystem : MonoBehaviour, IAttack, IPausable
 
         // Coroutine finished
         _attackCoroutine = null;
+    }
+
+    public void SetAttackPattern(AttackPatternSO pattern)
+    {
+        _attackPattern = pattern;
     }
 
 

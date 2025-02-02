@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bullet_Pink_Tear_Glow_0: 732868306991454337
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

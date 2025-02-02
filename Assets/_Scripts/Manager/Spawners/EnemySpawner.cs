@@ -13,6 +13,8 @@ public class EnemySpawner : MonoBehaviour, IPausable
     [SerializeField] private SpawnWaveType _waveType;
 
     [SerializeField] private List<WaveSO> _allWaves;
+    [SerializeField] private GameObjectRuntimeSetSO _enemyRTS;
+    [SerializeField] private bool _hasWaveEnded;
 
     [Header("Void Game Event Listener")]
     [SerializeField] private VoidGameEventListener OnStartGameEventListener;
@@ -23,12 +25,14 @@ public class EnemySpawner : MonoBehaviour, IPausable
     private void OnEnable()
     {
         OnStartGameEventListener.Register(SpawnEnemy);
+        _enemyRTS.OnItemsChanged += AdvanceWave; // only advance wave after every enemy is killed
         _pausable.Add(this);
     }
 
     private void OnDisable()
     {
         OnStartGameEventListener.DeRegister(SpawnEnemy);
+        _enemyRTS.OnItemsChanged -= AdvanceWave;
         _pausable.Remove(this);
     }
 
@@ -41,38 +45,27 @@ public class EnemySpawner : MonoBehaviour, IPausable
 
     private IEnumerator SpawnEnemyCoroutine()
     {
-        yield return Helpers.GetWaitForSeconds(_initialDelay);
+        yield return Helpers.GetWaitForSeconds(10);
 
-        float delayBetweenSpawns = 0f;
+        _hasWaveEnded = false;
 
-        while (true)
+        while (!_hasWaveEnded)
         {
-            while (delayBetweenSpawns > 0)
+            while (_isPaused.Value)
             {
-                while (_isPaused.Value)
-                {
-                    yield return null; // Wait until unpaused
-                }
-
-                // Increment elapsed time while unpaused
-                delayBetweenSpawns -= Time.deltaTime;
-                yield return null;
+                yield return null; // Wait until unpaused
             }
 
-            if (delayBetweenSpawns <= 0f)
-            {
-                _allWaves[0].UpdateWave(Time.deltaTime);
+            _allWaves[0].UpdateWave(Time.deltaTime);
+            yield return null;
 
-                if (_allWaves[0].WaveEnded)
-                {
-                    _allWaves[0].Initialize();
-                    // AdvanceWave();
-                    delayBetweenSpawns = _delayBetweenWaves;
-                }
+            if (_allWaves[0].WaveEnded)
+            {
+                _hasWaveEnded = true;
+                _allWaves[0].Initialize();
+                // AdvanceWave();
             }
         }
-
-
         //    AdvanceWave();
 
         //    float delayBetweenSpawns = 0f;
@@ -127,8 +120,12 @@ public class EnemySpawner : MonoBehaviour, IPausable
 
     private void AdvanceWave()
     {
-        _currentWave++;
-        //SetWaveType(_currentWave);
+        if (_hasWaveEnded && _enemyRTS.Count == 0)
+        {
+            _currentWave++;
+            //SetWaveType(_currentWave);
+            SpawnEnemy();
+        }
     }
     private void SetWaveType(int currentWave)
     {

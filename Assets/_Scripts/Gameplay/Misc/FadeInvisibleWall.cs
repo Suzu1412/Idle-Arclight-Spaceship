@@ -13,7 +13,7 @@ public class FadeInvisibleWall : MonoBehaviour
         // Get the SpriteRenderer of the target object
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            if (_spriteRenderer != null)
+            if (_spriteRenderer != null && gameObject.activeSelf)
             {
                 // Ensure the sprite starts transparent
                 SetSpriteAlpha(0f);

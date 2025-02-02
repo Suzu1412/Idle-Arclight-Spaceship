@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bullet_Cyan_Laser_Glow_0: 3881709726329541813
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

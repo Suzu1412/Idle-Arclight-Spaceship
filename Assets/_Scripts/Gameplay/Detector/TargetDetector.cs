@@ -1,15 +1,15 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class TargetDetector : MonoBehaviour, ITargetDetector
 {
     private IAgent _agent;
+    [SerializeField] private DetectionStrategySO _detectionStrategy;
     [SerializeField] private GameObjectRuntimeSetSO _targetRTS;
-    [SerializeField] private Color _detectedColor = Color.green;
-    [SerializeField] private Color _undetectedColor = Color.red;
-    [SerializeField] private float _minDistance = 2f;
     private bool _targetDetected = false;
     private bool _isVisibleToCamera = false;
+    private float _closestTarget;
     private Transform _transform;
     private Transform _targetTransform;
     private Coroutine _detectionCoroutine;
@@ -39,72 +39,46 @@ public class TargetDetector : MonoBehaviour, ITargetDetector
         _mainCamera = Camera.main;
     }
 
-    private void OnEnable()
+    private void Update()
     {
-        if (_detectionCoroutine != null) StopCoroutine(_detectionCoroutine);
-        _detectionCoroutine = StartCoroutine(DetectionCoroutine());
+        Detect();
     }
 
-    private IEnumerator DetectionCoroutine()
+    public void Detect()
     {
-        while (true)
+        if (_detectionStrategy == null)
         {
-            _isVisibleToCamera = false;
-            _targetTransform = null;
-            _targetDetected = false;
-            float closestDistance = float.MaxValue;
+            Debug.Log("Detection missing from " + transform.parent.gameObject);
+        }
 
-            if (CheckIsVisibleToCamera(transform.position))
+        _targetDetected = false;
+        _targetTransform = null;
+        _closestTarget = Mathf.Infinity;
+
+        foreach (var target in _targetRTS.Items)
+        {
+            if (!CheckIsVisibleToCamera(target.transform.position)) continue;
+
+            var detectionRange = Agent.StatsSystem.GetStat<DetectionRangeStatSO>().Value;
+            var detectionAngle = Agent.StatsSystem.GetStat<DetectionAngleStatSO>().Value;
+
+            if (!_detectionStrategy.IsTargetDetected(transform, target.transform, detectionRange, detectionAngle, Agent.FacingDirection)) continue;
+
+            float distanceSquared = _transform.position.GetSquaredDistanceTo(target.transform.position);
+
+            if (distanceSquared < _closestTarget)
             {
-                _isVisibleToCamera = true;
+                _closestTarget = distanceSquared;
+                _targetTransform = target.transform;
+                _targetDetected = true;
+                continue;
             }
-
-            foreach (var target in _targetRTS.Items)
-            {
-                if (!IsVisibleToCamera) break;
-
-                // Inner Detection
-                if (_transform.position.IsWithinRange(target.transform.position, _minDistance) && CheckIsVisibleToCamera(target.transform.position))
-                {
-                    float distanceSquared = _transform.position.GetSquaredDistanceTo(target.transform.position);
-
-                    if (distanceSquared < closestDistance)
-                    {
-                        closestDistance = distanceSquared;
-                        _targetTransform = target.transform;
-                        _targetDetected = true;
-                        continue;
-                    }
-                }
-
-                // Detect within a Radius of the Target
-                if (_transform.position.IsWithinRange(target.transform.position, Agent.StatsSystem.GetStatValue<DetectionDistanceStatSO>()))
-                {
-                    // Detect in a Cone Shape Angle
-                    Vector3 targetDirection = _transform.position.GetDirectionTo(target.transform.position);
-                    float dot = Vector3.Dot(Agent.FacingDirection, targetDirection);
-                    float coneAngle = Agent.StatsSystem.GetStatValue<DetectionAngleStatSO>();
-                    if (dot > Mathf.Cos(coneAngle * Mathf.Deg2Rad / 2) && CheckIsVisibleToCamera(target.transform.position))
-                    {
-                        float distanceSquared = _transform.position.GetSquaredDistanceTo(target.transform.position);
-
-                        if (distanceSquared < closestDistance)
-                        {
-                            closestDistance = distanceSquared;
-                            _targetTransform = target.transform;
-                            _targetDetected = true;
-                        }
-                    }
-                }
-            }
-
-            yield return Helpers.GetWaitForSeconds(0.1f);
         }
     }
 
     private bool CheckIsVisibleToCamera(Vector3 targetPosition)
     {
-        if (_mainCamera == null)  return false;
+        if (_mainCamera == null) return false;
         // Convert the target position to viewport space
         Vector3 viewportPos = _mainCamera.WorldToViewportPoint(targetPosition);
 
@@ -116,34 +90,11 @@ public class TargetDetector : MonoBehaviour, ITargetDetector
     {
         if (!Application.isPlaying) return;
 
-        // Draw the Detection Range
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, Agent.StatsSystem.GetStatValue<DetectionDistanceStatSO>());
+        if (_detectionStrategy == null) return;
 
-        // Draw the Inner Detection Range
-        Gizmos.DrawWireSphere(transform.position, _minDistance);
+        var detectionRange = Agent.StatsSystem.GetStat<DetectionRangeStatSO>().Value;
+        var detectionAngle = Agent.StatsSystem.GetStat<DetectionAngleStatSO>().Value;
 
-        // Draw the Forward Line
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, Agent.FacingDirection * Agent.StatsSystem.GetStatValue<DetectionDistanceStatSO>());
-
-        // Draw Tolerance Lines
-        Quaternion leftRotation = Quaternion.Euler(0f, 0f, -Agent.StatsSystem.GetStatValue<DetectionAngleStatSO>() / 2);
-        Quaternion rightRotation = Quaternion.Euler(0f, 0f, Agent.StatsSystem.GetStatValue<DetectionAngleStatSO>() / 2);
-
-        if (IsDetected)
-        {
-            Gizmos.color = Color.green;
-
-        }
-        else
-        {
-            Gizmos.color = Color.blue;
-
-
-        }
-        Gizmos.DrawRay(transform.position, leftRotation * Agent.FacingDirection * Agent.StatsSystem.GetStatValue<DetectionDistanceStatSO>());
-        Gizmos.DrawRay(transform.position, rightRotation * Agent.FacingDirection * Agent.StatsSystem.GetStatValue<DetectionDistanceStatSO>());
-
+        _detectionStrategy.DrawGizmos(transform, detectionRange, detectionAngle, Agent.FacingDirection);
     }
 }

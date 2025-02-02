@@ -51,6 +51,8 @@ public class SeparatedAttackPatternSO : AttackPatternSO
             // Instantiate the bullet
             Projectile bullet = ObjectPoolFactory.Spawn(_projectilePool).GetComponent<Projectile>();
             _projectileData.Initialize(bullet, agent, direction, bulletPosition, _projectileSpeed);
+            _projectileSFX.PlayEvent();
+
         }
     }
 }

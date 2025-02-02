@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66fee2d2d79a5684896faed3f92bdec3, type: 3}
+  m_Name: ChaserBoss Chase Attack Pattern
+  m_EditorClassIdentifier: 
+  _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
+  _projectilePool: {fileID: 11400000, guid: 428aa4bb4beecc043be2b9585610d64b, type: 2}
+  _projectileData: {fileID: 11400000, guid: 5750114f07ad3284ea16d66e09347bc2, type: 2}
+  _projectileSFX: {fileID: 11400000, guid: 6342db354e93d4984a55893e5d8b19fb, type: 2}
+  _projectileSpeed: 5
+  _fireRate: 0.1
+  _cooldown: 0.2
+  _repetitions: 1
+  _separationX: 0.3
+  _amplitude: 0.35
+  _bulletsPerShot: 3

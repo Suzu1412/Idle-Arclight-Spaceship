@@ -2,14 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using AYellowpaper.SerializedCollections;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/Stats/Character Stats")]
 public class StatsSO : SerializableScriptableObject, IStatsData
 {
     [SerializeField] private List<StatConfig> _initialStats = new();
-
-    [SerializeField] private SerializedDictionary<StatComponentSO, Stat> _runtimeStats = new();
+    public List<StatConfig> InitialStats => _initialStats;
 
     private void OnEnable()
     {
@@ -21,60 +19,6 @@ public class StatsSO : SerializableScriptableObject, IStatsData
         Recalculate();
     }
 
-    [ContextMenu("Create Stats")]
-    public void CreateStats()
-    {
-        // Initialize runtime stats
-        foreach (var component in _initialStats)
-        {
-            var type = component.StatComponent;
-            if (!_runtimeStats.ContainsKey(type))
-            {
-                _runtimeStats[type] = component.CreateStat();
-            }
-        }
-    }
-
-    public float GetStatValue<T>() where T : StatComponentSO
-    {
-        return GetStat<T>().Value;
-    }   
-
-    public float GetStatMinValue<T>() where T : StatComponentSO
-    {
-        return GetStat<T>().StatComponent.MaxValue;
-    }
-
-    public float GetStatMaxValue<T>() where T : StatComponentSO
-    {
-        return GetStat<T>().StatComponent.MaxValue;
-    }
-
-
-    public Stat GetStat<TStat>() where TStat : StatComponentSO
-    {
-        var statComponent = _initialStats.Find(s => s.StatComponent is TStat).StatComponent;
-
-        if (statComponent != null && _runtimeStats.TryGetValue(statComponent, out var stat))
-        {
-            return stat;
-        }
-
-        Debug.LogWarning($"Stat of type {typeof(TStat).Name} not found!");
-        return null;
-    }
-
-    public Stat GetStat(StatComponentSO statComponent)
-    {
-        if (_runtimeStats.TryGetValue(statComponent, out var stat))
-        {
-            return stat;
-        }
-
-        Debug.LogWarning($"Stat of type {statComponent.name} not found!");
-        return null;
-    }
-
     [ContextMenu("Recalculate")]
     private void Recalculate()
     {
@@ -82,23 +26,8 @@ public class StatsSO : SerializableScriptableObject, IStatsData
         {
             stat.Recalculate();
         }
-
-        foreach (var stat in _runtimeStats)
-        {
-            stat.Value.CalculateValue();
-        }
     }
 
-    [ContextMenu("Randomize")]
-    private void Random_stats()
-    {
-        foreach (var stat in _runtimeStats)
-        {
-            stat.Value.BaseValue = Mathf.Round(UnityEngine.Random.Range(stat.Value.StatComponent.MinValue, stat.Value.StatComponent.MaxValue));
-            stat.Value.CalculateValue();
-            Debug.Log($"{stat.Value.StatComponent.GetType()}: {stat.Value.Value}");
-        }
-    }
 #if UNITY_EDITOR
 
     [ContextMenu("Load All")]
@@ -110,20 +39,12 @@ public class StatsSO : SerializableScriptableObject, IStatsData
 
         foreach (var stat in stats)
         {
-            StatConfig statConfig = new StatConfig(stat);
+            StatConfig statConfig = new(stat);
             _initialStats.Add(statConfig);
 
         }
     }
 #endif
-
-    internal void RemoveModifiers()
-    {
-        foreach (var stat in _runtimeStats)
-        {
-            stat.Value.RemoveAllModifiers();
-        }
-    }
 }
 
 [System.Serializable]
@@ -134,7 +55,9 @@ public class StatConfig
 
     public StatComponentSO StatComponent => _statComponent;
 
-    public StatConfig(StatComponentSO statComponent )
+    public float BaseValue => _baseValue;
+
+    public StatConfig(StatComponentSO statComponent)
     {
         _statComponent = statComponent;
         _baseValue = _statComponent.MinValue;
@@ -142,9 +65,9 @@ public class StatConfig
 
     public Stat CreateStat()
     {
-        return _statComponent.CreateStat(_baseValue);
+        return _statComponent.CreateStat(this);
     }
-    
+
     public void Recalculate()
     {
         if (StatComponent == null) return;

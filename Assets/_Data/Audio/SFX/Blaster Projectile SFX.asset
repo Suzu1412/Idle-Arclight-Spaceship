@@ -21,5 +21,5 @@ MonoBehaviour:
   _audioChannelEvent: {fileID: 11400000, guid: 899dbe93a02f7be4a9b8b79f14d3d708, type: 2}
   _loop: 0
   _playOnAwake: 1
-  _volume: 0.7
+  _volume: 0.2
   _randomizePitch: 1

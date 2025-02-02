@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bullet_Green_Arch_Glow_0: -3767136637020677300
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

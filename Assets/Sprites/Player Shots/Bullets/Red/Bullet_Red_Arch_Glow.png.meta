@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bullet_Red_Arch_Glow_0: 7507738450714236070
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

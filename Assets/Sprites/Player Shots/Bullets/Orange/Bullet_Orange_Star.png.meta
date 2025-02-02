@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bullet_Orange_Star_0: -2518949903875886429
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

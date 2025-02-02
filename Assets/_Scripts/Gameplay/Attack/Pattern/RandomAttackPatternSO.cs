@@ -46,6 +46,8 @@ public class RandomAttackPatternSO : AttackPatternSO
             Projectile bullet = ObjectPoolFactory.Spawn(_projectilePool).GetComponent<Projectile>();
             float speed = Random.Range(_minProjectileSpeed, _maxProjectileSpeed);
             _projectileData.Initialize(bullet, agent, direction, spawnPoint.position, speed);
+            _projectileSFX.PlayEvent();
+
         }
     }
 }

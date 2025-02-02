@@ -57,6 +57,7 @@ public class DoubleSpiralAttackPatternSO : AttackPatternSO
 
             Projectile bullet2 = ObjectPoolFactory.Spawn(_projectilePool).GetComponent<Projectile>();
             _projectileData.Initialize(bullet2, agent, direction2, spawnPoint.position, _projectileSpeed);
+            _projectileSFX.PlayEvent();
 
         }
     }

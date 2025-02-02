@@ -47,6 +47,8 @@ public class SpiralAttackPatternSO : AttackPatternSO
             Projectile bullet = ObjectPoolFactory.Spawn(_projectilePool).GetComponent<Projectile>();
             _projectileData.Initialize(bullet, agent, direction, spawnPoint.position, _projectileSpeed);
             //bullet.GetComponent<Rigidbody2D>().linearVelocity = direction.normalized * 5f; // Adjust speed
+            _projectileSFX.PlayEvent();
+
         }
     }
 }

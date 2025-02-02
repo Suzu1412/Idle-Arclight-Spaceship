@@ -5,11 +5,12 @@ public class ChaserBossSpawnStateSO : StateSO<ChaserBossContext>
 {
     public override float EvaluateUtility(ChaserBossContext context)
     {
-        return context.IsIntroExecuted ? _highestUtility : 0f;
+        return !context.IsIntroExecuted ? _highestUtility : 0f;
     }
 
     public override void OnEnter(ChaserBossContext context)
     {
+        context.IsIntroExecuted = false;
         context.BossSpawnPosition = GameObject.FindGameObjectWithTag("BossPosition").transform.position;
         context.Agent.HealthSystem.SetInvulnerability(true, 0f, context.FSM.gameObject);
 
@@ -18,6 +19,8 @@ public class ChaserBossSpawnStateSO : StateSO<ChaserBossContext>
     public override void OnExit(ChaserBossContext context)
     {
         context.Agent.HealthSystem.SetInvulnerability(false, 0f, context.FSM.gameObject);
+        context.IsIntroExecuted = true;
+        context.Agent.Input.CallOnMovementInput(Vector2.zero);
     }
 
     public override void OnFixedUpdate(ChaserBossContext context)
@@ -32,7 +35,7 @@ public class ChaserBossSpawnStateSO : StateSO<ChaserBossContext>
 
         context.Agent.Input.CallOnMovementInput(direction);
 
-        if (context.FSM.transform.position.GetSquaredDistanceTo(context.BossSpawnPosition) < 0.2f)
+        if (context.FSM.transform.position.GetSquaredDistanceTo(context.BossSpawnPosition) < 0.05f)
         {
             context.IsIntroExecuted = true;
             context.Agent.Input.CallOnMovementInput(Vector2.zero);

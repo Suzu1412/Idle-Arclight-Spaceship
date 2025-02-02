@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bullet_Red_Arch_0: -2984772663560772375
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

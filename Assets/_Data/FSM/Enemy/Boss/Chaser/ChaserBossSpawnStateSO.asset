@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25048fe01617f7044a7cc2161b9ebf30, type: 3}
   m_Name: ChaserBossSpawnStateSO
   m_EditorClassIdentifier: 
-  phase: 99
-  _highestUtility: 1
+  phase: 0
+  _highestUtility: 99
   _actions: []

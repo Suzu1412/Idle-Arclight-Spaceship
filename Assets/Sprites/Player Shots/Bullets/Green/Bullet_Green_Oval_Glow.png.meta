@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bullet_Green_Oval_Glow_0: 1189362781917388721
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -4,7 +4,8 @@ using UnityEngine;
 public class ProjectileDataSO : ScriptableObject
 {
     [SerializeField] private Sprite _sprite;
-    [SerializeField] [Range(5, 20f)] private float _projectileLifeTime;
+    [SerializeField][Range(5, 20f)] private float _projectileLifeTime;
+    [SerializeField][Range(1, 5)] private int _projectileDuration = 1;
 
     public void Initialize(Projectile projectile, Agent agent, Vector2 direction, Vector3 position, float speed)
     {
@@ -13,6 +14,7 @@ public class ProjectileDataSO : ScriptableObject
         projectile.SetProjectileSpeed(speed);
         projectile.SetLayerMask(agent.AttackSystem.ProjectileMask);
         projectile.SetProjectileDamage(agent.GetStat<AttackStatSO>().Value);
+        projectile.SetProjectileDuration(_projectileDuration);
         projectile.transform.right = direction;
         projectile.transform.position = position;
         projectile.RB.position = position;

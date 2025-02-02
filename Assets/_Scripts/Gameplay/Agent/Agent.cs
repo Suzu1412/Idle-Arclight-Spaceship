@@ -60,7 +60,7 @@ public class Agent : MonoBehaviour, IAgent
 
     public void SetPlayerData(PlayerAgentDataSO data)
     {
-        
+
     }
 
     public void SetEnemyData(EnemyAgentDataSO data)

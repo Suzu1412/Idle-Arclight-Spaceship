@@ -5,7 +5,7 @@ public class FighterDeathStateSO : StateSO<FighterContext>
 {
     public override float EvaluateUtility(FighterContext context)
     {
-        return context.Agent.HealthSystem.IsDeath ? HighestUtility : 0f;
+        return context.IsDeath ? HighestUtility : 0f;
     }
 
     public override void OnEnter(FighterContext context)

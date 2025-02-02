@@ -8,14 +8,14 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
     [SerializeField] private BoolVariableSO _isPaused;
     [SerializeField][Tooltip("Agent - Enemy - Boss RTS goes here")] private GameObjectRuntimeSetSO _activeCharacterRTS;
 
-    private IAgent _agent;
+    private Agent _agent;
     private Coroutine _transitionCoroutine;
     private float _handleTransitionTime = 0.1f;
     [SerializeField] private StateListSO _states; // All Possible States
     [SerializeField][ReadOnly] private StateSO _currentState;
     [SerializeReference] private StateContext _currentContext;
 
-    internal IAgent Agent => _agent ??= GetComponent<IAgent>();
+    internal Agent Agent => _agent = _agent != null ? _agent : _agent = GetComponent<Agent>();
 
     public BoolVariableSO IsPaused { get => _isPaused; set => _isPaused = value; }
 

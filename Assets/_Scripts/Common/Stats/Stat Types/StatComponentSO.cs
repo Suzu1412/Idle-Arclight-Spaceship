@@ -12,9 +12,9 @@ public abstract class StatComponentSO : ScriptableObject
 
 
     // Creates a new Stat instance for a character
-    internal Stat CreateStat(float baseValue)
+    internal Stat CreateStat(StatConfig config)
     {
-        return new Stat(this, baseValue);
+        return new Stat(config);
     }
 }
 

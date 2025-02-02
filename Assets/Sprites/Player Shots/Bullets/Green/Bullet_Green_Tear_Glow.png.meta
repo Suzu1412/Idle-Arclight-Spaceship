@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bullet_Green_Tear_Glow_0: -8170341473254419208
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

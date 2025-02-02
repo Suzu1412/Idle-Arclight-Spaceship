@@ -15,11 +15,11 @@ MonoBehaviour:
   _baseEnemiesPerWave: 1
   _wavesToIncreaseAmount: 5
   _maxAmountOfEnemies: 20
-  _elapsedTime: 0.021040808
+  _elapsedTime: 0
   _spawnTimer: 0
   _spawnInterval: 0
   WaveEnded: 0
   _enemyPrefabPool: {fileID: 11400000, guid: ae77964a8d29c6a4aafd67693bd3efd0, type: 2}
   _spawnEnemies:
   - EnemyData: {fileID: 11400000, guid: 5cd0cd6223c39d74990c5ebd267a910d, type: 2}
-    Position: {x: 0, y: -9, z: 0}
+    Position: {x: 0, y: 9, z: 0}
