@@ -15,5 +15,5 @@ MonoBehaviour:
   phase: 0
   _highestUtility: 5
   _actions: []
-  _waitTime: 1.5
-  _attackPattern: {fileID: 0}
+  _waitTime: 0.5
+  _attackPattern: {fileID: 11400000, guid: 1e6aa83773a44418da5fd1ec80234f5c, type: 2}

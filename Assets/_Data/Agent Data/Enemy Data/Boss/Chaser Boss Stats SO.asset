@@ -15,7 +15,7 @@ MonoBehaviour:
   _guid: 
   _initialStats:
   - _statComponent: {fileID: 11400000, guid: f6f410320cb9f4faeadb63a83fd8b6ba, type: 2}
-    _baseValue: 35
+    _baseValue: 100
   - _statComponent: {fileID: 11400000, guid: d17c678bb247d0642af464d89adadd07, type: 2}
     _baseValue: 1
   - _statComponent: {fileID: 11400000, guid: b07280ea56f7f0d4abaa8e5470cbcd11, type: 2}
@@ -27,6 +27,6 @@ MonoBehaviour:
   - _statComponent: {fileID: 11400000, guid: 853badfb65930724d984381cb7956f2f, type: 2}
     _baseValue: 0.25
   - _statComponent: {fileID: 11400000, guid: c377e9f1a9166264ba0178e4fd3db023, type: 2}
-    _baseValue: 6
+    _baseValue: 9
   - _statComponent: {fileID: 11400000, guid: c377e9f1a9166264ba0178e4fd3db023, type: 2}
     _baseValue: 6
