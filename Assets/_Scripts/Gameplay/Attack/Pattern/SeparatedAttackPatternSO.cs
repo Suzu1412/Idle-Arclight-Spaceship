@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SeparatedAttackPatternSO", menuName = "Scriptable Objects/Attack/Pattern/SeparatedAttackPatternSO")]
 public class SeparatedAttackPatternSO : AttackPatternSO
 {
-    [SerializeField][Range(0.1f, 0.3f)] private float _separationX; // Horizontal distance between bullets
+    [SerializeField][Range(0.1f, 1f)] private float _separationX; // Horizontal distance between bullets
     [SerializeField][Range(0f, 2f)] private float _amplitude = 1f; // Height of the wave
     [SerializeField][Range(1, 10)] private int _bulletsPerShot; // Number of bullets per attack
 

@@ -46,6 +46,22 @@ public abstract class StateContext
         Agent.AttackSystem.Attack(isAttacking);
     }
 
+    internal void MoveTowardsTarget(Vector2 targetPosition)
+    {
+        var direction = FSM.transform.position.GetDirectionTo(targetPosition);
+        Agent.Input.CallOnMovementInput(direction);
+    }
+
+    internal bool CheckIfHasReachedTarget(Vector2 targetPosition)
+    {
+        if (Transform.position.GetSquaredDistanceTo(targetPosition) < 0.05f)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     internal void HandleDeath()
     {
         Agent.HealthSystem.Remove(FSM.gameObject);

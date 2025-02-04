@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25a1b897702024bc1b31b704284329cf, type: 3}
-  m_Name: 5- DetectionRangeStatSO
+  m_Script: {fileID: 11500000, guid: e1a1418c9aa69e84380f4079be394a0f, type: 3}
+  m_Name: ChaserBossChaserAttackStateSO
   m_EditorClassIdentifier: 
-  _minValue: 1
-  _maxValue: 25
+  phase: 0
+  _highestUtility: 1
+  _actions: []
+  _waitTime: 0.5
+  _attackPattern: {fileID: 11400000, guid: 1e6aa83773a44418da5fd1ec80234f5c, type: 2}
+  _playerDistanceY: 3

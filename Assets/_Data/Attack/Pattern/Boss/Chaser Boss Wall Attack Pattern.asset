@@ -9,17 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fee2d2d79a5684896faed3f92bdec3, type: 3}
-  m_Name: ChaserBoss Chase Attack Pattern
+  m_Script: {fileID: 11500000, guid: a20d24bea86962f4babcbb3cf25545e7, type: 3}
+  m_Name: Chaser Boss Wall Attack Pattern
   m_EditorClassIdentifier: 
   _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
   _projectilePool: {fileID: 11400000, guid: 428aa4bb4beecc043be2b9585610d64b, type: 2}
   _projectileData: {fileID: 11400000, guid: 318ea04a917544c4eb3c6dc4c6cece91, type: 2}
   _projectileSFX: {fileID: 11400000, guid: 6342db354e93d4984a55893e5d8b19fb, type: 2}
-  _projectileSpeed: 7
-  _fireRate: 0.1
-  _cooldown: 0.5
+  _projectileSpeed: 3.91
+  _fireRate: 0.2
+  _cooldown: 5.41
   _repetitions: 3
-  _separationX: 0.5
-  _amplitude: 0
-  _bulletsPerShot: 3
+  _bulletsPerShot: 25
+  _rotationSpeed: 10

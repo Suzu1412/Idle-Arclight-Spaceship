@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deab6df5c60304599ac9b4b27b6ce64f, type: 3}
-  m_Name: ChaserBossFirstPhaseStateSO
+  m_Script: {fileID: 11500000, guid: a8ac29a03d30b854d9754254bd013406, type: 3}
+  m_Name: ChaserBossWallAttackStateSO
   m_EditorClassIdentifier: 
   phase: 0
-  _highestUtility: 5
+  _highestUtility: 1
   _actions: []
-  _waitTime: 0.5
-  _attackPattern: {fileID: 11400000, guid: 1e6aa83773a44418da5fd1ec80234f5c, type: 2}
+  _wallPosition: {x: 2, y: 4.5}
+  _attackPattern: {fileID: 11400000, guid: 3f02b47963eb44748b6a8662d8283a7a, type: 2}
+  _waitTime: 1

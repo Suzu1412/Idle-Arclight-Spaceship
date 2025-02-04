@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25a1b897702024bc1b31b704284329cf, type: 3}
-  m_Name: 5- DetectionRangeStatSO
+  m_Script: {fileID: 11500000, guid: 46dd752727a013f469cf4c676d81162b, type: 3}
+  m_Name: ChaserBossMoveSelectorStateSO
   m_EditorClassIdentifier: 
-  _minValue: 1
-  _maxValue: 25
+  phase: 0
+  _highestUtility: 90
+  _actions: []
+  _neutralPosition: {x: 0, y: 3.5}

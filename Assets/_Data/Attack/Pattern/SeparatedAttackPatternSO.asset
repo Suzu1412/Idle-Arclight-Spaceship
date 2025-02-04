@@ -22,4 +22,4 @@ MonoBehaviour:
   _repetitions: 1
   _separationX: 0.3
   _amplitude: 0.35
-  _bulletsPerShot: 3
+  _bulletsPerShot: 1

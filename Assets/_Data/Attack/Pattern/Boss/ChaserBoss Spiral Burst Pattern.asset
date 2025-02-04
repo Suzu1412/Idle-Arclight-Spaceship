@@ -9,17 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fee2d2d79a5684896faed3f92bdec3, type: 3}
-  m_Name: ChaserBoss Chase Attack Pattern
+  m_Script: {fileID: 11500000, guid: 41eca1411ee746f4ea14149524c38ff2, type: 3}
+  m_Name: ChaserBoss Spiral Burst Pattern
   m_EditorClassIdentifier: 
   _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
   _projectilePool: {fileID: 11400000, guid: 428aa4bb4beecc043be2b9585610d64b, type: 2}
   _projectileData: {fileID: 11400000, guid: 318ea04a917544c4eb3c6dc4c6cece91, type: 2}
   _projectileSFX: {fileID: 11400000, guid: 6342db354e93d4984a55893e5d8b19fb, type: 2}
-  _projectileSpeed: 7
-  _fireRate: 0.1
-  _cooldown: 0.5
-  _repetitions: 3
-  _separationX: 0.5
-  _amplitude: 0
-  _bulletsPerShot: 3
+  _projectileSpeed: 6
+  _fireRate: 0.105
+  _cooldown: 0.2
+  _repetitions: 10
+  _bulletsPerShot: 5
+  _rotationSpeed: 10
