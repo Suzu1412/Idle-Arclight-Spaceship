@@ -35,10 +35,16 @@ public class FileDataService : IDataService
         return Path.Combine(_dataPath, BackupFilePath);
     }
 
+    string GetPathToHashPath()
+    {
+        return Path.Combine(_dataPath, HashFilePath);
+    }
+
     public void Save(GameDataSO data, bool overwrite = true)
     {
         string fileLocation = GetPathToFile();
         string fileBackUpLocation = GetPathToBackUpFile();
+        string hashFilePath = GetPathToHashPath();
 
         if (!overwrite && File.Exists(fileLocation))
         {
@@ -56,7 +62,7 @@ public class FileDataService : IDataService
         File.WriteAllText(fileLocation, json);
 
         // Write hash file
-        File.WriteAllText(HashFilePath, hash);
+        File.WriteAllText(hashFilePath, hash);
 
         // Create or update the backup
         File.WriteAllText(fileBackUpLocation, json);
@@ -67,6 +73,7 @@ public class FileDataService : IDataService
     public async Awaitable<GameDataSO> Load(GameDataSO gameData)
     {
         string fileLocation = GetPathToFile();
+        string hashFilePath = GetPathToHashPath();
 
         await Awaitable.WaitForSecondsAsync(0.1f);
 
@@ -78,7 +85,7 @@ public class FileDataService : IDataService
         }
 
         // Ensure save file and hash file exist
-        if (!File.Exists(fileLocation) || !File.Exists(HashFilePath))
+        if (!File.Exists(fileLocation) || !File.Exists(hashFilePath))
         {
             Debug.LogWarning("Save file or hash file not found. Attempting to load from backup...");
             return LoadFromBackup(gameData);
@@ -86,7 +93,7 @@ public class FileDataService : IDataService
 
         // Read save file and hash
         string json = File.ReadAllText(fileLocation);
-        string savedHash = File.ReadAllText(HashFilePath);
+        string savedHash = File.ReadAllText(hashFilePath);
         string computedHash = ComputeHash(json);
 
         // Check for tampering
@@ -136,6 +143,7 @@ public class FileDataService : IDataService
     private GameDataSO LoadFromBackup(GameDataSO gameData)
     {
         string fileLocation = GetPathToBackUpFile();
+        string hashFilePath = GetPathToHashPath();
 
         if (!File.Exists(BackupFilePath))
         {
@@ -148,7 +156,7 @@ public class FileDataService : IDataService
 
         // Validate the backup file by rehashing and checking
         string backupHash = ComputeHash(backupJson);
-        if (!File.Exists(HashFilePath) || backupHash != File.ReadAllText(HashFilePath))
+        if (!File.Exists(hashFilePath) || backupHash != File.ReadAllText(hashFilePath))
         {
             Debug.LogError("Backup file is also tampered with or corrupted.");
             gameData.Initialize();
