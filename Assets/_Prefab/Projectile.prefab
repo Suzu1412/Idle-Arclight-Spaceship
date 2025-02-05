@@ -52,12 +52,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _projectileSpeed: 10
-  particleOnHitPrefabVFX: {fileID: 0}
-  _projectileRange: 10
-  _damage: 5
+  _projectileLifeTime: 10
+  _projectileDuration: 1
   _impactSFX: {fileID: 11400000, guid: 2d0920cbef8084b9188e4981fb5d634f, type: 2}
   _impactPool: {fileID: 11400000, guid: 23b1f4e6dcf134f6995b67e4896187ba, type: 2}
-  projectileDuration: 6
 --- !u!212 &1691156971964220722
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -102,7 +100,7 @@ SpriteRenderer:
   m_SortingLayerID: -378007507
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3164809056393425246, guid: 9fb8685d6de354b4186a691abe59f341, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,7 +108,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!58 &5506560531549223558

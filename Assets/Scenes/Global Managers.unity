@@ -158,6 +158,7 @@ MonoBehaviour:
   _allWaves:
   - {fileID: 11400000, guid: e61e1904b0442d24c85be5e31b5f3f5a, type: 2}
   _enemyRTS: {fileID: 11400000, guid: 04ad7ad121264bc4dbf23820d961fc73, type: 2}
+  _hasWaveEnded: 0
   OnStartGameEventListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
 --- !u!4 &148453615
 Transform:

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03def00f43c46d642ac83e495324b186, type: 3}
   m_Name: Chaser Boss Projectile Data SO
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: b4a8fb34080fcf849a68227ad8dfbc72, type: 3}
+  _atlas: {fileID: 100100200, guid: 367119daadf354e5485db4b8107a47e8, type: 3}
+  _spriteName: 05
   _projectileLifeTime: 7
   _projectileDuration: 1
