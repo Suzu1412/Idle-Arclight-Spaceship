@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _guid: 274494024297a8e44a9090bed95ba8ca
   _name: Amber
+  _spriteAtlas: {fileID: 100100200, guid: a0baf39e9c879774f9067a2d0217154f, type: 3}
+  _imageName: Gems_05_ver
   _image: {fileID: 21300000, guid: 07f6fa132bb15334b95ec5c1e5873ddd, type: 3}
-  _amountOwned: 39
+  _amountOwned: 10
   _cost: 5
   _costRequirement: 2
   _gemCostMultiplier: {fileID: 11400000, guid: d4159609c13d586439af8e9e600a0681, type: 2}
@@ -29,4 +31,4 @@ MonoBehaviour:
   _generatorsTotalProduction: {fileID: 11400000, guid: 3333a232e7612214f89041268b3a20cd, type: 2}
   _isUnlocked: 1
   _shouldNotify: 1
-  _productionPercentage: 3.2527108
+  _productionPercentage: 100

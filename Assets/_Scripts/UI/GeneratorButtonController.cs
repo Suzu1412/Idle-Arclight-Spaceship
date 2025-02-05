@@ -230,7 +230,7 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void DisplayImage()
     {
-        _generatorIcon.sprite = _generator.Image;
+        _generatorIcon.sprite = _generator.GetSprite();
     }
 
     private void DisplayAmountToBuy(int amount)

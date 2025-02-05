@@ -16,12 +16,9 @@
         "GUID:43ec8a2debd8641bbb30e38469403d2f"
     ],
     "includePlatforms": [
+        "Android",
         "Editor",
-        "iOS",
-        "macOSStandalone",
-        "WSA",
-        "WindowsStandalone32",
-        "WindowsStandalone64"
+        "iOS"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

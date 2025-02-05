@@ -70,4 +70,29 @@ public class FrameRateManager : MonoBehaviour
     {
         isMobile = Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer;
     }
+
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            Application.targetFrameRate = 5;// Pause game
+        }
+        else
+        {
+            Application.targetFrameRate = _targetFramerate.Value; // Resume game
+        }
+    }
+
+
+    void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus)
+        {
+            Application.targetFrameRate = 5; // Pause game
+        }
+        else
+        {
+            Application.targetFrameRate = _targetFramerate.Value;  // Resume game
+        }
+    }
 }

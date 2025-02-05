@@ -40,4 +40,35 @@ public class GamePauseManager : Singleton<GamePauseManager>
             pausable.Pause(isPaused);
         }
     }
+
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            Time.timeScale = 0; // Pause game
+            AudioListener.pause = true; // Pause audio
+        }
+        else
+        {
+            Time.timeScale = 1; // Resume game
+            AudioListener.pause = false; // Resume audio
+        }
+    }
+
+
+    void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus)
+        {
+            Time.timeScale = 0; // Pause game
+            AudioListener.pause = true; // Pause audio
+        }
+        else
+        {
+            Time.timeScale = 1; // Resume game
+            AudioListener.pause = false; // Resume audio
+        }
+    }
+
+
 }

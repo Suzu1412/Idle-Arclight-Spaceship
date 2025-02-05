@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Runtime.CompilerServices;
+using UnityEngine.U2D;
 
 [assembly: InternalsVisibleTo("Tests")]
 [assembly: InternalsVisibleTo("Suzu.Manager")]
@@ -8,6 +9,8 @@ using System.Runtime.CompilerServices;
 public class GeneratorSO : SerializableScriptableObject
 {
     [SerializeField] private string _name;
+    [SerializeField] private SpriteAtlas _spriteAtlas;
+    [SerializeField] private string _imageName;
     [SerializeField] private Sprite _image;
     [SerializeField] private int _amountOwned;
 
@@ -42,7 +45,6 @@ public class GeneratorSO : SerializableScriptableObject
     private bool _isDirty = true;
 
     public string Name => _name;
-    public Sprite Image => _image;
     public double BaseCost { get => _cost; internal set => _cost = value; }
     public double BaseProduction { get => _baseProduction; internal set => _baseProduction = value; }
     public int AmountOwned { get => _amountOwned; internal set => _amountOwned = value; }
@@ -163,6 +165,11 @@ public class GeneratorSO : SerializableScriptableObject
         }
 
         return amountToBuy;
+    }
+
+    public Sprite GetSprite()
+    {
+        return _spriteAtlas.GetSprite(_imageName);
     }
 
     internal void SetAmount(int amount)

@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _guid: ba414e3f95c244a46aba4b585358d10a
   _name: Garnet
+  _spriteAtlas: {fileID: 100100200, guid: a0baf39e9c879774f9067a2d0217154f, type: 3}
+  _imageName: Gems_32_ver
   _image: {fileID: 21300000, guid: 19a1a81426a90444d85961707e359df7, type: 3}
   _amountOwned: 0
   _cost: 870000000
@@ -28,5 +30,5 @@ MonoBehaviour:
   OnShopNotificationEvent: {fileID: 11400000, guid: 22013b92c0172b742ae78cfa53b3643a, type: 2}
   _generatorsTotalProduction: {fileID: 11400000, guid: 3333a232e7612214f89041268b3a20cd, type: 2}
   _isUnlocked: 0
-  _shouldNotify: 0
+  _shouldNotify: 1
   _productionPercentage: 0

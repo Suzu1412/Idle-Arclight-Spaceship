@@ -14,7 +14,11 @@
         "GUID:bfb3d2e50d84b4788a991322fbe01062",
         "GUID:43ec8a2debd8641bbb30e38469403d2f"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Android",
+        "Editor",
+        "iOS"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

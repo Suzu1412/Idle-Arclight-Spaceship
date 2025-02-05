@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _guid: 7e787c2541a7b344b826b6e8353f121b
   _name: Tourmaline
+  _spriteAtlas: {fileID: 100100200, guid: a0baf39e9c879774f9067a2d0217154f, type: 3}
+  _imageName: Gems_147_ver
   _image: {fileID: 21300000, guid: 62be9fb74d7754e45885f2e6b39dfc67, type: 3}
   _amountOwned: 0
   _cost: 280000000000
@@ -28,5 +30,5 @@ MonoBehaviour:
   OnShopNotificationEvent: {fileID: 11400000, guid: 22013b92c0172b742ae78cfa53b3643a, type: 2}
   _generatorsTotalProduction: {fileID: 11400000, guid: 3333a232e7612214f89041268b3a20cd, type: 2}
   _isUnlocked: 0
-  _shouldNotify: 0
+  _shouldNotify: 1
   _productionPercentage: 0
