@@ -17,7 +17,7 @@ MonoBehaviour:
   _movementData: {fileID: 11400000, guid: d8bf1c479a1ef9942815eff5e1b0655e, type: 2}
   _states: {fileID: 11400000, guid: a13deecd9f16646798708bd3f9c3b694, type: 2}
   _deathReward: {fileID: 11400000, guid: c317b0434d93aaf42b679d8dbe6f8eeb, type: 2}
-  _dropTable: {fileID: 11400000, guid: 2efb911f593d1e9448d2c3bd1d16dc58, type: 2}
+  _dropTable: {fileID: 11400000, guid: e6527bb465d8d9e4aab0367744e7213b, type: 2}
   _sprites:
   - {fileID: 21300000, guid: 7b8d07baa59dc3949b242541fff5401b, type: 3}
   _rareVariant: []

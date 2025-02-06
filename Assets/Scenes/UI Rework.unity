@@ -2267,6 +2267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1633277060}
   - component: {fileID: 1633277059}
+  - component: {fileID: 1633277061}
   m_Layer: 5
   m_Name: Currency UI
   m_TagString: Untagged
@@ -2313,6 +2314,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1633277061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633277058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52952b4b584084361b4a0523d8b5a483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rectTransform: {fileID: 1633277060}
+  _duration: 3
+  _startPositionX: 0
+  _startPositionY: 1000
 --- !u!1 &1776301487
 GameObject:
   m_ObjectHideFlags: 0
@@ -2646,10 +2663,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rectTransform: {fileID: 2030883520}
-  OnStartGameEventListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
-  _duration: 2
+  _duration: 3
   _startPositionX: 0
-  _startPositionY: 0
+  _startPositionY: -1000
 --- !u!1 &2043233064
 GameObject:
   m_ObjectHideFlags: 0
