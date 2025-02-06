@@ -2,6 +2,8 @@ using UnityEngine;
 using System;
 using System.Runtime.CompilerServices;
 using UnityEngine.U2D;
+using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 
 [assembly: InternalsVisibleTo("Tests")]
 [assembly: InternalsVisibleTo("Suzu.Manager")]
@@ -11,7 +13,6 @@ public class GeneratorSO : SerializableScriptableObject
     [SerializeField] private string _name;
     [SerializeField] private SpriteAtlas _spriteAtlas;
     [SerializeField] private string _imageName;
-    [SerializeField] private Sprite _image;
     [SerializeField] private int _amountOwned;
 
     [Header("Cost")]
@@ -19,6 +20,7 @@ public class GeneratorSO : SerializableScriptableObject
     [SerializeField] protected double _costRequirement;
     [SerializeField] private FloatVariableSO _gemCostMultiplier;
     [SerializeField] private double _priceGrowthRate;
+    [SerializeField] private SerializedDictionary<int, double> _costCache = new SerializedDictionary<int, double>();
 
     [Header("Production")]
     [SerializeField] protected double _baseProduction;
@@ -58,7 +60,7 @@ public class GeneratorSO : SerializableScriptableObject
     public FormattedNumber ProductionFormatted { get; private set; }
     public bool ShouldNotify { get => _shouldNotify; set => _shouldNotify = value; }
     public float ProductionPercentage => _productionPercentage;
-    public bool IsDirty { set  => _isDirty = value; }
+    public bool IsDirty { set => _isDirty = value; }
 
     private void OnEnable()
     {
@@ -75,6 +77,7 @@ public class GeneratorSO : SerializableScriptableObject
         _totalProduction.Initialize(0, 0, double.MaxValue);
 
         _notification = ScriptableObject.CreateInstance<NotificationSO>();
+        ClearCache();
 
     }
 
@@ -89,6 +92,7 @@ public class GeneratorSO : SerializableScriptableObject
 
     public void CheckIfMeetRequirementsToUnlock(double currency)
     {
+        if (_isUnlocked) return;
         if (currency >= CostRequirement)
         {
             _isUnlocked = true;
@@ -99,6 +103,7 @@ public class GeneratorSO : SerializableScriptableObject
     {
         _isDirty = true;
         _amountOwned += amount;
+        ClearCache();
     }
 
     public void CalculateProductionRate()
@@ -106,13 +111,13 @@ public class GeneratorSO : SerializableScriptableObject
         _production.Value = _baseProduction * _gemProductionMultiplier.Value * _generatorProductionMultiplier.Value * _crystalTotalMultiplier.Value;
         _currentProduction.Value = Math.Round(_production.Value * _amountOwned, 1);
         ProductionFormatted = FormatNumber.FormatDouble(_currentProduction.Value, ProductionFormatted);
-        
+
         _isDirty = false;
     }
 
     public void CalculatePercentage()
     {
-        if (_generatorsTotalProduction.Value != 0) // Evita división por Cero
+        if (_generatorsTotalProduction.Value != 0) // Evita divisiï¿½n por Cero
         {
             _productionPercentage = (float)(_currentProduction.Value / _generatorsTotalProduction.Value) * 100;
         }
@@ -132,14 +137,35 @@ public class GeneratorSO : SerializableScriptableObject
         return _currentProduction.Value;
     }
 
-    public double GetBulkCost(int amountTobuy = 1)
+    public double GetBulkCost(int amountToBuy = 1)
     {
+        if (amountToBuy <= 0) return 0;
+
+        int key = _amountOwned + amountToBuy;
+
+        if (_costCache.TryGetValue(key, out double cachedCost))
+        {
+            _bulkCost.Value = cachedCost;
+            CostFormatted = FormatNumber.FormatDouble(_bulkCost.Value, CostFormatted);
+            return _bulkCost.Value;
+        }
+
         _bulkCost.Value = 0;
 
-        for (int i = 0; i < amountTobuy; i++)
+        double firstCost = GetNextCost();
+
+        if (_priceGrowthRate == 1)
         {
-            _bulkCost.Value += GetNextCost(i);
+            // If growth rate is 1, the cost doesn't change, so we just multiply
+            _bulkCost.Value = firstCost * amountToBuy;
         }
+        else
+        {
+            // Use the geometric series sum formula
+            _bulkCost.Value = firstCost * (Math.Pow(_priceGrowthRate, amountToBuy) - 1) / (_priceGrowthRate - 1);
+        }
+
+        _costCache[key] = _bulkCost.Value;
 
         CostFormatted = FormatNumber.FormatDouble(_bulkCost.Value, CostFormatted);
         return _bulkCost.Value;
@@ -147,24 +173,21 @@ public class GeneratorSO : SerializableScriptableObject
 
     public int CalculateMaxAmountToBuy(double currency)
     {
-        int amountToBuy = 0;
-        double currencyLeft = currency;
-        bool hasEnoughCurrency = true;
+        if (currency <= 0) return 0;
 
-        while (hasEnoughCurrency)
+        double firstCost = GetNextCost();
+
+        if (_priceGrowthRate == 1)
         {
-            if (currencyLeft >= GetNextCost(amountToBuy))
-            {
-                currencyLeft -= GetNextCost(amountToBuy);
-                amountToBuy++;
-            }
-            else
-            {
-                hasEnoughCurrency = false;
-            }
+            // If the price growth rate is 1, each item costs the same, so we just do simple division
+            return (int)(currency / firstCost);
         }
 
-        return amountToBuy;
+        // Use the logarithm-based formula to solve for n
+        double maxPurchases = Math.Log(1 + (currency * (_priceGrowthRate - 1)) / firstCost) / Math.Log(_priceGrowthRate);
+
+        return Math.Max(0, (int)Math.Floor(maxPurchases)); // Ensure we return at least 0
+
     }
 
     public Sprite GetSprite()
@@ -183,9 +206,9 @@ public class GeneratorSO : SerializableScriptableObject
         _totalProduction.Value = totalProduction;
     }
 
-    internal double GetNextCost(int addAmount = 0)
+    internal double GetNextCost()
     {
-        return Math.Ceiling(_cost * _gemCostMultiplier.Value * Math.Pow(_priceGrowthRate, _amountOwned + addAmount));
+        return Math.Ceiling(_cost * _gemCostMultiplier.Value * Math.Pow(_priceGrowthRate, _amountOwned));
     }
 
     internal void AddModifier(FloatModifier modifier)
@@ -198,40 +221,16 @@ public class GeneratorSO : SerializableScriptableObject
         _gemProductionMultiplier.RemoveModifier(modifier);
     }
 
+    // Call this whenever `_amountOwned` changes to clear outdated cache
+    void ClearCache()
+    {
+        _costCache.Clear();
+    }
+
     private void Notificate()
     {
         _notification.SetMessage("newGeneratorNotification");
         _notification.SetSprite(_notificationIcon);
         OnShopNotificationEvent.RaiseEvent(_notification);
-    }
-
-    [ContextMenu("Show Bulk Cost")]
-    private void CalculateBulkCost()
-    {
-        Debug.Log($"Generator Name: {this.Name}");
-        SetAmount(9);
-        Debug.Log($"10 Bulk Cost: {GetBulkCost()}");
-        SetAmount(24);
-        Debug.Log($"25 Bulk Cost: {GetBulkCost()}");
-        SetAmount(49);
-        Debug.Log($"50 Bulk Cost: {GetBulkCost()}");
-        SetAmount(99);
-        Debug.Log($"100 Bulk Cost: {GetBulkCost()}");
-        SetAmount(149);
-        Debug.Log($"150 Bulk Cost: {GetBulkCost()}");
-        SetAmount(199);
-        Debug.Log($"200 Bulk Cost: {GetBulkCost()}");
-        SetAmount(249);
-        Debug.Log($"250 Bulk Cost: {GetBulkCost()}");
-        SetAmount(299);
-        Debug.Log($"300 Bulk Cost: {GetBulkCost()}");
-        SetAmount(349);
-        Debug.Log($"350 Bulk Cost: {GetBulkCost()}");
-        SetAmount(399);
-        Debug.Log($"400 Bulk Cost: {GetBulkCost()}");
-        SetAmount(449);
-        Debug.Log($"450 Bulk Cost: {GetBulkCost()}");
-        SetAmount(499);
-        Debug.Log($"500 Bulk Cost: {GetBulkCost()}");
     }
 }

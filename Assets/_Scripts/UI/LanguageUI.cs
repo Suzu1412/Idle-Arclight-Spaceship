@@ -13,7 +13,7 @@ public class LanguageUI : MonoBehaviour
 
     private void OnEnable()
     {
-        UpdateCurrentIndex(LocalizationSettings.SelectedLocale.Identifier.Code);   
+        UpdateCurrentIndex(LocalizationSettings.SelectedLocale.Identifier.Code);
     }
     public void PreviousSelection()
     {
@@ -43,7 +43,7 @@ public class LanguageUI : MonoBehaviour
                 break;
 
             case "es":
-                language = "Español";
+                language = "EspaÃ±ol";
                 break;
         }
 
@@ -57,7 +57,7 @@ public class LanguageUI : MonoBehaviour
 
     private void UpdateCurrentIndex(string locale)
     {
-        for(int i= 0; i < _languageList.Count; i++)
+        for (int i = 0; i < _languageList.Count; i++)
         {
             if (_languageList[i] == locale)
             {
