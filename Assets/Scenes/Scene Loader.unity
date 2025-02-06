@@ -682,6 +682,14 @@ PrefabInstance:
       propertyPath: _loadingCanvas
       value: 
       objectReference: {fileID: 853860984}
+    - target: {fileID: 5376562726477573808, guid: d3137d512ee62144f97bd40db726b6f1, type: 3}
+      propertyPath: _sceneGroups.Array.data[0].SubScenes.Array.data[1]._sceneReference.guid
+      value: eb0220bb3f9d042818a016879519f3d9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5376562726477573808, guid: d3137d512ee62144f97bd40db726b6f1, type: 3}
+      propertyPath: _sceneGroups.Array.data[0].SubScenes.Array.data[1]._sceneReference.asset
+      value: 
+      objectReference: {fileID: 102900000, guid: eb0220bb3f9d042818a016879519f3d9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1259,11 +1259,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1194192498563947860, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
       propertyPath: Lens.OrthographicSize
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4087479968422183427, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
       propertyPath: orthographic size
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4087479968422183427, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
@@ -1340,6 +1340,14 @@ PrefabInstance:
     - target: {fileID: 8479320726003977989, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220771128965568674, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
+      propertyPath: AmplitudeGain
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220771128965568674, guid: 8feda8cb0ccd2460db3a4eb4fecfeeaf, type: 3}
+      propertyPath: FrequencyGain
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
