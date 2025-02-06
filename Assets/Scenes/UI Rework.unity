@@ -1347,6 +1347,50 @@ RectTransform:
   m_AnchoredPosition: {x: -99.99992, y: -100.00001}
   m_SizeDelta: {x: 412, y: 46}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &797643606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 797643608}
+  - component: {fileID: 797643607}
+  m_Layer: 0
+  m_Name: UI Animation Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &797643607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797643606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2ccfea95e34945f899fad21c45edf65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &797643608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797643606}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &903348722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2555,6 +2599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2030883520}
+  - component: {fileID: 2030883521}
   m_Layer: 5
   m_Name: Hp
   m_TagString: Untagged
@@ -2588,6 +2633,23 @@ RectTransform:
   m_AnchoredPosition: {x: 100, y: 100}
   m_SizeDelta: {x: 412, y: 70}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2030883521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030883519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52952b4b584084361b4a0523d8b5a483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rectTransform: {fileID: 2030883520}
+  OnStartGameEventListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
+  _duration: 2
+  _startPositionX: 0
+  _startPositionY: 0
 --- !u!1 &2043233064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2647,3 +2709,4 @@ SceneRoots:
   - {fileID: 1950796465}
   - {fileID: 1776301491}
   - {fileID: 1509801010}
+  - {fileID: 797643608}
