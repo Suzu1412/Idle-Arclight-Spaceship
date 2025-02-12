@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,22 +17,28 @@ public class EnemySpawner : MonoBehaviour, IPausable
     [SerializeField] private GameObjectRuntimeSetSO _enemyRTS;
     [SerializeField] private bool _hasWaveEnded;
 
-    [Header("Void Game Event Listener")]
-    [SerializeField] private VoidGameEventListener OnStartGameEventListener;
+    [Header("Void Game Event Binding")]
+    [SerializeField] private VoidGameEventBinding OnStartGameEventBinding;
     private Coroutine _spawnEnemyCoroutine;
+    private Action SpawnEnemyAction;
 
     public BoolVariableSO IsPaused { get => _isPaused; set => _isPaused = value; }
 
+    private void Awake()
+    {
+        SpawnEnemyAction = SpawnEnemy;
+    }
+
     private void OnEnable()
     {
-        OnStartGameEventListener.Register(SpawnEnemy);
+        OnStartGameEventBinding.Bind(SpawnEnemyAction, this);
         _enemyRTS.OnItemsChanged += AdvanceWave; // only advance wave after every enemy is killed
         _pausable.Add(this);
     }
 
     private void OnDisable()
     {
-        OnStartGameEventListener.DeRegister(SpawnEnemy);
+        OnStartGameEventBinding.Unbind(SpawnEnemyAction, this);
         _enemyRTS.OnItemsChanged -= AdvanceWave;
         _pausable.Remove(this);
     }

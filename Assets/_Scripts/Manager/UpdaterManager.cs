@@ -56,7 +56,7 @@ public class UpdaterManager : MonoBehaviour
         // Monitor the download progress
         while (!updateHandle.IsDone)
         {
-            OnLoadProgressEvent.RaiseEvent(updateHandle.PercentComplete);
+            OnLoadProgressEvent.RaiseEvent(updateHandle.PercentComplete, this);
             Debug.Log($"{(updateHandle.PercentComplete * 100):0}%");
             //progressSlider.value = updateHandle.PercentComplete;
             //progressText.text = $"{(updateHandle.PercentComplete * 100):0}%";

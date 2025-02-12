@@ -1,18 +1,25 @@
+using System;
 using UnityEngine;
 
 public class SceneMusic : MonoBehaviour
 {
-    [SerializeField] private VoidGameEventListener OnGameStartListener;
+    [SerializeField] private VoidGameEventBinding OnStartGameBinding;
     [SerializeField] private SoundDataSO _playMusic;
+    private Action PlayMusicAction;
+
+    private void Awake()
+    {
+        PlayMusicAction = PlayMusic;
+    }
 
     private void OnEnable()
     {
-        OnGameStartListener.Register(PlayMusic);
+        OnStartGameBinding.Bind(PlayMusicAction, this);
     }
 
     private void OnDisable()
     {
-        OnGameStartListener.DeRegister(PlayMusic);
+        OnStartGameBinding.Unbind(PlayMusicAction, this);
     }
 
     private void PlayMusic()

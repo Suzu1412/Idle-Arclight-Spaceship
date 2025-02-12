@@ -8,10 +8,10 @@ public class SaveSystem : Singleton<SaveSystem>
     private bool _canSave;
     private bool _isGameDataReady;
 
-    [Header("Void Game Event Listener")]
-    [SerializeField] private VoidGameEventListener OnStartGameEventListener;
-    [SerializeField] private VoidGameEventListener OnLoadLastSceneEventListener;
-    [SerializeField] private VoidGameEventListener OnDeleteSaveDataEventListener;
+    [Header("Void Game Event Binding")]
+    [SerializeField] private VoidGameEventBinding OnStartGameEventBinding;
+    [SerializeField] private VoidGameEventBinding OnLoadLastSceneEventBinding;
+    [SerializeField] private VoidGameEventBinding OnDeleteSaveDataEventBinding;
 
     [Header("Int Game Event")]
     [SerializeField] private IntGameEvent OnChangeSceneEvent;
@@ -22,25 +22,34 @@ public class SaveSystem : Singleton<SaveSystem>
     [SerializeField] private GameDataSO _gameDataSO = default;
     [SerializeField] private SaveableRunTimeSetSO _saveDataRTS = default;
 
+    // Actions
+    private Action LoadGameAction;
+    private Action LoadLastSceneAction;
+    private Action DeleteAllFileAction;
+
     protected override void Awake()
     {
         base.Awake();
         PrepareGameData();
+
+        LoadGameAction = LoadGame;
+        LoadLastSceneAction = LoadLastScene;
+        DeleteAllFileAction = DeleteAllFileData;
     }
 
     private void OnEnable()
     {
         _canSave = false;
-        OnStartGameEventListener.Register(LoadGame);
-        OnLoadLastSceneEventListener.Register(LoadLastScene);
-        OnDeleteSaveDataEventListener.Register(DeleteAllFileData);
+        OnStartGameEventBinding.Bind(LoadGameAction, this);
+        OnLoadLastSceneEventBinding.Bind(LoadLastSceneAction, this);
+        OnDeleteSaveDataEventBinding.Bind(DeleteAllFileAction, this);
     }
 
     private void OnDisable()
     {
-        OnStartGameEventListener.DeRegister(LoadGame);
-        OnLoadLastSceneEventListener.DeRegister(LoadLastScene);
-        OnDeleteSaveDataEventListener.DeRegister(DeleteAllFileData);
+        OnStartGameEventBinding.Unbind(LoadGameAction, this);
+        OnLoadLastSceneEventBinding.Unbind(LoadLastSceneAction, this);
+        OnDeleteSaveDataEventBinding.Unbind(DeleteAllFileAction, this);
 
     }
 
@@ -48,7 +57,7 @@ public class SaveSystem : Singleton<SaveSystem>
     {
         _gameDataSO ??= await LoadDataFromFile(_gameDataSO);
 
-        OnChangeSceneEvent.RaiseEvent(0);
+        OnChangeSceneEvent.RaiseEvent(0, this);
     }
 
     private async void LoadGame()

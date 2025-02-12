@@ -22,7 +22,7 @@ public class JoystickPlayerExample : MonoBehaviour
 
     private void OnDisable()
     {
-        OnStickChangeDirection.RaiseEvent(Vector2.zero);
+        OnStickChangeDirection.RaiseEvent(Vector2.zero, this);
         _topLeftImage.enabled = false;
         _topRightImage.enabled = false;
         _bottomLeftImage.enabled = false;
@@ -43,7 +43,7 @@ public class JoystickPlayerExample : MonoBehaviour
     {
         _direction.Set(_joystick.Horizontal, _joystick.Vertical);
         HighlightDirection(_direction);
-        OnStickChangeDirection.RaiseEvent(_direction);
+        OnStickChangeDirection.RaiseEvent(_direction, this);
     }
 
     private void HighlightDirection(Vector2 direction)

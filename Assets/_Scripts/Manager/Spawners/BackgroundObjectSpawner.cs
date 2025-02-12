@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,21 +13,27 @@ public class BackgroundObjectSpawner : MonoBehaviour, IPausable
     [SerializeField] private BackgroundObjectConfigSO _objectConfig;
 
 
-    [Header("Void Game Event Listener")]
-    [SerializeField] private VoidGameEventListener OnStartGameEventListener;
+    [Header("Void Game Event Binding")]
+    [SerializeField] private VoidGameEventBinding OnStartGameEventBinding;
     private Coroutine _spawnObjectCoroutine;
+    private Action SpawnObjectAction;
 
     public BoolVariableSO IsPaused { get => _isPaused; set => _isPaused = value; }
 
+    private void Awake()
+    {
+        SpawnObjectAction = SpawnObject;
+    }
+
     private void OnEnable()
     {
-        OnStartGameEventListener.Register(SpawnObject);
+        OnStartGameEventBinding.Bind(SpawnObjectAction, this);
         _pausable.Add(this);
     }
 
     private void OnDisable()
     {
-        OnStartGameEventListener.DeRegister(SpawnObject);
+        OnStartGameEventBinding.Unbind(SpawnObjectAction, this);
         _pausable.Remove(this);
     }
 
@@ -39,7 +46,7 @@ public class BackgroundObjectSpawner : MonoBehaviour, IPausable
 
     private IEnumerator SpawnObjectCoroutine()
     {
-        float delayBetweenSpawns = Random.Range(_minDelayBetweenSpawns, _maxDelayBetweenSpawns);
+        float delayBetweenSpawns = UnityEngine.Random.Range(_minDelayBetweenSpawns, _maxDelayBetweenSpawns);
         while (true)
         {
             if (!_isPaused.Value)
@@ -52,9 +59,9 @@ public class BackgroundObjectSpawner : MonoBehaviour, IPausable
             if (delayBetweenSpawns <= 0f)
             {
                 BackgroundObject backgroundObject = ObjectPoolFactory.Spawn(_objectConfig.PoolSettings).GetComponent<BackgroundObject>();
-                int selectedSprite = Random.Range(0, _objectConfig.SpriteList.Count);
+                int selectedSprite = UnityEngine.Random.Range(0, _objectConfig.SpriteList.Count);
                 backgroundObject.SetSprite(_objectConfig.SpriteList[selectedSprite]);
-                int selectedConfiguration = Random.Range(0, _objectConfig.ConfigurationList.Count);
+                int selectedConfiguration = UnityEngine.Random.Range(0, _objectConfig.ConfigurationList.Count);
                 backgroundObject.SetMoveSpeed(_objectConfig.ConfigurationList[selectedConfiguration].MoveSpeed);
                 backgroundObject.SetScale(_objectConfig.ConfigurationList[selectedConfiguration].Scale);
                 backgroundObject.SetOrderInLayer(_objectConfig.ConfigurationList[selectedConfiguration].SortingOrder);
@@ -62,7 +69,7 @@ public class BackgroundObjectSpawner : MonoBehaviour, IPausable
                 backgroundObject.RB.position = position;
                 backgroundObject.transform.position = position;
 
-                delayBetweenSpawns = Random.Range(_minDelayBetweenSpawns, _maxDelayBetweenSpawns);
+                delayBetweenSpawns = UnityEngine.Random.Range(_minDelayBetweenSpawns, _maxDelayBetweenSpawns);
             }
         }
 

@@ -52,7 +52,7 @@ public class LanguageUI : MonoBehaviour
 
     private void ChangeLocale()
     {
-        OnChangeLocaleEvent.RaiseEvent(_languageList[_currentIndex]);
+        OnChangeLocaleEvent.RaiseEvent(_languageList[_currentIndex], this);
     }
 
     private void UpdateCurrentIndex(string locale)

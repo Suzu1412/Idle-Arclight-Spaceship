@@ -20,7 +20,7 @@ public class UnlockManager : MonoBehaviour, ISaveable
 	public void LoadData(GameDataSO gameData)
 	{
 		LoadUnlockedSystem(gameData.UnlockedSystems);
-		OnUnlockEvent.RaiseEvent();
+		OnUnlockEvent.RaiseEvent(this);
 	}
 
 	public GameObject GetGameObject()

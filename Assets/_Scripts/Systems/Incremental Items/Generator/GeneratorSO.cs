@@ -16,11 +16,12 @@ public class GeneratorSO : SerializableScriptableObject
     [SerializeField] private int _amountOwned;
 
     [Header("Cost")]
+    [SerializeField] protected BigNumber _costBigNumber;
     [SerializeField] protected double _cost;
     [SerializeField] protected double _costRequirement;
     [SerializeField] private FloatVariableSO _gemCostMultiplier;
     [SerializeField] private double _priceGrowthRate;
-    [SerializeField] private SerializedDictionary<int, double> _costCache = new SerializedDictionary<int, double>();
+    [SerializeField] private SerializedDictionary<int, BigNumber> _costCache = new SerializedDictionary<int, BigNumber>();
 
     [Header("Production")]
     [SerializeField] protected double _baseProduction;
@@ -35,6 +36,8 @@ public class GeneratorSO : SerializableScriptableObject
     [Header("Double Variable")]
     [SerializeField] private DoubleVariableSO _generatorsTotalProduction;
 
+    private BigNumber _bulkCostBigNumber;
+
     private DoubleVariableSO _bulkCost;
     private DoubleVariableSO _currentProduction;
     private DoubleVariableSO _totalProduction;
@@ -44,6 +47,10 @@ public class GeneratorSO : SerializableScriptableObject
     [SerializeField] private bool _isUnlocked;
     [SerializeField] private bool _shouldNotify;
     [SerializeField] private float _productionPercentage;
+    private double _logPriceGrowthRate;
+    private BigNumber _cachedGrowthFactor;
+    private int _lastAmountOwned;
+    [SerializeField] private string _costFormatted => _costBigNumber.GetFormat();
     private bool _isDirty = true;
 
     public string Name => _name;
@@ -77,6 +84,7 @@ public class GeneratorSO : SerializableScriptableObject
         _totalProduction.Initialize(0, 0, double.MaxValue);
 
         _notification = ScriptableObject.CreateInstance<NotificationSO>();
+        _logPriceGrowthRate = Math.Log(_priceGrowthRate);
         ClearCache();
 
     }
@@ -88,6 +96,7 @@ public class GeneratorSO : SerializableScriptableObject
         _productionPercentage = 0;
         _isUnlocked = false;
         _shouldNotify = true;
+        _lastAmountOwned = 0;
     }
 
     public void CheckIfMeetRequirementsToUnlock(double currency)
@@ -117,7 +126,7 @@ public class GeneratorSO : SerializableScriptableObject
 
     public void CalculatePercentage()
     {
-        if (_generatorsTotalProduction.Value != 0) // Evita divisi�n por Cero
+        if (_generatorsTotalProduction.Value != 0) // Avoid Division by zero
         {
             _productionPercentage = (float)(_currentProduction.Value / _generatorsTotalProduction.Value) * 100;
         }
@@ -137,57 +146,52 @@ public class GeneratorSO : SerializableScriptableObject
         return _currentProduction.Value;
     }
 
-    public double GetBulkCost(int amountToBuy = 1)
+    public BigNumber GetBulkCost(int amountToBuy = 1)
     {
-        if (amountToBuy <= 0) return 0;
+        if (amountToBuy <= 0) return BigNumber.Zero;
 
         int key = _amountOwned + amountToBuy;
 
-        if (_costCache.TryGetValue(key, out double cachedCost))
+        if (_costCache.TryGetValue(key, out BigNumber cachedCost))
         {
-            _bulkCost.Value = cachedCost;
-            CostFormatted = FormatNumber.FormatDouble(_bulkCost.Value, CostFormatted);
-            return _bulkCost.Value;
+            _bulkCostBigNumber = cachedCost;
+            return _bulkCostBigNumber;
         }
 
-        _bulkCost.Value = 0;
+        _bulkCostBigNumber = BigNumber.Zero;
 
-        double firstCost = GetNextCost();
+        BigNumber firstCost = GetNextCost();
 
         if (_priceGrowthRate == 1)
         {
-            // If growth rate is 1, the cost doesn't change, so we just multiply
-            _bulkCost.Value = firstCost * amountToBuy;
+            // If growth rate is 1, the cost remains constant, so we just multiply
+            _bulkCostBigNumber = firstCost * amountToBuy;
         }
         else
         {
             // Use the geometric series sum formula
-            _bulkCost.Value = firstCost * (Math.Pow(_priceGrowthRate, amountToBuy) - 1) / (_priceGrowthRate - 1);
+            _bulkCostBigNumber = firstCost * (BigNumber.Pow(_priceGrowthRate, amountToBuy) - BigNumber.One) / (_priceGrowthRate - 1);
         }
 
-        _costCache[key] = _bulkCost.Value;
-
-        CostFormatted = FormatNumber.FormatDouble(_bulkCost.Value, CostFormatted);
-        return _bulkCost.Value;
+        _costCache[key] = _bulkCostBigNumber;
+        return _bulkCostBigNumber;
     }
 
-    public int CalculateMaxAmountToBuy(double currency)
+    public int CalculateMaxAmountToBuy(BigNumber currency)
     {
-        if (currency <= 0) return 0;
+        if (currency <= BigNumber.Zero) return 0;
 
-        double firstCost = GetNextCost();
+        BigNumber firstCost = GetNextCost();
 
         if (_priceGrowthRate == 1)
         {
-            // If the price growth rate is 1, each item costs the same, so we just do simple division
-            return (int)(currency / firstCost);
+            return (currency / firstCost).ToInt();
         }
 
-        // Use the logarithm-based formula to solve for n
-        double maxPurchases = Math.Log(1 + (currency * (_priceGrowthRate - 1)) / firstCost) / Math.Log(_priceGrowthRate);
+        // Optimized logarithm-based formula to solve for n
+        double maxPurchases = (BigNumber.Log(currency * (_priceGrowthRate - 1) + firstCost) - BigNumber.Log(firstCost)) / _logPriceGrowthRate;
 
-        return Math.Max(0, (int)Math.Floor(maxPurchases)); // Ensure we return at least 0
-
+        return Math.Max(0, (int)Math.Floor(maxPurchases));
     }
 
     public Sprite GetSprite()
@@ -206,9 +210,17 @@ public class GeneratorSO : SerializableScriptableObject
         _totalProduction.Value = totalProduction;
     }
 
-    internal double GetNextCost()
+    internal BigNumber GetNextCost()
     {
-        return Math.Ceiling(_cost * _gemCostMultiplier.Value * Math.Pow(_priceGrowthRate, _amountOwned));
+        if (_priceGrowthRate == 1) return (_costBigNumber * _gemCostMultiplier.Value).Ceil();
+
+        if (_amountOwned != _lastAmountOwned)
+        {
+            _cachedGrowthFactor = BigNumber.Pow(_priceGrowthRate, _amountOwned);
+            _lastAmountOwned = _amountOwned;
+        }
+
+        return (_costBigNumber * _gemCostMultiplier.Value * _cachedGrowthFactor).Ceil();
     }
 
     internal void AddModifier(FloatModifier modifier)
@@ -227,10 +239,28 @@ public class GeneratorSO : SerializableScriptableObject
         _costCache.Clear();
     }
 
+    [ContextMenu("Convert Cost to Big Number")]
+    private void CalculateCostToBigNumber()
+    {
+        Debug.Log(new BigNumber(_cost));
+    }
+
+    [ContextMenu("Convert Requirement to Big Number")]
+    private void CalculateRequirementToBigNumber()
+    {
+        Debug.Log(new BigNumber(_costRequirement));
+    }
+
+    [ContextMenu("Convert Production to Big Number")]
+    private void CalculateProductionToBigNumber()
+    {
+        Debug.Log(new BigNumber(_baseProduction));
+    }
+
     private void Notificate()
     {
         _notification.SetMessage("newGeneratorNotification");
         _notification.SetSprite(_notificationIcon);
-        OnShopNotificationEvent.RaiseEvent(_notification);
+        OnShopNotificationEvent.RaiseEvent(_notification, this);
     }
 }

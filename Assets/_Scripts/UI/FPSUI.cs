@@ -11,7 +11,7 @@ public class FPSUI : MonoBehaviour
 
     public void ChangeFPS(int amount)
     {
-        OnFPSChangeEvent.RaiseEvent(amount);
+        OnFPSChangeEvent.RaiseEvent(amount, this);
         UpdateToggle();
     }
 

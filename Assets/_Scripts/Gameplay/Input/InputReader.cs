@@ -9,15 +9,14 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
     private Vector2 _direction;
     private bool _isShopActive;
     private bool _isMenuActive;
+    [Header("Events")]
     [SerializeField] private Vector2GameEventListener OnStickChangeDirectionListener = default;
     [SerializeField] private BoolGameEvent OnToggleShopEvent;
-    [SerializeField] private BoolGameEvent OnToggleQuestEvent;
-    [SerializeField] private BoolGameEvent OnToggleInventoryEvent;
-    [SerializeField] private BoolGameEvent OnToggleStatsEvent;
     [SerializeField] private BoolGameEvent OnToggleMenuEvent;
     [SerializeField] private BoolGameEvent OnGameplayPauseEvent;
     [SerializeField] private BoolVariableSO _isPaused;
 
+    [Header("Sound Data")]
     [SerializeField] private SoundDataSO _confirmSound;
     [SerializeField] private SoundDataSO _cancelSound;
 
@@ -41,7 +40,7 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
         OnStickChangeDirectionListener.Register(CallOnMovementInput);
         _isShopActive = false;
         _isMenuActive = false;
-        OnGameplayPauseEvent.RaiseEvent(false);
+        OnGameplayPauseEvent.RaiseEvent(false, this);
         DisableUIActions();
     }
 
@@ -120,14 +119,14 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
         if (context.started)
         {
             _isShopActive = !_isShopActive;
-            OnToggleShopEvent.RaiseEvent(_isShopActive);
+            OnToggleShopEvent.RaiseEvent(_isShopActive, this);
 
             if (!_isShopActive)
             {
                 EnablePlayerActions();
                 DisableUIActions();
                 _cancelSound.PlayEvent();
-                OnGameplayPauseEvent.RaiseEvent(false);
+                OnGameplayPauseEvent.RaiseEvent(false, this);
                 _isPaused.Value = false;
 
 
@@ -137,7 +136,7 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
                 DisablePlayerActions();
                 DisableUIActions();
                 _confirmSound.PlayEvent();
-                OnGameplayPauseEvent.RaiseEvent(true);
+                OnGameplayPauseEvent.RaiseEvent(true, this);
                 _isPaused.Value = true;
 
 
@@ -153,14 +152,14 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
         if (context.started)
         {
             _isMenuActive = !_isMenuActive;
-            OnToggleMenuEvent.RaiseEvent(_isMenuActive);
+            OnToggleMenuEvent.RaiseEvent(_isMenuActive, this);
 
             if (!_isMenuActive)
             {
                 EnablePlayerActions();
                 DisableUIActions();
                 _cancelSound.PlayEvent();
-                OnGameplayPauseEvent.RaiseEvent(false);
+                OnGameplayPauseEvent.RaiseEvent(false, this);
                 _isPaused.Value = false;
 
 
@@ -169,7 +168,7 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
             {
                 DisablePlayerActions();
                 _confirmSound.PlayEvent();
-                OnGameplayPauseEvent.RaiseEvent(true);
+                OnGameplayPauseEvent.RaiseEvent(true, this);
                 _isPaused.Value = true;
 
             }
@@ -196,14 +195,14 @@ public class InputReader : MonoBehaviour, GameInput.IPlayerActions, GameInput.IM
         if (_isShopActive || _isMenuActive)
         {
             _isShopActive = false;
-            OnToggleShopEvent.RaiseEvent(_isShopActive);
+            OnToggleShopEvent.RaiseEvent(_isShopActive, this);
             _isMenuActive = false;
-            OnToggleMenuEvent.RaiseEvent(_isMenuActive);
+            OnToggleMenuEvent.RaiseEvent(_isMenuActive, this);
 
             EnablePlayerActions();
             DisableUIActions();
             _cancelSound.PlayEvent();
-            OnGameplayPauseEvent.RaiseEvent(false);
+            OnGameplayPauseEvent.RaiseEvent(false, this);
             _isPaused.Value = false;
         }
 

@@ -8,12 +8,12 @@ public class SoundGameEventListener : BaseGameEventListener<ISound>
 
     public override void Register(Action<ISound> onEvent)
     {
-        OnEvent.Add(onEvent);
+        OnEvent.Register(onEvent);
     }
 
     public override void DeRegister(Action<ISound> onEvent)
     {
-        OnEvent.Remove(onEvent);
+        OnEvent.Unregister(onEvent);
     }
 }
 

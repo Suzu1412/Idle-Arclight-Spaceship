@@ -20,10 +20,9 @@ public class GeneratorButtonController : MonoBehaviour
     [Header("Double Variable")]
     [SerializeField] private DoubleVariableSO _totalCurrency;
 
-    [Header("Void Event Listener")]
-    [SerializeField] private VoidGameEventListener OnCurrencyChangedEventListener;
-    [SerializeField] private VoidGameEventListener OnGeneratorUpgradeListener;
-    [SerializeField] private VoidGameEventListener OnProductionChangedEventListener;
+    [Header("Void Event Binding")]
+    [SerializeField] private VoidGameEventBinding OnCurrencyChangedEventBinding;
+    [SerializeField] private VoidGameEventBinding OnProductionChangedEventBinding;
 
     [Header("Assigned Automatically")]
     [SerializeField][ReadOnly] private GeneratorSO _generator;
@@ -61,7 +60,6 @@ public class GeneratorButtonController : MonoBehaviour
     public event UnityAction<int> OnBuyGeneratorClicked;
     private bool _isAvailableToBuy;
 
-
     private void Awake()
     {
         _localizedString = _descriptionLocalized.StringReference;
@@ -70,11 +68,11 @@ public class GeneratorButtonController : MonoBehaviour
         SetAmountVariable();
         SetAmountProductionVariable();
         SetAmountToBuyVariable();
-        OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
-        OnCurrencyChangedEventListener.Register(UpdatePrice);
-        OnProductionChangedEventListener.Register(DisplayProductionText);
-        OnProductionChangedEventListener.Register(DisplayDescription);
-        OnProductionChangedEventListener.Register(DisplayPercentageText);
+        //OnCurrencyChangedEventBinding.Bind(CheckIfCanBuy);
+        //OnCurrencyChangedEventBinding.Bind(UpdatePrice);
+        //OnProductionChangedEventBinding.Bind(DisplayProductionText);
+        //OnProductionChangedEventBinding.Bind(DisplayDescription);
+        //OnProductionChangedEventBinding.Bind(DisplayPercentageText);
         _isAvailableToBuy = false;
     }
 
@@ -107,11 +105,11 @@ public class GeneratorButtonController : MonoBehaviour
     private void OnDestroy()
     {
         _generatorRTS.Remove(gameObject);
-        OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
-        OnCurrencyChangedEventListener.DeRegister(UpdatePrice);
-        OnProductionChangedEventListener.DeRegister(DisplayProductionText);
-        OnProductionChangedEventListener.DeRegister(DisplayDescription);
-        OnProductionChangedEventListener.DeRegister(DisplayPercentageText);
+        //OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
+        //OnCurrencyChangedEventListener.DeRegister(UpdatePrice);
+        //OnProductionChangedEventListener.DeRegister(DisplayProductionText);
+        //OnProductionChangedEventListener.DeRegister(DisplayDescription);
+        //OnProductionChangedEventListener.DeRegister(DisplayPercentageText);
     }
 
     public void SetIndex(int index)
@@ -297,7 +295,7 @@ public class GeneratorButtonController : MonoBehaviour
         }
         else
         {
-            amount = _generator.CalculateMaxAmountToBuy(_totalCurrency.Value);
+            amount = 1;//_generator.CalculateMaxAmountToBuy(_totalCurrency.Value);
         }
         _generator.GetBulkCost(amount > 0 ? amount : 1);
         return amount > 0 ? amount : 1;

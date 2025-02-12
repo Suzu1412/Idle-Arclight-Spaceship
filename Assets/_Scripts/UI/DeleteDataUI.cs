@@ -6,6 +6,6 @@ public class DeleteDataUI : MonoBehaviour
 
     public void DeleteSaveData()
     {
-        OnDeleteSaveDataEvent.RaiseEvent();
+        OnDeleteSaveDataEvent.RaiseEvent(this);
     }
 }

@@ -31,10 +31,6 @@ public class SceneLoaderManager : Singleton<MonoBehaviour>, ISaveable
     [SerializeField] private FloatGameEvent OnScreenFadeOutEvent;
     [SerializeField] private FloatGameEvent OnScreenFadeInEvent;
 
-
-    [Header("Bool Event Listener")]
-    [SerializeField] private BoolGameEventListener OnToggleLoadEventListener;
-
     [SerializeField] private SceneReference _sceneLoader;
 
     [SerializeField] private float _unloadProgress = 0.25f;
@@ -128,7 +124,6 @@ public class SceneLoaderManager : Singleton<MonoBehaviour>, ISaveable
         _isLoading = true;
         EnableLoadingCanvas();
         UpdateLoadProgress(0f);
-        OnToggleLoadEvent.RaiseEvent(true);
         _currentScene = index;
         UnloadSceneGroup();
     }
@@ -159,13 +154,14 @@ public class SceneLoaderManager : Singleton<MonoBehaviour>, ISaveable
     {
         DisableLoadingCanvas();
         _isLoading = false;
-        OnFinishedLoadingEvent.RaiseEvent();
-        OnScreenFadeInEvent.RaiseEvent(1.5f);
+        Debug.Log("Finished loading event executed times");
+        OnFinishedLoadingEvent.RaiseEvent(this);
+        OnScreenFadeInEvent.RaiseEvent(1.5f, this);
     }
 
     private void UpdateLoadProgress(float value)
     {
-        OnLoadProgressEvent.RaiseEvent(value);
+        OnLoadProgressEvent.RaiseEvent(value, this);
     }
 
     private IEnumerator UnloadScenes()

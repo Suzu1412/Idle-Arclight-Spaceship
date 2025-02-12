@@ -104,7 +104,7 @@ public class ShopUI : Singleton<ShopUI>
 
     private void UpdateButtonInfo(int index)
     {
-        foreach(var generatorButton in _generatorButtons)
+        foreach (var generatorButton in _generatorButtons)
         {
             generatorButton.PrepareButton();
         }
@@ -112,12 +112,12 @@ public class ShopUI : Singleton<ShopUI>
 
     private void BuyGenerator(int index)
     {
-        OnBuyGeneratorGameEvent.RaiseEvent(index);
+        OnBuyGeneratorGameEvent.RaiseEvent(index, this);
     }
 
     private void BuyUpgrade(int index)
     {
-        OnBuyUpgradeGameEvent.RaiseEvent(index);
+        OnBuyUpgradeGameEvent.RaiseEvent(index, this);
     }
 
     private void ChangeAmountToBuy(int amount)

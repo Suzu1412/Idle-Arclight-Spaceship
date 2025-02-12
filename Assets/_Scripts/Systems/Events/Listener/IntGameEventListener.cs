@@ -10,11 +10,11 @@ public class IntGameEventListener : BaseGameEventListener<int>
 
     public override void Register(Action<int> onEvent)
     {
-        OnEvent.Add(onEvent);
+        OnEvent.Register(onEvent);
     }
 
     public override void DeRegister(Action<int> onEvent)
     {
-        OnEvent.Remove(onEvent);
+        OnEvent.Unregister(onEvent);
     }
 }

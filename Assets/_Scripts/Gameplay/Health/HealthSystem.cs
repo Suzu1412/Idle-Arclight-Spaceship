@@ -60,7 +60,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
         OnMaxHealthValueChanged?.Invoke(_health);
         OnHealthValueChanged?.Invoke();
-        OnHealthChangedEvent?.RaiseEvent();
+        OnHealthChangedEvent?.RaiseEvent(this);
     }
 
     private void OnEnable()
@@ -106,7 +106,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         _health.MaxValue = GetMaxValue();
         _health.Value = _health.MaxValue;
         OnHealthValueChanged?.Invoke();
-        OnHealthChangedEvent?.RaiseEvent();
+        OnHealthChangedEvent?.RaiseEvent(this);
     }
 
     public void Heal(int amount)
@@ -116,7 +116,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         _health.Value += amount;
         OnHeal?.Invoke();
         OnHealed?.Invoke(amount);
-        OnHealedEvent?.RaiseEvent(amount);
+        OnHealedEvent?.RaiseEvent(amount, this);
         OnHealthValueChanged?.Invoke();
     }
 
@@ -132,7 +132,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
         _health.Value -= amount;
         OnHit?.Invoke();
         OnDamaged?.Invoke(amount);
-        OnDamagedEvent?.RaiseEvent(amount);
+        OnDamagedEvent?.RaiseEvent(amount, this);
         OnHealthValueChanged?.Invoke();
 
         SetInvulnerability(isInvulnerable: true, _defaultInvulnerability, gameObject);
@@ -175,7 +175,7 @@ public class HealthSystem : MonoBehaviour, IHealthSystem
 
         _isInvulnerable = isInvulnerable;
         duration = Mathf.Clamp(duration, 0f, 5f);
-        if (duration == 0) return;  
+        if (duration == 0) return;
         _invulnerabilityDuration = duration;
         OnInvulnerabilityPeriod?.Invoke();
 

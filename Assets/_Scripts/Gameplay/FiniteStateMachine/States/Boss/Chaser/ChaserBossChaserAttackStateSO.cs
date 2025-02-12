@@ -58,7 +58,12 @@ public class ChaserBossChaserAttackStateSO : StateSO<ChaserBossContext>
 
     private void MoveToTarget(ChaserBossContext context)
     {
-        if (context.Target == null) return;
+        if (context.Target == null)
+        {
+            context.WaitTimer = Time.time;
+            context.ChaseState = ChaserBossContext.ChaserPatternState.Wait;
+            return;
+        }
 
         var playerPos = new Vector2(context.Target.position.x, context.Target.position.y + _playerDistanceY);
         var direction = context.Transform.position.GetDirectionTo(playerPos);

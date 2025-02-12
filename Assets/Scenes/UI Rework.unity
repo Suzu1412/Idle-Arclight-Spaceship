@@ -872,7 +872,7 @@ MonoBehaviour:
   _damagebar: {fileID: 1282821094}
   _healthBar: {fileID: 903348725}
   _health: {fileID: 11400000, guid: 54d8b71d3afb566438112aa3487b3ebb, type: 2}
-  OnHealthChangedEventListener: {fileID: 11400000, guid: 2c0a703a9a2c8c54bb0b8891c7fafba4, type: 2}
+  OnHealthChangedEventBinding: {fileID: 11400000, guid: 36298f808542742918ffb3d0923be4b1, type: 2}
   OnDamagedEventListener: {fileID: 11400000, guid: cccee020deea34a1ba89d3cadf2887a5, type: 2}
   OnHealedEventListener: {fileID: 11400000, guid: af081dc963b2d074886409283d8080cb, type: 2}
   _healthSystem: {fileID: 0}

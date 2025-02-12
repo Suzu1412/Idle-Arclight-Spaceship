@@ -8,11 +8,11 @@ public class StringGameEventListener : BaseGameEventListener<string>
 
     public override void Register(Action<string> onEvent)
     {
-        OnEvent.Add(onEvent);
+        OnEvent.Register(onEvent);
     }
 
     public override void DeRegister(Action<string> onEvent)
     {
-        OnEvent.Remove(onEvent);
+        OnEvent.Unregister(onEvent);
     }
 }

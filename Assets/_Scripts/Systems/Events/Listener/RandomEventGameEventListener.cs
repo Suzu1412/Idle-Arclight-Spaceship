@@ -8,11 +8,11 @@ public class RandomEventGameEventListener : BaseGameEventListener<BaseRandomEven
 
     public override void Register(Action<BaseRandomEventSO> onEvent)
     {
-        OnEvent.Add(onEvent);
+        OnEvent.Register(onEvent);
     }
 
     public override void DeRegister(Action<BaseRandomEventSO> onEvent)
     {
-        OnEvent.Remove(onEvent);
+        OnEvent.Unregister(onEvent);
     }
 }

@@ -1,26 +1,33 @@
+using System;
 using UnityEngine;
 
 
-public class GameInitiator : Singleton<GameInitiator>
+public class GameInitiator : MonoBehaviour
 {
     [Header("Void Event")]
     [SerializeField] private VoidGameEvent OnStartGameEvent;
 
-    [Header("Void Event Listener")]
-    [SerializeField] private VoidGameEventListener OnFinishedLoadingEventListener;
+    [Header("Void Event Binding")]
+    [SerializeField] private VoidGameEventBinding OnFinishedLoadingEventBinding;
+    private Action StartGameAction;
+
+    private void Awake()
+    {
+        StartGameAction = StartGame;
+    }
 
     private void OnEnable()
     {
-        OnFinishedLoadingEventListener.Register(StartGame);
+        OnFinishedLoadingEventBinding.Bind(StartGameAction, this);
     }
 
     private void OnDisable()
     {
-        OnFinishedLoadingEventListener.DeRegister(StartGame);
+        OnFinishedLoadingEventBinding.Unbind(StartGameAction, this);
     }
 
     private void StartGame()
     {
-        OnStartGameEvent.RaiseEvent();
+        OnStartGameEvent.RaiseEvent(this);
     }
 }

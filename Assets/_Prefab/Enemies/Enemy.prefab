@@ -501,7 +501,7 @@ MonoBehaviour:
   _damagebar: {fileID: 3837476300842951627}
   _healthBar: {fileID: 4068593553439682554}
   _health: {fileID: 0}
-  OnHealthChangedEventListener: {fileID: 0}
+  OnHealthChangedEventBinding: {fileID: 0}
   OnDamagedEventListener: {fileID: 0}
   OnHealedEventListener: {fileID: 0}
   _healthSystem: {fileID: 3483539676383952236}
@@ -895,7 +895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9843137, g: 0.77254903, b: 0.19215687, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

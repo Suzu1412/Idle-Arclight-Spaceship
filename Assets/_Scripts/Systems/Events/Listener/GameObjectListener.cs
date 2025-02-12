@@ -10,11 +10,11 @@ public class GameObjectGameEventListener : BaseGameEventListener<GameObject>
 
     public override void Register(Action<GameObject> onEvent)
     {
-        OnEvent.Add(onEvent);
+        OnEvent.Register(onEvent);
     }
 
     public override void DeRegister(Action<GameObject> onEvent)
     {
-        OnEvent.Remove(onEvent);
+        OnEvent.Unregister(onEvent);
     }
 }

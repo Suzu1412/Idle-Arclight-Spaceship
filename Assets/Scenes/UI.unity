@@ -4716,7 +4716,7 @@ MonoBehaviour:
   _damagebar: {fileID: 1889217474}
   _healthBar: {fileID: 2031397541}
   _health: {fileID: 11400000, guid: 54d8b71d3afb566438112aa3487b3ebb, type: 2}
-  OnHealthChangedEventListener: {fileID: 11400000, guid: 2c0a703a9a2c8c54bb0b8891c7fafba4, type: 2}
+  OnHealthChangedEventBinding: {fileID: 11400000, guid: 36298f808542742918ffb3d0923be4b1, type: 2}
   OnDamagedEventListener: {fileID: 11400000, guid: 6201b6a066ee5c746b1ae993f85efbc8, type: 2}
   OnHealedEventListener: {fileID: 11400000, guid: af081dc963b2d074886409283d8080cb, type: 2}
   _healthSystem: {fileID: 0}
@@ -9159,7 +9159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unlockedSystem: {fileID: 11400000, guid: 22ee4b8221e19482a88dbcd572a4019b, type: 2}
-  OnUnlockSystemListener: {fileID: 11400000, guid: cd6a85da1a5e8433d9b08815ef6a25f9, type: 2}
+  OnUnlockSystemBinding: {fileID: 0}
 --- !u!114 &848381504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20344,7 +20344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unlockedSystem: {fileID: 11400000, guid: 22ee4b8221e19482a88dbcd572a4019b, type: 2}
-  OnUnlockSystemListener: {fileID: 11400000, guid: cd6a85da1a5e8433d9b08815ef6a25f9, type: 2}
+  OnUnlockSystemBinding: {fileID: 0}
 --- !u!1 &213651469757681435
 GameObject:
   m_ObjectHideFlags: 0
@@ -27962,7 +27962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unlockedSystem: {fileID: 11400000, guid: 72733e1ae58874ff790a86b35ca005a1, type: 2}
-  OnUnlockSystemListener: {fileID: 11400000, guid: cd6a85da1a5e8433d9b08815ef6a25f9, type: 2}
+  OnUnlockSystemBinding: {fileID: 0}
 --- !u!114 &8101130061137580939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28061,7 +28061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unlockedSystem: {fileID: 11400000, guid: 72733e1ae58874ff790a86b35ca005a1, type: 2}
-  OnUnlockSystemListener: {fileID: 11400000, guid: cd6a85da1a5e8433d9b08815ef6a25f9, type: 2}
+  OnUnlockSystemBinding: {fileID: 0}
 --- !u!114 &8224299289129519936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29041,6 +29041,14 @@ PrefabInstance:
       propertyPath: _deleteDataConfirmPopup
       value: 
       objectReference: {fileID: 802323447}
+    - target: {fileID: 8640947794676897651, guid: 3a73720d801ab4c2e8d5e9fd7806786c, type: 3}
+      propertyPath: OnToggleMenuEventBinding
+      value: 
+      objectReference: {fileID: 11400000, guid: b40986179de124e829d85b3239a21ddc, type: 2}
+    - target: {fileID: 8640947794676897651, guid: 3a73720d801ab4c2e8d5e9fd7806786c, type: 3}
+      propertyPath: OnToggleShopEventBinding
+      value: 
+      objectReference: {fileID: 11400000, guid: c8c7973c85cda4f0ebe2f706594d40a2, type: 2}
     - target: {fileID: 8640947794676897651, guid: 3a73720d801ab4c2e8d5e9fd7806786c, type: 3}
       propertyPath: _upgradeShopDefaultButton
       value: 

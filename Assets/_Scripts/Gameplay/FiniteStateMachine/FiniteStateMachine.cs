@@ -15,6 +15,10 @@ public class FiniteStateMachine : MonoBehaviour, IPausable
     [SerializeField][ReadOnly] private StateSO _currentState;
     [SerializeReference] private StateContext _currentContext;
 
+    public StateSO CurrentState => _currentState;
+    public StateListSO StateList => _states;
+    public StateContext CurrentContext => _currentContext;
+
     internal Agent Agent => _agent = _agent != null ? _agent : _agent = GetComponent<Agent>();
 
     public BoolVariableSO IsPaused { get => _isPaused; set => _isPaused = value; }

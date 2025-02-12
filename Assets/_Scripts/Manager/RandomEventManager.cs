@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class RandomEventManager : Singleton<RandomEventManager>
 {
@@ -11,19 +12,24 @@ public class RandomEventManager : Singleton<RandomEventManager>
     [Header("Random Event Game Event")]
     [SerializeField] private RandomEventGameEvent OnNotificateRandomEvent;
 
-    [Header("Void Event Listener")]
-    [SerializeField] private VoidGameEventListener OnActivateRandomEventListener;
+    [Header("Void Event Binding")]
+    [SerializeField] private VoidGameEventBinding OnActivateRandomEventBinding;
+    private Action ActivateRandomEventAction;
 
-
+    protected override void Awake()
+    {
+        base.Awake();
+        ActivateRandomEventAction = ActivateRandomEvent;
+    }
 
     private void OnEnable()
     {
-        OnActivateRandomEventListener.Register(ActivateRandomEvent);
+        OnActivateRandomEventBinding.Bind(ActivateRandomEventAction, this);
     }
 
     private void OnDisable()
     {
-        OnActivateRandomEventListener.DeRegister(ActivateRandomEvent);
+        OnActivateRandomEventBinding.Unbind(ActivateRandomEventAction, this);
         StopRandomEvents();
     }
 
@@ -37,7 +43,7 @@ public class RandomEventManager : Singleton<RandomEventManager>
     {
         int index = WeightedProbabilities.GetWeightedItemList(_weightedItems, _totalWeight);
         _randomEvents[index].ActivateEvent();
-        OnNotificateRandomEvent.RaiseEvent(_randomEvents[index]);
+        OnNotificateRandomEvent.RaiseEvent(_randomEvents[index], this);
         await Awaitable.WaitForSecondsAsync(_randomEvents[index].Duration);
         _randomEvents[index].DeactivateEvent();
 

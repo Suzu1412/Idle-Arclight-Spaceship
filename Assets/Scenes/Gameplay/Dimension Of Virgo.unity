@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4bdb71a61001f24da79fb2f313c4882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnGameStartListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
+  OnStartGameBinding: {fileID: 11400000, guid: 31d964659d010433daabb99c4e31cfa7, type: 2}
   _playMusic: {fileID: 11400000, guid: c07d05429f6581f45bff3d9dfc42909b, type: 2}
 --- !u!1 &2143681739 stripped
 GameObject:

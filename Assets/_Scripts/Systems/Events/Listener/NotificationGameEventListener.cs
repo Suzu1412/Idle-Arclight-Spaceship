@@ -8,11 +8,11 @@ public class NotificationGameEventListener : BaseGameEventListener<INotification
 
     public override void Register(Action<INotification> onEvent)
     {
-        OnEvent.Add(onEvent);
+        OnEvent.Register(onEvent);
     }
 
     public override void DeRegister(Action<INotification> onEvent)
     {
-        OnEvent.Remove(onEvent);
+        OnEvent.Unregister(onEvent);
     }
 }

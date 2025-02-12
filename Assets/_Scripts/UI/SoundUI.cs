@@ -11,7 +11,7 @@ public class SoundUI : MonoBehaviour
     [SerializeField] private Slider _sfxSlider;
 
     [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to change Master volume")]
-    [SerializeField] private FloatGameEvent OnMasterVolumeChangedEvent= default;
+    [SerializeField] private FloatGameEvent OnMasterVolumeChangedEvent = default;
     [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to change Music volume")]
     [SerializeField] private FloatGameEvent OnMusicVolumeChangedEvent = default;
     [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to change SFXs volume")]
@@ -27,12 +27,12 @@ public class SoundUI : MonoBehaviour
     public void MusicVolumeChanged()
     {
         _musicVolume.Initialize(_musicSlider.value, 0f, 1f);
-        OnMusicVolumeChangedEvent.RaiseEvent(_musicVolume.Value);
+        OnMusicVolumeChangedEvent.RaiseEvent(_musicVolume.Value, this);
     }
 
     public void SFXVolumeChanged()
     {
         _sfxVolume.Initialize(_sfxSlider.value, 0f, 1f);
-        OnSFXVolumeChangedEvent.RaiseEvent(_sfxVolume.Value);
+        OnSFXVolumeChangedEvent.RaiseEvent(_sfxVolume.Value, this);
     }
 }

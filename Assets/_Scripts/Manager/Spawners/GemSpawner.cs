@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,30 +16,40 @@ public class GemSpawner : MonoBehaviour, IPausable
     [SerializeField] private GemPatternSO[] _gemPatterns;
     [SerializeField] private FloatVariableSO _currentGemPattern;
 
-    [Header("Void Game Event Listener")]
-    [SerializeField] private VoidGameEventListener OnStartGameEventListener;
+    [Header("Void Game Event Binding")]
+    [SerializeField] private VoidGameEventBinding OnStartGameEventBinding;
     private Coroutine _spawnGemCoroutine;
 
     private Vector3 _newPosition;
     private int _randomPattern;
+    private Action SpawnGemAction;
 
     public BoolVariableSO IsPaused { get => _isPaused; set => _isPaused = value; }
 
+    private void Awake()
+    {
+        SpawnGemAction = SpawnGem;
+    }
+
     private void OnEnable()
     {
-        OnStartGameEventListener.Register(SpawnGem);
+        OnStartGameEventBinding.Bind(SpawnGemAction, this);
         _pausable.Add(this);
     }
 
     private void OnDisable()
     {
-        OnStartGameEventListener.DeRegister(SpawnGem);
+        if (_spawnGemCoroutine != null) StopCoroutine(_spawnGemCoroutine);
+
+        OnStartGameEventBinding.Unbind(SpawnGemAction, this);
         _pausable.Remove(this);
 
     }
 
     private void SpawnGem()
     {
+        if (this == null) return;  // Prevent executing on destroyed object
+
         if (_spawnGemCoroutine != null) StopCoroutine(_spawnGemCoroutine);
         _spawnGemCoroutine = StartCoroutine(SpawnGemCoroutine());
     }
@@ -65,7 +76,7 @@ public class GemSpawner : MonoBehaviour, IPausable
 
             if (delayBetweenSpawns <= 0f)
             {
-                _randomPattern = Random.Range(0, _gemPatterns[(int)_currentGemPattern.Value].GemPatternPools.Length);
+                _randomPattern = UnityEngine.Random.Range(0, _gemPatterns[(int)_currentGemPattern.Value].GemPatternPools.Length);
 
                 ObjectPooler patternPool = ObjectPoolFactory.Spawn(_gemPatterns[(int)_currentGemPattern.Value].GemPatternPools[_randomPattern]);
                 _newPosition = _placementStrategy.SetPosition(new Vector3(0f, 9f, 0f));
@@ -81,7 +92,7 @@ public class GemSpawner : MonoBehaviour, IPausable
                     gem.transform.position = patternPool.transform.GetChild(i).position;
                 }
 
-                delayBetweenSpawns = Random.Range(_minDelayBetweenSpawns.Value, _maxDelayBetweenSpawns.Value);
+                delayBetweenSpawns = UnityEngine.Random.Range(_minDelayBetweenSpawns.Value, _maxDelayBetweenSpawns.Value);
                 ObjectPoolFactory.ReturnToPool(patternPool);
             }
         }

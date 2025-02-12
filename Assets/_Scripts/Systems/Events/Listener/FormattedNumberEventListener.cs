@@ -9,11 +9,11 @@ public class FormattedNumberEventListener : BaseGameEventListener<FormattedNumbe
 
     public override void Register(Action<FormattedNumber> onEvent)
     {
-        OnEvent.Add(onEvent);
+        OnEvent.Register(onEvent);
     }
 
     public override void DeRegister(Action<FormattedNumber> onEvent)
     {
-        OnEvent.Remove(onEvent);
+        OnEvent.Unregister(onEvent);
     }
 }

@@ -8,11 +8,11 @@ public class Vector2GameEventListener : BaseGameEventListener<Vector2>
 
     public override void Register(Action<Vector2> onEvent)
     {
-        OnEvent.Add(onEvent);
+        OnEvent.Register(onEvent);
     }
 
     public override void DeRegister(Action<Vector2> onEvent)
     {
-        OnEvent.Remove(onEvent);
+        OnEvent.Unregister(onEvent);
     }
 }

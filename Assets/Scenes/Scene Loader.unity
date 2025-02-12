@@ -171,6 +171,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3242648905930196911, guid: 3630631abf298469084191afca558079, type: 3}
+      propertyPath: OnStartGameEventBinding
+      value: 
+      objectReference: {fileID: 11400000, guid: 31d964659d010433daabb99c4e31cfa7, type: 2}
+    - target: {fileID: 3242648905930196911, guid: 3630631abf298469084191afca558079, type: 3}
+      propertyPath: OnLoadLastSceneEventBinding
+      value: 
+      objectReference: {fileID: 11400000, guid: 13374ca949c5049a581a7d9baaa6a4c5, type: 2}
+    - target: {fileID: 3242648905930196911, guid: 3630631abf298469084191afca558079, type: 3}
+      propertyPath: OnDeleteSaveDataEventBinding
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a5da59930f95489f834944299e5cc97, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

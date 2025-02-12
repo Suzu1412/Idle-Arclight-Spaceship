@@ -10,11 +10,11 @@ public class BoolGameEventListener : BaseGameEventListener<bool>
 
     public override void Register(Action<bool> onEvent)
     {
-        OnEvent.Add(onEvent);
+        OnEvent.Register(onEvent);
     }
 
     public override void DeRegister(Action<bool> onEvent)
     {
-        OnEvent.Remove(onEvent);
+        OnEvent.Unregister(onEvent);
     }
 }

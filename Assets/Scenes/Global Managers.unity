@@ -159,7 +159,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e61e1904b0442d24c85be5e31b5f3f5a, type: 2}
   _enemyRTS: {fileID: 11400000, guid: 04ad7ad121264bc4dbf23820d961fc73, type: 2}
   _hasWaveEnded: 0
-  OnStartGameEventListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
+  OnStartGameEventBinding: {fileID: 11400000, guid: 31d964659d010433daabb99c4e31cfa7, type: 2}
 --- !u!4 &148453615
 Transform:
   m_ObjectHideFlags: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69439863e75974a6ab96f55c872f28dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnGameplayPausedListener: {fileID: 11400000, guid: 9c454593d11a040e0af304c4b194a6a8, type: 2}
+  OnGameplayPausedBinding: {fileID: 11400000, guid: cfca7970455984a4198f870955aee8bf, type: 2}
   _pausable: {fileID: 11400000, guid: 9f5aa27e8c242b54b9ea3854c91031fc, type: 2}
   _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
 --- !u!1 &447385082
@@ -319,6 +319,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Currency Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 8180101144524932358, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -348,6 +352,10 @@ PrefabInstance:
       propertyPath: _bootstrapperScene.asset
       value: 
       objectReference: {fileID: 102900000, guid: 5e73b9c06ca9a2442b54030da5bffdd2, type: 3}
+    - target: {fileID: 1385602748037994800, guid: 09232bba6e990184c93be847d6b949ad, type: 3}
+      propertyPath: OnFinishedLoadingEventBinding
+      value: 
+      objectReference: {fileID: 11400000, guid: d5267ae176c3b41018e33b6c7fd63c84, type: 2}
     - target: {fileID: 1385602748037994800, guid: 09232bba6e990184c93be847d6b949ad, type: 3}
       propertyPath: OnFinishedLoadingEventListener
       value: 
@@ -453,6 +461,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8611419925503800045, guid: ed53d2ca57481934fb074c26a1fdbdac, type: 3}
+      propertyPath: OnStartGameEventBinding
+      value: 
+      objectReference: {fileID: 11400000, guid: 31d964659d010433daabb99c4e31cfa7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -493,7 +505,7 @@ MonoBehaviour:
   _maxDelayBetweenSpawns: 75
   _placementStrategy: {fileID: 11400000, guid: a0e8ac4c9ba61fc4daf23a4c8ef4a945, type: 2}
   _objectConfig: {fileID: 11400000, guid: 17d544a5c894ae347b30456820970485, type: 2}
-  OnStartGameEventListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
+  OnStartGameEventBinding: {fileID: 11400000, guid: 31d964659d010433daabb99c4e31cfa7, type: 2}
 --- !u!4 &1737741697
 Transform:
   m_ObjectHideFlags: 0
@@ -568,7 +580,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ec1355823b024c54e8691e3b631959d4, type: 2}
   - {fileID: 11400000, guid: 1cca6e13e35b0c54a897e113dd24db5c, type: 2}
   _currentGemPattern: {fileID: 11400000, guid: ac725eef63641054d91ebe58d651e623, type: 2}
-  OnStartGameEventListener: {fileID: 11400000, guid: 42160ccc00397914b8642a5a2329afa9, type: 2}
+  OnStartGameEventBinding: {fileID: 11400000, guid: 31d964659d010433daabb99c4e31cfa7, type: 2}
 --- !u!1001 &228448589717511854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -690,6 +702,10 @@ PrefabInstance:
       propertyPath: '_randomEvents.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: bbaffc36623cfb745919091e26249636, type: 2}
+    - target: {fileID: 7921322146628114214, guid: 9466aeff83afe114eaf80d76cdcb22f4, type: 3}
+      propertyPath: OnActivateRandomEventBinding
+      value: 
+      objectReference: {fileID: 11400000, guid: f4aa656819b6f4c2abf9ddf87edb16bb, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

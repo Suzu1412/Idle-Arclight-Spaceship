@@ -23,7 +23,7 @@ public class SoundDataSO : ScriptableObject, ISound
 
     public void PlayEvent()
     {
-        _audioChannelEvent.RaiseEvent(this);
+        _audioChannelEvent.RaiseEvent(this, this);
     }
 }
 

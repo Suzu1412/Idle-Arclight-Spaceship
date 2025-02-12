@@ -57,8 +57,8 @@ public class UpgradeButtonController : MonoBehaviour
         SetGemLocalized();
         SetGemDescriptionLocalized();
         SetAmountVariable();
-        OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
-        OnUpgradeBoughtEventListener.Register(CheckIfBought);
+        //OnCurrencyChangedEventListener.Register(CheckIfCanBuy);
+        //OnUpgradeBoughtEventListener.Register(CheckIfBought);
         _isAvailableToBuy = false;
 
     }
@@ -81,8 +81,8 @@ public class UpgradeButtonController : MonoBehaviour
 
     private void OnDestroy()
     {
-        OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
-        OnUpgradeBoughtEventListener.DeRegister(CheckIfBought);
+        //OnCurrencyChangedEventListener.DeRegister(CheckIfCanBuy);
+        //OnUpgradeBoughtEventListener.DeRegister(CheckIfBought);
         _upgradesRTS.Remove(gameObject);
     }
 

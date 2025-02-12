@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using Cysharp.Text;
+using System;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -29,9 +30,9 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private VoidGameEvent OnBuyEveryUpgradeEvent;
     [Header("Int Event")]
     [SerializeField] private IntGameEvent OnChangeBuyAmountEvent;
-    [Header("Bool Event Listener")]
-    [SerializeField] private BoolGameEventListener OnToggleShopEventListener;
-    [SerializeField] private BoolGameEventListener OnToggleMenuEventListener;
+    [Header("Bool Event Binding")]
+    [SerializeField] private BoolGameEventBinding OnToggleShopEventBinding;
+    [SerializeField] private BoolGameEventBinding OnToggleMenuEventBinding;
     [Header("Int Event Listener")]
     [SerializeField] private IntGameEventListener OnChangeBuyAmountEventListener;
 
@@ -57,6 +58,18 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject _languageSelectorPopup;
     [SerializeField] private GameObject _deleteDataConfirmPopup;
 
+    // Actions
+    private event Action<bool> ToggleShopAction;
+    private event Action<bool> ToggleMenuAction;
+
+
+    protected override void Awake()
+    {
+        base.Awake();
+        ToggleShopAction = ToggleShop;
+        ToggleMenuAction = ToggleMenu;
+    }
+
 
     private void Start()
     {
@@ -70,15 +83,15 @@ public class UIManager : Singleton<UIManager>
 
     private void OnEnable()
     {
-        OnToggleShopEventListener.Register(ToggleShop);
-        OnToggleMenuEventListener.Register(ToggleMenu);
+        OnToggleShopEventBinding.Bind(ToggleShopAction, this);
+        OnToggleMenuEventBinding.Bind(ToggleMenuAction, this);
         OnChangeBuyAmountEventListener.Register(ChangeSelectedAmountButton);
     }
 
     private void OnDisable()
     {
-        OnToggleShopEventListener.DeRegister(ToggleShop);
-        OnToggleMenuEventListener.DeRegister(ToggleMenu);
+        OnToggleShopEventBinding.Unbind(ToggleShopAction, this);
+        OnToggleMenuEventBinding.Unbind(ToggleMenuAction, this);
         OnChangeBuyAmountEventListener.DeRegister(ChangeSelectedAmountButton);
     }
 
@@ -94,12 +107,12 @@ public class UIManager : Singleton<UIManager>
 
     public void ChangeAmountToBuy(int amount)
     {
-        OnChangeBuyAmountEvent.RaiseEvent(amount);
+        OnChangeBuyAmountEvent.RaiseEvent(amount, this);
     }
 
     public void BuyEveryUpgradeAvailable()
     {
-        OnBuyEveryUpgradeEvent.RaiseEvent();
+        OnBuyEveryUpgradeEvent.RaiseEvent(this);
     }
 
     public void OpenGeneratorStore()

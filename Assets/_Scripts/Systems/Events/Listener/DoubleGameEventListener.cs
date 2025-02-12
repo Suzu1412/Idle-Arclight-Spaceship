@@ -10,11 +10,11 @@ public class DoubleGameEventListener : BaseGameEventListener<double>
 
     public override void Register(Action<double> onEvent)
     {
-        OnEvent.Add(onEvent);
+        OnEvent.Register(onEvent);
     }
 
     public override void DeRegister(Action<double> onEvent)
     {
-        OnEvent.Remove(onEvent);
+        OnEvent.Unregister(onEvent);
     }
 }

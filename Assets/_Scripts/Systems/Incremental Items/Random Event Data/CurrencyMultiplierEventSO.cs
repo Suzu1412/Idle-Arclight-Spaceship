@@ -13,12 +13,12 @@ public class CurrencyMultiplierEventSO : BaseRandomEventSO
     public override void ActivateEvent()
     {
         _crystalTotalMultiplier.AddModifier(_modifier);
-        OnProductionChangedEvent.RaiseEvent();
+        OnProductionChangedEvent.RaiseEvent(this);
     }
 
     public override void DeactivateEvent()
     {
         _crystalTotalMultiplier.RemoveModifier(_modifier);
-        OnProductionChangedEvent.RaiseEvent();
+        OnProductionChangedEvent.RaiseEvent(this);
     }
 }

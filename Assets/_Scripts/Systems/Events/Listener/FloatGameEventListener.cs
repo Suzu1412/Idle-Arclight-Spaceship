@@ -10,11 +10,11 @@ public class FloatGameEventListener : BaseGameEventListener<float>
 
     public override void Register(Action<float> onEvent)
     {
-        OnEvent.Add(onEvent);
+        OnEvent.Register(onEvent);
     }
 
     public override void DeRegister(Action<float> onEvent)
     {
-        OnEvent.Remove(onEvent);
+        OnEvent.Unregister(onEvent);
     }
 }

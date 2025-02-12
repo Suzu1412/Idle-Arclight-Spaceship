@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -7,8 +8,8 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
 {
     [SerializeField] private SaveableRunTimeSetSO _saveable;
 
-    [Header("Void Game Event Listener")]
-    [SerializeField] private VoidGameEventListener OnStartGameEventListener;
+    [Header("Void Game Event Binding")]
+    [SerializeField] private VoidGameEventBinding OnStartGameEventBinding;
 
     [SerializeField] private ObjectPoolSettingsSO _playerPrefabPool;
     private GameObject _player;
@@ -19,18 +20,25 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
     private Agent _agent;
     private Coroutine _respawnCoroutine;
     private float _respawnTime = 2.5f;
+    private Action SpawnPlayerAction;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        SpawnPlayerAction = SpawnPlayer;
+    }
 
 
     private void OnEnable()
     {
         _saveable.Add(this);
-        OnStartGameEventListener.Register(SpawnPlayer);
+        OnStartGameEventBinding.Bind(SpawnPlayerAction, this);
     }
 
     private void OnDisable()
     {
         _saveable.Remove(this);
-        OnStartGameEventListener.DeRegister(SpawnPlayer);
+        OnStartGameEventBinding.Unbind(SpawnPlayerAction, this);
     }
 
     public async void LoadData(GameDataSO gameData)
@@ -84,6 +92,8 @@ public class PlayerManager : Singleton<PlayerManager>, ISaveable
 
     private void SpawnPlayer()
     {
+        if (this == null) return;
+
         _player = ObjectPoolFactory.Spawn(_playerPrefabPool).gameObject;
 
         _agent = _player.GetComponentInChildren<Agent>();

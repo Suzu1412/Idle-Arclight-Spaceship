@@ -27,6 +27,6 @@ public class CurrencyItemSO : ItemSO
         amount += amount * (_gemTotalAmount.Value * _gemTotalAmountMultiplier.Value);
 
         // Pick Up By Currency Manager
-        _currencyGainEvent.RaiseEvent(amount);
+        _currencyGainEvent.RaiseEvent(amount, this);
     }
 }

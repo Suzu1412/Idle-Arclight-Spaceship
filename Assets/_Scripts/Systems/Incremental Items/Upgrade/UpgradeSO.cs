@@ -23,7 +23,7 @@ public class UpgradeSO : BaseUpgradeSO
         {
             _variableToModify.AddModifier(_modifierToApply);
             _isApplied = true;
-            OnProductionChangedEvent.RaiseEvent();
+            OnProductionChangedEvent.RaiseEvent(this);
         }
         else
         {

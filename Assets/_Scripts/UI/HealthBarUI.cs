@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Cysharp.Text;
+using System;
 
 public class HealthBarUI : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class HealthBarUI : MonoBehaviour
     [SerializeField] private Image _damagebar;
     [SerializeField] private Image _healthBar;
     [SerializeField] private IntVariableSO _health;
-    [SerializeField] private VoidGameEventListener OnHealthChangedEventListener;
+    [Header("Void Game Event Binding")]
+    [SerializeField] private VoidGameEventBinding OnHealthChangedEventBinding;
     [SerializeField] private IntGameEventListener OnDamagedEventListener;
     [SerializeField] private IntGameEventListener OnHealedEventListener;
     private float _previousValue;
@@ -22,19 +24,27 @@ public class HealthBarUI : MonoBehaviour
     [SerializeField] private float _damageAnimationDelay = 0.2f;
     [SerializeField] private float _damageAnimationDuration = 0.01f;
 
+    private Action UpdateHealthAction;
+
+    private void Awake()
+    {
+        UpdateHealthAction = UpdateHealth;
+    }
+
     private void OnEnable()
     {
-        if (_healthSystem != null)
+        if (_healthSystem != null) // if the Health UI is child of the object listen to the health system
         {
             _healthSystem.OnMaxHealthValueChanged += SetMaxHealth;
             _healthSystem.OnDamaged += ReceiveDamage;
             _healthSystem.OnHealed += ReceiveHeal;
-
         }
-
-        OnHealthChangedEventListener?.Register(UpdateHealth);
-        OnDamagedEventListener?.Register(ReceiveDamage);
-        OnHealedEventListener?.Register(ReceiveHeal);
+        else // else the health UI must be updated by using events
+        {
+            OnHealthChangedEventBinding.Bind(UpdateHealthAction, this);
+            OnDamagedEventListener.Register(ReceiveDamage);
+            OnHealedEventListener.Register(ReceiveHeal);
+        }
     }
 
     private void OnDisable()
@@ -45,10 +55,13 @@ public class HealthBarUI : MonoBehaviour
             _healthSystem.OnDamaged -= ReceiveDamage;
             _healthSystem.OnHealed -= ReceiveHeal;
         }
+        else
+        {
+            OnHealthChangedEventBinding.Unbind(UpdateHealthAction, this);
+            OnDamagedEventListener?.DeRegister(ReceiveDamage);
+            OnHealedEventListener?.DeRegister(ReceiveHeal);
+        }
 
-        OnHealthChangedEventListener?.DeRegister(UpdateHealth);
-        OnDamagedEventListener?.DeRegister(ReceiveDamage);
-        OnHealedEventListener?.DeRegister(ReceiveHeal);
 
     }
 
@@ -75,6 +88,8 @@ public class HealthBarUI : MonoBehaviour
 
     private void UpdateHealth()
     {
+        if (this == null) return;  // Prevent executing on destroyed object
+
         if (_health.Value > 0)
         {
             SetHealthBar();

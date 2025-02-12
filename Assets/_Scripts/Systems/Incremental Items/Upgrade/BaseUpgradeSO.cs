@@ -96,7 +96,7 @@ public abstract class BaseUpgradeSO : SerializableScriptableObject
     {
         _notification.SetMessage("newUpgradeNotification");
         _notification.SetSprite(_notificationIcon);
-        OnShopNotificationEvent.RaiseEvent(_notification);
+        OnShopNotificationEvent.RaiseEvent(_notification, this);
 
     }
 }

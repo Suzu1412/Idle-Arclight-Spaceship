@@ -1,14 +1,18 @@
+using System;
 using UnityEngine;
+
 
 public class GamePauseManager : Singleton<GamePauseManager>
 {
-    [SerializeField] private BoolGameEventListener OnGameplayPausedListener;
+    [SerializeField] private BoolGameEventBinding OnGameplayPausedBinding;
     [SerializeField] private PausableRunTimeSetSO _pausable;
     [SerializeField] private BoolVariableSO _isPaused;
+    private Action<bool> PauseGameplayAction;
 
     protected override void Awake()
     {
         base.Awake();
+        PauseGameplayAction = PauseGameplay;
     }
 
     void Start()
@@ -23,12 +27,12 @@ public class GamePauseManager : Singleton<GamePauseManager>
 
     private void OnEnable()
     {
-        OnGameplayPausedListener.Register(PauseGameplay);
+        OnGameplayPausedBinding.Bind(PauseGameplayAction, this);
     }
 
     private void OnDisable()
     {
-        OnGameplayPausedListener.DeRegister(PauseGameplay);
+        OnGameplayPausedBinding.Unbind(PauseGameplayAction, this);
     }
 
     private void PauseGameplay(bool isPaused)
