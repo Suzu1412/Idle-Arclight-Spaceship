@@ -9,7 +9,7 @@ public class GemTextFeedback : TextPopUp
     [SerializeField] private DamageNumber _numberPrefab;
     [SerializeField] private Vector2 _positionOffset;
     [SerializeField] private DoubleGameEventListener _currencyGainEventListener;
-    [SerializeField] private StringGameEventBinding _currencyGainEventBinding;
+    [SerializeField] private StringGameEventBinding OnCurrencyGainEventBinding;
 
     private Transform _transform;
     private Action<string> SpawnPopUpAction;
@@ -23,12 +23,12 @@ public class GemTextFeedback : TextPopUp
 
     private void OnEnable()
     {
-        _currencyGainEventBinding.Bind(SpawnPopUpAction, this);
+        OnCurrencyGainEventBinding.Bind(SpawnPopUpAction, this);
     }
 
     private void OnDisable()
     {
-        _currencyGainEventBinding.Unbind(SpawnPopUpAction, this);
+        OnCurrencyGainEventBinding.Unbind(SpawnPopUpAction, this);
 
     }
 

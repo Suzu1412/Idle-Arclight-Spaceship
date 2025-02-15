@@ -267,6 +267,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &679719123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 679719125}
+  - component: {fileID: 679719124}
+  m_Layer: 0
+  m_Name: Prestige Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &679719124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679719123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 607fa61c3930e49499b781c20bcfe823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prestigePoints: {fileID: 0}
+  _currentWaveTier: {fileID: 0}
+  OnPrestigeProgressEvent: {fileID: 0}
+  OnPrestigeEvent: {fileID: 0}
+  OnBossDefeatedEventBinding: {fileID: 0}
+  prestigeSkillPoints: 0
+  lifeTimePrestigePoints: 0
+  totalPrestigePoints: 0
+  prestigeLevel: 0
+--- !u!4 &679719125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679719123}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &994672718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -783,3 +836,4 @@ SceneRoots:
   - {fileID: 1737741697}
   - {fileID: 447385084}
   - {fileID: 343322519}
+  - {fileID: 679719125}

@@ -11,8 +11,10 @@ public class HealthBarUI : MonoBehaviour
     [SerializeField] private Image _damagebar;
     [SerializeField] private Image _healthBar;
     [SerializeField] private IntVariableSO _health;
+    private RectTransform _rectTransform;
     [Header("Void Game Event Binding")]
     [SerializeField] private VoidGameEventBinding OnHealthChangedEventBinding;
+    [SerializeField] private VoidGameEventBinding OnHealthBarShakeAnimationEventBinding;
     [SerializeField] private IntGameEventListener OnDamagedEventListener;
     [SerializeField] private IntGameEventListener OnHealedEventListener;
     private float _previousValue;
@@ -23,12 +25,16 @@ public class HealthBarUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _amountText;
     [SerializeField] private float _damageAnimationDelay = 0.2f;
     [SerializeField] private float _damageAnimationDuration = 0.01f;
+    [SerializeField] private float _shakeStrength = 2f;
 
     private Action UpdateHealthAction;
+    private Action ShakeHealthBarAction;
 
     private void Awake()
     {
         UpdateHealthAction = UpdateHealth;
+        ShakeHealthBarAction = ShakeHealthBar;
+        _rectTransform = GetComponent<RectTransform>();
     }
 
     private void OnEnable()
@@ -42,6 +48,7 @@ public class HealthBarUI : MonoBehaviour
         else // else the health UI must be updated by using events
         {
             OnHealthChangedEventBinding.Bind(UpdateHealthAction, this);
+            OnHealthBarShakeAnimationEventBinding.Bind(ShakeHealthBarAction, this);
             OnDamagedEventListener.Register(ReceiveDamage);
             OnHealedEventListener.Register(ReceiveHeal);
         }
@@ -58,6 +65,7 @@ public class HealthBarUI : MonoBehaviour
         else
         {
             OnHealthChangedEventBinding.Unbind(UpdateHealthAction, this);
+            OnHealthBarShakeAnimationEventBinding.Unbind(ShakeHealthBarAction, this);
             OnDamagedEventListener?.DeRegister(ReceiveDamage);
             OnHealedEventListener?.DeRegister(ReceiveHeal);
         }
@@ -133,6 +141,10 @@ public class HealthBarUI : MonoBehaviour
         UpdateText();
         if (_damageAnimationCoroutine != null) StopCoroutine(_damageAnimationCoroutine);
         _damageAnimationCoroutine = StartCoroutine(DamageAnimationCoroutine());
+    }
+    private void ShakeHealthBar()
+    {
+        UIAnimationManager.Instance.Shake(_rectTransform, _shakeStrength, 0.5f);
     }
 
     IEnumerator DamageAnimationCoroutine()

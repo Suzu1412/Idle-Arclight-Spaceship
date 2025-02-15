@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8124682318559238475}
   - component: {fileID: 3748878265718925143}
   m_Layer: 8
-  m_Name: Player
+  m_Name: PlayerPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,9 +141,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnStickChangeDirectionListener: {fileID: 11400000, guid: 0af4af002a7e3654580c934df9f6e8e8, type: 2}
   OnToggleShopEvent: {fileID: 11400000, guid: f079c8f1f27aa884e91aec71b88bb5a5, type: 2}
-  OnToggleQuestEvent: {fileID: 11400000, guid: 1978d8e7fac6e6046af92b7a672df032, type: 2}
-  OnToggleInventoryEvent: {fileID: 11400000, guid: ce6f72027cc4525499da55aa695dbf9f, type: 2}
-  OnToggleStatsEvent: {fileID: 11400000, guid: 2ea8ab3ab3264f14780d9d8188591b0a, type: 2}
   OnToggleMenuEvent: {fileID: 11400000, guid: 5aef7b5fb7bb7174fb12a01bc887e87a, type: 2}
   OnGameplayPauseEvent: {fileID: 11400000, guid: 2589804ce8dc04f01bb69b4266b30917, type: 2}
   _isPaused: {fileID: 11400000, guid: c3c37945b285a2745aa5bf9d30c58a0d, type: 2}
@@ -484,9 +481,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _detectionStrategy: {fileID: 11400000, guid: 2faa4ce348a614bec8836d2d5a28cf08, type: 2}
   _targetRTS: {fileID: 11400000, guid: 04ad7ad121264bc4dbf23820d961fc73, type: 2}
-  _detectedColor: {r: 0, g: 1, b: 0, a: 1}
-  _undetectedColor: {r: 1, g: 0, b: 0, a: 1}
-  _minDistance: 2
 --- !u!1 &3908801659963395067
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,6 +629,7 @@ GameObject:
   - component: {fileID: 7333365436195074522}
   - component: {fileID: 9206652475737035502}
   - component: {fileID: 2758799702604231672}
+  - component: {fileID: 4751684083424785264}
   m_Layer: 8
   m_Name: Avatar & Feedback
   m_TagString: Untagged
@@ -921,6 +916,7 @@ MonoBehaviour:
   _numberPrefab: {fileID: 535659844088190090, guid: a42117cfb613d40f59c3f872ff0b4bff, type: 3}
   _positionOffset: {x: 0, y: 0.5}
   _currencyGainEventListener: {fileID: 11400000, guid: f064a081be429904d8e0307f1538492c, type: 2}
+  OnCurrencyGainEventBinding: {fileID: 11400000, guid: f2a7a469156201341ab6cbcf9812680b, type: 2}
 --- !u!114 &9206652475737035502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -949,3 +945,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healAnimator: {fileID: 6733601097442908739}
+--- !u!114 &4751684083424785264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5311107909362892236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92bd1e0faf146f2479832cbf3401da91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHealthBarShakeAnimationEvent: {fileID: 11400000, guid: 882899e9c5903b1469acd0509179faaa, type: 2}

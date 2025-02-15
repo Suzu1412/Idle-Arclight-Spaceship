@@ -9,6 +9,7 @@ public class FloatVariableSO : ScriptableObject
     [SerializeField] private float _maxValue;
     [SerializeField] private List<FloatModifier> _modifiers = new();
     [SerializeField] private float _value;
+    [SerializeField] [TextArea(3, 5)] private string _description;
 
     public int CountModifiers => _modifiers.Count;
 

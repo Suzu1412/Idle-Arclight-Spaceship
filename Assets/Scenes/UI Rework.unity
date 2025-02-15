@@ -873,12 +873,14 @@ MonoBehaviour:
   _healthBar: {fileID: 903348725}
   _health: {fileID: 11400000, guid: 54d8b71d3afb566438112aa3487b3ebb, type: 2}
   OnHealthChangedEventBinding: {fileID: 11400000, guid: 36298f808542742918ffb3d0923be4b1, type: 2}
+  OnHealthBarShakeAnimationEventBinding: {fileID: 11400000, guid: 105d18668ef210c40813d1853fc99d6c, type: 2}
   OnDamagedEventListener: {fileID: 11400000, guid: cccee020deea34a1ba89d3cadf2887a5, type: 2}
   OnHealedEventListener: {fileID: 11400000, guid: af081dc963b2d074886409283d8080cb, type: 2}
   _healthSystem: {fileID: 0}
   _amountText: {fileID: 231637794}
   _damageAnimationDelay: 0.25
   _damageAnimationDuration: 0.15
+  _shakeStrength: 4
 --- !u!224 &482307704
 RectTransform:
   m_ObjectHideFlags: 0

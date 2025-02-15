@@ -16,7 +16,14 @@ public class DropTableSO : ScriptableObject
             bool shouldDrop = Random.value < drop.DropChance;
             if (shouldDrop)
             {
-                dropItems.Add(drop.ItemPool);
+                if (drop.IsCoin)
+                {
+
+                }
+                else
+                {
+                    dropItems.Add(drop.ItemPool);
+                }
             }
         }
 

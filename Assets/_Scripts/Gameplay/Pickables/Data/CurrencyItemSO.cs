@@ -15,6 +15,7 @@ public class CurrencyItemSO : ItemSO
     [Header("Gem Amount Multiplier")]
     [SerializeField] private DoubleVariableSO _gemTotalAmount;
     [SerializeField] private FloatVariableSO _gemTotalAmountMultiplier;
+    [SerializeField] private StringGameEvent OnCurrencyGainEvent;
 
 
 
@@ -22,11 +23,14 @@ public class CurrencyItemSO : ItemSO
 
     public override void PickUp(IAgent agent)
     {
-        double amount = _amount;
-        amount *= _crystalOnGetMultiplier.Value * _crystalTotalMultiplier.Value + (_currentProduction.Value * _productionPercentage.Value);
-        amount += amount * (_gemTotalAmount.Value * _gemTotalAmountMultiplier.Value);
+
+
+        //double amount = _amount;
+        //amount *= _crystalOnGetMultiplier.Value * _crystalTotalMultiplier.Value + (_currentProduction.Value * _productionPercentage.Value);
+        //amount += amount * (_gemTotalAmount.Value * _gemTotalAmountMultiplier.Value);
 
         // Pick Up By Currency Manager
-        _currencyGainEvent.RaiseEvent(amount, this);
+        //OnCurrencyGainEvent.
+        //_currencyGainEvent.RaiseEvent(amount, this);
     }
 }

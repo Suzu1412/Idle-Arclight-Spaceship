@@ -13,6 +13,7 @@ public class GameDataSO : ScriptableObject, ISaveableData
 	public List<UpgradeData> Upgrades;
 	public List<UnlockSystemData> UnlockedSystems;
 	public CurrencyData CurrencyData;
+	public PrestigeData PrestigeData;
 
 	public void Initialize()
 	{
@@ -22,6 +23,7 @@ public class GameDataSO : ScriptableObject, ISaveableData
 		Players = new();
 		CurrencyData = new();
 		UnlockedSystems = new();
+		PrestigeData = new();
 	}
 
 	public string ToJson()
@@ -166,4 +168,35 @@ public class UnlockSystemData
 		_guid = guid;
 		_isUnlocked = isUnlocked;
 	}
+}
+
+[System.Serializable]
+public class PrestigeData
+{
+	[SerializeField] private int _prestigeLevel = 0;
+	[SerializeField] private float _totalPrestigePoints = 0;
+	[SerializeField] private float _lifeTimePrestigePoints = 0;
+	[SerializeField] private int _prestigeSkillPoints = 0;
+
+	public int PrestigeLevel => _prestigeLevel;
+	public float TotalPrestigePoints => _totalPrestigePoints;
+	public float LifeTimePrestigePoints => _lifeTimePrestigePoints;
+	public int PrestigeSKillPoints => _prestigeSkillPoints;
+
+	public PrestigeData()
+	{
+        _prestigeLevel = 0;
+        _totalPrestigePoints = 0f;
+        _lifeTimePrestigePoints = 0f;
+        _prestigeSkillPoints = 0;
+    }
+
+	public PrestigeData(int prestigeLevel, float totalPrestigePoints, float lifeTimePrestigePoints, int prestigeSkillPoints)
+	{
+		_prestigeLevel = prestigeLevel;
+		_totalPrestigePoints = totalPrestigePoints;
+        _lifeTimePrestigePoints = lifeTimePrestigePoints;
+		_prestigeSkillPoints = prestigeSkillPoints;
+	}
+
 }
