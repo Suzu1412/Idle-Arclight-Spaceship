@@ -372,6 +372,10 @@ PrefabInstance:
       propertyPath: _currencyData
       value: 
       objectReference: {fileID: 11400000, guid: 424d2ed0749ea024fa0d2d617e046b6f, type: 2}
+    - target: {fileID: 2810333893229376637, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
+      propertyPath: _generatorDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: 90f2d3c2429c2a3438895dc3dfb07c71, type: 2}
     - target: {fileID: 8180101144524932358, guid: 47d57a64a4d564b4c8825ab607f530d9, type: 3}
       propertyPath: m_Name
       value: Currency Manager

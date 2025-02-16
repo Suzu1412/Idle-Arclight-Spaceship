@@ -9,7 +9,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     [SerializeField] private CurrencyDataSO _currencyData;
 
-
     [Header("Int Variable")]
     [SerializeField] private IntVariableSO _amountToBuy;
 
@@ -36,7 +35,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [SerializeField] private FormattedNumberGameEvent OnUpdateCurrencyFormatted;
     [SerializeField] private FormattedNumberGameEvent OnUpdateProductionFormatted;
     [Header("Generator List")]
-    [SerializeField] private ListGeneratorSO _generators;
+    [SerializeField] private GeneratorDatabaseSO _generatorDatabase;
     [SerializeField] private ListUpgradeSO _upgrades;
 
     [Header("Notification")]
@@ -58,6 +57,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         base.Awake();
         BuyEveryUpgradeAvailableAction = BuyEveryUpgradeAvailable;
         UpdateProductionRateAction = UpdateProductionRate;
+        _generatorDatabase.InitializeDictionary();
     }
 
     private void OnEnable()
@@ -81,11 +81,11 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         OnProductionChangedEventBinding.Unbind(UpdateProductionRateAction, this);
     }
 
-    private void IncrementPerSecond(double amount)
+    private void IncrementPerSecond(BigNumber amount)
     {
-        UpdateTotal(amount);
-        OnCurrencyChangedEvent.RaiseEvent(this);
-        OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted), this);
+        //UpdateTotal(amount);
+        //OnCurrencyChangedEvent.RaiseEvent(this);
+        //OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted), this);
     }
 
 
@@ -95,7 +95,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
         gameData.Generators.Clear();
         List<GeneratorData> generatorDatas = gameData.Generators;
-        foreach (var generator in _generators.Generators)
+        foreach (var generator in _generatorDatabase.GeneratorDictionary.Values)
         {
             generatorDatas.Add(new(generator.Guid, generator.AmountOwned, generator.TotalProduction, generator.IsUnlocked, generator.ShouldNotify));
         }
@@ -118,16 +118,16 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         LoadGenerators(gameData.Generators);
         LoadUpgrades(gameData.Upgrades);
         _currencyData.CalculateOfflineEarnings(gameData.CurrencyData.LastActiveDateTime);
-        LoadOfflineReward(gameData.CurrencyData.LastActiveDateTime);
+        //LoadOfflineReward(gameData.CurrencyData.LastActiveDateTime);
 
         OnChangeBuyAmountEvent.RaiseEvent(_amountToBuy.Value, this);
         OnUpgradeBoughtEvent.RaiseEvent(this);
         //OnLoadCurrencyEvent.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted), this);
 
-        for (int i = 0; i < _generators.Generators.Count; i++)
-        {
-            OnGeneratorAmountChangedEvent.RaiseEvent(i, this);
-        }
+        //for (int i = 0; i < _generatorDatabase.GeneratorDictionary.Count; i++)
+        //{
+        //    OnGeneratorAmountChangedEvent.RaiseEvent(i, this);
+        //}
     }
 
     public GameObject GetGameObject()
@@ -137,7 +137,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void BuyGenerator(int index)
     {
-        if (_currencyData.TotalCurrency >= _generators.Generators[index].CostBigNumber)
+        if (_currencyData.TotalCurrency >= _generatorDatabase.GeneratorDictionary[index].CostBigNumber)
         {
             int amountToBuy = 0;
 
@@ -149,10 +149,10 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             {
                 amountToBuy = 1;// _generators.Generators[index].CalculateMaxAmountToBuy(_totalCurrency.Value);
             }
-            _generators.Generators[index].GetBulkCost(amountToBuy);
-            _currencyData.SubtractCurrency(_generators.Generators[index].CostBigNumber);
-            _generators.Generators[index].AddAmount(amountToBuy);
-            _generators.Generators[index].CalculateProductionRate();
+            _generatorDatabase.GeneratorDictionary[index].GetBulkCost(amountToBuy);
+            _currencyData.SubtractCurrency(_generatorDatabase.GeneratorDictionary[index].CostBigNumber);
+            _generatorDatabase.GeneratorDictionary[index].AddAmount(amountToBuy);
+            _generatorDatabase.GeneratorDictionary[index].CalculateProductionRate();
             GetProductionRate();
             UpdateCurrency();
             OnGeneratorAmountChangedEvent.RaiseEvent(index, this);
@@ -162,31 +162,31 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void BuyUpgrade(int index)
     {
-        if (_totalCurrency.Value >= _upgrades.Upgrades[index].Cost.Value)
-        {
-            _upgrades.Upgrades[index].BuyUpgrade(_totalCurrency.Value);
-            _totalCurrency.Value -= _upgrades.Upgrades[index].Cost.Value;
-            GetProductionRate();
-            OnUpgradeBoughtEvent.RaiseEvent(this);
-            OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted), this);
-            UpdateCurrency();
+        //if (_currencyData.TotalCurrency.Value >= _upgrades.Upgrades[index].Cost.Value)
+        //{
+        //    _upgrades.Upgrades[index].BuyUpgrade(_totalCurrency.Value);
+        //    _totalCurrency.Value -= _upgrades.Upgrades[index].Cost.Value;
+        //    GetProductionRate();
+        //    OnUpgradeBoughtEvent.RaiseEvent(this);
+        //    OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted), this);
+        //    UpdateCurrency();
 
-        }
+        //}
     }
 
     private void BuyEveryUpgradeAvailable()
     {
         int upgradesBought = 0;
 
-        for (int i = 0; i < _upgrades.Upgrades.Count; i++)
-        {
-            if (!_upgrades.Upgrades[i].IsRequirementMet) continue;
-            if (_upgrades.Upgrades[i].IsApplied) continue;
-            if (_totalCurrency.Value < _upgrades.Upgrades[i].Cost.Value) continue;
+        //for (int i = 0; i < _upgrades.Upgrades.Count; i++)
+        //{
+        //    if (!_upgrades.Upgrades[i].IsRequirementMet) continue;
+        //    if (_upgrades.Upgrades[i].IsApplied) continue;
+        //    if (_totalCurrency.Value < _upgrades.Upgrades[i].Cost.Value) continue;
 
-            BuyUpgrade(i);
-            upgradesBought++;
-        }
+        //    BuyUpgrade(i);
+        //    upgradesBought++;
+        //}
 
         Debug.Log($"Has comprado {upgradesBought} mejoras");
     }
@@ -199,29 +199,44 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void UpdateProductionRate()
     {
-        foreach (var generator in _generators.Generators)
+        foreach (var generator in _generatorDatabase.GeneratorDictionary.Values)
         {
             generator.IsDirty = true;
         }
         GetProductionRate();
     }
 
-    private double GetProductionRate()
+    private BigNumber GetProductionRate()
     {
-        _generatorsTotalProduction.Value = 0;
+        BigNumber totalProduction = BigNumber.Zero;
 
-        foreach (var generator in _generators.Generators)
+        foreach(var generator in _generatorDatabase.GeneratorDictionary.Values)
         {
-            _generatorsTotalProduction.Value += generator.GetProductionRate();
+            totalProduction += generator.ProductionBigNumber;
         }
 
-        foreach (var generator in _generators.Generators)
+        _currencyData.SetTotalProduction(totalProduction);
+
+        foreach (var generator in _generatorDatabase.GeneratorDictionary.Values)
         {
-            generator.CalculatePercentage();
+            generator.CalculatePercentage(totalProduction);
         }
 
-        OnUpdateProductionFormatted.RaiseEvent(FormatNumber.FormatDouble(_generatorsTotalProduction.Value, UpdateProductionFormatted), this);
-        return _generatorsTotalProduction.Value;
+        //_generatorsTotalProduction.Value = 0;
+
+        //foreach (var generator in _generators.Generators)
+        //{
+        //    _generatorsTotalProduction.Value += generator.GetProductionRate();
+        //}
+
+        //foreach (var generator in _generators.Generators)
+        //{
+        //    generator.CalculatePercentage();
+        //}
+
+        //OnUpdateProductionFormatted.RaiseEvent(FormatNumber.FormatDouble(_generatorsTotalProduction.Value, UpdateProductionFormatted), this);
+        //return _generatorsTotalProduction.Value;
+        return totalProduction;
     }
 
     private void UpdateCurrency()
@@ -234,7 +249,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         while (true)
         {
             yield return Helpers.WaitOneSecond;
-            IncrementPerSecond(_generatorsTotalProduction.Value);
+            _currencyData.AddCurrency(_currencyData.TotalProduction);
         }
     }
 
@@ -248,14 +263,14 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void LoadGenerators(List<GeneratorData> generatorDatas)
     {
-        foreach (var generatorSO in _generators.Generators)
+        foreach (var generatorSO in _generatorDatabase.GeneratorDictionary.Values)
         {
             generatorSO.Initialize();
         }
 
         foreach (var generator in generatorDatas)
         {
-            var generatorSO = _generators.Find(generator.Guid);
+            var generatorSO = _generatorDatabase.Find(generator.Guid);
             if (generatorSO == null) return;
             generatorSO.SetAmount(generator.Amount);
             generatorSO.SetTotalProduction(generator.TotalProduction);

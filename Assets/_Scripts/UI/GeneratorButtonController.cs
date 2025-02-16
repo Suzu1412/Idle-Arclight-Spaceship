@@ -25,7 +25,7 @@ public class GeneratorButtonController : MonoBehaviour
     [SerializeField] private VoidGameEventBinding OnProductionChangedEventBinding;
 
     [Header("Assigned Automatically")]
-    [SerializeField][ReadOnly] private GeneratorSO _generator;
+    //[SerializeField][ReadOnly] private GeneratorSO _generator;
     [SerializeField][ReadOnly] private int _index;
 
     [Header("Button Fields")]
@@ -83,7 +83,7 @@ public class GeneratorButtonController : MonoBehaviour
 
         ActivateButton(false);
 
-        if (_generator == null) return;
+        //if (_generator == null) return;
 
         ChangeAmountToBuy();
         CheckIfCanBuy();
@@ -119,7 +119,7 @@ public class GeneratorButtonController : MonoBehaviour
 
     public void SetGenerator(GeneratorSO generator)
     {
-        _generator = generator;
+        //_generator = generator;
     }
 
     public void PrepareButton()
@@ -135,7 +135,7 @@ public class GeneratorButtonController : MonoBehaviour
 
     public void ChangeAmountToBuy()
     {
-        if (_generator == null) return;
+        //if (_generator == null) return;
 
         CalculateAmountToBuy();
         CheckIfCanBuy();
@@ -150,35 +150,35 @@ public class GeneratorButtonController : MonoBehaviour
     // Called when pressing Notification Button
     public void ToggleNotification()
     {
-        if (_generator == null) return;
+        //if (_generator == null) return;
 
-        _generator.ShouldNotify = !_generator.ShouldNotify;
+        //_generator.ShouldNotify = !_generator.ShouldNotify;
 
-        SetNotificationButtonImage();
-        _isAvailableToBuy = false;
+        //SetNotificationButtonImage();
+        //_isAvailableToBuy = false;
 
-        if (!_generator.ShouldNotify)
-        {
-            _generatorRTS.Remove(gameObject);
-        }
+        //if (!_generator.ShouldNotify)
+        //{
+        //    _generatorRTS.Remove(gameObject);
+        //}
     }
 
     private void CheckIfCanBuy()
     {
-        if (_generator == null) return;
+        //if (_generator == null) return;
 
-        if (!_generator.IsUnlocked)
-        {
-            _generator.CheckIfMeetRequirementsToUnlock(_totalCurrency.Value);
-        }
-        ActivateButton(_generator.IsUnlocked);
-        if (_generator.IsUnlocked)
-        {
-            ToggleBuyButton(_totalCurrency.Value >= _generator.Cost.Value);
-        }
+        //if (!_generator.IsUnlocked)
+        //{
+        //    _generator.CheckIfMeetRequirementsToUnlock(_totalCurrency.Value);
+        //}
+        //ActivateButton(_generator.IsUnlocked);
+        //if (_generator.IsUnlocked)
+        //{
+        //    ToggleBuyButton(_totalCurrency.Value >= _generator.Cost.Value);
+        //}
 
 
-        gameObject.SetActive(_generator.IsUnlocked);
+        //gameObject.SetActive(_generator.IsUnlocked);
     }
 
     private void ToggleBuyButton(bool val)
@@ -200,10 +200,10 @@ public class GeneratorButtonController : MonoBehaviour
         }
         else
         {
-            if (!_isAvailableToBuy && _generator.ShouldNotify)
-            {
-                _generatorRTS.Add(gameObject);
-            }
+            //if (!_isAvailableToBuy && _generator.ShouldNotify)
+            //{
+            //    _generatorRTS.Add(gameObject);
+            //}
 
             _isAvailableToBuy = true;
         }
@@ -228,56 +228,54 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void DisplayImage()
     {
-        _generatorIcon.sprite = _generator.GetSprite();
+        //_generatorIcon.sprite = _generator.GetSprite();
     }
 
     private void DisplayAmountToBuy(int amount)
     {
-        if (_generator == null) return;
+        //if (_generator == null) return;
         _amountToBuyVariable.Value = amount;
         _buyAmountLocalized.RefreshString();
     }
 
     private void DisplayAmountOwned()
     {
-        _amountText.SetTextFormat("{0}", _generator.AmountOwned);
+        //_amountText.SetTextFormat("{0}", _generator.AmountOwned);
     }
 
     private void DisplayName()
     {
-        _nameLocalized.StringReference.SetReference(_table, _generator.Name);
+        //_nameLocalized.StringReference.SetReference(_table, _generator.Name);
         _nameLocalized.RefreshString();
     }
 
     private void DisplayDescription()
     {
-        if (_generator == null) return;
+        //if (_generator == null) return;
         _descriptionLocalized.StringReference.SetReference(_table, _gemDescription);
-        _amountVariable.Value = FormatNumber.FormatDouble(_generator.Production.Value).GetFormatNoDecimals();
+        //_amountVariable.Value = FormatNumber.FormatDouble(_generator.Production.Value).GetFormatNoDecimals();
         _descriptionLocalized.RefreshString();
     }
 
     private void DisplayPriceText()
     {
-        _priceText.SetTextFormat("{0}", _generator.CostFormatted.GetFormat());
+        //_priceText.SetTextFormat("{0}", _generator.CostFormatted.GetFormat());
     }
 
     private void DisplayProductionText()
     {
-        if (_generator == null)
-        {
-            return;
-        }
+        //if (_generator == null)  return;
+        
 
         _productionLocalized.StringReference.SetReference(_table, _gemProduction);
-        _amountProductionVariable.Value = _generator.ProductionFormatted.GetFormat();
+        //_amountProductionVariable.Value = _generator.ProductionFormatted.GetFormat();
         _productionLocalized.RefreshString();
     }
 
     private void DisplayPercentageText()
     {
-        if (_generator == null) return;
-        _percentageText.SetTextFormat("{0}%", _generator.ProductionPercentage.ToString("F2"));
+        //if (_generator == null) return;
+        //_percentageText.SetTextFormat("{0}%", _generator.ProductionPercentage.ToString("F2"));
     }
 
     private void UpdatePrice()
@@ -297,7 +295,7 @@ public class GeneratorButtonController : MonoBehaviour
         {
             amount = 1;//_generator.CalculateMaxAmountToBuy(_totalCurrency.Value);
         }
-        _generator.GetBulkCost(amount > 0 ? amount : 1);
+        //_generator.GetBulkCost(amount > 0 ? amount : 1);
         return amount > 0 ? amount : 1;
     }
 
@@ -342,6 +340,6 @@ public class GeneratorButtonController : MonoBehaviour
 
     private void SetNotificationButtonImage()
     {
-        _notificationImage.sprite = _generator.ShouldNotify ? _notificationOn : _notificationOff;
+        //_notificationImage.sprite = _generator.ShouldNotify ? _notificationOn : _notificationOff;
     }
 }

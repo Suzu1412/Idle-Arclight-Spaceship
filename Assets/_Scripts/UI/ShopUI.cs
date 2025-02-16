@@ -4,7 +4,7 @@ using UnityEngine;
 public class ShopUI : Singleton<ShopUI>
 {
     [Header("Generator")]
-    [SerializeField] private ListGeneratorSO _generators;
+    //[SerializeField] private ListGeneratorSO _generators;
     [SerializeField] private GameObject _shopGeneratorButtonPrefab;
     [SerializeField] private Transform _shopGeneratorContent;
     [SerializeField] private GameObject _generatorCanvasGO;
@@ -37,7 +37,7 @@ public class ShopUI : Singleton<ShopUI>
 
     protected void Start()
     {
-        PrepareUIGenerator(_generators.Generators);
+        //PrepareUIGenerator(_generators.Generators);
         PrepareUIUpgrade(_upgrades.Upgrades);
     }
 
@@ -55,25 +55,25 @@ public class ShopUI : Singleton<ShopUI>
         OnChangeBuyAmountEventListener.DeRegister(ChangeAmountToBuy);
     }
 
-    private void PrepareUIGenerator(List<GeneratorSO> generators)
-    {
-        _generatorButtons.Clear();
+    //private void PrepareUIGenerator(List<GeneratorSO> generators)
+    //{
+    //    _generatorButtons.Clear();
 
-        for (int i = 0; i < generators.Count; i++)
-        {
-            GeneratorButtonController button = Instantiate(_shopGeneratorButtonPrefab).GetComponent<GeneratorButtonController>();
-            button.transform.SetParent(_shopGeneratorContent, false);
-            button.SetIndex(i);
-            button.SetGenerator(generators[i]);
-            generators[i].GetProductionRate();
-            button.ChangeAmountToBuy();
-            button.OnBuyGeneratorClicked += BuyGenerator;
-            button.PrepareButton();
-            _generatorButtons.Add(button);
-        }
+    //    for (int i = 0; i < generators.Count; i++)
+    //    {
+    //        GeneratorButtonController button = Instantiate(_shopGeneratorButtonPrefab).GetComponent<GeneratorButtonController>();
+    //        button.transform.SetParent(_shopGeneratorContent, false);
+    //        button.SetIndex(i);
+    //        button.SetGenerator(generators[i]);
+    //        generators[i].GetProductionRate();
+    //        button.ChangeAmountToBuy();
+    //        button.OnBuyGeneratorClicked += BuyGenerator;
+    //        button.PrepareButton();
+    //        _generatorButtons.Add(button);
+    //    }
 
-        _generatorInitialized = true;
-    }
+    //    _generatorInitialized = true;
+    //}
 
     private void PrepareUIUpgrade(List<BaseUpgradeSO> upgrades)
     {

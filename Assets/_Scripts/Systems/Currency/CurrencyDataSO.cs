@@ -159,6 +159,16 @@ public class CurrencyDataSO : ScriptableObject
 
     }
 
+    public void SetTotalProduction(BigNumber amount)
+    {
+        _totalProduction = amount;
+
+        if (TotalProduction > _highestProduction)
+        {
+            _highestProduction = TotalProduction;
+        }
+    }
+
     public BigNumber CalculateGemProductionAmount(BigNumber production, int amount)
     {
         BigNumber gemProduction = production * amount * FinalProductionMultiplier * FinalCurrencyMultiplier;

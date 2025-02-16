@@ -16,34 +16,23 @@ public class GeneratorSO : SerializableScriptableObject
     [SerializeField] private int _amountOwned;
 
     [Header("Cost")]
-    [SerializeField] protected BigNumber _costBigNumber;
+    [SerializeField] private BigNumber _costBigNumber;
+    [Header("Production")]
+    [SerializeField] private BigNumber _baseProductionBigNumber;
     [SerializeField] protected double _cost;
     [SerializeField] protected double _costRequirement;
     [SerializeField] private FloatVariableSO _gemCostMultiplier;
     [SerializeField] private double _priceGrowthRate;
     [SerializeField] private SerializedDictionary<int, BigNumber> _costCache = new SerializedDictionary<int, BigNumber>();
 
-    [Header("Production")]
     [SerializeField] protected double _baseProduction;
     [Header("Apply Multipliers to current gem")]
     [SerializeField] private FloatVariableSO _gemProductionMultiplier;
-    [Header("Random Event Production Multiplier")]
-    [SerializeField] private FloatVariableSO _generatorProductionMultiplier;
-    [Header("Random Event Total Multiplier")]
-    [SerializeField] private FloatVariableSO _crystalTotalMultiplier;
-    [SerializeField] private Sprite _notificationIcon;
-    [SerializeField] private NotificationGameEvent OnShopNotificationEvent;
-    [Header("Double Variable")]
-    [SerializeField] private DoubleVariableSO _generatorsTotalProduction;
 
-    private BigNumber _bulkCostBigNumber;
-    private BigNumber _currentProductionBigNumber;
+    [SerializeField] private CurrencyDataSO _currencyData;
 
-    private DoubleVariableSO _bulkCost;
-    private DoubleVariableSO _currentProduction;
-    private DoubleVariableSO _totalProduction;
-    private DoubleVariableSO _production;
-    private NotificationSO _notification;
+    [SerializeField] private BigNumber _bulkCost;
+    [SerializeField] private BigNumber _production;
 
     [SerializeField] private bool _isUnlocked;
     [SerializeField] private bool _shouldNotify;
@@ -59,36 +48,18 @@ public class GeneratorSO : SerializableScriptableObject
     public double BaseProduction { get => _baseProduction; internal set => _baseProduction = value; }
     public int AmountOwned { get => _amountOwned; internal set => _amountOwned = value; }
     public double PriceGrowthRate { get => _priceGrowthRate; internal set => _priceGrowthRate = value; }
-    public double TotalProduction { get => _totalProduction.Value; internal set => SetTotalProduction(value); }
     public double CostRequirement => _costRequirement;
-    public BigNumber CostBigNumber => _bulkCostBigNumber;
-    public DoubleVariableSO Cost => _bulkCost;
-    public DoubleVariableSO Production => _production;
+    public BigNumber Cost => _bulkCost;
+    public BigNumber Production => _production;
     public bool IsUnlocked { get => _isUnlocked; internal set => _isUnlocked = value; }
-    public FormattedNumber CostFormatted { get; private set; }
-    public FormattedNumber ProductionFormatted { get; private set; }
     public bool ShouldNotify { get => _shouldNotify; set => _shouldNotify = value; }
     public float ProductionPercentage => _productionPercentage;
     public bool IsDirty { set => _isDirty = value; }
 
     private void OnEnable()
     {
-        _bulkCost = ScriptableObject.CreateInstance<DoubleVariableSO>();
-        _bulkCost.Initialize(0, 0, double.MaxValue);
-
-        _currentProduction = ScriptableObject.CreateInstance<DoubleVariableSO>();
-        _currentProduction.Initialize(0, 0, double.MaxValue);
-
-        _production = ScriptableObject.CreateInstance<DoubleVariableSO>();
-        _production.Initialize(0, 0, double.MaxValue);
-
-        _totalProduction = ScriptableObject.CreateInstance<DoubleVariableSO>();
-        _totalProduction.Initialize(0, 0, double.MaxValue);
-
-        _notification = ScriptableObject.CreateInstance<NotificationSO>();
         _logPriceGrowthRate = Math.Log(_priceGrowthRate);
         ClearCache();
-
     }
 
     internal void Initialize()
@@ -107,7 +78,7 @@ public class GeneratorSO : SerializableScriptableObject
         if (currency >= CostRequirement)
         {
             _isUnlocked = true;
-            Notificate();
+            //Notificate();
         }
     }
     public void AddAmount(int amount)
@@ -119,18 +90,19 @@ public class GeneratorSO : SerializableScriptableObject
 
     public void CalculateProductionRate()
     {
-        _production.Value = _baseProduction * _gemProductionMultiplier.Value * _generatorProductionMultiplier.Value * _crystalTotalMultiplier.Value;
-        _currentProduction.Value = Math.Round(_production.Value * _amountOwned, 1);
-        ProductionFormatted = FormatNumber.FormatDouble(_currentProduction.Value, ProductionFormatted);
+        _productionBigNumber = _currencyData.CalculateGemProductionAmount(_baseProductionBigNumber * _gemProductionMultiplier.Value, _amountOwned);
+        //_production.Value = _baseProduction * _gemProductionMultiplier.Value * _generatorProductionMultiplier.Value * _crystalTotalMultiplier.Value;
+        //_currentProduction.Value = Math.Round(_production.Value * _amountOwned, 1);
+        //ProductionFormatted = FormatNumber.FormatDouble(_currentProduction.Value, ProductionFormatted);
 
         _isDirty = false;
     }
 
-    public void CalculatePercentage()
+    public void CalculatePercentage(BigNumber totalProduction)
     {
-        if (_generatorsTotalProduction.Value != 0) // Avoid Division by zero
+        if (totalProduction != BigNumber.Zero) // Avoid Division by zero
         {
-            _productionPercentage = (float)(_currentProduction.Value / _generatorsTotalProduction.Value) * 100;
+            _productionPercentage = (ProductionBigNumber / totalProduction * 100).ToFloat();
         }
         else
         {
@@ -257,12 +229,5 @@ public class GeneratorSO : SerializableScriptableObject
     private void CalculateProductionToBigNumber()
     {
         Debug.Log(new BigNumber(_baseProduction));
-    }
-
-    private void Notificate()
-    {
-        _notification.SetMessage("newGeneratorNotification");
-        _notification.SetSprite(_notificationIcon);
-        OnShopNotificationEvent.RaiseEvent(_notification, this);
     }
 }

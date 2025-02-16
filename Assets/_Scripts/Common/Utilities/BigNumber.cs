@@ -183,6 +183,11 @@ public struct BigNumber : IComparable<BigNumber>
         return (int)ToDouble(); // Convert to double first, then cast to int
     }
 
+    public float ToFloat()
+    {
+        return (float)ToDouble();
+    }
+
     // Comparisons
     public int CompareTo(BigNumber other)
     {

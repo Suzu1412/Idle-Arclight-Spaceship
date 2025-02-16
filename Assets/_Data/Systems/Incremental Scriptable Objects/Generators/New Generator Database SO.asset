@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee26760383144ed391fb9d9c6aa1db8, type: 3}
-  m_Name: ListGeneratorSO
+  m_Script: {fileID: 11500000, guid: b90f56cdaebc64e4b8b2b9d9c7b55065, type: 3}
+  m_Name: New Generator Database SO
   m_EditorClassIdentifier: 
-  _generators:
+  generatorList:
   - {fileID: 11400000, guid: 274494024297a8e44a9090bed95ba8ca, type: 2}
   - {fileID: 11400000, guid: 7736daddc064a4f448a412fcb6552203, type: 2}
   - {fileID: 11400000, guid: c2f46407d0a839a46bd2f0eb1f4f2833, type: 2}
