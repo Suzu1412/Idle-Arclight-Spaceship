@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daf8d4160c1d1fd4d9541b63f0549f55, type: 3}
-  m_Name: Coin Movement
+  m_Script: {fileID: 11500000, guid: ad8d1edf696e4490d956ee6b2ac86db0, type: 3}
+  m_Name: OnPickUpCurrencyAmountEvent
   m_EditorClassIdentifier: 
-  _maxSpeed: 6
-  _acceleration: 3.5
-  _deceleration: 2

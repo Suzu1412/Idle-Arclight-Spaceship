@@ -915,8 +915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _numberPrefab: {fileID: 535659844088190090, guid: a42117cfb613d40f59c3f872ff0b4bff, type: 3}
   _positionOffset: {x: 0, y: 0.5}
-  _currencyGainEventListener: {fileID: 11400000, guid: f064a081be429904d8e0307f1538492c, type: 2}
-  OnCurrencyGainEventBinding: {fileID: 11400000, guid: f2a7a469156201341ab6cbcf9812680b, type: 2}
+  OnPickUpCurrencyAmountEventBinding: {fileID: 11400000, guid: f2a7a469156201341ab6cbcf9812680b, type: 2}
 --- !u!114 &9206652475737035502
 MonoBehaviour:
   m_ObjectHideFlags: 0

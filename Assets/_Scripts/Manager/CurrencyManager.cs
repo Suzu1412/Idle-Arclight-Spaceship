@@ -10,6 +10,8 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 {
     [SerializeField] private SaveableRunTimeSetSO _saveable;
 
+    [SerializeField] private CurrencyDataSO _currencyData;
+
     [Header("Double Variable")]
     [SerializeField] private DoubleVariableSO _totalCurrency;
     [SerializeField] private DoubleVariableSO _gameTotalCurrency;
@@ -116,7 +118,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     public void SaveData(GameDataSO gameData)
     {
-        gameData.CurrencyData = new(_totalCurrency.Value, _gameTotalCurrency.Value, _amountToBuy.Value);
+        gameData.CurrencyData = new(_currencyData.LifetimeCurrency, _currencyData.TotalCurrency, _currencyData.TotalProduction, _amountToBuy.Value);
 
         gameData.Generators.Clear();
         List<GeneratorData> generatorDatas = gameData.Generators;
@@ -265,8 +267,8 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void LoadCurrency(CurrencyData currencyData)
     {
-        _totalCurrency.Initialize(currencyData.TotalCurrency);
-        _gameTotalCurrency.Initialize(currencyData.GameTotalCurrency);
+        _currencyData.LoadCurrency(currencyData.LifetimeCurrency, currencyData.TotalCurrency, currencyData.HighestProduction);
+
         _amountToBuy.Value = currencyData.AmountToBuy;
         ChangeAmountToBuy(_amountToBuy.Value);
     }

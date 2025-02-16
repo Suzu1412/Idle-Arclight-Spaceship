@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e611d3ba2f6a9af4fb24c4b4032e0d88, type: 3}
+  m_Name: CurrencyDataSO
+  m_EditorClassIdentifier: 
+  _lifetimeCurrency:
+    mantissa: 4.089999999999988
+    exponent: 2
+  _totalCurrency:
+    mantissa: 4.089999999999988
+    exponent: 2
+  _highestProduction:
+    mantissa: 0
+    exponent: 0
+  _totalProduction:
+    mantissa: 0
+    exponent: 0
+  baseCurrencyMultiplier: 1
+  baseProductionMultiplier: 1
+  baseOnGetMultiplier: 1
+  upgradeCurrencyMultiplier: 1
+  upgradeProductionMultiplier: 1
+  upgradeOnGetMultiplier: 1
+  eventCurrencyMultiplier: 1
+  eventProductionMultiplier: 1
+  eventOnGetMultiplier: 1
+  productionBonusPercentage: 0
+  prestigeMultiplier: 1
+  OnCurrencyChangedEvent: {fileID: 11400000, guid: ff8f3ee2b518a4df797a668d4d90f90b, type: 2}
+  OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}

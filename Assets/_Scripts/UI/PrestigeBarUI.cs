@@ -13,7 +13,7 @@ public class PrestigeBarUI : MonoBehaviour
 
     private void Start()
     {
-        prestigeManager = FindObjectOfType<PrestigeManager>();
+        //prestigeManager = FindObjectOfType<PrestigeManager>();
         prestigeManager.OnPrestigeProgressUpdated += AnimateUI;
     }
 

@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class PrestigeManager : MonoBehaviour, ISaveable
 {
-    [SerializeField] private FloatVariableSO _prestigePoints;
+    [SerializeField] private DoubleVariableSO _prestigePoints;
     [SerializeField] private IntVariableSO _currentWaveTier;
     [SerializeField] private VoidGameEvent OnPrestigeProgressEvent; // Event for UI updates
     [SerializeField] private VoidGameEvent OnPrestigeEvent; // Event for Prestige Activated
     [SerializeField] private VoidGameEventBinding OnBossDefeatedEventBinding;
     [SerializeField] private int prestigeSkillPoints = 0;
 
-    public float lifeTimePrestigePoints = 0f; // TODO: CREATE UI AND EVENT TO DISPLAY THIS VALUE 
+    public double lifeTimePrestigePoints = 0; // TODO: CREATE UI AND EVENT TO DISPLAY THIS VALUE 
     public float totalPrestigePoints = 0f; 
     public int prestigeLevel = 0; // TODO: CREATE UI AND EVENT TO DISPLAY THIS VALUE 
     private event Action GrantPrestigePointsAction;
@@ -36,7 +36,7 @@ public class PrestigeManager : MonoBehaviour, ISaveable
     {
         float points = 5f * Mathf.Pow(1.3f, _currentWaveTier.Value / 10f);
         totalPrestigePoints += points;
-        
+        lifeTimePrestigePoints += points;
 
         UpdatePrestigeProgress(); // Update UI
         Debug.Log($"Boss defeated at wave {_currentWaveTier.Value}! Gained {points} prestige points.");
@@ -68,8 +68,8 @@ public class PrestigeManager : MonoBehaviour, ISaveable
 
     private void UpdatePrestigeProgress()
     {
-        float required = GetPrestigeRequirement();
-        float progress = totalPrestigePoints / required;
+        double required = GetPrestigeRequirement();
+        double progress = totalPrestigePoints / required;
         _prestigePoints.Initialize(progress, 0, required);
         OnPrestigeProgressEvent.RaiseEvent(this);
     }

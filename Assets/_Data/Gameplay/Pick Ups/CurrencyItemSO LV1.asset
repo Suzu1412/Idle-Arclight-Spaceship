@@ -16,11 +16,6 @@ MonoBehaviour:
   _maxStackSize: 1
   _itemImage: {fileID: 7853928126660864544, guid: 8f71290730ef495488798a80e843a05d, type: 3}
   Name: Gem
-  _currencyGainEvent: {fileID: 11400000, guid: 272b4dfd9f38aa64199fdd1c05d2d19c, type: 2}
-  _crystalOnGetMultiplier: {fileID: 11400000, guid: 040b947bc1d6d4246909cf21658dd890, type: 2}
-  _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
-  _currentProduction: {fileID: 11400000, guid: 3333a232e7612214f89041268b3a20cd, type: 2}
-  _productionPercentage: {fileID: 11400000, guid: 9684dc626b62cd84c906f7dfd7de4bae, type: 2}
-  _gemTotalAmount: {fileID: 11400000, guid: e78fee59deefe49038c0b57c7f497566, type: 2}
-  _gemTotalAmountMultiplier: {fileID: 11400000, guid: 22354081230674fd48596efdb2ac167e, type: 2}
+  _currencyData: {fileID: 11400000, guid: 424d2ed0749ea024fa0d2d617e046b6f, type: 2}
+  OnPickUpCurrencyAmountEvent: {fileID: 11400000, guid: 8d7a76b33f9a0234cad4768c52eece59, type: 2}
   _amount: 1

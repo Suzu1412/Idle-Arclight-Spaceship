@@ -1,53 +1,174 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Tests")]
+[assembly: InternalsVisibleTo("Suzu.Manager")]
 
 [CreateAssetMenu(fileName = "CurrencyDataSO", menuName = "Scriptable Objects/CurrencyDataSO")]
 public class CurrencyDataSO : ScriptableObject
 {
-    public BigNumber LifeTimeCurrency;
-    public BigNumber TotalCurrency;
-    public BigNumber TotalProduction;
+    [Header("Currency Storage")]
+    [SerializeField] private BigNumber _lifetimeCurrency;
+    [SerializeField] private BigNumber _totalCurrency;
 
-    private BigNumber _currentProduction;
+    [Header("Production Storage")]
+    [SerializeField] private BigNumber _highestProduction;
+    [SerializeField] private BigNumber _totalProduction;
 
-    private double _productionMultiplier = 1; // Event multiplier
-    private double _gemTotalMultiplier = 1; // Event multiplier
-    private double _collectedValueMultiplier = 1; // Event multiplier
+    [Header("Base Multipliers (Permanent)")]
+    [SerializeField] private float baseCurrencyMultiplier = 1f;
+    [SerializeField] private float baseProductionMultiplier = 1f;
+    [SerializeField] private float baseOnGetMultiplier = 1f;
+
+    [Header("Upgrade Multipliers (Stackable)")]
+    [SerializeField] private float upgradeCurrencyMultiplier = 1f;
+    [SerializeField] private float upgradeProductionMultiplier = 1f;
+    [SerializeField] private float upgradeOnGetMultiplier = 1f;
+
+    [Header("Event Multipliers (Temporary)")]
+    [SerializeField] private float eventCurrencyMultiplier = 1f;
+    [SerializeField] private float eventProductionMultiplier = 1f;
+    [SerializeField] private float eventOnGetMultiplier = 1f;
+
+    [Header("Gem Pickup Bonus")]
+    [SerializeField] private float productionBonusPercentage = 0f;
+
+    [Header("Prestige Bonus")]
+    [SerializeField] private float prestigeMultiplier = 1f;
+
+    [Header("Events")]
+    [SerializeField] private VoidGameEvent OnCurrencyChangedEvent;
+    [SerializeField] private VoidGameEvent OnProductionChangedEvent;
 
 
-    public BigNumber CurrentProduction => _currentProduction;
-    public double ProductionMultiplier => _productionMultiplier;
-    public double GemTotalMultiplier => _gemTotalMultiplier;
-    public double CollectedValueMultiplier => _collectedValueMultiplier;
+    public BigNumber LifetimeCurrency => _lifetimeCurrency;
+    public BigNumber TotalCurrency => _totalCurrency;
+    public BigNumber HighestProduction => _highestProduction;
+    public BigNumber TotalProduction => _totalProduction;
 
+    public float FinalCurrencyMultiplier => baseCurrencyMultiplier * upgradeCurrencyMultiplier * eventCurrencyMultiplier * prestigeMultiplier;
+    public float FinalProductionMultiplier => baseProductionMultiplier * upgradeProductionMultiplier * eventProductionMultiplier;
+    public float FinalOnGetMultiplier => baseOnGetMultiplier * upgradeOnGetMultiplier * eventOnGetMultiplier;
 
-    public void SetProductionMultiplier(double productionMultiplier)
+    // Setters with clamping
+    public void SetBaseCurrencyMultiplier(float value)
     {
-        _productionMultiplier = Math.Clamp(productionMultiplier, 1, 10);
+        baseCurrencyMultiplier = Mathf.Max(1f, value);
+        OnProductionChangedEvent.RaiseEvent(this);
+    }
+    public void SetBaseProductionMultiplier(float value)
+    {
+        baseProductionMultiplier = Mathf.Max(1f, value);
+        OnProductionChangedEvent.RaiseEvent(this);
+
     }
 
-    public void SetGemMultiplier(double gemTotalMultiplier)
+    public void SetBaseOnGetMultiplier(float value)
     {
-        _gemTotalMultiplier = Math.Clamp(gemTotalMultiplier, 1, 20);
+        baseOnGetMultiplier = Mathf.Max(1f, value);
+        OnProductionChangedEvent.RaiseEvent(this);
+
     }
 
-    public void SetCollectedValueMultiplier(double collectedValueMultiplier)
+    public void SetUpgradeCurrencyMultiplier(float value)
     {
-        _collectedValueMultiplier = Math.Clamp(collectedValueMultiplier, 1, 20);
+        upgradeCurrencyMultiplier = Mathf.Max(1f, value);
+        OnProductionChangedEvent.RaiseEvent(this);
+
+    }
+
+    public void SetUpgradeProductionMultiplier(float value)
+    {
+        upgradeProductionMultiplier = Mathf.Max(1f, value);
+        OnProductionChangedEvent.RaiseEvent(this);
+
+    }
+
+    public void SetUpgradeOnGetMultiplier(float value)
+    {
+        upgradeOnGetMultiplier = Mathf.Max(1f, value);
+        OnProductionChangedEvent.RaiseEvent(this);
+
+    }
+
+    public void SetEventCurrencyMultiplier(float value)
+    {
+        eventCurrencyMultiplier = Mathf.Max(1f, value);
+        OnProductionChangedEvent.RaiseEvent(this);
+    }
+
+    public void SetEventProductionMultiplier(float value)
+    {
+        eventProductionMultiplier = Mathf.Max(1f, value);
+        OnProductionChangedEvent.RaiseEvent(this);
+    }
+
+    public void SetEventOnGetMultiplier(float value)
+    {
+        eventOnGetMultiplier = Mathf.Max(1f, value);
+        OnProductionChangedEvent.RaiseEvent(this);
+    }
+
+    public void SetPrestigeMultiplier(int prestigePoints)
+    {
+        prestigeMultiplier = 1f + (prestigePoints * 0.1f); // Example: Each point increases by 10%
+        OnProductionChangedEvent.RaiseEvent(this);
+    }
+
+    public void ResetEventMultipliers()
+    {
+        eventCurrencyMultiplier = 1f;
+        eventProductionMultiplier = 1f;
+        eventOnGetMultiplier = 1f;
+
+        OnProductionChangedEvent.RaiseEvent(this);
     }
 
 
-    public BigNumber GetGemOnGetValue(int amount)
+    // Currency Setters
+    /// <summary>
+    /// Only use on Load
+    /// </summary>
+    /// <param name="amount"></param>
+    internal void LoadCurrency(BigNumber lifetimeCurrency, BigNumber totalCurrency, BigNumber highestProduction)
     {
-        BigNumber totalAmount = new(amount);
+        _lifetimeCurrency = lifetimeCurrency;
+        _highestProduction = highestProduction;
+        _totalCurrency = totalCurrency;
+        OnCurrencyChangedEvent.RaiseEvent(this);
+    }
 
-        totalAmount *= CollectedValueMultiplier * GemTotalMultiplier; // Calculate Events Multipliers
-        //totalAmount += CurrentProduction *  
 
+    public void AddCurrency(BigNumber amount)
+    {
+        _totalCurrency += amount;
+        _lifetimeCurrency += amount;
+        OnCurrencyChangedEvent.RaiseEvent(this);
+    }
+
+    public void SubtractCurrency(BigNumber amount)
+    {
+        _totalCurrency = BigNumber.Max(_totalCurrency - amount, BigNumber.Zero);
+        OnCurrencyChangedEvent.RaiseEvent(this);
+
+    }
+
+    public BigNumber CalculateGemProductionAmount(BigNumber production, int amount)
+    {
+        BigNumber gemProduction = production * amount * FinalProductionMultiplier * FinalCurrencyMultiplier;
+        return gemProduction;
+    }
+
+    // Calculates gem pickup value, including multipliers and production bonus
+    public BigNumber CalculateGemPickupAmount(double baseGemValue)
+    {
+        BigNumber totalAmount = new(baseGemValue * FinalOnGetMultiplier * FinalCurrencyMultiplier);
+
+        // If the upgrade is active, add a percentage of current production
+        totalAmount += _totalProduction * productionBonusPercentage;
+        
         return totalAmount;
-            //double amount = _amount;
-        //amount *= _crystalOnGetMultiplier.Value * _crystalTotalMultiplier.Value + (_currentProduction.Value * _productionPercentage.Value);
-        //amount += amount * (_gemTotalAmount.Value * _gemTotalAmountMultiplier.Value);
-
     }
 }

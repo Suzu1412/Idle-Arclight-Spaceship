@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Cysharp.Text; // ZString requires this namespace
+using Cysharp.Text;
+using UnityEngine; // ZString requires this namespace
 
 [Serializable]
 public struct BigNumber : IComparable<BigNumber>
@@ -86,6 +87,11 @@ public struct BigNumber : IComparable<BigNumber>
         return new BigNumber(a.mantissa / b.mantissa, a.exponent - b.exponent);
     }
 
+    public static BigNumber Max(BigNumber a, BigNumber b)
+    {
+        return (a > b) ? a : b;
+    }
+
     public static BigNumber Pow(double baseValue, int exponent)
     {
         if (exponent == 0) return BigNumber.One;
@@ -146,9 +152,30 @@ public struct BigNumber : IComparable<BigNumber>
         return new BigNumber(a.mantissa - (b / Math.Pow(10, a.exponent)), a.exponent);
     }
 
+    // BigNumber with Float Operations
+    public static BigNumber operator *(BigNumber a, float b)
+    {
+        return new BigNumber(a.mantissa * b, a.exponent);
+    }
+
+    public static BigNumber operator *(float b, BigNumber a) => a * b;
+
     public BigNumber Ceil()
     {
         return new BigNumber(Math.Ceiling(mantissa), exponent);
+    }
+
+    // Lerp method
+    public static BigNumber Lerp(BigNumber start, BigNumber end, float t)
+    {
+        // Interpolate mantissa
+        double lerpedMantissa = Mathf.Lerp((float)start.mantissa, (float)end.mantissa, t);
+
+        // Interpolate exponent
+        int lerpedExponent = Mathf.RoundToInt(Mathf.Lerp(start.exponent, end.exponent, t));
+
+        // Return new BigNumber based on lerped values
+        return new BigNumber(lerpedMantissa, lerpedExponent);
     }
 
     public int ToInt()

@@ -41,29 +41,36 @@ public class GameDataSO : ScriptableObject, ISaveableData
 [System.Serializable]
 public class CurrencyData
 {
-	[SerializeField] private double _totalCurrency;
+    [SerializeField] private BigNumber _lifetimeCurrency;
+    [SerializeField] private BigNumber _totalCurrency;
+
+    [SerializeField] private BigNumber _highestProduction;
+
 	[SerializeField] private double _gameTotalCurrency;
 	[SerializeField] private int _amountToBuy = 1;
 	[SerializeField] private long _lastActiveDateTime;
 
-	public double TotalCurrency => _totalCurrency;
-	public double GameTotalCurrency => _gameTotalCurrency;
+    public BigNumber LifetimeCurrency => _lifetimeCurrency;
+    public BigNumber TotalCurrency => _totalCurrency;
+    public BigNumber HighestProduction => _highestProduction;
 	public int AmountToBuy => _amountToBuy;
 	public long LastActiveDateTime => _lastActiveDateTime;
 
 	public CurrencyData()
 	{
-		_totalCurrency = 0;
-		_gameTotalCurrency = 0;
+        _lifetimeCurrency = BigNumber.Zero;
+        _totalCurrency = BigNumber.Zero;
+		_highestProduction = BigNumber.Zero;
 		SetAmountToBuy(1);
 		_lastActiveDateTime = DateTime.Now.Ticks;
 	}
 
-	public CurrencyData(double totalCurrency, double gameTotalCurrency, int amountToBuy)
+	public CurrencyData(BigNumber lifetimeCurrency, BigNumber totalCurrency, BigNumber highestProduction, int amountToBuy)
 	{
-		_totalCurrency = totalCurrency;
-		_gameTotalCurrency = gameTotalCurrency;
-		_lastActiveDateTime = DateTime.Now.Ticks;
+        _lifetimeCurrency = lifetimeCurrency;
+        _totalCurrency = totalCurrency;
+        _highestProduction = highestProduction;
+        _lastActiveDateTime = DateTime.Now.Ticks;
 		SetAmountToBuy(amountToBuy);
 	}
 
@@ -175,12 +182,12 @@ public class PrestigeData
 {
 	[SerializeField] private int _prestigeLevel = 0;
 	[SerializeField] private float _totalPrestigePoints = 0;
-	[SerializeField] private float _lifeTimePrestigePoints = 0;
+	[SerializeField] private double _lifeTimePrestigePoints = 0;
 	[SerializeField] private int _prestigeSkillPoints = 0;
 
 	public int PrestigeLevel => _prestigeLevel;
 	public float TotalPrestigePoints => _totalPrestigePoints;
-	public float LifeTimePrestigePoints => _lifeTimePrestigePoints;
+	public double LifeTimePrestigePoints => _lifeTimePrestigePoints;
 	public int PrestigeSKillPoints => _prestigeSkillPoints;
 
 	public PrestigeData()
@@ -191,7 +198,7 @@ public class PrestigeData
         _prestigeSkillPoints = 0;
     }
 
-	public PrestigeData(int prestigeLevel, float totalPrestigePoints, float lifeTimePrestigePoints, int prestigeSkillPoints)
+	public PrestigeData(int prestigeLevel, float totalPrestigePoints, double lifeTimePrestigePoints, int prestigeSkillPoints)
 	{
 		_prestigeLevel = prestigeLevel;
 		_totalPrestigePoints = totalPrestigePoints;

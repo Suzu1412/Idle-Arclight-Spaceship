@@ -39,6 +39,8 @@ public class VoidGameEventEditor : Editor
 
         foreach (var sender in gameEvent.SenderCounts.Keys)
         {
+            if (sender == null) continue;
+
             EditorGUILayout.BeginHorizontal();
 
             // Show sender name and count

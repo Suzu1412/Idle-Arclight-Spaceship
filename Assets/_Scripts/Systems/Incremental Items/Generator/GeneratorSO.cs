@@ -37,6 +37,7 @@ public class GeneratorSO : SerializableScriptableObject
     [SerializeField] private DoubleVariableSO _generatorsTotalProduction;
 
     private BigNumber _bulkCostBigNumber;
+    private BigNumber _currentProductionBigNumber;
 
     private DoubleVariableSO _bulkCost;
     private DoubleVariableSO _currentProduction;
