@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 {
@@ -12,11 +9,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     [SerializeField] private CurrencyDataSO _currencyData;
 
-    [Header("Double Variable")]
-    [SerializeField] private DoubleVariableSO _totalCurrency;
-    [SerializeField] private DoubleVariableSO _gameTotalCurrency;
-    [SerializeField] private DoubleVariableSO _generatorsTotalProduction;
-    [SerializeField] private DoubleVariableSO _gemGeneratorTotalAmount;
 
     [Header("Int Variable")]
     [SerializeField] private IntVariableSO _amountToBuy;
@@ -38,8 +30,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     [SerializeField] private IntGameEventListener OnChangeBuyAmountEventListener;
     [SerializeField] private IntGameEventListener OnBuyGeneratorGameEventListener;
     [SerializeField] private IntGameEventListener OnBuyUpgradeGameEventListener;
-    [Header("Double Event Binding")]
-    [SerializeField] private DoubleGameEventBinding OnGainCurrencyBinding;
+
     [Header("Formatted Number Event")]
     [SerializeField] private FormattedNumberGameEvent OnLoadCurrencyEvent;
     [SerializeField] private FormattedNumberGameEvent OnUpdateCurrencyFormatted;
@@ -60,7 +51,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     // Actions
     private Action BuyEveryUpgradeAvailableAction;
     private Action UpdateProductionRateAction;
-    private Action<double> GetCrystalAction;
 
 
     protected override void Awake()
@@ -68,7 +58,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         base.Awake();
         BuyEveryUpgradeAvailableAction = BuyEveryUpgradeAvailable;
         UpdateProductionRateAction = UpdateProductionRate;
-        GetCrystalAction = GetCrystal;
     }
 
     private void OnEnable()
@@ -77,7 +66,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         OnChangeBuyAmountEventListener.Register(ChangeAmountToBuy);
         OnBuyGeneratorGameEventListener.Register(BuyGenerator);
         OnBuyUpgradeGameEventListener.Register(BuyUpgrade);
-        OnGainCurrencyBinding.Bind(GetCrystalAction, this);
         OnBuyEveryUpgradeEventBinding.Bind(BuyEveryUpgradeAvailableAction, this);
         OnProductionChangedEventBinding.Bind(UpdateProductionRateAction, this);
         StartCoroutine(GenerateIncome());
@@ -89,16 +77,8 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         OnChangeBuyAmountEventListener.DeRegister(ChangeAmountToBuy);
         OnBuyGeneratorGameEventListener.DeRegister(BuyGenerator);
         OnBuyUpgradeGameEventListener.DeRegister(BuyUpgrade);
-        OnGainCurrencyBinding.Unbind(GetCrystalAction, this);
         OnBuyEveryUpgradeEventBinding.Unbind(BuyEveryUpgradeAvailableAction, this);
         OnProductionChangedEventBinding.Unbind(UpdateProductionRateAction, this);
-    }
-
-    private void UpdateTotal(double amount)
-    {
-        _totalCurrency.Value += amount;
-        _totalCurrency.Value = Math.Round(_totalCurrency.Value, 1);
-        _gameTotalCurrency.Value += amount;
     }
 
     private void IncrementPerSecond(double amount)
@@ -108,13 +88,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted), this);
     }
 
-    private void GetCrystal(double amount)
-    {
-        //amount *= _crystalOnGetMultiplier.Value * _crystalTotalMultiplier.Value;
-        UpdateTotal(amount);
-        OnCurrencyChangedEvent.RaiseEvent(this);
-        OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted), this);
-    }
 
     public void SaveData(GameDataSO gameData)
     {
@@ -144,11 +117,12 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         LoadCurrency(gameData.CurrencyData);
         LoadGenerators(gameData.Generators);
         LoadUpgrades(gameData.Upgrades);
+        _currencyData.CalculateOfflineEarnings(gameData.CurrencyData.LastActiveDateTime);
         LoadOfflineReward(gameData.CurrencyData.LastActiveDateTime);
 
         OnChangeBuyAmountEvent.RaiseEvent(_amountToBuy.Value, this);
         OnUpgradeBoughtEvent.RaiseEvent(this);
-        OnLoadCurrencyEvent.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted), this);
+        //OnLoadCurrencyEvent.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted), this);
 
         for (int i = 0; i < _generators.Generators.Count; i++)
         {
@@ -163,7 +137,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void BuyGenerator(int index)
     {
-        if (_totalCurrency.Value >= _generators.Generators[index].Cost.Value)
+        if (_currencyData.TotalCurrency >= _generators.Generators[index].CostBigNumber)
         {
             int amountToBuy = 0;
 
@@ -176,14 +150,13 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
                 amountToBuy = 1;// _generators.Generators[index].CalculateMaxAmountToBuy(_totalCurrency.Value);
             }
             _generators.Generators[index].GetBulkCost(amountToBuy);
-            _totalCurrency.Value -= _generators.Generators[index].Cost.Value;
+            _currencyData.SubtractCurrency(_generators.Generators[index].CostBigNumber);
             _generators.Generators[index].AddAmount(amountToBuy);
             _generators.Generators[index].CalculateProductionRate();
             GetProductionRate();
             UpdateCurrency();
-            _gemGeneratorTotalAmount.Value += amountToBuy;
             OnGeneratorAmountChangedEvent.RaiseEvent(index, this);
-            OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted), this);
+            //OnUpdateCurrencyFormatted.RaiseEvent(FormatNumber.FormatDouble(_totalCurrency.Value, UpdateCurrencyFormatted), this);
         }
     }
 
@@ -280,8 +253,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             generatorSO.Initialize();
         }
 
-        _gemGeneratorTotalAmount.Initialize(0);
-
         foreach (var generator in generatorDatas)
         {
             var generatorSO = _generators.Find(generator.Guid);
@@ -290,7 +261,6 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             generatorSO.SetTotalProduction(generator.TotalProduction);
             generatorSO.IsUnlocked = generator.IsUnlocked;
             generatorSO.ShouldNotify = generator.ShouldNotify;
-            _gemGeneratorTotalAmount.Value += generatorSO.AmountOwned;
         }
     }
 
@@ -308,24 +278,5 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             upgradeSO.IsRequirementMet = upgrade.IsRequirementMet;
             upgradeSO.ApplyUpgrade(upgrade.IsApplied);
         }
-    }
-
-    private void LoadOfflineReward(long lastActive)
-    {
-        long timeSpan = DateTime.Now.Ticks - lastActive;
-        double seconds = Math.Round(TimeSpan.FromTicks(timeSpan).TotalSeconds);
-
-        seconds = Math.Clamp(seconds, 0, 300);
-
-        double production = GetProductionRate();
-
-        var productionOffline = FormatNumber.FormatDouble(production * seconds * _productionOfflineMultiplier.Value);
-        _offlineNotification.SetAmount(productionOffline.GetFormat());
-
-        IncrementPerSecond(production * seconds * _productionOfflineMultiplier.Value);
-
-        OnUpdateProductionFormatted.RaiseEvent(FormatNumber.FormatDouble(production, UpdateProductionFormatted), this);
-        if (production == 0f) return;
-        _offlineNotificationEvent.RaiseEvent(_offlineNotification, this);
     }
 }

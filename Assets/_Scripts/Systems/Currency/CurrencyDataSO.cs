@@ -32,6 +32,10 @@ public class CurrencyDataSO : ScriptableObject
     [SerializeField] private float eventProductionMultiplier = 1f;
     [SerializeField] private float eventOnGetMultiplier = 1f;
 
+    [Header("Offline Multipliers")]
+    [SerializeField] private float offlineCurrencyMultiplier = 0f;
+    [SerializeField] private float offlineTimeCapMinutes = 30; // 30 minutes
+
     [Header("Gem Pickup Bonus")]
     [SerializeField] private float productionBonusPercentage = 0f;
 
@@ -170,5 +174,16 @@ public class CurrencyDataSO : ScriptableObject
         totalAmount += _totalProduction * productionBonusPercentage;
         
         return totalAmount;
+    }
+
+    public BigNumber CalculateOfflineEarnings(long lastActive)
+    {
+        long elapsedTime = DateTime.UtcNow.Ticks - lastActive;
+        double offlineSeconds = Math.Min(elapsedTime, offlineTimeCapMinutes * 60);
+
+        if (offlineSeconds <= 0) return new BigNumber(0);
+
+        BigNumber offlineEarnings = TotalProduction * offlineSeconds * offlineCurrencyMultiplier;
+        return offlineEarnings;
     }
 }

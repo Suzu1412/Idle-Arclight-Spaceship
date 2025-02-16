@@ -61,6 +61,7 @@ public class GeneratorSO : SerializableScriptableObject
     public double PriceGrowthRate { get => _priceGrowthRate; internal set => _priceGrowthRate = value; }
     public double TotalProduction { get => _totalProduction.Value; internal set => SetTotalProduction(value); }
     public double CostRequirement => _costRequirement;
+    public BigNumber CostBigNumber => _bulkCostBigNumber;
     public DoubleVariableSO Cost => _bulkCost;
     public DoubleVariableSO Production => _production;
     public bool IsUnlocked { get => _isUnlocked; internal set => _isUnlocked = value; }

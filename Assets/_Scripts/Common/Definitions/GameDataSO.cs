@@ -62,7 +62,7 @@ public class CurrencyData
         _totalCurrency = BigNumber.Zero;
 		_highestProduction = BigNumber.Zero;
 		SetAmountToBuy(1);
-		_lastActiveDateTime = DateTime.Now.Ticks;
+		_lastActiveDateTime = DateTime.UtcNow.Ticks;
 	}
 
 	public CurrencyData(BigNumber lifetimeCurrency, BigNumber totalCurrency, BigNumber highestProduction, int amountToBuy)
@@ -70,7 +70,7 @@ public class CurrencyData
         _lifetimeCurrency = lifetimeCurrency;
         _totalCurrency = totalCurrency;
         _highestProduction = highestProduction;
-        _lastActiveDateTime = DateTime.Now.Ticks;
+        _lastActiveDateTime = DateTime.UtcNow.Ticks;
 		SetAmountToBuy(amountToBuy);
 	}
 
