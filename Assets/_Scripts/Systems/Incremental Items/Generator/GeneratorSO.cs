@@ -10,51 +10,50 @@ using AYellowpaper.SerializedCollections;
 [CreateAssetMenu(fileName = "GeneratorSO", menuName = "Scriptable Objects/Incremental/Generator/GeneratorSO")]
 public class GeneratorSO : SerializableScriptableObject
 {
+    [Header("Generator Data")]
     [SerializeField] private string _name;
     [SerializeField] private SpriteAtlas _spriteAtlas;
     [SerializeField] private string _imageName;
     [SerializeField] private int _amountOwned;
-
-    [Header("Cost")]
-    [SerializeField] private BigNumber _costBigNumber;
-    [Header("Production")]
-    [SerializeField] private BigNumber _baseProductionBigNumber;
-    [SerializeField] protected double _cost;
-    [SerializeField] protected double _costRequirement;
-    [SerializeField] private FloatVariableSO _gemCostMultiplier;
-    [SerializeField] private double _priceGrowthRate;
-    [SerializeField] private SerializedDictionary<int, BigNumber> _costCache = new SerializedDictionary<int, BigNumber>();
-
-    [SerializeField] protected double _baseProduction;
-    [Header("Apply Multipliers to current gem")]
-    [SerializeField] private FloatVariableSO _gemProductionMultiplier;
-
     [SerializeField] private CurrencyDataSO _currencyData;
 
-    [SerializeField] private BigNumber _bulkCost;
-    [SerializeField] private BigNumber _production;
 
-    [SerializeField] private bool _isUnlocked;
-    [SerializeField] private bool _shouldNotify;
+    [Header("Cost")]
+    [SerializeField] private BigNumber _baseCost;
+    [SerializeField] private BigNumber _storeRevealCost;
+    [SerializeField][ReadOnly] private BigNumber _bulkCost;
+    [SerializeField] private double _priceGrowthRate;
+
+
+    [Header("Production")]
+    [SerializeField] private BigNumber _baseProduction;
+    [SerializeField] private BigNumber _production;
+    [SerializeField] private BigNumber _totalProduction;
+    [SerializeField] private FloatVariableSO _gemProductionMultiplier;
+
+
+    [SerializeField] private SerializedDictionary<int, BigNumber> _costCache = new SerializedDictionary<int, BigNumber>();
+
+    [Header("Apply Multipliers to current gem")]
+
+
+
+    [SerializeField] private bool _isVisibleInStore;
     [SerializeField] private float _productionPercentage;
     private double _logPriceGrowthRate;
     private BigNumber _cachedGrowthFactor;
     private int _lastAmountOwned;
-    [SerializeField] private string _costFormatted => _costBigNumber.GetFormat();
-    private bool _isDirty = true;
+    private bool _hasProductionChanged = true;
 
     public string Name => _name;
-    public double BaseCost { get => _cost; internal set => _cost = value; }
-    public double BaseProduction { get => _baseProduction; internal set => _baseProduction = value; }
     public int AmountOwned { get => _amountOwned; internal set => _amountOwned = value; }
-    public double PriceGrowthRate { get => _priceGrowthRate; internal set => _priceGrowthRate = value; }
-    public double CostRequirement => _costRequirement;
-    public BigNumber Cost => _bulkCost;
+    public BigNumber BulkCost => _bulkCost;
     public BigNumber Production => _production;
-    public bool IsUnlocked { get => _isUnlocked; internal set => _isUnlocked = value; }
-    public bool ShouldNotify { get => _shouldNotify; set => _shouldNotify = value; }
+    public BigNumber TotalProduction => _totalProduction;
+    public BigNumber StoreRevealCost => _storeRevealCost;
+    public bool IsVisibleInStore { get => _isVisibleInStore; internal set => _isVisibleInStore = value; }
     public float ProductionPercentage => _productionPercentage;
-    public bool IsDirty { set => _isDirty = value; }
+    public bool HasProductionChanged { set => _hasProductionChanged = value; }
 
     private void OnEnable()
     {
@@ -65,44 +64,40 @@ public class GeneratorSO : SerializableScriptableObject
     internal void Initialize()
     {
         SetAmount(0);
-        SetTotalProduction(0);
+        SetTotalProduction(BigNumber.Zero);
         _productionPercentage = 0;
-        _isUnlocked = false;
-        _shouldNotify = true;
+        _isVisibleInStore = false;
         _lastAmountOwned = 0;
     }
 
-    public void CheckIfMeetRequirementsToUnlock(double currency)
+    public void CheckIfMeetRequirementsToUnlock(BigNumber currency)
     {
-        if (_isUnlocked) return;
-        if (currency >= CostRequirement)
+        if (_isVisibleInStore) return;
+        if (currency >= StoreRevealCost)
         {
-            _isUnlocked = true;
+            _isVisibleInStore = true;
             //Notificate();
         }
     }
     public void AddAmount(int amount)
     {
-        _isDirty = true;
+        _hasProductionChanged = true;
         _amountOwned += amount;
         ClearCache();
     }
 
     public void CalculateProductionRate()
     {
-        _productionBigNumber = _currencyData.CalculateGemProductionAmount(_baseProductionBigNumber * _gemProductionMultiplier.Value, _amountOwned);
-        //_production.Value = _baseProduction * _gemProductionMultiplier.Value * _generatorProductionMultiplier.Value * _crystalTotalMultiplier.Value;
-        //_currentProduction.Value = Math.Round(_production.Value * _amountOwned, 1);
-        //ProductionFormatted = FormatNumber.FormatDouble(_currentProduction.Value, ProductionFormatted);
+        _production = _currencyData.CalculateGemProductionAmount(_baseProduction * _gemProductionMultiplier.Value, _amountOwned);
 
-        _isDirty = false;
+        _hasProductionChanged = false;
     }
 
     public void CalculatePercentage(BigNumber totalProduction)
     {
         if (totalProduction != BigNumber.Zero) // Avoid Division by zero
         {
-            _productionPercentage = (ProductionBigNumber / totalProduction * 100).ToFloat();
+            _productionPercentage = (_production / totalProduction * 100).ToFloat();
         }
         else
         {
@@ -110,14 +105,14 @@ public class GeneratorSO : SerializableScriptableObject
         }
     }
 
-    public double GetProductionRate()
+    public BigNumber GetProductionRate()
     {
-        if (_isDirty)
+        if (_hasProductionChanged)
         {
             CalculateProductionRate();
         }
-        TotalProduction = Math.Round(TotalProduction + _currentProduction.Value, 1);
-        return _currentProduction.Value;
+        _totalProduction += _production;
+        return _production;
     }
 
     public BigNumber GetBulkCost(int amountToBuy = 1)
@@ -128,27 +123,27 @@ public class GeneratorSO : SerializableScriptableObject
 
         if (_costCache.TryGetValue(key, out BigNumber cachedCost))
         {
-            _bulkCostBigNumber = cachedCost;
-            return _bulkCostBigNumber;
+            _bulkCost = cachedCost;
+            return _bulkCost;
         }
 
-        _bulkCostBigNumber = BigNumber.Zero;
+        _bulkCost = BigNumber.Zero;
 
         BigNumber firstCost = GetNextCost();
 
         if (_priceGrowthRate == 1)
         {
             // If growth rate is 1, the cost remains constant, so we just multiply
-            _bulkCostBigNumber = firstCost * amountToBuy;
+            _bulkCost = firstCost * amountToBuy;
         }
         else
         {
             // Use the geometric series sum formula
-            _bulkCostBigNumber = firstCost * (BigNumber.Pow(_priceGrowthRate, amountToBuy) - BigNumber.One) / (_priceGrowthRate - 1);
+            _bulkCost = firstCost * (BigNumber.Pow(_priceGrowthRate, amountToBuy) - BigNumber.One) / (_priceGrowthRate - 1);
         }
 
-        _costCache[key] = _bulkCostBigNumber;
-        return _bulkCostBigNumber;
+        _costCache[key] = _bulkCost;
+        return _bulkCost;
     }
 
     public int CalculateMaxAmountToBuy(BigNumber currency)
@@ -175,18 +170,18 @@ public class GeneratorSO : SerializableScriptableObject
 
     internal void SetAmount(int amount)
     {
-        _isDirty = true;
+        _hasProductionChanged = true;
         _amountOwned = amount;
     }
 
-    internal void SetTotalProduction(double totalProduction)
+    internal void SetTotalProduction(BigNumber totalProduction)
     {
-        _totalProduction.Value = totalProduction;
+        _totalProduction = totalProduction;
     }
 
     internal BigNumber GetNextCost()
     {
-        if (_priceGrowthRate == 1) return (_costBigNumber * _gemCostMultiplier.Value).Ceil();
+        if (_priceGrowthRate == 1) return _baseCost.Ceil(); // We can add a: _baseCost * _gemCostMultiplier.Value in case of something that modifies the price
 
         if (_amountOwned != _lastAmountOwned)
         {
@@ -194,7 +189,7 @@ public class GeneratorSO : SerializableScriptableObject
             _lastAmountOwned = _amountOwned;
         }
 
-        return (_costBigNumber * _gemCostMultiplier.Value * _cachedGrowthFactor).Ceil();
+        return (_baseCost * _cachedGrowthFactor).Ceil(); // we can also add the multiplier here
     }
 
     internal void AddModifier(FloatModifier modifier)
@@ -211,23 +206,5 @@ public class GeneratorSO : SerializableScriptableObject
     void ClearCache()
     {
         _costCache.Clear();
-    }
-
-    [ContextMenu("Convert Cost to Big Number")]
-    private void CalculateCostToBigNumber()
-    {
-        Debug.Log(new BigNumber(_cost));
-    }
-
-    [ContextMenu("Convert Requirement to Big Number")]
-    private void CalculateRequirementToBigNumber()
-    {
-        Debug.Log(new BigNumber(_costRequirement));
-    }
-
-    [ContextMenu("Convert Production to Big Number")]
-    private void CalculateProductionToBigNumber()
-    {
-        Debug.Log(new BigNumber(_baseProduction));
     }
 }

@@ -41,25 +41,25 @@ public class GameDataSO : ScriptableObject, ISaveableData
 [System.Serializable]
 public class CurrencyData
 {
-    [SerializeField] private BigNumber _lifetimeCurrency;
-    [SerializeField] private BigNumber _totalCurrency;
+	[SerializeField] private BigNumber _lifetimeCurrency;
+	[SerializeField] private BigNumber _totalCurrency;
 
-    [SerializeField] private BigNumber _highestProduction;
+	[SerializeField] private BigNumber _highestProduction;
 
 	[SerializeField] private double _gameTotalCurrency;
 	[SerializeField] private int _amountToBuy = 1;
 	[SerializeField] private long _lastActiveDateTime;
 
-    public BigNumber LifetimeCurrency => _lifetimeCurrency;
-    public BigNumber TotalCurrency => _totalCurrency;
-    public BigNumber HighestProduction => _highestProduction;
+	public BigNumber LifetimeCurrency => _lifetimeCurrency;
+	public BigNumber TotalCurrency => _totalCurrency;
+	public BigNumber HighestProduction => _highestProduction;
 	public int AmountToBuy => _amountToBuy;
 	public long LastActiveDateTime => _lastActiveDateTime;
 
 	public CurrencyData()
 	{
-        _lifetimeCurrency = BigNumber.Zero;
-        _totalCurrency = BigNumber.Zero;
+		_lifetimeCurrency = BigNumber.Zero;
+		_totalCurrency = BigNumber.Zero;
 		_highestProduction = BigNumber.Zero;
 		SetAmountToBuy(1);
 		_lastActiveDateTime = DateTime.UtcNow.Ticks;
@@ -67,10 +67,10 @@ public class CurrencyData
 
 	public CurrencyData(BigNumber lifetimeCurrency, BigNumber totalCurrency, BigNumber highestProduction, int amountToBuy)
 	{
-        _lifetimeCurrency = lifetimeCurrency;
-        _totalCurrency = totalCurrency;
-        _highestProduction = highestProduction;
-        _lastActiveDateTime = DateTime.UtcNow.Ticks;
+		_lifetimeCurrency = lifetimeCurrency;
+		_totalCurrency = totalCurrency;
+		_highestProduction = highestProduction;
+		_lastActiveDateTime = DateTime.UtcNow.Ticks;
 		SetAmountToBuy(amountToBuy);
 	}
 
@@ -97,23 +97,21 @@ public class GeneratorData
 {
 	[SerializeField] private string _guid;
 	[SerializeField] private int _amount;
-	[SerializeField] private double _totalProduction;
-	[SerializeField] private bool _isUnlocked = false;
+	[SerializeField] private BigNumber _totalProduction;
+	[SerializeField] private bool _isVisibleInStore = false;
 	[SerializeField] private bool _shouldNotify = true;
 
 	public string Guid => _guid;
 	public int Amount => _amount;
-	public double TotalProduction => _totalProduction;
-	public bool IsUnlocked => _isUnlocked;
-	public bool ShouldNotify => _shouldNotify;
+	public BigNumber TotalProduction => _totalProduction;
+	public bool IsVisibleInStore => _isVisibleInStore;
 
-	public GeneratorData(string guid, int amount, double totalProduction, bool isUnlocked, bool shouldNotify)
+	public GeneratorData(string guid, int amount, BigNumber totalProduction, bool isVisibleInStore)
 	{
 		_guid = guid;
 		_amount = amount;
 		_totalProduction = totalProduction;
-		_isUnlocked = isUnlocked;
-		_shouldNotify = shouldNotify;
+		_isVisibleInStore = isVisibleInStore;
 	}
 }
 
@@ -192,17 +190,17 @@ public class PrestigeData
 
 	public PrestigeData()
 	{
-        _prestigeLevel = 0;
-        _totalPrestigePoints = 0f;
-        _lifeTimePrestigePoints = 0f;
-        _prestigeSkillPoints = 0;
-    }
+		_prestigeLevel = 0;
+		_totalPrestigePoints = 0f;
+		_lifeTimePrestigePoints = 0f;
+		_prestigeSkillPoints = 0;
+	}
 
 	public PrestigeData(int prestigeLevel, float totalPrestigePoints, double lifeTimePrestigePoints, int prestigeSkillPoints)
 	{
 		_prestigeLevel = prestigeLevel;
 		_totalPrestigePoints = totalPrestigePoints;
-        _lifeTimePrestigePoints = lifeTimePrestigePoints;
+		_lifeTimePrestigePoints = lifeTimePrestigePoints;
 		_prestigeSkillPoints = prestigeSkillPoints;
 	}
 

@@ -66,17 +66,17 @@ public class GemUpgradeSO : BaseUpgradeSO
     private void CalculateUpgradeCost()
     {
         // Calculate the price of the Nth generator
-        double generatorPrice = _generator.BaseCost * Math.Pow(_generator.PriceGrowthRate, _amountRequired);
+        //double generatorPrice = _generator.BaseCost * Math.Pow(_generator.PriceGrowthRate, _amountRequired);
 
         // Add the percentage increase
-        double upgradeCost = generatorPrice * (1 + _percentageIncrease);
+        //double upgradeCost = generatorPrice * (1 + _percentageIncrease);
 
         // Determine the dynamic rounding factor
-        double roundingFactor = Math.Floor(Math.Pow(10, Math.Floor(Math.Log10(upgradeCost)) - 1));
+        //double roundingFactor = Math.Floor(Math.Pow(10, Math.Floor(Math.Log10(upgradeCost)) - 1));
 
         // Round down to the nearest multiple of the rounding factor
-        double roundedUpgradeCost = Math.Floor(upgradeCost / roundingFactor) * roundingFactor;
+        //double roundedUpgradeCost = Math.Floor(upgradeCost / roundingFactor) * roundingFactor;
 
-        _cost = roundedUpgradeCost;
+        //_cost = roundedUpgradeCost;
     }
 }

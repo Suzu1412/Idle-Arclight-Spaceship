@@ -97,7 +97,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
         List<GeneratorData> generatorDatas = gameData.Generators;
         foreach (var generator in _generatorDatabase.GeneratorDictionary.Values)
         {
-            generatorDatas.Add(new(generator.Guid, generator.AmountOwned, generator.TotalProduction, generator.IsUnlocked, generator.ShouldNotify));
+            generatorDatas.Add(new(generator.Guid, generator.AmountOwned, generator.TotalProduction, generator.IsVisibleInStore));
         }
 
         gameData.Generators = generatorDatas;
@@ -137,7 +137,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
 
     private void BuyGenerator(int index)
     {
-        if (_currencyData.TotalCurrency >= _generatorDatabase.GeneratorDictionary[index].CostBigNumber)
+        if (_currencyData.TotalCurrency >= _generatorDatabase.GeneratorDictionary[index].BulkCost)
         {
             int amountToBuy = 0;
 
@@ -150,7 +150,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
                 amountToBuy = 1;// _generators.Generators[index].CalculateMaxAmountToBuy(_totalCurrency.Value);
             }
             _generatorDatabase.GeneratorDictionary[index].GetBulkCost(amountToBuy);
-            _currencyData.SubtractCurrency(_generatorDatabase.GeneratorDictionary[index].CostBigNumber);
+            _currencyData.SubtractCurrency(_generatorDatabase.GeneratorDictionary[index].BulkCost);
             _generatorDatabase.GeneratorDictionary[index].AddAmount(amountToBuy);
             _generatorDatabase.GeneratorDictionary[index].CalculateProductionRate();
             GetProductionRate();
@@ -201,7 +201,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     {
         foreach (var generator in _generatorDatabase.GeneratorDictionary.Values)
         {
-            generator.IsDirty = true;
+            generator.HasProductionChanged = true;
         }
         GetProductionRate();
     }
@@ -210,9 +210,9 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
     {
         BigNumber totalProduction = BigNumber.Zero;
 
-        foreach(var generator in _generatorDatabase.GeneratorDictionary.Values)
+        foreach (var generator in _generatorDatabase.GeneratorDictionary.Values)
         {
-            totalProduction += generator.ProductionBigNumber;
+            totalProduction += generator.GetProductionRate();
         }
 
         _currencyData.SetTotalProduction(totalProduction);
@@ -274,8 +274,7 @@ public class CurrencyManager : Singleton<CurrencyManager>, ISaveable
             if (generatorSO == null) return;
             generatorSO.SetAmount(generator.Amount);
             generatorSO.SetTotalProduction(generator.TotalProduction);
-            generatorSO.IsUnlocked = generator.IsUnlocked;
-            generatorSO.ShouldNotify = generator.ShouldNotify;
+            generatorSO.IsVisibleInStore = generator.IsVisibleInStore;
         }
     }
 

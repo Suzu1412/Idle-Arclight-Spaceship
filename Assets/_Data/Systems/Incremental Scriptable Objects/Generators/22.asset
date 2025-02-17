@@ -17,22 +17,28 @@ MonoBehaviour:
   _spriteAtlas: {fileID: 100100200, guid: a0baf39e9c879774f9067a2d0217154f, type: 3}
   _imageName: Gems_118_ver
   _amountOwned: 0
-  _costBigNumber:
+  _currencyData: {fileID: 11400000, guid: 424d2ed0749ea024fa0d2d617e046b6f, type: 2}
+  _baseCost:
     mantissa: 0
     exponent: 0
-  _cost: 4.8e+27
-  _costRequirement: 1.5e+24
-  _gemCostMultiplier: {fileID: 11400000, guid: d4159609c13d586439af8e9e600a0681, type: 2}
+  _storeRevealCost:
+    mantissa: 0
+    exponent: 0
+  _bulkCost:
+    mantissa: 0
+    exponent: 0
   _priceGrowthRate: 1.15
+  _baseProduction:
+    mantissa: 0
+    exponent: 0
+  _production:
+    mantissa: 0
+    exponent: 0
+  _totalProduction:
+    mantissa: 0
+    exponent: 0
+  _gemProductionMultiplier: {fileID: 11400000, guid: 322b2bc44081f48d48ea88cd8a417554, type: 2}
   _costCache:
     _serializedList: []
-  _baseProduction: 60000000000000
-  _gemProductionMultiplier: {fileID: 11400000, guid: fc060c699feb9424393818dba7f51af1, type: 2}
-  _generatorProductionMultiplier: {fileID: 11400000, guid: 9e1e62861324d2247924765a1c226115, type: 2}
-  _crystalTotalMultiplier: {fileID: 11400000, guid: f03c3c3167bc94ed6b4832acde770bab, type: 2}
-  _notificationIcon: {fileID: 21300000, guid: f0e4acf0c5a0d4ed6979cdb1edb5d040, type: 3}
-  OnShopNotificationEvent: {fileID: 11400000, guid: 22013b92c0172b742ae78cfa53b3643a, type: 2}
-  _generatorsTotalProduction: {fileID: 11400000, guid: 3333a232e7612214f89041268b3a20cd, type: 2}
-  _isUnlocked: 0
-  _shouldNotify: 1
+  _isVisibleInStore: 0
   _productionPercentage: 0
