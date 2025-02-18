@@ -19,17 +19,17 @@ MonoBehaviour:
   _amountOwned: 0
   _currencyData: {fileID: 11400000, guid: 424d2ed0749ea024fa0d2d617e046b6f, type: 2}
   _baseCost:
-    mantissa: 0
-    exponent: 0
+    mantissa: 130
+    exponent: 3
   _storeRevealCost:
-    mantissa: 0
-    exponent: 0
+    mantissa: 400
+    exponent: 2
   _bulkCost:
     mantissa: 0
     exponent: 0
   _priceGrowthRate: 1.15
   _baseProduction:
-    mantissa: 0
+    mantissa: 520
     exponent: 0
   _production:
     mantissa: 0

@@ -16,6 +16,10 @@ public class UIAnimationManager : Singleton<UIAnimationManager>
     public void Scale(RectTransform target, Vector3 to, float duration)
         => StartCoroutine(ScaleCoroutine(target, to, duration));
 
+    // Scale and return to original Scale
+    public void ScalePop(RectTransform target, float scaleFactor, float duration, float holdTime)
+    => StartCoroutine(ScalePopCoroutine(target, scaleFactor, duration, holdTime));
+
     // Shake
     public void Shake(RectTransform target, float strength, float duration)
         => StartCoroutine(ShakeCoroutine(target, strength, duration));
@@ -29,8 +33,8 @@ public class UIAnimationManager : Singleton<UIAnimationManager>
         => StartCoroutine(RotateCoroutine(target, toAngle, duration));
 
     // Pulse (breathing effect) Makes an element smoothly grow and shrink.
-    public void Pulse(RectTransform target, float minScale, float maxScale, float duration)
-        => StartCoroutine(PulseCoroutine(target, minScale, maxScale, duration));
+    public void Pulse(RectTransform target, float minScale, float maxScale, float duration, float pingPongDuration)
+        => StartCoroutine(PulseCoroutine(target, minScale, maxScale, duration, pingPongDuration));
 
     // Bounce effect Moves an element with an elastic effect.
     public void Bounce(RectTransform target, Vector2 to, float duration)
@@ -43,6 +47,10 @@ public class UIAnimationManager : Singleton<UIAnimationManager>
     // Change Color Fades a UI element’s color smoothly.
     public void ChangeColor(Graphic graphic, Color to, float duration)
         => StartCoroutine(ChangeColorCoroutine(graphic, to, duration));
+
+    // Add a Glow Effect to a Text or Image. Need to add an Outline First.
+    public void GlowEffect(Outline outline, float maxAlpha, float duration)
+        => StartCoroutine(GlowCoroutine(outline, maxAlpha, duration));
 
     // Coroutine Implementations
     private IEnumerator SlideFromStartCoroutine(RectTransform target, Vector2 start, float duration)
@@ -87,6 +95,42 @@ public class UIAnimationManager : Singleton<UIAnimationManager>
         target.localScale = to;
     }
 
+    private IEnumerator ScalePopCoroutine(RectTransform target, float scaleFactor, float duration, float holdTime)
+    {
+        Vector3 originalScale = target.localScale;
+        Vector3 targetScale = originalScale * scaleFactor;
+
+        float halfDuration = duration / 2f;
+        float elapsed = 0f;
+
+        // Scale Up
+        while (elapsed < halfDuration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = elapsed / halfDuration;
+            target.localScale = Vector3.LerpUnclamped(originalScale, targetScale, EaseOutQuad(t));
+            yield return null;
+        }
+
+        target.localScale = targetScale;
+
+        // Hold at Max Size
+        yield return new WaitForSecondsRealtime(holdTime);
+
+        elapsed = 0f;
+
+        // Scale Down
+        while (elapsed < halfDuration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = elapsed / halfDuration;
+            target.localScale = Vector3.LerpUnclamped(targetScale, originalScale, EaseOutQuad(t));
+            yield return null;
+        }
+
+        target.localScale = originalScale;
+    }
+
     private IEnumerator ShakeCoroutine(RectTransform target, float strength, float duration)
     {
         Vector2 originalPos = target.anchoredPosition;
@@ -128,17 +172,19 @@ public class UIAnimationManager : Singleton<UIAnimationManager>
         target.eulerAngles = new Vector3(0, 0, toAngle);
     }
 
-    private IEnumerator PulseCoroutine(RectTransform target, float minScale, float maxScale, float duration)
+    private IEnumerator PulseCoroutine(RectTransform target, float minScale, float maxScale, float duration, float pingPongDuration)
     {
         float elapsed = 0f;
-        while (true) // Looping effect
+        target.localScale = Vector3.one * minScale;
+        while (elapsed < duration) // Looping effect
         {
             elapsed += Time.unscaledDeltaTime;
-            float t = Mathf.PingPong(elapsed / duration, 1);
+            float t = Mathf.PingPong(elapsed / duration, pingPongDuration);
             float scale = Mathf.Lerp(minScale, maxScale, EaseOutQuad(t));
             target.localScale = Vector3.one * scale;
             yield return null;
         }
+        target.localScale = Vector3.one * minScale;
     }
 
     private IEnumerator BounceCoroutine(RectTransform target, Vector2 to, float duration)
@@ -180,6 +226,40 @@ public class UIAnimationManager : Singleton<UIAnimationManager>
             yield return null;
         }
         graphic.color = to;
+    }
+
+    private IEnumerator GlowCoroutine(Outline outline, float maxAlpha, float duration)
+    {
+        if (outline == null) yield break;
+
+        Color originalColor = outline.effectColor;
+        float originalAlpha = originalColor.a;
+        Color targetColor = new Color(originalColor.r, originalColor.g, originalColor.b, maxAlpha);
+
+        float halfDuration = duration / 2f;
+        float elapsed = 0f;
+
+        // Increase glow
+        while (elapsed < halfDuration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = elapsed / halfDuration;
+            outline.effectColor = Color.Lerp(originalColor, targetColor, EaseOutQuad(t));
+            yield return null;
+        }
+
+        elapsed = 0f;
+
+        // Decrease glow
+        while (elapsed < halfDuration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = elapsed / halfDuration;
+            outline.effectColor = Color.Lerp(targetColor, originalColor, EaseOutQuad(t));
+            yield return null;
+        }
+
+        outline.effectColor = originalColor;
     }
 
     // Easing Functions

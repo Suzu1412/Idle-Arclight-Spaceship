@@ -27,8 +27,8 @@ public class GeneratorSO : SerializableScriptableObject
 
     [Header("Production")]
     [SerializeField] private BigNumber _baseProduction;
-    [SerializeField] private BigNumber _production;
-    [SerializeField] private BigNumber _totalProduction;
+    [SerializeField][ReadOnly] private BigNumber _production;
+    [SerializeField][ReadOnly] private BigNumber _totalProduction;
     [SerializeField] private FloatVariableSO _gemProductionMultiplier;
 
 

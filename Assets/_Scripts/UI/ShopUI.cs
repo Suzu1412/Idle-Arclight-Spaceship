@@ -4,6 +4,7 @@ using UnityEngine;
 public class ShopUI : Singleton<ShopUI>
 {
     [Header("Generator")]
+    [SerializeField] private GeneratorDatabaseSO _generatorDatabase;
     //[SerializeField] private ListGeneratorSO _generators;
     [SerializeField] private GameObject _shopGeneratorButtonPrefab;
     [SerializeField] private Transform _shopGeneratorContent;

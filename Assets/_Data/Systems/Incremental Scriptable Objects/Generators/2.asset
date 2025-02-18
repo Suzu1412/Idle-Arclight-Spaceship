@@ -16,29 +16,29 @@ MonoBehaviour:
   _name: Silver
   _spriteAtlas: {fileID: 100100200, guid: a0baf39e9c879774f9067a2d0217154f, type: 3}
   _imageName: Gems_29_ver
-  _amountOwned: 5
+  _amountOwned: 4
   _currencyData: {fileID: 11400000, guid: 424d2ed0749ea024fa0d2d617e046b6f, type: 2}
   _baseCost:
-    mantissa: 0
+    mantissa: 75
     exponent: 0
   _storeRevealCost:
-    mantissa: 0
+    mantissa: 10
     exponent: 0
   _bulkCost:
     mantissa: 0
     exponent: 0
   _priceGrowthRate: 1.15
   _baseProduction:
-    mantissa: 0
+    mantissa: 1
     exponent: 0
   _production:
-    mantissa: 0
+    mantissa: 4
     exponent: 0
   _totalProduction:
-    mantissa: 0
+    mantissa: 4
     exponent: 0
   _gemProductionMultiplier: {fileID: 11400000, guid: 01f351936402cc84b959f4e89347f122, type: 2}
   _costCache:
     _serializedList: []
   _isVisibleInStore: 0
-  _productionPercentage: 0
+  _productionPercentage: 58.82353

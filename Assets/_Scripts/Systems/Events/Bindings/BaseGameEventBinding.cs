@@ -32,8 +32,6 @@ public abstract class BaseGameEventBinding<T> : ScriptableObject, IGameEventBind
     {
         if (listener == null || owner == null) return;
 
-        Debug.Log($"✅ Trying to Unbind: {listener.Method.Name} on {listener.Target}");
-
         if (subscribers.ContainsKey(owner.gameObject))
         {
             // Remove the script from the set

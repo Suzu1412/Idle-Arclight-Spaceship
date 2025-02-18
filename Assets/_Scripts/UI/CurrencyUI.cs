@@ -6,27 +6,19 @@ using Cysharp.Text;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
+using UnityEngine.UI;
 
 public class CurrencyUI : MonoBehaviour
 {
-    private Coroutine _countTo;
-    private FormattedNumber _currentValueFormatted;
-    private float _currentValue;
-    private float _targetValue;
-
     private BigNumber _startBigNumber;
     private BigNumber _endBigNumber;
-
 
     [SerializeField] private CurrencyDataSO _currencyData;
 
     [SerializeField] private VoidGameEventBinding OnCurrencyChangedEventBinding;
     [SerializeField] private VoidGameEventBinding OnProductionChangedEventBinding;
 
-    [Header("Formatted Number Listener")]
-    [SerializeField] private FormattedNumberEventListener OnLoadCurrencyListener;
-    [SerializeField] private FormattedNumberEventListener OnUpdateCurrencyTextListener;
-    [SerializeField] private FormattedNumberEventListener OnUpdateProductionTextListener;
+    [SerializeField] private RectTransform _productionRectTransform;
 
     [Header("Text")]
     [SerializeField] private TextMeshProUGUI _currencyText;
@@ -53,34 +45,13 @@ public class CurrencyUI : MonoBehaviour
     private void OnEnable()
     {
         OnCurrencyChangedEventBinding.Bind(AnimateCurrencyChangeAction, this);
-        //OnLoadCurrencyListener.Register(LoadCurrencyText);
-        //OnUpdateCurrencyTextListener.Register(UpdateCurrencyText);
-        //OnUpdateProductionTextListener.Register(UpdateProductionText);
+        OnProductionChangedEventBinding.Bind(UpdateProductionAction, this);
     }
 
     private void OnDisable()
     {
         OnCurrencyChangedEventBinding.Unbind(AnimateCurrencyChangeAction, this);
-        //OnLoadCurrencyListener.DeRegister(LoadCurrencyText);
-        //OnUpdateCurrencyTextListener.DeRegister(UpdateCurrencyText);
-        //OnUpdateProductionTextListener.DeRegister(UpdateProductionText);
-    }
-
-    private void UpdateCurrencyText(FormattedNumber formatValue)
-    {
-        if (_countTo != null) StopCoroutine(_countTo);
-        _countTo = StartCoroutine(CountToCoroutine(formatValue));
-    }
-
-    /// <summary>
-    /// Called only on Load Game
-    /// </summary>
-    /// <param name="formatValue"></param>
-    private void LoadCurrencyText(FormattedNumber formatValue)
-    {
-        _currentValue = formatValue.Value;
-        _currentValueFormatted.Init(_currentValue, formatValue.Unit);
-        _currencyText.text = _currentValueFormatted.GetFormat();
+        OnProductionChangedEventBinding.Unbind(UpdateProductionAction, this);
     }
 
     private void AnimateCurrencyChange()
@@ -113,36 +84,11 @@ public class CurrencyUI : MonoBehaviour
         _currencyText.SetTextFormat("{0}", _endBigNumber.ToString());
     }
 
-    private void UpdateProductionText(FormattedNumber formatValue)
-    {
-        _productionLocalized.StringReference.SetReference(_table, "gpsAmount");
-        _amountVariable.Value = formatValue.GetFormat();
-    }
-
     private void UpdateProductionText()
     {
-
-    }
-
-    private IEnumerator CountToCoroutine(FormattedNumber formatValue)
-    {
-        _targetValue = formatValue.Value;
-        var rate = (_targetValue - _currentValue);
-        while (_currentValue != _targetValue)
-        {
-            if (_currentValue < _targetValue)
-            {
-                _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, rate * Time.deltaTime);
-            }
-            else
-            {
-                _currentValue = Mathf.MoveTowards(_currentValue, _targetValue, -rate * 4 * Time.deltaTime);
-            }
-            _currentValueFormatted.Init(_currentValue, formatValue.Unit);
-
-            _currencyText.SetTextFormat("{0}", _currentValueFormatted.GetFormat());
-            yield return null;
-        }
+        UIAnimationManager.Instance.ScalePop(_productionRectTransform, 1.3f, 0.4f, 1f);
+        _productionLocalized.StringReference.SetReference(_table, "gpsAmount");
+        _amountVariable.Value = _currencyData.TotalProduction.ToString();
     }
 
     private void SetAmountVariable()

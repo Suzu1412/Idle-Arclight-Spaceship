@@ -976,6 +976,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 512921317}
   m_CullTransparentMesh: 0
+--- !u!1 &630745892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 630745893}
+  - component: {fileID: 630745894}
+  m_Layer: 5
+  m_Name: Shop UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &630745893
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630745892}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1215745619}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &630745894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630745892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cfe70fcf6951ba43a278306b72abc8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shopGeneratorButtonPrefab: {fileID: 0}
+  _shopGeneratorContent: {fileID: 0}
+  _generatorCanvasGO: {fileID: 0}
+  _upgrades: {fileID: 0}
+  _shopUpgradeButtonPrefab: {fileID: 0}
+  _shopUpgradeContent: {fileID: 0}
+  _UpgradeCanvasGO: {fileID: 0}
+  OnBuyGeneratorGameEvent: {fileID: 0}
+  OnBuyUpgradeGameEvent: {fileID: 0}
+  OnChangeBuyAmountEvent: {fileID: 11400000, guid: b8b90167f58d94ee391e69875a58d3dd, type: 2}
+  OnGeneratorAmountChangedListener: {fileID: 11400000, guid: cdc46a947bed14536bff68261c46d0c5, type: 2}
+  OnChangeBuyAmountEventListener: {fileID: 11400000, guid: 4aeb198ff79a245e59df77a1b8e59f30, type: 2}
 --- !u!1 &638584489
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,6 +1048,7 @@ GameObject:
   - component: {fileID: 638584493}
   - component: {fileID: 638584492}
   - component: {fileID: 638584491}
+  - component: {fileID: 638584494}
   m_Layer: 5
   m_Name: Production Value
   m_TagString: Untagged
@@ -1174,6 +1235,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638584489}
   m_CullTransparentMesh: 0
+--- !u!114 &638584494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638584489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.18431373, g: 0.21176471, b: 0.2509804, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &651449406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1884,6 +1960,7 @@ RectTransform:
   m_Children:
   - {fileID: 1633277060}
   - {fileID: 482307704}
+  - {fileID: 630745893}
   m_Father: {fileID: 1776301491}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2292,9 +2369,7 @@ MonoBehaviour:
   _currencyData: {fileID: 11400000, guid: 424d2ed0749ea024fa0d2d617e046b6f, type: 2}
   OnCurrencyChangedEventBinding: {fileID: 11400000, guid: 4f396f691f9044dd1addd445deb64d99, type: 2}
   OnProductionChangedEventBinding: {fileID: 11400000, guid: e47b372b8fd344bb7b268af1afa25986, type: 2}
-  OnLoadCurrencyListener: {fileID: 11400000, guid: b2eb50dcf6a584636a76240290b9fa5a, type: 2}
-  OnUpdateCurrencyTextListener: {fileID: 11400000, guid: 3808bbe8a1aad784fab768d37df9d53d, type: 2}
-  OnUpdateProductionTextListener: {fileID: 11400000, guid: b7b3b00cd564a0c4e86c633732e531b2, type: 2}
+  _productionRectTransform: {fileID: 61005486}
   _currencyText: {fileID: 1032302098}
   _productionLocalized: {fileID: 638584491}
   _table: Tabla1
