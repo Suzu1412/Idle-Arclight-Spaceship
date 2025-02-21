@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIAnimationManager : Singleton<UIAnimationManager>
+public class UIAnimationManager : MonoBehaviour
 {
     // Slide From a Start position to Original position
     public void SlideFromStart(RectTransform target, Vector2 start, float duration)
@@ -44,7 +44,7 @@ public class UIAnimationManager : Singleton<UIAnimationManager>
     public void Wobble(RectTransform target, float strength, float duration)
         => StartCoroutine(WobbleCoroutine(target, strength, duration));
 
-    // Change Color Fades a UI element’s color smoothly.
+    // Change Color Fades a UI elementï¿½s color smoothly.
     public void ChangeColor(Graphic graphic, Color to, float duration)
         => StartCoroutine(ChangeColorCoroutine(graphic, to, duration));
 
@@ -98,7 +98,7 @@ public class UIAnimationManager : Singleton<UIAnimationManager>
     private IEnumerator ScalePopCoroutine(RectTransform target, float scaleFactor, float duration, float holdTime)
     {
         Vector3 originalScale = target.localScale;
-        Vector3 targetScale = originalScale * scaleFactor;
+        Vector3 targetScale = Vector3.one * scaleFactor;
 
         float halfDuration = duration / 2f;
         float elapsed = 0f;

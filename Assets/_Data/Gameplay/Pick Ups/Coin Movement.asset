@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf8d4160c1d1fd4d9541b63f0549f55, type: 3}
   m_Name: Coin Movement
   m_EditorClassIdentifier: 
-  _maxSpeed: 6
+  _maxSpeed: 6.5
   _acceleration: 3.5
   _deceleration: 2

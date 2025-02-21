@@ -213,6 +213,7 @@ public struct BigNumber : IComparable<BigNumber>
     public readonly string GetFormat()
     {
         int magnitude = exponent / 3;
+        if (magnitude < 0) return ZString.Format("{0}", "0");
         if (magnitude < Units.Count)
         {
             return ZString.Format("{0:F2} {1}", mantissa * Math.Pow(10, exponent % 3), Units[magnitude]);

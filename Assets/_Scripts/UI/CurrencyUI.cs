@@ -29,6 +29,7 @@ public class CurrencyUI : MonoBehaviour
     [SerializeField] private string _table = "Tabla1";
 
     private Coroutine _animateCurrencyCoroutine;
+    [SerializeField] private UIAnimationManager _animationManager;
 
     private StringVariable _amountVariable;
     private Action AnimateCurrencyChangeAction;
@@ -36,6 +37,7 @@ public class CurrencyUI : MonoBehaviour
 
     private void Awake()
     {
+        if (_animationManager == null) _animationManager = FindAnyObjectByType<UIAnimationManager>();
         _localizedString = _productionLocalized.StringReference;
         AnimateCurrencyChangeAction = AnimateCurrencyChange;
         UpdateProductionAction = UpdateProductionText;
@@ -52,6 +54,7 @@ public class CurrencyUI : MonoBehaviour
     {
         OnCurrencyChangedEventBinding.Unbind(AnimateCurrencyChangeAction, this);
         OnProductionChangedEventBinding.Unbind(UpdateProductionAction, this);
+        _productionRectTransform.localScale = Vector3.one;
     }
 
     private void AnimateCurrencyChange()
@@ -86,7 +89,10 @@ public class CurrencyUI : MonoBehaviour
 
     private void UpdateProductionText()
     {
-        UIAnimationManager.Instance.ScalePop(_productionRectTransform, 1.3f, 0.4f, 1f);
+        if (_animationManager != null)
+        {
+            _animationManager.ScalePop(_productionRectTransform, 1.3f, 0.4f, 1f);
+        }
         _productionLocalized.StringReference.SetReference(_table, "gpsAmount");
         _amountVariable.Value = _currencyData.TotalProduction.ToString();
     }

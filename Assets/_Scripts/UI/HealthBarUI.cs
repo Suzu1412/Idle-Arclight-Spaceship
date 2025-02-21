@@ -26,12 +26,14 @@ public class HealthBarUI : MonoBehaviour
     [SerializeField] private float _damageAnimationDelay = 0.2f;
     [SerializeField] private float _damageAnimationDuration = 0.01f;
     [SerializeField] private float _shakeStrength = 2f;
+    [SerializeField] private UIAnimationManager _animationManager;
 
     private Action UpdateHealthAction;
     private Action ShakeHealthBarAction;
 
     private void Awake()
     {
+        if (_animationManager == null) _animationManager = FindAnyObjectByType<UIAnimationManager>();
         UpdateHealthAction = UpdateHealth;
         ShakeHealthBarAction = ShakeHealthBar;
         _rectTransform = GetComponent<RectTransform>();
@@ -144,7 +146,7 @@ public class HealthBarUI : MonoBehaviour
     }
     private void ShakeHealthBar()
     {
-        UIAnimationManager.Instance.Shake(_rectTransform, _shakeStrength, 0.5f);
+        _animationManager.Shake(_rectTransform, _shakeStrength, 0.5f);
     }
 
     IEnumerator DamageAnimationCoroutine()
