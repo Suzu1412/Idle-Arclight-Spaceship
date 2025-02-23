@@ -22,8 +22,8 @@ MonoBehaviour:
     mantissa: 450
     exponent: 1
   _storeRevealCost:
-    mantissa: 100
-    exponent: 1
+    mantissa: 700
+    exponent: 0
   _bulkCost:
     mantissa: 0
     exponent: 0

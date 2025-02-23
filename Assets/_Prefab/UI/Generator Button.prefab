@@ -542,7 +542,9 @@ MonoBehaviour:
   itemImage: {fileID: 7615943875515194709}
   costText: {fileID: 6267839520823332536}
   productionText: {fileID: 5461118389445574781}
+  amountOwnedText: {fileID: 9166258388167318685}
   buyButton: {fileID: 5248496406339025179}
+  OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
 --- !u!1 &1618288494563224502
 GameObject:
   m_ObjectHideFlags: 0

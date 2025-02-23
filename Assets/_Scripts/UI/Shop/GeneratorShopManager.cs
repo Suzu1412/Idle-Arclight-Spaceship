@@ -5,9 +5,10 @@ using UnityEngine.UI;
 public class GeneratorShopManager : MonoBehaviour
 {
     [SerializeField] private GameObject shopPanel; // Shop UI Panel
-    [SerializeField] private Transform shopContent; // ScrollView Content
+    [SerializeField] private RectTransform contentPanel; // The parent that holds the buttons
     [SerializeField] private GameObject buttonPrefab; // Shop button prefab
     [SerializeField] private ScrollRect scrollRect; // ScrollRect for visibility checks
+    [SerializeField] private int visibleCount = 7; // Number of visible buttons at a time
 
     [Header("Data")]
     [SerializeField] private GeneratorDatabaseSO generators;
@@ -16,118 +17,89 @@ public class GeneratorShopManager : MonoBehaviour
     [SerializeField] private VoidGameEventBinding OnCurrencyChangedEventBinding;
 
 
-    private Queue<GeneratorButton> buttonPool = new Queue<GeneratorButton>();
-    private List<GeneratorButton> activeButtons = new List<GeneratorButton>();
+    private Queue<GameObject> buttonPool = new Queue<GameObject>();
+    private List<GameObject> activeButtons = new List<GameObject>(); // Track active buttons
 
-    private int visibleItemCount;
-    private float buttonHeight;
+    private float itemHeight;
+    private float contentHeight;
+    private int firstVisibleIndex = 0; // Tracks the first visible generator
+    private int totalItems; // Total number of generators
+
 
     private void Start()
     {
-        //shopPanel.SetActive(false); // Hide shop initially
-        buttonHeight = buttonPrefab.GetComponent<RectTransform>().rect.height;
-        visibleItemCount = Mathf.CeilToInt(scrollRect.viewport.rect.height / buttonHeight) + 2; // Extra buffer
-    }
+        totalItems = generators.GeneratorDictionary.Count;
 
-    private void OnEnable()
-    {
-        OnCurrencyChangedEventBinding.Bind(UpdateShopButtons, this);
-        scrollRect.onValueChanged.AddListener(_ => RecycleButtons());
-        PopulateShop();
-    }
+        if (totalItems == 0) return; // Avoid issues if the dictionary is empty
 
-    private void OnDisable()
-    {
-        OnCurrencyChangedEventBinding.Unbind(UpdateShopButtons, this);
-        scrollRect.onValueChanged.RemoveListener(_ => RecycleButtons());
-    }
+        itemHeight = buttonPrefab.GetComponent<RectTransform>().sizeDelta.y;
+        contentHeight = totalItems * itemHeight;
 
-    public void ToggleGeneratorShop()
-    {
-        shopPanel.SetActive(!shopPanel.activeSelf);
-        if (shopPanel.activeSelf) PopulateShop();
-    }
+        // Fix 1: Ensure Scrollbar Covers Full Area
+        contentPanel.sizeDelta = new Vector2(contentPanel.sizeDelta.x, contentHeight);
 
-    private void PopulateShop()
-    {
-        // Clear any existing active buttons
-        foreach (var button in activeButtons)
+        // Calculate how many buttons should be visible at once (plus a buffer)
+        int visibleCount = Mathf.CeilToInt(scrollRect.viewport.rect.height / itemHeight) + 2;
+
+        for (int i = 0; i < visibleCount; i++)
         {
-            buttonPool.Enqueue(button);
-            button.gameObject.SetActive(false);
+            GameObject newButton = Instantiate(buttonPrefab, contentPanel);
+            buttonPool.Enqueue(newButton);
+            activeButtons.Add(newButton);
+            UpdateButtonPosition(newButton, i);
+            UpdateButtonData(newButton, i);
         }
-        activeButtons.Clear();
 
-        // Instantiate only visible items
-        for (int i = 0; i < visibleItemCount && i < generators.GeneratorDictionary.Count; i++)
-        {
-            var button = GetPooledButton();
-            button.Initialize(generators.GeneratorDictionary[i], currencyData);
-            PositionButton(button, i);
-            activeButtons.Add(button);
-        }
+        scrollRect.onValueChanged.AddListener(OnScroll);
     }
 
-    private void UpdateShopButtons()
+    private void OnScroll(Vector2 scrollPosition)
     {
-        foreach (var button in activeButtons)
+        float scrollY = contentPanel.anchoredPosition.y;
+        int newFirstVisibleIndex = Mathf.FloorToInt(scrollY / itemHeight);
+
+        if (newFirstVisibleIndex != firstVisibleIndex)
         {
-            button.UpdateButtonState(currencyData.TotalCurrency);
-        }
-    }
+            firstVisibleIndex = newFirstVisibleIndex;
 
-    private void RecycleButtons()
-    {
-        float contentY = shopContent.localPosition.y;
-
-        for (int i = 0; i < activeButtons.Count; i++)
-        {
-            GeneratorButton button = activeButtons[i];
-            int newIndex = Mathf.FloorToInt(contentY / buttonHeight) + i;
-
-            if (newIndex >= 0 && newIndex < generators.GeneratorDictionary.Count)
+            for (int i = 0; i < activeButtons.Count; i++)
             {
-                button.Initialize(generators.GeneratorDictionary[newIndex], currencyData);
-                PositionButton(button, newIndex);
-            }
-            else
-            {
-                button.gameObject.SetActive(false);
-                buttonPool.Enqueue(button);
-                activeButtons.RemoveAt(i);
-                i--;
+                int newIndex = firstVisibleIndex + i;
+                if (newIndex < totalItems && newIndex >= 0)
+                {
+                    UpdateButtonPosition(activeButtons[i], newIndex);
+                    UpdateButtonData(activeButtons[i], newIndex);
+                }
+                else
+                {
+                    activeButtons[i].SetActive(false);
+                }
             }
         }
-
-        // Fill missing visible slots
-        while (activeButtons.Count < visibleItemCount && activeButtons.Count < generators.GeneratorDictionary.Count)
-        {
-            int newIndex = activeButtons.Count;
-            var button = GetPooledButton();
-            button.Initialize(generators.GeneratorDictionary[newIndex], currencyData);
-            PositionButton(button, newIndex);
-            activeButtons.Add(button);
-        }
     }
 
-    private GeneratorButton GetPooledButton()
+    private void UpdateButtonPosition(GameObject button, int index)
     {
-        if (buttonPool.Count > 0)
+        RectTransform rect = button.GetComponent<RectTransform>();
+
+        // Ensure X position is centered if needed
+        float xPos = rect.sizeDelta.x / 2; // Adjust if you need it centered (maybe rect.sizeDelta.x / 2?)
+
+        // Ensure buttons are positioned correctly along Y-axis
+        rect.anchoredPosition = new Vector2(xPos, -index * itemHeight);
+
+        button.SetActive(true);
+    }
+
+    private void UpdateButtonData(GameObject button, int index)
+    {
+        if (generators.GeneratorDictionary.TryGetValue(index, out var generatorData))
         {
-            var reusedButton = buttonPool.Dequeue();
-            reusedButton.gameObject.SetActive(true);
-            return reusedButton;
+            button.GetComponent<GeneratorButton>().Initialize(generatorData, currencyData);
         }
         else
         {
-            var newButton = Instantiate(buttonPrefab, shopContent).GetComponent<GeneratorButton>();
-            return newButton;
+            button.SetActive(false); // Hide button if no valid generator
         }
-    }
-
-    private void PositionButton(GeneratorButton button, int index)
-    {
-        RectTransform rect = button.GetComponent<RectTransform>();
-        rect.anchoredPosition = new Vector2(0, -index * buttonHeight);
     }
 }

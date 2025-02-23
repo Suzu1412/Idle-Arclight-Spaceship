@@ -34,10 +34,6 @@ public class GeneratorSO : SerializableScriptableObject
 
     [SerializeField] private SerializedDictionary<int, BigNumber> _costCache = new SerializedDictionary<int, BigNumber>();
 
-    [Header("Apply Multipliers to current gem")]
-
-
-
     [SerializeField] private bool _isVisibleInStore;
     [SerializeField] private float _productionPercentage;
     private double _logPriceGrowthRate;
