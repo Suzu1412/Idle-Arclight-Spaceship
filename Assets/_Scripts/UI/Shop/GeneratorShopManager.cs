@@ -13,9 +13,6 @@ public class GeneratorShopManager : MonoBehaviour
     [Header("Data")]
     [SerializeField] private GeneratorDatabaseSO generators;
     [SerializeField] private CurrencyDataSO currencyData;
-    [Header("Events")]
-    [SerializeField] private VoidGameEventBinding OnCurrencyChangedEventBinding;
-
 
     private Queue<GameObject> buttonPool = new Queue<GameObject>();
     private List<GameObject> activeButtons = new List<GameObject>(); // Track active buttons
@@ -28,7 +25,7 @@ public class GeneratorShopManager : MonoBehaviour
 
     private void Start()
     {
-        totalItems = GetTotalGenerators(); // Get from your generator dictionary
+        totalItems = GetTotalGenerators();
         itemHeight = buttonPrefab.GetComponent<RectTransform>().rect.height;
         visibleItemCount = Mathf.CeilToInt(scrollRect.GetComponent<RectTransform>().rect.height / itemHeight) + 2;
 

@@ -47,6 +47,7 @@ public class GeneratorSO : SerializableScriptableObject
     public BigNumber Production => _production;
     public BigNumber TotalProduction => _totalProduction;
     public BigNumber StoreRevealCost => _storeRevealCost;
+    public BigNumber BaseProduction => _baseProduction * _gemProductionMultiplier.Value;
     public bool IsVisibleInStore { get => _isVisibleInStore; internal set => _isVisibleInStore = value; }
     public float ProductionPercentage => _productionPercentage;
     public bool HasProductionChanged { set => _hasProductionChanged = value; }

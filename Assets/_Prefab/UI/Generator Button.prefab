@@ -543,8 +543,15 @@ MonoBehaviour:
   costText: {fileID: 6267839520823332536}
   productionText: {fileID: 5461118389445574781}
   amountOwnedText: {fileID: 9166258388167318685}
+  _percentageText: {fileID: 1081885100971899019}
   buyButton: {fileID: 5248496406339025179}
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
+  amountToBuy: {fileID: 11400000, guid: ced75ba67cb9f497da83291dde86fe33, type: 2}
+  _nameLocalized: {fileID: 7170765897245868419}
+  _descriptionLocalized: {fileID: 7643302844201131732}
+  _productionLocalized: {fileID: 1969704590911151496}
+  _buyAmountLocalized: {fileID: 7389842598175406124}
+  _table: Tabla1
 --- !u!1 &1618288494563224502
 GameObject:
   m_ObjectHideFlags: 0
