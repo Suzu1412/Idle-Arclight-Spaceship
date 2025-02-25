@@ -8,7 +8,7 @@ public class GeneratorShopManager : MonoBehaviour
     [SerializeField] private RectTransform contentPanel; // The parent that holds the buttons
     [SerializeField] private GameObject buttonPrefab; // Shop button prefab
     [SerializeField] private ScrollRect scrollRect; // ScrollRect for visibility checks
-    [SerializeField] private int visibleCount = 7; // Number of visible buttons at a time
+    [SerializeField] private int visibleItemCount; // Number of visible buttons at a time
 
     [Header("Data")]
     [SerializeField] private GeneratorDatabaseSO generators;
@@ -28,67 +28,61 @@ public class GeneratorShopManager : MonoBehaviour
 
     private void Start()
     {
-        totalItems = generators.GeneratorDictionary.Count;
-
-        if (totalItems == 0) return; // Avoid issues if the dictionary is empty
-
-        itemHeight = buttonPrefab.GetComponent<RectTransform>().sizeDelta.y;
-        contentHeight = totalItems * itemHeight;
-
-        // Fix 1: Ensure Scrollbar Covers Full Area
-        contentPanel.sizeDelta = new Vector2(contentPanel.sizeDelta.x, contentHeight);
-
-        // Calculate how many buttons should be visible at once (plus a buffer)
-        int visibleCount = Mathf.CeilToInt(scrollRect.viewport.rect.height / itemHeight) + 2;
-
-        for (int i = 0; i < visibleCount; i++)
-        {
-            GameObject newButton = Instantiate(buttonPrefab, contentPanel);
-            buttonPool.Enqueue(newButton);
-            activeButtons.Add(newButton);
-            UpdateButtonPosition(newButton, i);
-            UpdateButtonData(newButton, i);
-        }
+        totalItems = GetTotalGenerators(); // Get from your generator dictionary
+        itemHeight = buttonPrefab.GetComponent<RectTransform>().rect.height;
+        visibleItemCount = Mathf.CeilToInt(scrollRect.GetComponent<RectTransform>().rect.height / itemHeight) + 2;
 
         scrollRect.onValueChanged.AddListener(OnScroll);
+        InitializePool();
     }
 
-    private void OnScroll(Vector2 scrollPosition)
+    private void OnScroll(Vector2 position)
     {
-        float scrollY = contentPanel.anchoredPosition.y;
-        int newFirstVisibleIndex = Mathf.FloorToInt(scrollY / itemHeight);
+        RefreshVisibleItems();
+    }
 
-        if (newFirstVisibleIndex != firstVisibleIndex)
+    private int GetTotalGenerators()
+    {
+        return generators.GeneratorDictionary.Count;
+    }
+
+    private void InitializePool()
+    {
+        for (int i = 0; i < visibleItemCount; i++)
         {
-            firstVisibleIndex = newFirstVisibleIndex;
-
-            for (int i = 0; i < activeButtons.Count; i++)
-            {
-                int newIndex = firstVisibleIndex + i;
-                if (newIndex < totalItems && newIndex >= 0)
-                {
-                    UpdateButtonPosition(activeButtons[i], newIndex);
-                    UpdateButtonData(activeButtons[i], newIndex);
-                }
-                else
-                {
-                    activeButtons[i].SetActive(false);
-                }
-            }
+            GameObject newItem = Instantiate(buttonPrefab, contentPanel);
+            buttonPool.Enqueue(newItem);
+            newItem.SetActive(false);
         }
+
+        contentPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(0, totalItems * itemHeight);
+        RefreshVisibleItems();
     }
 
-    private void UpdateButtonPosition(GameObject button, int index)
+    private void RefreshVisibleItems()
     {
-        RectTransform rect = button.GetComponent<RectTransform>();
+        float scrollY = contentPanel.GetComponent<RectTransform>().anchoredPosition.y;
+        int startIndex = Mathf.FloorToInt(scrollY / itemHeight);
+        startIndex = Mathf.Clamp(startIndex, 0, totalItems - visibleItemCount);
+        while (activeButtons.Count > 0)
+        {
+            GameObject item = activeButtons[0];
+            activeButtons.RemoveAt(0);
+            item.SetActive(false);
+            buttonPool.Enqueue(item);
+        }
 
-        // Ensure X position is centered if needed
-        float xPos = rect.sizeDelta.x / 2; // Adjust if you need it centered (maybe rect.sizeDelta.x / 2?)
+        for (int i = 0; i < visibleItemCount && startIndex + i < totalItems; i++)
+        {
+            GameObject item = buttonPool.Dequeue();
+            item.SetActive(true);
+            activeButtons.Add(item);
 
-        // Ensure buttons are positioned correctly along Y-axis
-        rect.anchoredPosition = new Vector2(xPos, -index * itemHeight);
+            RectTransform itemRect = item.GetComponent<RectTransform>();
+            itemRect.anchoredPosition = new Vector2(0, -((startIndex + i) * itemHeight));
 
-        button.SetActive(true);
+            UpdateButtonData(item, startIndex + i);
+        }
     }
 
     private void UpdateButtonData(GameObject button, int index)

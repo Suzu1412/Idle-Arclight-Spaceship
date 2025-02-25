@@ -129,6 +129,31 @@ public struct BigNumber : IComparable<BigNumber>
     }
 
 
+    public static BigNumber Parse(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+            return new BigNumber(0);
+
+        // Handle scientific notation (e.g., "1.23e6")
+        if (input.Contains("e") || input.Contains("E"))
+        {
+            if (double.TryParse(input, System.Globalization.NumberStyles.Float,
+                                System.Globalization.CultureInfo.InvariantCulture, out double result))
+            {
+                return new BigNumber(result);
+            }
+        }
+
+        // Handle plain numbers (e.g., "1234567")
+        if (double.TryParse(input, out double numericValue))
+        {
+            return new BigNumber(numericValue);
+        }
+
+        throw new FormatException($"Invalid BigNumber format: {input}");
+    }
+
+
     // BigNumber with Double Operations
     public static BigNumber operator *(BigNumber a, double b)
     {

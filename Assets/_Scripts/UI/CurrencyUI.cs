@@ -10,8 +10,9 @@ using UnityEngine.UI;
 
 public class CurrencyUI : MonoBehaviour
 {
-    private BigNumber _startBigNumber;
+    private BigNumber _startBigNumber = new BigNumber(0);
     private BigNumber _endBigNumber;
+    private BigNumber _lerpedNumber;
 
     [SerializeField] private CurrencyDataSO _currencyData;
 
@@ -59,32 +60,40 @@ public class CurrencyUI : MonoBehaviour
 
     private void AnimateCurrencyChange()
     {
-        if (_animateCurrencyCoroutine != null) StopCoroutine(_animateCurrencyCoroutine);
-        _animateCurrencyCoroutine = StartCoroutine(AnimateCurrencyCoroutine());
+        _endBigNumber = _currencyData.TotalCurrency; // Just update the end value
+
+        if (_animateCurrencyCoroutine == null)
+        {
+            _animateCurrencyCoroutine = StartCoroutine(AnimateCurrencyCoroutine());
+        }
     }
 
     private IEnumerator AnimateCurrencyCoroutine()
     {
         float elapsedTime = 0f;
         float duration = 1f;
-        _startBigNumber = _endBigNumber;
+        // Ensure that we start from the last displayed value
+        _startBigNumber = _lerpedNumber;
         _endBigNumber = _currencyData.TotalCurrency;
 
-        while (elapsedTime < duration)
+        while (true)
         {
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / duration);
 
-            BigNumber lerpedValue = BigNumber.Lerp(_startBigNumber, _endBigNumber, t);
+            _lerpedNumber = BigNumber.Lerp(_startBigNumber, _endBigNumber, t);
+            _currencyText.SetTextFormat("{0}", _lerpedNumber.ToString());
 
-            // Update UI with lerped value formatted as string
-            _currencyText.SetTextFormat("{0}", lerpedValue.ToString());
+            // If we reached the end, update start point and reset the timer
+            if (t >= 1f)
+            {
+                elapsedTime = 0f;
+                _startBigNumber = _endBigNumber; // Start from the last target
+                _endBigNumber = _currencyData.TotalCurrency; // Get the latest target
+            }
 
             yield return null;
         }
-
-        // Ensure final value is exactly the end value
-        _currencyText.SetTextFormat("{0}", _endBigNumber.ToString());
     }
 
     private void UpdateProductionText()
