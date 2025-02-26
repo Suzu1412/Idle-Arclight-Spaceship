@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Emerald
   _spriteAtlas: {fileID: 100100200, guid: a0baf39e9c879774f9067a2d0217154f, type: 3}
   _imageName: Gems_132_ver
-  _amountOwned: 0
+  _amountOwned: 8
   _currencyData: {fileID: 11400000, guid: 424d2ed0749ea024fa0d2d617e046b6f, type: 2}
   _baseCost:
     mantissa: 150
@@ -25,20 +25,24 @@ MonoBehaviour:
     mantissa: 200
     exponent: 9
   _bulkCost:
-    mantissa: 0
-    exponent: 0
+    mantissa: 4.588534293808591
+    exponent: 12
   _priceGrowthRate: 1.15
   _baseProduction:
     mantissa: 600
     exponent: 5
   _production:
-    mantissa: 0
-    exponent: 0
+    mantissa: 4.8
+    exponent: 8
   _totalProduction:
-    mantissa: 0
-    exponent: 0
+    mantissa: 6.0240000000000045
+    exponent: 10
   _gemProductionMultiplier: {fileID: 11400000, guid: fc060c699feb9424393818dba7f51af1, type: 2}
   _costCache:
-    _serializedList: []
-  _isVisibleInStore: 0
-  _productionPercentage: 0
+    _serializedList:
+    - Key: 9
+      Value:
+        mantissa: 4.588534293808591
+        exponent: 12
+  _isVisibleInStore: 1
+  _productionPercentage: 0.00000002271995

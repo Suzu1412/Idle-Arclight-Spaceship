@@ -37,7 +37,7 @@ public class GeneratorSO : SerializableScriptableObject
     [SerializeField] private bool _isVisibleInStore;
     [SerializeField] private float _productionPercentage;
     private double _logPriceGrowthRate;
-    private BigNumber _cachedGrowthFactor;
+    private double _cachedGrowthFactor;
     private int _lastAmountOwned;
     private bool _hasProductionChanged = true;
 
@@ -64,7 +64,7 @@ public class GeneratorSO : SerializableScriptableObject
         SetTotalProduction(BigNumber.Zero);
         _productionPercentage = 0;
         _isVisibleInStore = false;
-        _lastAmountOwned = 0;
+        _lastAmountOwned = -1;
     }
 
     public void CheckIfMeetRequirementsToUnlock(BigNumber currency)
@@ -127,7 +127,7 @@ public class GeneratorSO : SerializableScriptableObject
         _bulkCost = BigNumber.Zero;
 
         BigNumber firstCost = GetNextCost();
-
+        Debug.Log($"First cost: {firstCost}");
         if (_priceGrowthRate == 1)
         {
             // If growth rate is 1, the cost remains constant, so we just multiply
@@ -138,6 +138,7 @@ public class GeneratorSO : SerializableScriptableObject
             // Use the geometric series sum formula
             _bulkCost = firstCost * (BigNumber.Pow(_priceGrowthRate, amountToBuy) - BigNumber.One) / (_priceGrowthRate - 1);
         }
+        Debug.Log($"bulk cost: {_bulkCost}");
 
         _costCache[key] = _bulkCost;
         return _bulkCost;
@@ -178,15 +179,17 @@ public class GeneratorSO : SerializableScriptableObject
 
     internal BigNumber GetNextCost()
     {
-        if (_priceGrowthRate == 1) return _baseCost.Ceil(); // We can add a: _baseCost * _gemCostMultiplier.Value in case of something that modifies the price
+        if (_priceGrowthRate == 1) return _baseCost; // We can add a: _baseCost * _gemCostMultiplier.Value in case of something that modifies the price
 
         if (_amountOwned != _lastAmountOwned)
         {
-            _cachedGrowthFactor = BigNumber.Pow(_priceGrowthRate, _amountOwned);
+            _cachedGrowthFactor = Math.Pow(_priceGrowthRate, _amountOwned);
             _lastAmountOwned = _amountOwned;
         }
 
-        return (_baseCost * _cachedGrowthFactor).Ceil(); // we can also add the multiplier here
+        Debug.Log($"costo base: {_baseCost} - factor crecimiento: {_cachedGrowthFactor}");
+
+        return (_baseCost * _cachedGrowthFactor); // we can also add the multiplier here
     }
 
     internal void AddModifier(FloatModifier modifier)

@@ -88,7 +88,7 @@ public class CurrencyUI : MonoBehaviour
             if (t >= 1f)
             {
                 elapsedTime = 0f;
-                _startBigNumber = _endBigNumber; // Start from the last target
+                _startBigNumber = _lerpedNumber; // Start from the last target
                 _endBigNumber = _currencyData.TotalCurrency; // Get the latest target
             }
 
