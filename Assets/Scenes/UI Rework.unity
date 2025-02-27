@@ -4049,8 +4049,6 @@ MonoBehaviour:
   visibleItemCount: 0
   generators: {fileID: 11400000, guid: 90f2d3c2429c2a3438895dc3dfb07c71, type: 2}
   currencyData: {fileID: 11400000, guid: 424d2ed0749ea024fa0d2d617e046b6f, type: 2}
-  amountToBuy: {fileID: 11400000, guid: ced75ba67cb9f497da83291dde86fe33, type: 2}
-  OnCurrencyChangedEventBinding: {fileID: 11400000, guid: 4f396f691f9044dd1addd445deb64d99, type: 2}
 --- !u!1 &409958308
 GameObject:
   m_ObjectHideFlags: 0
@@ -19369,6 +19367,8 @@ MonoBehaviour:
   _currencyText: {fileID: 1032302098}
   _productionLocalized: {fileID: 638584491}
   _table: Tabla1
+  velocity: 0
+  smoothTime: 0.5
   _animationManager: {fileID: 0}
 --- !u!224 &1633277060
 RectTransform:

@@ -29,6 +29,10 @@ public class CurrencyUI : MonoBehaviour
     private LocalizedString _localizedString;
     [SerializeField] private string _table = "Tabla1";
 
+    [Header("Currency Animation")]
+    [SerializeField] private float velocity = 0;
+    [SerializeField] private float smoothTime = 0.2f;
+
     private Coroutine _animateCurrencyCoroutine;
     [SerializeField] private UIAnimationManager _animationManager;
 
@@ -70,27 +74,10 @@ public class CurrencyUI : MonoBehaviour
 
     private IEnumerator AnimateCurrencyCoroutine()
     {
-        float elapsedTime = 0f;
-        float duration = 1f;
-        // Ensure that we start from the last displayed value
-        _startBigNumber = _lerpedNumber;
-        _endBigNumber = _currencyData.TotalCurrency;
-
         while (true)
         {
-            elapsedTime += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsedTime / duration);
-
-            _lerpedNumber = BigNumber.Lerp(_startBigNumber, _endBigNumber, t);
+            _lerpedNumber = BigNumber.SmoothDamp(_lerpedNumber, _currencyData.TotalCurrency, ref velocity, smoothTime);
             _currencyText.SetTextFormat("{0}", _lerpedNumber.ToString());
-
-            // If we reached the end, update start point and reset the timer
-            if (t >= 1f)
-            {
-                elapsedTime = 0f;
-                _startBigNumber = _lerpedNumber; // Start from the last target
-                _endBigNumber = _currencyData.TotalCurrency; // Get the latest target
-            }
 
             yield return null;
         }
@@ -98,10 +85,6 @@ public class CurrencyUI : MonoBehaviour
 
     private void UpdateProductionText()
     {
-        if (_animationManager != null)
-        {
-            _animationManager.ScalePop(_productionRectTransform, 1.3f, 0.4f, 1f);
-        }
         _productionLocalized.StringReference.SetReference(_table, "gpsAmount");
         _amountVariable.Value = _currencyData.TotalProduction.ToString();
     }

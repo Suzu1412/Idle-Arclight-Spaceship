@@ -17,8 +17,8 @@ public class UIAnimationManager : MonoBehaviour
         => StartCoroutine(ScaleCoroutine(target, to, duration));
 
     // Scale and return to original Scale
-    public void ScalePop(RectTransform target, float scaleFactor, float duration, float holdTime)
-    => StartCoroutine(ScalePopCoroutine(target, scaleFactor, duration, holdTime));
+    public void ScalePop(RectTransform target, float startScale, float scaleFactor, float duration, float holdTime)
+    => StartCoroutine(ScalePopCoroutine(target, startScale, scaleFactor, duration, holdTime));
 
     // Shake
     public void Shake(RectTransform target, float strength, float duration)
@@ -95,9 +95,9 @@ public class UIAnimationManager : MonoBehaviour
         target.localScale = to;
     }
 
-    private IEnumerator ScalePopCoroutine(RectTransform target, float scaleFactor, float duration, float holdTime)
+    private IEnumerator ScalePopCoroutine(RectTransform target, float startScale, float scaleFactor, float duration, float holdTime)
     {
-        Vector3 originalScale = target.localScale;
+        Vector3 originalScale = Vector3.one * startScale;
         Vector3 targetScale = Vector3.one * scaleFactor;
 
         float halfDuration = duration / 2f;

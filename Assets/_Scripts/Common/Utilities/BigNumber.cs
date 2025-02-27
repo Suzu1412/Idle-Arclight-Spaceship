@@ -153,6 +153,33 @@ public struct BigNumber : IComparable<BigNumber>
         throw new FormatException($"Invalid BigNumber format: {input}");
     }
 
+    public static BigNumber SmoothDamp(BigNumber current, BigNumber target, ref float velocity, double smoothTime, double deltaTime = -1)
+    {
+        if (deltaTime < 0) deltaTime = Time.unscaledDeltaTime;
+
+        // If exponent difference is too large, just snap to target
+        if (Math.Abs(current.exponent - target.exponent) > 6)
+            return target;
+
+        // Smooth the mantissa separately
+        double newMantissa = Mathf.SmoothDamp((float)current.mantissa, (float)target.mantissa, ref velocity, (float)smoothTime, Mathf.Infinity, (float)deltaTime);
+
+        // Interpolate exponent slowly when needed
+        int newExponent = (int)Mathf.Lerp(current.exponent, target.exponent, (float)(deltaTime / smoothTime));
+
+        return new BigNumber(newMantissa, newExponent);
+    }
+
+    // Helper method to reconstruct BigNumber from a double value
+    public static BigNumber FromDouble(double value)
+    {
+        if (value == 0) return BigNumber.Zero;
+
+        int exponent = (int)Math.Floor(Math.Log10(Math.Abs(value)));
+        double mantissa = value / Math.Pow(10, exponent);
+
+        return new BigNumber(mantissa, exponent);
+    }
 
     // BigNumber with Double Operations
     public static BigNumber operator *(BigNumber a, double b)
