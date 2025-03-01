@@ -127,7 +127,6 @@ public class GeneratorSO : SerializableScriptableObject
         _bulkCost = BigNumber.Zero;
 
         BigNumber firstCost = GetNextCost();
-        Debug.Log($"First cost: {firstCost}");
         if (_priceGrowthRate == 1)
         {
             // If growth rate is 1, the cost remains constant, so we just multiply
@@ -138,7 +137,6 @@ public class GeneratorSO : SerializableScriptableObject
             // Use the geometric series sum formula
             _bulkCost = firstCost * (BigNumber.Pow(_priceGrowthRate, amountToBuy) - BigNumber.One) / (_priceGrowthRate - 1);
         }
-        Debug.Log($"bulk cost: {_bulkCost}");
 
         _costCache[key] = _bulkCost;
         return _bulkCost;
@@ -152,14 +150,26 @@ public class GeneratorSO : SerializableScriptableObject
 
         if (_priceGrowthRate == 1)
         {
-            return (currency / firstCost).ToInt();
+            return (currency / firstCost).ToInt(); // Ensure safe conversion
         }
 
-        // Optimized logarithm-based formula to solve for n
-        double maxPurchases = (BigNumber.Log(currency * (_priceGrowthRate - 1) + firstCost) - BigNumber.Log(firstCost)) / _logPriceGrowthRate;
+        // Ensure the logarithm argument is positive
+        BigNumber costFactor = currency * (_priceGrowthRate - 1) + firstCost;
+        if (costFactor <= BigNumber.Zero) return 0;  // Prevent log errors
+
+        // Use logarithm-based formula for geometric sum
+        double maxPurchases = (BigNumber.Log(costFactor) - BigNumber.Log(firstCost)) / _logPriceGrowthRate;
+
+        Debug.Log($"Currency: {currency}");
+        Debug.Log($"FirstCost: {firstCost}");
+        Debug.Log($"Cost Factor: {costFactor}");
+        Debug.Log($"Log(Cost Factor): {BigNumber.Log(costFactor)}");
+        Debug.Log($"Log(First Cost): {BigNumber.Log(firstCost)}");
+        Debug.Log($"Max Purchases: {maxPurchases}");
 
         return Math.Max(0, (int)Math.Floor(maxPurchases));
     }
+
 
     public Sprite GetSprite()
     {
@@ -187,9 +197,7 @@ public class GeneratorSO : SerializableScriptableObject
             _lastAmountOwned = _amountOwned;
         }
 
-        Debug.Log($"costo base: {_baseCost} - factor crecimiento: {_cachedGrowthFactor}");
-
-        return (_baseCost * _cachedGrowthFactor); // we can also add the multiplier here
+        return _baseCost * _cachedGrowthFactor; // we can also add the multiplier here
     }
 
     internal void AddModifier(FloatModifier modifier)

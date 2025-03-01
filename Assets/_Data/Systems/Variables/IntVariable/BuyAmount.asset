@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2462d4a92ee3fd642854166f3dfdbcf5, type: 3}
   m_Name: BuyAmount
   m_EditorClassIdentifier: 
-  _value: 0
+  _value: -1
   _minValue: -1
   _maxValue: 100
