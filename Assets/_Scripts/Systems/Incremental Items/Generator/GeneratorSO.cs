@@ -14,19 +14,19 @@ public class GeneratorSO : SerializableScriptableObject
     [SerializeField] private string _name;
     [SerializeField] private SpriteAtlas _spriteAtlas;
     [SerializeField] private string _imageName;
-    [SerializeField] private int _amountOwned;
+    [SerializeField] internal int _amountOwned;
     [SerializeField] private CurrencyDataSO _currencyData;
 
 
     [Header("Cost")]
-    [SerializeField] private BigNumber _baseCost;
+    [SerializeField] internal BigNumber _baseCost;
     [SerializeField] private BigNumber _storeRevealCost;
     [SerializeField][ReadOnly] private BigNumber _bulkCost;
-    [SerializeField] private double _priceGrowthRate;
+    [SerializeField] internal double _priceGrowthRate;
 
 
     [Header("Production")]
-    [SerializeField] private BigNumber _baseProduction;
+    [SerializeField] internal BigNumber _baseProduction;
     [SerializeField][ReadOnly] private BigNumber _production;
     [SerializeField][ReadOnly] private BigNumber _totalProduction;
     [SerializeField] private FloatVariableSO _gemProductionMultiplier;
@@ -85,7 +85,7 @@ public class GeneratorSO : SerializableScriptableObject
 
     public void CalculateProductionRate()
     {
-        _production = _currencyData.CalculateGemProductionAmount(_baseProduction * _gemProductionMultiplier.Value, _amountOwned);
+        _production = _currencyData.CalculateGemProductionAmount(_baseProduction, _amountOwned, _gemProductionMultiplier.Value);
 
         _hasProductionChanged = false;
     }
@@ -126,7 +126,7 @@ public class GeneratorSO : SerializableScriptableObject
 
         _bulkCost = BigNumber.Zero;
 
-        BigNumber firstCost = GetNextCost();
+        BigNumber firstCost = GetTotalCostForGenerators(1);
         if (_priceGrowthRate == 1)
         {
             // If growth rate is 1, the cost remains constant, so we just multiply
@@ -142,35 +142,31 @@ public class GeneratorSO : SerializableScriptableObject
         return _bulkCost;
     }
 
-    public int CalculateMaxAmountToBuy(BigNumber currency)
+    public int GetMaxGenerators(BigNumber totalCurrency)
     {
-        if (currency <= BigNumber.Zero) return 0;
+        int low = 0;
+        int high = 10000; // Large number; adjust as needed
+        int best = 0;
 
-        BigNumber firstCost = GetNextCost();
-
-        if (_priceGrowthRate == 1)
+        while (low <= high)
         {
-            return (currency / firstCost).ToInt(); // Ensure safe conversion
+            int mid = (low + high) / 2;
+            BigNumber cost = GetTotalCostForGenerators(mid);
+            
+            if (cost <= totalCurrency)
+            {
+                best = mid; // We can afford this many, try more
+                low = mid + 1;
+            }
+            else
+            {
+                high = mid - 1; // Too expensive, try fewer
+            }
+            
         }
 
-        // Ensure the logarithm argument is positive
-        BigNumber costFactor = currency * (_priceGrowthRate - 1) + firstCost;
-        if (costFactor <= BigNumber.Zero) return 0;  // Prevent log errors
-
-        // Use logarithm-based formula for geometric sum
-        double maxPurchases = (BigNumber.Log(costFactor) - BigNumber.Log(firstCost)) / _logPriceGrowthRate;
-
-        Debug.Log($"Currency: {currency}");
-        Debug.Log($"FirstCost: {firstCost}");
-        Debug.Log($"Cost Factor: {costFactor}");
-        Debug.Log($"Log(Cost Factor): {BigNumber.Log(costFactor)}");
-        Debug.Log($"Log(First Cost): {BigNumber.Log(firstCost)}");
-        Debug.Log($"Max Purchases: {maxPurchases}");
-
-        return Math.Max(0, (int)Math.Floor(maxPurchases));
+        return best;
     }
-
-
     public Sprite GetSprite()
     {
         return _spriteAtlas.GetSprite(_imageName);
@@ -187,17 +183,21 @@ public class GeneratorSO : SerializableScriptableObject
         _totalProduction = totalProduction;
     }
 
-    internal BigNumber GetNextCost()
+    internal BigNumber GetTotalCostForGenerators(int n)
     {
-        if (_priceGrowthRate == 1) return _baseCost; // We can add a: _baseCost * _gemCostMultiplier.Value in case of something that modifies the price
+        if (_priceGrowthRate == 1) return _baseCost * n; // Linear growth case
 
-        if (_amountOwned != _lastAmountOwned)
+        if (_amountOwned != _lastAmountOwned || _cachedGrowthFactor == 0)
         {
             _cachedGrowthFactor = Math.Pow(_priceGrowthRate, _amountOwned);
             _lastAmountOwned = _amountOwned;
         }
 
-        return _baseCost * _cachedGrowthFactor; // we can also add the multiplier here
+        BigNumber firstCost = _baseCost * _cachedGrowthFactor; // Cost of next generator
+
+        // Geometric series sum formula: S = a * (1 - r^n) / (1 - r)
+        BigNumber growthFactor = BigNumber.Pow(_priceGrowthRate, n);
+        return firstCost * ((BigNumber.One - growthFactor) / (BigNumber.One - _priceGrowthRate));
     }
 
     internal void AddModifier(FloatModifier modifier)

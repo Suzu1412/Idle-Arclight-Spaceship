@@ -49,16 +49,28 @@ public struct BigNumber : IComparable<BigNumber>
             return;
         }
 
+        // Threshold to prevent infinite loops
+        const double epsilon = 1e-14;
+
+        // Handle overflow: mantissa too large
         while (Math.Abs(mantissa) >= Log10Base)
         {
             mantissa /= Log10Base;
             exponent++;
         }
 
-        while (Math.Abs(mantissa) < 1 && mantissa != 0)
+        // Handle underflow: mantissa too small
+        while (Math.Abs(mantissa) < 1 && Math.Abs(mantissa) > epsilon)
         {
             mantissa *= Log10Base;
             exponent--;
+        }
+
+        // If mantissa is too small, set it to 0 to prevent issues
+        if (Math.Abs(mantissa) < epsilon)
+        {
+            mantissa = 0;
+            exponent = 0;
         }
     }
 
@@ -119,7 +131,31 @@ public struct BigNumber : IComparable<BigNumber>
         }
 
         return new BigNumber(newMantissa, newExponent * exponent);
+
     }
+
+    public static BigNumber Pow(BigNumber baseValue, int exponent)
+    {
+        if (exponent < 0) return BigNumber.One / Pow(baseValue, -exponent);
+        if (exponent == 0) return BigNumber.One;
+
+        BigNumber result = baseValue;
+        for (int i = 1; i < exponent; i++)
+        {
+            result *= baseValue;
+            if (result > BigNumber.Infinity || result.mantissa == double.PositiveInfinity)
+            {
+                Debug.LogError($"BigNumber.Pow() overflow at exponent {i}");
+                return BigNumber.Infinity;
+            }
+        }
+
+        return result;
+    }
+
+
+    // Define Infinity for BigNumber
+    public static BigNumber Infinity => new BigNumber(double.PositiveInfinity);
 
     public static double Log(BigNumber value, double baseValue = Math.E)
     {
@@ -230,6 +266,12 @@ public struct BigNumber : IComparable<BigNumber>
         return new BigNumber(lerpedMantissa, lerpedExponent);
     }
 
+    // Convert to double (for UI display)
+    public double ToDouble() 
+    { 
+        return mantissa* Math.Pow(10, exponent);
+    }
+
     public int ToInt()
     {
         return (int)ToDouble(); // Convert to double first, then cast to int
@@ -257,9 +299,6 @@ public struct BigNumber : IComparable<BigNumber>
 
     public override bool Equals(object obj) => obj is BigNumber bn && this == bn;
     public override int GetHashCode() => mantissa.GetHashCode() ^ exponent.GetHashCode();
-
-    // Convert to double (for UI display)
-    public double ToDouble() => mantissa * Math.Pow(10, exponent);
 
     // **ZString Optimized AA Notation Formatter**
     public readonly string GetFormat()

@@ -140,17 +140,15 @@ public class GeneratorButton : MonoBehaviour
 
     private int CalculateAmountToBuy(int amount, BigNumber totalCurrency)
     {
-        int currentAmount;
-        if (amount > 0)
-        {
-            currentAmount = amount;
-        }
-        else
-        {
-            currentAmount = generator.CalculateMaxAmountToBuy(totalCurrency);
-        }
-        generator.GetBulkCost(currentAmount > 0 ? currentAmount : 1);
-        return currentAmount > 0 ? currentAmount : 1;
+        int currentAmount = (amount > 0) ? amount : generator.GetMaxGenerators(totalCurrency);
+
+        // Ensure we don't use an invalid or infinite number
+        if (currentAmount < 0) currentAmount = 0;
+
+        // Store the total cost instead of just calling GetBulkCost
+        BigNumber bulkCost = generator.GetBulkCost(currentAmount);
+
+        return currentAmount;
     }
 
     private void BuyGenerator()

@@ -169,9 +169,9 @@ public class CurrencyDataSO : ScriptableObject
         }
     }
 
-    public BigNumber CalculateGemProductionAmount(BigNumber production, int amount)
+    public BigNumber CalculateGemProductionAmount(BigNumber production, int amount, float gemMultipliers)
     {
-        BigNumber gemProduction = production * amount * FinalProductionMultiplier * FinalCurrencyMultiplier;
+        BigNumber gemProduction = production * amount * gemMultipliers * FinalProductionMultiplier * FinalCurrencyMultiplier;
         return gemProduction;
     }
 

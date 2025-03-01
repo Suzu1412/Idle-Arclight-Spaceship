@@ -6,6 +6,6 @@ public static class A
 {
     #region Stats Builder
 
-    //public static GeneratorBuilder Generator => new();
+    public static GeneratorBuilder Generator => new();
     #endregion
 }
