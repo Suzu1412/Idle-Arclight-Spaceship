@@ -22,7 +22,8 @@ public class GeneratorSO : SerializableScriptableObject
     [SerializeField] internal BigNumber _baseCost;
     [SerializeField] private BigNumber _storeRevealCost;
     [SerializeField][ReadOnly] private BigNumber _bulkCost;
-    [SerializeField] internal double _priceGrowthRate;
+    [SerializeField] internal BigNumber _priceGrowthRate = new BigNumber(1.15);   // 15% growth rate
+
 
 
     [Header("Production")]
@@ -36,8 +37,8 @@ public class GeneratorSO : SerializableScriptableObject
 
     [SerializeField] private bool _isVisibleInStore;
     [SerializeField] private float _productionPercentage;
-    private double _logPriceGrowthRate;
-    private double _cachedGrowthFactor;
+    private BigNumber _logPriceGrowthRate;
+    private BigNumber _cachedGrowthFactor;
     private int _lastAmountOwned;
     private bool _hasProductionChanged = true;
 
@@ -54,7 +55,7 @@ public class GeneratorSO : SerializableScriptableObject
 
     private void OnEnable()
     {
-        _logPriceGrowthRate = Math.Log(_priceGrowthRate);
+        _logPriceGrowthRate = BigNumber.Log(_priceGrowthRate);
         ClearCache();
     }
 
@@ -127,7 +128,7 @@ public class GeneratorSO : SerializableScriptableObject
         _bulkCost = BigNumber.Zero;
 
         BigNumber firstCost = GetTotalCostForGenerators(1);
-        if (_priceGrowthRate == 1)
+        if (_priceGrowthRate == BigNumber.One)
         {
             // If growth rate is 1, the cost remains constant, so we just multiply
             _bulkCost = firstCost * amountToBuy;
@@ -152,7 +153,7 @@ public class GeneratorSO : SerializableScriptableObject
         {
             int mid = (low + high) / 2;
             BigNumber cost = GetTotalCostForGenerators(mid);
-            
+
             if (cost <= totalCurrency)
             {
                 best = mid; // We can afford this many, try more
@@ -162,7 +163,7 @@ public class GeneratorSO : SerializableScriptableObject
             {
                 high = mid - 1; // Too expensive, try fewer
             }
-            
+
         }
 
         return best;
@@ -183,21 +184,27 @@ public class GeneratorSO : SerializableScriptableObject
         _totalProduction = totalProduction;
     }
 
+    // Get total cost for generators
     internal BigNumber GetTotalCostForGenerators(int n)
     {
-        if (_priceGrowthRate == 1) return _baseCost * n; // Linear growth case
+        // Linear growth case
+        if (_priceGrowthRate == BigNumber.One)
+            return _baseCost * n;
 
-        if (_amountOwned != _lastAmountOwned || _cachedGrowthFactor == 0)
+        // Cache the growth factor if needed
+        if (_amountOwned != _lastAmountOwned || _cachedGrowthFactor == BigNumber.Zero)
         {
-            _cachedGrowthFactor = Math.Pow(_priceGrowthRate, _amountOwned);
+            _cachedGrowthFactor = BigNumber.Pow(_priceGrowthRate, _amountOwned);
             _lastAmountOwned = _amountOwned;
         }
 
         BigNumber firstCost = _baseCost * _cachedGrowthFactor; // Cost of next generator
 
-        // Geometric series sum formula: S = a * (1 - r^n) / (1 - r)
+        // Use BigNumber.Pow for growth factor
         BigNumber growthFactor = BigNumber.Pow(_priceGrowthRate, n);
+        // Geometric series sum formula: S = a * (1 - r^n) / (1 - r)
         return firstCost * ((BigNumber.One - growthFactor) / (BigNumber.One - _priceGrowthRate));
+
     }
 
     internal void AddModifier(FloatModifier modifier)

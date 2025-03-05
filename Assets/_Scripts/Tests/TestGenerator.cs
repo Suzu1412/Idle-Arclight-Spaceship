@@ -12,7 +12,7 @@ public class TestGenerator
     private BigNumber baseCost = new(5, 0);
     private BigNumber production = new(0.1, 0);
     private int amountOwned = 0;
-    private double priceGrowthRate = 1.15;
+    private BigNumber priceGrowthRate = new(1.15, 0);
 
 
     [SetUp]
@@ -38,8 +38,8 @@ public class TestGenerator
         _generator.GetTotalCostForGenerators(1).ToDouble().Should().BeApproximately(finalValue, 2);
     }
 
-    
-    
+
+
     [Test]
     [TestCase(0, 0, Description = "Generation should be around 0")]
     [TestCase(10, 1, Description = "Generation should be around 1")]
@@ -52,11 +52,11 @@ public class TestGenerator
         //_generator.GetProductionRate().ToDouble().Should().BeApproximately(generationRate, 2);
     }
 
-    
+
     [Test]
     [TestCase(310, 16, Description = "With 310 you should be able to buy 16")]
-    [TestCase(108289, 50, Description = "With 108289 you should be able to buy 50")]
-    [TestCase(100, 50, Description = "With 112000 you should be able to buy 50")]
+    [TestCase(108289, 57, Description = "With 108289 you should be able to buy 57")]
+    [TestCase(100, 9, Description = "With 100 you should be able to buy 9")]
     public void TestMaxAmountYouCanBuy(double currency, int amountToBuy)
     {
         BigNumber bigNumberCurrency = new BigNumber(currency);

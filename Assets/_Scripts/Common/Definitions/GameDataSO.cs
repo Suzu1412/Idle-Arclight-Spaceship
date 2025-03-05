@@ -14,6 +14,8 @@ public class GameDataSO : ScriptableObject, ISaveableData
 	public List<UnlockSystemData> UnlockedSystems;
 	public CurrencyData CurrencyData;
 	public PrestigeData PrestigeData;
+	private int _amountToBuy;
+	public int AmountToBuy => _amountToBuy;
 
 	public void Initialize()
 	{
@@ -24,6 +26,23 @@ public class GameDataSO : ScriptableObject, ISaveableData
 		CurrencyData = new();
 		UnlockedSystems = new();
 		PrestigeData = new();
+		SetAmountToBuy(1);
+	}
+
+	public void SetAmountToBuy(int amount)
+	{
+		if (amount < 0)
+		{
+			_amountToBuy = -1;
+		}
+		else if (amount > 100)
+		{
+			_amountToBuy = -1;
+		}
+		else
+		{
+			_amountToBuy = amount;
+		}
 	}
 
 	public string ToJson()
@@ -61,34 +80,18 @@ public class CurrencyData
 		_lifetimeCurrency = BigNumber.Zero;
 		_totalCurrency = BigNumber.Zero;
 		_highestProduction = BigNumber.Zero;
-		SetAmountToBuy(1);
 		_lastActiveDateTime = DateTime.UtcNow.Ticks;
 	}
 
-	public CurrencyData(BigNumber lifetimeCurrency, BigNumber totalCurrency, BigNumber highestProduction, int amountToBuy)
+	public CurrencyData(BigNumber lifetimeCurrency, BigNumber totalCurrency, BigNumber highestProduction)
 	{
 		_lifetimeCurrency = lifetimeCurrency;
 		_totalCurrency = totalCurrency;
 		_highestProduction = highestProduction;
 		_lastActiveDateTime = DateTime.UtcNow.Ticks;
-		SetAmountToBuy(amountToBuy);
 	}
 
-	public void SetAmountToBuy(int amount)
-	{
-		if (amount < 0)
-		{
-			_amountToBuy = -1;
-		}
-		else if (amount > 100)
-		{
-			_amountToBuy = -1;
-		}
-		else
-		{
-			_amountToBuy = amount;
-		}
-	}
+
 }
 
 

@@ -5,9 +5,9 @@ public class GeneratorBuilder
     private BigNumber _baseCost;
     private BigNumber _baseProduction;
     private int _amountOwned;
-    private double _priceGrowthRate;
+    private BigNumber _priceGrowthRate;
 
-    public GeneratorBuilder Init(BigNumber baseCost, BigNumber production, int amountOwned, double priceGrowthRate)
+    public GeneratorBuilder Init(BigNumber baseCost, BigNumber production, int amountOwned, BigNumber priceGrowthRate)
     {
         _baseCost = baseCost;
         _baseProduction = production;
@@ -34,7 +34,7 @@ public class GeneratorBuilder
         return this;
     }
 
-    public GeneratorBuilder SetPriceGrowthRate(double priceGrowthRate)
+    public GeneratorBuilder SetPriceGrowthRate(BigNumber priceGrowthRate)
     {
         _priceGrowthRate = priceGrowthRate;
         return this;

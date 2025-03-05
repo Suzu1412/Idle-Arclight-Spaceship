@@ -40,7 +40,7 @@ public struct BigNumber : IComparable<BigNumber>
         this.exponent = exponent;
         Normalize();
     }
-
+    // Example of Normalize method for context
     private void Normalize()
     {
         if (mantissa == 0)
@@ -49,24 +49,21 @@ public struct BigNumber : IComparable<BigNumber>
             return;
         }
 
-        // Threshold to prevent infinite loops
+        const double Log10Base = 10.0;
         const double epsilon = 1e-14;
 
-        // Handle overflow: mantissa too large
         while (Math.Abs(mantissa) >= Log10Base)
         {
             mantissa /= Log10Base;
             exponent++;
         }
 
-        // Handle underflow: mantissa too small
         while (Math.Abs(mantissa) < 1 && Math.Abs(mantissa) > epsilon)
         {
             mantissa *= Log10Base;
             exponent--;
         }
 
-        // If mantissa is too small, set it to 0 to prevent issues
         if (Math.Abs(mantissa) < epsilon)
         {
             mantissa = 0;
@@ -134,23 +131,24 @@ public struct BigNumber : IComparable<BigNumber>
 
     }
 
-    public static BigNumber Pow(BigNumber baseValue, int exponent)
+    // Pow method to compute BigNumber^power
+    public static BigNumber Pow(BigNumber baseValue, double power)
     {
-        if (exponent < 0) return BigNumber.One / Pow(baseValue, -exponent);
-        if (exponent == 0) return BigNumber.One;
+        if (baseValue.mantissa == 0)
+            return new BigNumber(0);
 
-        BigNumber result = baseValue;
-        for (int i = 1; i < exponent; i++)
-        {
-            result *= baseValue;
-            if (result > BigNumber.Infinity || result.mantissa == double.PositiveInfinity)
-            {
-                Debug.LogError($"BigNumber.Pow() overflow at exponent {i}");
-                return BigNumber.Infinity;
-            }
-        }
+        if (power == 0)
+            return new BigNumber(1);  // Any number to the power of 0 is 1
 
-        return result;
+        // Use logarithmic identity: a^b = 10^(log10(a) * b)
+        double logBase = Math.Log10(baseValue.mantissa) + baseValue.exponent;  // log10(mantissa * 10^exponent)
+        double resultLog = logBase * power;  // log10(a) * b
+
+        // Convert log result back to BigNumber form
+        double resultExponent = Math.Floor(resultLog);
+        double resultMantissa = Math.Pow(10, resultLog - resultExponent);
+
+        return new BigNumber(resultMantissa, (int)resultExponent);
     }
 
 
@@ -162,6 +160,20 @@ public struct BigNumber : IComparable<BigNumber>
         if (value.mantissa <= 0) return double.NegativeInfinity; // Log of zero or negative is undefined
 
         return Math.Log(value.mantissa, baseValue) + (value.exponent * Math.Log(10, baseValue));
+    }
+
+    // Log method to compute log base 10 of a BigNumber
+    public static BigNumber Log(BigNumber value)
+    {
+        if (value.mantissa <= 0)
+            throw new ArgumentException("Logarithm is only defined for positive numbers.");
+
+        // Log10(value) = log10(mantissa * 10^exponent) = log10(mantissa) + exponent
+        double logMantissa = Math.Log10(value.mantissa);
+        double logResult = logMantissa + value.exponent;
+
+        // Return as BigNumber (since it's a plain double, exponent is 0)
+        return new BigNumber(logResult);
     }
 
 
@@ -267,9 +279,9 @@ public struct BigNumber : IComparable<BigNumber>
     }
 
     // Convert to double (for UI display)
-    public double ToDouble() 
-    { 
-        return mantissa* Math.Pow(10, exponent);
+    public double ToDouble()
+    {
+        return mantissa * Math.Pow(10, exponent);
     }
 
     public int ToInt()

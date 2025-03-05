@@ -18,8 +18,6 @@ public class GeneratorShopManager : MonoBehaviour
     private List<GameObject> activeButtons = new List<GameObject>(); // Track active buttons
 
     private float itemHeight;
-    private float contentHeight;
-    private int firstVisibleIndex = 0; // Tracks the first visible generator
     private int totalItems; // Total number of generators
 
 

@@ -642,6 +642,57 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1cca6e13e35b0c54a897e113dd24db5c, type: 2}
   _currentGemPattern: {fileID: 11400000, guid: aaf0d47869a290c4e857fb2c493cb015, type: 2}
   OnStartGameEventBinding: {fileID: 11400000, guid: 31d964659d010433daabb99c4e31cfa7, type: 2}
+--- !u!1 &1989706597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1989706599}
+  - component: {fileID: 1989706598}
+  m_Layer: 0
+  m_Name: Generator Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1989706598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989706597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34f85b36f4874f1bb85743b401853bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveable: {fileID: 11400000, guid: e7213c21199ce404fb056957629494aa, type: 2}
+  _currencyData: {fileID: 11400000, guid: 424d2ed0749ea024fa0d2d617e046b6f, type: 2}
+  _amountToBuy: {fileID: 11400000, guid: ced75ba67cb9f497da83291dde86fe33, type: 2}
+  OnChangeBuyAmountEvent: {fileID: 11400000, guid: b8b90167f58d94ee391e69875a58d3dd, type: 2}
+  OnProductionChangedEventBinding: {fileID: 11400000, guid: e47b372b8fd344bb7b268af1afa25986, type: 2}
+  OnChangeBuyAmountEventBinding: {fileID: 0}
+  _generatorDatabase: {fileID: 0}
+--- !u!4 &1989706599
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989706597}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &228448589717511854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -845,3 +896,4 @@ SceneRoots:
   - {fileID: 447385084}
   - {fileID: 343322519}
   - {fileID: 679719125}
+  - {fileID: 1989706599}
