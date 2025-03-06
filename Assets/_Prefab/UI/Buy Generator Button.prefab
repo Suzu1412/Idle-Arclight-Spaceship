@@ -527,7 +527,7 @@ MonoBehaviour:
   _generatorRTS: {fileID: 11400000, guid: 114647e5698bd0e41b3f05ee109437d4, type: 2}
   _amountToBuy: {fileID: 11400000, guid: ced75ba67cb9f497da83291dde86fe33, type: 2}
   _totalCurrency: {fileID: 11400000, guid: 5ff754d7192604832a00d5cf0c8ff24d, type: 2}
-  OnCurrencyChangedEventBinding: {fileID: 0}
+  OnCurrencyChangedEventBinding: {fileID: 11400000, guid: 4f396f691f9044dd1addd445deb64d99, type: 2}
   OnProductionChangedEventBinding: {fileID: 0}
   _index: 0
   _background: {fileID: 4205859773472550794}
@@ -2137,7 +2137,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Comprar
+  m_text: Comprar 999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 210dd90721b844842bbd3aca9867cfe1, type: 2}
   m_sharedMaterial: {fileID: -5859952777992250193, guid: 210dd90721b844842bbd3aca9867cfe1, type: 2}

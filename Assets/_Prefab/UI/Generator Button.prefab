@@ -547,6 +547,7 @@ MonoBehaviour:
   buyButton: {fileID: 5248496406339025179}
   OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
   OnCurrencyChangedEvent: {fileID: 11400000, guid: 4f396f691f9044dd1addd445deb64d99, type: 2}
+  OnBuyAmountChangedBinding: {fileID: 11400000, guid: dd598fda826cb9b4095e22061b60c565, type: 2}
   amountToBuy: {fileID: 11400000, guid: ced75ba67cb9f497da83291dde86fe33, type: 2}
   _nameLocalized: {fileID: 7170765897245868419}
   _descriptionLocalized: {fileID: 7643302844201131732}

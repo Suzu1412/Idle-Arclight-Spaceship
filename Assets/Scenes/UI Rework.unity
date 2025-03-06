@@ -4049,6 +4049,15 @@ MonoBehaviour:
   visibleItemCount: 0
   generators: {fileID: 11400000, guid: 90f2d3c2429c2a3438895dc3dfb07c71, type: 2}
   currencyData: {fileID: 11400000, guid: 424d2ed0749ea024fa0d2d617e046b6f, type: 2}
+  _amountToBuy: {fileID: 11400000, guid: ced75ba67cb9f497da83291dde86fe33, type: 2}
+  OnChangeBuyAmount: {fileID: 11400000, guid: b8b90167f58d94ee391e69875a58d3dd, type: 2}
+  _generatorShopDefaultButton: {fileID: 1379202098}
+  _buyButton1Image: {fileID: 661077142}
+  _buyButton2Image: {fileID: 730297080}
+  _buyButton3Image: {fileID: 1608089183}
+  _buyButton4Image: {fileID: 698964231}
+  _buttonAmountChecked: {fileID: 21300000, guid: d3ace12a2531e9a479dfa07a123d5d44, type: 3}
+  _buttonAmountUnchecked: {fileID: 21300000, guid: ca220bd2106e94647b786d9f7fdd0360, type: 3}
 --- !u!1 &409958308
 GameObject:
   m_ObjectHideFlags: 0
@@ -7529,7 +7538,7 @@ GameObject:
   - component: {fileID: 661077141}
   - component: {fileID: 661077140}
   m_Layer: 5
-  m_Name: Btn_Add0
+  m_Name: Btn_Buy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7612,9 +7621,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Suzu.Manager
-        m_MethodName: ChangeAmountToBuy
+      - m_Target: {fileID: 408863351}
+        m_TargetAssemblyTypeName: GeneratorShopManager, Suzu.UI
+        m_MethodName: ChangeBuyAmount
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8441,7 +8450,7 @@ GameObject:
   - component: {fileID: 698964230}
   - component: {fileID: 698964229}
   m_Layer: 5
-  m_Name: Btn_Add0_3
+  m_Name: Btn_BuyMax
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8524,9 +8533,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Suzu.Manager
-        m_MethodName: ChangeAmountToBuy
+      - m_Target: {fileID: 408863351}
+        m_TargetAssemblyTypeName: GeneratorShopManager, Suzu.UI
+        m_MethodName: ChangeBuyAmount
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9302,7 +9311,7 @@ GameObject:
   - component: {fileID: 730297079}
   - component: {fileID: 730297078}
   m_Layer: 5
-  m_Name: Btn_Add0_1
+  m_Name: Btn_Buy5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9385,9 +9394,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Suzu.Manager
-        m_MethodName: ChangeAmountToBuy
+      - m_Target: {fileID: 408863351}
+        m_TargetAssemblyTypeName: GeneratorShopManager, Suzu.UI
+        m_MethodName: ChangeBuyAmount
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18964,7 +18973,7 @@ GameObject:
   - component: {fileID: 1608089182}
   - component: {fileID: 1608089181}
   m_Layer: 5
-  m_Name: Btn_Add0_2
+  m_Name: Btn_Buy10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19047,9 +19056,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Suzu.Manager
-        m_MethodName: ChangeAmountToBuy
+      - m_Target: {fileID: 408863351}
+        m_TargetAssemblyTypeName: GeneratorShopManager, Suzu.UI
+        m_MethodName: ChangeBuyAmount
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

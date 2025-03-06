@@ -24,8 +24,11 @@ public class GeneratorButton : MonoBehaviour
     [Header("Events")]
     [SerializeField] private VoidGameEvent OnProductionChangedEvent;
 
+    [Header("Void Event Binding")]
     [SerializeField] private VoidGameEventBinding OnCurrencyChangedEvent;
 
+    [Header("Int Event Binding")]
+    [SerializeField] private IntGameEventBinding OnBuyAmountChangedBinding;
 
     [Header("Data")]
     [SerializeField] private IntVariableSO amountToBuy;
@@ -45,6 +48,8 @@ public class GeneratorButton : MonoBehaviour
     private StringVariable _amountProductionVariable;
     private IntVariable _amountToBuyVariable;
 
+    private Action<int> CalculateAmountToBuyAction;
+
     private void Awake()
     {
         _localizedString = _descriptionLocalized.StringReference;
@@ -54,16 +59,20 @@ public class GeneratorButton : MonoBehaviour
         SetAmountVariable();
         SetAmountProductionVariable();
         SetAmountToBuyVariable();
+
+        CalculateAmountToBuyAction = CalculateAmountToBuy;
     }
 
     private void OnEnable()
     {
         OnCurrencyChangedEvent.Bind(ChangeAmountToBuy, this);
+        OnBuyAmountChangedBinding.Bind(CalculateAmountToBuyAction, this);
     }
 
     private void OnDisable()
     {
         OnCurrencyChangedEvent.Unbind(ChangeAmountToBuy, this);
+        OnBuyAmountChangedBinding.Unbind(CalculateAmountToBuyAction, this);
     }
 
     public void Initialize(GeneratorSO generatorData, CurrencyDataSO currencyData)
@@ -72,12 +81,12 @@ public class GeneratorButton : MonoBehaviour
         _currencyData = currencyData;
         itemImage.sprite = generator.GetSprite();
         DisplayName();
-        UpdateButtonState(_currencyData.TotalCurrency);
+        UpdateButtonState();
         buyButton.onClick.RemoveAllListeners();
         buyButton.onClick.AddListener(() => BuyGenerator());
     }
 
-    public void UpdateButtonState(BigNumber totalCurrency)
+    public void UpdateButtonState()
     {
         if (generator == null) return;
         costText.text = generator.BulkCost.ToString();
@@ -92,9 +101,8 @@ public class GeneratorButton : MonoBehaviour
     {
         if (generator == null) return;
 
-        DisplayAmountToBuy(CalculateAmountToBuy(amountToBuy.Value, _currencyData.TotalCurrency));
-        ToggleBuyButton(_currencyData.TotalCurrency >= generator.BulkCost);
-        DisplayPriceText();
+        CalculateAmountToBuy(amountToBuy.Value);
+        
     }
 
     private void DisplayName()
@@ -127,9 +135,9 @@ public class GeneratorButton : MonoBehaviour
         amountOwnedText.SetTextFormat("{0}", generator.AmountOwned);
     }
 
-    private void DisplayAmountToBuy(int amount)
+    private void DisplayAmountToBuy()
     {
-        _amountToBuyVariable.Value = amount;
+        _amountToBuyVariable.Value = generator.AmountToBuy;
         _buyAmountLocalized.RefreshString();
     }
 
@@ -138,17 +146,19 @@ public class GeneratorButton : MonoBehaviour
         costText.SetTextFormat("{0}", generator.BulkCost.ToString());
     }
 
-    private int CalculateAmountToBuy(int amount, BigNumber totalCurrency)
+    private void CalculateAmountToBuy(int amount)
     {
-        int currentAmount = (amount > 0) ? amount : generator.GetMaxGenerators(totalCurrency);
+        int currentAmount = (amount > 0) ? amount : generator.GetMaxGenerators(_currencyData.TotalCurrency);
 
         // Ensure we don't use an invalid or infinite number
         if (currentAmount <= 0) currentAmount = 1;
 
-        // Store the total cost instead of just calling GetBulkCost
-        BigNumber bulkCost = generator.GetBulkCost(currentAmount);
+        generator.GetBulkCost(currentAmount);
+        generator.SetAmountToBuy(currentAmount);
 
-        return currentAmount;
+        DisplayAmountToBuy();
+        ToggleBuyButton(_currencyData.TotalCurrency >= generator.BulkCost);
+        DisplayPriceText();
     }
 
     private void BuyGenerator()
@@ -158,7 +168,7 @@ public class GeneratorButton : MonoBehaviour
             _currencyData.SubtractCurrency(generator.BulkCost);
             generator.AddAmount(_amountToBuyVariable.Value);
             generator.CalculateProductionRate();
-            UpdateButtonState(_currencyData.TotalCurrency);
+            UpdateButtonState();
             ChangeAmountToBuy();
             OnProductionChangedEvent.RaiseEvent(this);
         }

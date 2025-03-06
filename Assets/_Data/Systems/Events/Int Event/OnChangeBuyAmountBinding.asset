@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e9f1a9088fa94b72820ee78998a86ac, type: 3}
-  m_Name: OnBuyGeneratorGameEvent
+  m_Script: {fileID: 11500000, guid: 912d3dac56bbf4f0b8e455c2b825d94a, type: 3}
+  m_Name: OnChangeBuyAmountBinding
   m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: b8b90167f58d94ee391e69875a58d3dd, type: 2}

@@ -17,27 +17,21 @@ public class GeneratorManager : MonoBehaviour, ISaveable
     [Header("Void Event Binding")]
     [SerializeField] private VoidGameEventBinding OnProductionChangedEventBinding;
 
-    [Header("Int Event Binding")]
-    [SerializeField] private IntGameEventBinding OnChangeBuyAmountEventBinding;
-
     [Header("Generator List")]
     [SerializeField] private GeneratorDatabaseSO _generatorDatabase;
 
-    private Action<int> ChangeAmountToBuyAction;
     private Action UpdateProductionRateAction;
 
 
     private void Awake()
     {
         _generatorDatabase.InitializeDictionary();
-        ChangeAmountToBuyAction = ChangeAmountToBuy;
         UpdateProductionRateAction = UpdateProductionRate;
     }
 
     private void OnEnable()
     {
         _saveable.Add(this);
-        OnChangeBuyAmountEventBinding.Bind(ChangeAmountToBuyAction, this);
         OnProductionChangedEventBinding.Bind(UpdateProductionRateAction, this);
 
     }
@@ -45,7 +39,6 @@ public class GeneratorManager : MonoBehaviour, ISaveable
     private void OnDisable()
     {
         _saveable.Remove(this);
-        OnChangeBuyAmountEventBinding.Unbind(ChangeAmountToBuyAction, this);
         OnProductionChangedEventBinding.Unbind(UpdateProductionRateAction, this);
     }
 
@@ -58,7 +51,7 @@ public class GeneratorManager : MonoBehaviour, ISaveable
     {
         LoadGenerators(gameData.Generators);
         _currencyData.CalculateOfflineEarnings(gameData.CurrencyData.LastActiveDateTime);
-        ChangeAmountToBuy(gameData.AmountToBuy);
+        _amountToBuy.Value = gameData.AmountToBuy;
     }
 
     public void SaveData(GameDataSO gameData)
@@ -89,13 +82,6 @@ public class GeneratorManager : MonoBehaviour, ISaveable
             generatorSO.SetTotalProduction(generator.TotalProduction);
             generatorSO.IsVisibleInStore = generator.IsVisibleInStore;
         }
-    }
-
-    private void ChangeAmountToBuy(int amount)
-    {
-        _amountToBuy.Value = amount;
-        OnChangeBuyAmountEvent.RaiseEvent(_amountToBuy.Value, this);
-
     }
 
     private void UpdateProductionRate()

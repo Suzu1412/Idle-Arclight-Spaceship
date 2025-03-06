@@ -28,13 +28,10 @@ public class UIManager : Singleton<UIManager>
 
     [Header("Void Event")]
     [SerializeField] private VoidGameEvent OnBuyEveryUpgradeEvent;
-    [Header("Int Event")]
-    [SerializeField] private IntGameEvent OnChangeBuyAmountEvent;
+ 
     [Header("Bool Event Binding")]
     [SerializeField] private BoolGameEventBinding OnToggleShopEventBinding;
     [SerializeField] private BoolGameEventBinding OnToggleMenuEventBinding;
-    [Header("Int Event Listener")]
-    [SerializeField] private IntGameEventListener OnChangeBuyAmountEventListener;
 
     [Header("Joystick")]
     [SerializeField] private GameObject _joystick;
@@ -85,14 +82,12 @@ public class UIManager : Singleton<UIManager>
     {
         OnToggleShopEventBinding.Bind(ToggleShopAction, this);
         OnToggleMenuEventBinding.Bind(ToggleMenuAction, this);
-        OnChangeBuyAmountEventListener.Register(ChangeSelectedAmountButton);
     }
 
     private void OnDisable()
     {
         OnToggleShopEventBinding.Unbind(ToggleShopAction, this);
         OnToggleMenuEventBinding.Unbind(ToggleMenuAction, this);
-        OnChangeBuyAmountEventListener.DeRegister(ChangeSelectedAmountButton);
     }
 
     public void SetGeneratorShopDefaultButton()
@@ -103,11 +98,6 @@ public class UIManager : Singleton<UIManager>
     public void SetSettingMenuDefaultButton()
     {
         _menuDefaultButton.Select();
-    }
-
-    public void ChangeAmountToBuy(int amount)
-    {
-        OnChangeBuyAmountEvent.RaiseEvent(amount, this);
     }
 
     public void BuyEveryUpgradeAvailable()

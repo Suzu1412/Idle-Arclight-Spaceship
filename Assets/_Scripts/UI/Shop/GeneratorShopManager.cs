@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,19 @@ public class GeneratorShopManager : MonoBehaviour
     [Header("Data")]
     [SerializeField] private GeneratorDatabaseSO generators;
     [SerializeField] private CurrencyDataSO currencyData;
+    [SerializeField] private IntVariableSO _amountToBuy;
+
+    [Header("Event Binding")]
+    [SerializeField] private IntGameEvent OnChangeBuyAmount;
+
+    [Header("Generator UI")]
+    [SerializeField] private Button _generatorShopDefaultButton;
+    [SerializeField] private Image _buyButton1Image;
+    [SerializeField] private Image _buyButton2Image;
+    [SerializeField] private Image _buyButton3Image;
+    [SerializeField] private Image _buyButton4Image;
+    [SerializeField] private Sprite _buttonAmountChecked;
+    [SerializeField] private Sprite _buttonAmountUnchecked;
 
     private Queue<GameObject> buttonPool = new Queue<GameObject>();
     private List<GameObject> activeButtons = new List<GameObject>(); // Track active buttons
@@ -30,6 +44,22 @@ public class GeneratorShopManager : MonoBehaviour
         scrollRect.onValueChanged.AddListener(OnScroll);
         InitializePool();
     }
+
+    private void OnEnable()
+    {
+        ChangeBuyAmount(_amountToBuy.Value);
+    }
+
+    public void ChangeBuyAmount(int amount)
+    {
+        _amountToBuy.Value = amount;
+        OnChangeBuyAmount.RaiseEvent(amount, this);
+        _buyButton1Image.sprite = (amount == 1) ? _buttonAmountChecked : _buttonAmountUnchecked;
+        _buyButton2Image.sprite = (amount == 5) ? _buttonAmountChecked : _buttonAmountUnchecked;
+        _buyButton3Image.sprite = (amount == 10) ? _buttonAmountChecked : _buttonAmountUnchecked;
+        _buyButton4Image.sprite = (amount == -1) ? _buttonAmountChecked : _buttonAmountUnchecked;
+    }
+
 
     private void OnScroll(Vector2 position)
     {

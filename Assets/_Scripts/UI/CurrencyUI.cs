@@ -74,9 +74,18 @@ public class CurrencyUI : MonoBehaviour
 
     private IEnumerator AnimateCurrencyCoroutine()
     {
+        float mantissaVelocity = 0f;
+        float exponentVelocity = 0f;
+        float elapsedTime = 0f;
+
+
         while (true)
         {
-            _lerpedNumber = BigNumber.SmoothDamp(_lerpedNumber, _currencyData.TotalCurrency, ref velocity, smoothTime);
+ 
+
+            _lerpedNumber = BigNumber.SmoothDamp(_lerpedNumber, _currencyData.TotalCurrency, ref mantissaVelocity, ref exponentVelocity, smoothTime);
+            Debug.Log($"lerped: {_lerpedNumber.exponent}");
+
             _currencyText.SetTextFormat("{0}", _lerpedNumber.ToString());
 
             yield return null;

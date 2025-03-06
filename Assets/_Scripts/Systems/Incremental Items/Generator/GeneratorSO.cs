@@ -15,6 +15,7 @@ public class GeneratorSO : SerializableScriptableObject
     [SerializeField] private SpriteAtlas _spriteAtlas;
     [SerializeField] private string _imageName;
     [SerializeField] internal int _amountOwned;
+    [SerializeField][ReadOnly] private int _amountToBuy;
     [SerializeField] private CurrencyDataSO _currencyData;
 
 
@@ -44,6 +45,7 @@ public class GeneratorSO : SerializableScriptableObject
 
     public string Name => _name;
     public int AmountOwned { get => _amountOwned; internal set => _amountOwned = value; }
+    public int AmountToBuy { get => _amountToBuy; internal set => _amountToBuy = value; }
     public BigNumber BulkCost => _bulkCost;
     public BigNumber Production => _production;
     public BigNumber TotalProduction => _totalProduction;
@@ -82,6 +84,11 @@ public class GeneratorSO : SerializableScriptableObject
         _hasProductionChanged = true;
         _amountOwned += amount;
         ClearCache();
+    }
+
+    public void SetAmountToBuy(int amount)
+    {
+        _amountToBuy = amount;
     }
 
     public void CalculateProductionRate()

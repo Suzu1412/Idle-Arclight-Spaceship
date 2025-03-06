@@ -201,19 +201,34 @@ public struct BigNumber : IComparable<BigNumber>
         throw new FormatException($"Invalid BigNumber format: {input}");
     }
 
-    public static BigNumber SmoothDamp(BigNumber current, BigNumber target, ref float velocity, double smoothTime, double deltaTime = -1)
+    public static BigNumber SmoothDamp(BigNumber current, BigNumber target, ref float mantissaVelocity, ref float exponentVelocity, double smoothTime, double deltaTime = -1)
     {
         if (deltaTime < 0) deltaTime = Time.unscaledDeltaTime;
 
-        // If exponent difference is too large, just snap to target
+        // If exponent difference is too large, snap to target immediately
         if (Math.Abs(current.exponent - target.exponent) > 6)
             return target;
 
         // Smooth the mantissa separately
-        double newMantissa = Mathf.SmoothDamp((float)current.mantissa, (float)target.mantissa, ref velocity, (float)smoothTime, Mathf.Infinity, (float)deltaTime);
+        double newMantissa = Mathf.SmoothDamp((float)current.mantissa, (float)target.mantissa, ref mantissaVelocity, (float)smoothTime * 0.5f, Mathf.Infinity, (float)deltaTime);
 
-        // Interpolate exponent slowly when needed
-        int newExponent = (int)Mathf.Lerp(current.exponent, target.exponent, (float)(deltaTime / smoothTime));
+        // If the mantissa is too small or too large, adjust the exponent smoothly
+        int newExponent = current.exponent;
+
+        if (Math.Abs(newMantissa) >= 10)
+        {
+            newMantissa /= 10;
+            newExponent++;
+        }
+        else if (Math.Abs(newMantissa) < 1 && newMantissa != 0)
+        {
+            newMantissa *= 10;
+            newExponent--;
+        }
+
+        // Smooth the exponent change, but let it be quicker than the mantissa
+        float smoothedExponent = Mathf.SmoothDamp(current.exponent, target.exponent, ref exponentVelocity, (float)smoothTime * 0.3f, Mathf.Infinity, (float)deltaTime);
+        newExponent = Mathf.RoundToInt(smoothedExponent);
 
         return new BigNumber(newMantissa, newExponent);
     }
