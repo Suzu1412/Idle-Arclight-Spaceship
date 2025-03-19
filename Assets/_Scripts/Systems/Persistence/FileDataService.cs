@@ -117,7 +117,9 @@ public class FileDataService : IDataService
 
         if (File.Exists(fileLocation))
         {
+            Debug.Log("existe el archivo");
             File.Delete(fileLocation);
+            Debug.Log("borrando archivo");
         }
     }
 

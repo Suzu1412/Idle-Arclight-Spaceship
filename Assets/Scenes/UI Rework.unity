@@ -19377,7 +19377,7 @@ MonoBehaviour:
   _productionLocalized: {fileID: 638584491}
   _table: Tabla1
   velocity: 0
-  smoothTime: 0.5
+  _lerpSpeed: 0.5
   _animationManager: {fileID: 0}
 --- !u!224 &1633277060
 RectTransform:

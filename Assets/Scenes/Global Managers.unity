@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &148453614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -674,6 +674,7 @@ MonoBehaviour:
   _saveable: {fileID: 11400000, guid: e7213c21199ce404fb056957629494aa, type: 2}
   _currencyData: {fileID: 11400000, guid: 424d2ed0749ea024fa0d2d617e046b6f, type: 2}
   _amountToBuy: {fileID: 11400000, guid: ced75ba67cb9f497da83291dde86fe33, type: 2}
+  OnProductionChangedEvent: {fileID: 11400000, guid: 596e4393583a04c8093560aa9ee808a4, type: 2}
   OnChangeBuyAmountEvent: {fileID: 11400000, guid: b8b90167f58d94ee391e69875a58d3dd, type: 2}
   OnProductionChangedEventBinding: {fileID: 11400000, guid: e47b372b8fd344bb7b268af1afa25986, type: 2}
   _generatorDatabase: {fileID: 11400000, guid: 90f2d3c2429c2a3438895dc3dfb07c71, type: 2}

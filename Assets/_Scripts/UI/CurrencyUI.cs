@@ -10,10 +10,7 @@ using UnityEngine.UI;
 
 public class CurrencyUI : MonoBehaviour
 {
-    private BigNumber _startBigNumber = new BigNumber(0);
-    private BigNumber _endBigNumber;
-    private BigNumber _lerpedNumber;
-
+    private BigNumber _currentNumber;
     [SerializeField] private CurrencyDataSO _currencyData;
 
     [SerializeField] private VoidGameEventBinding OnCurrencyChangedEventBinding;
@@ -31,7 +28,7 @@ public class CurrencyUI : MonoBehaviour
 
     [Header("Currency Animation")]
     [SerializeField] private float velocity = 0;
-    [SerializeField] private float smoothTime = 0.2f;
+    [SerializeField] private float _lerpSpeed = 0.5f;
 
     private Coroutine _animateCurrencyCoroutine;
     [SerializeField] private UIAnimationManager _animationManager;
@@ -64,8 +61,6 @@ public class CurrencyUI : MonoBehaviour
 
     private void AnimateCurrencyChange()
     {
-        _endBigNumber = _currencyData.TotalCurrency; // Just update the end value
-
         if (_animateCurrencyCoroutine == null)
         {
             _animateCurrencyCoroutine = StartCoroutine(AnimateCurrencyCoroutine());
@@ -74,19 +69,48 @@ public class CurrencyUI : MonoBehaviour
 
     private IEnumerator AnimateCurrencyCoroutine()
     {
-        float mantissaVelocity = 0f;
-        float exponentVelocity = 0f;
-        float elapsedTime = 0f;
-
+        const float lerpDuration = 1f; // 1 second for smooth transition
 
         while (true)
         {
- 
+            // Get mantissa and exponent of both numbers
+            double currentMantissa = _currentNumber.mantissa;
+            double targetMantissa = _currencyData.TotalCurrency.mantissa;
+            int currentExponent = _currentNumber.exponent;
+            int targetExponent = _currencyData.TotalCurrency.exponent;
 
-            _lerpedNumber = BigNumber.SmoothDamp(_lerpedNumber, _currencyData.TotalCurrency, ref mantissaVelocity, ref exponentVelocity, smoothTime);
-            Debug.Log($"lerped: {_lerpedNumber.exponent}");
+            // Smoothly adjust exponent if needed
+            if (currentExponent != targetExponent)
+            {
+                // Move exponent towards target
+                int exponentDiff = targetExponent - currentExponent;
+                int step = Math.Sign(exponentDiff); // +1 or -1
+                currentExponent += step;
 
-            _currencyText.SetTextFormat("{0}", _lerpedNumber.ToString());
+                // Adjust mantissa to maintain scale
+                currentMantissa /= (step > 0) ? 10 : 0.1;
+            }
+            float elapsedTime = 0f;
+
+            while (elapsedTime < lerpDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsedTime / lerpDuration); // Normalize t between 0 and 1
+
+                // Lerp only the mantissa, update exponent smoothly
+                double lerpedMantissa = Mathf.Lerp((float)currentMantissa, (float)targetMantissa, t);
+                int lerpedExponent = (int)Mathf.Lerp(currentExponent, targetExponent, t);
+
+                _currentNumber = new BigNumber(lerpedMantissa, lerpedExponent);
+                //_lerpedNumber = new BigNumber(lerpedMantissa, currentExponent);
+
+                // Update UI
+                _currencyText.SetTextFormat("{0}", _currentNumber.GetFormat());
+
+                yield return null;
+            }
+            // Update UI text
+            _currencyText.SetTextFormat("{0}", _currentNumber.GetFormat());
 
             yield return null;
         }

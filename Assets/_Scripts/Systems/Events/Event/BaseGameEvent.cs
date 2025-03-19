@@ -8,7 +8,6 @@ public abstract class BaseGameEvent<T> : ScriptableObject, IGameEvent
 {
     protected event Action<T> OnEventRaised;
 
-#if UNITY_EDITOR
     protected List<string> _eventHistory = new List<string>();
     protected Dictionary<UnityEngine.Object, int> _senderCounts = new Dictionary<UnityEngine.Object, int>();
 
@@ -18,7 +17,6 @@ public abstract class BaseGameEvent<T> : ScriptableObject, IGameEvent
     public bool HasParameterType => true;
 
     public Type ParameterType => typeof(T);
-#endif
 
     /// <summary>
     /// Raise the event and notify all listeners.

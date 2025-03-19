@@ -11,6 +11,9 @@ public class GeneratorManager : MonoBehaviour, ISaveable
     [Header("Int Variable")]
     [SerializeField] private IntVariableSO _amountToBuy;
 
+    [Header("Void Event")]
+    [SerializeField] private VoidGameEvent OnProductionChangedEvent;
+
     [Header("Int Event")]
     [SerializeField] private IntGameEvent OnChangeBuyAmountEvent;
 
@@ -52,6 +55,7 @@ public class GeneratorManager : MonoBehaviour, ISaveable
         LoadGenerators(gameData.Generators);
         _currencyData.CalculateOfflineEarnings(gameData.CurrencyData.LastActiveDateTime);
         _amountToBuy.Value = gameData.AmountToBuy;
+
     }
 
     public void SaveData(GameDataSO gameData)
@@ -82,6 +86,9 @@ public class GeneratorManager : MonoBehaviour, ISaveable
             generatorSO.SetTotalProduction(generator.TotalProduction);
             generatorSO.IsVisibleInStore = generator.IsVisibleInStore;
         }
+
+        OnProductionChangedEvent.RaiseEvent(this);
+
     }
 
     private void UpdateProductionRate()

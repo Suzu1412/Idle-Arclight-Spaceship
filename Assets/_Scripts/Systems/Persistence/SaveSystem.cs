@@ -112,7 +112,7 @@ public class SaveSystem : Singleton<SaveSystem>
     private void DeleteAllFileData()
     {
         _gameDataSO.Initialize();
-        SaveGame();
+        DeleteFileData(_gameDataSO);
         LoadLastScene();
     }
 

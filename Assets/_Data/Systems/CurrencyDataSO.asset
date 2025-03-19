@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: CurrencyDataSO
   m_EditorClassIdentifier: 
   _lifetimeCurrency:
-    mantissa: 4.089999999999988
-    exponent: 2
+    mantissa: 1.8047870000000017
+    exponent: 5
   _totalCurrency:
-    mantissa: 4.089999999999988
-    exponent: 2
+    mantissa: 1.5906862639166512
+    exponent: 4
   _highestProduction:
-    mantissa: 0
-    exponent: 0
+    mantissa: 1.4142000000000001
+    exponent: 3
   _totalProduction:
-    mantissa: 0
-    exponent: 0
+    mantissa: 1.4142000000000001
+    exponent: 3
   baseCurrencyMultiplier: 1
   baseProductionMultiplier: 1
   baseOnGetMultiplier: 1
@@ -33,6 +33,8 @@ MonoBehaviour:
   eventCurrencyMultiplier: 1
   eventProductionMultiplier: 1
   eventOnGetMultiplier: 1
+  offlineCurrencyMultiplier: 0
+  offlineTimeCapMinutes: 30
   productionBonusPercentage: 0
   prestigeMultiplier: 1
   OnCurrencyChangedEvent: {fileID: 11400000, guid: ff8f3ee2b518a4df797a668d4d90f90b, type: 2}

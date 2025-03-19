@@ -9,13 +9,11 @@ public class VoidGameEvent : ScriptableObject
 {
     protected event Action OnEventRaised;
 
-#if UNITY_EDITOR
     private List<string> _eventHistory = new List<string>();
     private Dictionary<UnityEngine.Object, int> _senderCounts = new Dictionary<UnityEngine.Object, int>();
 
     public List<string> EventHistory => _eventHistory;
     public Dictionary<UnityEngine.Object, int> SenderCounts => _senderCounts;
-#endif
 
     /// <summary>
     /// Raise the event and notify all listeners.

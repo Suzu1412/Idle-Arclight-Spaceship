@@ -6,7 +6,7 @@ using UnityEngine; // ZString requires this namespace
 [Serializable]
 public struct BigNumber : IComparable<BigNumber>
 {
-    private const double Log10Base = 10.0;
+    public const double Log10Base = 10.0;
     private const double Log1000Base = 1000.0;
     private const double MinMantissa = 0.0001; // Prevents unnecessary floating precision errors
     private static readonly List<string> Units = new()
