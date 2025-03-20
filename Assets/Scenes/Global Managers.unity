@@ -531,6 +531,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed53d2ca57481934fb074c26a1fdbdac, type: 3}
+--- !u!1 &1599634981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1599634983}
+  - component: {fileID: 1599634982}
+  m_Layer: 0
+  m_Name: Special Gem Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1599634982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599634981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4822625d5884b6281e03c3b35a31c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isPaused: {fileID: 0}
+  _placementStrategy: {fileID: 0}
+--- !u!4 &1599634983
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599634981}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1737741695
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,6 +937,7 @@ SceneRoots:
   - {fileID: 856451586824009297}
   - {fileID: 228448589717511854}
   - {fileID: 1827642338}
+  - {fileID: 1599634983}
   - {fileID: 148453615}
   - {fileID: 1737741697}
   - {fileID: 447385084}

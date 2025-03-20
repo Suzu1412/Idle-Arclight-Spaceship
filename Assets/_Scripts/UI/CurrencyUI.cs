@@ -26,10 +26,6 @@ public class CurrencyUI : MonoBehaviour
     private LocalizedString _localizedString;
     [SerializeField] private string _table = "Tabla1";
 
-    [Header("Currency Animation")]
-    [SerializeField] private float velocity = 0;
-    [SerializeField] private float _lerpSpeed = 0.5f;
-
     private Coroutine _animateCurrencyCoroutine;
     [SerializeField] private UIAnimationManager _animationManager;
 
