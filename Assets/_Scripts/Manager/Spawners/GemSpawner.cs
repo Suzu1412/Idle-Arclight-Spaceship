@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GemSpawner : MonoBehaviour, IPausable
 {
-    [SerializeField] private PausableRunTimeSetSO _pausable;
     [SerializeField] private float _initialDelay = 3f;
     [SerializeField] private FloatVariableSO _minDelayBetweenSpawns;
     [SerializeField] private FloatVariableSO _maxDelayBetweenSpawns;
@@ -34,7 +33,6 @@ public class GemSpawner : MonoBehaviour, IPausable
     private void OnEnable()
     {
         OnStartGameEventBinding.Bind(SpawnGemAction, this);
-        _pausable.Add(this);
     }
 
     private void OnDisable()
@@ -42,8 +40,6 @@ public class GemSpawner : MonoBehaviour, IPausable
         if (_spawnGemCoroutine != null) StopCoroutine(_spawnGemCoroutine);
 
         OnStartGameEventBinding.Unbind(SpawnGemAction, this);
-        _pausable.Remove(this);
-
     }
 
     private void SpawnGem()
