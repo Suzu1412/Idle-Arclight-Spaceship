@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Yellow Gemstone
+  m_Controller: {fileID: 9100000, guid: 86fcb904370b8894c81bc483ad99367a, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 47fd52d5ee2e44a4586ef27e1278a226, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d7d52fa3e614a544285333d840bbe1a7, type: 2}
